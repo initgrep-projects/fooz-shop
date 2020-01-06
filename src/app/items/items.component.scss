@@ -1,0 +1,52 @@
+@import "../../variables.scss";
+
+section.card-wrapper {
+  margin-left: 10%;
+  margin-right: 10%;
+  .item-heading {
+    text-align: center;
+    span {
+      letter-spacing: $heading-letter-spacing;
+      border-bottom: 1px dotted $primary-text-color;
+    }
+  }
+
+ div.item{
+   position: relative;
+   overflow: hidden;
+   div.item-heading{
+    // border:1px solid red; 
+    width: 100%;
+    height: 400px;
+    cursor: pointer;
+    img{
+      width: 98%;
+      position: absolute;
+      left: 1%;
+      opacity: 1;
+      height: 400px;
+      &:nth-child(1){
+        left:1%;
+      }
+      &:nth-child(2){
+        left:100%;
+      }
+
+     }
+     &:hover{
+       img{
+        &:nth-child(2){
+          left: 1%;
+        }
+       }
+     }
+   }
+   div.item-body{
+     position: relative;
+    //  border: 1px solid red;
+    h6{
+      text-align: center;
+    }
+   }
+ }
+}

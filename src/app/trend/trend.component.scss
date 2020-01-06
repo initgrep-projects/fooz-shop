@@ -1,0 +1,16 @@
+.trend-item-wrapper{
+    margin-left: 10%;
+    margin-right: 10%;
+
+    .trend-item{
+        .trend-item-header{
+            img{
+                height: 600px;
+            }
+        }
+    }
+
+    .trend-item-msg{
+        background: #333;
+    }
+}

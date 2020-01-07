@@ -1,20 +1,50 @@
 <section class="trend-item-wrapper">
     <div class="row">
-        <div class="col-12 col-md-12 col-lg-8">
-            <div class="trend-item">
+        <div class="col-12 col-md-8 col-lg-8">
+            <div class="trend-item ">
                 <div class="trend-item-header">
-                    <img src="../../assets/images/poster.jpeg" alt="image01" />
-                    <!-- <img src="../../assets/images/item2.jpeg" alt="image02" /> -->
+                    <!-- <img src="../../assets/images/poster.jpeg" alt="image01" />
+                    <img src="../../assets/images/item2.jpeg" alt="image02" /> -->
+
+                    <ngb-carousel *ngIf="images">
+                        <ng-template ngbSlide>
+                          <div class="picsum-img-wrapper">
+                            <img [src]="images[0]" alt="Random first slide">
+                          </div>
+                          <div class="carousel-caption">
+                            
+                          </div>
+                        </ng-template>
+                        <ng-template ngbSlide>
+                          <div class="picsum-img-wrapper">
+                            <img [src]="images[1]" alt="Random second slide">
+                          </div>
+                          <div class="carousel-caption">
+                            
+                          </div>
+                        </ng-template>
+                        <ng-template ngbSlide>
+                          <div class="picsum-img-wrapper">
+                            <img [src]="images[2]" alt="Random third slide">
+                          </div>
+                          <div class="carousel-caption">
+                           
+                          </div>
+                        </ng-template>
+                      </ngb-carousel>
                 </div>
             </div>
-    
+
         </div>
-        <div class="col-12 col-md-12 col-lg-4 border">
-            <div class="trend-item-msg">
-                something usual
+        <div class="col-12 col-md-4 col-lg-4  ">
+            <div class="trend-item-msg border">
+                <span class="">
+                    <fa-icon icon="atom"></fa-icon>
+                </span>
+                <h1>The latest designs by FOOZ</h1>
+                <p>We offer comprehensive designs for all seasons.</p>
+                <button class="btn btn-dark">SHOP</button>
             </div>
         </div>
     </div>
 </section>
-
-

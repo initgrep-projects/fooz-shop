@@ -1,16 +1,55 @@
-.trend-item-wrapper{
-    margin-left: 10%;
-    margin-right: 10%;
+@import "../../variables.scss";
 
-    .trend-item{
-        .trend-item-header{
-            img{
-                height: 600px;
-            }
+.trend-item-wrapper {
+  margin-left: 10%;
+  margin-right: 10%;
+  font-family: $ptserif-font-family;
+  .trend-item {
+    // border: 3px solid $primary-border-color;
+
+    .trend-item-header {
+      img {
+        padding: 0.4rem;
+        height: 600px;
+        width: 100%;
+      }
+    }
+  }
+
+  .trend-item-msg {
+    
+    padding: 2rem;
+    color: $primary-text-color;
+    margin-top: 1.5rem;
+    height: 90%;
+
+    span{
+        // border:1px solid red;
+        display: block;
+        font-size: 6rem;
+        text-align: center;
+        fa-icon{
+            
+            font-size: 6rem;
         }
     }
 
-    .trend-item-msg{
-        background: #333;
+    h1{
+    
+        margin-top: 5%;
+        text-align: center;
     }
+    p{
+        margin-top: 10%;
+        text-align: center;
+    }
+
+    button{
+        font-family: $roboto-font-family;
+        margin-left: 45%;
+        margin-top: 10%;
+        font-size: 1.2rem;
+        font-weight: 400;
+    }
+  }
 }

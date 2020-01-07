@@ -8,25 +8,14 @@ import { FooterComponent } from './footer/footer.component';
 import { ItemCouroselComponent } from './item-courosel/item-courosel.component';
 import { ItemsComponent } from './items/items.component';
 
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 
 import { FaIconLibrary, FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import {
-  faUpload,
-  faDownload,
-  faChevronRight,
-  faChevronDown,
-  faChevronLeft,
-  faChevronCircleUp,
-  faList,
-  faSearch,
-  faFileWord,
-  faFilePdf,
-  faFileExcel,
-  faFilePowerpoint,
-  faFileAlt,
-  faEnvelope,
-  faCircleNotch,
-  faSpinner
+  faAtom,
+  faBolt,
+  faShoppingBag
 
 } from '@fortawesome/free-solid-svg-icons';
 import { TrendComponent } from './trend/trend.component';
@@ -44,6 +33,7 @@ import { TrendComponent } from './trend/trend.component';
     BrowserModule,
     AppRoutingModule,
     FontAwesomeModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]
@@ -52,23 +42,10 @@ export class AppModule {
 
   constructor(iconLiberary: FaIconLibrary) {
     iconLiberary.addIcons(
-      faUpload,
-      faDownload,
-      faChevronRight,
-      faChevronDown,
-      faChevronLeft,
-      faChevronCircleUp,
-      faList,
-      faSearch,
-      faFileWord,
-      faFilePdf,
-      faFileExcel,
-      faFilePowerpoint,
-      faFileAlt,
-      faEnvelope,
-      faCircleNotch,
-      faSpinner
+      faAtom,
+      faBolt,
+      faShoppingBag
     );
   }
 
- }
+}

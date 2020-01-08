@@ -3,11 +3,28 @@
 section.card-wrapper {
   margin-left: 10%;
   margin-right: 10%;
-  .item-heading {
+  .content-heading {
     text-align: center;
+    &::before, &::after{
+      position: absolute;
+      content: "";
+      width: 60px;
+      height: 2px;
+      background: #000;
+      top: 48%;
+      
+    }
+
+    &::before{
+      left:40%;
+    }
+    &::after{
+      left:56%;
+    }
     span {
       letter-spacing: $heading-letter-spacing;
-      border-bottom: 1px dotted $primary-text-color;
+      // border-bottom: 1px dotted $primary-text-color;
+     
     }
   }
 

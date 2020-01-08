@@ -15,9 +15,16 @@ import { FaIconLibrary, FontAwesomeModule } from '@fortawesome/angular-fontaweso
 import {
   faAtom,
   faBolt,
-  faShoppingBag
-
+  faShoppingBag,
+  faPhoneAlt,
+  faSearch,
+  faUserCircle,
+  faCircleNotch,
+  faBookmark,
+  faHeart
 } from '@fortawesome/free-solid-svg-icons';
+
+
 import { TrendComponent } from './trend/trend.component';
 
 @NgModule({
@@ -44,8 +51,13 @@ export class AppModule {
     iconLiberary.addIcons(
       faAtom,
       faBolt,
-      faShoppingBag
-    );
+      faShoppingBag,
+      faPhoneAlt,
+      faSearch,
+      faUserCircle,
+      faBookmark,
+      faHeart
+      );
   }
 
 }

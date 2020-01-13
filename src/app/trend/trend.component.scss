@@ -1,4 +1,5 @@
 @import "../../variables.scss";
+@import "../../animate.scss";
 
 .trend-item-wrapper {
   margin-left: 10%;
@@ -9,44 +10,43 @@
     // border: 3px solid $primary-border-color;
 
     .trend-item-header {
+      overflow: hidden;
       img {
         padding: 0.4rem;
-        height: 600px;
+        height: 590px;
         width: 100%;
+        border-radius: 10px;
+        // &:hover {
+        //   transform: scale(1.1);
+        //   transition: all 0.3s ease-out;
+        // }
       }
     }
   }
 
-  .collection-item{
-    .item-head{
+  .collection-item {
+    .item-head {
       margin: 0.4rem;
-      margin-bottom:0.2rem;
+      margin-bottom: 0.2rem;
       height: 100%;
-      img{
+      overflow: hidden;
+      img {
         width: 100%;
-        // border-top-right-radius: 20px;
-        // border-bottom-left-radius: 20px;
-      }
-    }
-    .item-mask{
-      position: absolute;
-    // border: 1px solid red;
-      padding: 1rem;
-      top: 1%;
-      width: 91%;
-      left: 4.5%;
-      height: 96.3%;
-      background: #adb5bd36;
+       border-radius: 5px;
 
-      .side-bar{
-        ul{
-          li{
-            background: transparent;
-            // border:0px solid transparent;
-            font-size: 1rem;
-            font-family: $poppins-font-family;
-          }
+        &:hover {
+          transform: scale(1.2);
+          transition: all 0.5s ease-out;
         }
+      }
+
+      button.btn {
+        position: absolute;
+        left: 35%;
+        top: 75%;
+        border-color: #f1f1f1;
+        padding: 0.5rem;
+        letter-spacing: 0.1rem;
       }
     }
   }

@@ -1,28 +1,40 @@
 @import "../../variables.scss";
 
 section.card-wrapper {
+  // border:1px solid red;
+  margin-top: 2rem;
   margin-left: 10%;
   margin-right: 10%;
+
   .content-heading {
+    // border:1px solid red;
     text-align: center;
+
     &::before, &::after{
       position: absolute;
       content: "";
       width: 60px;
-      height: 2px;
+      height: 3px;
       background: #000;
       top: 48%;
       
     }
 
     &::before{
-      left:40%;
+      left:39%;
+      // top: 4rem;
     }
     &::after{
-      left:56%;
+      left:57%;
+      // top: 3.5rem;
     }
     span {
-      letter-spacing: $heading-letter-spacing;
+      // letter-spacing: $heading-letter-spacing;
+      // font-weight: 600;
+      // text-transform: uppercase;
+      letter-spacing: .1rem;
+      font-size: 1.3rem;
+      margin-top: .4rem;
       // border-bottom: 1px dotted $primary-text-color;
      
     }

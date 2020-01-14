@@ -22,7 +22,9 @@ import {
   faCircleNotch,
   faBookmark,
   faHeart,
-  faStar
+  faStar,
+  faArrowCircleDown,
+  faArrowAltCircleDown
 } from '@fortawesome/free-solid-svg-icons';
 
 
@@ -58,7 +60,9 @@ export class AppModule {
       faUserCircle,
       faBookmark,
       faHeart,
-      faStar
+      faStar,
+      faArrowCircleDown,
+      faArrowAltCircleDown
       );
   }
 

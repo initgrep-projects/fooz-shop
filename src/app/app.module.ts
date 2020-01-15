@@ -24,11 +24,13 @@ import {
   faHeart,
   faStar,
   faArrowCircleDown,
-  faArrowAltCircleDown
+  faArrowAltCircleDown,
+  faBoxOpen
 } from '@fortawesome/free-solid-svg-icons';
 
 
 import { TrendComponent } from './trend/trend.component';
+import { LookbookComponent } from './lookbook/lookbook.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +39,8 @@ import { TrendComponent } from './trend/trend.component';
     FooterComponent,
     ItemCouroselComponent,
     ItemsComponent,
-    TrendComponent
+    TrendComponent,
+    LookbookComponent
   ],
   imports: [
     BrowserModule,
@@ -62,7 +65,9 @@ export class AppModule {
       faHeart,
       faStar,
       faArrowCircleDown,
-      faArrowAltCircleDown
+      faArrowAltCircleDown,
+      faBookmark,
+      faBoxOpen
       );
   }
 

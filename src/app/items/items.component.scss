@@ -1,45 +1,41 @@
 @import "../../variables.scss";
 
 section.card-wrapper {
-  // border:1px solid red;
-  margin-top: 2rem;
   margin-left: 10%;
   margin-right: 10%;
 
   .content-heading {
+    // border:1px solid red;
+    // margin-bottom: 1rem;
     h6 {
       // border:1px solid red;
       text-align: center;
-
-      &::before,
-      &::after {
-        position: absolute;
-        content: "";
-        width: 60px;
-        height: 3px;
-        background: #000;
-        top: 48%;
-      }
-
-      &::before {
-        left: 39%;
-        top: 3.8rem;
-      }
-      &::after {
-        left: 57%;
-        top: 3.8rem;
-      }
       span {
         letter-spacing: 0.1rem;
         font-size: 1.3rem;
         margin-top: 0.4rem;
       }
+      span.x,
+      span.y {
+        border: 2px solid #333;
+        width: 50px;
+        display: none;
+        margin-bottom: 4px;
+        border-radius: 5px;
+      }
+      span.x {
+        margin-right: 4px;
+      }
+      span.y {
+        margin-left: 4px;
+      }
     }
 
-    span{
+    span.shop-msg {
       display: block;
       text-align: center;
       font-size: 1rem;
+      letter-spacing: 0.1rem;
     }
   }
 
@@ -49,14 +45,16 @@ section.card-wrapper {
     div.item-heading {
       // border:1px solid red;
       width: 100%;
-      height: 400px;
+      height: 300px;
       cursor: pointer;
       img {
-        width: 98%;
+        width: 100%;
         position: absolute;
         left: 1%;
         opacity: 1;
-        height: 400px;
+        height:300px;
+        border-radius: 5px;
+
         &:nth-child(1) {
           left: 1%;
         }
@@ -83,4 +81,188 @@ section.card-wrapper {
       }
     }
   }
+}
+
+// Small devices (landscape phones, 576px and up)
+@media (min-width: 576px) {
+  section.card-wrapper {
+    margin-left: 10%;
+    margin-right: 10%;
+  
+    .content-heading {
+      // border:1px solid red;
+      // margin-bottom: 1rem;
+      h6 {
+        // border:1px solid red;
+        text-align: center;
+        span {
+          letter-spacing: 0.1rem;
+          font-size: 1.3rem;
+          margin-top: 0.4rem;
+        }
+        span.x,
+        span.y {
+          border: 2px solid #333;
+          width: 50px;
+          display: inline-block;
+          margin-bottom: 4px;
+        }
+        span.x {
+          margin-right: 4px;
+        }
+        span.y {
+          margin-left: 4px;
+        }
+      }
+  
+      span.shop-msg {
+        display: block;
+        text-align: center;
+        font-size: 1rem;
+        letter-spacing: 0.1rem;
+      }
+    }
+  
+    div.item {
+      position: relative;
+      overflow: hidden;
+      div.item-heading {
+        // border:1px solid red;
+        width: 100%;
+        height: 300px;
+        cursor: pointer;
+        img {
+          width: 98%;
+          position: absolute;
+          left: 1%;
+          opacity: 1;
+          height: 300px;
+          &:nth-child(1) {
+            left: 1%;
+          }
+          &:nth-child(2) {
+            left: 100%;
+            transition: all 1s ease-out;
+            opacity: 0;
+          }
+        }
+        &:hover {
+          img {
+            &:nth-child(2) {
+              left: 1%;
+              opacity: 1;
+            }
+          }
+        }
+      }
+      div.item-body {
+        position: relative;
+        //  border: 1px solid red;
+        h6 {
+          text-align: center;
+        }
+      }
+    }
+  }
+  
+  
+ 
+}
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) {
+  section.card-wrapper {
+    // border:1px solid red;
+    margin-top: 2rem;
+    margin-left: 10%;
+    margin-right: 10%;
+  
+    .content-heading {
+      // border:1px solid red;
+      margin-bottom: 1rem;
+      h6 {
+        // border:1px solid red;
+        text-align: center;
+        span {
+          letter-spacing: 0.1rem;
+          font-size: 1.3rem;
+          margin-top: 0.4rem;
+        }
+        span.x,
+        span.y {
+          border: 2px solid #333;
+          width: 150px;
+          display: inline-block;
+          margin-bottom: 4px;
+        }
+        span.x {
+          margin-right: 4px;
+        }
+        span.y {
+          margin-left: 4px;
+        }
+      }
+  
+      span.shop-msg {
+        display: block;
+        text-align: center;
+        font-size: 1rem;
+        letter-spacing: 0.1rem;
+      }
+    }
+  
+    div.item {
+      position: relative;
+      overflow: hidden;
+      div.item-heading {
+        // border:1px solid red;
+        width: 100%;
+        height: 300px;
+        cursor: pointer;
+        img {
+          width: 98%;
+          position: absolute;
+          left: 1%;
+          opacity: 1;
+          height: 300px;
+          &:nth-child(1) {
+            left: 1%;
+          }
+          &:nth-child(2) {
+            left: 100%;
+            transition: all 1s ease-out;
+            opacity: 0;
+          }
+        }
+        &:hover {
+          img {
+            &:nth-child(2) {
+              left: 1%;
+              opacity: 1;
+            }
+          }
+        }
+      }
+      div.item-body {
+        position: relative;
+        //  border: 1px solid red;
+        h6 {
+          text-align: center;
+        }
+      }
+    }
+  }
+}
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) {
+
+
+}
+
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) {
+}
+
+// Extra large devices (x large desktops, 1200px and up)
+@media (min-width: 1750px) {
 }

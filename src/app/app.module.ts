@@ -25,7 +25,8 @@ import {
   faStar,
   faArrowCircleDown,
   faArrowAltCircleDown,
-  faBoxOpen
+  faBoxOpen,
+  faMapMarkerAlt
 } from '@fortawesome/free-solid-svg-icons';
 
 
@@ -67,7 +68,8 @@ export class AppModule {
       faArrowCircleDown,
       faArrowAltCircleDown,
       faBookmark,
-      faBoxOpen
+      faBoxOpen,
+      faMapMarkerAlt
       );
   }
 

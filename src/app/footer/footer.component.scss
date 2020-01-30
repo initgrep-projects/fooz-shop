@@ -1,0 +1,95 @@
+@import "../../variables.scss";
+
+footer {
+  padding-left: 10%;
+  padding-right: 10%;
+  margin-top: 1rem;
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+  background-color: #f6f6f8;
+
+  ul.list-group.brand-wrapper {
+    li.list-group-item {
+      border-width: 0px !important;
+      background-color: transparent;
+      color: #878787;
+      padding: 0.2rem 0.2rem 0.2rem 0.2rem;
+      padding-bottom: 1.2rem;
+      a.brand {
+        text-decoration: none;
+        color: #333;
+        font-size: 1.6rem;
+        span {
+          letter-spacing: $heading-letter-spacing;
+          text-transform: uppercase;
+          // font-size: .9rem;
+          font-family: $ptserif-font-family;
+          font-weight: 600;
+          margin-left: 0.5rem;
+        }
+      }
+
+      span {
+        display: inline-block;
+        margin-left: 0.5rem;
+        letter-spacing: 0.1rem;
+      }
+
+      &:first-child {
+        padding-bottom: 1.2rem;
+      }
+    }
+
+    li.list-group-item.address {
+      fa-icon {
+        position: absolute;
+      }
+      span {
+        margin-left: 1.2rem;
+      }
+    }
+  }
+
+  ul.list-group.collections,ul.list-group.information {
+    li.list-group-item {
+      border-width: 0px !important;
+      background-color: transparent;
+      color: #878787;
+      padding: 1rem 0.2rem 0.2rem 0.2rem;
+      //   padding-bottom: 1.2rem;
+      font-family: $poppins-font-family;
+      &:first-child {
+        h6 {
+          color: #333;
+          letter-spacing: $heading-letter-spacing;
+          text-transform: capitalize;
+          // font-size: .9rem;
+
+          font-weight: 600;
+        }
+      }
+
+      a {
+        font-size: 0.9rem;
+        letter-spacing: $heading-letter-spacing;
+        text-decoration: none;
+        color: #878787;
+      }
+    }
+  }
+
+  div.subscribe{
+    padding: 1rem 0.2rem 0.2rem 0.2rem;
+      p{
+        font-size: 0.9rem;
+        letter-spacing: $heading-letter-spacing;
+        color: #878787;
+      }
+      div.input-group{
+          input{
+              font-size: .8rem;
+              padding:1.4rem;
+          }
+      }
+  }
+}

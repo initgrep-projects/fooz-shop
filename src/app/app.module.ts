@@ -5,10 +5,17 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
-import { ItemCouroselComponent } from './item-courosel/item-courosel.component';
-import { ItemsComponent } from './items/items.component';
+import { ItemCouroselComponent } from './home/item-courosel/item-courosel.component';
+import { FeatureItemsComponent } from './home/feature-items/feature-items.component';
+import { TrendComponent } from './home/trend/trend.component';
+import { LookbookComponent } from './home/lookbook/lookbook.component';
+
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
+import { ShopComponent } from './shop/shop.component';
+import {ItemsComponent} from './shop/items/items.component';
+import { HomeComponent } from './home/home.component';
 
 
 import { FaIconLibrary, FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -26,12 +33,16 @@ import {
   faArrowCircleDown,
   faArrowAltCircleDown,
   faBoxOpen,
-  faMapMarkerAlt
+  faMapMarkerAlt,
+  faFilter,
+  faSort,
+  faLevelDownAlt,
+  faTape,
+  faLayerGroup,
+  faShoppingCart
 } from '@fortawesome/free-solid-svg-icons';
+import { FilterHeaderComponent } from './shop/filter-header/filter-header.component';
 
-
-import { TrendComponent } from './trend/trend.component';
-import { LookbookComponent } from './lookbook/lookbook.component';
 
 @NgModule({
   declarations: [
@@ -39,9 +50,13 @@ import { LookbookComponent } from './lookbook/lookbook.component';
     HeaderComponent,
     FooterComponent,
     ItemCouroselComponent,
-    ItemsComponent,
+    FeatureItemsComponent,
     TrendComponent,
-    LookbookComponent
+    LookbookComponent,
+    ShopComponent,
+    ItemsComponent,
+    HomeComponent,
+    FilterHeaderComponent
   ],
   imports: [
     BrowserModule,
@@ -69,7 +84,12 @@ export class AppModule {
       faArrowAltCircleDown,
       faBookmark,
       faBoxOpen,
-      faMapMarkerAlt
+      faMapMarkerAlt,
+      faFilter,
+      faSort,
+      faTape,
+      faLayerGroup,
+      faShoppingCart
       );
   }
 

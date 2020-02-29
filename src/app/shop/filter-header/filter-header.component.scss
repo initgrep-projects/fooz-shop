@@ -1,0 +1,16 @@
+section.filter-header {
+  margin-left: 10%;
+  margin-right: 10%;
+
+  ol.breadcrumb{
+    background: transparent !important;
+  }
+
+  div.row{
+    div.col{
+      div.filter-item{
+        float: right;
+      }
+    }
+  }
+}

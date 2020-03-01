@@ -39,9 +39,25 @@ import {
   faLevelDownAlt,
   faTape,
   faLayerGroup,
-  faShoppingCart
+  faShoppingCart,
+  faDotCircle,
+  faTeethOpen,
+  faDoorOpen,
+  faLongArrowAltUp,
+  faLongArrowAltDown,
+  faArrowsAltH,
+  faArrowsAltV
 } from '@fortawesome/free-solid-svg-icons';
 import { FilterHeaderComponent } from './shop/filter-header/filter-header.component';
+import { ItemComponent } from './shop/items/item/item.component';
+import { ItemDetailComponent } from './shop/items/item-detail/item-detail.component';
+import { CustomSizeComponent } from './shop/items/item-detail/customize/custom-size/custom-size.component';
+import { ItemCustomizeComponent } from './shop/items/item-detail/customize/item-customize.component';
+import { ItemImagesComponent } from './shop/items/item-detail/item-images/item-images.component';
+import { ItemInfoComponent } from './shop/items/item-detail/item-info/item-info.component';
+import { ItemSizeComponent } from './shop/items/item-detail/item-size/item-size.component';
+import { ItemBuyComponent } from './shop/items/item-detail/item-buy/item-buy.component';
+import { ItemBuyGuideComponent } from './shop/items/item-detail/item-buy-guide/item-buy-guide.component';
 
 
 @NgModule({
@@ -56,7 +72,16 @@ import { FilterHeaderComponent } from './shop/filter-header/filter-header.compon
     ShopComponent,
     ItemsComponent,
     HomeComponent,
-    FilterHeaderComponent
+    FilterHeaderComponent,
+    ItemComponent,
+    ItemDetailComponent,
+    CustomSizeComponent,
+    ItemCustomizeComponent,
+    ItemImagesComponent,
+    ItemInfoComponent,
+    ItemSizeComponent,
+    ItemBuyComponent,
+    ItemBuyGuideComponent,
   ],
   imports: [
     BrowserModule,
@@ -89,7 +114,14 @@ export class AppModule {
       faSort,
       faTape,
       faLayerGroup,
-      faShoppingCart
+      faShoppingCart,
+      faShoppingBag,
+      faDotCircle,
+      faDoorOpen,
+      faLongArrowAltUp,
+      faLongArrowAltDown,
+      faArrowsAltH,
+      faArrowsAltV
       );
   }
 

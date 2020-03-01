@@ -3,23 +3,67 @@
         <div class="col">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="#">Home</a></li>
-                <li class="breadcrumb-item active" >shop</li>
-              </ol>
+                <li class="breadcrumb-item active">shop</li>
+            </ol>
 
         </div>
         <div class="col  ">
+
+            <div class="filter-item"
+                 ngbDropdown
+                 #sort="ngbDropdown">
+                <button class="btn btn-outline-dark mr-2"
+                        id="dropdownManual"
+                        ngbDropdownAnchor
+                        (focus)="sort.open()">
+                    <fa-icon icon="sort"></fa-icon> Sort
+                </button>
+                <div ngbDropdownMenu
+                     aria-labelledby="dropdownManual">
+                    <button ngbDropdownItem><fa-icon icon ="long-arrow-alt-up"></fa-icon> Price: High to Low</button>
+                    <button ngbDropdownItem><fa-icon icon ="long-arrow-alt-down"></fa-icon> Price: Low to High</button>
+                </div>
+            </div>
+
+            <div class="filter-item"
+                 ngbDropdown
+                 #filter="ngbDropdown">
+                <button class="btn btn-outline-dark mr-2"
+                        id="dropdownManual"
+                        ngbDropdownAnchor
+                        (focus)="filter.open()">
+                    <fa-icon icon="filter"></fa-icon> Filter
+                </button>
+                <div ngbDropdownMenu
+                     aria-labelledby="dropdownManual">
+                     <button ngbDropdownItem>
+                        <fa-icon icon="dot-circle"></fa-icon> Buttoned Abaya
+                    </button>
+                    <button ngbDropdownItem>
+                        <fa-icon icon="door-open"></fa-icon> Open Abaya
+                    </button>
+                </div>
+            </div>
+
+
             <div class="filter-item "
                  ngbDropdown
                  #categories="ngbDropdown">
                 <button class="btn btn-outline-dark mr-2"
                         id="dropdownManual"
                         ngbDropdownAnchor
-                        (focus)="categories.open()"><fa-icon icon="layer-group"></fa-icon> Categories</button>
+                        (focus)="categories.open()">
+                    <fa-icon icon="layer-group"></fa-icon> Categories
+                </button>
                 <div ngbDropdownMenu
                      aria-labelledby="dropdownManual">
-                    <button ngbDropdownItem>Action - 1</button>
-                    <button ngbDropdownItem>Another Action</button>
-                    <button ngbDropdownItem>Something else is here</button>
+                    <button ngbDropdownItem>
+                        <fa-icon icon="dot-circle"></fa-icon> Buttoned Abaya
+                    </button>
+                    <button ngbDropdownItem>
+                        <fa-icon icon="door-open"></fa-icon> Open Abaya
+                    </button>
+                    <!-- <button ngbDropdownItem>Something else is here</button> -->
                 </div>
             </div>
 
@@ -31,43 +75,17 @@
                 <button class="btn btn-outline-dark mr-2"
                         id="dropdownManual"
                         ngbDropdownAnchor
-                        (focus)="size.open()"><fa-icon icon="tape"></fa-icon> Size</button>
+                        (focus)="size.open()">
+                    <fa-icon icon="tape"></fa-icon> Size
+                </button>
                 <div ngbDropdownMenu
                      aria-labelledby="dropdownManual">
-                    <button ngbDropdownItem>Action - 1</button>
-                    <button ngbDropdownItem>Another Action</button>
-                    <button ngbDropdownItem>Something else is here</button>
-                </div>
-            </div>
-            <div class="filter-item"
-                 ngbDropdown
-                 #sort="ngbDropdown">
-                <button class="btn btn-outline-dark mr-2"
-                        id="dropdownManual"
-                        ngbDropdownAnchor
-                        (focus)="sort.open()"><fa-icon icon="sort"></fa-icon> Sort</button>
-                <div ngbDropdownMenu
-                     aria-labelledby="dropdownManual">
-                    <button ngbDropdownItem>Action - 1</button>
-                    <button ngbDropdownItem>Another Action</button>
-                    <button ngbDropdownItem>Something else is here</button>
+                    <button ngbDropdownItem>S - Small</button>
+                    <button ngbDropdownItem>L - Large</button>
+                    <button ngbDropdownItem>XL - Extra Large</button>
                 </div>
             </div>
 
-            <div class="filter-item"
-            ngbDropdown
-            #filter="ngbDropdown">
-           <button class="btn btn-outline-dark mr-2"
-                   id="dropdownManual"
-                   ngbDropdownAnchor
-                   (focus)="filter.open()"> <fa-icon icon="filter"></fa-icon> Filter</button>
-           <div ngbDropdownMenu
-                aria-labelledby="dropdownManual">
-               <button ngbDropdownItem>Action - 1</button>
-               <button ngbDropdownItem>Another Action</button>
-               <button ngbDropdownItem>Something else is here</button>
-           </div>
-       </div>
 
         </div>
     </div>

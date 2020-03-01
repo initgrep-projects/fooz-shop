@@ -1,55 +1,14 @@
-@import "../../../variables.scss";
-
-section.card-wrapper {
-  margin-left: 10%;
-  margin-right: 10%;
-
-  .content-heading {
-    h6 {
-      font-family: $ptserif-font-family;
-      text-align: center;
-      span {
-        letter-spacing: 0.1rem;
-        font-size: 1.3rem;
-        margin-top: 0.4rem;
-      }
-      span.x,
-      span.y {
-        border: 2px solid #333;
-        width: 30px;
-        display: none;
-        margin-bottom: 4px;
-        border-radius: 5px;
-      }
-      span.x {
-        margin-right: 4px;
-      }
-      span.y {
-        margin-left: 4px;
-      }
-    }
-
-    span.shop-msg {
-      display: block;
-      text-align: center;
-      font-size: 1rem;
-      letter-spacing: 0.1rem;
-    }
-  }
+@import "../../../../variables.scss";
 
   div.item {
     position: relative;
     overflow: hidden;
-
-   
 
     div.item-heading {
       // border:1px solid red;
       width: 100%;
       height: 400px;
       cursor: pointer;
-
-     
 
       img {
         width: 100%;
@@ -94,6 +53,7 @@ section.card-wrapper {
               letter-spacing: .1rem;
               text-transform: capitalize;
               border-radius: 20px;
+
             }
           }
         }
@@ -137,47 +97,10 @@ section.card-wrapper {
       }
     }
   }
-}
+
 
 // Small devices (landscape phones, 576px and up)
 @media (min-width: 576px) {
-  section.card-wrapper {
-    margin-left: 10%;
-    margin-right: 10%;
-  
-    .content-heading {
-      // border:1px solid red;
-      // margin-bottom: 1rem;
-      h6 {
-        // border:1px solid red;
-        text-align: center;
-        span {
-          letter-spacing: 0.1rem;
-          font-size: 1.3rem;
-          margin-top: 0.4rem;
-        }
-        span.x,
-        span.y {
-          border: 2px solid #333;
-          width: 50px;
-          display: inline-block;
-          margin-bottom: 4px;
-        }
-        span.x {
-          margin-right: 4px;
-        }
-        span.y {
-          margin-left: 4px;
-        }
-      }
-  
-      span.shop-msg {
-        display: block;
-        text-align: center;
-        font-size: 1rem;
-        letter-spacing: 0.1rem;
-      }
-    }
   
     div.item {
       position: relative;
@@ -221,48 +144,9 @@ section.card-wrapper {
   
   
  
-}
 // Medium devices (tablets, 768px and up)
 @media (min-width: 768px) {
-  section.card-wrapper {
-    // border:1px solid red;
-    margin-top: 2rem;
-    margin-left: 10%;
-    margin-right: 10%;
-  
-    .content-heading {
-      // border:1px solid red;
-      margin-bottom: 1rem;
-      h6 {
-        // border:1px solid red;
-        text-align: center;
-        span {
-          letter-spacing: 0.1rem;
-          font-size: 1.3rem;
-          margin-top: 0.4rem;
-        }
-        span.x,
-        span.y {
-          border: 2px solid #333;
-          width: 50px;
-          display: inline-block;
-          margin-bottom: 4px;
-        }
-        span.x {
-          margin-right: 4px;
-        }
-        span.y {
-          margin-left: 4px;
-        }
-      }
-  
-      span.shop-msg {
-        display: block;
-        text-align: center;
-        font-size: 1rem;
-        letter-spacing: 0.1rem;
-      }
-    }
+
   
     div.item {
       position: relative;
@@ -306,7 +190,7 @@ section.card-wrapper {
       }
     }
   }
-}
+
 
 // Large devices (desktops, 992px and up)
 @media (min-width: 992px) {
@@ -316,7 +200,6 @@ section.card-wrapper {
 
 // Extra large devices (large desktops, 1200px and up)
 @media (min-width: 1200px) {
-  section.card-wrapper {
     div.item {
       div.item-heading {
         
@@ -336,12 +219,11 @@ section.card-wrapper {
       }
     }
   }
-}
+
 
 // Extra large devices (x large desktops, 1200px and up)
 @media (min-width: 1750px) {
 
-  section.card-wrapper {
     div.item {
       div.item-heading {
         height: 450px;
@@ -368,4 +250,3 @@ section.card-wrapper {
       }
     }
   }
-}

@@ -1,0 +1,69 @@
+<div class="row">
+  <div class="col">
+    <div class="customize-wrapper">
+      <h4>customize size</h4>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">
+
+          <app-custom-size [label]="'width'"
+                           [unit]="'inches'"
+                           [icon]="'arrows-alt-h'"
+                           [values]="widthSizeValues"></app-custom-size>
+
+        </li>
+
+        <li class="list-group-item">
+          <app-custom-size [label]="'length'"
+                           [unit]="'inches'"
+                           [icon]="'arrows-alt-v'"
+                           [values]="lengthSizeValues"></app-custom-size>
+        </li>
+        <li class="list-group-item">
+          <app-custom-size [label]="'bust size'"
+                           [unit]="'inches'"
+                           [icon]="'arrows-alt-h'"
+                           [values]="bustSizeValues"></app-custom-size>
+        </li>
+        <li class="list-group-item">
+          <app-custom-size [label]="'arm size'"
+                           [unit]="'inches'"
+                           [icon]="'arrows-alt-h'"
+                           [values]="armSizeValues"></app-custom-size>
+        </li>
+        <li class="list-group-item">
+          <app-custom-size [label]="'Hip size'"
+                           [unit]="'inches'"
+                           [icon]="'arrows-alt-h'"
+                           [values]="armSizeValues"></app-custom-size>
+        </li>
+        <li class="list-group-item">
+          <div class="form-check">
+            <input class="form-check-input"
+                   type="radio"
+                   name="exampleRadios"
+                   id="radio1"
+                   checked>
+            <label class="form-check-label"
+                   for="radio1">
+              Front Closing Abaya
+            </label>
+          </div>
+
+
+        </li>
+        <li class="list-group-item">
+          <div class="form-check">
+            <input class="form-check-input"
+                   type="radio"
+                   name="exampleRadios"
+                   id="radio2">
+            <label class="form-check-label"
+                   for="radio2">
+              Side Closing Abaya
+            </label>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

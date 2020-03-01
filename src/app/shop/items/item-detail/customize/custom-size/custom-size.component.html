@@ -1,0 +1,28 @@
+<div class="customize"
+     ngbDropdown
+     #customize="ngbDropdown">
+    <div class="row">
+        <div class="col-4"><span class="label">{{label}}: </span></div>
+        <div class="col-8">
+            <button class="btn btn-outline-dark mr-2"
+                    id="dropdownManual"
+                    ngbDropdownAnchor
+                    (focus)="customize.open()">
+                <fa-icon icon="{{icon}}"></fa-icon>
+                {{getSelectedValue()}}
+            </button>
+
+            <!-- <span>{{unit}}</span> -->
+
+            <div ngbDropdownMenu
+                 aria-labelledby="dropdownManual">
+                <button ngbDropdownItem
+                        *ngFor="let value of values"
+                        (click)="setSelectedValue(value)"><b>{{ value }}</b> {{unit}}</button>
+
+            </div>
+        </div>
+    </div>
+
+
+</div>

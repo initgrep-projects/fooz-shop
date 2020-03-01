@@ -1,0 +1,21 @@
+@import '../../../../../variables.scss';
+
+.info-wrapper {
+    margin-top: 1rem;
+    font-family: $poppins-font-family;
+
+    h4 {
+      font-weight: 600;
+      letter-spacing: 0.05rem;
+    }
+    p.prod-code{
+      font-weight: 400;
+      span{
+        font-weight: 600;
+      }
+    }
+    p {
+      font-weight: 600;
+      letter-spacing: 0.035rem;
+    }
+  }

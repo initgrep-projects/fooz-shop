@@ -16,6 +16,22 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ShopComponent } from './shop/shop.component';
 import {ItemsComponent} from './shop/items/items.component';
 import { HomeComponent } from './home/home.component';
+import { FilterHeaderComponent } from './shop/filter-header/filter-header.component';
+import { ItemComponent } from './shop/items/item/item.component';
+import { ItemDetailComponent } from './shop/items/item-detail/item-detail.component';
+import { CustomSizeComponent } from './shop/items/item-detail/customize/custom-size/custom-size.component';
+import { ItemCustomizeComponent } from './shop/items/item-detail/customize/item-customize.component';
+import { ItemImagesComponent } from './shop/items/item-detail/item-images/item-images.component';
+import { ItemInfoComponent } from './shop/items/item-detail/item-info/item-info.component';
+import { ItemSizeComponent } from './shop/items/item-detail/item-size/item-size.component';
+import { ItemBuyComponent } from './shop/items/item-detail/item-buy/item-buy.component';
+import { ItemBuyGuideComponent } from './shop/items/item-detail/item-buy-guide/item-buy-guide.component';
+import { SizeFilterComponent } from './shop/filter-header/size-filter/size-filter.component';
+import { SortFilterComponent } from './shop/filter-header/sort-filter/sort-filter.component';
+import { CategoryFilterComponent } from './shop/filter-header/category-filter/category-filter.component';
+import { MainFilterComponent } from './shop/filter-header/main-filter/main-filter.component';
+import { TopBarComponent } from './header/top-bar/top-bar.component';
+import { NavBarComponent } from './header/nav-bar/nav-bar.component';
 
 
 import { FaIconLibrary, FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -48,16 +64,10 @@ import {
   faArrowsAltH,
   faArrowsAltV
 } from '@fortawesome/free-solid-svg-icons';
-import { FilterHeaderComponent } from './shop/filter-header/filter-header.component';
-import { ItemComponent } from './shop/items/item/item.component';
-import { ItemDetailComponent } from './shop/items/item-detail/item-detail.component';
-import { CustomSizeComponent } from './shop/items/item-detail/customize/custom-size/custom-size.component';
-import { ItemCustomizeComponent } from './shop/items/item-detail/customize/item-customize.component';
-import { ItemImagesComponent } from './shop/items/item-detail/item-images/item-images.component';
-import { ItemInfoComponent } from './shop/items/item-detail/item-info/item-info.component';
-import { ItemSizeComponent } from './shop/items/item-detail/item-size/item-size.component';
-import { ItemBuyComponent } from './shop/items/item-detail/item-buy/item-buy.component';
-import { ItemBuyGuideComponent } from './shop/items/item-detail/item-buy-guide/item-buy-guide.component';
+import { SearchComponent } from './header/nav-bar/search/search.component';
+import { AccountComponent } from './header/nav-bar/account/account.component';
+import { CartComponent } from './header/nav-bar/cart/cart.component';
+
 
 
 @NgModule({
@@ -82,6 +92,15 @@ import { ItemBuyGuideComponent } from './shop/items/item-detail/item-buy-guide/i
     ItemSizeComponent,
     ItemBuyComponent,
     ItemBuyGuideComponent,
+    SizeFilterComponent,
+    SortFilterComponent,
+    CategoryFilterComponent,
+    MainFilterComponent,
+    TopBarComponent,
+    NavBarComponent,
+    SearchComponent,
+    AccountComponent,
+    CartComponent
   ],
   imports: [
     BrowserModule,

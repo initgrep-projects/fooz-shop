@@ -1,0 +1,46 @@
+<nav class="navbar navbar-expand-lg navbar-light   mb-3 border-bottom">
+  <a class="navbar-brand"
+     routerLink="home">
+    <fa-icon icon="atom"></fa-icon> <span>FOOZ</span>
+  </a>
+  <button class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse"
+       id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+
+      <li class="nav-item active">
+        <a class="nav-link"
+           routerLink="shop">shop </a>
+      </li>
+
+      <li class="nav-item active">
+        <a class="nav-link"
+           routerLink="shop">
+          <fa-icon icon="bolt"></fa-icon> latest
+        </a>
+      </li>
+
+    </ul>
+    <ul class="list-group list-group-horizontal nav-portal">
+      <li class="list-group-item">
+        <app-search></app-search>
+      </li>
+      <li class="list-group-item">
+        <app-account></app-account>
+      </li>
+      <li class="list-group-item ">
+        <app-cart></app-cart>
+      </li>
+    </ul>
+
+  </div>
+</nav>

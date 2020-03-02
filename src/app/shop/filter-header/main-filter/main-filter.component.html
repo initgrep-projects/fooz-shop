@@ -1,0 +1,19 @@
+<div class="filter-item"
+ngbDropdown
+#filter="ngbDropdown">
+<button class="btn btn-outline-dark mr-2"
+       id="dropdownManual"
+       ngbDropdownAnchor
+       (focus)="filter.open()">
+   <fa-icon icon="filter"></fa-icon> Filter
+</button>
+<div ngbDropdownMenu
+    aria-labelledby="dropdownManual">
+    <button ngbDropdownItem>
+       <fa-icon icon="dot-circle"></fa-icon> Buttoned Abaya
+   </button>
+   <button ngbDropdownItem>
+       <fa-icon icon="door-open"></fa-icon> Open Abaya
+   </button>
+</div>
+</div>

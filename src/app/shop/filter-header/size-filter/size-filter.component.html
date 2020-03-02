@@ -1,0 +1,17 @@
+<div class="filter-item"
+     ngbDropdown
+     #size="ngbDropdown">
+    <button class="btn btn-outline-dark mr-2"
+            id="dropdownManual"
+            ngbDropdownAnchor
+            (focus)="size.open()">
+        <fa-icon icon="tape"></fa-icon> Size
+    </button>
+    <div ngbDropdownMenu
+         aria-labelledby="dropdownManual">
+        <button ngbDropdownItem *ngFor='let size of sizeValues'>
+            <b>{{size}}</b> - {{getSizeLabel(size)}}
+        </button>
+    
+    </div>
+</div>

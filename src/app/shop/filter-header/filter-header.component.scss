@@ -3,15 +3,17 @@ section.filter-header {
   margin-right: 10%;
   margin-top: 3rem;
 
-  ol.breadcrumb{
+  ol.breadcrumb {
     background: transparent !important;
   }
 
-  div.row{
-    div.col{
-      div.filter-item{
-        float: right;
-      }
-    }
+  app-category-filter,
+  app-sort-filter,
+  app-size-filter,
+  app-main-filter {
+    display: inline-block;
+    float: right;
   }
+
+  
 }

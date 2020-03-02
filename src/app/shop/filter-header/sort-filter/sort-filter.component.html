@@ -1,0 +1,15 @@
+<div class="filter-item"
+ngbDropdown
+#sort="ngbDropdown">
+<button class="btn btn-outline-dark mr-2"
+       id="dropdownManual"
+       ngbDropdownAnchor
+       (focus)="sort.open()">
+   <fa-icon icon="sort"></fa-icon> Sort
+</button>
+<div ngbDropdownMenu
+    aria-labelledby="dropdownManual">
+   <button ngbDropdownItem><fa-icon icon ="long-arrow-alt-up"></fa-icon> Price: High to Low</button>
+   <button ngbDropdownItem><fa-icon icon ="long-arrow-alt-down"></fa-icon> Price: Low to High</button>
+</div>
+</div>

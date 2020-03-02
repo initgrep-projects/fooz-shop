@@ -1,0 +1,49 @@
+@import '../../../variables.scss';
+
+nav.navbar{
+    background-color: transparent;
+    font-family: $poppins-font-family;
+    // border-bottom: 1px solid #333;
+    a.navbar-brand{
+        font-size: 1.4rem;
+        margin-left: 1rem;
+        left:45%;
+        position: relative;
+        span{
+            letter-spacing: $heading-letter-spacing;
+            text-transform: uppercase;
+            // font-size: .9rem;
+            font-family: $ptserif-font-family;
+            font-weight: 600;
+            margin-left: .5rem;
+        }
+
+    }
+    ul.navbar-nav{
+        margin-left: 2rem;
+        margin-top: .2rem;
+        font-weight: 400;
+        li.nav-item{
+            a.nav-link{
+                font-weight: 600;
+                font-size: 14px;
+                letter-spacing: .1rem;
+            }
+        }
+    }
+    ul.nav-portal{
+        border:0px solid transparent;
+        font-size: 1.2rem;
+        font-weight: 300;
+        li{
+            border: 0px solid transparent;
+            background: transparent;
+            padding-top: 0px;
+            padding-bottom: 0px;
+            padding-left: 0px;
+        }
+
+       
+    }
+   
+}

@@ -24,7 +24,7 @@ export class CustomSizeComponent implements OnInit {
 
 
    setinitialSelectedValue() {
-    this.selectedValue =  'select' + SPACE + this.label ;
+    this.selectedValue =  'select';
    }
   setSelectedValue(value: string)  {
     this.selectedValue = value + SPACE + this.unit;

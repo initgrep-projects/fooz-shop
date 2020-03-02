@@ -14,14 +14,31 @@
       width: 100%;
       height: 250px;
     }
+
+    div.carousel-caption {
+      button {
+        font-size: 0.9rem;
+        border-color: #f1f1f1;
+        letter-spacing: 0.15rem;
+        cursor: pointer !important;
+        border-radius: 20px;
+        padding-left: 1rem;
+        padding-right: 1rem;
+        text-transform: capitalize;
+        font-weight: 600;
+        color: $secondary-text-color;
+
+        &:hover{
+          color: $primary-text-color;
+        }
+      }
+    }
   }
 
   .collection-item {
     height: 350px;
-    // padding:.4rem;
     text-align: center;
     overflow: hidden;
-    // border: 1px solid red;
     margin-top: 1rem;
     border-radius: 5px;
     img {
@@ -56,6 +73,9 @@
         animation-duration: 1s;
         animation-fill-mode: both;
         animation-name: zoomIn;
+        border-radius: 20px;
+        padding-left: 1rem;
+        padding-right: 1rem;
       }
 
       h6.msg {
@@ -67,7 +87,7 @@
     }
 
     p.shop {
-      color:#f1f1f1;
+      color: #f1f1f1;
       position: absolute;
       font-size: 0.8rem;
       left: 30%;
@@ -253,12 +273,11 @@
       h6.msg {
         // left:0px;
         // margin: auto;
-        font-size: .8rem;
+        font-size: 0.8rem;
       }
     }
   }
 }
-
 
 // Extra large devices (x large desktops, 1200px and up)
 @media (min-width: 1750px) {

@@ -1,22 +1,14 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+
+
+import { HomeRoutingModule } from './home-routing.module';
+import { HomeComponent } from './home.component';
+import { ItemCouroselComponent } from './item-courosel/item-courosel.component';
+import { FeatureItemsComponent } from './feature-items/feature-items.component';
+import { TrendComponent } from './trend/trend.component';
+import { LookbookComponent } from './lookbook/lookbook.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-
-import { AppRoutingModule } from './app-routing.module';
-import { HomeModule } from './home/home.module';
-
-import { AppComponent } from './app.component';
-
-import { HeaderComponent } from './header/header.component';
-import { FooterComponent } from './footer/footer.component';
-
-
-import { TopBarComponent } from './header/top-bar/top-bar.component';
-import { NavBarComponent } from './header/nav-bar/nav-bar.component';
-import { SearchComponent } from './header/nav-bar/search/search.component';
-import { AccountComponent } from './header/nav-bar/account/account.component';
-import { CartComponent } from './header/nav-bar/cart/cart.component';
-import { ShopModule } from './shop/shop.module';
 
 import { FaIconLibrary, FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import {
@@ -48,32 +40,29 @@ import {
   faArrowsAltH,
   faArrowsAltV
 } from '@fortawesome/free-solid-svg-icons';
-
-
+import { ItemModule } from '../item/item.module';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    HeaderComponent,
-    FooterComponent,
-    TopBarComponent,
-    NavBarComponent,
-    SearchComponent,
-    AccountComponent,
-    CartComponent
+    HomeComponent,
+    ItemCouroselComponent,
+    FeatureItemsComponent,
+    TrendComponent,
+    LookbookComponent
   ],
   imports: [
-    BrowserModule,
-    HomeModule,
-    ShopModule,
-    AppRoutingModule,
+    CommonModule,
+    HomeRoutingModule,
     NgbModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    ItemModule
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  exports: [
+  ]
 })
-export class AppModule {
+export class HomeModule {
+
+
   constructor(iconLiberary: FaIconLibrary) {
     iconLiberary.addIcons(
       faAtom,
@@ -105,5 +94,4 @@ export class AppModule {
       );
   }
 
-
-}
+ }

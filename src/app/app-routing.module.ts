@@ -7,9 +7,6 @@ import { ItemDetailComponent } from './shop/items/item-detail/item-detail.compon
 
 const routes: Routes = [
 
-  {path : 'home', component: HomeComponent},
-  {path: 'shop' , component: ShopComponent},
-  {path: 'item/details', component: ItemDetailComponent},
   {path : '', redirectTo: '/home', pathMatch: 'full'},
   // {path : '/', redirectTo: '/home', pathMatch: 'full'},
 
@@ -18,9 +15,8 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [
+    RouterModule
+  ]
 })
-export class AppRoutingModule {
-
-  
- }
+export class AppRoutingModule {}

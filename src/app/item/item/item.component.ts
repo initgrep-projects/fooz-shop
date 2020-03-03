@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 })
 export class ItemComponent implements OnInit {
 
-  constructor( private router:Router) { }
+  constructor( private router: Router) { }
 
   ngOnInit(): void {
   }

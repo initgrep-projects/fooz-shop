@@ -1,22 +1,4 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-
-import { AppRoutingModule } from './app-routing.module';
-import { HomeModule } from './home/home.module';
-
-import { AppComponent } from './app.component';
-
-import { HeaderComponent } from './header/header.component';
-import { FooterComponent } from './footer/footer.component';
-
-
-import { TopBarComponent } from './header/top-bar/top-bar.component';
-import { NavBarComponent } from './header/nav-bar/nav-bar.component';
-import { SearchComponent } from './header/nav-bar/search/search.component';
-import { AccountComponent } from './header/nav-bar/account/account.component';
-import { CartComponent } from './header/nav-bar/cart/cart.component';
-import { ShopModule } from './shop/shop.module';
 
 import { FaIconLibrary, FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import {
@@ -49,31 +31,17 @@ import {
   faArrowsAltV
 } from '@fortawesome/free-solid-svg-icons';
 
-
-
 @NgModule({
-  declarations: [
-    AppComponent,
-    HeaderComponent,
-    FooterComponent,
-    TopBarComponent,
-    NavBarComponent,
-    SearchComponent,
-    AccountComponent,
-    CartComponent
-  ],
+  declarations: [],
   imports: [
-    BrowserModule,
-    HomeModule,
-    ShopModule,
-    AppRoutingModule,
-    NgbModule,
     FontAwesomeModule
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  exports: [
+
+  ]
 })
-export class AppModule {
+export class IconsModule {
+
   constructor(iconLiberary: FaIconLibrary) {
     iconLiberary.addIcons(
       faAtom,
@@ -105,5 +73,4 @@ export class AppModule {
       );
   }
 
-
-}
+ }

@@ -1,7 +1,7 @@
-import { NgModule } from '@angular/core';
+import { Injectable } from '@angular/core';
 
-import { FaIconLibrary, FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import {
+  IconDefinition,
   faAtom,
   faBolt,
   faShoppingBag,
@@ -31,46 +31,47 @@ import {
   faArrowsAltV
 } from '@fortawesome/free-solid-svg-icons';
 
-@NgModule({
-  declarations: [],
-  imports: [
-    FontAwesomeModule
-  ],
-  exports: [
-
-  ]
+@Injectable({
+  providedIn: 'root'
 })
-export class IconsModule {
+export class IconService {
 
-  constructor(iconLiberary: FaIconLibrary) {
-    iconLiberary.addIcons(
+  icons: IconDefinition[] = [];
+
+  constructor() {
+    this.icons = [
       faAtom,
       faBolt,
       faShoppingBag,
       faPhoneAlt,
       faSearch,
       faUserCircle,
+      faCircleNotch,
       faBookmark,
       faHeart,
       faStar,
       faArrowCircleDown,
       faArrowAltCircleDown,
-      faBookmark,
       faBoxOpen,
       faMapMarkerAlt,
       faFilter,
       faSort,
+      faLevelDownAlt,
       faTape,
       faLayerGroup,
       faShoppingCart,
-      faShoppingBag,
       faDotCircle,
+      faTeethOpen,
       faDoorOpen,
       faLongArrowAltUp,
       faLongArrowAltDown,
       faArrowsAltH,
-      faArrowsAltV
-      );
-  }
+      faArrowsAltV,
+      faLayerGroup
+    ];
+   }
 
- }
+   getImportedIcons(): IconDefinition[]{
+     return this.icons;
+   }
+}

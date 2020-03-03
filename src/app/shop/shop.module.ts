@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { SharedModule } from '../shared/shared.module';
+
 import { ShopComponent } from './shop.component';
 import { ItemsComponent } from './items/items.component';
 import { FilterHeaderComponent } from './filter-header/filter-header.component';
@@ -48,7 +50,7 @@ import {
   faArrowsAltH,
   faArrowsAltV
 } from '@fortawesome/free-solid-svg-icons';
-import { ItemModule } from '../item/item.module';
+
 
 @NgModule({
   declarations: [
@@ -73,7 +75,7 @@ import { ItemModule } from '../item/item.module';
     ShopRoutingModule,
     NgbModule,
     FontAwesomeModule,
-    ItemModule
+    SharedModule
   ],
   exports: []
 })

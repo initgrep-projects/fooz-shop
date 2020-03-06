@@ -4,21 +4,21 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './app-routing.module';
 import { HomeModule } from './home/home.module';
 import { ShopModule } from './shop/shop.module';
+import { FaIconLibrary, FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { StoreModule} from '@ngrx/store';
 
 
 import { AppComponent } from './app.component';
 
 import { HeaderComponent } from './header/header.component';
-import { FooterComponent } from './footer/footer.component';
-
-
 import { TopBarComponent } from './header/top-bar/top-bar.component';
 import { NavBarComponent } from './header/nav-bar/nav-bar.component';
 import { SearchComponent } from './header/nav-bar/search/search.component';
 import { AccountComponent } from './header/nav-bar/account/account.component';
 import { CartComponent } from './header/nav-bar/cart/cart.component';
 
-import { FaIconLibrary, FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { FooterComponent } from './footer/footer.component';
+
 import { IconService } from './icons/icon.service';
 
 
@@ -39,7 +39,8 @@ import { IconService } from './icons/icon.service';
     ShopModule,
     AppRoutingModule,
     NgbModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    // StoreModule.forRoot
   ],
   providers: [],
   bootstrap: [AppComponent]

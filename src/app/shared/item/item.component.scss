@@ -76,13 +76,13 @@
     div.item-body {
       position: relative;
       //  border: 1px solid red;
-      
+      font-family: $poppins-font-family;
       h6 {
         text-align: center;
 
         span.name, span.size{
-          letter-spacing: .025rem;
-          font-size: 1.1rem;
+          letter-spacing: .045rem;
+          font-size: 1rem;
           text-transform: capitalize;
         }
         span.size{
@@ -94,6 +94,16 @@
          
        }
 
+      }
+
+      div.color-codes{
+        font-size: 1.2rem;
+        text-align: center;
+        ul{
+          li{
+            cursor: pointer;
+          }
+        }
       }
     }
   }

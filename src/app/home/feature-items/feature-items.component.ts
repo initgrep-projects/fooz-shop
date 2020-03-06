@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { RemoteService } from 'src/app/services/remote.service';
+import { Product } from 'src/app/models/product';
 
 @Component({
   selector: 'app-feature-items',
@@ -7,9 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FeatureItemsComponent implements OnInit {
 
-  constructor() { }
+  constructor( private remoteService: RemoteService) { }
+
+  items: Product[];
 
   ngOnInit() {
+    this.items = this.remoteService.getProducts();
   }
+
+
 
 }

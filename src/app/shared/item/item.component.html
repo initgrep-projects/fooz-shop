@@ -2,8 +2,9 @@
         <div class="item my-3">
           
           <div class="item-heading">
-            <img src="../../assets/images/item1.jpeg" alt="image01" />
-            <img src="../../assets/images/item2.jpeg" alt="image02" />
+            <img src ={{item.images[0].getUrl()}} alt="" />
+            <img src ={{item.images[1].getUrl()}} alt="" />
+            
   
              <div class="item-mask">
               <ul class="list-group">
@@ -21,8 +22,17 @@
             </div>
           </div>
           <div class="item-body py-4">
+            <div class="color-codes">
+              <ul class="list-inline">
+                <li class="list-inline-item" *ngFor ="let code of getAvailableColors()">
+                  <fa-icon [ngStyle] ="{'color': code}" [icon] ="['fas', 'stop']"></fa-icon>
+                </li>
+                <!-- <li class="list-inline-item"><fa-icon [ngClass] ="'text-danger'" [icon] ="['fas', 'stop']"></fa-icon></li> -->
+                <!-- <li class="list-inline-item"><fa-icon  [ngClass] ="'text-secondary'" [icon] ="['fas', 'stop']"></fa-icon></li> -->
+             </ul>
+            </div>
             <h6>
-              <span class="name">lourine scripture</span> |
+              <span class="name">{{item.name}}</span> |
               <span class="size">XL</span>
             </h6>
             <h6>

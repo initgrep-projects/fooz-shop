@@ -4,7 +4,7 @@
             id="dropdownManual"
             ngbDropdownAnchor
             (focus)="categ.open()">
-        <fa-icon icon="layer-group"></fa-icon>
+        <fa-icon icon="{{ !!this.selectedCategory? this.selectedCategory.getIcon() : 'layer-group' }}"></fa-icon>
         {{!!this.selectedCategory? this.selectedCategory.getLabel() : 'Categories'}}
     </button>
     <div ngbDropdownMenu
@@ -14,7 +14,8 @@
                 *ngFor="let category of categories"
                 id="{{category.getCode()}}"
                 (click)="emitCategoryChange(category)">
-            <fa-icon icon="dot-circle"></fa-icon> {{ category.getLabel() }}
+            <fa-icon icon="{{category.getIcon() }}"></fa-icon>
+             {{ category.getLabel() }}
         </button>
     </div>
 </div>

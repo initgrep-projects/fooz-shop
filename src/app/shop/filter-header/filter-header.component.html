@@ -12,7 +12,12 @@
                                          [selectedCategory] = "selectedCategory"
                                             (categoryChange)="onCategoryChange($event)"
                                          ></app-category-filter>
-                    <app-size-filter></app-size-filter>
+
+                    <app-size-filter
+                        [sizes] ="sizes"
+                        [selectedSize] = "selectedSize"
+                        (sizeChange) = "onSizeChange($event)"
+                    ></app-size-filter>
 
 
                 </div>

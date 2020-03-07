@@ -2,8 +2,9 @@ import { Injectable } from '@angular/core';
 import { Category } from 'src/app/models/category';
 import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/store/app.reducer';
-import { selectCategory } from './store/filter.action';
+import { selectCategory, selectSize } from './store/filter.action';
 import { LogService } from '../services/log.service';
+import { Size } from 'src/app/models/size';
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +18,11 @@ export class FilterHeaderService {
   addSelectedCategory(c: Category) {
     this.logger.info('selected category dispatched -- ', c);
     this.store.dispatch(selectCategory({ payload: c }));
+  }
+
+  addSelectedSize(s:Size){
+    this.logger.info('selected size dispatched --', s);
+    this.store.dispatch(selectSize({payload:s}));
   }
 
 }

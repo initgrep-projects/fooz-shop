@@ -5,12 +5,17 @@
             id="dropdownManual"
             ngbDropdownAnchor
             (focus)="size.open()">
-        <fa-icon icon="tape"></fa-icon> Size
+        <fa-icon icon="tape"></fa-icon> 
+        {{ !!this.selectedSize? 'Size: '+ this.selectedSize.getLetter() : 'size'}}
     </button>
     <div ngbDropdownMenu
          aria-labelledby="dropdownManual">
-        <button ngbDropdownItem *ngFor='let size of sizeValues'>
-            <b>{{size}}</b> - {{getSizeLabel(size)}}
+        <button ngbDropdownItem 
+        *ngFor='let size of sizes'
+        id ="{{size.getLetter()}}"
+        (click) ="emitSizeChange(size)"
+        >
+            <b>{{size.getLetter()}}</b> - {{size.getLabel()}}
         </button>
     
     </div>

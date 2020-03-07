@@ -9,7 +9,7 @@ import { AppState } from 'src/app/store/app.reducer';
 import { fetchProductsAction } from '../store/shop.actions';
 import { Image } from 'src/app/models/image';
 import { Currency } from 'src/app/models/currency';
-import { fetchAllCategories } from '../filter-header/store/filter.action';
+import { fetchAllCategories, fetchAllSizes } from '../filter-header/store/filter.action';
 
 
 @Injectable({
@@ -20,17 +20,20 @@ export class RemoteService {
 
 
   constructor(private logger: LogService,
-              private store: Store<AppState>
-    ) {
-      logger.info('remote service is initialized ');
-      this.getProducts();
-    }
+    private store: Store<AppState>
+  ) {
+    logger.info('remote service is initialized ');
+    this.getProducts();
+  }
 
   getProducts() {
     this.logger.info('addProducts called');
 
     const coCategory = new Category('CO', 'center open');
-    const soCategory = new Category('SO', 'side open');
+    const soCategory = new Category('BA', 'buttoned abaya');
+    coCategory.seticon('door-open');
+    soCategory.seticon('dot-circle');
+
 
     const blackColor = new Color('black', '#333');
     const greyColor = new Color('grey', '#6c757d');
@@ -57,11 +60,11 @@ export class RemoteService {
     const a3100 = new Currency('QAR', 3100);
     const a2300 = new Currency('QAR', 2300);
 
-    const categories =  [soCategory, coCategory];
+    const categories = [soCategory, coCategory];
+    const sizes = [smallSize, mediumSize, largeSize, xlSize];
 
 
-
-    const products =  [
+    const products = [
       new Product(
         'Spring Dark Folded abaya',
         '11331',
@@ -80,7 +83,7 @@ export class RemoteService {
         a2200,
         soCategory,
         [image1, image2, image1g, image2g],
-        [smallSize, mediumSize, ]
+        [smallSize, mediumSize,]
       ),
       new Product(
         'summer light Folded abaya',
@@ -90,7 +93,7 @@ export class RemoteService {
         a2200,
         coCategory,
         [image1, image2, image1p, image2p],
-        [ largeSize, xlSize]
+        [largeSize, xlSize]
       ),
       new Product(
         'winter center Folded abaya',
@@ -115,8 +118,9 @@ export class RemoteService {
 
     ];
 
-    this.store.dispatch(fetchProductsAction({payload : products}));
-    this.store.dispatch(fetchAllCategories({payload: categories}));
+    this.store.dispatch(fetchProductsAction({ payload: products }));
+    this.store.dispatch(fetchAllCategories({ payload: categories }));
+    this.store.dispatch(fetchAllSizes({ payload: sizes }));
   }
 
 

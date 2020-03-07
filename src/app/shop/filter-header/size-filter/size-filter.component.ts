@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Size } from 'src/app/models/size';
 
 @Component({
   selector: 'app-size-filter',
@@ -7,17 +8,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SizeFilterComponent implements OnInit {
 
-  sizeValues: string[] = ['S', 'M', 'L', 'XL'];
-  constructor() { }
+  @Input() sizes: Size[];
+  @Input() selectedSize: Size;
+  @Output() sizeChange = new EventEmitter<Size>();
+
+  constructor(
+  ) { }
 
   ngOnInit(): void {
   }
 
-  getSizeLabel(s: string){
-    if (s === 'S') { return 'Small'; }
-    if (s === 'M') { return 'Medium'; }
-    if (s === 'L') { return 'Large'; }
-    if (s === 'XL') { return 'Extra Large'; }
+  emitSizeChange(s: Size) {
+    this.sizeChange.emit(s);
   }
+
 
 }

@@ -1,4 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { AppState } from 'src/app/store/app.reducer';
+import { Category } from 'src/app/models/category';
+import { LogService } from '../../services/log.service';
+
 
 @Component({
   selector: 'app-category-filter',
@@ -7,9 +12,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CategoryFilterComponent implements OnInit {
 
-  constructor() { }
+  @Input() categories: Category[];
+  @Input() selectedCategory: Category;
+  @Output() categoryChange = new EventEmitter<Category>();
+
+  constructor(
+  ) { }
 
   ngOnInit(): void {
   }
+
+  emitCategoryChange(category: Category) {
+    this.categoryChange.emit(category);
+  }
+
 
 }

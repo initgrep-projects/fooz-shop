@@ -32,7 +32,7 @@ import { AppReducer } from './store/app.reducer';
     NavBarComponent,
     SearchComponent,
     AccountComponent,
-    CartComponent
+    CartComponent,
   ],
   imports: [
     BrowserModule,

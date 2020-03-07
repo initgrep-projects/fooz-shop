@@ -3,6 +3,7 @@ import { Image } from './image';
 import { Color } from './color';
 import { Size } from './size';
 import { Category } from './category';
+import { Currency } from './currency';
 
 export class Product {
 
@@ -10,6 +11,7 @@ export class Product {
     id: string;
     description: string;
     quantity: number;
+    price: Currency;
     category: Category;
     images: Image[];
     colors: Color[];
@@ -20,6 +22,7 @@ export class Product {
                 id: string,
                 description: string,
                 quantity: number,
+                price: Currency,
                 category: Category,
                 images: Image[],
                 sizes: Size[]
@@ -29,6 +32,7 @@ export class Product {
         this.description = description;
         this.category = category;
         this.quantity = quantity;
+        this.price = price;
         this.images = images;
         this.sizes = sizes;
         this.colors = this.getColorsFromImages();

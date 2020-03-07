@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { RemoteService } from '../services/remote.service';
+import { Store } from '@ngrx/store';
+import { AppState } from 'src/app/store/app.reducer';
+import { Product } from 'src/app/models/product';
 
 @Component({
   selector: 'app-items',
@@ -7,9 +11,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ItemsComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private remoteService: RemoteService,
+    private store: Store<AppState>) { }
 
-  ngOnInit(): void {
+  items: Product[];
+
+  ngOnInit() {
+    this.store.select('shop').subscribe(state => {
+      this.items = state.products;
+    });
   }
 
 }

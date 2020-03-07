@@ -12,7 +12,7 @@ import { RemoteService } from 'src/app/shop/services/remote.service';
 })
 export class FeatureItemsComponent implements OnInit {
 
-  constructor( 
+  constructor(
     private remoteService: RemoteService,
     private store: Store<AppState>) { }
 

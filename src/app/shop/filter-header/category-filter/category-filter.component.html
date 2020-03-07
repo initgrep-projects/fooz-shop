@@ -1,20 +1,20 @@
-<div 
-ngbDropdown
-#categories="ngbDropdown">
-<button class="btn btn-outline-dark mr-2"
-       id="dropdownManual"
-       ngbDropdownAnchor
-       (focus)="categories.open()">
-   <fa-icon icon="layer-group"></fa-icon> Categories
-</button>
-<div ngbDropdownMenu
-    aria-labelledby="dropdownManual">
-   <button ngbDropdownItem>
-       <fa-icon icon="dot-circle"></fa-icon> Buttoned Abaya
-   </button>
-   <button ngbDropdownItem>
-       <fa-icon icon="door-open"></fa-icon> Open Abaya
-   </button>
-   <!-- <button ngbDropdownItem>Something else is here</button> -->
-</div>
+<div ngbDropdown
+     #categ="ngbDropdown">
+    <button class="btn btn-outline-dark mr-2"
+            id="dropdownManual"
+            ngbDropdownAnchor
+            (focus)="categ.open()">
+        <fa-icon icon="layer-group"></fa-icon>
+        {{!!this.selectedCategory? this.selectedCategory.getLabel() : 'Categories'}}
+    </button>
+    <div ngbDropdownMenu
+         aria-labelledby="dropdownManual">
+
+        <button ngbDropdownItem
+                *ngFor="let category of categories"
+                id="{{category.getCode()}}"
+                (click)="emitCategoryChange(category)">
+            <fa-icon icon="dot-circle"></fa-icon> {{ category.getLabel() }}
+        </button>
+    </div>
 </div>

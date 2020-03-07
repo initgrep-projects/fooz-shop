@@ -8,6 +8,8 @@ import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/store/app.reducer';
 import { fetchProductsAction } from '../store/shop.actions';
 import { Image } from 'src/app/models/image';
+import { Currency } from 'src/app/models/currency';
+import { fetchAllCategories } from '../filter-header/store/filter.action';
 
 
 @Injectable({
@@ -20,7 +22,7 @@ export class RemoteService {
   constructor(private logger: LogService,
               private store: Store<AppState>
     ) {
-      logger.info("remote service is initialized ");
+      logger.info('remote service is initialized ');
       this.getProducts();
     }
 
@@ -28,7 +30,7 @@ export class RemoteService {
     this.logger.info('addProducts called');
 
     const coCategory = new Category('CO', 'center open');
-    const soCategory = new Category('SO', 'center open');
+    const soCategory = new Category('SO', 'side open');
 
     const blackColor = new Color('black', '#333');
     const greyColor = new Color('grey', '#6c757d');
@@ -50,6 +52,13 @@ export class RemoteService {
     const image1p = new Image('https://i.imgur.com/J3Vq5Rl.jpg', purpleColor);
     const image2p = new Image('https://i.imgur.com/hYMUHqS.jpg', purpleColor);
 
+    const a1000 = new Currency('QAR', 1000);
+    const a2200 = new Currency('QAR', 2200);
+    const a3100 = new Currency('QAR', 3100);
+    const a2300 = new Currency('QAR', 2300);
+
+    const categories =  [soCategory, coCategory];
+
 
 
     const products =  [
@@ -58,6 +67,7 @@ export class RemoteService {
         '11331',
         'Women Blue & White Printed Abaya with Colorful Buttons',
         12,
+        a1000,
         soCategory,
         [image1, image2, image3, image4],
         [smallSize, mediumSize, xlSize]
@@ -67,6 +77,7 @@ export class RemoteService {
         '11332',
         'Women Blue & White Printed Abaya with Colorful Buttons',
         12,
+        a2200,
         soCategory,
         [image1, image2, image1g, image2g],
         [smallSize, mediumSize, ]
@@ -76,7 +87,8 @@ export class RemoteService {
         '11333',
         'Women Blue & White Printed Abaya with Colorful Buttons',
         12,
-        soCategory,
+        a2200,
+        coCategory,
         [image1, image2, image1p, image2p],
         [ largeSize, xlSize]
       ),
@@ -85,7 +97,8 @@ export class RemoteService {
         '11334',
         'Women Blue & White Printed Abaya with Colorful Buttons',
         12,
-        soCategory,
+        a3100,
+        coCategory,
         [image1p, image2p, image1g, image2g],
         [smallSize, mediumSize, largeSize, xlSize]
       ),
@@ -94,6 +107,7 @@ export class RemoteService {
         '11335',
         'Women Blue & White Printed Abaya with Colorful Buttons',
         12,
+        a2300,
         soCategory,
         [image1g, image2g, image1, image2],
         [smallSize, mediumSize, largeSize, xlSize]
@@ -102,7 +116,7 @@ export class RemoteService {
     ];
 
     this.store.dispatch(fetchProductsAction({payload : products}));
-
+    this.store.dispatch(fetchAllCategories({payload: categories}));
   }
 
 

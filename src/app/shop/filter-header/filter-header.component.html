@@ -1,26 +1,23 @@
 <section class="filter-header">
     <div class="row">
         <div class="col">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="#">Home</a></li>
-                <li class="breadcrumb-item active">shop</li>
-            </ol>
-
+            <app-breadcrumb [prevPaths]="'[home]'"
+                            [currentPath]="'shop'"></app-breadcrumb>
         </div>
         <div class="col  ">
-             <div class="row">
-                 <div class="col ">
+            <div class="row">
+                <div class="col ">
                     <app-sort-filter></app-sort-filter>
-                    <app-category-filter></app-category-filter>
-                    <app-size-filter></app-size-filter>    
-                    
-                    
-                 </div>
-                 <!-- <div class="col border"><app-sort-filter></app-sort-filter></div>
-                 <div class="col border"><app-size-filter></app-size-filter></div>
-                 <div class="col border"><app-main-filter></app-main-filter> </div> -->
-                 
-             </div>
+                    <app-category-filter [categories]="categories"
+                                         [selectedCategory] = "selectedCategory"
+                                            (categoryChange)="onCategoryChange($event)"
+                                         ></app-category-filter>
+                    <app-size-filter></app-size-filter>
+
+
+                </div>
+
+            </div>
         </div>
     </div>
 </section>

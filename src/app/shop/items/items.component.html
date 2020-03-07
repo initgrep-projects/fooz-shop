@@ -1,17 +1,7 @@
 <section class="card-wrapper ">
-    <div class="row">
-
-      <app-item class="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-3 my-1"></app-item>
-      <app-item class="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-3 my-1"></app-item>
-      <app-item class="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-3 my-1"></app-item>
-      <app-item class="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-3 my-1"></app-item>
-      <app-item class="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-3 my-1"></app-item>
-      <app-item class="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-3 my-1"></app-item>
-      <app-item class="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-3 my-1"></app-item>
-      <app-item class="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-3 my-1"></app-item>
-      <app-item class="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-3 my-1"></app-item>
-      <app-item class="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-3 my-1"></app-item>
-      <app-item class="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-3 my-1"></app-item>
-  
-    </div>
-  </section>
+  <div class="row">
+    <app-item class="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-3 my-1"
+              *ngFor="let item of items"
+              [item]="item"></app-item>
+  </div>
+</section>

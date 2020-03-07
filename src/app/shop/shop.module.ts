@@ -50,6 +50,7 @@ import {
   faArrowsAltH,
   faArrowsAltV
 } from '@fortawesome/free-solid-svg-icons';
+import { BreadcrumbComponent } from './filter-header/breadcrumb/breadcrumb.component';
 
 
 @NgModule({
@@ -68,7 +69,8 @@ import {
     SizeFilterComponent,
     SortFilterComponent,
     CategoryFilterComponent,
-    MainFilterComponent
+    MainFilterComponent,
+    BreadcrumbComponent
   ],
   imports: [
     CommonModule,

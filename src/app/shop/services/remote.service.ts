@@ -9,7 +9,8 @@ import { AppState } from 'src/app/store/app.reducer';
 import { fetchProductsAction } from '../store/shop.actions';
 import { Image } from 'src/app/models/image';
 import { Currency } from 'src/app/models/currency';
-import { fetchAllCategories, fetchAllSizes } from '../filter-header/store/filter.action';
+import { fetchAllCategories, fetchAllSizes, fetchAllSortOrders } from '../filter-header/store/filter.action';
+import { Sort } from 'src/app/models/Sort';
 
 
 @Injectable({
@@ -33,6 +34,9 @@ export class RemoteService {
     const soCategory = new Category('BA', 'buttoned abaya');
     coCategory.seticon('door-open');
     soCategory.seticon('dot-circle');
+
+    const ascending = new Sort('ASC', ' Price: High to Low', 'long-arrow-alt-up');
+    const descending = new Sort('DSC', ' Price: Low to High', 'long-arrow-alt-down');
 
 
     const blackColor = new Color('black', '#333');
@@ -62,6 +66,7 @@ export class RemoteService {
 
     const categories = [soCategory, coCategory];
     const sizes = [smallSize, mediumSize, largeSize, xlSize];
+    const sortOrders = [ascending, descending];
 
 
     const products = [
@@ -121,6 +126,7 @@ export class RemoteService {
     this.store.dispatch(fetchProductsAction({ payload: products }));
     this.store.dispatch(fetchAllCategories({ payload: categories }));
     this.store.dispatch(fetchAllSizes({ payload: sizes }));
+    this.store.dispatch(fetchAllSortOrders({ payload: sortOrders }))
   }
 
 

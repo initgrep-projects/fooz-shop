@@ -6,6 +6,7 @@ import { Subscription } from 'rxjs';
 import { LogService } from '../services/log.service';
 import { FilterHeaderService } from './filter-header.service';
 import { Size } from 'src/app/models/size';
+import { Sort } from 'src/app/models/Sort';
 
 @Component({
   selector: 'app-filter-header',
@@ -20,6 +21,9 @@ export class FilterHeaderComponent implements OnInit, OnDestroy {
 
   sizes: Size[] = [];
   selectedSize: Size;
+
+  sortOrders: Sort[] = [];
+  selectedSortOrder: Sort;
 
   constructor(private store: Store<AppState>,
               private filterHeaderService: FilterHeaderService,
@@ -37,30 +41,31 @@ export class FilterHeaderComponent implements OnInit, OnDestroy {
     this.subs[this.subs.length + 1] =
       this.store.select('filters').subscribe(filters => {
         this.categories = filters.categories;
+        this.selectedCategory = filters.selectedCategory;
+
         this.sizes = filters.sizes;
-        this.selectedCategory = filters.selectedCategory;
         this.selectedSize = filters.selectedSize;
+
+        this.sortOrders = filters.sortOrders;
+        this.selectedSortOrder = filters.selectedSortOrder;
       });
   }
 
 
-
-  getSelectedFilters() {
-    this.subs[this.subs.length + 1] =
-      this.store.select('filters').subscribe(filters => {
-        this.logger.info('fetching from store after change ', filters.selectedCategory);
-        this.selectedCategory = filters.selectedCategory;
-      });
-  }
 
   onCategoryChange(c: Category) {
     this.logger.info('selected category = ', c);
     this.filterHeaderService.addSelectedCategory(c);
   }
 
-  onSizeChange(s: Size){
+  onSizeChange(s: Size) {
     this.logger.info('selected size = ', s);
     this.filterHeaderService.addSelectedSize(s);
+  }
+
+  onSortOrderChange(s: Sort) {
+    this.logger.info('selected Sort Change = ', s);
+    this.filterHeaderService.addSelectedSortOrder(s);
   }
 
 

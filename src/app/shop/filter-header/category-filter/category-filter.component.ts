@@ -1,8 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Store } from '@ngrx/store';
-import { AppState } from 'src/app/store/app.reducer';
 import { Category } from 'src/app/models/category';
-import { LogService } from '../../services/log.service';
 
 
 @Component({

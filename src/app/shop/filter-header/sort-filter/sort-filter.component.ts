@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
+import { Sort } from 'src/app/models/Sort';
 
 @Component({
   selector: 'app-sort-filter',
@@ -7,9 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SortFilterComponent implements OnInit {
 
-  constructor() { }
+  @Input() sortOrders: Sort[];
+  @Input() selectedSortOrder: Sort;
+  @Output() sortOrderChange = new EventEmitter<Sort>();
+
+  constructor(
+  ) { }
 
   ngOnInit(): void {
+  }
+
+  emitSortOrderChange(s: Sort) {
+    this.sortOrderChange.emit(s);
   }
 
 }

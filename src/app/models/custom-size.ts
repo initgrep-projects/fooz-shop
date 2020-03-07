@@ -1,6 +1,6 @@
 export class CustomSize {
 
-   constructor( 
+   constructor(
        private width: number,
        private length: number,
        private bust: number,

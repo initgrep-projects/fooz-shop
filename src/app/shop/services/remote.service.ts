@@ -1,10 +1,14 @@
 import { Injectable } from '@angular/core';
-import { Product } from '../models/product';
 import { LogService } from './log.service';
-import { Category } from '../models/category';
-import { Image } from '../models/image';
-import { Color } from '../models/color';
-import { Size } from '../models/size';
+import { Category } from 'src/app/models/category';
+import { Color } from 'src/app/models/color';
+import { Size } from 'src/app/models/size';
+import { Product } from 'src/app/models/product';
+import { Store } from '@ngrx/store';
+import { AppState } from 'src/app/store/app.reducer';
+import { fetchProductsAction } from '../store/shop.actions';
+import { Image } from 'src/app/models/image';
+
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +17,12 @@ export class RemoteService {
 
 
 
-  constructor(private logger: LogService) {}
+  constructor(private logger: LogService,
+              private store: Store<AppState>
+    ) {
+      logger.info("remote service is initialized ");
+      this.getProducts();
+    }
 
   getProducts() {
     this.logger.info('addProducts called');
@@ -33,19 +42,25 @@ export class RemoteService {
     const image1 = new Image('https://i.imgur.com/rnRqUoz.jpg', blackColor);
     const image2 = new Image('https://i.imgur.com/ZMloszym.jpg', blackColor);
     const image3 = new Image('https://i.imgur.com/ZMloszym.jpg', blackColor);
+    const image4 = new Image('https://i.imgur.com/fZube9X.jpg', blackColor);
+
+    const image1g = new Image('https://i.imgur.com/IQPOZ5A.jpg', greyColor);
+    const image2g = new Image('https://i.imgur.com/9YwoGKg.jpg', greyColor);
+
+    const image1p = new Image('https://i.imgur.com/J3Vq5Rl.jpg', purpleColor);
+    const image2p = new Image('https://i.imgur.com/hYMUHqS.jpg', purpleColor);
 
 
 
-    return [
+    const products =  [
       new Product(
         'Spring Dark Folded abaya',
         '11331',
         'Women Blue & White Printed Abaya with Colorful Buttons',
         12,
         soCategory,
-        [image1, image2],
-        [blackColor, greyColor, purpleColor],
-        [smallSize, mediumSize, largeSize, xlSize]
+        [image1, image2, image3, image4],
+        [smallSize, mediumSize, xlSize]
       ),
       new Product(
         'Autumn light Folded abaya',
@@ -53,9 +68,8 @@ export class RemoteService {
         'Women Blue & White Printed Abaya with Colorful Buttons',
         12,
         soCategory,
-        [image1, image2],
-        [blackColor, greyColor, purpleColor],
-        [smallSize, mediumSize, largeSize, xlSize]
+        [image1, image2, image1g, image2g],
+        [smallSize, mediumSize, ]
       ),
       new Product(
         'summer light Folded abaya',
@@ -63,9 +77,8 @@ export class RemoteService {
         'Women Blue & White Printed Abaya with Colorful Buttons',
         12,
         soCategory,
-        [image1, image2],
-        [blackColor, greyColor, purpleColor],
-        [smallSize, mediumSize, largeSize, xlSize]
+        [image1, image2, image1p, image2p],
+        [ largeSize, xlSize]
       ),
       new Product(
         'winter center Folded abaya',
@@ -73,8 +86,7 @@ export class RemoteService {
         'Women Blue & White Printed Abaya with Colorful Buttons',
         12,
         soCategory,
-        [image1, image2],
-        [blackColor, greyColor, purpleColor],
+        [image1p, image2p, image1g, image2g],
         [smallSize, mediumSize, largeSize, xlSize]
       ),
       new Product(
@@ -83,12 +95,13 @@ export class RemoteService {
         'Women Blue & White Printed Abaya with Colorful Buttons',
         12,
         soCategory,
-        [image1, image2],
-        [blackColor, greyColor, purpleColor],
+        [image1g, image2g, image1, image2],
         [smallSize, mediumSize, largeSize, xlSize]
       )
 
     ];
+
+    this.store.dispatch(fetchProductsAction({payload : products}));
 
   }
 

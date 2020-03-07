@@ -4,7 +4,10 @@ export class Image {
 
     constructor(private url: string, private color: Color) {}
 
-    getUrl() {
+    getColor(){
+        return this.color;
+    }
+    getUrl(){
         return this.url;
     }
 }

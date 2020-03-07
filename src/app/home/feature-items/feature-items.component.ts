@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { RemoteService } from 'src/app/services/remote.service';
+
 import { Product } from 'src/app/models/product';
+import { Store } from '@ngrx/store';
+import { AppState } from 'src/app/store/app.reducer';
+import { RemoteService } from 'src/app/shop/services/remote.service';
 
 @Component({
   selector: 'app-feature-items',
@@ -9,12 +12,16 @@ import { Product } from 'src/app/models/product';
 })
 export class FeatureItemsComponent implements OnInit {
 
-  constructor( private remoteService: RemoteService) { }
+  constructor( 
+    private remoteService: RemoteService,
+    private store: Store<AppState>) { }
 
   items: Product[];
 
   ngOnInit() {
-    this.items = this.remoteService.getProducts();
+    this.store.select('shop').subscribe(state => {
+      this.items = state.products;
+    });
   }
 
 

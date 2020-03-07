@@ -7,7 +7,7 @@ export class LogService {
 
   constructor() { }
 
-  info(message: any) {
+  info(...message: any) {
     console.log(new Date() + ':' + JSON.stringify(message));
   }
 }

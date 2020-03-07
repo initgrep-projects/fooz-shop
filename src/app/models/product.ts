@@ -6,15 +6,15 @@ import { Category } from './category';
 
 export class Product {
 
-     name: string;
-     id: string;
-     description: string;
-     quantity: number;
-     category: Category;
-     images: Image[];
-     colors: Color[];
-     size: Size[];
-     customSize: CustomSize;
+    name: string;
+    id: string;
+    description: string;
+    quantity: number;
+    category: Category;
+    images: Image[];
+    colors: Color[];
+    sizes: Size[];
+    customSize: CustomSize;
 
     constructor(name: string,
                 id: string,
@@ -22,8 +22,7 @@ export class Product {
                 quantity: number,
                 category: Category,
                 images: Image[],
-                colors: Color[],
-                size: Size[]
+                sizes: Size[]
     ) {
         this.name = name;
         this.id = id;
@@ -31,10 +30,22 @@ export class Product {
         this.category = category;
         this.quantity = quantity;
         this.images = images;
-        this.colors = colors;
-        this.size = size;
+        this.sizes = sizes;
+        this.colors = this.getColorsFromImages();
     }
     addCustomSize(customSize: CustomSize) {
         this.customSize = customSize;
+    }
+
+    private getColorsFromImages(): Color[] {
+        const colors: Color[] = [];
+        this.images.forEach((image) => {
+            const c = image.getColor();
+            if (colors.indexOf(c) < 0 ) {
+                colors.push(c);
+            } 
+        });
+        console.log('colors = ', colors);
+        return colors;
     }
 }

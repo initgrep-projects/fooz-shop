@@ -20,6 +20,7 @@ import { CartComponent } from './header/nav-bar/cart/cart.component';
 import { FooterComponent } from './footer/footer.component';
 
 import { IconService } from './icons/icon.service';
+import { AppReducer } from './store/app.reducer';
 
 
 @NgModule({
@@ -40,7 +41,7 @@ import { IconService } from './icons/icon.service';
     AppRoutingModule,
     NgbModule,
     FontAwesomeModule,
-    // StoreModule.forRoot
+    StoreModule.forRoot(AppReducer)
   ],
   providers: [],
   bootstrap: [AppComponent]

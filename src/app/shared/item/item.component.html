@@ -1,43 +1,55 @@
-    <!--item start-->
-        <div class="item my-3">
-          
-          <div class="item-heading">
-            <img src ={{item.images[0].getUrl()}} alt="" />
-            <img src ={{item.images[1].getUrl()}} alt="" />
-            
-  
-             <div class="item-mask">
-              <ul class="list-group">
-                <li class="list-group-item">
-                  <fa-icon icon="search"></fa-icon>
-                </li>
-                <li class="list-group-item">
-                  <fa-icon icon="heart"></fa-icon>
-                </li>
-                <li class="list-group-item">
-                  <button class="btn btn-outline-light" (click) ="routeToItemDetails()">view details</button>
-                </li>
-                
-              </ul>
-            </div>
-          </div>
-          <div class="item-body py-4">
-            <div class="color-codes">
-              <ul class="list-inline">
-                <li class="list-inline-item" *ngFor ="let code of getAvailableColors()">
-                  <fa-icon [ngStyle] ="{'color': code}" [icon] ="['fas', 'stop']"></fa-icon>
-                </li>
-                <!-- <li class="list-inline-item"><fa-icon [ngClass] ="'text-danger'" [icon] ="['fas', 'stop']"></fa-icon></li> -->
-                <!-- <li class="list-inline-item"><fa-icon  [ngClass] ="'text-secondary'" [icon] ="['fas', 'stop']"></fa-icon></li> -->
-             </ul>
-            </div>
-            <h6>
-              <span class="name">{{item.name}}</span> |
-              <span class="size">XL</span>
-            </h6>
-            <h6>
-              <span class="price">AED 400</span>
-            </h6>
-          </div>
-        </div>
-      <!--item end-->
+<!--item start-->
+<div class="item my-3">
+
+  <div class="item-heading">
+    <img *ngFor="let image of cardImages"
+         [src]="image.getUrl()"
+         alt="" />
+
+
+         <div class="item-size ">
+          <ul class="list-group">
+            <li class="list-group-item" *ngFor="let size of item.sizes">
+              <span class="size">{{size.getLetter()}}</span>
+            </li>
+          </ul>
+        </div>     
+
+    <div class="item-mask">
+      <ul class="list-group">
+        <li class="list-group-item">
+          <!-- <fa-icon icon="search"></fa-icon> -->
+        </li>
+        <li class="list-group-item">
+          <!-- <fa-icon icon="heart"></fa-icon> -->
+        </li>
+        <li class="list-group-item">
+          <button class="btn btn-outline-light"
+                  (click)="routeToItemDetails()">view details</button>
+        </li>
+
+      </ul>
+    </div>
+    
+  </div>
+  <div class="item-body py-2 ">
+    <div class="color-codes">
+      <ul class="list-inline">
+        <li class="list-inline-item"
+            *ngFor="let color of item.colors"
+            (click)="showThiscolorImages(color)">
+          <fa-icon [ngStyle]="{'color': color.getCode()}"
+                   [icon]="['fas', 'stop']"></fa-icon>
+        </li>
+
+      </ul>
+    </div>
+    <h6>
+      <span class="name">{{item.name}}</span> 
+    </h6>
+    <h6>
+      <span class="price">AED 400</span>
+    </h6>
+  </div>
+</div>
+<!--item end-->

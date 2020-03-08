@@ -51,6 +51,9 @@ import {
   faArrowsAltV
 } from '@fortawesome/free-solid-svg-icons';
 import { BreadcrumbComponent } from './filter-header/breadcrumb/breadcrumb.component';
+import { FilterByCategoryPipe } from '../pipes/filter-by-category.pipe';
+import { FilterBySizePipe } from '../pipes/filter-by-size.pipe';
+import { SortPipe } from '../pipes/sort.pipe';
 
 
 @NgModule({
@@ -70,7 +73,10 @@ import { BreadcrumbComponent } from './filter-header/breadcrumb/breadcrumb.compo
     SortFilterComponent,
     CategoryFilterComponent,
     MainFilterComponent,
-    BreadcrumbComponent
+    BreadcrumbComponent,
+    FilterByCategoryPipe,
+    FilterBySizePipe,
+    SortPipe
   ],
   imports: [
     CommonModule,

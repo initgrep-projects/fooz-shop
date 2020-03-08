@@ -1,7 +1,7 @@
 <section class="card-wrapper ">
   <div class="row">
     <app-item class="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-3 my-1"
-              *ngFor="let item of items"
-              [item]="item"></app-item>
+              *ngFor="let product of items | filterBySize: selectedSize |filterByCategory: selectedCategory | sort: selectedSort"
+              [item]="product"></app-item>
   </div>
 </section>

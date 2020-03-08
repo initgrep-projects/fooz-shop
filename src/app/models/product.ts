@@ -11,6 +11,7 @@ export class Product {
     id: string;
     description: string;
     quantity: number;
+    timeStamp: number;
     price: Currency;
     category: Category;
     images: Image[];
@@ -22,6 +23,7 @@ export class Product {
                 id: string,
                 description: string,
                 quantity: number,
+                timeStamp: number,
                 price: Currency,
                 category: Category,
                 images: Image[],
@@ -32,6 +34,7 @@ export class Product {
         this.description = description;
         this.category = category;
         this.quantity = quantity;
+        this.timeStamp = timeStamp;
         this.price = price;
         this.images = images;
         this.sizes = sizes;

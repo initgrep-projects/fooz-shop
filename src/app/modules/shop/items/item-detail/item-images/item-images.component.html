@@ -1,0 +1,10 @@
+<div class="item-image-wrapper">
+
+    <div class="row">
+        <div class="col-6" *ngFor='let image of images | slice: 0:4'>
+            <div class="item-image"><img [src] ="image.getUrl()" /></div>
+        </div>
+       
+    </div>
+</div>
+

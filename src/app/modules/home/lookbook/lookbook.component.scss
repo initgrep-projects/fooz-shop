@@ -1,0 +1,125 @@
+@import "../../../../variables.scss"; 
+
+section.look-book {
+  margin-top: 2rem;
+  margin-left: 10%;
+  margin-right: 10%;
+
+
+  .content-heading {
+    h6 {
+      font-family: $ptserif-font-family;
+      text-transform: uppercase;
+      text-align: center;
+      span {
+        letter-spacing: 0.1rem;
+        font-size: 1.3rem;
+        margin-top: 0.4rem;
+      }
+      span.x,
+      span.y {
+        border: 2px solid #333;
+        width: 30px;
+        display: inline-block;
+        margin-bottom: 4px;
+        border-radius: 5px;
+      }
+      span.x {
+        margin-right: 4px;
+      }
+      span.y {
+        margin-left: 4px;
+      }
+    }
+
+    span.shop-msg {
+      display: block;
+      text-align: center;
+      font-size: 1rem;
+      letter-spacing: 0.1rem;
+    }
+  }
+
+  .lookbook-card {
+    .card-header {
+      margin: 0px;
+      padding: 0px;
+      height: 350px;
+      // border:1px solid red;
+      overflow: hidden;
+      border-radius: 0px;
+      img {
+        height: 350px;
+        width: 100%;
+        // border-radius: 5px;
+      }
+    }
+    .card-mask {
+      position: absolute;
+      top: 0px;
+      width: 96%;
+      height: 100%;
+      padding: 1rem;
+      margin-left:1px;
+      margin-right: 1px;
+      text-align: left;
+      background-color: rgba(0,0,0,.3);
+      color: #f1f1f1;
+
+      .card-msg {
+        bottom: 0px;
+        top: 68%;
+        width: 50%;
+        position: relative;
+        // background-color: rgba(100, 100, 100, 0.1);
+        h6,
+        h2 {
+          text-transform: uppercase;
+          letter-spacing: 0.1rem;
+          font-family: $ptserif-font-family;
+        }
+        h2{
+          
+          font-weight: 600;
+        }
+        p {
+          letter-spacing: 0.1rem;
+          text-transform: capitalize;
+        }
+      }
+    }
+
+    &:hover {
+      .card-header {
+        img {
+          transform: scale(1.2);
+          transition: all 0.5s ease-out;
+        }
+      }
+      .card-mask {
+        background-color: rgba(0, 0, 0, 0.4);
+        transition: all 0.5s ease-out;
+      }
+    }
+  }
+}
+
+
+// Extra large devices (x large desktops, 1200px and up)
+@media (min-width: 1750px) {
+
+  section.look-book {
+  
+    .lookbook-card {
+      .card-header {
+        
+        height: 400px;
+        img {
+          height: 400px;
+        }
+      }
+       
+    }
+  }
+
+}

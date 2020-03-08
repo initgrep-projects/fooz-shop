@@ -2,8 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './app-routing.module';
-import { HomeModule } from './home/home.module';
-import { ShopModule } from './shop/shop.module';
+import { HomeModule } from './modules/home/home.module';
+import { ShopModule } from './modules/shop/shop.module';
 import { FaIconLibrary, FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { StoreModule} from '@ngrx/store';
 

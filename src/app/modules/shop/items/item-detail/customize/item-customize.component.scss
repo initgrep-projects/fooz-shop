@@ -1,0 +1,21 @@
+@import "../../../../../../variables.scss";
+
+div.customize-wrapper{
+    font-family: $poppins-font-family;
+    h4{
+        text-transform: capitalize;
+        font-weight: 600;
+        letter-spacing: .09rem;
+    }
+
+    ul{
+        li{
+            div.form-check{
+                label{
+                    font-weight: 600;
+                    text-transform: capitalize;
+                }
+            }
+        }
+    }
+}

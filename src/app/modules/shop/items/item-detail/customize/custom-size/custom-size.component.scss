@@ -1,0 +1,10 @@
+@import "../../../../../../../variables.scss";
+
+div.customize{
+    font-family: $poppins-font-family;
+    span.label{
+        text-transform: capitalize;
+        font-weight: 600;
+    }
+    
+}

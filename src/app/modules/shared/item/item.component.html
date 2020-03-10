@@ -2,7 +2,7 @@
 <div class="item my-3">
 
   <div class="item-heading">
-    <img *ngFor="let image of cardImages"
+    <img *ngFor="let image of cardImages | slice:0:2"
          [src]="image.getUrl()"
          alt="" />
 
@@ -37,7 +37,7 @@
       <ul class="list-inline">
         <li class="list-inline-item"
             *ngFor="let color of item.colors"
-            (click)="showThiscolorImages(color)">
+            (click)="showSimilarcolorImages(color)">
           <fa-icon [ngStyle]="{'color': color.getCode()}"
                    [icon]="['fas', 'stop']"></fa-icon>
         </li>

@@ -16,12 +16,11 @@ import { fetchAllCategories, fetchAllSizes, fetchAllSortOrders } from '../module
 @Injectable({
   providedIn: 'root'
 })
-export class RemoteService {
+export class FakedataService {
 
 
 
   constructor(private logger: LogService,
-    private store: Store<AppState>
   ) {
     logger.info('remote service is initialized ');
     this.getProducts();
@@ -108,7 +107,7 @@ export class RemoteService {
         a2200,
         soCategory,
         [image1, image2, image1g, image2g],
-        [smallSize, mediumSize,]
+        [smallSize, mediumSize]
       ),
       new Product(
         'summer light Folded abaya',

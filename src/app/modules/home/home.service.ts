@@ -1,15 +1,15 @@
 import { Injectable } from '@angular/core';
-import { RemoteService } from 'src/app/services/remote.service';
 import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/store/app.reducer';
 import { fetchProductsAction } from '../shop/store/shop.actions';
+import { FakedataService } from 'src/app/services/fakedata.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class HomeService {
 
-  constructor(private rs: RemoteService,
+  constructor(private rs: FakedataService,
               private store: Store<AppState>) {
     this.dispatchProductsToStore();
   }

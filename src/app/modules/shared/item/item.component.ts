@@ -37,19 +37,23 @@ export class ItemComponent implements OnInit {
   }
 
 
-  showThiscolorImages(color: Color) {
+  showSimilarcolorImages(color: Color) {
     this.logger.info(' color clicked ', color.getCode());
-    const selectedImages = [];
-    this.item.images.forEach((image) => {
-      if (image.getColor() === color && selectedImages.length < 2) {
-        selectedImages.push(image);
-      }
+    this.logger.info('item-images = ', this.item.images);
 
-      this.logger.info('images = ', selectedImages);
-    });
+    const selectedImages = this.getSelectedImages(color);
+
+    this.logger.info('selected images = ', selectedImages);
 
     this.cardImages = [...selectedImages];
   }
 
+  getSelectedImages(c: Color) {
+    return  this.item.images.filter( image => {
+      if (image.getColor().getCode() === c.getCode()) {
+        return image;
+      }
+    });
+  }
 
 }

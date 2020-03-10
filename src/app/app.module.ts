@@ -6,7 +6,7 @@ import { HomeModule } from './modules/home/home.module';
 import { ShopModule } from './modules/shop/shop.module';
 import { FaIconLibrary, FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { StoreModule} from '@ngrx/store';
-
+import 'reflect-metadata';
 
 import { AppComponent } from './app.component';
 
@@ -21,6 +21,12 @@ import { FooterComponent } from './footer/footer.component';
 
 import { IconService } from './icons/icon.service';
 import { AppReducer } from './store/app.reducer';
+
+import { AngularFirestoreModule} from '@angular/fire/firestore';
+import { AngularFireModule } from '@angular/fire';
+import {AngularFireAuthModule} from '@angular/fire/auth';
+import { environment } from 'src/environments/environment';
+
 
 
 @NgModule({
@@ -41,7 +47,11 @@ import { AppReducer } from './store/app.reducer';
     AppRoutingModule,
     NgbModule,
     FontAwesomeModule,
-    StoreModule.forRoot(AppReducer)
+    StoreModule.forRoot(AppReducer),
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFirestoreModule,
+    AngularFireAuthModule
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

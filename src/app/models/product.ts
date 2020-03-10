@@ -47,10 +47,12 @@ export class Product {
     private getColorsFromImages(): Color[] {
         const colors: Color[] = [];
         this.images.forEach((image) => {
+            console.log('image = ', image);
             const c = image.getColor();
-            if (colors.indexOf(c) < 0 ) {
+            const isNotPresent =  colors.findIndex(color => color.getCode() === c.getCode()) < 0;
+            if (isNotPresent ) {
                 colors.push(c);
-            } 
+            }
         });
         console.log('colors = ', colors);
         return colors;

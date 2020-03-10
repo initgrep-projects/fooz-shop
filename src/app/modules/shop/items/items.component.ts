@@ -33,6 +33,7 @@ export class ItemsComponent implements OnInit, OnDestroy {
     this.subs[this.subs.length + 1] =
       this.shopService.getProductsFromStore()
         .subscribe(state => {
+          console.log('state.products = ', state.products);
           this.items = state.products;
         });
 

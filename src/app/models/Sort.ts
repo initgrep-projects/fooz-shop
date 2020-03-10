@@ -9,15 +9,15 @@ export class Sort {
         this.icon = icon;
     }
 
-    getType(){
+    getType() {
         return this.type;
     }
 
-    getLabel(){
+    getLabel() {
         return this.label;
     }
 
-    getIcon(){
+    getIcon() {
         return this.icon;
     }
 }

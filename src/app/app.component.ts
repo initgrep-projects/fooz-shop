@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { FireStoreDbService } from './services/firestore.db.service';
 
 @Component({
   selector: 'app-root',
@@ -10,9 +10,12 @@ export class AppComponent implements OnInit {
 
   title = 'foozshop';
 
-  constructor(private router: Router) {}
+  constructor(private fireStoreDbService: FireStoreDbService) { }
 
   ngOnInit(): void {
-    // this.router.navigate(['home']);
+    this.fireStoreDbService.getProducts()
+    .subscribe(ps => console.log('products = ', ps[0].category.getCode()));
   }
+
+
 }

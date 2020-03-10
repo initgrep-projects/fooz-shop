@@ -6,7 +6,7 @@ import { selectCategory, selectSize, selectSortOrder, fetchAllCategories, fetchA
 import { Size } from 'src/app/models/size';
 import { Sort } from 'src/app/models/Sort';
 import { LogService } from 'src/app/services/log.service';
-import { RemoteService } from 'src/app/services/remote.service';
+import { FakedataService } from 'src/app/services/fakedata.service';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +15,7 @@ export class FilterHeaderService {
 
   constructor(private store: Store<AppState>,
               private logger: LogService,
-              private rs: RemoteService) {
+              private rs: FakedataService) {
 
       this.dispatchCategoriesToStore();
       this.dispatchSizesToStore();

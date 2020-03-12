@@ -4,13 +4,9 @@ import { Category } from 'src/app/models/category';
 import { Color } from 'src/app/models/color';
 import { Size } from 'src/app/models/size';
 import { Product } from 'src/app/models/product';
-import { Store } from '@ngrx/store';
-import { AppState } from 'src/app/store/app.reducer';
 import { Image } from 'src/app/models/image';
 import { Currency } from 'src/app/models/currency';
 import { Sort } from 'src/app/models/Sort';
-import { fetchProductsAction } from '../modules/shop/store/shop.actions';
-import { fetchAllCategories, fetchAllSizes, fetchAllSortOrders } from '../modules/shop/filter-header/store/filter.action';
 
 
 @Injectable({

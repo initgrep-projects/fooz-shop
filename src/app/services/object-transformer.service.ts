@@ -7,6 +7,7 @@ import { Image } from '../models/image';
 import { Size } from '../models/size';
 import { Sort } from '../models/Sort';
 import { Product } from '../models/product';
+import { DocumentData } from '@angular/fire/firestore';
 
 @Injectable({
   providedIn: 'root'
@@ -77,7 +78,7 @@ export class ObjectTransformerService {
     return params.map(p => this.transformSort(p));
   }
 
-  transformProduct(param:
+  public transformProduct(param:
     {
       name: string;
       id: string;
@@ -100,6 +101,21 @@ export class ObjectTransformerService {
         this.transformSizes(param.sizes)
       );
   }
+
+  public transformProductFromDocData(param: DocumentData) {
+      return new Product(
+        param.name,
+        param.id,
+        param.description,
+        param.quantity,
+        param.timeStamp,
+        this.transformCurrency(param.price),
+        this.transformCategory(param.category),
+        this.transformImages(param.images),
+        this.transformSizes(param.sizes)
+      );
+  }
+
 
   transformProducts(params: any[]){
     return params.map(p => this.transformProduct(p));

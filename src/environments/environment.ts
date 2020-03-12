@@ -6,7 +6,7 @@ export const environment = {
   production: false,
   firebaseConfig : {
     apiKey: 'AIzaSyCd-ji6MKq7zO6xkvZSq3ynGYOrAHltVY8',
-    authDomain: 'https://localhost',
+    authDomain: 'foozabayas.firebaseapp.com',
     databaseURL: 'https://foozabayas.firebaseio.com',
     projectId: 'foozabayas',
     storageBucket: 'foozabayas.appspot.com',

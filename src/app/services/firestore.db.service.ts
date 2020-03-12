@@ -5,7 +5,7 @@ import { Product } from '../models/product';
 
 import { classToPlain } from 'class-transformer';
 import { ObjectTransformerService } from './object-transformer.service';
-import { map } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 import { Category } from '../models/category';
 import { Currency } from '../models/currency';
 
@@ -14,7 +14,9 @@ import { Currency } from '../models/currency';
 })
 export class FireStoreDbService {
 
-  private productsCollection: AngularFirestoreCollection<Product>;
+   lastTimeStamp = 0;
+   pageSize = 2;
+
 
 
   constructor(private db: AngularFirestore,
@@ -23,12 +25,27 @@ export class FireStoreDbService {
 
 
 
+  saveProducts() {
+    this.fakedataService.getProducts()
+      .forEach(product => this.db.collection('Products').add(classToPlain(product)));
+  }
 
-  getProducts() {
-    return this.db.collection('Products').valueChanges()
-      .pipe(
-        map(products => this.objTransformer.transformProducts(products))
-      );
+  fetchProducts() {
+    return this.db.collection('Products', ref => ref
+        .orderBy('timeStamp', 'asc')
+        .limit(this.pageSize)
+        .startAfter(this.lastTimeStamp)
+      ).get()
+        .pipe(
+           map(querySnapShot => {
+             const products: Product[] = [];
+             querySnapShot.forEach(doc => {
+               products.push(this.objTransformer.transformProductFromDocData(doc.data()));
+             });
+             this.lastTimeStamp = products[products.length - 1].timeStamp;
+             return products;
+           })
+        );
   }
 
   getCategories() {

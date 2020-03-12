@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/store/app.reducer';
-import { fetchProductsAction } from '../shop/store/shop.actions';
+import { addProductsAction } from '../shop/store/shop.actions';
 import { FakedataService } from 'src/app/services/fakedata.service';
 
 @Injectable({
@@ -16,10 +16,10 @@ export class HomeService {
 
   dispatchProductsToStore() {
     const products = this.rs.getProducts();
-    this.store.dispatch(fetchProductsAction({ payload: products }));
+    this.store.dispatch(addProductsAction({ payload: products }));
   }
 
-  getProductsFromStore(){
+  getProductsFromStore() {
     return this.store.select('shop');
   }
 }

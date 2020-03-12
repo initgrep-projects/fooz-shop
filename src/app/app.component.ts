@@ -13,8 +13,7 @@ export class AppComponent implements OnInit {
   constructor(private fireStoreDbService: FireStoreDbService) { }
 
   ngOnInit(): void {
-    this.fireStoreDbService.getProducts()
-    .subscribe(ps => console.log('products = ', ps[0].category.getCode()));
+   
   }
 
 

@@ -29,14 +29,26 @@ export class ItemsComponent implements OnInit, OnDestroy {
 
 
   ngOnInit() {
+    this.getProducts();
+    this.getFilters();
+  }
 
+
+  addMoreProductsToStore() {
+    this.subs[this.subs.length + 1] =
+      this.shopService.dispatchProductsToStore().subscribe();
+  }
+
+  getProducts() {
     this.subs[this.subs.length + 1] =
       this.shopService.getProductsFromStore()
         .subscribe(state => {
           console.log('state.products = ', state.products);
           this.items = state.products;
         });
+  }
 
+  getFilters() {
     this.subs[this.subs.length + 1] =
       this.filterHeaderService.getFiltersFromStore()
         .subscribe(filters => {

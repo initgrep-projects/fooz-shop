@@ -10,10 +10,10 @@ export class TrendComponent implements OnInit {
   constructor() { }
 
   images = [
-    '../../assets/images/poster.jpeg',
-    '../../assets/images/poster2.jpeg',
-    '../../assets/images/poster3.jpeg'
-  ]
+    'https://i.imgur.com/TOgkCkT.jpg',
+    'https://i.imgur.com/TOgkCkT.jpg',
+    'https://i.imgur.com/TOgkCkT.jpg'
+  ];
 
   ngOnInit() {
   }

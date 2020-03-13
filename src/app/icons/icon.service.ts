@@ -30,7 +30,8 @@ import {
   faArrowsAltH,
   faArrowsAltV,
   faStop,
-  faStopCircle
+  faStopCircle,
+  faChevronRight
 } from '@fortawesome/free-solid-svg-icons';
 
 @Injectable({
@@ -71,7 +72,8 @@ export class IconService {
       faArrowsAltV,
       faLayerGroup,
       faStop,
-      faStopCircle
+      faStopCircle,
+      faChevronRight
     ];
    }
 

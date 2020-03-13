@@ -2,204 +2,107 @@
 @import "../../../../animate.scss";
 
 .trend-item-wrapper {
-  margin-left: 10%;
-  background-color: #f8f9fa !important;
-  margin-right: 10%;
-
-  .trend-item {
-    height: 250px;
+  div.container-fluid {
+    padding-left: 0px;
+    padding-right: 0px;
     overflow: hidden;
-    img {
-      border-radius: 10px;
-      width: 100%;
-      height: 250px;
+    .trend-item {
+      height: 350px;
+
+      img {
+        height: 350px;
+        width: 100%;
+        object-fit: cover;
+      }
+
+      div.carousel-caption {
+        top: 0px;
+        left: 0px;
+        width: 100%;
+        // background: rgba(0, 0, 0, .2);
+        height: 100%;
+        div.banner-message {
+          position: absolute;
+          padding-right: 10%;
+          bottom: 10%;
+          right: 0%;
+          font-family:  $poppins-font-family;
+          h1 {
+            font-family: $ptserif-font-family;
+            font-size: 0.8rem;
+            color: $primary-text-color;
+            letter-spacing: 0.25rem;
+            text-transform: uppercase;
+            font-weight: 600;
+            text-shadow: 2px 2px 2px rgba(150, 150, 150, 1);
+          }
+          p {
+            display: none;
+            color: $primary-text-color;
+            letter-spacing: 0.15rem;
+            text-transform: capitalize;
+          }
+
+          h5 {
+            font-family: $ptserif-font-family;
+            color: $primary-text-color;
+            letter-spacing: 0.035rem;
+            text-transform: uppercase;
+            font-size: 0.6rem;
+          }
+
+          a {
+            float: right;
+            font-size: 1rem;
+            border: 1px solid $primary-border-color;
+            letter-spacing: 0.018rem;
+            cursor: pointer !important;
+            border-radius: 10px;
+            padding-left: 2rem;
+            padding-right: 2rem;
+            color: $primary-text-color;
+            font-weight: 600;
+            line-height: 1.8rem;
+
+            &:hover {
+              background-color: $primary-text-color;
+              color: $secondary-text-color;
+            }
+          }
+        }
+      }
     }
 
-    div.carousel-caption {
-      button {
-        font-size: 0.9rem;
-        border-color: #f1f1f1;
-        letter-spacing: 0.15rem;
-        cursor: pointer !important;
-        border-radius: 20px;
-        padding-left: 1rem;
-        padding-right: 1rem;
-        text-transform: capitalize;
-        font-weight: 600;
-        color: $secondary-text-color;
-
-        &:hover{
-          color: $primary-text-color;
+    div.footer-item{
+      text-align: center;
+      padding:.3rem;
+      p{
+        font-family:  $poppins-font-family;
+        span{
+          font-family: $ptserif-font-family;
+          font-weight: 600;
+          text-transform: uppercase;
         }
       }
     }
   }
-
-  .collection-item {
-    height: 350px;
-    text-align: center;
-    overflow: hidden;
-    margin-top: 1rem;
-    border-radius: 5px;
-    img {
-      position: relative;
-      width: 100%;
-      height: 349px;
-      border-radius: 5px;
-    }
-
-    &:before {
-      content: "";
-      position: absolute;
-      border-radius: 5px;
-    }
-
-    &:hover {
-      &:before {
-        background-color: rgba(0, 0, 0, 0.2);
-      }
-      img {
-        transform: scale(1.2);
-        transition: all 0.5s ease-out;
-      }
-      p.shop {
-        animation-duration: 1s;
-        animation-fill-mode: both;
-        animation-name: zoomOut;
-      }
-
-      button.explore {
-        visibility: visible;
-        animation-duration: 1s;
-        animation-fill-mode: both;
-        animation-name: zoomIn;
-        border-radius: 20px;
-        padding-left: 1rem;
-        padding-right: 1rem;
-      }
-
-      h6.msg {
-        animation-duration: 1s;
-        animation-fill-mode: both;
-        animation-name: zoomIn;
-        visibility: visible;
-      }
-    }
-
-    p.shop {
-      color: #f1f1f1;
-      position: absolute;
-      font-size: 0.8rem;
-      left: 30%;
-      top: 80%;
-      border-color: #f1f1f1;
-      padding: 0.3rem;
-      letter-spacing: 0.1rem;
-      background-color: rgba(0, 0, 0, 0.2);
-      cursor: pointer;
-    }
-
-    button.explore {
-      position: absolute;
-      left: 42%;
-      top: 45%;
-      font-size: 0.8rem;
-      border-color: #f1f1f1;
-      padding: 0.3rem;
-      letter-spacing: 0.15rem;
-      visibility: hidden;
-      cursor: pointer !important;
-    }
-
-    h6.msg {
-      position: absolute;
-      color: white;
-      top: 59%;
-      font-size: 0.7rem;
-      text-align: center;
-      background: rgba(0, 0, 0, 0.4);
-      letter-spacing: 0.15rem;
-      padding-top: 0.5rem;
-      padding-bottom: 0.5rem;
-      border-radius: 5px;
-      visibility: hidden;
-      // display: inline-block;
-      // border:1px solid red;
-      text-align: center;
-      // width: 90%;
-      display: none;
-    }
-  }
 }
 
-// Small devices (landscape phones, 576px and up)
-@media (min-width: 576px) {
-  .trend-item-wrapper {
-    .trend-item {
-      height: 300px;
-      overflow: hidden;
-
-      img {
-        height: 300px;
-      }
-    }
-    .collection-item {
-      height: 600px;
-      text-align: center;
-
-      img {
-        height: 600px;
-      }
-      p.shop {
-        left: 35%;
-        font-size: 1rem;
-        padding: 0.5rem;
-      }
-      button.explore {
-        left: 40%;
-        font-size: 1rem;
-        padding: 0.5rem;
-      }
-
-      h6.msg {
-        // left: 24%;
-        font-size: 1rem;
-      }
-    }
-  }
-}
-
-// Medium devices (tablets, 768px and up)
 @media (min-width: 768px) {
   .trend-item-wrapper {
-    .trend-item {
-      height: 300px;
-      img {
-        height: 298px;
-      }
-    }
-    .collection-item {
-      margin-top: 0px;
-      height: 300px;
-      text-align: center;
+    div.container-fluid {
+      .trend-item {
+        height: 500px;
 
-      img {
-        height: 300px;
-      }
-      p.shop {
-        left: 30%;
-        top: 80%;
-        font-size: 0.6rem;
-        padding: 0.2rem;
-      }
-      button.explore {
-        left: 40%;
-        font-size: 0.6rem;
-      }
+        img {
+          height: 500px;
+          width: 100%;
+        }
 
-      h6.msg {
-        // left: 0%;
-        font-size: 0.6rem;
+        div.carousel-caption {
+          div.banner-message {
+          }
+        }
       }
     }
   }
@@ -208,35 +111,29 @@
 // Large devices (desktops, 992px and up)
 @media (min-width: 992px) {
   .trend-item-wrapper {
-    .trend-item {
-      height: 400px;
-      img {
-        height: 400px;
-      }
-    }
-    .collection-item {
-      margin-top: 0px;
-      height: 400px;
-      text-align: center;
+    div.container-fluid {
+      .trend-item {
+        height: 800px;
 
-      img {
-        height: 400px;
-      }
-      p.shop {
-        left: 32%;
-        top: 80%;
-        font-size: 0.8rem;
-        padding: 0.5rem;
-      }
-      button.explore {
-        left: 40%;
-        font-size: 0.8rem;
-      }
+        img {
+          height: 800px;
+          width: 100%;
+        }
 
-      h6.msg {
-        margin-top: 1rem;
-        // left: 12%;
-        font-size: 0.8rem;
+        div.carousel-caption {
+          div.banner-message {
+
+            h1{
+              font-size: 2.5rem;
+            }
+            h5{
+              font-size: 1.5rem;
+            }
+            p{
+              display: block;
+            }
+          }
+        }
       }
     }
   }
@@ -244,74 +141,4 @@
 
 // Extra large devices (large desktops, 1200px and up)
 @media (min-width: 1200px) {
-  .trend-item-wrapper {
-    .trend-item {
-      height: 450px;
-      img {
-        height: 450px;
-      }
-    }
-    .collection-item {
-      margin-top: 0px;
-      height: 450px;
-      text-align: center;
-
-      img {
-        height: 450px;
-      }
-      p.shop {
-        left: 32%;
-        top: 80%;
-        font-size: 1rem;
-        padding: 0.5rem;
-      }
-      button.explore {
-        left: 40%;
-        font-size: 1rem;
-      }
-
-      h6.msg {
-        // left:0px;
-        // margin: auto;
-        font-size: 0.8rem;
-      }
-    }
-  }
-}
-
-// Extra large devices (x large desktops, 1200px and up)
-@media (min-width: 1750px) {
-  .trend-item-wrapper {
-    .trend-item {
-      height: 550px;
-      img {
-        height: 550px;
-      }
-    }
-    .collection-item {
-      margin-top: 0px;
-      height: 550px;
-      text-align: center;
-
-      img {
-        height: 550px;
-      }
-      p.shop {
-        left: 32%;
-        top: 80%;
-        font-size: 1rem;
-        padding: 0.5rem;
-      }
-      button.explore {
-        left: 40%;
-        font-size: 1rem;
-      }
-
-      h6.msg {
-        // margin-top: 1rem;
-        // left: 15%;
-        font-size: 1rem;
-      }
-    }
-  }
 }

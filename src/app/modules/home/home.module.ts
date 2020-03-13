@@ -28,6 +28,7 @@ import {  FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     NgbModule,
     FontAwesomeModule,
     SharedModule
+
   ],
   exports: [
   ]

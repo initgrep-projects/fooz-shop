@@ -83,6 +83,9 @@ div.item {
             letter-spacing: 0.1rem;
             text-transform: capitalize;
             border-radius: 20px;
+            border-width: 2px;
+            font-weight: 600;
+            font-family: $poppins-font-family;
           }
         }
       }

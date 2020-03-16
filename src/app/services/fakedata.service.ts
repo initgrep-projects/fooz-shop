@@ -14,14 +14,11 @@ import { Sort } from 'src/app/models/Sort';
 })
 export class FakedataService {
 
-
-
   constructor(private logger: LogService,
   ) {
     logger.info('remote service is initialized ');
     this.getProducts();
   }
-
 
   getSizes() {
     const smallSize = new Size('small', 'S');

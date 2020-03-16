@@ -1,5 +1,7 @@
 <section class="card-wrapper ">
   <div class="row">
+    <app-pre-card class="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-3 my-1"
+                  *ngFor="let i of preloadItems"></app-pre-card>
     <app-item class="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-3 my-1"
               *ngFor="let product of items | filterBySize: selectedSize |filterByCategory: selectedCategory | sort: selectedSort"
               [item]="product"></app-item>
@@ -9,8 +11,7 @@
       <div class="more-items-wrapper text-center">
         <button type="button"
                 class="btn btn-outline-dark"
-                (click) ="addMoreProductsToStore()"
-                >show more</button>
+                (click)="addMoreProductsToStore()">show more</button>
       </div>
     </div>
   </div>

@@ -15,6 +15,7 @@ import { FilterHeaderService } from '../filter-header/filter-header.service';
 })
 export class ItemsComponent implements OnInit, OnDestroy {
 
+  preloadItems = [];
   items: Product[];
   selectedCategory: Category;
   selectedSize: Size;
@@ -29,6 +30,7 @@ export class ItemsComponent implements OnInit, OnDestroy {
 
 
   ngOnInit() {
+    this.preloadItems = [0, 0, 0, 0, 0, 0];
     this.getProducts();
     this.getFilters();
   }
@@ -43,8 +45,11 @@ export class ItemsComponent implements OnInit, OnDestroy {
     this.subs[this.subs.length + 1] =
       this.shopService.getProductsFromStore()
         .subscribe(state => {
-          console.log('state.products = ', state.products);
-          this.items = state.products;
+          setTimeout(() => {
+            console.log('state.products = ', state.products);
+            this.items = state.products;
+            this.preloadItems = [];
+          }, 1000);
         });
   }
 

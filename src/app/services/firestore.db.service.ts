@@ -30,11 +30,31 @@ export class FireStoreDbService {
       .forEach(product => this.db.collection('Products').add(classToPlain(product)));
   }
 
+  /**
+   * add a different function for home component to fetch the latest onces only
+   */
   fetchProducts() {
     return this.db.collection('Products', ref => ref
         .orderBy('timeStamp', 'asc')
         .limit(this.pageSize)
         .startAfter(this.lastTimeStamp)
+      ).get()
+        .pipe(
+           map(querySnapShot => {
+             const products: Product[] = [];
+             querySnapShot.forEach(doc => {
+               products.push(this.objTransformer.transformProductFromDocData(doc.data()));
+             });
+             this.lastTimeStamp = products[products.length - 1].timeStamp;
+             return products;
+           })
+        );
+  }
+
+  fetchProductsForHome() {
+    return this.db.collection('Products', ref => ref
+        .orderBy('timeStamp', 'desc')
+        .limit(10)
       ).get()
         .pipe(
            map(querySnapShot => {

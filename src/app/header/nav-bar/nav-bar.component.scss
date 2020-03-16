@@ -29,6 +29,13 @@ nav.navbar{
                 font-size: 14px;
                 letter-spacing: .1rem;
                 text-transform: capitalize;
+                
+                &:hover{
+                    border-bottom: 2px dotted $primary-border-color;
+                }
+               
+                    
+                
             }
         }
     }
@@ -47,4 +54,10 @@ nav.navbar{
        
     }
    
+}
+
+.active{
+    border-bottom: 2px solid $primary-border-color;
+    color: $primary-text-color;
+    font-weight: 600;
 }

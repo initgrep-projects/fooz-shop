@@ -4,7 +4,6 @@ import { SharedModule } from '../shared/shared.module';
 import { HomeRoutingModule } from './home-routing.module';
 
 import { HomeComponent } from './home.component';
-import { ItemCouroselComponent } from './item-courosel/item-courosel.component';
 import { FeatureItemsComponent } from './feature-items/feature-items.component';
 import { TrendComponent } from './trend/trend.component';
 import { LookbookComponent } from './lookbook/lookbook.component';
@@ -17,7 +16,6 @@ import {  FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 @NgModule({
   declarations: [
     HomeComponent,
-    ItemCouroselComponent,
     FeatureItemsComponent,
     TrendComponent,
     LookbookComponent

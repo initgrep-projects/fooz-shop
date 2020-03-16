@@ -7,17 +7,20 @@ import { Subscription } from 'rxjs';
   templateUrl: './shop.component.html',
   styleUrls: ['./shop.component.scss']
 })
-export class ShopComponent implements OnInit, OnDestroy{
+export class ShopComponent implements OnInit, OnDestroy {
 
   subs: Subscription[] = [];
 
   constructor(private shopService: ShopService) { }
 
   ngOnInit(): void {
-    this.subs[this.subs.length + 1] =
-    this.shopService.dispatchProductsToStore().subscribe();
+    this.dispatchProductsToShopStore();
   }
 
+  dispatchProductsToShopStore() {
+    this.subs[this.subs.length + 1] =
+      this.shopService.dispatchProductsToStore().subscribe();
+  }
   ngOnDestroy() {
     this.subs.forEach(sub => sub.unsubscribe());
   }

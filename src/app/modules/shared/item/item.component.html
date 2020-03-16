@@ -6,14 +6,15 @@
          [src]="image.getUrl()"
          alt="" />
 
-
-         <div class="item-size ">
-          <ul class="list-group">
-            <li class="list-group-item" *ngFor="let size of item.sizes">
-              <span class="size">{{size.getLetter()}}</span>
-            </li>
-          </ul>
-        </div>     
+    
+    <div class="item-size ">
+      <ul class="list-group">
+        <li class="list-group-item"
+            *ngFor="let size of item.sizes">
+          <span class="size">{{size.getLetter()}}</span>
+        </li>
+      </ul>
+    </div>
 
     <div class="item-mask">
       <ul class="list-group">
@@ -30,7 +31,7 @@
 
       </ul>
     </div>
-    
+
   </div>
   <div class="item-body py-2 ">
     <div class="color-codes">
@@ -45,7 +46,7 @@
       </ul>
     </div>
     <h6>
-      <span class="name">{{item.name}}</span> 
+      <span class="name">{{item.name}}</span>
     </h6>
     <h6>
       <span class="price">{{item.price.getCode()}} {{item.price.getAmount()}}</span>

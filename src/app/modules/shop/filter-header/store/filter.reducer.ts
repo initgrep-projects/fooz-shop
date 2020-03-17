@@ -1,6 +1,6 @@
 import { Category } from 'src/app/models/category';
 import { Size } from 'src/app/models/size';
-import { fetchAllCategories, selectCategory, selectSize, fetchAllSizes, fetchAllSortOrders, selectSortOrder } from './filter.action';
+import { saveAllCategories, selectCategory, selectSize, saveAllSizes, saveAllSortOrders, selectSortOrder } from './filter.action';
 import { createReducer, on, Action } from '@ngrx/store';
 
 import { cloneDeep } from 'lodash';
@@ -28,7 +28,7 @@ export const initialState: State = {
 
 const filterReducer = createReducer(
     initialState,
-    on(fetchAllCategories, (currentState, { payload }) => ({
+    on(saveAllCategories, (currentState, { payload }) => ({
         ...currentState,
         categories: [...payload]
     })),
@@ -36,7 +36,7 @@ const filterReducer = createReducer(
         ...currentState,
         selectedCategory: cloneDeep(payload)
     })),
-    on(fetchAllSizes, (currentState, { payload }) => ({
+    on(saveAllSizes, (currentState, { payload }) => ({
         ...currentState,
         sizes: [...payload]
     })),
@@ -44,7 +44,7 @@ const filterReducer = createReducer(
         ...currentState,
         selectedSize: cloneDeep(payload)
     })),
-    on(fetchAllSortOrders, (currentState, { payload }) => ({
+    on(saveAllSortOrders, (currentState, { payload }) => ({
         ...currentState,
         sortOrders: [...payload]
     })),

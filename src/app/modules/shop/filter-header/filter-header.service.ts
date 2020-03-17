@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Category } from 'src/app/models/category';
 import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/store/app.reducer';
-import { selectCategory, selectSize, selectSortOrder, fetchAllCategories, fetchAllSizes, fetchAllSortOrders } from './store/filter.action';
+import { selectCategory, selectSize, selectSortOrder, saveAllCategories, saveAllSizes, saveAllSortOrders } from './store/filter.action';
 import { Size } from 'src/app/models/size';
 import { Sort } from 'src/app/models/Sort';
 import { LogService } from 'src/app/services/log.service';
@@ -15,8 +15,8 @@ import { map } from 'rxjs/operators';
 export class FilterHeaderService {
 
   constructor(private store: Store<AppState>,
-    private logger: LogService,
-    private fbDBStore: FireStoreDbService
+              private logger: LogService,
+              private fbDBStore: FireStoreDbService
   ) {
 
   }
@@ -26,7 +26,7 @@ export class FilterHeaderService {
     return this.fbDBStore.getCategories()
       .pipe(
         map(categories => {
-          this.store.dispatch(fetchAllCategories({ payload: categories }));
+          this.store.dispatch(saveAllCategories({ payload: categories }));
         })
       );
   }
@@ -35,7 +35,7 @@ export class FilterHeaderService {
     return this.fbDBStore.getSizes()
       .pipe(
         map(sizes => {
-          this.store.dispatch(fetchAllSizes({ payload: sizes }));
+          this.store.dispatch(saveAllSizes({ payload: sizes }));
         })
       );
   }
@@ -44,7 +44,7 @@ export class FilterHeaderService {
     return this.fbDBStore.getSortOrders()
       .pipe(
         map(sortOrders => {
-          this.store.dispatch(fetchAllSortOrders({ payload: sortOrders }));
+          this.store.dispatch(saveAllSortOrders({ payload: sortOrders }));
         })
       );
   }

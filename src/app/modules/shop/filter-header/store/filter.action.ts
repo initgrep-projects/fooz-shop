@@ -3,8 +3,8 @@ import { Category } from 'src/app/models/category';
 import { Size } from 'src/app/models/size';
 import { Sort } from 'src/app/models/Sort';
 
-export const fetchAllCategories = createAction(
-    '[category] fetch all categories',
+export const saveAllCategories = createAction(
+    '[category] save all categories',
     props<{ payload: Category[] }>()
 );
 
@@ -14,8 +14,8 @@ export const selectCategory = createAction(
     props<{ payload: Category }>()
 );
 
-export const fetchAllSizes = createAction(
-    '[size] fetch all sizes',
+export const saveAllSizes = createAction(
+    '[size] save all sizes',
     props<{ payload: Size[] }>()
 );
 
@@ -25,8 +25,8 @@ export const selectSize = createAction(
 );
 
 
-export const fetchAllSortOrders = createAction(
-    '[sort] fetch all sort orders',
+export const saveAllSortOrders = createAction(
+    '[sort] save all sort orders',
     props<{ payload: Sort[] }>()
 );
 

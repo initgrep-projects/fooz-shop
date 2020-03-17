@@ -87,6 +87,26 @@ export class FireStoreDbService {
       );
   }
 
+  fetchProductByid(id: string) {
+    return this.db.collection('Products', ref =>
+      ref.where('id', '==', id)
+    )
+      .get()
+      .pipe(
+        map(querySnapShot => {
+
+          let product: Product;
+          querySnapShot.forEach(doc => {
+            product = this.objTransformer.transformProductFromDocData(doc.data());
+          });
+          return product;
+
+        })
+      );
+  }
+
+
+
   getCategories() {
     return this.db.collection('Categories').valueChanges()
       .pipe(

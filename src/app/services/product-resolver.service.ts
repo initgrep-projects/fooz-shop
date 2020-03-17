@@ -14,12 +14,14 @@ const HOME_PAGE = 'home';
 export class ProductResolver implements Resolve<Product>{
 
   constructor(private shopService: ShopService,
-              private homeservice: HomeService) { }
+    private homeservice: HomeService) { }
 
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot)
     : Product | Observable<Product> | Promise<Product> {
+    console.log('resolver called ');
     const source = route.queryParamMap.get('source');
+    console.log('sourcec = ', source);
     const id = route.paramMap.get('id');
     if (source === HOME_PAGE) {
       return this.homeservice.getProductFromStoreById(id);

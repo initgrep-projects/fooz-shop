@@ -2,8 +2,9 @@ import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/store/app.reducer';
 import { FireStoreDbService } from 'src/app/services/firestore.db.service';
-import { map, take } from 'rxjs/operators';
+import { map, take, switchMap } from 'rxjs/operators';
 import { addProductsToHomeAction } from './store/home.action';
+import { Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ import { addProductsToHomeAction } from './store/home.action';
 export class HomeService {
 
   constructor(private store: Store<AppState>,
-              private fbDbService: FireStoreDbService) {
+    private fbDbService: FireStoreDbService) {
   }
 
   /** this method fetches the data from db store */
@@ -30,14 +31,19 @@ export class HomeService {
 
 
   getProductFromStoreById(id: string) {
-
-    return this.fbDbService.fetchProductsForHome()
+    return this.store.select('home')
       .pipe(
         take(1),
-        map((products) => {
-          console.log('products from db = ', products);
-          return products.find(product => product.id === id);
+        switchMap(state => {
+          if (!state.products || state.products.length === 0) {
+            const product = this.fbDbService.fetchProductByid(id);
+            return product;
+          } else {
+            return of(state.products.find(product => product.id === id));
+          }
         })
       );
+
+
   }
 }

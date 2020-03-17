@@ -14,7 +14,7 @@ const HOME_PAGE = 'home';
 export class ProductResolver implements Resolve<Product>{
 
   constructor(private shopService: ShopService,
-    private homeservice: HomeService) { }
+              private homeservice: HomeService) { }
 
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot)

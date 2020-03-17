@@ -16,6 +16,15 @@ export class ObjectTransformerService {
 
   constructor() { }
 
+
+   transformCategoryFromDocData(param: DocumentData): Category {
+    const category = new Category(param.code, param.label);
+    if (!!param.icon) {
+      category.seticon(param.icon);
+    }
+    return category;
+  }
+  
   transformCategory(param: { code: string; label: string; icon: string; }): Category {
     const category = new Category(param.code, param.label);
     if (!!param.icon) {
@@ -66,11 +75,19 @@ export class ObjectTransformerService {
     return new Size(param.label, param.letter);
   }
 
+  transformSizeFromDocData(param: DocumentData) {
+    return new Size(param.label, param.letter);
+  }
+
   transformSizes(params: any[]) {
     return params.map(p => this.transformSize(p));
   }
 
   transformSort(param: { type: string; label: string; icon: string; }) {
+    return new Sort(param.type, param.label, param.icon);
+  }
+
+  transformSortFromDocData(param: DocumentData) {
     return new Sort(param.type, param.label, param.icon);
   }
 

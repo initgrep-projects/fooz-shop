@@ -5,9 +5,16 @@ import { Product } from '../models/product';
 
 import { classToPlain } from 'class-transformer';
 import { ObjectTransformerService } from './object-transformer.service';
-import { map, tap } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import { Category } from '../models/category';
-import { Currency } from '../models/currency';
+import { Size } from '../models/size';
+import { Sort } from '../models/Sort';
+
+
+const CATEGORY_COLLECTION = 'Categories';
+const PRODUCT_COLLECTION = 'Products';
+const SIZE_COLLECTION = 'Sizes';
+const SORT_COLLECTION = 'SortOrders';
 
 @Injectable({
   providedIn: 'root'
@@ -24,20 +31,24 @@ export class FireStoreDbService {
     private objTransformer: ObjectTransformerService) { }
 
 
-
+  /**
+   * save products in the db,
+   */
   saveProducts() {
     this.fakedataService.getProducts()
-      .forEach(product => this.db.collection('Products').add(classToPlain(product)));
+      .forEach(product =>
+        this.db.collection(PRODUCT_COLLECTION).add(classToPlain(product)));
   }
 
   /**
    * add a different function for home component to fetch the latest onces only
    */
   fetchProducts() {
-    return this.db.collection('Products', ref => ref
-      .orderBy('timeStamp', 'asc')
-      .limit(this.pageSize)
-      .startAfter(this.lastTimeStamp)
+    return this.db.collection(PRODUCT_COLLECTION, ref =>
+      ref
+        .orderBy('timeStamp', 'asc')
+        .limit(this.pageSize)
+        .startAfter(this.lastTimeStamp)
     ).get()
       .pipe(
         map(querySnapShot => {
@@ -50,8 +61,12 @@ export class FireStoreDbService {
         })
       );
   }
+
+  /**
+   * fetch more products for pagination
+   */
   fetchMoreProducts() {
-    return this.db.collection('Products', ref => ref
+    return this.db.collection(PRODUCT_COLLECTION, ref => ref
       .orderBy('timeStamp', 'asc')
       .limit(this.pageSize)
       .startAfter(this.lastTimeStamp)
@@ -71,7 +86,7 @@ export class FireStoreDbService {
   }
 
   fetchProductsForHome() {
-    return this.db.collection('Products', ref => ref
+    return this.db.collection(PRODUCT_COLLECTION, ref => ref
       .orderBy('timeStamp', 'desc')
       .limit(10)
     ).get()
@@ -88,7 +103,7 @@ export class FireStoreDbService {
   }
 
   fetchProductByid(id: string) {
-    return this.db.collection('Products', ref =>
+    return this.db.collection(PRODUCT_COLLECTION, ref =>
       ref.where('id', '==', id)
     )
       .get()
@@ -106,20 +121,66 @@ export class FireStoreDbService {
   }
 
 
+  saveCategories() {
+    this.fakedataService.getCategories()
+      .forEach(product => this.db.collection(CATEGORY_COLLECTION).add(classToPlain(product)));
+  }
 
   getCategories() {
-    return this.db.collection('Categories').valueChanges()
+    return this.db.collection(CATEGORY_COLLECTION)
+      .get()
       .pipe(
-        map(categories => this.objTransformer.transformCategories(categories))
+        map(querySnapShot => {
+
+          const categories: Category[] = [];
+          querySnapShot.forEach(doc => {
+            categories.push(this.objTransformer.transformCategoryFromDocData(doc.data()));
+          });
+          return categories;
+        })
       );
   }
 
-  getColors() {
-    return this.db.collection('Colors').valueChanges()
+  saveSizes() {
+    this.fakedataService.getSizes()
+      .forEach(size => this.db.collection(SIZE_COLLECTION).add(classToPlain(size)));
+  }
+
+  getSizes() {
+    return this.db.collection(SIZE_COLLECTION)
+      .get()
       .pipe(
-        map(colors => this.objTransformer.transformColors(colors))
+        map(querySnapShot => {
+          const sizes: Size[] = [];
+          querySnapShot.forEach(doc => {
+            sizes.push(this.objTransformer.transformSizeFromDocData(doc.data()));
+          });
+          return sizes;
+        })
       );
   }
+
+  saveSortOrders() {
+    this.fakedataService.getSortOrders()
+      .forEach(order => this.db.collection(SORT_COLLECTION).add(classToPlain(order)));
+  }
+
+
+  getSortOrders() {
+    return this.db.collection(SORT_COLLECTION)
+      .get()
+      .pipe(
+        map(querySnapShot => {
+          const sorts: Sort[] = [];
+          querySnapShot.forEach(doc => {
+            sorts.push(this.objTransformer.transformSortFromDocData(doc.data()));
+          });
+          return sorts;
+        })
+      );
+  }
+
+
 
 
 

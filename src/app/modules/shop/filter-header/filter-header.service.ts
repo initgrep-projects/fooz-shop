@@ -6,7 +6,8 @@ import { selectCategory, selectSize, selectSortOrder, fetchAllCategories, fetchA
 import { Size } from 'src/app/models/size';
 import { Sort } from 'src/app/models/Sort';
 import { LogService } from 'src/app/services/log.service';
-import { FakedataService } from 'src/app/services/fakedata.service';
+import { FireStoreDbService } from 'src/app/services/firestore.db.service';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -14,32 +15,42 @@ import { FakedataService } from 'src/app/services/fakedata.service';
 export class FilterHeaderService {
 
   constructor(private store: Store<AppState>,
-              private logger: LogService,
-              private rs: FakedataService) {
+    private logger: LogService,
+    private fbDBStore: FireStoreDbService
+  ) {
 
-      this.dispatchCategoriesToStore();
-      this.dispatchSizesToStore();
-      this.dispatchSortsToStore();
-    }
-
-
-  dispatchCategoriesToStore() {
-    const categories = this.rs.getCategories();
-    this.store.dispatch(fetchAllCategories({ payload: categories }));
-  }
-
-  dispatchSizesToStore() {
-    const sizes = this.rs.getSizes();
-    this.store.dispatch(fetchAllSizes({ payload: sizes }));
-  }
-
-  dispatchSortsToStore() {
-    const sortOrders = this.rs.getSortOrders();
-    this.store.dispatch(fetchAllSortOrders({ payload: sortOrders }));
   }
 
 
-  getFiltersFromStore(){
+  fetchCategories() {
+    return this.fbDBStore.getCategories()
+      .pipe(
+        map(categories => {
+          this.store.dispatch(fetchAllCategories({ payload: categories }));
+        })
+      );
+  }
+
+  fetchSizes() {
+    return this.fbDBStore.getSizes()
+      .pipe(
+        map(sizes => {
+          this.store.dispatch(fetchAllSizes({ payload: sizes }));
+        })
+      );
+  }
+
+  fetchSortOrders() {
+    return this.fbDBStore.getSortOrders()
+      .pipe(
+        map(sortOrders => {
+          this.store.dispatch(fetchAllSortOrders({ payload: sortOrders }));
+        })
+      );
+  }
+
+
+  getFiltersFromStore() {
     return this.store.select('filters');
   }
 

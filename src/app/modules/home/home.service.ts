@@ -29,7 +29,12 @@ export class HomeService {
     return this.store.select('home');
   }
 
-
+ /**
+   * This method fetches the product based on the product id.
+   * if product is not present in the local store,
+   * it is fetched from the database
+   * @param id the product id
+   */
   getProductFromStoreById(id: string) {
     return this.store.select('home')
       .pipe(

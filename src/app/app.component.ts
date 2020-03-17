@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { FireStoreDbService } from './services/firestore.db.service';
 
 @Component({
   selector: 'app-root',
@@ -10,10 +9,10 @@ export class AppComponent implements OnInit {
 
   title = 'foozshop';
 
-  constructor(private fireStoreDbService: FireStoreDbService) { }
+  constructor() { }
 
   ngOnInit(): void {
-   
+
   }
 
 

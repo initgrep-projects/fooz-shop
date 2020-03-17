@@ -4,14 +4,19 @@
                   *ngFor="let i of preloadItems"></app-pre-card>
     <app-item class="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-3 my-1"
               *ngFor="let product of items | filterBySize: selectedSize |filterByCategory: selectedCategory | sort: selectedSort"
-              [item]="product"></app-item>
+              [item]="product"
+              [sourcePage] = "'shop'"
+              ></app-item>
   </div>
   <div class="row">
     <div class="col">
       <div class="more-items-wrapper text-center">
         <button type="button"
                 class="btn btn-outline-dark"
-                (click)="addMoreProductsToStore()">show more</button>
+                [ngClass] ="{'loading': !!moreItemsLoading, 'bg-black': !!moreItemsLoading}"
+                (click)="addMoreProductsToStore()">
+                show more Items
+              </button>
       </div>
     </div>
   </div>

@@ -14,14 +14,14 @@ import { Currency } from '../models/currency';
 })
 export class FireStoreDbService {
 
-   lastTimeStamp = 0;
-   pageSize = 2;
+  lastTimeStamp = 0;
+  pageSize = 2;
 
 
 
   constructor(private db: AngularFirestore,
-              private fakedataService: FakedataService,
-              private objTransformer: ObjectTransformerService) { }
+    private fakedataService: FakedataService,
+    private objTransformer: ObjectTransformerService) { }
 
 
 
@@ -35,37 +35,56 @@ export class FireStoreDbService {
    */
   fetchProducts() {
     return this.db.collection('Products', ref => ref
-        .orderBy('timeStamp', 'asc')
-        .limit(this.pageSize)
-        .startAfter(this.lastTimeStamp)
-      ).get()
-        .pipe(
-           map(querySnapShot => {
-             const products: Product[] = [];
-             querySnapShot.forEach(doc => {
-               products.push(this.objTransformer.transformProductFromDocData(doc.data()));
-             });
-             this.lastTimeStamp = products[products.length - 1].timeStamp;
-             return products;
-           })
-        );
+      .orderBy('timeStamp', 'asc')
+      .limit(this.pageSize)
+      .startAfter(this.lastTimeStamp)
+    ).get()
+      .pipe(
+        map(querySnapShot => {
+          const products: Product[] = [];
+          querySnapShot.forEach(doc => {
+            products.push(this.objTransformer.transformProductFromDocData(doc.data()));
+          });
+          this.lastTimeStamp = products[products.length - 1].timeStamp;
+          return products;
+        })
+      );
+  }
+  fetchMoreProducts() {
+    return this.db.collection('Products', ref => ref
+      .orderBy('timeStamp', 'asc')
+      .limit(this.pageSize)
+      .startAfter(this.lastTimeStamp)
+    ).get()
+      .pipe(
+        map(querySnapShot => {
+          const products: Product[] = [];
+          querySnapShot.forEach(doc => {
+            products.push(this.objTransformer.transformProductFromDocData(doc.data()));
+          });
+          if (products.length > 0) {
+            this.lastTimeStamp = products[products.length - 1].timeStamp;
+          }
+          return products;
+        })
+      );
   }
 
   fetchProductsForHome() {
     return this.db.collection('Products', ref => ref
-        .orderBy('timeStamp', 'desc')
-        .limit(10)
-      ).get()
-        .pipe(
-           map(querySnapShot => {
-             const products: Product[] = [];
-             querySnapShot.forEach(doc => {
-               products.push(this.objTransformer.transformProductFromDocData(doc.data()));
-             });
-             this.lastTimeStamp = products[products.length - 1].timeStamp;
-             return products;
-           })
-        );
+      .orderBy('timeStamp', 'desc')
+      .limit(10)
+    ).get()
+      .pipe(
+        map(querySnapShot => {
+          const products: Product[] = [];
+          querySnapShot.forEach(doc => {
+            products.push(this.objTransformer.transformProductFromDocData(doc.data()));
+          });
+          this.lastTimeStamp = products[products.length - 1].timeStamp;
+          return products;
+        })
+      );
   }
 
   getCategories() {

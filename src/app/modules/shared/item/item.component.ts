@@ -4,6 +4,7 @@ import { Product } from 'src/app/models/product';
 import { Image } from 'src/app/models/image';
 import { Color } from 'src/app/models/color';
 import { LogService } from 'src/app/services/log.service';
+import { SourceMapGenerator } from '@angular/compiler/src/output/source_map';
 
 @Component({
   // tslint:disable-next-line: component-selector
@@ -14,6 +15,7 @@ import { LogService } from 'src/app/services/log.service';
 export class ItemComponent implements OnInit {
 
   @Input() item: Product;
+  @Input() sourcePage: string;
   cardImages: Image[] = [];
 
   constructor(
@@ -29,7 +31,12 @@ export class ItemComponent implements OnInit {
   }
 
   routeToItemDetails() {
-    this.router.navigate(['item', this.item.id], { relativeTo: this.activatedRoute });
+    this.router.navigate(
+      ['item', this.item.id],
+       { 
+         queryParams: {source: this.sourcePage},
+         relativeTo: this.activatedRoute
+        });
   }
 
   setInitImages() {

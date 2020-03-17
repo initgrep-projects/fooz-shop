@@ -16,6 +16,7 @@ import { FilterHeaderService } from '../filter-header/filter-header.service';
 export class ItemsComponent implements OnInit, OnDestroy {
 
   preloadItems = [];
+  moreItemsLoading = false;
   items: Product[];
   selectedCategory: Category;
   selectedSize: Size;
@@ -38,7 +39,9 @@ export class ItemsComponent implements OnInit, OnDestroy {
 
   addMoreProductsToStore() {
     this.subs[this.subs.length + 1] =
-      this.shopService.dispatchProductsToStore().subscribe();
+      this.shopService.dispatchMoreProductsToStore().subscribe(()=>{
+        this.moreItemsLoading = true;
+      });
   }
 
   getProducts() {
@@ -49,6 +52,7 @@ export class ItemsComponent implements OnInit, OnDestroy {
             console.log('state.products = ', state.products);
             this.items = state.products;
             this.preloadItems = [];
+            this.moreItemsLoading = false;
           }, 1000);
         });
   }

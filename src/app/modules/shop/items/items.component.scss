@@ -1,15 +1,22 @@
 @import "../../../../variables.scss";
+@import "../../../../common.scss";
 
 section.card-wrapper {
   margin-left: 10%;
   margin-right: 10%;
 
-  div.more-items-wrapper{
-    font-family:  $poppins-font-family;
-    button{
+  div.more-items-wrapper {
+    font-family: $poppins-font-family;
+    button {
       text-transform: capitalize;
-      letter-spacing: .045rem;
+      letter-spacing: 0.045rem;
+      outline-width: 0px;
+      &:hover,
+      &:focus,
+      &:active {
+        outline-width: 0px;
+        outline-color: transparent;
+      }
     }
   }
-
 }

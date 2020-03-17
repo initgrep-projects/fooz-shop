@@ -73,7 +73,8 @@ export class IconService {
       faLayerGroup,
       faStop,
       faStopCircle,
-      faChevronRight
+      faChevronRight,
+      faCircleNotch
     ];
    }
 

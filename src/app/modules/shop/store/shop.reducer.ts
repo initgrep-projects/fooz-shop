@@ -1,5 +1,5 @@
 import { createReducer, on, Action } from '@ngrx/store';
-import { addProductsAction } from './shop.actions';
+import { addProductsAction, appendProductsAction } from './shop.actions';
 import { Product } from 'src/app/models/product';
 
 
@@ -14,6 +14,10 @@ export const initialState: State = {
 const shopReducer = createReducer(
     initialState,
     on(addProductsAction, (currentState, {payload}) => ({
+        ...currentState,
+        products : [ ...payload]
+    })),
+    on(appendProductsAction, (currentState, {payload}) => ({
         ...currentState,
         products : [...currentState.products, ...payload]
     }))

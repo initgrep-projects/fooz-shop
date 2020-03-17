@@ -3,7 +3,7 @@ import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/store/app.reducer';
 import { map, take } from 'rxjs/operators';
 import { FireStoreDbService } from 'src/app/services/firestore.db.service';
-import { addProductsAction } from './store/shop.actions';
+import { addProductsAction, appendProductsAction } from './store/shop.actions';
 
 @Injectable({
   providedIn: 'root'
@@ -24,17 +24,30 @@ export class ShopService {
         }));
   }
 
+   /** this method fetches the data from db store */
+   dispatchMoreProductsToStore() {
+    return this.fbDbService.fetchMoreProducts()
+       .pipe(
+         map(products => {
+           console.log('more products got from dbstore : ', products);
+           this.store.dispatch(appendProductsAction({ payload: products }));
+         }));
+   }
+
   getProductsFromStore() {
     return this.store.select('shop');
   }
 
   getProductFromStoreById(id: string) {
-    return this.store.select('shop')
+
+    return this.fbDbService.fetchProductsForHome()
       .pipe(
         take(1),
-        map((state) => {
-          return state.products.find(product => product.id === id);
+        map((products) => {
+          console.log('products from state = ', products);
+          return products.find(product => product.id === id);
         })
       );
   }
+  
 }

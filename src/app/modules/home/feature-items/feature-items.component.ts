@@ -20,7 +20,7 @@ export class FeatureItemsComponent implements OnInit, OnDestroy {
     private homeService: HomeService) { }
 
   ngOnInit() {
-    this.preLoadItems = [0, 0, 0, 0, 0, 0,];
+    this.preLoadItems = [0, 0, 0, 0, 0, 0];
     this.addProductsToStore();
     this.getProducts();
   }

@@ -54,6 +54,8 @@ import { BreadcrumbComponent } from './filter-header/breadcrumb/breadcrumb.compo
 import { FilterByCategoryPipe } from 'src/app/pipes/filter-by-category.pipe';
 import { FilterBySizePipe } from 'src/app/pipes/filter-by-size.pipe';
 import { SortPipe } from 'src/app/pipes/sort.pipe';
+import { ItemColorComponent } from './items/item-detail/item-color/item-color.component';
+import { ItemCategoryComponent } from './items/item-detail/item-category/item-category.component';
 
 
 
@@ -68,6 +70,7 @@ import { SortPipe } from 'src/app/pipes/sort.pipe';
     ItemImagesComponent,
     ItemInfoComponent,
     ItemSizeComponent,
+    ItemColorComponent,
     ItemBuyComponent,
     ItemBuyGuideComponent,
     SizeFilterComponent,
@@ -77,7 +80,8 @@ import { SortPipe } from 'src/app/pipes/sort.pipe';
     BreadcrumbComponent,
     FilterByCategoryPipe,
     FilterBySizePipe,
-    SortPipe
+    SortPipe,
+    ItemCategoryComponent,
   ],
   imports: [
     CommonModule,

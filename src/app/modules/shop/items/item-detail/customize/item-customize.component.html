@@ -1,8 +1,23 @@
 <div class="row">
   <div class="col">
     <div class="customize-wrapper">
-      <h4>customize size</h4>
-      <ul class="list-group list-group-flush">
+      <small>Didn't find the size above - <fa-icon [icon]="['fas','hand-point-down']"></fa-icon></small>
+
+    
+      <button type="button"
+              class="btn btn-outline-dark btn-lg btn-block"
+              (click)="toggleCustomSizeVisibility()"
+              *ngIf="!showCustomSize">Tell us your size</button>
+
+      <!--  -->
+      <ul class="list-group list-group-flush"
+          *ngIf="!!showCustomSize">
+        <li class="list-group-item close-wrapper">
+          <div class="close " (click)="toggleCustomSizeVisibility()" >
+            <fa-icon [icon]="['fas','times-circle']">
+            </fa-icon>
+          </div>
+        </li>
         <li class="list-group-item">
 
           <app-custom-size [label]="'width'"
@@ -34,36 +49,11 @@
           <app-custom-size [label]="'Hip size'"
                            [unit]="'inches'"
                            [icon]="'arrows-alt-h'"
-                           [values]="armSizeValues"></app-custom-size>
+                           [values]="hipSizeValues"></app-custom-size>
         </li>
-        <li class="list-group-item">
-          <div class="form-check">
-            <input class="form-check-input"
-                   type="radio"
-                   name="exampleRadios"
-                   id="radio1"
-                   checked>
-            <label class="form-check-label"
-                   for="radio1">
-              Front Closing Abaya
-            </label>
-          </div>
-
-
-        </li>
-        <li class="list-group-item">
-          <div class="form-check">
-            <input class="form-check-input"
-                   type="radio"
-                   name="exampleRadios"
-                   id="radio2">
-            <label class="form-check-label"
-                   for="radio2">
-              Side Closing Abaya
-            </label>
-          </div>
-        </li>
+        
       </ul>
+      <hr>
     </div>
   </div>
 </div>

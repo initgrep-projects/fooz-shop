@@ -46,7 +46,7 @@ export class ItemsComponent implements OnInit, OnDestroy {
 
   getProducts() {
     this.subs[this.subs.length + 1] =
-      this.shopService.getProductsFromStore()
+      this.shopService.getShopFromStore()
         .subscribe(state => {
           setTimeout(() => {
             console.log('state.products = ', state.products);

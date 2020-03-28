@@ -3,7 +3,10 @@
         <div class="size-wrapper">
             <h6>select size</h6>
             <ul class="list-inline">
-                <li class="list-inline-item" *ngFor="let s of sizes"><span>{{s.getLetter()}}</span></li>
+                <li class="list-inline-item" *ngFor="let s of sizes" (click)="selectSize(s)">
+                    <span [ngClass]= "{ 'selected' : !!s.isSelected() }"
+                    >{{s.getLetter()}}</span>
+                </li>
             </ul>
         </div>
     </div>

@@ -7,6 +7,7 @@ import { Product } from 'src/app/models/product';
 import { Image } from 'src/app/models/image';
 import { Currency } from 'src/app/models/currency';
 import { Sort } from 'src/app/models/Sort';
+import { CustomSizeInput } from '../models/custom-size';
 
 
 @Injectable({
@@ -28,6 +29,15 @@ export class FakedataService {
     return [smallSize, mediumSize, largeSize, xlSize];
   }
 
+  getCustomSizeInput() {
+    const widthSizeValues: number[] = [19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34];
+    const lengthSizeValues: number[] = [50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64];
+    const bustSizeValues: number[] = [33, 34, 35, 36, 37];
+    const armSizeValues: number[] = [15, 16, 17, 18, 19, 20];
+
+    return new CustomSizeInput(widthSizeValues, lengthSizeValues, bustSizeValues, armSizeValues, widthSizeValues);
+  }
+
   getCategories() {
     const coCategory = new Category('CO', 'center open');
     const soCategory = new Category('BA', 'buttoned abaya');
@@ -36,7 +46,7 @@ export class FakedataService {
     return [soCategory, coCategory];
   }
 
-  getSortOrders(){
+  getSortOrders() {
     const ascending = new Sort('ASC', ' Price: High to Low', 'long-arrow-alt-up');
     const descending = new Sort('DSC', ' Price: Low to High', 'long-arrow-alt-down');
     return [ascending, descending];

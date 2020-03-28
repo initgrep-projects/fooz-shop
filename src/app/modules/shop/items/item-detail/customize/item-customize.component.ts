@@ -1,20 +1,55 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { ShopService } from '../../../shop.service';
 
 @Component({
   selector: 'app-item-customize',
   templateUrl: './item-customize.component.html',
   styleUrls: ['./item-customize.component.scss']
 })
-export class ItemCustomizeComponent implements OnInit {
+export class ItemCustomizeComponent implements OnInit, OnDestroy {
 
+  subs: Subscription[] = [];
 
-  widthSizeValues: number[] = [19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34];
-  lengthSizeValues: number[] = [50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64];
-  bustSizeValues: number[] = [33, 34, 35, 36, 37];
-  armSizeValues: number[] = [15, 16, 17, 18, 19, 20];
-  constructor() { }
+  widthSizeValues: number[] = [];
+  lengthSizeValues: number[] = [];
+  bustSizeValues: number[] = [];
+  armSizeValues: number[] = [];
+  hipSizeValues: number[] = [];
+
+  showCustomSize = false;
+
+  constructor(private shopService: ShopService) { }
 
   ngOnInit(): void {
+    this.addCustomSizeInputsToStore();
+  }
+
+  addCustomSizeInputsToStore() {
+    this.subs[this.subs.length + 1] =
+      this.shopService.dispatachCustomSizeInputsToStore().subscribe(data => {
+        this.getCustomSizeInputs();
+      });
+  }
+
+  getCustomSizeInputs() {
+    this.subs[this.subs.length + 1] =
+      this.shopService.getShopFromStore()
+        .subscribe(state => {
+          this.widthSizeValues = state.customSizeInput.Width;
+          this.lengthSizeValues = state.customSizeInput.Length;
+          this.armSizeValues = state.customSizeInput.Arm;
+          this.bustSizeValues = state.customSizeInput.Bust;
+          this.hipSizeValues = state.customSizeInput.Hip;
+        });
+  }
+
+  toggleCustomSizeVisibility() {
+    this.showCustomSize = !this.showCustomSize;
+  }
+
+  ngOnDestroy() {
+    this.subs.forEach(sub => sub.unsubscribe());
   }
 
 }

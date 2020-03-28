@@ -31,7 +31,11 @@ import {
   faArrowsAltV,
   faStop,
   faStopCircle,
-  faChevronRight
+  faChevronRight,
+  faCheck,
+  faHandPointDown,
+  faTimesCircle,
+  faCircle
 } from '@fortawesome/free-solid-svg-icons';
 
 @Injectable({
@@ -74,11 +78,15 @@ export class IconService {
       faStop,
       faStopCircle,
       faChevronRight,
-      faCircleNotch
+      faCircleNotch,
+      faCheck,
+      faHandPointDown,
+      faTimesCircle,
+      faCircle
     ];
    }
 
-   getImportedIcons(): IconDefinition[]{
+   getImportedIcons(): IconDefinition[] {
      return this.icons;
    }
 }

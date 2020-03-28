@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Category } from '../models/category';
 import { Color } from '../models/color';
 import { Currency } from '../models/currency';
-import { CustomSize } from '../models/custom-size';
+import { CustomSize, CustomSizeInput } from '../models/custom-size';
 import { Image } from '../models/image';
 import { Size } from '../models/size';
 import { Sort } from '../models/Sort';
@@ -17,14 +17,14 @@ export class ObjectTransformerService {
   constructor() { }
 
 
-   transformCategoryFromDocData(param: DocumentData): Category {
+  transformCategoryFromDocData(param: DocumentData): Category {
     const category = new Category(param.code, param.label);
     if (!!param.icon) {
       category.seticon(param.icon);
     }
     return category;
   }
-  
+
   transformCategory(param: { code: string; label: string; icon: string; }): Category {
     const category = new Category(param.code, param.label);
     if (!!param.icon) {
@@ -71,6 +71,10 @@ export class ObjectTransformerService {
     return params.map(p => this.transformImage(p));
   }
 
+  transformCustomSizeInput<T extends DocumentData>(param: T) {
+    return new CustomSizeInput(param.width, param.length, param.bust, param.arm, param.hip);
+  }
+
   transformSize(param: { label: string; letter: string; }) {
     return new Size(param.label, param.letter);
   }
@@ -106,35 +110,35 @@ export class ObjectTransformerService {
       category: { code: string; label: string; icon: string; };
       images: any[]; sizes: any[];
     }) {
-      return new Product(
-        param.name,
-        param.id,
-        param.description,
-        param.quantity,
-        param.timeStamp,
-        this.transformCurrency(param.price),
-        this.transformCategory(param.category),
-        this.transformImages(param.images),
-        this.transformSizes(param.sizes)
-      );
+    return new Product(
+      param.name,
+      param.id,
+      param.description,
+      param.quantity,
+      param.timeStamp,
+      this.transformCurrency(param.price),
+      this.transformCategory(param.category),
+      this.transformImages(param.images),
+      this.transformSizes(param.sizes)
+    );
   }
 
   public transformProductFromDocData(param: DocumentData) {
-      return new Product(
-        param.name,
-        param.id,
-        param.description,
-        param.quantity,
-        param.timeStamp,
-        this.transformCurrency(param.price),
-        this.transformCategory(param.category),
-        this.transformImages(param.images),
-        this.transformSizes(param.sizes)
-      );
+    return new Product(
+      param.name,
+      param.id,
+      param.description,
+      param.quantity,
+      param.timeStamp,
+      this.transformCurrency(param.price),
+      this.transformCategory(param.category),
+      this.transformImages(param.images),
+      this.transformSizes(param.sizes)
+    );
   }
 
 
-  transformProducts(params: any[]){
+  transformProducts(params: any[]) {
     return params.map(p => this.transformProduct(p));
   }
 

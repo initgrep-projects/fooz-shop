@@ -8,6 +8,10 @@
       font-weight: 600;
       letter-spacing: 0.05rem;
       text-transform: capitalize;
+     
+    }
+    h4.price-wrapper{
+      margin-bottom: 0rem;
     }
     p.prod-code{
       font-weight: 400;
@@ -16,7 +20,11 @@
       }
     }
     p {
-      font-weight: 600;
+      // font-weight: 600;
       letter-spacing: 0.035rem;
+      margin-bottom: 0.2rem;
+    }
+    p.prod-desc{
+      color: $grey-text-color;
     }
   }

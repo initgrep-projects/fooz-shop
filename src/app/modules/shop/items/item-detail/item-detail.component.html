@@ -5,9 +5,12 @@
         </div>
         <div class="col-12 col-lg-4 ">
             <app-item-info [product] ="product"></app-item-info>
+            
+            <app-item-color [colors] ="product.colors"></app-item-color>
             <app-item-size [sizes] ="product.sizes"></app-item-size>
             <app-item-customize></app-item-customize>
-            <app-item-buy></app-item-buy>
+            <app-item-category [category]="product.category"></app-item-category>
+            <app-item-buy [product] ="product"></app-item-buy>
             <app-item-buy-guide></app-item-buy-guide>
             </div>
 

@@ -3,7 +3,7 @@ import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/store/app.reducer';
 import { map, take, switchMap } from 'rxjs/operators';
 import { FireStoreDbService } from 'src/app/services/firestore.db.service';
-import { addProductsAction, appendProductsAction } from './store/shop.actions';
+import { addProductsAction, appendProductsAction, addCustomSizeInputAction } from './store/shop.actions';
 import { of } from 'rxjs';
 
 @Injectable({
@@ -12,7 +12,7 @@ import { of } from 'rxjs';
 export class ShopService {
 
   constructor(private store: Store<AppState>,
-    private fbDbService: FireStoreDbService) {
+              private fbDbService: FireStoreDbService) {
   }
 
   /** this method fetches the data from db store */
@@ -35,7 +35,17 @@ export class ShopService {
         }));
   }
 
-  getProductsFromStore() {
+  dispatachCustomSizeInputsToStore() {
+    return this.fbDbService.fetchCustomSizeInputs()
+      .pipe(
+        map(inputs => {
+          console.log('custom size inputs from dbstore: ', inputs);
+          this.store.dispatch(addCustomSizeInputAction({ payload: inputs }));
+        })
+      );
+  }
+
+  getShopFromStore() {
     return this.store.select('shop');
   }
 

@@ -1,0 +1,36 @@
+<div class="row">
+    <div class="col">
+        <div class="category-wrapper">
+            <h6>Select Abaya Type</h6>
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <div class="category"
+                         (click)="setCategory('BA')">
+                        <span class="check-box">
+                            <fa-icon [icon]="['fas','circle']"
+                                     [ngStyle]="{'visibility': isButtonedAbaya() ? 'visible' : 'hidden'}"></fa-icon>
+                        </span>
+                        <label class="form-check-label"
+                               for="radio1">
+                            Buttoned Abaya
+                        </label>
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <div class="category"
+                         (click)="setCategory('CO')">
+                        <span class="check-box">
+                            <fa-icon [icon]="['fas','circle']"
+                                     [ngStyle]="{'visibility': isCenterOpenAbaya() ? 'visible' : 'hidden'}"></fa-icon>
+                        </span>
+                        <label class="form-check-label"
+                               for="radio1">
+                            Center Open Abaya
+                        </label>
+                    </div>
+                </li>
+            </ul>
+            <hr>
+        </div>
+    </div>
+</div>

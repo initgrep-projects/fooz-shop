@@ -14,4 +14,9 @@ export class ItemSizeComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  selectSize(s: Size) {
+    this.sizes.forEach(s => s.deSelect());
+    s.select();
+  }
+
 }

@@ -2,11 +2,15 @@
     <div class="col">
         <div class="info-wrapper">
             <h4>{{product.name}}</h4>
-            <p class="prod-code">Product code: <span>{{product.id}}</span></p>
-            <p>{{product.description}}</p>
-            <h4>
-                <span class="price">{{product.price.getCode()}} {{product.price.getAmount()}}</span>
+            <p class="prod-code"> Code: <span>{{product.id}}</span></p>
+            <p class="prod-desc">{{product.description}}</p>
+            <hr>
+            <h4 class="price-wrapper">
+                <span class="price">{{product.price.getCode()}} : {{product.price.getAmount()}}</span>
+                
             </h4>
+            <small class="tax-info small">inclusive of all taxes</small>
+            <hr>
         </div>
     </div>
 </div>

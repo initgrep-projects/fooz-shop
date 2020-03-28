@@ -1,20 +1,22 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Query } from '@angular/core';
 import { AngularFirestore, AngularFirestoreDocument, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { FakedataService } from './fakedata.service';
 import { Product } from '../models/product';
 
 import { classToPlain } from 'class-transformer';
 import { ObjectTransformerService } from './object-transformer.service';
-import { map } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 import { Category } from '../models/category';
 import { Size } from '../models/size';
 import { Sort } from '../models/Sort';
+import { CustomSizeInput } from '../models/custom-size';
 
 
 const CATEGORY_COLLECTION = 'Categories';
 const PRODUCT_COLLECTION = 'Products';
 const SIZE_COLLECTION = 'Sizes';
 const SORT_COLLECTION = 'SortOrders';
+const CUSTOM_SIZE_INPUT = 'CustomSizeInput';
 
 @Injectable({
   providedIn: 'root'
@@ -156,6 +158,26 @@ export class FireStoreDbService {
             sizes.push(this.objTransformer.transformSizeFromDocData(doc.data()));
           });
           return sizes;
+        })
+      );
+  }
+
+  saveCustomSizeInputs() {
+    const customSizeInput = this.fakedataService.getCustomSizeInput();
+    this.db.collection(CUSTOM_SIZE_INPUT).add(classToPlain(customSizeInput));
+  }
+
+  fetchCustomSizeInputs() {
+    return this.db.collection(CUSTOM_SIZE_INPUT)
+      .get()
+      .pipe(
+        tap(querySnapShot => console.log('querySnapShot =>', querySnapShot)),
+        map(querySnapShot => {
+          let customSizeInput: CustomSizeInput;
+          querySnapShot.forEach(doc => {
+            customSizeInput = this.objTransformer.transformCustomSizeInput(doc.data());
+          });
+          return customSizeInput;
         })
       );
   }

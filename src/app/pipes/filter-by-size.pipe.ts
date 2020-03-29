@@ -18,7 +18,7 @@ export class FilterBySizePipe implements PipeTransform {
   private applyFilter(product: Product, size: Size) {
     if (!size) {
       return true;
-    } else if (this.isSizeAvailable(product.sizes, size)) {
+    } else if (this.isSizeAvailable(product.Sizes, size)) {
       return true;
     }
     return false;

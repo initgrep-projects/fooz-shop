@@ -14,12 +14,17 @@ export class ItemColorComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  selectColor(c: Color){
-    this.resetSelection();
-    c.select();
+  selectColor(c: Color) {
+    // this.resetSelection();
+    if (c.isSelected()) {
+      c.deSelect();
+    } else {
+      c.select();
+    }
   }
 
-  resetSelection(){
+
+  resetSelection() {
     this.colors.forEach(c => c.deSelect());
   }
 

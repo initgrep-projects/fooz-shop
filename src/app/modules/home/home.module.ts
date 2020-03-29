@@ -7,7 +7,7 @@ import { HomeComponent } from './home.component';
 import { FeatureItemsComponent } from './feature-items/feature-items.component';
 import { TrendComponent } from './trend/trend.component';
 import { LookbookComponent } from './lookbook/lookbook.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import {  NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
 
 import {  FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
@@ -23,7 +23,7 @@ import {  FontAwesomeModule } from '@fortawesome/angular-fontawesome';
   imports: [
     CommonModule,
     HomeRoutingModule,
-    NgbModule,
+    NgbCarouselModule,
     FontAwesomeModule,
     SharedModule
 
@@ -33,11 +33,5 @@ import {  FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 })
 export class HomeModule {
 
-
-  // constructor(iconLiberary: FaIconLibrary) {
-  //   iconLiberary.addIcons(
-      
-  //     );
-  // }
 
  }

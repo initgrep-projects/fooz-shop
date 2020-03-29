@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Product } from 'src/app/models/product';
+import { ToastService } from 'src/app/modules/shared/toasts/toast.service';
 
 @Component({
   selector: 'app-item-buy',
@@ -9,13 +10,19 @@ import { Product } from 'src/app/models/product';
 export class ItemBuyComponent implements OnInit {
 
   @Input() product: Product;
-  constructor() { }
+  constructor(private toastService: ToastService) { }
 
   ngOnInit(): void {
   }
 
   addToCart() {
+    this.toastService.show(
+      'Item added to Card Successfully ',
+      { classname: 'bg-dark text-light', delay: 5000 }
+    );
     console.log('added to cart ', this.product);
   }
+
+  
 
 }

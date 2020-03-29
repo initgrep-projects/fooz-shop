@@ -35,7 +35,9 @@ import {
   faCheck,
   faHandPointDown,
   faTimesCircle,
-  faCircle
+  faCircle,
+  faPlus,
+  faMinus
 } from '@fortawesome/free-solid-svg-icons';
 
 @Injectable({
@@ -82,7 +84,9 @@ export class IconService {
       faCheck,
       faHandPointDown,
       faTimesCircle,
-      faCircle
+      faCircle,
+      faPlus,
+      faMinus
     ];
    }
 

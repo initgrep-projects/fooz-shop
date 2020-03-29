@@ -1,0 +1,28 @@
+<div class="row">
+    <div class="col-12">
+        <div class="quantity-wrapper ">
+            <h6>Select Quantity</h6>
+            <div class="input-group input-group-md mb-3">
+                <div class="input-group-prepend" (click)="decrement()">
+                    <span class="input-group-text"
+                          id="inputGroup-sizing-md">
+                        <fa-icon [icon]="['fas', 'minus']"></fa-icon>
+                    </span>
+                </div>
+                <input type="number"
+                       class="form-control"
+                       aria-label="Small"
+                       aria-describedby="inputGroup-sizing-md"
+                       value="{{quantity}}" readonly
+                       >
+                <div class="input-group-append" (click)="increment()">
+                    <span class="input-group-text"
+                          id="inputGroup-sizing-md">
+                        <fa-icon [icon]="['fas', 'plus']"></fa-icon>
+                    </span>
+                </div>
+            </div>
+            <hr>
+        </div>
+    </div>
+</div>

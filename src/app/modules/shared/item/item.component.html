@@ -10,7 +10,7 @@
     <div class="item-size ">
       <ul class="list-group">
         <li class="list-group-item"
-            *ngFor="let size of item.sizes">
+            *ngFor="let size of item.Sizes">
           <span class="size">{{size.getLetter()}}</span>
         </li>
       </ul>
@@ -37,7 +37,7 @@
     <div class="color-codes">
       <ul class="list-inline">
         <li class="list-inline-item"
-            *ngFor="let color of item.colors"
+            *ngFor="let color of  item.Colors"
             (click)="showSimilarcolorImages(color)">
           <fa-icon [ngStyle]="{'color': color.getCode()}"
                    [icon]="['fas', 'stop']"></fa-icon>
@@ -46,10 +46,10 @@
       </ul>
     </div>
     <h6>
-      <span class="name">{{item.name}}</span>
+      <span class="name">{{item.Name}}</span>
     </h6>
     <h6>
-      <span class="price">{{item.price.getCode()}} {{item.price.getAmount()}}</span>
+      <span class="price">{{item.Price.getCode()}} {{item.Price.getAmount()}}</span>
     </h6>
   </div>
 </div>

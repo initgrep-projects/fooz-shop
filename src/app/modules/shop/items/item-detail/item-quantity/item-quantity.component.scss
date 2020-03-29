@@ -1,0 +1,53 @@
+@import '../../../../../../variables.scss';
+
+.quantity-wrapper {
+    margin-top: 1rem;
+    font-family: $poppins-font-family;
+
+    h6 {
+      text-transform: uppercase;
+      font-weight: 600;
+      margin-right: 2rem;
+      letter-spacing: .10rem;
+      margin-bottom: 1rem;
+    }
+
+    .input-group {
+      width: 100%;
+
+      input[type=number]{
+        background-color: transparent;
+        font-weight: 600;
+      } 
+
+      div.input-group-prepend,div.input-group-append{
+        cursor: pointer;
+
+        &:hover{
+          span{
+
+          background-color: $dark-bg-color ;
+          color: $secondary-text-color;
+          }
+        }
+       
+        &:focus{
+          span{
+            font-weight: 600;
+          }
+        }
+      }
+    
+    }
+
+
+  }
+
+  @media (min-width: 768px) {
+    .quantity-wrapper {
+      .input-group {
+        width: 40%;
+      }
+    }
+
+   }

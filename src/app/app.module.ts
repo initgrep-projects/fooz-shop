@@ -26,6 +26,7 @@ import { AngularFirestoreModule} from '@angular/fire/firestore';
 import { AngularFireModule } from '@angular/fire';
 import {AngularFireAuthModule} from '@angular/fire/auth';
 import { environment } from 'src/environments/environment';
+import { SharedModule } from './modules/shared/shared.module';
 
 
 
@@ -50,7 +51,8 @@ import { environment } from 'src/environments/environment';
     StoreModule.forRoot(AppReducer),
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule,
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    SharedModule
     
   ],
   providers: [],

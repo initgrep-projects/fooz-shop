@@ -44,7 +44,7 @@ export class HomeService {
             const product = this.fbDbService.fetchProductByid(id);
             return product;
           } else {
-            return of(state.products.find(product => product.id === id));
+            return of(state.products.find(product => product.Id === id));
           }
         })
       );

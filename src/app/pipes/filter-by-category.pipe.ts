@@ -19,7 +19,7 @@ export class FilterByCategoryPipe implements PipeTransform {
   private applyFilter(product: Product, category: Category) {
     if (!category) {
       return true;
-    } else if (product.category.getCode() === category.getCode()) {
+    } else if (product.Category.getCode() === category.getCode()) {
       return true;
     }
     return false;

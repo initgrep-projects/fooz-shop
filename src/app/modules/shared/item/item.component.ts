@@ -32,7 +32,7 @@ export class ItemComponent implements OnInit {
 
   routeToItemDetails() {
     this.router.navigate(
-      ['item', this.item.id],
+      ['item', this.item.Id],
        { 
          queryParams: {source: this.sourcePage},
          relativeTo: this.activatedRoute
@@ -40,13 +40,13 @@ export class ItemComponent implements OnInit {
   }
 
   setInitImages() {
-    this.cardImages = [this.item.images[0], this.item.images[1]];
+    this.cardImages = [this.item.Images[0], this.item.Images[1]];
   }
 
 
   showSimilarcolorImages(color: Color) {
     this.logger.info(' color clicked ', color.getCode());
-    this.logger.info('item-images = ', this.item.images);
+    this.logger.info('item-images = ', this.item.Images);
 
     const selectedImages = this.getSelectedImages(color);
 
@@ -56,7 +56,7 @@ export class ItemComponent implements OnInit {
   }
 
   getSelectedImages(c: Color) {
-    return  this.item.images.filter( image => {
+    return  this.item.Images.filter( image => {
       if (image.getColor().getCode() === c.getCode()) {
         return image;
       }

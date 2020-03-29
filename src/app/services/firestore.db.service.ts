@@ -58,7 +58,7 @@ export class FireStoreDbService {
           querySnapShot.forEach(doc => {
             products.push(this.objTransformer.transformProductFromDocData(doc.data()));
           });
-          this.lastTimeStamp = products[products.length - 1].timeStamp;
+          this.lastTimeStamp = products[products.length - 1].TimeStamp;
           return products;
         })
       );
@@ -80,7 +80,7 @@ export class FireStoreDbService {
             products.push(this.objTransformer.transformProductFromDocData(doc.data()));
           });
           if (products.length > 0) {
-            this.lastTimeStamp = products[products.length - 1].timeStamp;
+            this.lastTimeStamp = products[products.length - 1].TimeStamp;
           }
           return products;
         })
@@ -98,7 +98,7 @@ export class FireStoreDbService {
           querySnapShot.forEach(doc => {
             products.push(this.objTransformer.transformProductFromDocData(doc.data()));
           });
-          this.lastTimeStamp = products[products.length - 1].timeStamp;
+          this.lastTimeStamp = products[products.length - 1].TimeStamp;
           return products;
         })
       );

@@ -35,6 +35,7 @@ export class Product {
         this.description = description;
         this.category = category;
         this.availableQuantity = availableQuantity;
+        this.quantity = 0;
         this.timeStamp = timeStamp;
         this.price = price;
         this.images = images;

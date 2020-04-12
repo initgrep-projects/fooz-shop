@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { ItemDetailService } from '../item-detail.service';
 
 @Component({
   selector: 'app-item-quantity',
@@ -7,22 +8,25 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class ItemQuantityComponent implements OnInit {
 
-  @Input() quantity: number;
-  constructor() { }
+  quantity = 0;
+  constructor( private itemdetailService: ItemDetailService) { }
 
   ngOnInit(): void {
-    this.quantity = 1;
+    this.increment();
   }
+
 
   increment() {
     if (this.quantity < 10) {
-      this.quantity++;
+       this.quantity++;
+       this.itemdetailService.setSelectedQuantity(this.quantity);
     }
   }
 
   decrement() {
     if (this.quantity > 1) {
       this.quantity--;
+      this.itemdetailService.setSelectedQuantity(this.quantity);
     }
   }
 

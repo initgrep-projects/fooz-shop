@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Color } from 'src/app/models/color';
+import { ItemDetailService } from '../item-detail.service';
 
 @Component({
   selector: 'app-item-color',
@@ -9,20 +10,20 @@ import { Color } from 'src/app/models/color';
 export class ItemColorComponent implements OnInit {
 
   @Input() colors: Color[];
-  constructor() { }
+  constructor(private itemdetailService: ItemDetailService) { }
 
   ngOnInit(): void {
   }
 
   selectColor(c: Color) {
-    // this.resetSelection();
-    if (c.isSelected()) {
-      c.deSelect();
-    } else {
+    if (!c.isSelected()) {
+      this.resetSelection();
       c.select();
+    } else {
+      this.resetSelection();
     }
+    this.itemdetailService.setSelectedColors(this.colors);
   }
-
 
   resetSelection() {
     this.colors.forEach(c => c.deSelect());

@@ -20,36 +20,8 @@ import { MainFilterComponent } from './filter-header/main-filter/main-filter.com
 import { ShopRoutingModule } from './shop-routing.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
-import { FaIconLibrary, FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import {
-  faAtom,
-  faBolt,
-  faShoppingBag,
-  faPhoneAlt,
-  faSearch,
-  faUserCircle,
-  faCircleNotch,
-  faBookmark,
-  faHeart,
-  faStar,
-  faArrowCircleDown,
-  faArrowAltCircleDown,
-  faBoxOpen,
-  faMapMarkerAlt,
-  faFilter,
-  faSort,
-  faLevelDownAlt,
-  faTape,
-  faLayerGroup,
-  faShoppingCart,
-  faDotCircle,
-  faTeethOpen,
-  faDoorOpen,
-  faLongArrowAltUp,
-  faLongArrowAltDown,
-  faArrowsAltH,
-  faArrowsAltV
-} from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
 import { BreadcrumbComponent } from './filter-header/breadcrumb/breadcrumb.component';
 import { FilterByCategoryPipe } from 'src/app/pipes/filter-by-category.pipe';
 import { FilterBySizePipe } from 'src/app/pipes/filter-by-size.pipe';
@@ -95,37 +67,6 @@ import { ItemQuantityComponent } from './items/item-detail/item-quantity/item-qu
   exports: []
 })
 export class ShopModule {
-
-  constructor(iconLiberary: FaIconLibrary) {
-    iconLiberary.addIcons(
-      faAtom,
-      faBolt,
-      faShoppingBag,
-      faPhoneAlt,
-      faSearch,
-      faUserCircle,
-      faBookmark,
-      faHeart,
-      faStar,
-      faArrowCircleDown,
-      faArrowAltCircleDown,
-      faBookmark,
-      faBoxOpen,
-      faMapMarkerAlt,
-      faFilter,
-      faSort,
-      faTape,
-      faLayerGroup,
-      faShoppingCart,
-      faShoppingBag,
-      faDotCircle,
-      faDoorOpen,
-      faLongArrowAltUp,
-      faLongArrowAltDown,
-      faArrowsAltH,
-      faArrowsAltV
-      );
-  }
 
 
 }

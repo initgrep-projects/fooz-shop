@@ -2,6 +2,7 @@ import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { Product } from 'src/app/models/product';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { ItemDetailService } from './item-detail.service';
 
 @Component({
   selector: 'app-item-detail',
@@ -15,7 +16,9 @@ export class ItemDetailComponent implements OnInit, OnDestroy {
   subs: Subscription[] = [];
 
   constructor(
-    private route: ActivatedRoute) { }
+    private route: ActivatedRoute,
+    private itemdetailSerive: ItemDetailService
+  ) { }
 
   ngOnInit(): void {
     this.recieveProductFromResolver();
@@ -24,7 +27,8 @@ export class ItemDetailComponent implements OnInit, OnDestroy {
   recieveProductFromResolver() {
     this.subs[this.subs.length + 1] =
       this.route.data.subscribe(data => {
-        this.product = data.product as Product;
+        this.product = data.product;
+        this.itemdetailSerive.setProduct(data.product);
         console.log('detailed product = ', this.product);
       });
   }

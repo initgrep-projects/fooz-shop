@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 const SPACE = ' ';
 
@@ -12,8 +12,8 @@ export class CustomSizeComponent implements OnInit {
   @Input() label: string;
   @Input() unit: string;
   @Input() icon: string;
-  @Input() values: string[];
- 
+  @Input() values: number[];
+  @Output() selection = new EventEmitter<number>();
 
   selectedValue: string;
   constructor() { }
@@ -26,8 +26,10 @@ export class CustomSizeComponent implements OnInit {
    setinitialSelectedValue() {
     this.selectedValue =  'select';
    }
-  setSelectedValue(value: string)  {
+
+  setSelectedValue(value: number)  {
     this.selectedValue = value + SPACE + this.unit;
+    this.selection.emit(value);
   }
   getSelectedValue() {
     return this.selectedValue;

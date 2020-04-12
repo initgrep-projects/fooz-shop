@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Category } from 'src/app/models/category';
+import { ItemDetailService } from '../item-detail.service';
 
 @Component({
   selector: 'app-item-category',
@@ -12,12 +13,14 @@ export class ItemCategoryComponent implements OnInit {
   buttonedAbaya: Category;
 
   @Input() category: Category;
-  constructor() { }
+  constructor( private itemdetailService: ItemDetailService) { }
 
   ngOnInit(): void {
     this.centerOpenAbaya = new Category('CO', 'center open');
     this.buttonedAbaya = new Category('BA', 'buttoned abaya');
+    this.itemdetailService.setSelectedCategory(this.category);
     console.log('category => ', this.category);
+
   }
 
   isButtonedAbaya() {
@@ -32,9 +35,8 @@ export class ItemCategoryComponent implements OnInit {
       this.category = this.centerOpenAbaya;
     } else {
       this.category = this.buttonedAbaya;
-
     }
-
+    this.itemdetailService.setSelectedCategory(this.category);
   }
 
 }

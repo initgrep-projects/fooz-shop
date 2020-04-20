@@ -20,6 +20,7 @@ export class AppComponent implements OnInit, OnDestroy {
     this.scrollTopOnRouterChange();
   }
 
+
   scrollTopOnRouterChange() {
     this.subs[this.subs.length + 1] =
       this.router.events.subscribe((event) => {

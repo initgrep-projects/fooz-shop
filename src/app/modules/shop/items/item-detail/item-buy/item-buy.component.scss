@@ -1,6 +1,24 @@
 @import "../../../../../../variables.scss";
 @import "../../../../../../animate.scss";
 
+div.alert-wrapper{
+  font-family: $poppins-font-family;
+  div.alert{
+    h6{
+      display: inline-block;
+    }
+    ol{
+      display: inline;
+      li{
+        background-color:  transparent;
+        border-width: 0px;
+        margin-bottom: .1rem;
+        font-weight: 600;
+      }
+    }
+  }
+}
+
 div.buy-wrapper{
     font-family: $poppins-font-family;
     button{

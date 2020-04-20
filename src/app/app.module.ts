@@ -6,6 +6,7 @@ import { HomeModule } from './modules/home/home.module';
 import { ShopModule } from './modules/shop/shop.module';
 import { FaIconLibrary, FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { StoreModule} from '@ngrx/store';
+
 import 'reflect-metadata';
 
 import { AppComponent } from './app.component';
@@ -53,7 +54,6 @@ import { SharedModule } from './modules/shared/shared.module';
     AngularFirestoreModule,
     AngularFireAuthModule,
     SharedModule
-    
   ],
   providers: [],
   bootstrap: [AppComponent]

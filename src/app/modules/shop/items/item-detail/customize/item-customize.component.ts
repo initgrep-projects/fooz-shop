@@ -24,11 +24,12 @@ export class ItemCustomizeComponent implements OnInit, OnDestroy {
   customSize: CustomSize = null;
 
   constructor(private shopService: ShopService,
-              private itemdetailService: ItemDetailService
+    private itemdetailService: ItemDetailService
   ) { }
 
   ngOnInit(): void {
     this.addCustomSizeInputsToStore();
+    this.resetCustomSizeOnStdSizeSelection();
   }
 
   addCustomSizeInputsToStore() {
@@ -50,12 +51,21 @@ export class ItemCustomizeComponent implements OnInit, OnDestroy {
         });
   }
 
+  resetCustomSizeOnStdSizeSelection() {
+    this.subs[this.subs.length + 1] =
+      this.itemdetailService.onSizeChange.subscribe(size => {
+        if (!!this.customSize) {
+          console.log('If you choose the standard size here, custom size will not be considered.', size);
+        }
+      });
+  }
+
   /**
    *  this method shows or hides the custom size
    * if( customsize is shown) - it is initialized to an empty object
    * else it is set back to null;
    * this helps in validations during the the addToCart function
-   * 
+   *
    */
   toggleCustomSizeVisibility() {
     this.showCustomSize = !this.showCustomSize;
@@ -94,9 +104,7 @@ export class ItemCustomizeComponent implements OnInit, OnDestroy {
   }
 
   addValuesToCustomSize() {
-    // if (this.itemdetailService.isValidCustomSize(this.customSize)) {
-    // console.log('all values are set to custom size ', this.customSize);
     this.itemdetailService.setCustomSize(this.customSize);
-    // }
   }
+
 }

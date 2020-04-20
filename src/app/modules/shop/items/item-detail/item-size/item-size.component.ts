@@ -16,9 +16,7 @@ export class ItemSizeComponent implements OnInit, OnDestroy {
   subs: Subscription[] = [];
 
   ngOnInit(): void {
-    this.subs[this.subs.length + 1] =
-    this.itemDetailService.onCustomSizeChange
-    .subscribe(cz => this.resetSelection());
+   this.resetSelectionOnCustomSize();
   }
 
   selectSize(s: Size) {
@@ -29,6 +27,12 @@ export class ItemSizeComponent implements OnInit, OnDestroy {
       s.select();
     }
     this.itemDetailService.setSelectedSize(this.sizes);
+  }
+
+  resetSelectionOnCustomSize() {
+    this.subs[this.subs.length + 1] =
+    this.itemDetailService.onCustomSizeChange
+    .subscribe(cz => this.resetSelection());
   }
 
   resetSelection() {

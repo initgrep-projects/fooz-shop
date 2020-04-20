@@ -14,7 +14,7 @@ import { CustomSize } from 'src/app/models/custom-size';
 export class ItemDetailService {
 
   private cartProduct: Product;
-  private invalidState = [];
+  invalidState = [];
 
 
   onColorChange = new Subject<Color[]>();
@@ -71,6 +71,7 @@ export class ItemDetailService {
 
   validateCartProduct() {
     let isValid = true;
+    this.invalidState = [];
     if (this.isEmpty(this.cartProduct.Sizes)) {
       isValid = isValid && false;
       this.invalidState.push('Size');
@@ -88,7 +89,7 @@ export class ItemDetailService {
       isValid = isValid && false;
       this.invalidState.push('Category');
     }
-    if (!this.isValidCustomSize(this.cartProduct.CustomSize)){
+    if (!this.isValidCustomSize(this.cartProduct.CustomSize)) {
       isValid = isValid && false;
       this.invalidState.push('Custom Size');
     }
@@ -109,7 +110,6 @@ export class ItemDetailService {
       && !!cz.getHip()
       ) { return true; }
     return false;
-
   }
 
 

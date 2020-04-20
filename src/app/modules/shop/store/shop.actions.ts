@@ -18,7 +18,7 @@ export const addItemToCartAction = createAction(
 );
 export const deleteItemInCartAction = createAction(
     '[cart]  delete item',
-    props<{payload: string}>()
+    props<{productId: string}>()
 );
 export const updateItemInCartAction = createAction(
     '[cart]  update item',

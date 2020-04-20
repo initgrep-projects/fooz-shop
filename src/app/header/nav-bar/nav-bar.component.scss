@@ -1,14 +1,15 @@
 @import '../../../variables.scss';
 
 nav.navbar{
-    background-color: transparent;
     font-family: $poppins-font-family;
-    // border-bottom: 1px solid #333;
+    background-color: white;
+    
     a.navbar-brand{
-        font-size: 1.4rem;
+        font-size: 2rem;
         margin-left: 1rem;
         left:45%;
         position: relative;
+        color: $primary-text-color;
         span{
             letter-spacing: $heading-letter-spacing;
             text-transform: uppercase;
@@ -43,6 +44,7 @@ nav.navbar{
         border:0px solid transparent;
         font-size: 1.2rem;
         font-weight: 300;
+        margin-right: 10%;
         li{
             border: 0px solid transparent;
             background: transparent;

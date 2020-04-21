@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './app-routing.module';
 import { HomeModule } from './modules/home/home.module';
 import { ShopModule } from './modules/shop/shop.module';
@@ -47,7 +46,6 @@ import { SharedModule } from './modules/shared/shared.module';
     HomeModule,
     ShopModule,
     AppRoutingModule,
-    NgbModule,
     FontAwesomeModule,
     StoreModule.forRoot(AppReducer),
     AngularFireModule.initializeApp(environment.firebaseConfig),

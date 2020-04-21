@@ -18,11 +18,16 @@
       input[type=number]{
         background-color: transparent;
         font-weight: 600;
+        text-align: center;
+        // border-color: $dark-bg-color;
       } 
 
       div.input-group-prepend,div.input-group-append{
         cursor: pointer;
-
+        span{
+          background-color: $dark-bg-color ;
+          color: $secondary-text-color;
+        }
         &:hover{
           span{
 
@@ -43,7 +48,7 @@
 
   }
 
-  @media (min-width: 768px) {
+  @media (min-width: 768px){
     .quantity-wrapper {
       .input-group {
         width: 40%;

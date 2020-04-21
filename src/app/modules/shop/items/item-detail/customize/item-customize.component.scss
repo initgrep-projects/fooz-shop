@@ -13,6 +13,28 @@ div.customize-wrapper {
     }
   }
 
+  h6 {
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-right: 2rem;
+    letter-spacing: .10rem;
+    margin-bottom: 1rem;
+    span {
+      font-weight: 400;
+      letter-spacing: 0.05rem;
+      font-size: 0.8rem;
+      margin-left: 1rem;
+      &:hover {
+        background-color: #333;
+        color: #f1f1f1;
+        cursor: pointer;
+        padding: 0.2rem;
+        border-radius: 0.3rem;
+        transition: .2s ease-in ;
+      }
+    }
+  }
+  
   ul {
     li.close-wrapper {
       background-color: transparent;

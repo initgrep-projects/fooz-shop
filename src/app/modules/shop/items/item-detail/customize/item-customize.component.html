@@ -1,23 +1,25 @@
 <div class="row">
   <div class="col">
     <div class="customize-wrapper">
-      <small>Didn't find the size above - <fa-icon [icon]="['fas','hand-point-down']"></fa-icon></small>
+      <h6>Customise size
+        <span >select size > </span>
 
-    
+      </h6>
+<!--     
       <button type="button"
               class="btn btn-outline-dark btn-sm btn-block"
               (click)="toggleCustomSizeVisibility()"
-              *ngIf="!showCustomSize">Tell us your size</button>
+              *ngIf="!showCustomSize">Tell us your size</button> -->
 
       <!--  -->
       <ul class="list-group list-group-flush"
-          *ngIf="!!showCustomSize">
-        <li class="list-group-item close-wrapper">
+          *ngIf="true">
+        <!-- <li class="list-group-item close-wrapper">
           <div class="close " (click)="toggleCustomSizeVisibility()" >
             <fa-icon [icon]="['fas','times-circle']">
             </fa-icon>
           </div>
-        </li>
+        </li> -->
         <li class="list-group-item">
 
           <app-custom-size [label]="'width'"

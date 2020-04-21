@@ -15,7 +15,7 @@ export class CustomSizeComponent implements OnInit {
   @Input() values: number[];
   @Output() selection = new EventEmitter<number>();
 
-  selectedValue: string;
+  private selectedValue: string;
   constructor() { }
 
   ngOnInit(): void {

@@ -1,11 +1,15 @@
-<div class="row">
+<div class="row " *ngIf ="isVisible">
     <div class="col">
         <div class="size-wrapper">
-            <h6>select size</h6>
+            <h6>select size 
+               <span (click)="toggleVisibility()">Customize > </span>
+            </h6>
+            
             <ul class="list-inline">
-                <li class="list-inline-item" *ngFor="let s of sizes" (click)="selectSize(s)">
-                    <span [ngClass]= "{ 'selected' : !!s.isSelected() }"
-                    >{{s.getLetter()}}</span>
+                <li class="list-inline-item"
+                    *ngFor="let s of sizes"
+                    (click)="selectSize(s)">
+                    <span [ngClass]="{ 'selected' : !!s.isSelected() }">{{s.getLetter()}}</span>
                 </li>
             </ul>
         </div>

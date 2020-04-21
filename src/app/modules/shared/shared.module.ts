@@ -17,7 +17,7 @@ import { ToastsComponent } from './toasts/toasts.component';
   imports: [
     CommonModule,
     FontAwesomeModule,
-    NgbToastModule
+    NgbToastModule,
   ],
   exports: [
     ItemComponent,

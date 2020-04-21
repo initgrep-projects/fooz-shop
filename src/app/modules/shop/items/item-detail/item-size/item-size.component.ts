@@ -11,6 +11,9 @@ import { Subscription } from 'rxjs';
 export class ItemSizeComponent implements OnInit, OnDestroy {
 
   @Input() sizes: Size[];
+  isVisible = true;
+
+
   constructor(private itemDetailService: ItemDetailService) { }
 
   subs: Subscription[] = [];
@@ -37,6 +40,10 @@ export class ItemSizeComponent implements OnInit, OnDestroy {
 
   resetSelection() {
     this.sizes.forEach(size => size.deSelect());
+  }
+
+  toggleVisibility(){
+    this.isVisible = !this.isVisible;
   }
 
   ngOnDestroy() {

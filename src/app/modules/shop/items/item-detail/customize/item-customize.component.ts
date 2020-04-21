@@ -23,7 +23,8 @@ export class ItemCustomizeComponent implements OnInit, OnDestroy {
 
   customSize: CustomSize = null;
 
-  constructor(private shopService: ShopService,
+  constructor(
+    private shopService: ShopService,
     private itemdetailService: ItemDetailService
   ) { }
 

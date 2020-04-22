@@ -1,65 +1,186 @@
-@import '../../../variables.scss';
+@import "../../../variables.scss";
 
-nav.navbar{
+nav.navbar {
     font-family: $poppins-font-family;
     background-color: white;
-    
-    a.navbar-brand{
-        font-size: 2rem;
+
+    a.nav-toggle {
+        font-size: 1.4rem;
         margin-left: 1rem;
-        left:45%;
+    }
+
+    a.navbar-brand {
+        font-size: 1.4rem;
         position: relative;
+        margin-left: 1rem;
         color: $primary-text-color;
-        span{
+        span {
             letter-spacing: $heading-letter-spacing;
             text-transform: uppercase;
             // font-size: .9rem;
             font-family: $ptserif-font-family;
             font-weight: 600;
-            margin-left: .5rem;
+            margin-left: 0.5rem;
         }
 
+        &.home {
+            margin-right: 40%;
+        }
     }
-    ul.navbar-nav{
-        margin-left: 2rem;
-        margin-top: .2rem;
-        font-weight: 400;
-        li.nav-item{
-            a.nav-link{
+
+    ul.navbar-nav {
+        margin-left: 7%;
+        margin-top: 0.2rem;
+
+        
+        li.nav-item {
+            a.nav-link {
+                font-family: $poppins-font-family;
                 font-weight: 600;
-                font-size: 14px;
-                letter-spacing: .1rem;
+                font-size: .9rem;
+                letter-spacing: 0.014rem;
                 text-transform: capitalize;
-                
-                &:hover{
-                    border-bottom: 2px dotted $primary-border-color;
-                }
-               
+                color: $primary-text-color;
+
+                span {
+                    position: absolute;
+                    display: block;
+                    width: 0%;
+                    height: 5px;
+                    background-color: $primary-text-color;
+                    left: 5px;
+                    top: 80%;
+                    transition: width .5s ease;
                     
-                
+                }
+
+                &:hover{
+                    span{
+                        width: 80%;
+                        
+                    }
+                }
+
+                &.active {
+                    color: $primary-text-color;
+                    font-weight: 600;
+                    span{
+                        width: 80%;
+                    }
+                }
             }
         }
     }
-    ul.nav-portal{
-        border:0px solid transparent;
+    ul.nav-portal {
+        border: 0px solid transparent;
         font-size: 1.2rem;
         font-weight: 300;
         margin-right: 10%;
-        li{
+        li {
             border: 0px solid transparent;
             background: transparent;
             padding-top: 0px;
             padding-bottom: 0px;
             padding-left: 0px;
         }
-
-       
     }
-   
 }
 
-.active{
-    border-bottom: 2px solid $primary-border-color;
-    color: $primary-text-color;
-    font-weight: 600;
+
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    right: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+    z-index: 1022;
+  }
+  
+  .sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+  }
+  
+  .sidenav a:hover {
+    color: #f1f1f1;
+  }
+  
+  .sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+  }
+  
+  @media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;}
+    .sidenav a {font-size: 18px;}
+  }
+
+
+
+// Small devices (landscape phones, 576px and up)
+@media (min-width: 576px) {
+    nav.navbar {
+        a.navbar-brand {
+            &.home {
+                margin-right: 45%;
+            }
+        }
+    }
+}
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) {
+}
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) {
+    nav.navbar {
+        a.nav-toggle {
+            // display: none;
+        }
+        a.navbar-brand {
+            font-size: 1.5rem;
+
+            &.home {
+                display: none;
+            }
+
+            &.middle {
+                // border:1px solid red;
+                // left: 50%;
+                position: relative;
+                right: 25%;
+            }
+        }
+    }
+}
+
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) {
+    nav.navbar {
+       
+        a.navbar-brand {
+            font-size: 2rem;
+
+           
+            &.middle {
+                // border:1px solid red;
+                // left: 50%;
+                position: relative;
+                right: 30%;
+            }
+        }
+    }
 }

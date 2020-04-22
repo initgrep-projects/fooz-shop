@@ -11,7 +11,7 @@ export class TrendComponent implements OnInit {
 
   images = [
     'https://i.imgur.com/TOgkCkT.jpg',
-    'https://i.imgur.com/TOgkCkT.jpg',
+    'https://i.imgur.com/QTggRYH.jpg?1',
     'https://i.imgur.com/TOgkCkT.jpg'
   ];
 

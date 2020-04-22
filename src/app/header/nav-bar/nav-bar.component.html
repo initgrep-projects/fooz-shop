@@ -1,42 +1,50 @@
-<nav class="navbar sticky-top navbar-expand-lg py-4">
-  <a class="navbar-brand"
-     routerLink="home">
-    <fa-icon icon="atom"></fa-icon> <span>FOOZ</span>
+<div id="mySidenav" class="sidenav" #sidenav>
+  <a  class="closebtn" (click)="closeSideNav()">&times;</a>
+  <a href="#">About</a>
+  <a href="#">Services</a>
+  <a href="#">Clients</a>
+  <a href="#">Contact</a>
+</div>
+
+<nav class="navbar sticky-top navbar-expand-lg py-3">
+  <a class="nav-toggle animated bounceIn ">
+    <fa-icon icon="bars" (click) ="openSideNav()"></fa-icon>
   </a>
-  <button class="navbar-toggler"
-          type="button"
-          data-toggle="collapse"
-          data-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent"
-          aria-expanded="false"
-          aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+  <a class="navbar-brand home animated bounceIn"
+     routerLink="home">
+     <fa-icon  icon="atom"></fa-icon>
+    <span>FOOZ</span>
+  </a>
 
   <div class="collapse navbar-collapse"
        id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
+    <ul class="navbar-nav mr-auto ">
 
-      <li class="nav-item ">
+      <li class="nav-item animated bounceIn ">
         <a class="nav-link"
            routerLink="home"
-           routerLinkActive="active"
-           >
-           home
+           routerLinkActive="active">
+          home
+          <span></span>
         </a>
+        
       </li>
 
-      <li class="nav-item">
+      <li class="nav-item animated bounceIn">
         <a class="nav-link"
            routerLink="shop"
-           routerLinkActive="active"
-           >shop </a>
+           routerLinkActive="active">shop 
+           <span></span>
+          </a>
       </li>
-
-      
-
     </ul>
-    <ul class="list-group list-group-horizontal nav-portal">
+ 
+    <a  class="navbar-brand middle animated bounceIn" routerLink="home">
+      <fa-icon icon="atom"></fa-icon>
+      <span>Fooz</span>
+    </a>
+    
+    <ul class="list-group list-group-horizontal nav-portal animated bounceIn">
       <li class="list-group-item">
         <app-search></app-search>
       </li>
@@ -50,3 +58,4 @@
 
   </div>
 </nav>
+

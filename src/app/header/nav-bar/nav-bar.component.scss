@@ -1,5 +1,17 @@
 @import "../../../variables.scss";
 
+div.sidebar-content-wrapper{
+    padding: 1rem;
+
+    a.nav-close{
+        float: right;
+        font-size: 1.5rem;
+        cursor: pointer;
+    }
+
+    
+}
+
 nav.navbar {
     font-family: $poppins-font-family;
     background-color: white;
@@ -7,6 +19,7 @@ nav.navbar {
     a.nav-toggle {
         font-size: 1.4rem;
         margin-left: 1rem;
+        cursor: pointer;
     }
 
     a.navbar-brand {
@@ -51,6 +64,7 @@ nav.navbar {
                     left: 5px;
                     top: 80%;
                     transition: width .5s ease;
+                    border-radius: 5px;
                     
                 }
 
@@ -87,19 +101,6 @@ nav.navbar {
 }
 
 
-.sidenav {
-    height: 100%;
-    width: 0;
-    position: fixed;
-    z-index: 1;
-    top: 0;
-    right: 0;
-    background-color: #111;
-    overflow-x: hidden;
-    transition: 0.5s;
-    padding-top: 60px;
-    z-index: 1022;
-  }
   
   .sidenav a {
     padding: 8px 8px 8px 32px;

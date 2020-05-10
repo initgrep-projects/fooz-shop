@@ -5,6 +5,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { PreCardComponent } from './pre-card/pre-card.component';
 import {  NgbToastModule } from '@ng-bootstrap/ng-bootstrap';
 import { ToastsComponent } from './toasts/toasts.component';
+import { SidebarComponent } from './sidebar/sidebar.component';
 
 
 
@@ -13,6 +14,7 @@ import { ToastsComponent } from './toasts/toasts.component';
     ItemComponent,
     PreCardComponent,
     ToastsComponent,
+    SidebarComponent,
   ],
   imports: [
     CommonModule,
@@ -22,7 +24,8 @@ import { ToastsComponent } from './toasts/toasts.component';
   exports: [
     ItemComponent,
     PreCardComponent,
-    ToastsComponent
+    ToastsComponent,
+    SidebarComponent
   ]
 })
 export class SharedModule { }

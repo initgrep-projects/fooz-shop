@@ -1,0 +1,27 @@
+
+.sidenav-mask{
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  height: 100%;
+  background: rgba(0,0,0,0.7);
+  transition: 0.4s;
+  transition-timing-function: cubic-bezier(0.8, 0, 0.26, 1);
+  z-index: 1021;
+}
+
+.sidenav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  overflow-x: hidden;
+  transition: 0.5s;
+  transition-timing-function: cubic-bezier(0.8, 0, 0.26, 1);
+  z-index: 1022;
+  box-shadow: 3px 0px 5px 1px #3f3e3f52;
+  a.closebtn {
+    color: #111;
+  }
+}

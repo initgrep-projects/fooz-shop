@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { SidebarService } from 'src/app/modules/shared/sidebar/sidebar.service';
 
 @Component({
   selector: 'app-nav-bar',
@@ -7,17 +8,17 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 })
 export class NavBarComponent implements OnInit {
 
-  @ViewChild('sidenav') sideNav: ElementRef;
-  constructor() { }
+  
+  constructor(private sidebarService:SidebarService) { }
 
   ngOnInit(): void {
   }
 
   openSideNav() {
-    this.sideNav.nativeElement.style.width = '60%';
+    this.sidebarService.open();
   }
 
   closeSideNav() {
-    this.sideNav.nativeElement.style.width = '0px';
+    this.sidebarService.close();
   }
 }

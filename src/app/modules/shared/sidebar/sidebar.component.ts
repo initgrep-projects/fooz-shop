@@ -29,7 +29,7 @@ export class SidebarComponent implements OnInit, OnDestroy, AfterViewInit {
     this.enableClose();
   }
 
- 
+
 
   open() {
     this.sidebarService.open();
@@ -42,15 +42,16 @@ export class SidebarComponent implements OnInit, OnDestroy, AfterViewInit {
   private enableOpen() {
     this.subs[this.subs.length + 1] =
       this.sidebarService.openSideBar.subscribe(status => {
-        this.sideNavMask.nativeElement.style.width= '100%';
-        this.sideNav.nativeElement.style.width = '25%';
+        this.sideNavMask.nativeElement.style.width = '100%';
+        this.addSidenavWidth();
+        this.subscribeToWidthChange();
       });
   }
 
   private enableClose() {
     this.subs[this.subs.length + 1] =
       this.sidebarService.closeSideBar.subscribe(status => {
-        this.sideNavMask.nativeElement.style.width= '0px';
+        this.sideNavMask.nativeElement.style.width = '0px';
         this.sideNav.nativeElement.style.width = '0px';
       });
   }
@@ -61,6 +62,32 @@ export class SidebarComponent implements OnInit, OnDestroy, AfterViewInit {
     } else {
       this.sideNav.nativeElement.style.left = '0';
     }
+  }
+
+  private getMediaForMobileTablet(){
+    console.log("matchmedia = ",window.matchMedia('(max-width: 992px)'));
+    if(!!window.matchMedia){
+      return window.matchMedia('(max-width: 992px)');
+    }
+    return undefined;
+  }
+
+  private addSidenavWidth() {
+    this.changeWidth(this.getMediaForMobileTablet());
+  }
+
+  private subscribeToWidthChange(){
+    this.getMediaForMobileTablet().addEventListener('change', (mq) => this.changeWidth(mq));
+  }
+
+  private changeWidth(mq: MediaQueryList | MediaQueryListEvent) {
+    let isMobileTablet = mq.matches;
+    if (isMobileTablet) {
+      this.sideNav.nativeElement.style.width = '100%';
+    } else {
+      this.sideNav.nativeElement.style.width = '25%';
+    }
+
   }
 
   ngOnDestroy(): void {

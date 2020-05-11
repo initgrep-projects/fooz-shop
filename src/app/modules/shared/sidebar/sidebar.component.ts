@@ -11,6 +11,7 @@ export class SidebarComponent implements OnInit, OnDestroy, AfterViewInit {
 
   @ViewChild('sidenav') sideNav: ElementRef;
   @ViewChild('sidenavMask') sideNavMask: ElementRef;
+  isOpen = false;
 
   private subs: Subscription[] = [];
 
@@ -42,6 +43,7 @@ export class SidebarComponent implements OnInit, OnDestroy, AfterViewInit {
   private enableOpen() {
     this.subs[this.subs.length + 1] =
       this.sidebarService.openSideBar.subscribe(status => {
+        this.isOpen = true;
         this.sideNavMask.nativeElement.style.width = '100%';
         this.addSidenavWidth();
         this.subscribeToWidthChange();
@@ -51,6 +53,7 @@ export class SidebarComponent implements OnInit, OnDestroy, AfterViewInit {
   private enableClose() {
     this.subs[this.subs.length + 1] =
       this.sidebarService.closeSideBar.subscribe(status => {
+        this.isOpen = false;
         this.sideNavMask.nativeElement.style.width = '0px';
         this.sideNav.nativeElement.style.width = '0px';
       });
@@ -64,9 +67,9 @@ export class SidebarComponent implements OnInit, OnDestroy, AfterViewInit {
     }
   }
 
-  private getMediaForMobileTablet(){
-    console.log("matchmedia = ",window.matchMedia('(max-width: 992px)'));
-    if(!!window.matchMedia){
+  private getMediaForMobileTablet() {
+    console.log("matchmedia = ", window.matchMedia('(max-width: 992px)'));
+    if (!!window.matchMedia) {
       return window.matchMedia('(max-width: 992px)');
     }
     return undefined;
@@ -76,16 +79,18 @@ export class SidebarComponent implements OnInit, OnDestroy, AfterViewInit {
     this.changeWidth(this.getMediaForMobileTablet());
   }
 
-  private subscribeToWidthChange(){
+  private subscribeToWidthChange() {
     this.getMediaForMobileTablet().addEventListener('change', (mq) => this.changeWidth(mq));
   }
 
   private changeWidth(mq: MediaQueryList | MediaQueryListEvent) {
-    let isMobileTablet = mq.matches;
-    if (isMobileTablet) {
-      this.sideNav.nativeElement.style.width = '100%';
-    } else {
-      this.sideNav.nativeElement.style.width = '25%';
+    if (this.isOpen) {
+      let isMobileTablet = mq.matches;
+      if (isMobileTablet) {
+        this.sideNav.nativeElement.style.width = '100%';
+      } else {
+        this.sideNav.nativeElement.style.width = '25%';
+      }
     }
 
   }

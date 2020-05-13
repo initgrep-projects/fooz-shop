@@ -1,0 +1,102 @@
+@import "../../../../variables.scss";
+
+div.container-fluid {
+  padding-left: 0px;
+  padding-right: 0px;
+  overflow: hidden;
+
+  .parallax {
+    border-top: 6px solid #f1f1f1;
+    border-bottom: 6px solid #f1f1f1;
+    border-radius: 5px;
+    height: 30vh;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    text-align: center;
+    
+    span {
+      top: 10vh;
+      position: relative;
+      padding: 1rem;
+      background: #f1f1f1;
+      font-size: 1rem;
+      letter-spacing: 0.025rem;
+      text-transform: capitalize;
+      font-family: $ptserif-font-family;
+      font-weight: 600;
+      border-radius: 5px;
+      
+      &:before, &:after {
+        content: "";
+        position: relative;
+        border: 1px solid $primary-border-color;
+        height: 5px;
+        display: inline-block;
+        width: 50px;
+        margin-bottom: 5px;     
+        background-color: $dark-bg-color;
+        border-radius: 5px;   
+      }
+
+      &:before{
+        margin-right: 10px;
+      }
+
+      &:after {
+        margin-left: 10px;
+      }
+    }
+  }
+}
+
+// Small devices (landscape phones, 576px and up)
+@media (min-width: 576px) { 
+  div.container-fluid {
+    .parallax{
+      height: 30vh;
+      span {
+        font-size: 1.5rem;
+        top:10vh;
+        &:before, &:after{
+
+        }
+        
+      }
+    }
+  }
+ }
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) { 
+
+  div.container-fluid {
+    .parallax{
+      height: 35vh;
+      span {
+        top:15vh;
+        &:before, &:after{
+
+        }
+        
+      }
+    }
+  }
+
+ }
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) {  }
+
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) { 
+  div.container-fluid {
+    .parallax{
+      height: 50vh;
+      span {
+        top:20vh;
+      }
+    }
+  }
+ }

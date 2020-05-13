@@ -6,6 +6,7 @@ import { PreCardComponent } from './pre-card/pre-card.component';
 import {  NgbToastModule } from '@ng-bootstrap/ng-bootstrap';
 import { ToastsComponent } from './toasts/toasts.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
+import { ParallaxComponent } from './parallax/parallax.component';
 
 
 
@@ -15,6 +16,7 @@ import { SidebarComponent } from './sidebar/sidebar.component';
     PreCardComponent,
     ToastsComponent,
     SidebarComponent,
+    ParallaxComponent,
   ],
   imports: [
     CommonModule,
@@ -25,7 +27,8 @@ import { SidebarComponent } from './sidebar/sidebar.component';
     ItemComponent,
     PreCardComponent,
     ToastsComponent,
-    SidebarComponent
+    SidebarComponent,
+    ParallaxComponent
   ]
 })
 export class SharedModule { }

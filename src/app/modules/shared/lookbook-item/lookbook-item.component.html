@@ -1,0 +1,22 @@
+<div class="lookbook-card">
+    <div class="lb-card-header">
+       <img [src]="product.Images[1].getUrl()" alt="" class="img-fluid">
+   </div>
+   <div class="card-tag">
+       <span class="title">#fooz</span>
+   </div>
+   <div class="card-like">
+       <span class="like">
+        <fa-icon class="cart"
+        icon="shopping-cart"></fa-icon>
+       </span>
+   </div>
+   <div class="card-msg">
+       <a class="btn">quick add</a>
+   </div>
+   <div class="card-desc">
+       <span class="title">{{product.Name}}</span>
+       <span class="price">{{product.Price.getCode()}} : {{product.Price.getAmount()}} </span>
+   </div>
+
+</div>

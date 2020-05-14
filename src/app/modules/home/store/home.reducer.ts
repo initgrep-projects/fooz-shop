@@ -1,15 +1,17 @@
 import { createReducer, on, Action } from '@ngrx/store';
 
 import { Product } from 'src/app/models/product';
-import { addProductsToHomeAction } from './home.action';
+import { addProductsToHomeAction, addTrendItemsAction } from './home.action';
 
 
 export interface State {
     products: Product[];
+    trendItems: string[];
 }
 
 export const initialState: State = {
-    products : []
+    products : [],
+    trendItems: []
 };
 
 const homeReducer = createReducer(
@@ -17,6 +19,10 @@ const homeReducer = createReducer(
     on(addProductsToHomeAction, (currentState, {payload}) => ({
         ...currentState,
         products : [ ...payload]
+    })),
+    on(addTrendItemsAction, (currentState, {payload}) => ({
+        ...currentState,
+        trendItems : [ ...payload]
     }))
 );
 

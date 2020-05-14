@@ -1,120 +1,16 @@
 @import "../../../../variables.scss";
 
 section.look-book {
-  margin:auto;
+  // margin: auto;
   margin-top: -5vh;
-  padding-right: 2%;
-  padding-left: 2%;
-  // border: 2px solid red;
-  .lookbook-card {
-    border-width: 0px;
-    height: 400px;
-    // border: 2px solid green;
-    border-radius: 5px;
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-    cursor: pointer;
-    .lb-card-header {
-      margin: 0;
-      padding: 0;
-      overflow: hidden;
-      border-radius: 5px;
-  
-      height: 100%;
-      img {
-        height: 100%;
-        width: 100%;
-        border-radius: 5px;
-      }
-    }
-
-    div.card-msg {
-      position: absolute;
-      bottom: 10%;
-      width: 100%;
-      a {
-        border: 2px solid $secondary-border-color;
-        font-family: $poppins-font-family;
-        text-decoration: none;
-        border-radius: 30px;
-        display: block;
-        width: 80%;
-        margin-left: 5%;
-        font-weight: 600;
-        font-size: 0.8rem;
-        letter-spacing: 0.025rem;
-        margin-right: 2rem;
-        margin-bottom: 1rem;
-        background-color: $background-color;
-        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-        // opacity: 0;
-        transition: all 0.5s ease-out;
-        text-transform: capitalize;
-        &:hover {
-          background-color: $dark-bg-color;
-          color: $secondary-text-color;
-          border-color: $primary-border-color;
-        }
-      }
-    }
-
-    &:hover {
-      .lb-card-header {
-        img {
-          transform: scale(1.2);
-          transition: all 0.5s ease-out;
-        }
-      }
-      div.card-msg {
-        a {
-          opacity: 1;
-          animation: fadeInDown;
-          animation-duration: 0.5s;
-        }
-      }
-    }
-  }
+  // padding-right: 2%;
+  // padding-left: 2%;
 }
 
 // Small devices (landscape phones, 576px and up)
 @media (min-width: 576px) {
   section.look-book {
     margin-top: -5vh;
-    padding-right: 10%;
-    padding-left: 10%;
-
-    .lookbook-card {
-      
-      .lb-card-header {
-       
-        img {
-          
-        }
-      }
-  
-      div.card-msg {
-       
-        a {
-          width: 60%;
-        margin-left: 15%;
-          &:hover {
-            
-          }
-        }
-      }
-  
-      &:hover {
-        .lb-card-header {
-          img {
-            
-          }
-        }
-        div.card-msg {
-          a {
-           
-          }
-        }
-      }
-    }
   }
 }
 
@@ -126,88 +22,13 @@ section.look-book {
 @media (min-width: 992px) {
   section.look-book {
     margin-top: -5vh;
-    padding-right: 5%;
-    padding-left: 5%;
-
-    .lookbook-card {
-      background-color: rgba(0, 0, 0, 0.03);
-      border-bottom: 1px solid rgba(0, 0, 0, 0.125);
-      .lb-card-header {
-        
-       
-        img {
-          
-        }
-      }
-  
-      div.card-msg {
-       
-        a {
-          opacity: 0;
-          &:hover {
-            
-          }
-        }
-      }
-  
-      &:hover {
-        .lb-card-header {
-          img {
-            
-          }
-        }
-        div.card-msg {
-          a {
-           
-          }
-        }
-      }
-    }
   }
 }
 
 // Extra large devices (large desktops, 1200px and up)
 @media (min-width: 1200px) {
-
   section.look-book {
-  
     margin-top: -10vh;
-    padding-right: 1%;
-    padding-left: 1%;
-    margin-left: 10%;
-    margin-right: 10%;
-    width: 80%;
-    .lookbook-card {
-      height: 500px;
-      .lb-card-header {
-       
-        img {
-          
-        }
-      }
-  
-      div.card-msg {
-       
-        a {
-          opacity: 0;
-          &:hover {
-            
-          }
-        }
-      }
-  
-      &:hover {
-        .lb-card-header {
-          img {
-            
-          }
-        }
-        div.card-msg {
-          a {
-           
-          }
-        }
-      }
-    }
+   
   }
 }

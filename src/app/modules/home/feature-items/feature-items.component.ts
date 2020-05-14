@@ -21,24 +21,18 @@ export class FeatureItemsComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.preLoadItems = [0, 0, 0, 0, 0, 0];
-    this.addProductsToStore();
     this.getProducts();
   }
 
-  addProductsToStore() {
-    this.subs[this.subs.length + 1] =
-      this.homeService.dispatchProductsToStore().subscribe();
-  }
+
 
   getProducts() {
     this.subs[this.subs.length + 1] =
-      this.homeService.getProductsFromStore()
+      this.homeService.getHomePageStore()
         .subscribe(state => {
-          setTimeout(() => {
             console.log('state.products = ', state.products);
             this.items = state.products;
             this.preLoadItems = [];
-          }, 1000);
         });
   }
 

@@ -17,6 +17,8 @@ const PRODUCT_COLLECTION = 'Products';
 const SIZE_COLLECTION = 'Sizes';
 const SORT_COLLECTION = 'SortOrders';
 const CUSTOM_SIZE_INPUT = 'CustomSizeInput';
+const TREND_COLLECTION = 'Trend';
+
 
 @Injectable({
   providedIn: 'root'
@@ -42,6 +44,8 @@ export class FireStoreDbService {
         this.db.collection(PRODUCT_COLLECTION).add(classToPlain(product)));
   }
 
+
+
   /**
    * add a different function for home component to fetch the latest onces only
    */
@@ -63,6 +67,9 @@ export class FireStoreDbService {
         })
       );
   }
+
+  
+
 
   /**
    * fetch more products for pagination
@@ -202,7 +209,20 @@ export class FireStoreDbService {
       );
   }
 
-
+  fetchTrendItems() {
+    return this.db.collection(TREND_COLLECTION)
+    .get()
+    .pipe(
+      map(querySnapShot => {
+        let items:string[] = [];
+        querySnapShot.forEach(doc => {
+          console.log("trend items ", doc.data().items);
+         items =  [...doc.data().items];
+        });
+        return items;
+      })
+    )
+  }
 
 
 

@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/store/app.reducer';
 import { FireStoreDbService } from 'src/app/services/firestore.db.service';
-import { map, take, switchMap } from 'rxjs/operators';
-import { addProductsToHomeAction } from './store/home.action';
+import { map, take, switchMap, tap } from 'rxjs/operators';
+import { addProductsToHomeAction, addTrendItemsAction } from './store/home.action';
 import { Observable, of } from 'rxjs';
 
 @Injectable({
@@ -25,10 +25,6 @@ export class HomeService {
         }));
   }
 
-  getProductsFromStore() {
-    return this.store.select('home');
-  }
-
  /**
    * This method fetches the product based on the product id.
    * if product is not present in the local store,
@@ -48,7 +44,22 @@ export class HomeService {
           }
         })
       );
-
-
   }
+
+ 
+
+
+  dispatchTrendItemsToStore(){
+    return this.fbDbService.fetchTrendItems()
+    .pipe(
+      tap(items => this.store.dispatch(addTrendItemsAction({payload: items})))
+    )
+  }
+
+  
+  getHomePageStore() {
+    return this.store.select('home');
+  }
+
+
 }

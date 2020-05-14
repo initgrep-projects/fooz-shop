@@ -6,16 +6,16 @@ div.item {
 
   div.item-heading {
     width: 100%;
-    height: 400px;
+    height: 200px;
     cursor: pointer;
-
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
     img {
       width: 100%;
       position: absolute;
       left: 0%;
       opacity: 1;
-      height: 400px;
-      border-radius: 5px;
+      height: 200px;
+      border-radius: 2px;
 
       &:nth-child(1) {
         left: 0%;
@@ -31,24 +31,24 @@ div.item {
       position: absolute;
       float: right;
       right: 2%;
-      bottom: 25%;
+      bottom: 45%;
       ul {
         li {
           padding: 0.2rem;
           background-color: transparent;
           border: none;
-
+          padding-bottom: 0px;
           span.size {
             display: inline-block;
             font-weight: 600;
             border: 1px solid $primary-border-color;
             color: $primary-text-color;
             text-align: center;
-            line-height: 30px;
-            width: 30px;
-            height: 30px;
+            line-height: 18px;
+            width: 20px;
+            height: 20px;
             border-radius: 50%;
-            font-size: 0.8rem;
+            font-size: 0.6rem;
           }
         }
       }
@@ -57,7 +57,7 @@ div.item {
     div.item-mask {
       position: absolute;
       width: 100%;
-      height: 300px;
+      height: 200px;
       z-index: 1;
       opacity: 0;
       background-color: rgba(0, 0, 0, 0.2);
@@ -68,24 +68,26 @@ div.item {
           border-bottom-width: 0px;
           border-width: 0px;
           color: #f1f1f1;
-
-          &:nth-child(3){
-            margin-top: 3rem;
+          padding: 0;
+          &:nth-child(3) {
+            margin-top: 60%;
+            text-align: center;
           }
 
           button {
-            margin-left: 30%;
-            margin-top: 35%;
-            font-size: 0.8rem;
-            padding: 0.5rem;
-            padding-left: 1rem;
-            padding-right: 1rem;
-            letter-spacing: 0.1rem;
+            font-size: 0.5rem;
+            letter-spacing: 0.025rem;
             text-transform: capitalize;
-            border-radius: 20px;
+            border-radius: 15px;
             border-width: 2px;
+            font-family: "Poppins", sans-serif;
+            padding-top: 0.2rem;
+            padding-bottom: 0.2rem;
+            padding-left: 0.3rem;
+            padding-right: 0.3rem;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+            opacity: 0;
             font-weight: 600;
-            font-family: $poppins-font-family;
           }
         }
       }
@@ -95,14 +97,24 @@ div.item {
       div.item-mask {
         transition: all 0.5s ease-out;
         opacity: 1;
+
+        ul.list-group {
+          li.list-group-item {
+            button {
+              opacity: 1;
+              animation: fadeInUp;
+              animation-duration: 0.5s;
+            }
+          }
+        }
       }
       div.item-size {
         ul {
           li {
             span {
-              border:2px solid $secondary-border-color;
+              border: 2px solid $secondary-border-color;
               color: $secondary-text-color;
-              transition: all .5s ease-in;
+              transition: all 0.5s ease-in;
             }
           }
         }
@@ -120,12 +132,13 @@ div.item {
     font-family: $poppins-font-family;
     h6 {
       text-align: center;
-
+      margin-bottom: 0;
       span.name,
       span.size {
-        letter-spacing: 0.045rem;
-        font-size: 1rem;
+        letter-spacing: 0.025rem;
+        font-size: 0.6rem;
         text-transform: capitalize;
+        font-family: $ptserif-font-family;
       }
       span.size {
         font-weight: 600;
@@ -134,6 +147,8 @@ div.item {
 
       span.price {
         font-weight: 600;
+        letter-spacing: 0.025rem;
+        font-size: 0.6rem;
       }
     }
 
@@ -150,43 +165,69 @@ div.item {
   }
 }
 
-// Small devices (landscape phones, 576px and up)
-@media (min-width: 576px) {
+@media (min-width: 460px) {
   div.item {
     position: relative;
     overflow: hidden;
+
     div.item-heading {
       width: 100%;
-      height: 350px;
+      height: 250px;
       cursor: pointer;
+      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
       img {
         width: 100%;
-        position: absolute;
-        left: 1%;
-        opacity: 1;
-        height: 350px;
+        height: 250px;
+      }
 
-        &:nth-child(1) {
-          left: 0%;
-        }
-        &:nth-child(2) {
-          left: 100%;
-          opacity: 0;
+      div.item-mask {
+        height: 250px;
+        ul.list-group {
+          li.list-group-item {
+            &:nth-child(3) {
+              margin-top: 80%;
+            }
+            button {
+              padding-left: 0.6rem;
+              padding-right: 0.6rem;
+              font-size: .6rem;
+            }
+          }
         }
       }
-      &:hover {
-        img {
-          &:nth-child(2) {
-            left: 0%;
-            opacity: 1;
+    }
+  }
+}
+
+// Small devices (landscape phones, 576px and up)
+@media (min-width: 576px) {
+
+  div.item {
+    div.item-heading {
+      height: 280px;
+      img {
+        height: 280px;
+      }
+      div.item-mask {
+        height: 280px;
+
+        ul.list-group {
+          li.list-group-item {
+            &:nth-child(3) {
+              margin-top: 100%;
+            }
+            button {
+              
+            }
           }
         }
       }
     }
     div.item-body {
-      position: relative;
       h6 {
-        text-align: center;
+        span.name,
+        span.price {
+        }
       }
     }
   }
@@ -195,41 +236,31 @@ div.item {
 // Medium devices (tablets, 768px and up)
 @media (min-width: 768px) {
   div.item {
-    position: relative;
-    overflow: hidden;
-
     div.item-heading {
-      width: 100%;
-      height: 350px;
-      cursor: pointer;
+      height: 280px;
       img {
-        width: 100%;
-        position: absolute;
-        left: 0%;
-        opacity: 1;
-        height: 350px;
-
-        &:nth-child(1) {
-          left: 0%;
-        }
-        &:nth-child(2) {
-          left: 100%;
-          opacity: 0;
-        }
+        height: 280px;
       }
-      &:hover {
-        img {
-          &:nth-child(2) {
-            left: 0%;
-            opacity: 1;
+      div.item-mask {
+        height: 280px;
+
+        ul.list-group {
+          li.list-group-item {
+            button {
+              font-size: 0.6rem;
+              padding-left: 0.8rem;
+              padding-right: 0.8rem;
+            }
           }
         }
       }
     }
     div.item-body {
-      position: relative;
       h6 {
-        text-align: center;
+        span.name,
+        span.price {
+          font-size: 0.8rem;
+        }
       }
     }
   }
@@ -237,17 +268,71 @@ div.item {
 
 // Large devices (desktops, 992px and up)
 @media (min-width: 992px) {
+  div.item {
+    div.item-heading {
+      height: 400px;
+      img {
+        height: 400px;
+      }
+
+      div.item-size {
+        bottom: 25%;
+        ul {
+          li {
+            span.size {
+              line-height: 30px;
+              width: 30px;
+              height: 30px;
+              border-radius: 50%;
+              font-size: 0.8rem;
+            }
+          }
+        }
+      }
+
+      div.item-mask {
+        height: 400px;
+
+        ul.list-group {
+          li.list-group-item {
+            button {
+              border-radius: 20px;
+              padding: 0.5rem;
+              padding-left: 1rem;
+              padding-right: 1rem;
+              font-size: 0.8rem;
+            }
+          }
+        }
+      }
+    }
+    div.item-body {
+      h6 {
+        span.name,
+        span.price {
+          font-size: 0.8rem;
+        }
+      }
+    }
+  }
 }
 
 // Extra large devices (large desktops, 1200px and up)
 @media (min-width: 1200px) {
   div.item {
     div.item-heading {
+      height: 400px;
+      img {
+        height: 400px;
+      }
       div.item-mask {
+        height: 400px;
         ul.list-group {
           li.list-group-item {
+            &:nth-child(3) {
+              margin-top: 80%;
+            }
             button {
-              margin-left: 25%;
             }
           }
         }
@@ -260,19 +345,19 @@ div.item {
 @media (min-width: 1750px) {
   div.item {
     div.item-heading {
-      height: 450px;
+      height: 500px;
       img {
-        width: 100%;
-        height: 450px;
+        height: 500px;
       }
 
       div.item-mask {
-        height: 450px;
+        height: 500px;
 
         ul.list-group {
           li.list-group-item {
+
             button {
-              margin-left: 30%;
+              
             }
           }
         }

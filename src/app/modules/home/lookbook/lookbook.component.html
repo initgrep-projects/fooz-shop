@@ -1,68 +1,14 @@
-<section class="container-fluid look-book mb-2">
+<section class="trend-item-wrapper  ">
+    <app-parallax [title]="'Latest Abaya'" [imgUrl] = "'../../../../assets/img/splash4.jpg'"></app-parallax>
+  </section>
+
+<section class="container look-book mb-2">
 
     <div class="row">
+        <div class="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-4 my-2 " *ngFor="let product of products">
+          <app-lookbook-item [item] = "product"></app-lookbook-item>
+        </div>
 
-        <div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-4 my-2  ">
-            <div class="lookbook-card">
-                 <div class="lb-card-header">
-                    <img src="https://i.imgur.com/fZube9X.jpg" alt="" class="img-fluid">
-                </div>
-                <div class="card-msg">
-                    <a class="btn">view collection</a>
-                </div>
-            </div>
-        </div>
-         <div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-4 my-2  ">
-            <div class="lookbook-card">
-                <div class="lb-card-header">
-                    <img src="https://i.imgur.com/rnRqUoz.jpg" alt="" class="img-fluid">
-                </div>
-                <div class="card-msg">
-                    <a class="btn">view collection</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-4 my-2  ">
-            <div class="lookbook-card">
-                <div class="lb-card-header">
-                    <img src="https://i.imgur.com/rnRqUoz.jpg" alt="" class="img-fluid">
-                </div>
-                <div class="card-msg">
-                    <a class="btn">view collection</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-4 my-2  ">
-            <div class="lookbook-card">
-                <div class="lb-card-header">
-                    <img src="https://i.imgur.com/rnRqUoz.jpg" alt="" class="img-fluid">
-                </div>
-                <div class="card-msg">
-                    <a class="btn">view collection</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-4 my-2  ">
-            <div class="lookbook-card">
-                <div class="lb-card-header">
-                    <img src="https://i.imgur.com/rnRqUoz.jpg" alt="" class="img-fluid">
-                </div>
-                <div class="card-msg">
-                    <a class="btn">view collection</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-4 my-2  ">
-            <div class="lookbook-card">
-                <div class="lb-card-header">
-                    <img src="https://i.imgur.com/rnRqUoz.jpg" alt="" class="img-fluid">
-                </div>
-                <div class="card-msg">
-                    <a class="btn">view collection</a>
-                </div>
-            </div>
-        </div>
-        
     </div>
+
 </section>
-<app-parallax [title]="'Latest Abaya'" [imgUrl]="'../../../../assets/img/splash5.jpg'"></app-parallax>

@@ -1,6 +1,20 @@
 @import "../../../../variables.scss";
 
-.trend-item-wrapper {
+@mixin reset-slide {
+  flex: 1;
+  img {
+    width: 100%;
+    height: calc(100% - 5vh);
+  }
+}
+
+
+@mixin expand-slide {
+  flex: 1 1 50%;
+  img {
+    width: 100%;
+    height: 100%;
+  }
 }
 
 .fooz-container {
@@ -28,11 +42,23 @@
     }
 
     &:hover {
-      flex: 1 1 50%;
+      @include expand-slide();
     }
-    &:hover > img {
-      width: 100%;
-      height: 100%;
+    &:nth-child(3) {
+      @include expand-slide();
+    }
+
+    &:nth-child(1):hover ~ .box:nth-child(3) {
+      @include reset-slide();
+    }
+    &:nth-child(2):hover ~ .box:nth-child(3) {
+      @include reset-slide();
+    }
+    &:nth-child(4):hover > .box:nth-child(3) {
+      @include reset-slide();
+    }
+    &:nth-child(5):hover > .box:nth-child(3) {
+      @include reset-slide();
     }
   }
 }
@@ -53,7 +79,6 @@
 
 // Large devices (desktops, 992px and up)
 @media (min-width: 992px) {
-
   .fooz-container {
     height: 70vh;
   }

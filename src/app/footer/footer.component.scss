@@ -7,7 +7,7 @@ footer {
   padding-top: 4rem;
   padding-bottom: 4rem;
   background-color: #f6f6f8;
-
+  font-family: $ptserif-font-family;
   ul.list-group.brand-wrapper {
     li.list-group-item {
       border-width: 0px !important;
@@ -23,7 +23,7 @@ footer {
           letter-spacing: $heading-letter-spacing;
           text-transform: uppercase;
           // font-size: .9rem;
-          font-family: $ptserif-font-family;
+       
           font-weight: 600;
           margin-left: 0.5rem;
         }
@@ -55,9 +55,9 @@ footer {
       border-width: 0px !important;
       background-color: transparent;
       color: #878787;
-      padding: 1rem 0.2rem 0.2rem 0.2rem;
+      padding: .5rem 0.2rem 0.2rem 0.2rem;
       //   padding-bottom: 1.2rem;
-      font-family: $poppins-font-family;
+      // font-family: $poppins-font-family;
       &:first-child {
         h6 {
           color: #333;
@@ -74,6 +74,12 @@ footer {
         letter-spacing: $heading-letter-spacing;
         text-decoration: none;
         color: #878787;
+
+        &:hover{
+          transition: all .2s ease-in-out;
+          font-weight: 600;
+          color: #333;
+        }
       }
     }
   }

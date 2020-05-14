@@ -31,12 +31,16 @@ export class ItemComponent implements OnInit {
   }
 
   routeToItemDetails() {
+
     this.router.navigate(
       ['item', this.item.Id],
        {
          queryParams: {source: this.sourcePage},
          relativeTo: this.activatedRoute
-        });
+        })
+        .then(stat => console.log("after route changed", stat))
+        .catch(err => console.log("route didnt go ", err));
+        ;
   }
 
   setInitImages() {

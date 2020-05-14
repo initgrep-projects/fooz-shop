@@ -1,7 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Category } from 'src/app/models/category';
-import { Store } from '@ngrx/store';
-import { AppState } from 'src/app/store/app.reducer';
 import { Subscription } from 'rxjs';
 import { FilterHeaderService } from './filter-header.service';
 import { Size } from 'src/app/models/size';

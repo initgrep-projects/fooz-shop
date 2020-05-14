@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Category } from 'src/app/models/category';
 import { Store } from '@ngrx/store';
-import { AppState } from 'src/app/store/app.reducer';
 import { selectCategory, selectSize, selectSortOrder, saveAllCategories, saveAllSizes, saveAllSortOrders } from './store/filter.action';
 import { Size } from 'src/app/models/size';
 import { Sort } from 'src/app/models/Sort';
 import { LogService } from 'src/app/services/log.service';
 import { FireStoreDbService } from 'src/app/services/firestore.db.service';
 import { map } from 'rxjs/operators';
+import { AppState } from '../../main/store/app.reducer';
 
 @Injectable({
   providedIn: 'root'

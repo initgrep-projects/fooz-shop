@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { AppState } from 'src/app/store/app.reducer';
 import { FireStoreDbService } from 'src/app/services/firestore.db.service';
 import { map, take, switchMap, tap } from 'rxjs/operators';
 import { addProductsToHomeAction, addTrendItemsAction } from './store/home.action';
-import { Observable, of } from 'rxjs';
+import {  of } from 'rxjs';
+import { AppState } from '../main/store/app.reducer';
 
 @Injectable({
   providedIn: 'root'

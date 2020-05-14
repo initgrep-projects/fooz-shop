@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { AppState } from 'src/app/store/app.reducer';
 import { map, take, switchMap, tap } from 'rxjs/operators';
 import { FireStoreDbService } from 'src/app/services/firestore.db.service';
 import { addProductsAction, appendProductsAction, addCustomSizeInputAction, addItemToCartAction } from './store/shop.actions';
 import { of } from 'rxjs';
 import { Product } from 'src/app/models/product';
+import { AppState } from '../main/store/app.reducer';
 
 @Injectable({
   providedIn: 'root'

@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
-import { FireStoreDbService } from './services/firestore.db.service';
 import { Subscription } from 'rxjs';
+import { FireStoreDbService } from 'src/app/services/firestore.db.service';
 
 @Component({
   selector: 'app-root',

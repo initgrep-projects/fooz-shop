@@ -1,6 +1,7 @@
-import * as fromHome from '../modules/home/store/home.reducer';
-import * as fromShop from '../modules/shop/store/shop.reducer';
-import * as fromFilters from '../modules/shop/filter-header/store/filter.reducer';
+import * as fromHome from '../../home/store/home.reducer';
+import * as fromShop from '../../shop/store/shop.reducer';
+import * as fromFilters from '../../shop/filter-header/store/filter.reducer';
+
 import { ActionReducerMap } from '@ngrx/store';
 
 export interface AppState {

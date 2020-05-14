@@ -100,3 +100,14 @@ div.container-fluid {
     }
   }
  }
+
+ @media (min-width: 1750px) {
+  div.container-fluid {
+    .parallax{
+      height: 30vh;
+      span {
+        top:15vh;
+      }
+    }
+  }
+ }

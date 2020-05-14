@@ -1,0 +1,33 @@
+
+@import "../../../../../variables.scss";
+
+div.modal-header {
+    font-family: $poppins-font-family;
+    h4.modal-title {
+        font-weight: 600;
+        text-align: center;
+        width: 100%;
+        letter-spacing: 0.25rem;
+        text-transform: uppercase;
+        fa-icon.cart {
+            margin-right: 1rem;
+        }
+    }
+}
+div.modal-body {
+    ul {
+        li {
+            background-color: $grey-bg-color;
+            img {
+                width: 128px;
+                height: 128px;
+            }
+
+            h6 {
+                span {
+                    font-weight: 600;
+                }
+            }
+        }
+    }
+}

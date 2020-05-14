@@ -1,45 +1,19 @@
 @import "../../../../variables.scss";
-.cart {
-    cursor: pointer;
-    text-shadow: 4px 4px 2px rgba(150, 150, 150, 1);
-}
 
-.badge {
-    cursor: pointer;
-    font-size: .7rem;
-    border:2px solid #333;
-    border-radius: 5px;
-    margin-top: .4rem;
-
-}
-
-div.modal-header {
-    font-family: $poppins-font-family;
-    h4.modal-title {
-        font-weight: 600;
-        text-align: center;
-        width: 100%;
-        letter-spacing: 0.25rem;
-        text-transform: uppercase;
-        fa-icon.cart {
-            margin-right: 1rem;
-        }
+a{
+    color: $primary-text-color;
+    .cart {
+        cursor: pointer;
+        text-shadow: 4px 4px 2px rgba(150, 150, 150, 1);
+    }
+    
+    .badge {
+        cursor: pointer;
+        font-size: .7rem;
+        border:2px solid #333;
+        border-radius: 5px;
+        margin-top: .4rem;
+    
     }
 }
-div.modal-body {
-    ul {
-        li {
-            background-color: $grey-bg-color;
-            img {
-                width: 128px;
-                height: 128px;
-            }
 
-            h6 {
-                span {
-                    font-weight: 600;
-                }
-            }
-        }
-    }
-}

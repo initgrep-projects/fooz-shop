@@ -8,10 +8,9 @@ import { TopBarComponent } from './top-bar/top-bar.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { SearchComponent } from './nav-bar/search/search.component';
 import { AccountComponent } from './nav-bar/account/account.component';
-import { CartComponent } from './nav-bar/cart/cart.component';
-import { CartItemsComponent } from './nav-bar/cart/cart-items/cart-items.component';
-import { CartModalComponent } from './nav-bar/cart/cart-modal/cart-modal.component';
+
 import { HeaderRoutingModule } from './header-routing.module';
+import { CartModule } from '../cart/cart.module';
 
 @NgModule({
   declarations: [
@@ -19,15 +18,13 @@ import { HeaderRoutingModule } from './header-routing.module';
     TopBarComponent,
     NavBarComponent,
     SearchComponent,
-    AccountComponent,
-    CartComponent,
-    CartItemsComponent,
-    CartModalComponent
+    AccountComponent
   ],
   imports: [
     CommonModule,
     FontAwesomeModule,
     SharedModule,
+    CartModule,
     HeaderRoutingModule
   ],
   exports: [

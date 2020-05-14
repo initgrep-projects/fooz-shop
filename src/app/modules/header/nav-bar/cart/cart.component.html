@@ -1,6 +1,0 @@
-<a [routerLink]="[{outlets: {'modal': ['cart']}}]">
-      <fa-icon class="cart" icon="shopping-cart"></fa-icon>
-      <span class="badge badge-light badge-pill" *ngIf="cart.length > 0">{{ cart.length }}</span>
-</a>
-
-<router-outlet name="modal"></router-outlet>

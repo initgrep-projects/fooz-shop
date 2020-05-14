@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { map, take, switchMap, tap } from 'rxjs/operators';
 import { FireStoreDbService } from 'src/app/services/firestore.db.service';
-import { addProductsAction, appendProductsAction, addCustomSizeInputAction, addItemToCartAction } from './store/shop.actions';
+import { addProductsAction, appendProductsAction, addCustomSizeInputAction } from './store/shop.actions';
 import { of } from 'rxjs';
 import { Product } from 'src/app/models/product';
 import { AppState } from '../main/store/app.reducer';
@@ -70,12 +70,4 @@ export class ShopService {
         })
       );
   }
-
-
-  addProductTocart(p: Product) {
-    console.log('addProduct to cart called ', p);
-    this.store.dispatch(addItemToCartAction({payload: p}));
-  }
-
-
 }

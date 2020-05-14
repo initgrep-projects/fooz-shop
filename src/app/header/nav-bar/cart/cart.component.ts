@@ -39,8 +39,8 @@ export class CartComponent implements OnInit {
   }
 
 
-  showCartModal() {
-    this.modalService.open(this.cartContentRef, { size: 'lg', scrollable: true });
-  }
+  // showCartModal() {
+  //   this.modalService.open(this.cartContentRef, { size: 'lg', scrollable: true });
+  // }
 
 }

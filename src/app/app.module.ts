@@ -28,6 +28,7 @@ import {AngularFireAuthModule} from '@angular/fire/auth';
 import { environment } from 'src/environments/environment';
 import { SharedModule } from './modules/shared/shared.module';
 import { CartItemsComponent } from './header/nav-bar/cart/cart-items/cart-items.component';
+import { CartModalComponent } from './header/nav-bar/cart/cart-modal/cart-modal.component';
 
 
 
@@ -42,6 +43,7 @@ import { CartItemsComponent } from './header/nav-bar/cart/cart-items/cart-items.
     AccountComponent,
     CartComponent,
     CartItemsComponent,
+    CartModalComponent,
   ],
   imports: [
     BrowserModule,

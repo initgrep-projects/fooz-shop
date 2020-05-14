@@ -3,7 +3,6 @@ import { Routes, RouterModule } from '@angular/router';
 import { ShopComponent } from './shop.component';
 import { ItemDetailComponent } from './items/item-detail/item-detail.component';
 import { ProductResolver } from 'src/app/services/product-resolver.service';
-import { pathToFileURL } from 'url';
 
 
 const routes: Routes = [
@@ -14,8 +13,8 @@ const routes: Routes = [
   {
     path: 'shop/item/:id',
     component: ItemDetailComponent,
-    resolve: { product: ProductResolver }
-  },
+    resolve: { product: ProductResolver },
+  }
 
 ];
 

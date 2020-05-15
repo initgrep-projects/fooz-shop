@@ -8,12 +8,11 @@
 </div>
 <div class="modal-body">
   <ul class="list-unstyled">
-    <li class="media mb-1 py-2" *ngFor="let product of cart">
-      <img class="mr-3" [src]="product.Images[0].getUrl()" alt="{{product.Name}}">
+    <li class="media mb-1 py-2" *ngFor="let item of cart">
+      <img class="mr-3" [src]="item.product.Images[0].getUrl()" alt="{{item.product.Name}}">
       <div class="media-body">
-        <h6 class="mt-0 mb-1 "><span>{{product.Name}}</span></h6>
-        <h6 class="mt-0 mb-1">Code: <span>{{product.Id}}</span></h6>
-
+        <h6 class="mt-0 mb-1 "><span>{{item.product.Name}}</span></h6>
+        <h6 class="mt-0 mb-1">Code: <span>{{item.product.Id}}</span></h6>
       </div>
     </li>
   </ul>

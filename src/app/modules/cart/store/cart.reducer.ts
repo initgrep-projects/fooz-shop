@@ -1,26 +1,33 @@
 import { createReducer, on, Action } from '@ngrx/store';
-import {  addItemToCartAction, deleteItemInCartAction, updateItemInCartAction } from './cart.actions';
+import { addItemsToCartAction, addItemToCartAction, deleteItemInCartAction, updateItemInCartAction } from './cart.actions';
 import { Product } from 'src/app/models/product';
+import { CartItem } from 'src/app/models/cartItem';
+
 
 
 export interface State {
-    cart: Product[];
+    cart: CartItem[]
 }
 
 export const initialState: State = {
-    cart: []
+    cart:[] 
 };
 
 const cartReducer = createReducer(
     initialState,
 
+    on(addItemsToCartAction, (currentState, { payload }) => ({
+        ...currentState,
+        cart: [...payload ]
+    })),
+
     on(addItemToCartAction, (currentState, { payload }) => ({
         ...currentState,
-        cart: [...currentState.cart, payload]
+        cart: [...currentState.cart, payload ]
     })),
-    on(deleteItemInCartAction, (currentState, { productId }) => ({
+    on(deleteItemInCartAction, (currentState, { payload }) => ({
         ...currentState,
-        cart: getDifferentialCart(currentState.cart, productId)
+        cart: getDifferentialCart(currentState.cart, payload)
     })),
     on(updateItemInCartAction, (currentState, { payload }) => ({
         ...currentState,
@@ -29,14 +36,14 @@ const cartReducer = createReducer(
 
 );
 
-function getDifferentialCart(products: Product[], id: string) {
-    return [...products.splice(products.findIndex(product => product.Id === id), 1)];
+function getDifferentialCart(cart: CartItem[], id: string) {
+    return [...cart.splice(cart.findIndex(item=> item.product.Id === id),1)];
 }
 
-function getUpdatedCart(products: Product[], product: Product) {
-    const index = products.findIndex(p => p.Id === product.Id);
-    products.splice(index, 1);
-    return [...products, product];
+function getUpdatedCart(cart: CartItem[], item: CartItem) {
+    const index = cart.findIndex(p => p.product.Id === item.product.Id);
+    cart.splice(index, 1);
+    return [...cart, item];
 }
 
 export function CartReducer(state: State = initialState, action: Action) {

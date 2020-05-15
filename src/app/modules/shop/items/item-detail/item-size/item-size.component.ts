@@ -28,8 +28,9 @@ export class ItemSizeComponent implements OnInit, OnDestroy {
     } else {
       this.resetSelection();
       s.select();
+      this.itemDetailService.setSelectedSize(s);
     }
-    this.itemDetailService.setSelectedSize(this.sizes);
+    
   }
 
   resetSelectionOnCustomSize() {

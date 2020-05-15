@@ -10,6 +10,7 @@ import { Category } from '../models/category';
 import { Size } from '../models/size';
 import { Sort } from '../models/Sort';
 import { CustomSizeInput } from '../models/custom-size';
+import { CartItem } from '../models/cartItem';
 
 
 const CATEGORY_COLLECTION = 'Categories';
@@ -18,6 +19,7 @@ const SIZE_COLLECTION = 'Sizes';
 const SORT_COLLECTION = 'SortOrders';
 const CUSTOM_SIZE_INPUT = 'CustomSizeInput';
 const TREND_COLLECTION = 'Trend';
+const CART_COLLECTION = 'Cart';
 
 
 @Injectable({
@@ -43,8 +45,6 @@ export class FireStoreDbService {
       .forEach(product =>
         this.db.collection(PRODUCT_COLLECTION).add(classToPlain(product)));
   }
-
-
 
   /**
    * add a different function for home component to fetch the latest onces only
@@ -223,6 +223,22 @@ export class FireStoreDbService {
       })
     )
   }
+
+  /** cart Operations START
+   *  1) save an item to db
+   *  2) if the item is already present -- increase quantity
+   *    //update the item in db and store
+   * 
+   *  3) update the item directly in cart ex: add remove more quanity
+   *  4) delete the item
+   *  4)  fetch all items
+   */
+  saveCartItemToDb(item:CartItem){
+    // this.db.
+
+  }
+  /** cart Operations END */
+
 
 
 

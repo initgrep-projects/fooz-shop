@@ -11,7 +11,6 @@ export class Product {
     private id: string;
     private description: string;
     private availableQuantity: number;
-    private quantity: number;
     private timeStamp: number;
     private price: Currency;
     private category: Category;
@@ -35,7 +34,6 @@ export class Product {
         this.description = description;
         this.category = category;
         this.availableQuantity = availableQuantity;
-        this.quantity = 0;
         this.timeStamp = timeStamp;
         this.price = price;
         this.images = images;
@@ -64,8 +62,6 @@ export class Product {
     set Description(description: string) { this.description = description; }
     get AvailableQuantity() { return this.availableQuantity; }
     set AvailableQuantity(quantity: number) { this.availableQuantity = quantity; }
-    get Quantity() { return this.quantity; }
-    set Quantity(quantity: number) { this.quantity = quantity; }
     get TimeStamp() { return this.timeStamp; }
     set TimeStamp(timestamp: number) { this.timeStamp = timestamp; }
     get Price() { return this.price; }

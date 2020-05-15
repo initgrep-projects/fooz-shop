@@ -3,6 +3,7 @@ import { Product } from 'src/app/models/product';
 import { Subscription } from 'rxjs';
 import { CartService } from '../cart.service';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { CartItem } from 'src/app/models/cartItem';
 
 @Component({
   selector: 'app-cart-items',
@@ -11,7 +12,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class CartItemsComponent implements OnInit, OnDestroy {
 
-  cart: Product[] = [];
+  cart: CartItem[] = [];
   private subs: Subscription[] = [];
 
   constructor(

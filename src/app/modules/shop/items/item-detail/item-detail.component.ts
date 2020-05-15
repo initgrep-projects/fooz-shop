@@ -3,6 +3,7 @@ import { Product } from 'src/app/models/product';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { ItemDetailService } from './item-detail.service';
+import {SubSink} from 'subsink';
 
 @Component({
   selector: 'app-item-detail',
@@ -13,7 +14,7 @@ export class ItemDetailComponent implements OnInit, OnDestroy {
 
   product: Product;
 
-  subs: Subscription[] = [];
+  subs = new SubSink();
 
   constructor(
     private route: ActivatedRoute,
@@ -25,19 +26,15 @@ export class ItemDetailComponent implements OnInit, OnDestroy {
   }
 
   recieveProductFromResolver() {
-    this.subs[this.subs.length + 1] =
+    this.subs.sink =
       this.route.data.subscribe(data => {
         this.product = data.product;
-        this.itemdetailSerive.setProduct(data.product);
-        console.log('detailed product = ', this.product);
+        this.itemdetailSerive.dispatchProduct(data.product);
       });
   }
 
-
-
-
   ngOnDestroy() {
-    this.subs.forEach(sub => sub.unsubscribe());
+    this.subs.unsubscribe();
   }
 
 }

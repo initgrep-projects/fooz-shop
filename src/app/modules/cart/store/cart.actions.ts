@@ -1,18 +1,24 @@
 import { createAction, props } from '@ngrx/store';
-import { Product } from 'src/app/models/product';
+import { CartItem } from 'src/app/models/cartItem';
 
+
+
+export const addItemsToCartAction = createAction(
+    '[cart]  add items',
+    props<{payload: CartItem[]}>()
+);
 
 export const addItemToCartAction = createAction(
     '[cart]  add item',
-    props<{payload: Product}>()
+    props<{payload: CartItem}>()
 );
 export const deleteItemInCartAction = createAction(
     '[cart]  delete item',
-    props<{productId: string}>()
+    props<{payload: string}>()
 );
 export const updateItemInCartAction = createAction(
     '[cart]  update item',
-    props<{payload: Product}>()
+    props<{payload: CartItem}>()
 );
 
 

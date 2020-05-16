@@ -15,7 +15,6 @@ export class ItemBuyComponent implements OnInit, OnDestroy {
   /**
    * to be done later when Authentication is implemented
    */
-
   userId = 'Ano';
 
   product: Product ;
@@ -30,8 +29,6 @@ export class ItemBuyComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
-    console.log("itemBuy init");
-
     this.subs.sink = this.itemdetailService.onProductRecieved
                         .subscribe(p  => {
                           console.log('product recieved subscription ', p);
@@ -44,25 +41,25 @@ export class ItemBuyComponent implements OnInit, OnDestroy {
                         .subscribe(c => this.product.Colors = [c]);
     this.subs.sink = this.itemdetailService.onQuantityChange
                         .subscribe(q => this.selectedQuantity = q);
-    this.subs.sink = this.itemdetailService.onSizeChange                                                             
+    this.subs.sink = this.itemdetailService.onSizeChange
                         .subscribe(s => this.product.Sizes = [s]);
     this.subs.sink = this.itemdetailService.onCustomSizeChange
-                        .subscribe(cz => this.product.CustomSize = cz);  
+                        .subscribe(cz => this.product.CustomSize = cz);
 
   }
 
   addToCart() {
-    console.log("addToCart = ", this.product);
+    console.log('add to cart Product = ', this.product);
     this.isValidCart = this.itemdetailService.validateCartProduct(this.product, this.selectedQuantity);
-    // if (this.isValidCart) {
+    if (this.isValidCart) {
 
-    //   this.toastService.show(
-    //     'Item added to Card Successfully ',
-    //     { classname: 'bg-dark text-light', delay: 1000 }
-    //   );
+      this.toastService.show(
+        'Item added to Card Successfully ',
+        { classname: 'bg-dark text-light', delay: 1000 }
+      );
 
-    //   this.cartService.addItem(this.product, this.selectedQuantity, this.userId);
-    // }
+      this.cartService.saveItem(this.product, this.selectedQuantity, this.userId);
+    }
   }
 
 

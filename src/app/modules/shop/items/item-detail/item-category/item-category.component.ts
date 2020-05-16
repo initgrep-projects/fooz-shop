@@ -24,14 +24,14 @@ export class ItemCategoryComponent implements OnInit {
   }
 
   isButtonedAbaya() {
-    return this.category.getCode() === this.buttonedAbaya.getCode();
+    return this.category.Code === this.buttonedAbaya.Code;
   }
   isCenterOpenAbaya() {
-    return this.category.getCode() === this.centerOpenAbaya.getCode();
+    return this.category.Code === this.centerOpenAbaya.Code;
   }
 
   setCategory(code: string) {
-    if (code === this.centerOpenAbaya.getCode()) {
+    if (code === this.centerOpenAbaya.Code) {
       this.category = this.centerOpenAbaya;
     } else {
       this.category = this.buttonedAbaya;

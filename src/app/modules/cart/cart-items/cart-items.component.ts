@@ -1,9 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Product } from 'src/app/models/product';
-import { Subscription } from 'rxjs';
 import { CartService } from '../cart.service';
-import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { CartItem } from 'src/app/models/cartItem';
+import { CartModalService } from '../cart-modal/cart-modal.service';
+import { SubSink } from 'subsink';
 
 @Component({
   selector: 'app-cart-items',
@@ -13,11 +12,11 @@ import { CartItem } from 'src/app/models/cartItem';
 export class CartItemsComponent implements OnInit, OnDestroy {
 
   cart: CartItem[] = [];
-  private subs: Subscription[] = [];
+  private subs = new SubSink();
 
   constructor(
     private cartService: CartService,
-    private activeModal: NgbActiveModal
+    private cartModalService: CartModalService
   ) { }
 
   ngOnInit(): void {
@@ -28,18 +27,19 @@ export class CartItemsComponent implements OnInit, OnDestroy {
    * get the cart items from the store
    */
   getCart() {
-    this.subs[this.subs.length + 1] =
+    this.subs.sink =
       this.cartService.getCartFromStore()
         .subscribe(state => {
           this.cart = state.cart;
+          console.log('cart from store = ', this.cart);
         });
   }
 
   closeModal() {
-    this.activeModal.dismiss();
+    this.cartModalService.dismissModal();
   }
 
   ngOnDestroy() {
-    this.subs.forEach(sub => sub.unsubscribe());
+    this.subs.unsubscribe();
   }
 }

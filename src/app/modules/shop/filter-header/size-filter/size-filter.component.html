@@ -6,16 +6,16 @@
             ngbDropdownAnchor
             (focus)="size.open()">
         <fa-icon icon="tape"></fa-icon> 
-        {{ !!this.selectedSize? 'Size: '+ this.selectedSize.getLetter() : 'size'}}
+        {{ !!this.selectedSize? 'Size: '+ this.selectedSize.Letter : 'size'}}
     </button>
     <div ngbDropdownMenu
          aria-labelledby="dropdownManual">
         <button ngbDropdownItem 
         *ngFor='let size of sizes'
-        id ="{{size.getLetter()}}"
+        id ="{{size.Letter}}"
         (click) ="emitSizeChange(size)"
         >
-            <b>{{size.getLetter()}}</b> - {{size.getLabel()}}
+            <b>{{size.Letter}}</b> - {{size.Label}}
         </button>
     
     </div>

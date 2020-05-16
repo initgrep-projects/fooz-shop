@@ -7,16 +7,16 @@ export class CustomSize {
         private arm: number = 0,
         private hip: number = 0) { }
 
-    getWidth() { return this.width; }
-    setWidth(w: number) { this.width = w; }
-    getLength() { return this.length; }
-    setLength(l: number) { this.length = l; }
-    getBust() { return this.bust; }
-    setBust(b: number) { this.bust = b; }
-    getArm() { return this.arm; }
-    setArm(a: number) { this.arm = a; }
-    getHip() { return this.hip; }
-    setHip(h: number) { this.hip = h; }
+    get Width() { return this.width; }
+    set Width(w: number) { this.width = w; }
+    get Length() { return this.length; }
+    set Length(l: number) { this.length = l; }
+    get Bust() { return this.bust; }
+    set Bust(b: number) { this.bust = b; }
+    get Arm() { return this.arm; }
+    set Arm(a: number) { this.arm = a; }
+    get Hip() { return this.hip; }
+    set Hip(h: number) { this.hip = h; }
 
 
 }

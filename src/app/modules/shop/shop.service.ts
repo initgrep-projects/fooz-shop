@@ -30,7 +30,7 @@ export class ShopService {
   dispatchMoreProductsToStore() {
     return this.fbDbService.fetchMoreProducts()
       .pipe(
-        map(products => {
+        tap(products => {
           console.log('more products got from dbstore : ', products);
           this.store.dispatch(appendProductsAction({ payload: products }));
         }));
@@ -39,7 +39,7 @@ export class ShopService {
   dispatachCustomSizeInputsToStore() {
     return this.fbDbService.fetchCustomSizeInputs()
       .pipe(
-        map(inputs => {
+        tap(inputs => {
           console.log('custom size inputs from dbstore: ', inputs);
           this.store.dispatch(addCustomSizeInputAction({ payload: inputs }));
         })

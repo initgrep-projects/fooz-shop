@@ -1,16 +1,15 @@
 import { createReducer, on, Action } from '@ngrx/store';
 import { addItemsToCartAction, addItemToCartAction, deleteItemInCartAction, updateItemInCartAction } from './cart.actions';
-import { Product } from 'src/app/models/product';
 import { CartItem } from 'src/app/models/cartItem';
 
 
 
 export interface State {
-    cart: CartItem[]
+    cart: CartItem[];
 }
 
 export const initialState: State = {
-    cart:[] 
+    cart: []
 };
 
 const cartReducer = createReducer(
@@ -37,11 +36,11 @@ const cartReducer = createReducer(
 );
 
 function getDifferentialCart(cart: CartItem[], id: string) {
-    return [...cart.splice(cart.findIndex(item=> item.product.Id === id),1)];
+    return [...cart.splice(cart.findIndex(item=> item.Product.Id === id),1)];
 }
 
 function getUpdatedCart(cart: CartItem[], item: CartItem) {
-    const index = cart.findIndex(p => p.product.Id === item.product.Id);
+    const index = cart.findIndex(p => p.Product.Id === item.Product.Id);
     cart.splice(index, 1);
     return [...cart, item];
 }

@@ -3,14 +3,14 @@
         <div class="size-wrapper">
             <h6>Select Color</h6>
             <ul class="list-inline">
-                <li class="list-inline-item" *ngFor="let c of colors">
-                    <span [ngStyle]="{'backgroundColor':c.getCode()}" (click) ="selectColor(c)">
-                        <fa-icon 
-                        [ngStyle] = "{'visibility' : c.isSelected() ? 'visible' : 'hidden' }"    
-                        [icon] ="['fas','check']"
-                        ></fa-icon>
+                <li class="list-inline-item"
+                    *ngFor="let c of colors">
+                    <span [ngStyle]="{'backgroundColor':c.Code}"
+                          (click)="selectColor(c)">
+                        <fa-icon [ngStyle]="{'visibility' : c.isSelected ? 'visible' : 'hidden' }"
+                                 [icon]="['fas','check']"></fa-icon>
                     </span>
-                    
+
                 </li>
             </ul>
             <hr>

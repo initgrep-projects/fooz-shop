@@ -16,7 +16,7 @@ export class ItemColorComponent implements OnInit {
   }
 
   selectColor(c: Color) {
-    if (!c.isSelected()) {
+    if (!c.isSelected) {
       this.resetSelection();
       c.select();
       this.itemdetailService.setSelectedColors(c);

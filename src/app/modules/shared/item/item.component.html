@@ -3,7 +3,7 @@
 
   <div class="item-heading">
     <img *ngFor="let image of cardImages | slice:0:2"
-         [src]="image.getUrl()"
+         [src]="image.Url"
          alt="" />
 
     
@@ -11,7 +11,7 @@
       <ul class="list-group">
         <li class="list-group-item"
             *ngFor="let size of item.Sizes">
-          <span class="size">{{size.getLetter()}}</span>
+          <span class="size">{{size.Letter}}</span>
         </li>
       </ul>
     </div>
@@ -39,7 +39,7 @@
         <li class="list-inline-item"
             *ngFor="let color of  item.Colors"
             (click)="showSimilarcolorImages(color)">
-          <fa-icon [ngStyle]="{'color': color.getCode()}"
+          <fa-icon [ngStyle]="{'color': color.Code}"
                    [icon]="['fas', 'stop']"></fa-icon>
         </li>
 
@@ -49,7 +49,7 @@
       <span class="name">{{item.Name}}</span>
     </h6>
     <h6>
-      <span class="price">{{item.Price.getCode()}} {{item.Price.getAmount()}}</span>
+      <span class="price">{{item.Price.Code}} {{item.Price.Amount}}</span>
     </h6>
   </div>
 </div>

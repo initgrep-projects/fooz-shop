@@ -8,6 +8,7 @@ import { Size } from '../models/size';
 import { Sort } from '../models/Sort';
 import { Product } from '../models/product';
 import { DocumentData } from '@angular/fire/firestore';
+import { CartItem } from '../models/cartItem';
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +21,7 @@ export class ObjectTransformerService {
   transformCategoryFromDocData(param: DocumentData): Category {
     const category = new Category(param.code, param.label);
     if (!!param.icon) {
-      category.seticon(param.icon);
+      category.Icon = param.icon;
     }
     return category;
   }
@@ -28,7 +29,7 @@ export class ObjectTransformerService {
   transformCategory(param: { code: string; label: string; icon: string; }): Category {
     const category = new Category(param.code, param.label);
     if (!!param.icon) {
-      category.seticon(param.icon);
+      category.Icon = param.icon;
     }
     return category;
   }
@@ -39,7 +40,10 @@ export class ObjectTransformerService {
     });
   }
 
-  transformColor(param: { name: string; code: string; }): Color {
+  transformColor(param: { name: string; code: string; selected?: boolean }): Color {
+    if (param.selected) {
+      return new Color(param.name, param.code, param.selected);
+    }
     return new Color(param.name, param.code);
   }
 
@@ -75,7 +79,10 @@ export class ObjectTransformerService {
     return new CustomSizeInput(param.width, param.length, param.bust, param.arm, param.hip);
   }
 
-  transformSize(param: { label: string; letter: string; }) {
+  transformSize(param: { label: string; letter: string; selected?: boolean }) {
+    if (param.selected) {
+      return new Size(param.label, param.letter, param.selected);
+    }
     return new Size(param.label, param.letter);
   }
 
@@ -104,37 +111,47 @@ export class ObjectTransformerService {
       name: string;
       id: string;
       description: string;
-      quantity: number;
+      availableQuantity: number;
       timeStamp: number;
       price: { code: string; amount: number; };
       category: { code: string; label: string; icon: string; };
-      images: any[]; sizes: any[];
-    }) {
-    return new Product(
+      images: any[];
+      sizes: any[];
+      colors: any[];
+    }): Product {
+
+
+    const product = new Product(
       param.name,
       param.id,
       param.description,
-      param.quantity,
+      param.availableQuantity,
       param.timeStamp,
       this.transformCurrency(param.price),
       this.transformCategory(param.category),
       this.transformImages(param.images),
-      this.transformSizes(param.sizes)
+      this.transformSizes(param.sizes),
     );
+    product.Colors = this.transformColors(param.colors);
+    console.log('transformProduct after = ', product);
+    return product;
   }
 
-  public transformProductFromDocData(param: DocumentData) {
-    return new Product(
+  public transformProductFromDocData(param: DocumentData): Product {
+    const product = new Product(
       param.name,
       param.id,
       param.description,
-      param.quantity,
+      param.availableQuantity,
       param.timeStamp,
       this.transformCurrency(param.price),
       this.transformCategory(param.category),
       this.transformImages(param.images),
       this.transformSizes(param.sizes)
     );
+
+    product.Colors = this.transformColors(param.colors);
+    return product;
   }
 
 
@@ -142,7 +159,13 @@ export class ObjectTransformerService {
     return params.map(p => this.transformProduct(p));
   }
 
+  transformcartItem(param: DocumentData) {
+    return new CartItem(param.userId, this.transformProduct(param.product), param.quantity);
+  }
 
+  transformCartItems(params: any[]) {
+    return params.map(this.transformcartItem);
+  }
 
 
 

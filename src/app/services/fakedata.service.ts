@@ -41,8 +41,8 @@ export class FakedataService {
   getCategories() {
     const coCategory = new Category('CO', 'center open');
     const soCategory = new Category('BA', 'buttoned abaya');
-    coCategory.seticon('door-open');
-    soCategory.seticon('dot-circle');
+    coCategory.Icon = 'door-open';
+    soCategory.Icon = 'dot-circle';
     return [soCategory, coCategory];
   }
 
@@ -57,8 +57,8 @@ export class FakedataService {
 
     const coCategory = new Category('CO', 'center open');
     const soCategory = new Category('BA', 'buttoned abaya');
-    coCategory.seticon('door-open');
-    soCategory.seticon('dot-circle');
+    coCategory.Icon = 'door-open';
+    soCategory.Icon = 'dot-circle';
 
     const ascending = new Sort('ASC', ' Price: High to Low', 'long-arrow-alt-up');
     const descending = new Sort('DSC', ' Price: Low to High', 'long-arrow-alt-down');

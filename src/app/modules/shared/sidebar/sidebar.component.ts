@@ -85,7 +85,7 @@ export class SidebarComponent implements OnInit, OnDestroy, AfterViewInit {
 
   private changeWidth(mq: MediaQueryList | MediaQueryListEvent) {
     if (this.isOpen) {
-      let isMobileTablet = mq.matches;
+      const isMobileTablet = mq.matches;
       if (isMobileTablet) {
         this.sideNav.nativeElement.style.width = '100%';
       } else {

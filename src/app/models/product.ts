@@ -38,14 +38,14 @@ export class Product {
         this.price = price;
         this.images = images;
         this.sizes = sizes;
-        this.colors = this.getColorsFromImages();
+        this.colors = this.ColorsFromImages;
     }
 
-    private getColorsFromImages(): Color[] {
+     get ColorsFromImages(): Color[] {
         const colors: Color[] = [];
         this.images.forEach((image) => {
-            const c = image.getColor();
-            const isNotPresent = colors.findIndex(color => color.getCode() === c.getCode()) < 0;
+            const c = image.Color;
+            const isNotPresent = colors.findIndex(color => color.Code === c.Code) < 0;
             if (isNotPresent) {
                 colors.push(c);
             }
@@ -76,5 +76,18 @@ export class Product {
     set Sizes(sizes: Size[]) { this.sizes = sizes; }
     set CustomSize(customSize: CustomSize) { this.customSize = customSize; }
     get CustomSize() { return this.customSize; }
+
+    /** util methods  */
+    /**
+     * Behaviour: Only one color should be selected at any point.
+     * if mulitiple colors are selected. 
+     * the first selected color would be returned.
+     */
+    get SelectedColor() {
+        return this.Colors.filter(c => c.isSelected).pop();
+    }
+    get SelectedSize() {
+        return this.Sizes.filter(s => s.isSelected).pop();
+    }
 
 }

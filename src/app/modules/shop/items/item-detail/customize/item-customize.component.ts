@@ -84,23 +84,23 @@ export class ItemCustomizeComponent implements OnInit, OnDestroy {
   }
 
   setSelectedWidth(w: number) {
-    this.customSize.setWidth(w);
+    this.customSize.Width = w;
     this.addValuesToCustomSize();
   }
   setSelectedLength(l: number) {
-    this.customSize.setLength(l);
+    this.customSize.Length = l;
     this.addValuesToCustomSize();
   }
   setSelectedBust(b: number) {
-    this.customSize.setBust(b);
+    this.customSize.Bust = b;
     this.addValuesToCustomSize();
   }
   setSelectedArm(a: number) {
-    this.customSize.setArm(a);
+    this.customSize.Arm = a;
     this.addValuesToCustomSize();
   }
   setSelectedHip(h: number) {
-    this.customSize.setHip(h);
+    this.customSize.Hip = h;
     this.addValuesToCustomSize();
   }
 

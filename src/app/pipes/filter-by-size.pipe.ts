@@ -26,8 +26,8 @@ export class FilterBySizePipe implements PipeTransform {
   }
 
   private isSizeAvailable(sizes: Size[], givenSize: Size) {
-    console.log('isSize Available - ', sizes, givenSize.getLetter());
-    return  sizes.findIndex((s) => s.getLetter() === givenSize.getLetter()) > -1;
+    console.log('isSize Available - ', sizes, givenSize.Letter);
+    return  sizes.findIndex((s) => s.Letter === givenSize.Letter) > -1;
   }
 
 }

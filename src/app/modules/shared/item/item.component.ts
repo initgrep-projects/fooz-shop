@@ -37,10 +37,7 @@ export class ItemComponent implements OnInit {
        {
          queryParams: {source: this.sourcePage},
          relativeTo: this.activatedRoute
-        })
-        .then(stat => console.log("after route changed", stat))
-        .catch(err => console.log("route didnt go ", err));
-        ;
+        });
   }
 
   setInitImages() {
@@ -49,7 +46,7 @@ export class ItemComponent implements OnInit {
 
 
   showSimilarcolorImages(color: Color) {
-    this.logger.info(' color clicked ', color.getCode());
+    this.logger.info(' color clicked ', color.Code);
     this.logger.info('item-images = ', this.item.Images);
 
     const selectedImages = this.getSelectedImages(color);
@@ -61,7 +58,7 @@ export class ItemComponent implements OnInit {
 
   getSelectedImages(c: Color) {
     return  this.item.Images.filter( image => {
-      if (image.getColor().getCode() === c.getCode()) {
+      if (image.Color.Code === c.Code) {
         return image;
       }
     });

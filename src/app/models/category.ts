@@ -1,19 +1,13 @@
 export class Category {
-    private icon: string;
     constructor(
-    private code: string,
-    private label: string
+        private code: string,
+        private label: string,
+        private icon?: string
+    ) { }
 
-    ) {}
+    get Code() { return this.code; }
+    get Label() { return this.label; }
 
-    getCode() { return this.code; }
-    getLabel() {return this.label; }
-
-    seticon(icon: string) {
-        this.icon = icon;
-    }
-
-    getIcon() {
-        return this.icon;
-    }
+    set Icon(icon: string) { this.icon = icon; }
+    get Icon() { return this.icon; }
 }

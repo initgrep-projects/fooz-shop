@@ -19,22 +19,22 @@ export class SortPipe implements PipeTransform {
 
 
   private sortByorder(products: Product[], sortOrder: Sort) {
-    if (sortOrder.getType() === ASCENDING) {
+    if (sortOrder.Type === ASCENDING) {
       return this.ascendingOrder(products);
-    } else if (sortOrder.getType() === DESCENDING) {
+    } else if (sortOrder.Type === DESCENDING) {
       return this.descendingOrder(products);
     }
   }
 
   private descendingOrder(products: Product[]) {
     return products.sort((first, last) => {
-      return first.Price.getAmount() - last.Price.getAmount();
+      return first.Price.Amount - last.Price.Amount;
     });
   }
 
   private ascendingOrder(products: Product[]) {
     return products.sort((first, last) => {
-      return last.Price.getAmount() - first.Price.getAmount();
+      return last.Price.Amount - first.Price.Amount;
     });
   }
 

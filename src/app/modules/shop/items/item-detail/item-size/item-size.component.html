@@ -9,7 +9,7 @@
                 <li class="list-inline-item"
                     *ngFor="let s of sizes"
                     (click)="selectSize(s)">
-                    <span [ngClass]="{ 'selected' : !!s.isSelected() }">{{s.getLetter()}}</span>
+                    <span [ngClass]="{ 'selected' : !!s.isSelected }">{{s.Letter}}</span>
                 </li>
             </ul>
         </div>

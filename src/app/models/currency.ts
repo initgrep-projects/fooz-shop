@@ -4,11 +4,6 @@ export class Currency {
        private amount: number
     ) {}
 
-    getCode() {
-        return this.code;
-    }
-
-    getAmount() {
-        return this.amount;
-    }
+    get Code() {return this.code; }
+    get Amount() {return this.amount;}
 }

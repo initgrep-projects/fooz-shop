@@ -5,8 +5,8 @@ ngbDropdown
        id="dropdownManual"
        ngbDropdownAnchor
        (focus)="sort.open()">
-   <fa-icon icon="{{ !!this.selectedSortOrder ? this.selectedSortOrder.getIcon() : 'sort' }}"></fa-icon>
-        {{!!this.selectedSortOrder? this.selectedSortOrder.getLabel() : 'sort'}}
+   <fa-icon icon="{{ !!this.selectedSortOrder ? this.selectedSortOrder.Icon : 'sort' }}"></fa-icon>
+        {{!!this.selectedSortOrder? this.selectedSortOrder.Label : 'sort'}}
 </button>
 <div ngbDropdownMenu
     aria-labelledby="dropdownManual">
@@ -15,8 +15,8 @@ ngbDropdown
     *ngFor="let sortOrder of sortOrders"
     (click) = "emitSortOrderChange(sortOrder)"
     >
-<fa-icon icon="{{sortOrder.getIcon() }}"></fa-icon>
- {{ sortOrder.getLabel() }}
+<fa-icon icon="{{sortOrder.Icon }}"></fa-icon>
+ {{ sortOrder.Label}}
 </button>
 
    <!-- <button ngbDropdownItem><fa-icon icon ="long-arrow-alt-up"></fa-icon> Price: High to Low</button> -->

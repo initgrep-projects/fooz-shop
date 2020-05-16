@@ -32,7 +32,8 @@ export class FireStoreDbService {
 
 
 
-  constructor(private db: AngularFirestore,
+  constructor(
+    private db: AngularFirestore,
     private fakedataService: FakedataService,
     private objTransformer: ObjectTransformerService) { }
 
@@ -68,7 +69,7 @@ export class FireStoreDbService {
       );
   }
 
-  
+
 
 
   /**
@@ -214,29 +215,48 @@ export class FireStoreDbService {
     .get()
     .pipe(
       map(querySnapShot => {
-        let items:string[] = [];
+        let items: string[] = [];
         querySnapShot.forEach(doc => {
-          console.log("trend items ", doc.data().items);
          items =  [...doc.data().items];
         });
         return items;
       })
-    )
+    );
   }
 
   /** cart Operations START
+   *
    *  1) save an item to db
    *  2) if the item is already present -- increase quantity
    *    //update the item in db and store
-   * 
+   *
    *  3) update the item directly in cart ex: add remove more quanity
    *  4) delete the item
    *  4)  fetch all items
    */
-  saveCartItemToDb(item:CartItem){
-    // this.db.
-
+  saveCartItemToDb(item: CartItem) {
+    this.db.collection(CART_COLLECTION).add(classToPlain(item));
   }
+
+  fetchcartItemsFromDb() {
+    return this.db.collection(CART_COLLECTION)
+    .get()
+    .pipe(
+      map(querySnapShot => {
+        const items: CartItem[] = [];
+        querySnapShot.forEach(doc => {
+          items.push(this.objTransformer.transformcartItem(doc.data()));
+        });
+        console.log('Cart Items fetched from db = ', items);
+        return items;
+      })
+    );
+  }
+
+  // querySnapShot.forEach(doc => {
+  //   products.push(this.objTransformer.transformProductFromDocData(doc.data()));
+  // });
+
   /** cart Operations END */
 
 

@@ -1,7 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef, OnDestroy } from '@angular/core';
-import { Subscription } from 'rxjs';
-import { Product } from 'src/app/models/product';
 import { CartService } from './cart.service';
+import { SubSink } from 'subsink';
 
 @Component({
   selector: 'app-cart',
@@ -11,29 +10,31 @@ import { CartService } from './cart.service';
 export class CartComponent implements OnInit, OnDestroy {
 
   cartItemSize = 0;
-  private subs: Subscription[] = [];
+  private subs = new SubSink();
 
   @ViewChild('cartContent') cartContentRef: ElementRef;
 
   constructor(
-    private cartService:CartService
+    private cartService: CartService
   ) { }
 
   ngOnInit(): void {
-    this.getCart();
+    this.getCartSize();
+    this.dispatchCartItemsToCartStore();
   }
 
 
-  getCart() {
-    this.subs[this.subs.length + 1] =
-      this.cartService.getCartFromStore()
-        .subscribe(state => {
-          this.cartItemSize = state.cart.length;
-        });
+  getCartSize() {
+    this.subs.sink = this.cartService.getCartFromStore()
+      .subscribe(state => this.cartItemSize = state.cart.length );
   }
 
-  ngOnDestroy(){
-    this.subs.forEach(sub => sub.unsubscribe());
+  dispatchCartItemsToCartStore() {
+    this.subs.sink = this.cartService.dispatchCartItemsToStore().subscribe();
+  }
+
+  ngOnDestroy() {
+    this.subs.unsubscribe();
   }
 
 }

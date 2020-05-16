@@ -14,7 +14,7 @@ import { CustomSize } from 'src/app/models/custom-size';
 export class ItemDetailService {
 
   invalidState = [];
-  
+
   onProductRecieved = new BehaviorSubject<Product>(null);
 
   onColorChange = new Subject<Color>();
@@ -25,34 +25,28 @@ export class ItemDetailService {
 
   constructor() { }
 
-   dispatchProduct(p:Product){
+   dispatchProduct(p: Product) {
     this.onProductRecieved.next(this.getsanitzedProduct(p));
   }
-  
+
   setSelectedSize(s: Size) {
     this.onSizeChange.next(s);
   }
-  
   setSelectedColors(c: Color) {
     this.onColorChange.next(c);
   }
-  
   setSelectedQuantity(n: number) {
     this.onQuantityChange.next(n);
   }
-  
   setSelectedCategory(c: Category) {
     this.onCategoryChange.next(c);
   }
-  
   setCustomSize(cz: CustomSize) {
     this.onCustomSizeChange.next(cz);
   }
-  
   validateCartProduct(p: Product, q: number) {
     let isValid = true;
     this.invalidState = [];
-  
     if (this.isEmpty(p.Colors)) {
       isValid = isValid && false;
       this.invalidState.push('Color');
@@ -61,7 +55,6 @@ export class ItemDetailService {
       isValid = isValid && false;
       this.invalidState.push('Quantity');
     }
-    
     if (p.Category === null) {
       isValid = isValid && false;
       this.invalidState.push('Category');
@@ -74,33 +67,30 @@ export class ItemDetailService {
     //   isValid = isValid && false;
     //   this.invalidState.push('Custom Size');
     // }
-    
     return isValid;
   }
-  
+
   private isEmpty<T>(ts: T[]): boolean {
     return ts.length === 0;
   }
-  
+
   private isValidCustomSize(cz: CustomSize) {
     if (!cz) { return true; }
-    if (!!cz.getWidth()
-    && !!cz.getLength()
-    && !!cz.getBust()
-    && !!cz.getArm()
-    && !!cz.getHip()
+    if (!!cz.Width
+    && !!cz.Length
+    && !!cz.Bust
+    && !!cz.Arm
+    && !!cz.Hip
     ) { return true; }
     return false;
   }
-  
-  
-  
+
   private getsanitzedProduct(product: Product) {
    const p = cloneDeep(product);
-    p.Sizes = [];
-    p.Colors = [];
-    p.CustomSize = null;
-    console.log("after sanitixation = ", p);
-    return p;
+   p.Sizes = [];
+   p.Colors = [];
+   p.CustomSize = null;
+   console.log('after sanitixation = ', p);
+   return p;
   }
 }

@@ -5,6 +5,7 @@ import { CartComponent } from './cart.component';
 import { CartRoutingModule } from './cart-routing.module';
 import { CartItemsComponent } from './cart-items/cart-items.component';
 import { CartModalComponent } from './cart-modal/cart-modal.component';
+import { CartItemComponent } from './cart-items/cart-item/cart-item.component';
 
 
 
@@ -12,7 +13,8 @@ import { CartModalComponent } from './cart-modal/cart-modal.component';
   declarations: [
     CartComponent,
     CartItemsComponent,
-    CartModalComponent
+    CartModalComponent,
+    CartItemComponent
   ],
   imports: [
     CommonModule,

@@ -27,31 +27,4 @@ div.size-wrapper {
       }
     }
   }
-
-  ul.list-inline {
-    li.list-inline-item {
-      span {
-        display: inline-block;
-        border: 1px solid $grey-border-color;
-        // color: $primary-text-color;
-        text-align: center;
-        line-height: 40px;
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        font-size: 1rem;
-        &:hover {
-          border-color: $primary-border-color;
-          font-weight: 600;
-          cursor: pointer;
-        }
-      }
-    }
-  }
-
-  .selected {
-    background-color: $primary-text-color;
-    color: $secondary-text-color;
-    font-weight: 600;
-  }
 }

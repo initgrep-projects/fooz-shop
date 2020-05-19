@@ -9,6 +9,8 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { ParallaxComponent } from './parallax/parallax.component';
 import { LookbookItemComponent } from './lookbook-item/lookbook-item.component';
 import { RouterModule } from '@angular/router';
+import { SizeComponent } from './size/size.component';
+import { ColorComponent } from './color/color.component';
 
 
 
@@ -19,7 +21,9 @@ import { RouterModule } from '@angular/router';
     ToastsComponent,
     SidebarComponent,
     ParallaxComponent,
-    LookbookItemComponent
+    LookbookItemComponent,
+    SizeComponent,
+    ColorComponent
   ],
   imports: [
     CommonModule,
@@ -33,7 +37,9 @@ import { RouterModule } from '@angular/router';
     ToastsComponent,
     SidebarComponent,
     ParallaxComponent,
-    LookbookItemComponent
+    LookbookItemComponent,
+    SizeComponent,
+    ColorComponent
   ]
 })
 export class SharedModule { }

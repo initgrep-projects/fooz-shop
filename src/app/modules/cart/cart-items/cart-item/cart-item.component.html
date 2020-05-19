@@ -1,0 +1,11 @@
+<div class="cart-item">
+    <img class="mr-3" [src]="item.Product.Images[0].Url" alt="{{item.Product.Name}}">
+    <div class="media-body">
+      <h6 class="mt-0 mb-1 "><span>{{item.Product.Name}}</span></h6>
+      <h6 class="mt-0 mb-1">Code: <span>{{item.Product.Id}}</span></h6>
+      <h6 class="mt-0 mb-1">Color: <span>{{item.Product.SelectedColor.Name}}</span></h6>
+      <h6 class="mt-0 mb-1">Size: <span>{{item.Product.SelectedSize.Label}}</span></h6>
+      <h6 class="mt-0 mb-1">Quantity: <span>{{item.Quantity}}</span></h6>
+</div>
+
+

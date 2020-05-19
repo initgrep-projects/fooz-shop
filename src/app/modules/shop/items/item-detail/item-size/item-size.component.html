@@ -5,13 +5,7 @@
                <span (click)="toggleVisibility()">Customize > </span>
             </h6>
             
-            <ul class="list-inline">
-                <li class="list-inline-item"
-                    *ngFor="let s of sizes"
-                    (click)="selectSize(s)">
-                    <span [ngClass]="{ 'selected' : !!s.isSelected }">{{s.Letter}}</span>
-                </li>
-            </ul>
+            <app-size [sizes] = "sizes" (SelectionChange) = "onSelectionChange($event)"></app-size>
         </div>
     </div>
 </div>

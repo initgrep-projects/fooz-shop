@@ -13,6 +13,7 @@ export class CustomSizeComponent implements OnInit {
   @Input() unit: string;
   @Input() icon: string;
   @Input() values: number[];
+  
   @Output() selection = new EventEmitter<number>();
 
   private selectedValue: string;

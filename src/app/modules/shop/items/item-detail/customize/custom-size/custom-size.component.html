@@ -5,16 +5,16 @@
         <div class="col-4"><span class="label">{{label}}: </span></div>
         <div class="col-8">
             <button class="btn btn-outline-dark mr-2"
-                    id="dropdownManual"
+                    id="custom-size"
                     ngbDropdownAnchor
                     (focus)="customize.open()">
                 <fa-icon icon="{{icon}}"></fa-icon>
                 {{getSelectedValue()}}
             </button>
 
-            <div ngbDropdownMenu
-                 aria-labelledby="dropdownManual">
-                <button ngbDropdownItem
+            <div ngbDropdownMenu placement="bottom"
+                 aria-labelledby="custom-size">
+                <button ngbDropdownItem 
                         *ngFor="let value of values"
                         (click)="setSelectedValue(value)"><b>{{ value }}</b> {{unit}}</button>
 

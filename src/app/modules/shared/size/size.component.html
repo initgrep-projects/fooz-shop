@@ -1,0 +1,9 @@
+<div class="size-wrapper">
+    <ul class="list-inline">
+        <li class="list-inline-item"
+            *ngFor="let s of sizes"
+            (click)="selectSize(s)">
+            <span [ngClass]="{ 'selected' : !!s.isSelected }">{{s.Letter}}</span>
+        </li>
+    </ul>
+</div>

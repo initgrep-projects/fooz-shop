@@ -15,19 +15,9 @@ export class ItemColorComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  selectColor(c: Color) {
-    if (!c.isSelected) {
-      this.resetSelection();
-      c.select();
+  OnSelectionChange(c: Color) {
       this.itemdetailService.setSelectedColors(c);
-    } else {
-      this.resetSelection();
-    }
-   
   }
 
-  resetSelection() {
-    this.colors.forEach(c => c.deSelect());
-  }
 
 }

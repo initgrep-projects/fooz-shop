@@ -1,6 +1,6 @@
-import { Component, OnInit, ViewChild, ElementRef, OnDestroy, Input, AfterViewInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, OnDestroy, Input, AfterViewInit, Renderer2 } from '@angular/core';
 import { SidebarService } from './sidebar.service';
-import { Subscription } from 'rxjs';
+import { SubSink } from 'subsink';
 
 @Component({
   selector: 'app-sidebar',
@@ -13,9 +13,11 @@ export class SidebarComponent implements OnInit, OnDestroy, AfterViewInit {
   @ViewChild('sidenavMask') sideNavMask: ElementRef;
   isOpen = false;
 
-  private subs: Subscription[] = [];
+  private subs = new SubSink();
 
-  constructor(private sidebarService: SidebarService) { }
+  constructor(
+    private sidebarService: SidebarService,
+    private renderer: Renderer2) { }
 
   @Input('from') from: string;
   @Input('bgColor') bgColor: string;
@@ -41,29 +43,29 @@ export class SidebarComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   private enableOpen() {
-    this.subs[this.subs.length + 1] =
+    this.subs.sink =
       this.sidebarService.openSideBar.subscribe(status => {
         this.isOpen = true;
-        this.sideNavMask.nativeElement.style.width = '100%';
+        this.renderer.setStyle(this.sideNav.nativeElement, 'width','100%');
         this.addSidenavWidth();
         this.subscribeToWidthChange();
       });
   }
 
   private enableClose() {
-    this.subs[this.subs.length + 1] =
+    this.subs.sink =
       this.sidebarService.closeSideBar.subscribe(status => {
         this.isOpen = false;
-        this.sideNavMask.nativeElement.style.width = '0px';
-        this.sideNav.nativeElement.style.width = '0px';
+        this.renderer.setStyle(this.sideNavMask.nativeElement, 'width','0px');
+        this.renderer.setStyle(this.sideNav.nativeElement, 'width','0px');
       });
   }
   private initialize() {
     this.sideNav.nativeElement.style.backgroundColor = !!this.bgColor ? this.bgColor : '#f1f1f1';
     if (this.from === 'right') {
-      this.sideNav.nativeElement.style.right = '0';
+      this.renderer.setStyle(this.sideNav.nativeElement, 'right','0');
     } else {
-      this.sideNav.nativeElement.style.left = '0';
+      this.renderer.setStyle(this.sideNav.nativeElement, 'left','0');
     }
   }
 
@@ -80,22 +82,23 @@ export class SidebarComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   private subscribeToWidthChange() {
-    this.getMediaForMobileTablet().addEventListener('change', (mq) => this.changeWidth(mq));
+    this.getMediaForMobileTablet()
+        .addEventListener('change', (mq) => this.changeWidth(mq));
   }
 
   private changeWidth(mq: MediaQueryList | MediaQueryListEvent) {
     if (this.isOpen) {
       const isMobileTablet = mq.matches;
       if (isMobileTablet) {
-        this.sideNav.nativeElement.style.width = '100%';
+        this.renderer.setStyle(this.sideNav.nativeElement, 'width', '100%');
       } else {
-        this.sideNav.nativeElement.style.width = '25%';
+        this.renderer.setStyle(this.sideNav.nativeElement, 'width', '25%');
       }
     }
 
   }
 
   ngOnDestroy(): void {
-    this.subs.forEach(sub => sub.unsubscribe());
+    this.subs.unsubscribe();
   }
 }

@@ -1,11 +1,11 @@
-<div class="row " *ngIf ="isVisible">
+<div class="row animated fadeIn " *ngIf ="isVisible">
     <div class="col">
         <div class="size-wrapper">
             <h6>select size 
-               <span (click)="toggleVisibility()">Customize > </span>
-            </h6>
-            
-            <app-size [sizes] = "sizes" (SelectionChange) = "onSelectionChange($event)"></app-size>
+               <span (click)="hide()">Customize > </span>
+            </h6>   
+            <app-size  [sizes] = "sizes" (SelectionChange) = "onSelectionChange($event)"></app-size>
         </div>
+        <hr>
     </div>
 </div>

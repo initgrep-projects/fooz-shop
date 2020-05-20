@@ -29,21 +29,21 @@ export class ItemBuyComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
-    this.subs.sink = this.itemdetailService.onProductRecieved
+    this.subs.sink = this.itemdetailService.inputProductChange
                         .subscribe(p  => {
                           console.log('product recieved subscription ', p);
                           this.product = cloneDeep(p);
                         });
 
-    this.subs.sink = this.itemdetailService.onCategoryChange
+    this.subs.sink = this.itemdetailService.categoryChange
                         .subscribe(c => this.product.Category = c);
-    this.subs.sink = this.itemdetailService.onColorChange
-                        .subscribe(c => this.product.Colors = [c]);
-    this.subs.sink = this.itemdetailService.onQuantityChange
+    this.subs.sink = this.itemdetailService.colorChange
+                        .subscribe(c => this.product.Colors = c);
+    this.subs.sink = this.itemdetailService.quantityChange
                         .subscribe(q => this.selectedQuantity = q);
-    this.subs.sink = this.itemdetailService.onSizeChange
-                        .subscribe(s => this.product.Sizes = [s]);
-    this.subs.sink = this.itemdetailService.onCustomSizeChange
+    this.subs.sink = this.itemdetailService.sizeChange
+                        .subscribe(s => this.product.Sizes = s);
+    this.subs.sink = this.itemdetailService.customSizeChange
                         .subscribe(cz => this.product.CustomSize = cz);
 
   }

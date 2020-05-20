@@ -1,7 +1,6 @@
 import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { Size } from 'src/app/models/size';
-import { ItemDetailService } from '../item-detail.service';
-import { Subscription } from 'rxjs';
+import { ItemDetailService, CZ, SZ } from '../item-detail.service';
 import { SubSink } from 'subsink';
 
 @Component({
@@ -13,32 +12,39 @@ export class ItemSizeComponent implements OnInit, OnDestroy {
 
   @Input() sizes: Size[];
   isVisible = true;
+  subs = new SubSink();
 
   constructor(private itemDetailService: ItemDetailService) { }
 
-  subs = new SubSink();
 
   ngOnInit(): void {
-  
+    this.listenToSizeTypeChange();
   }
 
-  toggleVisibility(){
-    //@TODO
+  private listenToSizeTypeChange(){
+    this.subs.sink = 
+    this.itemDetailService.sizeTypeChange.subscribe(type => {
+      if(type === SZ){
+        console.log("hide CZ");
+        this.isVisible = true;
+      }
+    });
+  }
+
+  hide(){
+    this.isVisible =  false;
+    this.resetSelection();  
+    this.itemDetailService.setCustomSizeType();
   }
 
   onSelectionChange(s: Size) {
-      this.itemDetailService.setSelectedSize(s);
+      this.itemDetailService.setSelectedSize([s]);
   }
 
-  // resetSelectionOnCustomSize() {
-  //   this.subs.sink = 
-  //   this.itemDetailService.onCustomSizeChange
-  //   .subscribe(cz => this.resetSelection());
-  // }
-
-  // resetSelection() {
-  //   this.sizes.forEach(size => size.deSelect());
-  // }
+  resetSelection() {
+    this.sizes.forEach(size => size.deSelect());
+    this.itemDetailService.setSelectedSize([]);
+  }
 
   ngOnDestroy() {
     this.subs.unsubscribe();

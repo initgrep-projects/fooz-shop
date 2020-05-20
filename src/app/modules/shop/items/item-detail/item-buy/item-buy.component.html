@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row animated fadeIn mb-3">
     <div class="col-12">
         <div class="alert-wrapper">
             <div *ngIf="!isValidCart"
@@ -14,19 +14,19 @@
         </div>
 
     </div>
-    <div class="col-12 col-md-12 col-lg-6 mt-1">
+    <div class="col-12 col-md-12 col-lg-12 col-xl-6 mt-2 mt-lg-1">
         <div class="buy-wrapper">
             <button type="button"
-                    class="btn  btn-outline-dark"
+                    class="btn btn-sm btn-outline-dark"
                     (click)="addToCart()">
                 <fa-icon icon="shopping-cart"></fa-icon> Add to Cart
             </button>
         </div>
     </div>
-    <div class="col-12 col-md-12 col-lg-6 mt-1">
+    <div class="col-12 col-md-12 col-lg-12 col-xl-6 mt-3 mt-lg-1">
         <div class="buy-wrapper">
             <button type="button"
-                    class="btn  btn-dark">
+                    class="btn btn-sm btn-dark">
                 <fa-icon icon="shopping-bag"></fa-icon> Buy Now
             </button>
         </div>

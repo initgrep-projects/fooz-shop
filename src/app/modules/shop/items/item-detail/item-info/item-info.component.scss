@@ -4,14 +4,16 @@
     margin-top: 1rem;
     font-family: $poppins-font-family;
 
-    h4 {
+    h6 {
       font-weight: 600;
       letter-spacing: 0.05rem;
       text-transform: capitalize;
      
     }
-    h4.price-wrapper{
+    p.price-wrapper{
       margin-bottom: 0rem;
+      font-size: 1rem;
+      font-weight: 600;
     }
     p.prod-code{
       font-weight: 400;
@@ -20,7 +22,7 @@
       }
     }
     p {
-      // font-weight: 600;
+      font-size: .8rem;
       letter-spacing: 0.035rem;
       margin-bottom: 0.2rem;
     }

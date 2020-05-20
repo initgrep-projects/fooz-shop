@@ -1,49 +1,52 @@
-@import '../../../../../../variables.scss';
+@import "../../../../../../variables.scss";
 
 div.category-wrapper {
-    // margin-top: 1rem;
-    margin-bottom:1rem;
-    font-family: $poppins-font-family;
+  // margin-top: 1rem;
+  margin-bottom: 1rem;
+  font-family: $poppins-font-family;
 
-    h6 {
-      text-transform: uppercase;
-      font-weight: 600;
-      margin-right: 2rem;
-      letter-spacing: .10rem;
-      margin-bottom: 1rem;
-    }
+  h6 {
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-right: 2rem;
+    letter-spacing: 0.1rem;
+    // margin-bottom: 1rem;
+  }
 
-    ul.list-group {
-      
-      li.list-group-item {
-        border: none;
-        padding-left: 0px;
-        div.category {
-          cursor: pointer;
-          span {
-            display: inline-block;
-            border: 2px solid $primary-border-color;
-            // color: $primary-text-color;
-            text-align: center;
-            line-height: 23px;
-            width: 26px;
-            height: 26px;
-            border-radius: 50%;
-            font-size: 1rem;
-            margin-right: 1rem;
-            &:hover{
-             border-color: $primary-border-color;
-             font-weight: 600;
-              cursor: pointer;
-            }
-          }
-          label {
-            cursor: pointer;
+  ul.list-group {
+    li.list-group-item {
+      border: none;
+      padding-left: 0px;
+      padding-bottom: .2rem;
+      background-color: transparent;
+      div.category {
+        cursor: pointer;
+        span {
+          display: inline-block;
+          border: 2px solid $primary-border-color;
+          // color: $primary-text-color;
+          text-align: center;
+          line-height: 24px;
+          width: 26px;
+          height: 26px;
+          border-radius: 50%;
+          font-size: 1rem;
+          margin-right: 1rem;
+          box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.22);
+          &:hover {
+            border-color: $primary-border-color;
             font-weight: 600;
-            text-transform: capitalize;
+            cursor: pointer;
           }
-        }        
-
+        }
+        label {
+          cursor: pointer;
+          font-weight: 600;
+          text-transform: capitalize;
+          font-size: 0.8rem;
+          letter-spacing: 0.065rem;
+        }
       }
     }
+  }
 }

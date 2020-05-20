@@ -8,42 +8,55 @@ import { Size } from 'src/app/models/size';
 import { Category } from 'src/app/models/category';
 import { CustomSize } from 'src/app/models/custom-size';
 
+export const SZ = 'standard size';
+export const CZ = 'custom size';
+
 @Injectable({
   providedIn: 'root'
 })
 export class ItemDetailService {
 
+
+
   invalidState = [];
 
-  onProductRecieved = new BehaviorSubject<Product>(null);
-
-  onColorChange = new Subject<Color>();
-  onSizeChange = new Subject<Size>();
-  onQuantityChange = new Subject<number>();
-  onCategoryChange = new Subject<Category>();
-  onCustomSizeChange = new Subject<CustomSize>();
+  inputProductChange = new BehaviorSubject<Product>(null);
+  colorChange = new Subject<Color[]>();
+  sizeChange = new Subject<Size[]>();
+  quantityChange = new Subject<number>();
+  categoryChange = new Subject<Category>();
+  customSizeChange = new Subject<CustomSize>();
+  sizeTypeChange = new Subject<String>();
 
   constructor() { }
 
-   dispatchProduct(p: Product) {
-    this.onProductRecieved.next(this.getsanitzedProduct(p));
+  dispatchProduct(p: Product) {
+    this.inputProductChange.next(this.getsanitzedProduct(p));
   }
 
-  setSelectedSize(s: Size) {
-    this.onSizeChange.next(s);
+  setSelectedSize(s: Size[]) {
+    this.sizeChange.next(s);
   }
-  setSelectedColors(c: Color) {
-    this.onColorChange.next(c);
+  setSelectedColors(c: Color[]) {
+    this.colorChange.next(c);
   }
   setSelectedQuantity(n: number) {
-    this.onQuantityChange.next(n);
+    this.quantityChange.next(n);
   }
   setSelectedCategory(c: Category) {
-    this.onCategoryChange.next(c);
+    this.categoryChange.next(c);
   }
-  setCustomSize(cz: CustomSize) {
-    this.onCustomSizeChange.next(cz);
+  setCustomSize(customSize: CustomSize) {
+    this.customSizeChange.next(customSize);
   }
+
+  setStandardSizeType() {
+    this.sizeTypeChange.next(SZ);
+  }
+  setCustomSizeType() {
+    this.sizeTypeChange.next(CZ);
+  }
+
   validateCartProduct(p: Product, q: number) {
     let isValid = true;
     this.invalidState = [];
@@ -60,13 +73,14 @@ export class ItemDetailService {
       this.invalidState.push('Category');
     }
     if (this.isEmpty(p.Sizes)) {
-      isValid = isValid && false;
-      this.invalidState.push('Size');
+      console.log('size is null');
+      if(!this.isValidCustomSize(p.CustomSize)){
+        console.log('custom size is null');
+        isValid = isValid && false;
+        this.invalidState.push('Size');
+      }
     }
-    // if (!this.isValidCustomSize(p.CustomSize)) {
-    //   isValid = isValid && false;
-    //   this.invalidState.push('Custom Size');
-    // }
+  
     return isValid;
   }
 
@@ -75,22 +89,22 @@ export class ItemDetailService {
   }
 
   private isValidCustomSize(cz: CustomSize) {
-    if (!cz) { return true; }
+    if (!cz) { return false; }
     if (!!cz.Width
-    && !!cz.Length
-    && !!cz.Bust
-    && !!cz.Arm
-    && !!cz.Hip
+      && !!cz.Length
+      && !!cz.Bust
+      && !!cz.Arm
+      && !!cz.Hip
     ) { return true; }
     return false;
   }
 
   private getsanitzedProduct(product: Product) {
-   const p = cloneDeep(product);
-   p.Sizes = [];
-   p.Colors = [];
-   p.CustomSize = null;
-   console.log('after sanitixation = ', p);
-   return p;
+    const p = cloneDeep(product);
+    p.Sizes = [];
+    p.Colors = [];
+    p.CustomSize = null;
+    console.log('after sanitixation = ', p);
+    return p;
   }
 }

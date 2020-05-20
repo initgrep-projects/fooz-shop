@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ViewChild, ElementRef, Renderer2, AfterViewInit, ViewChildren, QueryList } from '@angular/core';
 import { Color } from 'src/app/models/color';
 import { ItemDetailService } from '../../shop/items/item-detail/item-detail.service';
 
@@ -7,16 +7,36 @@ import { ItemDetailService } from '../../shop/items/item-detail/item-detail.serv
   templateUrl: './color.component.html',
   styleUrls: ['./color.component.scss']
 })
-export class ColorComponent implements OnInit {
+export class ColorComponent implements OnInit, AfterViewInit {
 
   @Input() colors: Color[];
+  @Input() displaySize: string;
+  @ViewChildren('color') colorSpans: QueryList<ElementRef>;
   @Output() SelectionChange = new EventEmitter<Color>();
 
-  constructor() { }
+  constructor(private renderer: Renderer2) { }
 
   ngOnInit(): void {
+
   }
 
+  ngAfterViewInit() {
+    this.resizeOn('small');
+  }
+/**
+ * 
+ * @param givenSize s -> small size
+ */
+  private resizeOn(givenSize:String){
+    if (this.displaySize === givenSize) {
+      this.colorSpans.toArray().forEach(de => {
+        this.renderer.setStyle(de.nativeElement, 'line-height', '20px');
+        this.renderer.setStyle(de.nativeElement, 'width', '20px');
+        this.renderer.setStyle(de.nativeElement, 'height', '20px');
+        this.renderer.setStyle(de.nativeElement, 'font-size', '0.5rem');
+      });
+    }
+  }
   selectColor(c: Color) {
     if (!c.isSelected) {
       this.resetSelection();

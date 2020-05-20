@@ -4,23 +4,21 @@
     <div class="row">
         <div class="col-4"><span class="label">{{label}}: </span></div>
         <div class="col-8">
-            <button class="btn btn-outline-dark mr-2"
+            <button class="btn btn-sm btn-dark mr-2"
                     id="custom-size"
                     ngbDropdownAnchor
                     (focus)="customize.open()">
-                <fa-icon icon="{{icon}}"></fa-icon>
+                <!-- <fa-icon icon="{{icon}}"></fa-icon> -->
                 {{getSelectedValue()}}
             </button>
 
             <div ngbDropdownMenu placement="bottom"
                  aria-labelledby="custom-size">
-                <button ngbDropdownItem 
+                <button class="btn btn-sm" ngbDropdownItem 
                         *ngFor="let value of values"
                         (click)="setSelectedValue(value)"><b>{{ value }}</b> {{unit}}</button>
 
             </div>
         </div>
     </div>
-
-
 </div>

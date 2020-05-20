@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row animated fadeIn">
     <div class="col">
         <div class="category-wrapper">
             <h6>Select Abaya Type</h6>
@@ -7,8 +7,8 @@
                     <div class="category"
                          (click)="setCategory('BA')">
                         <span class="check-box">
-                            <fa-icon [icon]="['fas','circle']"
-                                     [ngStyle]="{'visibility': isButtonedAbaya() ? 'visible' : 'hidden'}"></fa-icon>
+                            <fa-icon  [icon]="['fas','circle']"
+                                     [ngStyle]="{'opacity': isButtonedAbaya() ? '1' : '0'}"></fa-icon>
                         </span>
                         <label class="form-check-label"
                                for="radio1">
@@ -21,7 +21,7 @@
                          (click)="setCategory('CO')">
                         <span class="check-box">
                             <fa-icon [icon]="['fas','circle']"
-                                     [ngStyle]="{'visibility': isCenterOpenAbaya() ? 'visible' : 'hidden'}"></fa-icon>
+                                     [ngStyle]="{'opacity': isCenterOpenAbaya() ? '1' : '0'}"></fa-icon>
                         </span>
                         <label class="form-check-label"
                                for="radio1">

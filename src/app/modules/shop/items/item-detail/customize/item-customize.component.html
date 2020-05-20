@@ -1,69 +1,31 @@
-<div class="row">
+<div class="row" *ngIf="isVisible">
   <div class="col">
     <div class="customize-wrapper">
       <h6>Customise size
-        <span >select size > </span>
-
+        <span (click) ="hide()">select size > </span>
       </h6>
-<!--     
-      <button type="button"
-              class="btn btn-outline-dark btn-sm btn-block"
-              (click)="toggleCustomSizeVisibility()"
-              *ngIf="!showCustomSize">Tell us your size</button> -->
-
-      <!--  -->
-      <ul class="list-group list-group-flush"
-          *ngIf="true">
-        <!-- <li class="list-group-item close-wrapper">
-          <div class="close " (click)="toggleCustomSizeVisibility()" >
-            <fa-icon [icon]="['fas','times-circle']">
-            </fa-icon>
-          </div>
-        </li> -->
+      <ul class="list-group list-group-flush">
         <li class="list-group-item">
-
-          <app-custom-size [label]="'width'"
-                           [unit]="'inches'"
-                           [icon]="'arrows-alt-h'"
-                           [values]="widthSizeValues" 
-                           (selection) = "this.setSelectedWidth($event)"
-                           ></app-custom-size>
-
+          <app-custom-size [label]="'width'" [unit]="'inches'" [icon]="'arrows-alt-h'" [values]="widthSizeValues"
+            (selection)="this.setSelectedWidth($event)"></app-custom-size>
+        </li>
+        <li class="list-group-item">
+          <app-custom-size [label]="'length'" [unit]="'inches'" [icon]="'arrows-alt-v'" [values]="lengthSizeValues"
+            (selection)="this.setSelectedLength($event)"></app-custom-size>
+        </li>
+        <li class="list-group-item">
+          <app-custom-size [label]="'bust size'" [unit]="'inches'" [icon]="'arrows-alt-h'" [values]="bustSizeValues"
+            (selection)="this.setSelectedBust($event)"></app-custom-size>
+        </li>
+        <li class="list-group-item">
+          <app-custom-size [label]="'arm size'" [unit]="'inches'" [icon]="'arrows-alt-h'" [values]="armSizeValues"
+            (selection)="this.setSelectedArm($event)"></app-custom-size>
+        </li>
+        <li class="list-group-item">
+          <app-custom-size [label]="'Hip size'" [unit]="'inches'" [icon]="'arrows-alt-h'" [values]="hipSizeValues"
+            (selection)="this.setSelectedHip($event)"></app-custom-size>
         </li>
 
-        <li class="list-group-item">
-          <app-custom-size [label]="'length'"
-                           [unit]="'inches'"
-                           [icon]="'arrows-alt-v'"
-                           [values]="lengthSizeValues"
-                           (selection) = "this.setSelectedLength($event)"
-                           ></app-custom-size>
-        </li>
-        <li class="list-group-item">
-          <app-custom-size [label]="'bust size'"
-                           [unit]="'inches'"
-                           [icon]="'arrows-alt-h'"
-                           [values]="bustSizeValues"
-                           (selection)= "this.setSelectedBust($event)"
-                           ></app-custom-size>
-        </li>
-        <li class="list-group-item">
-          <app-custom-size [label]="'arm size'"
-                           [unit]="'inches'"
-                           [icon]="'arrows-alt-h'"
-                           [values]="armSizeValues"
-                           (selection) = "this.setSelectedArm($event)"
-                           ></app-custom-size>
-        </li>
-        <li class="list-group-item">
-          <app-custom-size [label]="'Hip size'"
-                           [unit]="'inches'"
-                           [icon]="'arrows-alt-h'"
-                           [values]="hipSizeValues"
-                           (selection) = "this.setSelectedHip($event)"
-                           ></app-custom-size>
-        </li>
-        
       </ul>
       <hr>
     </div>

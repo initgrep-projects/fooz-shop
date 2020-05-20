@@ -1,9 +1,11 @@
 <div class="color-wrapper">
     <ul class="list-inline">
-        <li class="list-inline-item"
-            *ngFor="let c of colors">
+        <li class="list-inline-item" 
+            *ngFor="let c of colors; index as i">
             <span [ngStyle]="{'backgroundColor':c.Code}"
-                  (click)="selectColor(c)">
+                  (click)="selectColor(c)"
+                  #color
+                  >
                 <fa-icon [ngStyle]="{'visibility' : c.isSelected ? 'visible' : 'hidden' }"
                          [icon]="['fas','check']"></fa-icon>
             </span>

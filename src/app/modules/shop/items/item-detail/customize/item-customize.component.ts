@@ -1,8 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Subscription } from 'rxjs';
 import { ShopService } from '../../../shop.service';
 import { CustomSize } from 'src/app/models/custom-size';
-import { ItemDetailService } from '../item-detail.service';
+import { ItemDetailService, CZ } from '../item-detail.service';
+import { SubSink } from 'subsink';
 
 @Component({
   selector: 'app-item-customize',
@@ -11,7 +11,7 @@ import { ItemDetailService } from '../item-detail.service';
 })
 export class ItemCustomizeComponent implements OnInit, OnDestroy {
 
-  subs: Subscription[] = [];
+  private subs = new SubSink();
 
   widthSizeValues: number[] = [];
   lengthSizeValues: number[] = [];
@@ -19,8 +19,7 @@ export class ItemCustomizeComponent implements OnInit, OnDestroy {
   armSizeValues: number[] = [];
   hipSizeValues: number[] = [];
 
-  showCustomSize = false;
-
+  isVisible = false;
   customSize: CustomSize = null;
 
   constructor(
@@ -31,17 +30,30 @@ export class ItemCustomizeComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.addCustomSizeInputsToStore();
     this.resetCustomSizeOnStdSizeSelection();
+    this.listenToSizeTypeChange();
+  }
+
+  private listenToSizeTypeChange() {
+    this.subs.sink =
+      this.itemdetailService.sizeTypeChange.subscribe(type => {
+        if (type === CZ) {
+          console.log("hide SZ");
+          this.isVisible = true;
+          this.customSize = new CustomSize();
+          // this.addValuesToCustomSize();
+        }
+      });
   }
 
   addCustomSizeInputsToStore() {
-    this.subs[this.subs.length + 1] =
+    this.subs.sink =
       this.shopService.dispatachCustomSizeInputsToStore().subscribe(data => {
         this.getCustomSizeInputs();
       });
   }
 
   getCustomSizeInputs() {
-    this.subs[this.subs.length + 1] =
+    this.subs.sink =
       this.shopService.getShopFromStore()
         .subscribe(state => {
           this.widthSizeValues = state.customSizeInput.Width;
@@ -53,34 +65,23 @@ export class ItemCustomizeComponent implements OnInit, OnDestroy {
   }
 
   resetCustomSizeOnStdSizeSelection() {
-    this.subs[this.subs.length + 1] =
-      this.itemdetailService.onSizeChange.subscribe(size => {
+    this.subs.sink =
+      this.itemdetailService.sizeChange.subscribe(size => {
         if (!!this.customSize) {
           console.log('If you choose the standard size here, custom size will not be considered.', size);
         }
       });
   }
 
-  /**
-   *  this method shows or hides the custom size
-   * if( customsize is shown) - it is initialized to an empty object
-   * else it is set back to null;
-   * this helps in validations during the the addToCart function
-   *
-   */
-  toggleCustomSizeVisibility() {
-    this.showCustomSize = !this.showCustomSize;
-    if (!!this.showCustomSize) {
-      this.customSize = new CustomSize();
-      this.addValuesToCustomSize();
-    } else {
-      this.customSize = null;
-      this.addValuesToCustomSize();
-    }
+  hide() {
+    this.isVisible = false;
+    this.itemdetailService.setStandardSizeType();
+    this.customSize = null;
+    this.addValuesToCustomSize();
   }
 
   ngOnDestroy() {
-    this.subs.forEach(sub => sub.unsubscribe());
+    this.subs.unsubscribe();
   }
 
   setSelectedWidth(w: number) {

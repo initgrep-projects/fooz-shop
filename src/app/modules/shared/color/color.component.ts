@@ -17,11 +17,11 @@ export class ColorComponent implements OnInit, AfterViewInit {
   constructor(private renderer: Renderer2) { }
 
   ngOnInit(): void {
-
+    console.log("colors provided  = ", this.colors);
   }
 
   ngAfterViewInit() {
-    this.resizeOn('small');
+    this.resizeOn('s');
   }
 /**
  * 

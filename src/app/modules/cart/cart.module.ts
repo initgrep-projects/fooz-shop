@@ -6,6 +6,7 @@ import { CartRoutingModule } from './cart-routing.module';
 import { CartItemsComponent } from './cart-items/cart-items.component';
 import { CartModalComponent } from './cart-modal/cart-modal.component';
 import { CartItemComponent } from './cart-items/cart-item/cart-item.component';
+import { SharedModule } from '../shared/shared.module';
 
 
 
@@ -19,7 +20,8 @@ import { CartItemComponent } from './cart-items/cart-item/cart-item.component';
   imports: [
     CommonModule,
     FontAwesomeModule,
-    CartRoutingModule
+    CartRoutingModule,
+    SharedModule
   ],
   exports: [
     CartComponent

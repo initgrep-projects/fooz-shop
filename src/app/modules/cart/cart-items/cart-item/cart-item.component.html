@@ -3,7 +3,7 @@
     <div class="media-body">
       <h6 class="mt-0 mb-1 "><span>{{item.Product.Name}}</span></h6>
       <h6 class="mt-0 mb-1">Code: <span>{{item.Product.Id}}</span></h6>
-      <h6 class="mt-0 mb-1">Color: <span>{{item.Product.SelectedColor.Name}}</span></h6>
+      <h6 class="mt-0 mb-1">Color: <app-color [colors]= "[item.Product.SelectedColor]" [displaySize]="'s'"></app-color> </h6>
       <h6 class="mt-0 mb-1">Size: <span>{{item.Product.SelectedSize.Label}}</span></h6>
       <h6 class="mt-0 mb-1">Quantity: <span>{{item.Quantity}}</span></h6>
 </div>

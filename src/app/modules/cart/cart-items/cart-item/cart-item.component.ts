@@ -13,6 +13,7 @@ export class CartItemComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    console.log("cartItem colors = ", this.item.Product.Colors);
   }
 
 }

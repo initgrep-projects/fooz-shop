@@ -237,6 +237,9 @@ export class FireStoreDbService {
   saveCartItemToDb(item: CartItem) {
     this.db.collection(CART_COLLECTION).add(classToPlain(item));
   }
+  updateCartItemToDb(item: CartItem) {
+    // this.db.collection(CART_COLLECTION).de
+  }
 
   fetchcartItemsFromDb() {
     return this.db.collection(CART_COLLECTION)

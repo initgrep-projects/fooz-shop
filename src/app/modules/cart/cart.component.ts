@@ -26,7 +26,11 @@ export class CartComponent implements OnInit, OnDestroy {
 
   getCartSize() {
     this.subs.sink = this.cartService.getCartFromStore()
-      .subscribe(state => this.cartItemSize = state.cart.length );
+      .subscribe(state =>{
+        this.cartItemSize = state.cart.length
+        //set the service  cart here untill a better way a found
+        this.cartService.cart = state.cart;
+      });
   }
 
   dispatchCartItemsToCartStore() {

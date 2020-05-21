@@ -11,6 +11,7 @@ export class ColorComponent implements OnInit, AfterViewInit {
 
   @Input() colors: Color[];
   @Input() displaySize: string;
+  @Input() disable: boolean = false;
   @ViewChildren('color') colorSpans: QueryList<ElementRef>;
   @Output() SelectionChange = new EventEmitter<Color>();
 
@@ -23,11 +24,11 @@ export class ColorComponent implements OnInit, AfterViewInit {
   ngAfterViewInit() {
     this.resizeOn('s');
   }
-/**
- * 
- * @param givenSize s -> small size
- */
-  private resizeOn(givenSize:String){
+  /**
+   * 
+   * @param givenSize s -> small size
+   */
+  private resizeOn(givenSize: String) {
     if (this.displaySize === givenSize) {
       this.colorSpans.toArray().forEach(de => {
         this.renderer.setStyle(de.nativeElement, 'line-height', '20px');
@@ -38,13 +39,16 @@ export class ColorComponent implements OnInit, AfterViewInit {
     }
   }
   selectColor(c: Color) {
-    if (!c.isSelected) {
-      this.resetSelection();
-      c.select();
-      this.SelectionChange.emit(c);
-    } else {
-      this.resetSelection();
+    if (!this.disable) {
+      if (!c.isSelected) {
+        this.resetSelection();
+        c.select();
+        this.SelectionChange.emit(c);
+      } else {
+        this.resetSelection();
+      }
     }
+
 
   }
 

@@ -6,7 +6,7 @@
                   (click)="selectColor(c)"
                   #color
                   >
-                <fa-icon [ngStyle]="{'visibility' : c.isSelected ? 'visible' : 'hidden' }"
+                <fa-icon [ngStyle]="{'visibility' : c.isSelected && !disable ? 'visible' : 'hidden' }"
                          [icon]="['fas','check']"></fa-icon>
             </span>
     

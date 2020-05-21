@@ -1,0 +1,37 @@
+@import "../../../../variables.scss";
+
+div.quantity-wrapper {
+    font-family: $roboto-font-family;
+    span {
+        border: 2px solid $primary-border-color;
+        padding: 0px;
+        padding-left: 0.4rem;
+        padding-right: 0.4rem;
+        font-size: 0.9rem;
+        user-select: none; /* standard syntax */
+        -webkit-user-select: none; /* webkit (safari, chrome) browsers */
+        -moz-user-select: none; /* mozilla browsers */
+        -khtml-user-select: none; /* webkit (konqueror) browsers */
+        -ms-user-select: none;
+    }
+    span.pre {
+        border-right-width: 0px;
+        border-radius: 5px 0 0 5px;
+    }
+    span.post {
+        border-left-width: 0px;
+        border-radius: 0 5px 5px 0;
+    }
+    span.pre,
+    span.post {
+        background: $dark-bg-color;
+        color: $secondary-text-color;
+        cursor: pointer;
+        &:hover,
+        &:active,
+        &:focus {
+            background: $dark-bg-color;
+            color: $secondary-text-color;
+        }
+    }
+}

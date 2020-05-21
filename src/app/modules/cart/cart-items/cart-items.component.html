@@ -3,36 +3,23 @@
     <fa-icon class="cart" icon="shopping-cart"></fa-icon>Cart
   </h4>
   <button type="button" class="close" aria-label="Close" (click)="closeModal()">
-    <span aria-hidden="true">&times;</span>
+    <fa-icon icon="times"></fa-icon>
   </button>
 </div>
 <div class="modal-body">
   <ul class="list-unstyled">
-    <li class="media mb-1 py-2" *ngFor="let item of cart">
-      <img class="mr-3" [src]="item.Product.Images[0].Url" alt="{{item.Product.Name}}">
-      <div class="media-body">
-        <div class="row">
-          <div class="col-8">
-            <a class="mt-0 mb-1" href="#"><span>{{item.Product.Name}} - {{item.Product.Id}}</span></a>
-            <h6 class="mt-0 mb-1">Quantity: <span>{{item.Quantity}}</span></h6>
-            <div>
-              <app-color [colors]="item.Product.Colors" [displaySize]="'s'"></app-color>
-              <app-size [sizes]="item.Product.Sizes" [displaySize]="'s'"></app-size>
-            </div>
-            
-          </div>
-          <div class="col-4">
-            <h6 class="mt-0 mb-1"><span>{{item.Product.Price.Code}}</span>- <span>{{item.Product.Price.Amount}}</span>
-            </h6>
-          </div>
-        </div>
-
-
-
-      </div>
+    <li class=" mb-1 py-2" *ngFor="let item of cart">
+      <app-cart-item [item]="item"></app-cart-item>
     </li>
   </ul>
 </div>
 <div class="modal-footer">
-  <button type="button" class="btn btn-light">Close</button>
+  <button type="button" class="btn btn-sm btn-outline-dark" (click)="routeToShop()">
+    <span class="l-caret">&#706;&#706;</span>
+        <span class="text">go to shopping</span>
+  </button>
+  <button type="button" class="btn btn-sm btn-dark">
+    <span class="text">go to checkout</span>
+    <span class="r-caret">&#707;&#707;</span>
+  </button>
 </div>

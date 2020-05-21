@@ -11,6 +11,7 @@ import { LookbookItemComponent } from './lookbook-item/lookbook-item.component';
 import { RouterModule } from '@angular/router';
 import { SizeComponent } from './size/size.component';
 import { ColorComponent } from './color/color.component';
+import { QuantityComponent } from './quantity/quantity.component';
 
 
 
@@ -23,7 +24,8 @@ import { ColorComponent } from './color/color.component';
     ParallaxComponent,
     LookbookItemComponent,
     SizeComponent,
-    ColorComponent
+    ColorComponent,
+    QuantityComponent
   ],
   imports: [
     CommonModule,
@@ -39,7 +41,8 @@ import { ColorComponent } from './color/color.component';
     ParallaxComponent,
     LookbookItemComponent,
     SizeComponent,
-    ColorComponent
+    ColorComponent,
+    QuantityComponent
   ]
 })
 export class SharedModule { }

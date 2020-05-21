@@ -1,11 +1,32 @@
-<div class="cart-item">
-    <img class="mr-3" [src]="item.Product.Images[0].Url" alt="{{item.Product.Name}}">
-    <div class="media-body">
-      <h6 class="mt-0 mb-1 "><span>{{item.Product.Name}}</span></h6>
-      <h6 class="mt-0 mb-1">Code: <span>{{item.Product.Id}}</span></h6>
-      <h6 class="mt-0 mb-1">Color: <app-color [colors]= "[item.Product.SelectedColor]" [displaySize]="'s'"></app-color> </h6>
-      <h6 class="mt-0 mb-1">Size: <span>{{item.Product.SelectedSize.Label}}</span></h6>
-      <h6 class="mt-0 mb-1">Quantity: <span>{{item.Quantity}}</span></h6>
+<div class="media">
+  <img class="mr-3" [src]="item.Product.Images[0].Url" alt="{{item.Product.Name}}">
+  <div class="media-body">
+    <div class="row">
+      <div class="col-12 col-md-5">
+        <a class="mt-0 mb-1" href="#">{{item.Product.Name}} - {{item.Product.Id}}</a>
+        <div class="my-1">
+          <ul class="list-group">
+            <li class="list-group-item">
+              <span class="color">colour: </span>
+              <app-color [colors]="item.Product.Colors" [displaySize]="'s'" [disable]="'true'"></app-color>
+            </li>
+            <li class="list-group-item">
+              <span class="size">Size: </span>
+              <app-size [sizes]="item.Product.Sizes" [displaySize]="'s'"></app-size>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+      <div class="col-12 col-md-3 mb-3 mb-lg-0">
+        <span class="quantity d-md-none ">Quantity: </span>
+        <app-quantity class="d-inline-block d-md-block" [value] ="item.Quantity"></app-quantity>
+      </div>
+      <div class="col-12 col-md-4">
+        <span class="price d-md-none ">Price: </span>
+        <h6 class=" price mt-0 mb-1 d-inline-block d-md-block">{{item.Product.Price.Code}}-{{item.Product.Price.Amount}}
+        </h6>
+      </div>
+    </div>
+  </div>
 </div>
-
-

@@ -30,10 +30,10 @@ export class SizeComponent implements OnInit, AfterViewInit {
   private resizeOn(givenSize:String){
     if (this.displaySize === givenSize) {
       this.sizeSpans.toArray().forEach(de => {
-        this.renderer.setStyle(de.nativeElement, 'line-height', '17px');
-        this.renderer.setStyle(de.nativeElement, 'width', '20px');
-        this.renderer.setStyle(de.nativeElement, 'height', '20px');
-        this.renderer.setStyle(de.nativeElement, 'font-size', '0.6rem');
+        this.renderer.setStyle(de.nativeElement, 'line-height', '21px');
+        this.renderer.setStyle(de.nativeElement, 'width', '23px');
+        this.renderer.setStyle(de.nativeElement, 'height', '23px');
+        this.renderer.setStyle(de.nativeElement, 'font-size', '0.7rem');
       });
     }
   }

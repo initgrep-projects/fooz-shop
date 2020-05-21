@@ -1,8 +1,7 @@
-
 @import "../../../../variables.scss";
 
 div.modal-header {
-    font-family: $poppins-font-family;
+    font-family: $roboto-font-family;
     h4.modal-title {
         font-weight: 600;
         text-align: center;
@@ -14,28 +13,39 @@ div.modal-header {
         }
     }
 }
-div.modal-body {
-    ul {
-        li.media {
-            background-color: $grey-bg-color;
-            img {
-                width: 128px;
-                height: 128px;
-                border-radius: 5px;
-            }
+div.modal-footer {
+    font-family: $roboto-font-family;
+    justify-content: center;
+    button {
+        padding: 0.4rem 1rem 0.5rem 1rem;
+        font-size: 0.8rem;
+        border-radius: 20px;
+        font-weight: bold;
+        text-transform: uppercase;
+        span.text{
+            letter-spacing: .025rem;
+        }
+        span.l-caret {
+            margin-right: 0.5rem;
+            animation: fadeInRight 1s linear;
+            display: inline-block;
+        }
+        span.r-caret {
+            margin-left: 0.5rem;
+            animation: fadeInLeft 1s linear;
+            display: inline-block;
+        }
 
-            div.media-body{
-                h6 {
-                    span {
-                        font-weight: 600;
-                    }
-                }
-
-                app-color, app-size{
-                    display: inline-block;
-                    padding-left: .3rem;
-                }
+        &:hover {
+            span.l-caret, span.r-caret {
+                animation-iteration-count: infinite;
+                animation-play-state: running;
             }
         }
     }
+}
+@media (min-width: 768px) {
+    div.modal-footer {
+        justify-content: space-between;
+    } 
 }

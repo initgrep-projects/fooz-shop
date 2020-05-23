@@ -30,10 +30,11 @@ export class CartItemsComponent implements OnInit, OnDestroy {
    * get the cart items from the store
    */
   getCart() {
+    console.log('cart fetched from cart-items');
     this.subs.sink =
       this.cartService.getCartFromStore()
-        .subscribe(state => {
-          this.cart = state.cart;
+        .subscribe(cart => {
+          this.cart = cart;
           console.log('cart from store = ', this.cart);
         });
   }

@@ -4,7 +4,9 @@ import { ToastService } from 'src/app/modules/shared/toasts/toast.service';
 import { ItemDetailService } from '../item-detail.service';
 import { CartService } from 'src/app/modules/cart/cart.service';
 import { SubSink } from 'subsink';
-import {cloneDeep} from 'lodash';
+import { cloneDeep } from 'lodash';
+import { CartItem } from 'src/app/models/cartItem';
+
 @Component({
   selector: 'app-item-buy',
   templateUrl: './item-buy.component.html',
@@ -16,9 +18,7 @@ export class ItemBuyComponent implements OnInit, OnDestroy {
    * to be done later when Authentication is implemented
    */
   userId = 'Ano';
-
-  product: Product ;
-  selectedQuantity = 1;
+  cartItem: CartItem;
   isValidCart = true;
 
 
@@ -29,36 +29,37 @@ export class ItemBuyComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
+    this.cartItem = new CartItem();
+    this.cartItem.UserId = this.userId;
     this.subs.sink = this.itemdetailService.inputProductChange
-                        .subscribe(p  => {
-                          console.log('product recieved subscription ', p);
-                          this.product = cloneDeep(p);
-                        });
+      .subscribe(p => {
+        console.log('product recieved subscription ', p);
+        this.cartItem.Product = cloneDeep(p);
+      });
 
     this.subs.sink = this.itemdetailService.categoryChange
-                        .subscribe(c => this.product.Category = c);
+      .subscribe(c => this.cartItem.SelectedCategory = c);
     this.subs.sink = this.itemdetailService.colorChange
-                        .subscribe(c => this.product.Colors = c);
+      .subscribe(c => this.cartItem.SelectedColor = c);
     this.subs.sink = this.itemdetailService.quantityChange
-                        .subscribe(q => this.selectedQuantity = q);
+      .subscribe(q => this.cartItem.SelectedQuantity = q);
     this.subs.sink = this.itemdetailService.sizeChange
-                        .subscribe(s => this.product.Sizes = s);
+      .subscribe(s => this.cartItem.SelectedSize = s);
     this.subs.sink = this.itemdetailService.customSizeChange
-                        .subscribe(cz => this.product.CustomSize = cz);
+      .subscribe(cz => this.cartItem.SelectedCustomSize = cz);
 
   }
 
   addToCart() {
-    console.log('add to cart Product = ', this.product);
-    this.isValidCart = this.itemdetailService.validateCartProduct(this.product, this.selectedQuantity);
+    const item = cloneDeep(this.cartItem);
+    this.isValidCart = this.itemdetailService.validateCartProduct(item);
     if (this.isValidCart) {
-
       this.toastService.show(
         'Item added to Card Successfully ',
         { classname: 'bg-dark text-light', delay: 1000 }
       );
 
-      this.cartService.saveItem(this.product, this.selectedQuantity, this.userId);
+      this.cartService.saveItem(item);
     }
   }
 

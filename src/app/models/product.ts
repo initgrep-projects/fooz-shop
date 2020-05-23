@@ -10,7 +10,7 @@ export class Product {
     private name: string;
     private id: string;
     private description: string;
-    private availableQuantity: number;
+    private quantity: number;
     private timeStamp: number;
     private price: Currency;
     private category: Category;
@@ -22,7 +22,7 @@ export class Product {
     constructor(name: string,
                 id: string,
                 description: string,
-                availableQuantity: number,
+                quantity: number,
                 timeStamp: number,
                 price: Currency,
                 category: Category,
@@ -33,7 +33,7 @@ export class Product {
         this.id = id;
         this.description = description;
         this.category = category;
-        this.availableQuantity = availableQuantity;
+        this.quantity = quantity;
         this.timeStamp = timeStamp;
         this.price = price;
         this.images = images;
@@ -60,8 +60,8 @@ export class Product {
     set Id(id: string) { this.id = id; }
     get Description() { return this.description; }
     set Description(description: string) { this.description = description; }
-    get AvailableQuantity() { return this.availableQuantity; }
-    set AvailableQuantity(quantity: number) { this.availableQuantity = quantity; }
+    get Quantity() { return this.quantity; }
+    set Quantity(quantity: number) { this.quantity = quantity; }
     get TimeStamp() { return this.timeStamp; }
     set TimeStamp(timestamp: number) { this.timeStamp = timestamp; }
     get Price() { return this.price; }
@@ -88,6 +88,11 @@ export class Product {
     }
     get SelectedSize() {
         return this.Sizes.filter(s => s.isSelected).pop();
+    }
+
+    equals(p: Product): boolean{
+        console.log('product equal', this.name === p.name && this.id === p.id );
+       return  this.name === p.name && this.id === p.id;
     }
 
 }

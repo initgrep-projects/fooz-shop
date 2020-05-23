@@ -7,6 +7,8 @@ import { Color } from 'src/app/models/color';
 import { Size } from 'src/app/models/size';
 import { Category } from 'src/app/models/category';
 import { CustomSize } from 'src/app/models/custom-size';
+import { CartItem } from 'src/app/models/cartItem';
+import { isNull } from 'src/app/helpers/util';
 
 export const SZ = 'standard size';
 export const CZ = 'custom size';
@@ -16,16 +18,14 @@ export const CZ = 'custom size';
 })
 export class ItemDetailService {
 
-
-
   invalidState = [];
 
   inputProductChange = new BehaviorSubject<Product>(null);
-  colorChange = new Subject<Color[]>();
-  sizeChange = new Subject<Size[]>();
-  quantityChange = new Subject<number>();
-  categoryChange = new Subject<Category>();
-  customSizeChange = new Subject<CustomSize>();
+  colorChange = new Subject<Color>();
+  sizeChange = new Subject<Size>();
+  quantityChange = new BehaviorSubject<number>(0);
+  categoryChange = new BehaviorSubject<Category>(null);
+  customSizeChange = new BehaviorSubject<CustomSize>(null);
   sizeTypeChange = new Subject<String>();
 
   constructor() { }
@@ -34,10 +34,10 @@ export class ItemDetailService {
     this.inputProductChange.next(this.getsanitzedProduct(p));
   }
 
-  setSelectedSize(s: Size[]) {
+  setSelectedSize(s: Size) {
     this.sizeChange.next(s);
   }
-  setSelectedColors(c: Color[]) {
+  setSelectedColors(c: Color) {
     this.colorChange.next(c);
   }
   setSelectedQuantity(n: number) {
@@ -57,24 +57,24 @@ export class ItemDetailService {
     this.sizeTypeChange.next(CZ);
   }
 
-  validateCartProduct(p: Product, q: number) {
+  validateCartProduct(cartItem: CartItem) {
     let isValid = true;
     this.invalidState = [];
-    if (this.isEmpty(p.Colors)) {
+    if (isNull(cartItem.SelectedColor)) {
       isValid = isValid && false;
       this.invalidState.push('Color');
     }
-    if (q === 0) {
+    if (cartItem.SelectedQuantity === 0) {
       isValid = isValid && false;
       this.invalidState.push('Quantity');
     }
-    if (p.Category === null) {
+    if (isNull(cartItem.SelectedCategory)) {
       isValid = isValid && false;
       this.invalidState.push('Category');
     }
-    if (this.isEmpty(p.Sizes)) {
+    if (isNull(cartItem.SelectedSize)) {
       console.log('size is null');
-      if(!this.isValidCustomSize(p.CustomSize)){
+      if(!this.isValidCustomSize(cartItem.SelectedCustomSize)){
         console.log('custom size is null');
         isValid = isValid && false;
         this.invalidState.push('Size');
@@ -84,12 +84,10 @@ export class ItemDetailService {
     return isValid;
   }
 
-  private isEmpty<T>(ts: T[]): boolean {
-    return ts.length === 0;
-  }
+ 
 
   private isValidCustomSize(cz: CustomSize) {
-    if (!cz) { return false; }
+    if (isNull(cz)) { return false; }
     if (!!cz.Width
       && !!cz.Length
       && !!cz.Bust
@@ -100,11 +98,7 @@ export class ItemDetailService {
   }
 
   private getsanitzedProduct(product: Product) {
-    const p = cloneDeep(product);
-    p.Sizes = [];
-    p.Colors = [];
-    p.CustomSize = null;
-    console.log('after sanitixation = ', p);
-    return p;
+    return cloneDeep(product);
+   
   }
 }

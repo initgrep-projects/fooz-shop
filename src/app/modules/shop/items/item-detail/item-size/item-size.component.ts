@@ -38,12 +38,12 @@ export class ItemSizeComponent implements OnInit, OnDestroy {
   }
 
   onSelectionChange(s: Size) {
-      this.itemDetailService.setSelectedSize([s]);
+      this.itemDetailService.setSelectedSize(s);
   }
 
   resetSelection() {
     this.sizes.forEach(size => size.deSelect());
-    this.itemDetailService.setSelectedSize([]);
+    this.itemDetailService.setSelectedSize(null);
   }
 
   ngOnDestroy() {

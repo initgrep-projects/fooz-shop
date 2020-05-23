@@ -35,7 +35,9 @@ export class FireStoreDbService {
   constructor(
     private db: AngularFirestore,
     private fakedataService: FakedataService,
-    private objTransformer: ObjectTransformerService) { }
+    private objTransformer: ObjectTransformerService) { 
+      window['fbs'] = this.db;
+    }
 
 
   /**
@@ -235,10 +237,15 @@ export class FireStoreDbService {
    *  4)  fetch all items
    */
   saveCartItemToDb(item: CartItem) {
-    this.db.collection(CART_COLLECTION).add(classToPlain(item));
+    let cartCollection:AngularFirestoreCollection<CartItem>;
+    cartCollection = this.db.collection<CartItem>(CART_COLLECTION);//.add(classToPlain(item));
+    cartCollection.doc(item.Id).set(classToPlain(item));
   }
+
   updateCartItemToDb(item: CartItem) {
-    // this.db.collection(CART_COLLECTION).de
+    let cartCollection:AngularFirestoreCollection<CartItem>;
+    cartCollection = this.db.collection<CartItem>(CART_COLLECTION);//.add(classToPlain(item));
+    cartCollection.doc(item.Id).set(classToPlain(item));
   }
 
   fetchcartItemsFromDb() {
@@ -248,6 +255,7 @@ export class FireStoreDbService {
       map(querySnapShot => {
         const items: CartItem[] = [];
         querySnapShot.forEach(doc => {
+          console.log('cart db doc = ', doc.data());
           items.push(this.objTransformer.transformcartItem(doc.data()));
         });
         console.log('Cart Items fetched from db = ', items);
@@ -256,9 +264,7 @@ export class FireStoreDbService {
     );
   }
 
-  // querySnapShot.forEach(doc => {
-  //   products.push(this.objTransformer.transformProductFromDocData(doc.data()));
-  // });
+ 
 
   /** cart Operations END */
 

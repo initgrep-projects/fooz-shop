@@ -60,6 +60,7 @@ export class ObjectTransformerService {
   }
 
   transformCustomSize(param: { width: number; length: number; bust: number; arm: number; hip: number; }) {
+    if(!param) return null;
     return new CustomSize(param.width, param.length, param.bust, param.arm, param.hip);
   }
 
@@ -160,7 +161,18 @@ export class ObjectTransformerService {
   }
 
   transformcartItem(param: DocumentData) {
-    return new CartItem(param.userId, this.transformProduct(param.product), param.quantity);
+    console.log("param = ", param);
+    return new CartItem(
+      param.id,
+      param.userId,
+      this.transformProduct(param.product),
+      param.selectedQuantity,
+      this.transformColor(param.selectedColor),
+      this.transformSize(param.selectedSize),
+      this.transformCustomSize(param.selectedCustomSize),
+      this.transformCategory(param.selectedCategory)
+
+    );
   }
 
   transformCartItems(params: any[]) {

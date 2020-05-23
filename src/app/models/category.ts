@@ -10,4 +10,9 @@ export class Category {
 
     set Icon(icon: string) { this.icon = icon; }
     get Icon() { return this.icon; }
+
+    equals(category: Category): boolean{
+        console.log('selectedCategory equal ',this.code === category.code && this.label === category.label);
+        return this.code === category.code && this.label === category.label;
+    }
 }

@@ -16,7 +16,7 @@ export class ItemColorComponent implements OnInit {
   }
 
   OnSelectionChange(c: Color) {
-      this.itemdetailService.setSelectedColors([c]);
+      this.itemdetailService.setSelectedColors(c);
   }
 
 

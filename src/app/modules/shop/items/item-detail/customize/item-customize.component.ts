@@ -29,6 +29,7 @@ export class ItemCustomizeComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.addCustomSizeInputsToStore();
+    this.addValuesToCustomSize();
     this.resetCustomSizeOnStdSizeSelection();
     this.listenToSizeTypeChange();
   }
@@ -40,7 +41,6 @@ export class ItemCustomizeComponent implements OnInit, OnDestroy {
           console.log("hide SZ");
           this.isVisible = true;
           this.customSize = new CustomSize();
-          // this.addValuesToCustomSize();
         }
       });
   }

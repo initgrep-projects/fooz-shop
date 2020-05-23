@@ -19,21 +19,23 @@ export class CartComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
+    console.log('cartcomponent init called ');
     this.getCartSize();
     this.dispatchCartItemsToCartStore();
   }
 
 
   getCartSize() {
+    console.log('cart size fetched from cart-component');
     this.subs.sink = this.cartService.getCartFromStore()
-      .subscribe(state =>{
-        this.cartItemSize = state.cart.length
-        //set the service  cart here untill a better way a found
-        this.cartService.cart = state.cart;
+      .subscribe(cart =>{
+        console.log('cart = ', cart);
+        this.cartItemSize = cart.length
       });
   }
 
   dispatchCartItemsToCartStore() {
+    console.log('dispatchCartItemsToCartStore called');
     this.subs.sink = this.cartService.dispatchCartItemsToStore().subscribe();
   }
 

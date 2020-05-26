@@ -23,7 +23,7 @@ export class ItemDetailService {
   inputProductChange = new BehaviorSubject<Product>(null);
   colorChange = new Subject<Color>();
   sizeChange = new Subject<Size>();
-  quantityChange = new BehaviorSubject<number>(0);
+  quantityChange = new BehaviorSubject<number>(1);
   categoryChange = new BehaviorSubject<Category>(null);
   customSizeChange = new BehaviorSubject<CustomSize>(null);
   sizeTypeChange = new Subject<String>();

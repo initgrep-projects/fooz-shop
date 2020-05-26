@@ -1,8 +1,9 @@
 
 $ptserif-font-family:'PT Serif', serif;
 $poppins-font-family: 'Poppins', sans-serif;
-$font-family-base:  $poppins-font-family;
-$roboto-font-family: 'Roboto Condensed', sans-serif;;
+
+$roboto-font-family: 'Roboto Condensed', sans-serif;
+$font-family-base:  $roboto-font-family;
 
 $heading-letter-spacing: 0.035rem;
 
@@ -21,3 +22,9 @@ $grey-text-color: #636161;
 $primary-border-color: #333;
 $secondary-border-color: #f1f1f1;
 $grey-border-color: #636161;
+
+
+@mixin animate($type:fadeIn, $duration:2s) {
+    animation: $type;
+    animation-duration: $duration;
+}

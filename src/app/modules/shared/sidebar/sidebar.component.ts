@@ -46,7 +46,7 @@ export class SidebarComponent implements OnInit, OnDestroy, AfterViewInit {
     this.subs.sink =
       this.sidebarService.openSideBar.subscribe(status => {
         this.isOpen = true;
-        this.renderer.setStyle(this.sideNav.nativeElement, 'width','100%');
+        this.renderer.setStyle(this.sideNavMask.nativeElement, 'width','100%');
         this.addSidenavWidth();
         this.subscribeToWidthChange();
       });

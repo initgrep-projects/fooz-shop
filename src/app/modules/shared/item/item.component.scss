@@ -5,7 +5,7 @@ div.item {
   overflow: hidden;
   margin-left: -13px;
   margin-right: -13px;
-
+  font-family: $roboto-font-family;
   div.item-heading {
     width: 100%;
     height: 200px;
@@ -83,7 +83,6 @@ div.item {
             text-transform: capitalize;
             border-radius: 15px;
             border-width: 2px;
-            font-family: "Poppins", sans-serif;
             padding-top: 0.2rem;
             padding-bottom: 0.2rem;
             padding-left: 0.3rem;
@@ -133,7 +132,7 @@ div.item {
   div.item-body {
     background-color: $grey-bg-color;
     position: relative;
-    font-family: $poppins-font-family;
+
     h6 {
       text-align: center;
       margin-bottom: 0;
@@ -142,7 +141,6 @@ div.item {
         letter-spacing: 0.025rem;
         font-size: 0.6rem;
         text-transform: capitalize;
-        font-family: $ptserif-font-family;
       }
       span.size {
         font-weight: 600;
@@ -173,7 +171,7 @@ div.item {
   div.item {
     position: relative;
     overflow: hidden;
-    
+
     div.item-heading {
       width: 100%;
       height: 250px;

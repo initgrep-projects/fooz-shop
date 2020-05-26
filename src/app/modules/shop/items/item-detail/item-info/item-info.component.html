@@ -6,7 +6,8 @@
             <p class="prod-desc">{{product.Description}}</p>
             <hr>
             <p class="price-wrapper">
-                <span class="price">{{product.Price.Code}} : {{product.Price.Amount}}</span>
+               <app-item-quantity></app-item-quantity>
+               <span class="price">{{product.Price.Code}} : {{grossItemPrice}}</span>
                 
             </p>
             <small class="tax-info small text-muted">inclusive of all taxes</small>

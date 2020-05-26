@@ -2,7 +2,7 @@
 
 .info-wrapper {
     margin-top: 1rem;
-    font-family: $poppins-font-family;
+    font-family: $roboto-font-family;
 
     h6 {
       font-weight: 600;
@@ -14,6 +14,10 @@
       margin-bottom: 0rem;
       font-size: 1rem;
       font-weight: 600;
+      span{
+        float: right;
+        margin-right: 10%;
+      }
     }
     p.prod-code{
       font-weight: 400;

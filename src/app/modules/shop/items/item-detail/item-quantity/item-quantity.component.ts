@@ -8,26 +8,13 @@ import { ItemDetailService } from '../item-detail.service';
 })
 export class ItemQuantityComponent implements OnInit {
 
-  quantity = 0;
+  quantity = 1;
   constructor( private itemdetailService: ItemDetailService) { }
 
-  ngOnInit(): void {
-    this.increment();
-  }
+  ngOnInit(): void {}
 
-
-  increment() {
-    if (this.quantity < 10) {
-       this.quantity++;
-       this.itemdetailService.setSelectedQuantity(this.quantity);
-    }
-  }
-
-  decrement() {
-    if (this.quantity > 1) {
-      this.quantity--;
-      this.itemdetailService.setSelectedQuantity(this.quantity);
-    }
+  onValueChange(value:number) {
+       this.itemdetailService.setSelectedQuantity(value);
   }
 
 }

@@ -2,7 +2,7 @@
 
 div.sidebar-content-wrapper {
     margin-top: 1rem;
-
+    font-family: $roboto-font-family;
     a.nav-close {
         float: right;
         font-size: 1.5rem;
@@ -22,8 +22,6 @@ div.sidebar-content-wrapper {
         span {
             letter-spacing: $heading-letter-spacing;
             text-transform: uppercase;
-            // font-size: .9rem;
-            font-family: $ptserif-font-family;
             font-weight: 600;
             margin-left: 0.5rem;
         }
@@ -33,33 +31,38 @@ div.sidebar-content-wrapper {
         width: auto;
         padding-left: 20%;
         width: 70%;
+
         li {
             background-color: transparent;
             border-bottom: 0px solid transparent;
             // border:1px solid red;
-            
+
             a {
                 letter-spacing: $heading-letter-spacing;
-                font-family: $poppins-font-family;
                 font-weight: 600;
                 text-decoration: none;
                 color: $primary-text-color;
                 cursor: pointer;
+                text-transform: capitalize;
+                display: block;
+                width: 100%;
+                text-align: center;
+
                 span {
                     position: absolute;
                     display: block;
                     width: 0%;
                     height: 5px;
                     background-color: $primary-text-color;
-                    left: 5px;
-                    top: 80%;
+                    // left: 5px;
+                    top: 100%;
                     transition: width 0.5s ease;
                     border-radius: 5px;
                 }
 
                 &:hover {
                     span {
-                        width: 80%;
+                        width: 100%;
                     }
                 }
 
@@ -67,7 +70,7 @@ div.sidebar-content-wrapper {
                     color: $primary-text-color;
                     font-weight: 600;
                     span {
-                        width: 80%;
+                        width: 100%;
                     }
                 }
             }
@@ -76,7 +79,7 @@ div.sidebar-content-wrapper {
 }
 
 nav.navbar {
-    font-family: $poppins-font-family;
+    font-family: $roboto-font-family;
     background-color: white;
 
     a.nav-toggle {
@@ -90,11 +93,12 @@ nav.navbar {
         position: relative;
         margin-left: 1rem;
         color: $primary-text-color;
+        @include animate();
         span {
             letter-spacing: $heading-letter-spacing;
             text-transform: uppercase;
             // font-size: .9rem;
-            font-family: $ptserif-font-family;
+            // font-family: $ptserif-font-family;
             font-weight: 600;
             margin-left: 0.5rem;
         }
@@ -110,20 +114,19 @@ nav.navbar {
 
         li.nav-item {
             a.nav-link {
-                font-family: $poppins-font-family;
                 font-weight: 600;
                 font-size: 0.9rem;
-                letter-spacing: 0.014rem;
+                letter-spacing: 0.025rem;
                 text-transform: capitalize;
                 color: $primary-text-color;
-
+                @include animate();
                 span {
-                    position: absolute;
+                    position: relative;
                     display: block;
                     width: 0%;
                     height: 5px;
                     background-color: $primary-text-color;
-                    left: 5px;
+                    // left: 5px;
                     top: 80%;
                     transition: width 0.5s ease;
                     border-radius: 5px;
@@ -131,7 +134,7 @@ nav.navbar {
 
                 &:hover {
                     span {
-                        width: 80%;
+                        width: 100%;
                     }
                 }
 
@@ -139,7 +142,7 @@ nav.navbar {
                     color: $primary-text-color;
                     font-weight: 600;
                     span {
-                        width: 80%;
+                        width: 100%;
                     }
                 }
             }
@@ -181,8 +184,6 @@ nav.navbar {
     margin-left: 50px;
 }
 
-
-
 // Small devices (landscape phones, 576px and up)
 @media (min-width: 576px) {
     nav.navbar {
@@ -196,10 +197,9 @@ nav.navbar {
 
 // Medium devices (tablets, 768px and up)
 @media (min-width: 768px) {
-
     div.sidebar-content-wrapper {
         ul.list-group {
-        width: 35%;
+            width: 35%;
         }
     }
 }
@@ -208,7 +208,7 @@ nav.navbar {
 @media (min-width: 992px) {
     div.sidebar-content-wrapper {
         ul.list-group {
-        width: 60%;
+            width: 60%;
         }
     }
 

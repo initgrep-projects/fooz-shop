@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Product } from 'src/app/models/product';
-import { addItemToCartAction, addItemsToCartAction, updateItemInCartAction } from './store/cart.actions';
+import { addItemToCartAction, addItemsToCartAction, updateItemInCartAction, deleteItemInCartAction } from './store/cart.actions';
 import { Store } from '@ngrx/store';
 import { AppState } from '../main/store/app.reducer';
 import { FireStoreDbService } from 'src/app/services/firestore.db.service';
@@ -25,26 +25,32 @@ export class CartService {
 
   saveItem(item: CartItem) {
 
-  this.getCartFromStore()
-  .pipe(take(1))
-  .subscribe(cart => {
-   console.log('saveItem to cart called ', item);
+    this.getCartFromStore()
+      .pipe(take(1))
+      .subscribe(cart => {
+        console.log('saveItem to cart called ', item);
 
-    console.log('cart before search ', cart);
-    const searchedItem = this.searchItem(cart,item);
-    console.log('searchedItem Present = ', searchedItem);
-    console.log('cart after search', cart);
-    if (!!searchedItem) {
-    //   //update
-      item.SelectedQuantity = searchedItem.SelectedQuantity + item.SelectedQuantity;
-      this.store.dispatch(updateItemInCartAction({ payload: item }));
-      this.fbDataService.updateCartItemToDb(item);//write implementation here
-    } else {
-      this.store.dispatch(addItemToCartAction({ payload: item }));
-      this.fbDataService.saveCartItemToDb(item);
-    }
-  });
+        console.log('cart before search ', cart);
+        const searchedItem = this.searchItem(cart, item);
+        console.log('searchedItem Present = ', searchedItem);
+        console.log('cart after search', cart);
+        if (!!searchedItem) {
+          //   //update
+          item.SelectedQuantity = searchedItem.SelectedQuantity + item.SelectedQuantity;
+          this.store.dispatch(updateItemInCartAction({ payload: item }));
+          this.fbDataService.updateCartItemToDb(item);
+        } else {
+          //save
+          this.store.dispatch(addItemToCartAction({ payload: item }));
+          this.fbDataService.saveCartItemToDb(item);
+        }
+      });
 
+  }
+
+  deleteItem($id:string){
+    this.store.dispatch(deleteItemInCartAction({payload: $id}));
+    this.fbDataService.deleteCartItemInDb($id);
   }
 
   searchItem(cart: CartItem[], item: CartItem) {
@@ -55,7 +61,7 @@ export class CartService {
 
   getCartFromStore() {
     return this.store.select('cart')
-      .pipe( map(state => state.cart) );
+      .pipe(map(state => state.cart));
   }
 
   dispatchCartItemsToStore() {

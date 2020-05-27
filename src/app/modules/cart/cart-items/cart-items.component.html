@@ -7,9 +7,13 @@
   </button>
 </div>
 <div class="modal-body">
+  <div *ngIf="cart.length == 0"  class="alert alert-light" role="alert">
+    Your cart is empty.
+  </div>
+
   <ul class="list-unstyled">
     <li class=" mb-1 py-2" *ngFor="let item of cart">
-      <app-cart-item [item]="item"></app-cart-item>
+      <app-cart-item [item]="item" (deleteItem)="onDeleteItem($event)"></app-cart-item>
     </li>
   </ul>
 </div>
@@ -18,7 +22,7 @@
     <span class="l-caret">&#706;&#706;</span>
         <span class="text">go to shopping</span>
   </button>
-  <button type="button" class="btn btn-sm btn-dark">
+  <button type="button" class="btn btn-sm btn-dark" *ngIf="cart.length > 0">
     <span class="text">go to checkout</span>
     <span class="r-caret">&#707;&#707;</span>
   </button>

@@ -1,6 +1,7 @@
-
 <div class="fooz-container ">
+  <p *ngIf="isLoading">Loading trends</p>
+
   <div class="box" *ngFor="let imageUrl of trendImages">
-    <img [src] = "[imageUrl]">
+    <img [src]="[imageUrl]">
   </div>
 </div>

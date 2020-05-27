@@ -39,16 +39,16 @@ export class CartItem {
     set SelectedCategory(cat: Category) { this.selectedCategory = cat; }
 
     get Id() { return this.id; }
-   
+
     equals(_item: CartItem): boolean {
-        console.log(" ids equal ?",_item.Id === this.Id);
-        console.log(" user_ids equal ?",_item.userId === this.userId);
-        return _item.Id === this.Id
-            && _item.userId === this.userId
-            && _item.SelectedSize.equals(this.SelectedSize)
-            && _item.SelectedColor.equals(this.SelectedColor)
-            && _item.SelectedCategory.equals(this.SelectedCategory)
-            && _item.Product.equals(this.Product);
+       
+        console.log(" user_ids equal ?", _item.userId === this.userId);
+        return _item.userId === this.userId
+            && (!!_item.SelectedSize && !!this.SelectedSize) ? _item.SelectedSize.equals(this.SelectedSize) : false
+                && (!!_item.SelectedCustomSize && !!this.SelectedCustomSize) ? _item.selectedCustomSize.equals(this.selectedCustomSize) : false
+                && _item.SelectedColor.equals(this.SelectedColor)
+                && _item.SelectedCategory.equals(this.SelectedCategory)
+                && _item.Product.equals(this.Product);
     }
 
 }

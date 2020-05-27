@@ -13,6 +13,15 @@ div.modal-header {
         }
     }
 }
+div.modal-body {
+    div.alert {
+        text-align: center;
+        text-transform: uppercase;
+        color: #333;
+        font-weight: 600;
+    }
+}
+
 div.modal-footer {
     font-family: $roboto-font-family;
     justify-content: center;
@@ -22,8 +31,8 @@ div.modal-footer {
         border-radius: 20px;
         font-weight: bold;
         text-transform: uppercase;
-        span.text{
-            letter-spacing: .025rem;
+        span.text {
+            letter-spacing: 0.025rem;
         }
         span.l-caret {
             margin-right: 0.5rem;
@@ -37,7 +46,8 @@ div.modal-footer {
         }
 
         &:hover {
-            span.l-caret, span.r-caret {
+            span.l-caret,
+            span.r-caret {
                 animation-iteration-count: infinite;
                 animation-play-state: running;
             }
@@ -47,5 +57,5 @@ div.modal-footer {
 @media (min-width: 768px) {
     div.modal-footer {
         justify-content: space-between;
-    } 
+    }
 }

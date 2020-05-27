@@ -41,6 +41,7 @@ export class ObjectTransformerService {
   }
 
   transformColor(param: { name: string; code: string; selected?: boolean }): Color {
+    if (!param) return null;
     if (param.selected) {
       return new Color(param.name, param.code, param.selected);
     }
@@ -60,7 +61,7 @@ export class ObjectTransformerService {
   }
 
   transformCustomSize(param: { width: number; length: number; bust: number; arm: number; hip: number; }) {
-    if(!param) return null;
+    if (!param) return null;
     return new CustomSize(param.width, param.length, param.bust, param.arm, param.hip);
   }
 
@@ -81,6 +82,7 @@ export class ObjectTransformerService {
   }
 
   transformSize(param: { label: string; letter: string; selected?: boolean }) {
+    if (!param) return null;
     if (param.selected) {
       return new Size(param.label, param.letter, param.selected);
     }

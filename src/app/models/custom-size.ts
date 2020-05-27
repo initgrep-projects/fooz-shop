@@ -17,9 +17,10 @@ export class CustomSize {
     set Arm(a: number) { this.arm = a; }
     get Hip() { return this.hip; }
     set Hip(h: number) { this.hip = h; }
-    equals(cz: CustomSize) : boolean{
+
+    equals(cz: CustomSize): boolean {
         return cz.width === this.width && cz.length === this.length
-        && cz.bust === this.bust && cz.arm === this.arm && cz.hip == this.hip;
+            && cz.bust === this.bust && cz.arm === this.arm && cz.hip == this.hip;
     }
 
 

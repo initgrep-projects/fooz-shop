@@ -246,6 +246,12 @@ export class FireStoreDbService {
     let cartCollection:AngularFirestoreCollection<CartItem>;
     cartCollection = this.db.collection<CartItem>(CART_COLLECTION);//.add(classToPlain(item));
     cartCollection.doc(item.Id).set(classToPlain(item));
+  
+  }
+  deleteCartItemInDb(id: string){
+    let cartCollection:AngularFirestoreCollection<CartItem>;
+    cartCollection = this.db.collection<CartItem>(CART_COLLECTION);
+    cartCollection.doc(id).delete();
   }
 
   fetchcartItemsFromDb() {

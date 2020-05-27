@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HomeService } from '../home.service';
 import { Subscription } from 'rxjs';
+import { isEmpty } from 'src/app/helpers/util';
 
 
 @Component({
@@ -12,10 +13,9 @@ import { Subscription } from 'rxjs';
 export class TrendComponent implements OnInit, OnDestroy {
 
   constructor(private homeService: HomeService) { }
-
   subs: Subscription[] = [];
-
   trendImages: string[] = [];
+  isLoading = true;
 
 
   ngOnInit() {
@@ -25,7 +25,13 @@ export class TrendComponent implements OnInit, OnDestroy {
 
   storeTrendItems() {
     this.subs[this.subs.length + 1] =
-      this.homeService.dispatchTrendItemsToStore().subscribe();
+      this.homeService.dispatchTrendItemsToStore().subscribe(resp => {
+        console.log("response got  = ", resp)
+        if(!isEmpty(resp)){
+          this.isLoading = false;
+        }
+        
+      });
   }
 
   getTrendItemsFromStore() {

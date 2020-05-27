@@ -48,7 +48,10 @@ export class CartItemsComponent implements OnInit, OnDestroy {
     setTimeout(()=>{
       this.router.navigate(['shop'],{relativeTo: this.activatedRoute});
     },1000);
-    
+  }
+
+  onDeleteItem($id: string){
+   this.cartService.deleteItem($id);
   }
 
   ngOnDestroy() {

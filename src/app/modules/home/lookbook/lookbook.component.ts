@@ -12,6 +12,7 @@ export class LookbookComponent implements OnInit, OnDestroy {
 
   products: Product[] = [];
   subs: Subscription[] = [];
+  isLoading = true;
   constructor(private homeService: HomeService) { }
 
   ngOnInit() {

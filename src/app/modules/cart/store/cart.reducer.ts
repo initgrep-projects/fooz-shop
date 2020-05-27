@@ -37,7 +37,7 @@ const cartReducer = createReducer(
 );
 
 function getDifferentialCart(cart: CartItem[], id: string) {
-    return [...cart.splice(cart.findIndex(item => item.Product.Id === id), 1)];
+    return cart.filter(item => item.Id !== id);
 }
 
 function getUpdatedCart(cart: CartItem[], item: CartItem) {

@@ -2,7 +2,7 @@
 
 div.media {
     font-family: $roboto-font-family;
-    border: 1px solid #8080801c;
+    border: 1px solid $grey-border-color;
     border-radius: 5px;
     img {
         width: 128px;
@@ -43,6 +43,9 @@ div.media {
                     // font-family: $ptserif-font-family;
                     color: $grey-text-color;
                 }
+                span.badge{
+                    border: 1px solid $grey-border-color;
+                }
                 app-color,
                 app-size {
                     display: inline-block;
@@ -63,16 +66,25 @@ div.media {
             font-weight: 600;
             font-size: 0.8rem;
         }
+
+        div.cart-oper {
+            border-top: 1px solid $grey-border-color;
+            padding-top: 0.5rem;
+
+            button {
+                letter-spacing: 0.025rem;
+                font-size: 0.8rem;
+            }
+        }
     }
 }
 
 @media (min-width: 768px) {
     div.media {
-        
         div.media-body {
             font-size: 0.9rem;
-            a{
-                font-size: .9rem;
+            a {
+                font-size: 0.9rem;
             }
             h6.price {
                 font-size: 1rem;

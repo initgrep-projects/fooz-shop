@@ -45,6 +45,7 @@ div.media {
                 }
                 span.badge{
                     border: 1px solid $grey-border-color;
+                    text-transform: capitalize;
                 }
                 app-color,
                 app-size {
@@ -74,6 +75,7 @@ div.media {
             button {
                 letter-spacing: 0.025rem;
                 font-size: 0.8rem;
+                float: right;
             }
         }
     }

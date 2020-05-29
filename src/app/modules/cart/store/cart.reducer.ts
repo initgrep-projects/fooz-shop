@@ -18,12 +18,12 @@ const cartReducer = createReducer(
 
     on(addItemsToCartAction, (currentState, { payload }) => ({
         ...currentState,
-        cart: [...payload]
+        cart: getSortedItems([...payload])
     })),
 
     on(addItemToCartAction, (currentState, { payload }) => ({
         ...currentState,
-        cart: [...currentState.cart, cloneDeep(payload)]
+        cart: getSortedItems( [...currentState.cart, cloneDeep(payload)])
     })),
     on(deleteItemInCartAction, (currentState, { payload }) => ({
         ...currentState,
@@ -36,13 +36,25 @@ const cartReducer = createReducer(
 
 );
 
+function getSortedItems(items: CartItem[]){
+   return items.sort((a,b) => {
+        if(a.CreatedDate < b.CreatedDate) {
+            return 1;
+        } 
+        if(a.CreatedDate > b.CreatedDate) {
+            return -1;
+        }
+        return 0;
+    });
+}
+
 function getDifferentialCart(cart: CartItem[], id: string) {
-    return cart.filter(item => item.Id !== id);
+    return getSortedItems(cart.filter(item => item.Id !== id));
 }
 
 function getUpdatedCart(cart: CartItem[], item: CartItem) {
     const newCart = cart.filter(_item => !_item.equals(item));
-    return [...newCart, cloneDeep(item)];
+    return getSortedItems([...newCart, cloneDeep(item)]);
 }
 
 

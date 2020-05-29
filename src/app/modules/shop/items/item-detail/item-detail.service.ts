@@ -57,7 +57,7 @@ export class ItemDetailService {
     this.sizeTypeChange.next(CZ);
   }
 
-  validateCartProduct(cartItem: CartItem) {
+  validateCartItem(cartItem: CartItem) {
     let isValid = true;
     this.invalidState = [];
     if (isNull(cartItem.SelectedColor)) {

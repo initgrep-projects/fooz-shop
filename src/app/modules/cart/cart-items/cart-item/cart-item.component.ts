@@ -1,5 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { CartItem } from 'src/app/models/cartItem';
+import { CartService } from '../../cart.service';
+import { cloneDeep } from 'lodash';
 
 @Component({
   selector: 'app-cart-item',
@@ -9,24 +11,28 @@ import { CartItem } from 'src/app/models/cartItem';
 export class CartItemComponent implements OnInit {
 
   @Input('item') item: CartItem
-  @Output() deleteItem = new EventEmitter<string>();
 
   grossItemPrice: number;
 
-  constructor() { }
+  constructor(private cartService: CartService) { }
 
   ngOnInit(): void {
-    console.log("cartItem colors = ", this.item.Product.Colors);
-    this.grossItemPrice = this.item.Product.Price.Amount * this.item.SelectedQuantity;
+    this.item = cloneDeep(this.item);
+    this.incrementPrice();
   }
 
   onQuantityChange(q: number){
+    console.log('quanitity change -> ',q);
     this.item.SelectedQuantity = q;
+    this.incrementPrice();
+    this.cartService._updateItem(this.item);
+  }
+  private incrementPrice(){
     this.grossItemPrice = this.item.Product.Price.Amount * this.item.SelectedQuantity;
   }
 
   removeItem(){
-    this.deleteItem.emit(this.item.Id);
+    this.cartService.deleteItem(this.item.Id);
   }
 
 

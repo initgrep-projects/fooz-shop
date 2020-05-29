@@ -5,6 +5,7 @@ import { CartModalService } from '../cart-modal/cart-modal.service';
 import { SubSink } from 'subsink';
 import { Router, ActivatedRoute } from '@angular/router';
 
+
 @Component({
   selector: 'app-cart-items',
   templateUrl: './cart-items.component.html',
@@ -19,7 +20,7 @@ export class CartItemsComponent implements OnInit, OnDestroy {
     private cartService: CartService,
     private cartModalService: CartModalService,
     private router: Router,
-    private activatedRoute:ActivatedRoute
+    private activatedRoute: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
@@ -43,15 +44,11 @@ export class CartItemsComponent implements OnInit, OnDestroy {
     this.cartModalService.dismissModal();
   }
 
-  routeToShop(){
+  routeToShop() {
     this.closeModal();
-    setTimeout(()=>{
-      this.router.navigate(['shop'],{relativeTo: this.activatedRoute});
-    },1000);
-  }
-
-  onDeleteItem($id: string){
-   this.cartService.deleteItem($id);
+    setTimeout(() => {
+      this.router.navigate(['shop'], { relativeTo: this.activatedRoute });
+    }, 1000);
   }
 
   ngOnDestroy() {

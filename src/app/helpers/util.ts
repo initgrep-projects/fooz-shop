@@ -11,6 +11,7 @@ export function isIdentical(a: hasEquals[], b: hasEquals[]) {
     return true;
 };  
 
+
 export function generateGuid() {
     var result, i, j;
     result = '';

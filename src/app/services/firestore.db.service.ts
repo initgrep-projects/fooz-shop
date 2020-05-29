@@ -31,13 +31,14 @@ export class FireStoreDbService {
   pageSize = 2;
 
 
+  private cartCollection: AngularFirestoreCollection<CartItem>;
 
   constructor(
     private db: AngularFirestore,
     private fakedataService: FakedataService,
-    private objTransformer: ObjectTransformerService) { 
-      window['fbs'] = this.db;
-    }
+    private objTransformer: ObjectTransformerService) {
+    this.cartCollection = this.db.collection<CartItem>(CART_COLLECTION);
+  }
 
 
   /**
@@ -214,16 +215,16 @@ export class FireStoreDbService {
 
   fetchTrendItems() {
     return this.db.collection(TREND_COLLECTION)
-    .get()
-    .pipe(
-      map(querySnapShot => {
-        let items: string[] = [];
-        querySnapShot.forEach(doc => {
-         items =  [...doc.data().items];
-        });
-        return items;
-      })
-    );
+      .get()
+      .pipe(
+        map(querySnapShot => {
+          let items: string[] = [];
+          querySnapShot.forEach(doc => {
+            items = [...doc.data().items];
+          });
+          return items;
+        })
+      );
   }
 
   /** cart Operations START
@@ -237,40 +238,34 @@ export class FireStoreDbService {
    *  4)  fetch all items
    */
   saveCartItemToDb(item: CartItem) {
-    let cartCollection:AngularFirestoreCollection<CartItem>;
-    cartCollection = this.db.collection<CartItem>(CART_COLLECTION);//.add(classToPlain(item));
-    cartCollection.doc(item.Id).set(classToPlain(item));
+    this.cartCollection.doc(item.Id).set(classToPlain(item));
   }
 
   updateCartItemToDb(item: CartItem) {
-    let cartCollection:AngularFirestoreCollection<CartItem>;
-    cartCollection = this.db.collection<CartItem>(CART_COLLECTION);//.add(classToPlain(item));
-    cartCollection.doc(item.Id).set(classToPlain(item));
-  
+    this.cartCollection.doc(item.Id).set(classToPlain(item));
+
   }
-  deleteCartItemInDb(id: string){
-    let cartCollection:AngularFirestoreCollection<CartItem>;
-    cartCollection = this.db.collection<CartItem>(CART_COLLECTION);
-    cartCollection.doc(id).delete();
+  deleteCartItemInDb(id: string) {
+    this.cartCollection.doc(id).delete();
   }
 
   fetchcartItemsFromDb() {
-    return this.db.collection(CART_COLLECTION)
-    .get()
-    .pipe(
-      map(querySnapShot => {
-        const items: CartItem[] = [];
-        querySnapShot.forEach(doc => {
-          console.log('cart db doc = ', doc.data());
-          items.push(this.objTransformer.transformcartItem(doc.data()));
-        });
-        console.log('Cart Items fetched from db = ', items);
-        return items;
-      })
-    );
+    return this.db.collection(CART_COLLECTION, ref =>
+      ref.orderBy('createdDate'))
+      .get()
+      .pipe(
+        map(querySnapShot => {
+          const items: CartItem[] = [];
+          querySnapShot.forEach(doc => {
+            items.push(this.objTransformer.transformcartItem(doc.data()));
+          });
+          console.log('Cart Items fetched from db = ', items);
+          return items;
+        })
+      );
   }
 
- 
+
 
   /** cart Operations END */
 

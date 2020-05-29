@@ -13,7 +13,7 @@
 
   <ul class="list-unstyled">
     <li class=" mb-1 py-2" *ngFor="let item of cart">
-      <app-cart-item [item]="item" (deleteItem)="onDeleteItem($event)"></app-cart-item>
+      <app-cart-item [item]="item"></app-cart-item>
     </li>
   </ul>
 </div>

@@ -136,7 +136,7 @@ export class ObjectTransformerService {
       this.transformSizes(param.sizes),
     );
     product.Colors = this.transformColors(param.colors);
-    console.log('transformProduct after = ', product);
+    //console.log('transformProduct after = ', product);
     return product;
   }
 
@@ -163,9 +163,10 @@ export class ObjectTransformerService {
   }
 
   transformcartItem(param: DocumentData) {
-    console.log("param = ", param);
+    //console.log("param = ", param);
     return new CartItem(
       param.id,
+      param.createdDate,
       param.userId,
       this.transformProduct(param.product),
       param.selectedQuantity,

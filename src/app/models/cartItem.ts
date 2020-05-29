@@ -7,7 +7,8 @@ import { generateGuid } from '../helpers/util';
 
 export class CartItem {
     constructor(
-        private id: string = generateGuid(),
+        private id?: string,
+        private createdDate?: number,
         private userId?: string,
         private product?: Product,
         private selectedQuantity?: number,
@@ -39,16 +40,50 @@ export class CartItem {
     set SelectedCategory(cat: Category) { this.selectedCategory = cat; }
 
     get Id() { return this.id; }
+    set Id(id: string) { this.id = id; }
+
+    get CreatedDate() {return this.createdDate;}
+    set CreatedDate(t: number) { this.createdDate = t; }
 
     equals(_item: CartItem): boolean {
-       
-        console.log(" user_ids equal ?", _item.userId === this.userId);
-        return _item.userId === this.userId
-            && (!!_item.SelectedSize && !!this.SelectedSize) ? _item.SelectedSize.equals(this.SelectedSize) : false
-                && (!!_item.SelectedCustomSize && !!this.SelectedCustomSize) ? _item.selectedCustomSize.equals(this.selectedCustomSize) : false
-                && _item.SelectedColor.equals(this.SelectedColor)
-                && _item.SelectedCategory.equals(this.SelectedCategory)
-                && _item.Product.equals(this.Product);
+
+        // console.log(" user_ids equal ?", _item.userId === this.userId);
+        // console.log("selected size = ", this.selectedSize, _item.selectedSize, this.isEqualSize(_item.SelectedSize));
+        // console.log("selected customSize ", this.SelectedCustomSize, _item.selectedCustomSize, this.isEqualCustomSize(_item.SelectedCustomSize));
+        // console.log('selected catgeory = ', _item.SelectedCategory.equals(this.SelectedCategory));
+
+        const result = _item.userId === this.userId
+            && this.isEqualSize(_item.SelectedSize)
+            && this.isEqualCustomSize(_item.SelectedCustomSize)
+            && _item.SelectedColor.equals(this.SelectedColor)
+            && _item.SelectedCategory.equals(this.SelectedCategory)
+            && _item.Product.equals(this.Product);
+        console.log("isItem equal ", result);
+
+        return result;
+    }
+
+
+    private isEqualSize(selectedSize: Size) {
+        if (!this.SelectedSize && !selectedSize) {
+            return true;
+        }
+        if (!this.SelectedSize || !selectedSize) {
+            return false;
+        }
+        return this.SelectedSize.equals(selectedSize);
+
+    }
+
+    private isEqualCustomSize(selectedCustomSize: CustomSize) {
+        if (!this.SelectedCustomSize && !selectedCustomSize) {
+            return true;
+        }
+        if (!this.SelectedCustomSize || !selectedCustomSize) {
+            return false;
+        }
+        return this.SelectedCustomSize.equals(selectedCustomSize);
+
     }
 
 }

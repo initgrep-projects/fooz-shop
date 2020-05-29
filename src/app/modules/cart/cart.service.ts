@@ -20,7 +20,10 @@ export class CartService {
   constructor(
     private store: Store<AppState>,
     private fbDataService: FireStoreDbService
-  ) { }
+  ) { 
+
+    this.dispatchCartItemsToStore();
+  }
 
 
   saveItem(item: CartItem) {
@@ -28,24 +31,30 @@ export class CartService {
     this.getCartFromStore()
       .pipe(take(1))
       .subscribe(cart => {
-        console.log('saveItem to cart called ', item);
-
-        console.log('cart before search ', cart);
+        console.log('saveItem to cart called', cart);
         const searchedItem = this.searchItem(cart, item);
-        console.log('searchedItem Present = ', searchedItem);
-        console.log('cart after search', cart);
         if (!!searchedItem) {
-          //   //update
-          item.SelectedQuantity = searchedItem.SelectedQuantity + item.SelectedQuantity;
-          this.store.dispatch(updateItemInCartAction({ payload: item }));
-          this.fbDataService.updateCartItemToDb(item);
+          //update
+          console.log('update Item called');
+          searchedItem.SelectedQuantity =  searchedItem.SelectedQuantity + item.SelectedQuantity;
+          this.updateItem(searchedItem);
         } else {
           //save
+          console.log('saveItem called');
           this.store.dispatch(addItemToCartAction({ payload: item }));
           this.fbDataService.saveCartItemToDb(item);
         }
       });
 
+  }
+
+  updateItem(item:CartItem){
+    this.store.dispatch(updateItemInCartAction({ payload: item }));
+    this.fbDataService.updateCartItemToDb(item);
+  }
+  _updateItem(item:CartItem){
+    this.store.dispatch(updateItemInCartAction({ payload: item }));
+    this.fbDataService.updateCartItemToDb(item);
   }
 
   deleteItem($id:string){
@@ -67,11 +76,11 @@ export class CartService {
   dispatchCartItemsToStore() {
     return this.fbDataService.fetchcartItemsFromDb()
       .pipe(
+        take(1),
         tap(items => {
-          console.log('items from cart db = ', items);
           this.store.dispatch(addItemsToCartAction({ payload: items }))
         })
-      );
+      ).subscribe();
   }
 
 }

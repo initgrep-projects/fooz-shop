@@ -6,6 +6,7 @@ import { CartService } from 'src/app/modules/cart/cart.service';
 import { SubSink } from 'subsink';
 import { cloneDeep } from 'lodash';
 import { CartItem } from 'src/app/models/cartItem';
+import { generateGuid } from 'src/app/helpers/util';
 
 @Component({
   selector: 'app-item-buy',
@@ -33,7 +34,6 @@ export class ItemBuyComponent implements OnInit, OnDestroy {
     this.cartItem.UserId = this.userId;
     this.subs.sink = this.itemdetailService.inputProductChange
       .subscribe(p => {
-        console.log('product recieved subscription ', p);
         this.cartItem.Product = cloneDeep(p);
       });
 
@@ -51,8 +51,11 @@ export class ItemBuyComponent implements OnInit, OnDestroy {
   }
 
   addToCart() {
+    this.cartItem.Id = generateGuid(); 
+    this.cartItem.CreatedDate = Date.now();
+    
     const item = cloneDeep(this.cartItem);
-    this.isValidCart = this.itemdetailService.validateCartProduct(item);
+    this.isValidCart = this.itemdetailService.validateCartItem(item);
     if (this.isValidCart) {
       this.toastService.show(
         'Item added to Card Successfully ',

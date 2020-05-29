@@ -12,6 +12,7 @@ import { RouterModule } from '@angular/router';
 import { SizeComponent } from './size/size.component';
 import { ColorComponent } from './color/color.component';
 import { QuantityComponent } from './quantity/quantity.component';
+import { AlertComponent } from './alert/alert.component';
 
 
 
@@ -25,7 +26,8 @@ import { QuantityComponent } from './quantity/quantity.component';
     LookbookItemComponent,
     SizeComponent,
     ColorComponent,
-    QuantityComponent
+    QuantityComponent,
+    AlertComponent
   ],
   imports: [
     CommonModule,

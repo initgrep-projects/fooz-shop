@@ -7,6 +7,7 @@ import { FireStoreDbService } from 'src/app/services/firestore.db.service';
 import { CartItem } from 'src/app/models/cartItem';
 import { tap, map, take } from 'rxjs/operators';
 import { isIdentical } from 'src/app/helpers/util';
+import { AlertService } from '../shared/alert/alert.service';
 
 
 
@@ -19,7 +20,8 @@ export class CartService {
 
   constructor(
     private store: Store<AppState>,
-    private fbDataService: FireStoreDbService
+    private fbDataService: FireStoreDbService,
+    private alertService: AlertService
   ) { 
 
     this.dispatchCartItemsToStore();
@@ -35,6 +37,8 @@ export class CartService {
         const searchedItem = this.searchItem(cart, item);
         if (!!searchedItem) {
           //update
+          console.log('updating the existing item');
+          this.alertService.open();
           console.log('update Item called');
           searchedItem.SelectedQuantity =  searchedItem.SelectedQuantity + item.SelectedQuantity;
           this.updateItem(searchedItem);

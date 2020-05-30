@@ -25,7 +25,7 @@ export class CartItemComponent implements OnInit {
     console.log('quanitity change -> ',q);
     this.item.SelectedQuantity = q;
     this.incrementPrice();
-    this.cartService._updateItem(this.item);
+    this.cartService.updateCartItem(this.item);
   }
   private incrementPrice(){
     this.grossItemPrice = this.item.Product.Price.Amount * this.item.SelectedQuantity;

@@ -32,12 +32,14 @@ export class FireStoreDbService {
 
 
   private cartCollection: AngularFirestoreCollection<CartItem>;
+  private productCollection: AngularFirestoreCollection<Product>;
 
   constructor(
     private db: AngularFirestore,
     private fakedataService: FakedataService,
     private objTransformer: ObjectTransformerService) {
     this.cartCollection = this.db.collection<CartItem>(CART_COLLECTION);
+    this.productCollection = this.db.collection<Product>(PRODUCT_COLLECTION);
   }
 
 
@@ -47,7 +49,11 @@ export class FireStoreDbService {
   saveProducts() {
     this.fakedataService.getProducts()
       .forEach(product =>
-        this.db.collection(PRODUCT_COLLECTION).add(classToPlain(product)));
+        this.productCollection.doc(product.Id).set(classToPlain(product)));
+  }
+
+  updateProduct(p: Product) {
+    this.productCollection.doc(p.Id).set(classToPlain(p));
   }
 
   /**

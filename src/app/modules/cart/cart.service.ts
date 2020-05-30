@@ -8,6 +8,8 @@ import { CartItem } from 'src/app/models/cartItem';
 import { tap, map, take } from 'rxjs/operators';
 import { isIdentical } from 'src/app/helpers/util';
 import { AlertService } from '../shared/alert/alert.service';
+import { CART_ITEM_EXIST, CART_ITEM_MAX_QUANTITY } from 'src/app/helpers/constants';
+import { updateProductAction } from '../shop/store/shop.actions';
 
 
 
@@ -16,19 +18,17 @@ import { AlertService } from '../shared/alert/alert.service';
 })
 export class CartService {
 
-
-
   constructor(
     private store: Store<AppState>,
     private fbDataService: FireStoreDbService,
     private alertService: AlertService
-  ) { 
+  ) {
 
     this.dispatchCartItemsToStore();
   }
 
 
-  saveItem(item: CartItem) {
+  addItem(item: CartItem) {
 
     this.getCartFromStore()
       .pipe(take(1))
@@ -36,38 +36,59 @@ export class CartService {
         console.log('saveItem to cart called', cart);
         const searchedItem = this.searchItem(cart, item);
         if (!!searchedItem) {
-          //update
           console.log('updating the existing item');
-          this.alertService.open();
-          console.log('update Item called');
-          searchedItem.SelectedQuantity =  searchedItem.SelectedQuantity + item.SelectedQuantity;
-          this.updateItem(searchedItem);
+          searchedItem.SelectedQuantity = searchedItem.SelectedQuantity + item.SelectedQuantity;
+          if (searchedItem.SelectedQuantity > item.Product.Quantity) {
+            this.alertService.open({
+              message: CART_ITEM_MAX_QUANTITY,
+              controls: { cancel: { visible: false } }
+            });
+          } else {
+            this.alertService.open({
+              message: CART_ITEM_EXIST, controls: {
+                confirm: {
+                  onConfirm: () => {
+                    console.log('update Item called');
+                    this.updateCartItem(searchedItem);
+                    this.updateProductQuantity(item.Product, item.SelectedQuantity);
+                  }
+                }
+              }
+            });
+          }
+
+
         } else {
-          //save
-          console.log('saveItem called');
-          this.store.dispatch(addItemToCartAction({ payload: item }));
-          this.fbDataService.saveCartItemToDb(item);
+          this.saveCartItem(item);
+          this.updateProductQuantity(item.Product, item.SelectedQuantity);
         }
       });
 
   }
 
-  updateItem(item:CartItem){
-    this.store.dispatch(updateItemInCartAction({ payload: item }));
-    this.fbDataService.updateCartItemToDb(item);
+  saveCartItem(item: CartItem) {
+    console.log('saveItem called');
+    this.store.dispatch(addItemToCartAction({ payload: item }));
+    this.fbDataService.saveCartItemToDb(item);
   }
-  _updateItem(item:CartItem){
+  updateCartItem(item: CartItem) {
     this.store.dispatch(updateItemInCartAction({ payload: item }));
     this.fbDataService.updateCartItemToDb(item);
   }
 
-  deleteItem($id:string){
-    this.store.dispatch(deleteItemInCartAction({payload: $id}));
+  updateProductQuantity(p: Product, q: number) {
+    p.Quantity = p.Quantity - q;
+    this.store.dispatch(updateProductAction({ payload: p }));
+    this.fbDataService.updateProduct(p);
+  }
+
+  deleteItem($id: string) {
+    this.store.dispatch(deleteItemInCartAction({ payload: $id }));
     this.fbDataService.deleteCartItemInDb($id);
   }
 
   searchItem(cart: CartItem[], item: CartItem) {
-    return cart.find(_item => _item.equals(item));
+    return cart.find($item => $item.equals(item));
   }
 
 

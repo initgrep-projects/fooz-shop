@@ -41,7 +41,7 @@ export class ObjectTransformerService {
   }
 
   transformColor(param: { name: string; code: string; selected?: boolean }): Color {
-    if (!param) return null;
+    if (!param) { return null; }
     if (param.selected) {
       return new Color(param.name, param.code, param.selected);
     }
@@ -61,7 +61,7 @@ export class ObjectTransformerService {
   }
 
   transformCustomSize(param: { width: number; length: number; bust: number; arm: number; hip: number; }) {
-    if (!param) return null;
+    if (!param) { return null; }
     return new CustomSize(param.width, param.length, param.bust, param.arm, param.hip);
   }
 
@@ -82,7 +82,7 @@ export class ObjectTransformerService {
   }
 
   transformSize(param: { label: string; letter: string; selected?: boolean }) {
-    if (!param) return null;
+    if (!param) { return null; }
     if (param.selected) {
       return new Size(param.label, param.letter, param.selected);
     }
@@ -114,7 +114,7 @@ export class ObjectTransformerService {
       name: string;
       id: string;
       description: string;
-      availableQuantity: number;
+      quantity: number;
       timeStamp: number;
       price: { code: string; amount: number; };
       category: { code: string; label: string; icon: string; };
@@ -128,7 +128,7 @@ export class ObjectTransformerService {
       param.name,
       param.id,
       param.description,
-      param.availableQuantity,
+      + param.quantity,
       param.timeStamp,
       this.transformCurrency(param.price),
       this.transformCategory(param.category),
@@ -136,7 +136,6 @@ export class ObjectTransformerService {
       this.transformSizes(param.sizes),
     );
     product.Colors = this.transformColors(param.colors);
-    //console.log('transformProduct after = ', product);
     return product;
   }
 
@@ -145,7 +144,7 @@ export class ObjectTransformerService {
       param.name,
       param.id,
       param.description,
-      param.availableQuantity,
+      +param.quantity,
       param.timeStamp,
       this.transformCurrency(param.price),
       this.transformCategory(param.category),
@@ -163,7 +162,6 @@ export class ObjectTransformerService {
   }
 
   transformcartItem(param: DocumentData) {
-    //console.log("param = ", param);
     return new CartItem(
       param.id,
       param.createdDate,

@@ -1,0 +1,27 @@
+@import "../../../../variables.scss";
+
+div.modal-header {
+    font-family: $roboto-font-family;
+    h4 {
+        text-transform: capitalize;
+    }
+}
+
+div.modal-body {
+    font-family: $roboto-font-family;
+    p {
+        letter-spacing: 0.025rem;
+    }
+}
+
+div.modal-footer {
+    font-family: $roboto-font-family;
+    justify-content: space-between;
+    button {
+        padding: 0.2rem 1rem 0.2rem 1rem;
+        font-size: 0.8rem;
+        border-radius: 20px;
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+}

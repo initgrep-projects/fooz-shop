@@ -62,7 +62,7 @@ export class ItemBuyComponent implements OnInit, OnDestroy {
         { classname: 'bg-dark text-light', delay: 1000 }
       );
 
-      this.cartService.saveItem(item);
+      this.cartService.addItem(item);
     }
   }
 

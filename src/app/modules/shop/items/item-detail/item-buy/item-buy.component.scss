@@ -1,7 +1,7 @@
 @import "../../../../../../variables.scss";
 
 div.alert-wrapper{
-  font-family: $poppins-font-family;
+  font-family: $roboto-font-family;
   div.alert{
     h6{
       display: inline-block;
@@ -19,7 +19,7 @@ div.alert-wrapper{
 }
 
 div.buy-wrapper{
-    font-family: $poppins-font-family;
+    font-family: $roboto-font-family;
     button{
       margin-right: 1rem;
       // margin-top: 1rem;

@@ -1,5 +1,5 @@
 import { createReducer, on, Action } from '@ngrx/store';
-import { addProductsAction, appendProductsAction, addCustomSizeInputAction } from './shop.actions';
+import { addProductsAction, appendProductsAction, addCustomSizeInputAction, updateProductAction } from './shop.actions';
 import { Product } from 'src/app/models/product';
 import { CustomSizeInput } from 'src/app/models/custom-size';
 import { cloneDeep } from 'lodash';
@@ -25,12 +25,20 @@ const shopReducer = createReducer(
         ...currentState,
         products: [...currentState.products, ...payload]
     })),
+    on(updateProductAction, (currentState, { payload }) => ({
+        ...currentState,
+        products: updateProduct(currentState.products, payload)
+    })),
     on(addCustomSizeInputAction, (currentState, { payload }) => ({
         ...currentState,
         customSizeInput: cloneDeep(payload)
     }))
 );
 
+function updateProduct(products: Product[], p: Product) {
+    const diffProducts = products.filter($p => $p.Id !== p.Id);
+    return [...diffProducts, cloneDeep(p)];
+}
 
 export function ShopReducer(state: State = initialState, action: Action) {
     return shopReducer(state, action);

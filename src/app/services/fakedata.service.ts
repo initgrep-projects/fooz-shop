@@ -29,6 +29,24 @@ export class FakedataService {
     return [smallSize, mediumSize, largeSize, xlSize];
   }
 
+  getTrendItems() {
+
+    const blackColor = new Color('black', '#333');
+    const greyColor = new Color('grey', '#6c757d');
+    const purpleColor = new Color('purple', '#6A5ACD');
+    const image1 = new Image('https://i.imgur.com/rnRqUoz.jpg', blackColor);
+    const image2 = new Image('https://i.imgur.com/ZMloszym.jpg', blackColor);
+    const image3 = new Image('https://i.imgur.com/ZMloszym.jpg', blackColor);
+    const image4 = new Image('https://i.imgur.com/fZube9X.jpg', blackColor);
+
+    const image1g = new Image('https://i.imgur.com/IQPOZ5A.jpg', greyColor);
+    const image2g = new Image('https://i.imgur.com/9YwoGKg.jpg', greyColor);
+
+    const image1p = new Image('https://i.imgur.com/J3Vq5Rl.jpg', purpleColor);
+    const image2p = new Image('https://i.imgur.com/hYMUHqS.jpg', purpleColor);
+    return [image1, image2, image3, image4,  image1p, image1g];
+  }
+
   getCustomSizeInput() {
     const widthSizeValues: number[] = [19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34];
     const lengthSizeValues: number[] = [50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64];

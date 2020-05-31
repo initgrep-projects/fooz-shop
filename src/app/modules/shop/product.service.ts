@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { map, take, switchMap, tap } from 'rxjs/operators';
 import { FireStoreDbService } from 'src/app/services/firestore.db.service';
-import { addProductsAction, appendProductsAction, addCustomSizeInputAction } from './store/shop.actions';
+import { addProductsAction, appendProductsAction, addCustomSizeInputAction, addTrendItemsAction } from './store/shop.actions';
 import { of } from 'rxjs';
 import { Product } from 'src/app/models/product';
 import { AppState } from '../main/store/app.reducer';
@@ -10,23 +10,31 @@ import { AppState } from '../main/store/app.reducer';
 @Injectable({
   providedIn: 'root'
 })
-export class ShopService {
+export class ProductService {
 
-  constructor(private store: Store<AppState>,
-              private fbDbService: FireStoreDbService) {
+  constructor(
+    private store: Store<AppState>,
+    private fbDbService: FireStoreDbService) {
+    this.dispatchProductsToStore();
+    this.dispatchTrendItemsToStore();
+    this.dispatachCustomSizeInputsToStore();
   }
 
   /** this method fetches the data from db store */
   dispatchProductsToStore() {
     return this.fbDbService.fetchProducts()
       .pipe(
+        take(1),
         map(products => {
           console.log('products got from dbstore : ', products);
           this.store.dispatch(addProductsAction({ payload: products }));
-        }));
+        })).subscribe();
   }
 
-  /** this method fetches the data from db store */
+  /**
+   * this method is required to lazy load the data from the db
+   * to  enable pagination
+   */
   dispatchMoreProductsToStore() {
     return this.fbDbService.fetchMoreProducts()
       .pipe(
@@ -39,11 +47,12 @@ export class ShopService {
   dispatachCustomSizeInputsToStore() {
     return this.fbDbService.fetchCustomSizeInputs()
       .pipe(
+        take(1),
         tap(inputs => {
           console.log('custom size inputs from dbstore: ', inputs);
           this.store.dispatch(addCustomSizeInputAction({ payload: inputs }));
         })
-      );
+      ).subscribe();
   }
 
   getShopFromStore() {
@@ -69,6 +78,14 @@ export class ShopService {
           }
         })
       );
+  }
+
+  dispatchTrendItemsToStore() {
+    return this.fbDbService.fetchTrendItems()
+      .pipe(
+        take(1),
+        tap(items => this.store.dispatch(addTrendItemsAction({ payload: items })))
+      ).subscribe();
   }
 
 }

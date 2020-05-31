@@ -9,7 +9,7 @@ export interface AppState {
     home: fromHome.State;
     shop: fromShop.State;
     filters: fromFilters.State;
-    cart: fromCart.State
+    cart: fromCart.State;
 }
 
 export const AppReducer: ActionReducerMap<AppState> = {

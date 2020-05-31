@@ -1,6 +1,7 @@
 import { createAction, props } from '@ngrx/store';
 import { Product } from 'src/app/models/product';
 import { CustomSizeInput } from 'src/app/models/custom-size';
+import { Image } from 'src/app/models/image';
 
 export const addProductsAction = createAction(
     '[product] add products',
@@ -23,5 +24,9 @@ export const addCustomSizeInputAction = createAction(
     props<{ payload: CustomSizeInput }>()
 );
 
+export const addTrendItemsAction = createAction(
+    '[home] add trend items',
+    props<{ payload: Image[] }>()
+);
 
 

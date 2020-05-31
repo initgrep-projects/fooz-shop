@@ -1,5 +1,5 @@
 import { Injectable, Query } from '@angular/core';
-import { AngularFirestore, AngularFirestoreDocument, AngularFirestoreCollection } from '@angular/fire/firestore';
+import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { FakedataService } from './fakedata.service';
 import { Product } from '../models/product';
 
@@ -11,15 +11,12 @@ import { Size } from '../models/size';
 import { Sort } from '../models/Sort';
 import { CustomSizeInput } from '../models/custom-size';
 import { CartItem } from '../models/cartItem';
-
-
-const CATEGORY_COLLECTION = 'Categories';
-const PRODUCT_COLLECTION = 'Products';
-const SIZE_COLLECTION = 'Sizes';
-const SORT_COLLECTION = 'SortOrders';
-const CUSTOM_SIZE_INPUT = 'CustomSizeInput';
-const TREND_COLLECTION = 'Trend';
-const CART_COLLECTION = 'Cart';
+import {
+  CART_COLLECTION, PRODUCT_COLLECTION, CATEGORY_COLLECTION,
+  SIZE_COLLECTION, CUSTOM_SIZE_INPUT, SORT_COLLECTION, TREND_COLLECTION, PRODUCT_PAGE_SIZE
+} from '../helpers/constants';
+import { generateGuid } from '../helpers/util';
+import { Image } from '../models/image';
 
 
 @Injectable({
@@ -33,19 +30,38 @@ export class FireStoreDbService {
 
   private cartCollection: AngularFirestoreCollection<CartItem>;
   private productCollection: AngularFirestoreCollection<Product>;
+  private categoryCollection: AngularFirestoreCollection<Category>;
+  private sizeCollection: AngularFirestoreCollection<Size>;
+  private customSizeInputCollection: AngularFirestoreCollection<CustomSizeInput>;
+  private sortCollection: AngularFirestoreCollection<Sort>;
+  private trendCollection: AngularFirestoreCollection<Image>;
 
   constructor(
     private db: AngularFirestore,
     private fakedataService: FakedataService,
     private objTransformer: ObjectTransformerService) {
+
     this.cartCollection = this.db.collection<CartItem>(CART_COLLECTION);
     this.productCollection = this.db.collection<Product>(PRODUCT_COLLECTION);
+    this.categoryCollection = this.db.collection<Category>(CATEGORY_COLLECTION);
+    this.sizeCollection = this.db.collection<Size>(SIZE_COLLECTION);
+    this.customSizeInputCollection = this.db.collection<CustomSizeInput>(CUSTOM_SIZE_INPUT);
+    this.sortCollection = this.db.collection<Sort>(SORT_COLLECTION);
+    this.trendCollection = this.db.collection<Image>(TREND_COLLECTION);
+    this.bootstrapTestData();
+  }
+
+  private bootstrapTestData() {
+    // this.saveProducts();
+    // this.saveCategories();
+    // this.saveSizes();
+    // this.saveCustomSizeInputs();
+    // this.saveSortOrders();
+    // this.saveTrendItems();
   }
 
 
-  /**
-   * save products in the db,
-   */
+
   saveProducts() {
     this.fakedataService.getProducts()
       .forEach(product =>
@@ -59,12 +75,12 @@ export class FireStoreDbService {
   /**
    * add a different function for home component to fetch the latest onces only
    */
-  fetchProducts() {
+  fetchProducts( pageSize: number = PRODUCT_PAGE_SIZE) {
     return this.db.collection(PRODUCT_COLLECTION, ref =>
       ref
         .orderBy('timeStamp', 'asc')
-        .limit(this.pageSize)
-        .startAfter(this.lastTimeStamp)
+        .limit(pageSize)
+        // .startAfter(this.lastTimeStamp)
     ).get()
       .pipe(
         map(querySnapShot => {
@@ -87,8 +103,8 @@ export class FireStoreDbService {
   fetchMoreProducts() {
     return this.db.collection(PRODUCT_COLLECTION, ref => ref
       .orderBy('timeStamp', 'asc')
-      .limit(this.pageSize)
-      .startAfter(this.lastTimeStamp)
+      .limit(PRODUCT_PAGE_SIZE)
+      // .startAfter(this.lastTimeStamp)
     ).get()
       .pipe(
         map(querySnapShot => {
@@ -104,22 +120,6 @@ export class FireStoreDbService {
       );
   }
 
-  fetchProductsForHome() {
-    return this.db.collection(PRODUCT_COLLECTION, ref => ref
-      .orderBy('timeStamp', 'desc')
-      .limit(10)
-    ).get()
-      .pipe(
-        map(querySnapShot => {
-          const products: Product[] = [];
-          querySnapShot.forEach(doc => {
-            products.push(this.objTransformer.transformProductFromDocData(doc.data()));
-          });
-          this.lastTimeStamp = products[products.length - 1].TimeStamp;
-          return products;
-        })
-      );
-  }
 
   fetchProductById(id: string) {
     return this.db.collection(PRODUCT_COLLECTION, ref =>
@@ -142,15 +142,14 @@ export class FireStoreDbService {
 
   saveCategories() {
     this.fakedataService.getCategories()
-      .forEach(product => this.db.collection(CATEGORY_COLLECTION).add(classToPlain(product)));
+      .forEach(category => this.categoryCollection.doc(generateGuid()).set(classToPlain(category)));
   }
 
-  getCategories() {
-    return this.db.collection(CATEGORY_COLLECTION)
+  fetchCategories() {
+    return this.categoryCollection
       .get()
       .pipe(
         map(querySnapShot => {
-
           const categories: Category[] = [];
           querySnapShot.forEach(doc => {
             categories.push(this.objTransformer.transformCategoryFromDocData(doc.data()));
@@ -162,11 +161,11 @@ export class FireStoreDbService {
 
   saveSizes() {
     this.fakedataService.getSizes()
-      .forEach(size => this.db.collection(SIZE_COLLECTION).add(classToPlain(size)));
+      .forEach(size => this.sizeCollection.doc(generateGuid()).set(classToPlain(size)));
   }
 
-  getSizes() {
-    return this.db.collection(SIZE_COLLECTION)
+  fetchSizes() {
+    return this.sizeCollection
       .get()
       .pipe(
         map(querySnapShot => {
@@ -181,11 +180,11 @@ export class FireStoreDbService {
 
   saveCustomSizeInputs() {
     const customSizeInput = this.fakedataService.getCustomSizeInput();
-    this.db.collection(CUSTOM_SIZE_INPUT).add(classToPlain(customSizeInput));
+    this.customSizeInputCollection.doc(generateGuid()).set(classToPlain(customSizeInput));
   }
 
   fetchCustomSizeInputs() {
-    return this.db.collection(CUSTOM_SIZE_INPUT)
+    return this.customSizeInputCollection
       .get()
       .pipe(
         tap(querySnapShot => console.log('querySnapShot =>', querySnapShot)),
@@ -201,12 +200,12 @@ export class FireStoreDbService {
 
   saveSortOrders() {
     this.fakedataService.getSortOrders()
-      .forEach(order => this.db.collection(SORT_COLLECTION).add(classToPlain(order)));
+      .forEach(order => this.sortCollection.doc(generateGuid()).set(classToPlain(order)));
   }
 
 
-  getSortOrders() {
-    return this.db.collection(SORT_COLLECTION)
+  fetchSortOrders() {
+    return this.sortCollection
       .get()
       .pipe(
         map(querySnapShot => {
@@ -219,16 +218,22 @@ export class FireStoreDbService {
       );
   }
 
+  saveTrendItems() {
+    this.fakedataService.getTrendItems().forEach(image => {
+      this.trendCollection.doc(generateGuid()).set(classToPlain(image));
+    });
+  }
+
   fetchTrendItems() {
-    return this.db.collection(TREND_COLLECTION)
+    return this.trendCollection
       .get()
       .pipe(
         map(querySnapShot => {
-          let items: string[] = [];
+          const images: Image[] = [];
           querySnapShot.forEach(doc => {
-            items = [...doc.data().items];
+            images.push(this.objTransformer.transformImageFromDocData(doc.data()));
           });
-          return items;
+          return images;
         })
       );
   }
@@ -256,8 +261,7 @@ export class FireStoreDbService {
   }
 
   fetchcartItemsFromDb() {
-    return this.db.collection(CART_COLLECTION, ref =>
-      ref.orderBy('createdDate'))
+    return this.cartCollection
       .get()
       .pipe(
         map(querySnapShot => {

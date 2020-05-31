@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ShopService } from './shop.service';
+import { ProductService } from './product.service';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -7,22 +7,11 @@ import { Subscription } from 'rxjs';
   templateUrl: './shop.component.html',
   styleUrls: ['./shop.component.scss']
 })
-export class ShopComponent implements OnInit, OnDestroy {
+export class ShopComponent implements OnInit {
 
-  subs: Subscription[] = [];
 
-  constructor(private shopService: ShopService) { }
+  constructor(private productService: ProductService) { }
 
   ngOnInit(): void {
-    this.dispatchProductsToShopStore();
   }
-
-  dispatchProductsToShopStore() {
-    this.subs[this.subs.length + 1] =
-      this.shopService.dispatchProductsToStore().subscribe();
-  }
-  ngOnDestroy() {
-    this.subs.forEach(sub => sub.unsubscribe());
-  }
-
 }

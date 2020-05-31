@@ -73,6 +73,10 @@ export class ObjectTransformerService {
     return new Image(param.url, this.transformColor(param.color));
   }
 
+  transformImageFromDocData(param: DocumentData) {
+    return new Image(param.url, this.transformColor(param.color));
+  }
+
   transformImages(params: any[]) {
     return params.map(p => this.transformImage(p));
   }

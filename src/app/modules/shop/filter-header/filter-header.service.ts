@@ -6,7 +6,7 @@ import { Size } from 'src/app/models/size';
 import { Sort } from 'src/app/models/Sort';
 import { LogService } from 'src/app/services/log.service';
 import { FireStoreDbService } from 'src/app/services/firestore.db.service';
-import { map } from 'rxjs/operators';
+import { map, take } from 'rxjs/operators';
 import { AppState } from '../../main/store/app.reducer';
 
 @Injectable({
@@ -18,35 +18,40 @@ export class FilterHeaderService {
               private logger: LogService,
               private fbDBStore: FireStoreDbService
   ) {
-
+    this.dispatchCategoriesToStore();
+    this.dispatchSizesToStore();
+    this.dispatchSortOrdersToStore();
   }
 
 
-  fetchCategories() {
-    return this.fbDBStore.getCategories()
+  dispatchCategoriesToStore() {
+    return this.fbDBStore.fetchCategories()
       .pipe(
+        take(1),
         map(categories => {
           this.store.dispatch(saveAllCategories({ payload: categories }));
         })
-      );
+      ).subscribe();
   }
 
-  fetchSizes() {
-    return this.fbDBStore.getSizes()
+  dispatchSizesToStore() {
+    return this.fbDBStore.fetchSizes()
       .pipe(
+        take(1),
         map(sizes => {
           this.store.dispatch(saveAllSizes({ payload: sizes }));
         })
-      );
+      ).subscribe();
   }
 
-  fetchSortOrders() {
-    return this.fbDBStore.getSortOrders()
+  dispatchSortOrdersToStore() {
+    return this.fbDBStore.fetchSortOrders()
       .pipe(
+        take(1),
         map(sortOrders => {
           this.store.dispatch(saveAllSortOrders({ payload: sortOrders }));
         })
-      );
+      ).subscribe();
   }
 
 

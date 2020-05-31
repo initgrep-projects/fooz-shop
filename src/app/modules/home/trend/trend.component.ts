@@ -1,7 +1,9 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { HomeService } from '../home.service';
 import { Subscription } from 'rxjs';
 import { isEmpty } from 'src/app/helpers/util';
+import { ProductService } from '../../shop/product.service';
+import { Image } from 'src/app/models/image';
+import { SubSink } from 'subsink';
 
 
 @Component({
@@ -12,39 +14,26 @@ import { isEmpty } from 'src/app/helpers/util';
 })
 export class TrendComponent implements OnInit, OnDestroy {
 
-  constructor(private homeService: HomeService) { }
-  subs: Subscription[] = [];
-  trendImages: string[] = [];
+  constructor(private productService: ProductService) { }
+  private subs = new SubSink();
+  trendImages: Image[];
   isLoading = true;
 
 
   ngOnInit() {
-    this.storeTrendItems();
     this.getTrendItemsFromStore();
   }
 
-  storeTrendItems() {
-    this.subs[this.subs.length + 1] =
-      this.homeService.dispatchTrendItemsToStore().subscribe(resp => {
-        console.log("response got  = ", resp)
-        if(!isEmpty(resp)){
-          this.isLoading = false;
-        }
-        
-      });
-  }
-
   getTrendItemsFromStore() {
-    this.subs[this.subs.length + 1] =
-      this.homeService.getHomePageStore()
+    this.subs.sink =
+      this.productService.getShopFromStore()
         .subscribe(state => {
-          console.log("trendImages = ", state.trendItems);
-          this.trendImages = state.trendItems;
+          this.trendImages = [... state.trendItems];
         });
   }
 
   ngOnDestroy() {
-    this.subs.forEach(sub => sub.unsubscribe());
+    this.subs.unsubscribe();
   }
 
 

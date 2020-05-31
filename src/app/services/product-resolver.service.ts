@@ -2,18 +2,14 @@ import { Injectable } from '@angular/core';
 import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { Product } from 'src/app/models/product';
 import { Observable } from 'rxjs';
-import { ShopService } from '../modules/shop/shop.service';
-import { HomeService } from '../modules/home/home.service';
-import { HOME_PAGE_FLAG } from '../helpers/constants';
+import { ProductService } from '../modules/shop/product.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductResolver implements Resolve<Product>{
 
-  constructor(
-    private shopService: ShopService,
-    private homeservice: HomeService) { }
+  constructor(private productService: ProductService) { }
 
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot)
@@ -21,10 +17,7 @@ export class ProductResolver implements Resolve<Product>{
 
     const source = route.queryParamMap.get('source');
     const id = route.paramMap.get('id');
-    if (source === HOME_PAGE_FLAG) {
-      return this.homeservice.getProductFromStoreById(id);
-    } else {
-      return this.shopService.getProductFromStoreById(id);
-    }
+    return this.productService.getProductFromStoreById(id);
+
   }
 }

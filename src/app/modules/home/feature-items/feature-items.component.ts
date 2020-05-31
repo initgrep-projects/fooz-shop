@@ -1,8 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 
 import { Product } from 'src/app/models/product';
-import { HomeService } from '../home.service';
 import { Subscription } from 'rxjs';
+import { ProductService } from '../../shop/product.service';
 
 @Component({
   selector: 'app-feature-items',
@@ -17,7 +17,7 @@ export class FeatureItemsComponent implements OnInit, OnDestroy {
   subs: Subscription[] = [];
 
   constructor(
-    private homeService: HomeService) { }
+    private productService: ProductService) { }
 
   ngOnInit() {
     this.preLoadItems = [0, 0, 0, 0, 0, 0];
@@ -28,7 +28,7 @@ export class FeatureItemsComponent implements OnInit, OnDestroy {
 
   getProducts() {
     this.subs[this.subs.length + 1] =
-      this.homeService.getHomePageStore()
+      this.productService.getShopFromStore()
         .subscribe(state => {
             console.log('state.products = ', state.products);
             this.items = state.products;

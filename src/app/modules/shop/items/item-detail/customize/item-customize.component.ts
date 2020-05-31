@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ShopService } from '../../../shop.service';
+import { ProductService } from '../../../product.service';
 import { CustomSize } from 'src/app/models/custom-size';
 import { ItemDetailService, CZ } from '../item-detail.service';
 import { SubSink } from 'subsink';
@@ -23,12 +23,12 @@ export class ItemCustomizeComponent implements OnInit, OnDestroy {
   customSize: CustomSize = null;
 
   constructor(
-    private shopService: ShopService,
+    private productService: ProductService,
     private itemdetailService: ItemDetailService
   ) { }
 
   ngOnInit(): void {
-    this.addCustomSizeInputsToStore();
+    this.getCustomSizeInputs();
     this.addValuesToCustomSize();
     this.resetCustomSizeOnStdSizeSelection();
     this.listenToSizeTypeChange();
@@ -38,23 +38,16 @@ export class ItemCustomizeComponent implements OnInit, OnDestroy {
     this.subs.sink =
       this.itemdetailService.sizeTypeChange.subscribe(type => {
         if (type === CZ) {
-          console.log("hide SZ");
           this.isVisible = true;
           this.customSize = new CustomSize();
         }
       });
   }
 
-  addCustomSizeInputsToStore() {
-    this.subs.sink =
-      this.shopService.dispatachCustomSizeInputsToStore().subscribe(data => {
-        this.getCustomSizeInputs();
-      });
-  }
 
   getCustomSizeInputs() {
     this.subs.sink =
-      this.shopService.getShopFromStore()
+      this.productService.getShopFromStore()
         .subscribe(state => {
           this.widthSizeValues = state.customSizeInput.Width;
           this.lengthSizeValues = state.customSizeInput.Length;

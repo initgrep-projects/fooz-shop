@@ -8,31 +8,19 @@ import { Subscription } from 'rxjs';
   templateUrl: './sort-filter.component.html',
   styleUrls: ['./sort-filter.component.scss']
 })
-export class SortFilterComponent implements OnInit, OnDestroy {
+export class SortFilterComponent implements OnInit {
 
   @Input() sortOrders: Sort[];
   @Input() selectedSortOrder: Sort;
   @Output() sortOrderChange = new EventEmitter<Sort>();
 
-  subs: Subscription[] = [];
-
   constructor(private filterHeaderService: FilterHeaderService) { }
 
   ngOnInit(): void {
-    this.dispatchSortOrdersToStore();
+
   }
 
   emitSortOrderChange(s: Sort) {
     this.sortOrderChange.emit(s);
-  }
-
-  dispatchSortOrdersToStore() {
-    this.subs[this.subs.length + 1] =
-      this.filterHeaderService.fetchSortOrders().subscribe();
-  }
-
-
-  ngOnDestroy() {
-    this.subs.forEach(sub => sub.unsubscribe());
   }
 }

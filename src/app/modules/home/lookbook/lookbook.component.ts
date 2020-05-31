@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Product } from 'src/app/models/product';
-import { HomeService } from '../home.service';
 import { Subscription } from 'rxjs';
+import { ProductService } from '../../shop/product.service';
 
 @Component({
   selector: 'app-lookbook',
@@ -13,7 +13,7 @@ export class LookbookComponent implements OnInit, OnDestroy {
   products: Product[] = [];
   subs: Subscription[] = [];
   isLoading = true;
-  constructor(private homeService: HomeService) { }
+  constructor(private productService: ProductService) { }
 
   ngOnInit() {
     this.fetchLatestProducts();
@@ -21,8 +21,8 @@ export class LookbookComponent implements OnInit, OnDestroy {
 
   fetchLatestProducts() {
     this.subs[this.subs.length + 1] =
-      this.homeService.getHomePageStore()
-        .subscribe(state => this.products = state.products.slice(0,5));
+      this.productService.getShopFromStore()
+        .subscribe(state => this.products = state.products.slice(0, 5));
   }
 
   ngOnDestroy() {

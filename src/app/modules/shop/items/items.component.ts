@@ -5,7 +5,7 @@ import { Subscription } from 'rxjs';
 import { Size } from 'src/app/models/size';
 import { Sort } from 'src/app/models/Sort';
 import { LogService } from 'src/app/services/log.service';
-import { ShopService } from '../shop.service';
+import { ProductService } from '../product.service';
 import { FilterHeaderService } from '../filter-header/filter-header.service';
 
 @Component({
@@ -24,7 +24,7 @@ export class ItemsComponent implements OnInit, OnDestroy {
   subs: Subscription[] = [];
 
   constructor(
-    private shopService: ShopService,
+    private productService: ProductService,
     private filterHeaderService: FilterHeaderService,
     private logger: LogService
   ) { }
@@ -39,14 +39,14 @@ export class ItemsComponent implements OnInit, OnDestroy {
 
   addMoreProductsToStore() {
     this.subs[this.subs.length + 1] =
-      this.shopService.dispatchMoreProductsToStore().subscribe(()=>{
+      this.productService.dispatchMoreProductsToStore().subscribe(()=>{
         this.moreItemsLoading = true;
       });
   }
 
   getProducts() {
     this.subs[this.subs.length + 1] =
-      this.shopService.getShopFromStore()
+      this.productService.getShopFromStore()
         .subscribe(state => {
           setTimeout(() => {
             console.log('products fetched From store = ', state.products);

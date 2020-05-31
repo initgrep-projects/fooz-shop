@@ -1,18 +1,21 @@
 import { createReducer, on, Action } from '@ngrx/store';
-import { addProductsAction, appendProductsAction, addCustomSizeInputAction, updateProductAction } from './shop.actions';
+import { addProductsAction, appendProductsAction, addCustomSizeInputAction, updateProductAction, addTrendItemsAction } from './shop.actions';
 import { Product } from 'src/app/models/product';
 import { CustomSizeInput } from 'src/app/models/custom-size';
 import { cloneDeep } from 'lodash';
+import { Image } from 'src/app/models/image';
 
 
 export interface State {
     products: Product[];
     customSizeInput: CustomSizeInput;
+    trendItems: Image[];
 }
 
 export const initialState: State = {
     products: [],
     customSizeInput: null,
+    trendItems: []
 };
 
 const shopReducer = createReducer(
@@ -32,6 +35,10 @@ const shopReducer = createReducer(
     on(addCustomSizeInputAction, (currentState, { payload }) => ({
         ...currentState,
         customSizeInput: cloneDeep(payload)
+    })),
+    on(addTrendItemsAction, (currentState, { payload }) => ({
+        ...currentState,
+        trendItems: [...payload]
     }))
 );
 

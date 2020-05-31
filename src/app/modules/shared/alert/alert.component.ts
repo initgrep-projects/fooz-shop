@@ -41,7 +41,7 @@ export class AlertComponent implements OnInit {
       if (!!this.config.controls.confirm) {
         const $confirm = this.config.controls.confirm;
         cfg.controls.confirm = {
-          visible: $confirm.visible ? true : false,
+          visible: $confirm.visible === false ? false : true,
           text: !!$confirm.text ? $confirm.text : OK_BUTTON,
           onConfirm: !!$confirm.onConfirm && typeof $confirm.onConfirm === 'function' ? $confirm.onConfirm : () => { }
         };
@@ -52,7 +52,7 @@ export class AlertComponent implements OnInit {
       if (!!this.config.controls.cancel) {
         const $cancel = this.config.controls.cancel;
         cfg.controls.cancel = {
-          visible: $cancel.visible ? true : false,
+          visible: $cancel.visible === false ? false : true,
           text: !!$cancel.text ? $cancel.text : CANCEL_BUTTON,
           onCancel: !!$cancel.onCancel && typeof $cancel.onCancel === 'function' ? $cancel.onCancel : () => { }
         };

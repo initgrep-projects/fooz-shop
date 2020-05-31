@@ -34,11 +34,12 @@ export class CartService {
       .pipe(take(1))
       .subscribe(cart => {
         console.log('saveItem to cart called', cart);
-        const searchedItem = this.searchItem(cart, item);
-        if (!!searchedItem) {
+
+        const matchedItem = this.searchItem(cart, item);
+        if (!!matchedItem) {
           console.log('updating the existing item');
-          searchedItem.SelectedQuantity = searchedItem.SelectedQuantity + item.SelectedQuantity;
-          if (searchedItem.SelectedQuantity > item.Product.Quantity) {
+          const updatedQuantity = matchedItem.SelectedQuantity + item.SelectedQuantity;
+          if (updatedQuantity > item.Product.Quantity) {
             this.alertService.open({
               message: CART_ITEM_MAX_QUANTITY,
               controls: { cancel: { visible: false } }
@@ -48,15 +49,14 @@ export class CartService {
               message: CART_ITEM_EXIST, controls: {
                 confirm: {
                   onConfirm: () => {
-                    console.log('update Item called');
-                    this.updateCartItem(searchedItem);
+                    matchedItem.SelectedQuantity = updatedQuantity;
+                    this.updateCartItem(matchedItem);
                     this.updateProductQuantity(item.Product, item.SelectedQuantity);
                   }
                 }
               }
             });
           }
-
 
         } else {
           this.saveCartItem(item);
@@ -71,15 +71,21 @@ export class CartService {
     this.store.dispatch(addItemToCartAction({ payload: item }));
     this.fbDataService.saveCartItemToDb(item);
   }
+
   updateCartItem(item: CartItem) {
     this.store.dispatch(updateItemInCartAction({ payload: item }));
     this.fbDataService.updateCartItemToDb(item);
   }
 
+  /**
+   * updates the product quantity in the store.
+   * @param p the product to be added to cart
+   * @param q the number of items to be bought
+   */
   updateProductQuantity(p: Product, q: number) {
     p.Quantity = p.Quantity - q;
     this.store.dispatch(updateProductAction({ payload: p }));
-    this.fbDataService.updateProduct(p);
+    // this.fbDataService.updateProduct(p);
   }
 
   deleteItem($id: string) {
@@ -103,7 +109,7 @@ export class CartService {
       .pipe(
         take(1),
         tap(items => {
-          this.store.dispatch(addItemsToCartAction({ payload: items }))
+          this.store.dispatch(addItemsToCartAction({ payload: items }));
         })
       ).subscribe();
   }

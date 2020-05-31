@@ -37,7 +37,7 @@ export class HomeService {
         take(1),
         switchMap(state => {
           if (!state.products || state.products.length === 0) {
-            const product = this.fbDbService.fetchProductByid(id);
+            const product = this.fbDbService.fetchProductById(id);
             return product;
           } else {
             return of(state.products.find(product => product.Id === id));

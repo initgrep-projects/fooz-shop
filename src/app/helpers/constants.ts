@@ -1,3 +1,5 @@
+export const HOME_PAGE_FLAG = 'home';
+
 export const ALERT_TITLE = 'alert';
 export const OK_BUTTON = 'ok';
 export const CANCEL_BUTTON = 'cancel';

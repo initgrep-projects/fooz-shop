@@ -1,5 +1,5 @@
 import { Injectable, ComponentFactoryResolver, Injector, Inject, ApplicationRef, TemplateRef, Type } from '@angular/core';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { AlertComponent, AlertConfig } from './alert.component';
 
 
@@ -7,17 +7,20 @@ import { AlertComponent, AlertConfig } from './alert.component';
   providedIn: 'root'
 })
 export class AlertService {
+  private modalRef: NgbModalRef;
 
   constructor(
     private modalService: NgbModal
   ) { }
 
   open(content: AlertConfig) {
-    const instance: AlertComponent = this.modalService.open(AlertComponent).componentInstance;
-    console.log('instance of AlertComponent = ', instance);
+    this.modalRef = this.modalService.open(AlertComponent);
+    const instance: AlertComponent = this.modalRef.componentInstance;
     instance.config = content;
     instance.initProvidedConfig();
-
+  }
+  close(){
+    this.modalRef.dismiss('dismissed');
   }
 
 

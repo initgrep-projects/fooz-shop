@@ -49,7 +49,7 @@ export class ItemsComponent implements OnInit, OnDestroy {
       this.shopService.getShopFromStore()
         .subscribe(state => {
           setTimeout(() => {
-            console.log('state.products = ', state.products);
+            console.log('products fetched From store = ', state.products);
             this.items = state.products;
             this.preloadItems = [];
             this.moreItemsLoading = false;

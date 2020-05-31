@@ -10,7 +10,7 @@ import { cloneDeep } from 'lodash';
 })
 export class CartItemComponent implements OnInit {
 
-  @Input('item') item: CartItem
+  @Input() item: CartItem;
 
   grossItemPrice: number;
 
@@ -21,17 +21,18 @@ export class CartItemComponent implements OnInit {
     this.incrementPrice();
   }
 
-  onQuantityChange(q: number){
-    console.log('quanitity change -> ',q);
+  onQuantityChange(q: number) {
+    console.log('quanitity change -> ', q);
     this.item.SelectedQuantity = q;
     this.incrementPrice();
     this.cartService.updateCartItem(this.item);
+    this.cartService.updateProductQuantity(this.item.Product,q);
   }
-  private incrementPrice(){
+  private incrementPrice() {
     this.grossItemPrice = this.item.Product.Price.Amount * this.item.SelectedQuantity;
   }
 
-  removeItem(){
+  removeItem() {
     this.cartService.deleteItem(this.item.Id);
   }
 

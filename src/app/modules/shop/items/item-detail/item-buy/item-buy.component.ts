@@ -51,9 +51,10 @@ export class ItemBuyComponent implements OnInit, OnDestroy {
   }
 
   addToCart() {
-    this.cartItem.Id = generateGuid(); 
+    console.log('addToCart Called  ', this.cartItem);
+    this.cartItem.Id = generateGuid();
     this.cartItem.CreatedDate = Date.now();
-    
+
     const item = cloneDeep(this.cartItem);
     this.isValidCart = this.itemdetailService.validateCartItem(item);
     if (this.isValidCart) {

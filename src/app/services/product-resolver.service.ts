@@ -4,26 +4,24 @@ import { Product } from 'src/app/models/product';
 import { Observable } from 'rxjs';
 import { ShopService } from '../modules/shop/shop.service';
 import { HomeService } from '../modules/home/home.service';
-
-const HOME_PAGE = 'home';
-
+import { HOME_PAGE_FLAG } from '../helpers/constants';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductResolver implements Resolve<Product>{
 
-  constructor(private shopService: ShopService,
-              private homeservice: HomeService) { }
+  constructor(
+    private shopService: ShopService,
+    private homeservice: HomeService) { }
 
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot)
     : Product | Observable<Product> | Promise<Product> {
-    console.log('resolver called ');
+
     const source = route.queryParamMap.get('source');
-    console.log('sourcec = ', source);
     const id = route.paramMap.get('id');
-    if (source === HOME_PAGE) {
+    if (source === HOME_PAGE_FLAG) {
       return this.homeservice.getProductFromStoreById(id);
     } else {
       return this.shopService.getProductFromStoreById(id);

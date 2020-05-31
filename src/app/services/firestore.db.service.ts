@@ -121,7 +121,7 @@ export class FireStoreDbService {
       );
   }
 
-  fetchProductByid(id: string) {
+  fetchProductById(id: string) {
     return this.db.collection(PRODUCT_COLLECTION, ref =>
       ref.where('id', '==', id)
     )

@@ -1,7 +1,5 @@
 import { Component, OnInit, Input, EventEmitter, Output, OnDestroy } from '@angular/core';
 import { Sort } from 'src/app/models/Sort';
-import { FilterHeaderService } from '../filter-header.service';
-import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-sort-filter',
@@ -14,7 +12,7 @@ export class SortFilterComponent implements OnInit {
   @Input() selectedSortOrder: Sort;
   @Output() sortOrderChange = new EventEmitter<Sort>();
 
-  constructor(private filterHeaderService: FilterHeaderService) { }
+  constructor() { }
 
   ngOnInit(): void {
 

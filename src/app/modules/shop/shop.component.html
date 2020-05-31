@@ -1,2 +1,22 @@
-<app-filter-header></app-filter-header>
-<app-items></app-items>
+<!-- <app-filter-header></app-filter-header>
+<app-items></app-items> -->
+<div class="container-fluid">
+    <div class="row">
+        <div class="col">
+            <app-breadcrumb [prevPaths]="'[home]'"
+                            [currentPath]="'shop'"></app-breadcrumb>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 col-lg-3 d-md-block d-lg-none">
+            <app-filter-header></app-filter-header>
+        </div>
+        <div class="col-12 col-lg-3 d-none d-lg-block">
+            <app-side-filter-bar></app-side-filter-bar>
+
+        </div>
+        <div class="col-12 col-lg-8 mr-lg-5">
+            <app-items></app-items>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,17 @@
+@import "../../../../../variables.scss";
+div.side-filter-wrapper{
+    font-family: $roboto-font-family;
+    h6.filter-heading{
+        font-weight: 600;
+        letter-spacing: .09rem;
+    }
+    ul{
+        li{
+            border-width: 0px !important;
+            padding: 0.2rem 1rem .2rem 1rem;
+            label{
+                letter-spacing: .025rem;
+            }
+        }
+    }
+}

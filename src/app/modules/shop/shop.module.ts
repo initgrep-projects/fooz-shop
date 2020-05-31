@@ -29,6 +29,8 @@ import { SortPipe } from 'src/app/pipes/sort.pipe';
 import { ItemColorComponent } from './items/item-detail/item-color/item-color.component';
 import { ItemCategoryComponent } from './items/item-detail/item-category/item-category.component';
 import { ItemQuantityComponent } from './items/item-detail/item-quantity/item-quantity.component';
+import { SideFilterBarComponent } from './side-filter-bar/side-filter-bar.component';
+import { CategorySideFilterComponent } from './side-filter-bar/category-side-filter/category-side-filter.component';
 
 
 
@@ -56,6 +58,8 @@ import { ItemQuantityComponent } from './items/item-detail/item-quantity/item-qu
     FilterByCategoryPipe,
     FilterBySizePipe,
     SortPipe,
+    SideFilterBarComponent,
+    CategorySideFilterComponent,
   ],
   imports: [
     CommonModule,

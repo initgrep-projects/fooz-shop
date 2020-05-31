@@ -1,10 +1,11 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Category } from 'src/app/models/category';
 import { Subscription } from 'rxjs';
-import { FilterHeaderService } from './filter-header.service';
+import { FilterService } from './filter.service';
 import { Size } from 'src/app/models/size';
 import { Sort } from 'src/app/models/Sort';
 import { LogService } from 'src/app/services/log.service';
+import { SubSink } from 'subsink';
 
 @Component({
   selector: 'app-filter-header',
@@ -23,10 +24,11 @@ export class FilterHeaderComponent implements OnInit, OnDestroy {
   sortOrders: Sort[] = [];
   selectedSortOrder: Sort;
 
-  constructor(private fhs: FilterHeaderService,
-              private logger: LogService) { }
+  constructor(
+    private fhs: FilterService,
+    private logger: LogService) { }
 
-  subs: Subscription[] = [];
+  private subs = new SubSink();
 
 
   ngOnInit(): void {
@@ -34,7 +36,7 @@ export class FilterHeaderComponent implements OnInit, OnDestroy {
   }
 
   fetchFilters() {
-    this.subs[this.subs.length + 1] =
+    this.subs.sink=
       this.fhs.getFiltersFromStore().subscribe(filters => {
         this.categories = filters.categories;
         this.selectedCategory = filters.selectedCategory;
@@ -66,7 +68,7 @@ export class FilterHeaderComponent implements OnInit, OnDestroy {
 
 
   ngOnDestroy(): void {
-    this.subs.forEach(sub => sub.unsubscribe());
+    this.subs.unsubscribe();
   }
 
 

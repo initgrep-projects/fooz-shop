@@ -1,29 +1,22 @@
 <section class="filter-header">
     <div class="row">
-        <div class="col">
-            <app-breadcrumb [prevPaths]="'[home]'"
-                            [currentPath]="'shop'"></app-breadcrumb>
-        </div>
-        <div class="col  ">
-            <div class="row">
-                <div class="col ">
-                    <app-sort-filter [sortOrders]="sortOrders"
-                                     [selectedSortOrder]="selectedSortOrder"
-                                     (sortOrderChange)="onSortOrderChange($event)"></app-sort-filter>
+        <div class="col ">
+
+            <app-sort-filter [sortOrders]="sortOrders"
+                             [selectedSortOrder]="selectedSortOrder"
+                             (sortOrderChange)="onSortOrderChange($event)"></app-sort-filter>
 
 
-                    <app-category-filter [categories]="categories"
-                                         [selectedCategory]="selectedCategory"
-                                         (categoryChange)="onCategoryChange($event)"></app-category-filter>
+            <app-category-filter [categories]="categories"
+                                 [selectedCategory]="selectedCategory"
+                                 (categoryChange)="onCategoryChange($event)"></app-category-filter>
 
-                    <app-size-filter [sizes]="sizes"
-                                     [selectedSize]="selectedSize"
-                                     (sizeChange)="onSizeChange($event)"></app-size-filter>
+            <app-size-filter [sizes]="sizes"
+                             [selectedSize]="selectedSize"
+                             (sizeChange)="onSizeChange($event)"></app-size-filter>
 
 
-                </div>
 
-            </div>
         </div>
     </div>
 </section>

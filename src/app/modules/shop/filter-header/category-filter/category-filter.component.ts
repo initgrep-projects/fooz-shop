@@ -1,6 +1,5 @@
-import { Component, OnInit, Input, Output, EventEmitter, OnDestroy } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Category } from 'src/app/models/category';
-import { FilterHeaderService } from '../filter-header.service';
 
 @Component({
   selector: 'app-category-filter',
@@ -15,7 +14,7 @@ export class CategoryFilterComponent implements OnInit {
 
 
 
-  constructor(private filterHeaderService: FilterHeaderService) { }
+  constructor() { }
 
   ngOnInit(): void {
   }

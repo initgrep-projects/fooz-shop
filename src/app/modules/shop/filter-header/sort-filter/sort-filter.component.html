@@ -6,7 +6,7 @@ ngbDropdown
        ngbDropdownAnchor
        (focus)="sort.open()">
    <fa-icon icon="{{ !!this.selectedSortOrder ? this.selectedSortOrder.Icon : 'sort' }}"></fa-icon>
-        {{!!this.selectedSortOrder? this.selectedSortOrder.Label : 'sort'}}
+        <span class=" d-none d-sm-inline">{{!!this.selectedSortOrder? this.selectedSortOrder.Label : 'sort'}}</span>
 </button>
 <div ngbDropdownMenu
     aria-labelledby="dropdownManual">

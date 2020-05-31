@@ -6,7 +6,7 @@ import { Size } from 'src/app/models/size';
 import { Sort } from 'src/app/models/Sort';
 import { LogService } from 'src/app/services/log.service';
 import { ProductService } from '../product.service';
-import { FilterHeaderService } from '../filter-header/filter-header.service';
+import { FilterService } from '../filter-header/filter.service';
 
 @Component({
   selector: 'app-items',
@@ -25,7 +25,7 @@ export class ItemsComponent implements OnInit, OnDestroy {
 
   constructor(
     private productService: ProductService,
-    private filterHeaderService: FilterHeaderService,
+    private filterService: FilterService,
     private logger: LogService
   ) { }
 
@@ -39,7 +39,7 @@ export class ItemsComponent implements OnInit, OnDestroy {
 
   addMoreProductsToStore() {
     this.subs[this.subs.length + 1] =
-      this.productService.dispatchMoreProductsToStore().subscribe(()=>{
+      this.productService.dispatchMoreProductsToStore().subscribe(() => {
         this.moreItemsLoading = true;
       });
   }
@@ -59,7 +59,7 @@ export class ItemsComponent implements OnInit, OnDestroy {
 
   getFilters() {
     this.subs[this.subs.length + 1] =
-      this.filterHeaderService.getFiltersFromStore()
+      this.filterService.getFiltersFromStore()
         .subscribe(filters => {
           this.logger.info('selected called from ItemsComponent');
           this.selectedCategory = filters.selectedCategory;

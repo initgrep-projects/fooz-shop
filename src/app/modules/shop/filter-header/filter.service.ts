@@ -12,7 +12,7 @@ import { AppState } from '../../main/store/app.reducer';
 @Injectable({
   providedIn: 'root'
 })
-export class FilterHeaderService {
+export class FilterService {
 
   constructor(private store: Store<AppState>,
               private logger: LogService,

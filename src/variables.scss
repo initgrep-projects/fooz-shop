@@ -1,9 +1,8 @@
+$ptserif-font-family: "PT Serif", serif;
+$poppins-font-family: "Poppins", sans-serif;
 
-$ptserif-font-family:'PT Serif', serif;
-$poppins-font-family: 'Poppins', sans-serif;
-
-$roboto-font-family: 'Roboto Condensed', sans-serif;
-$font-family-base:  $roboto-font-family;
+$roboto-font-family: "Roboto Condensed", sans-serif;
+$font-family-base: $roboto-font-family;
 
 $heading-letter-spacing: 0.035rem;
 
@@ -11,20 +10,77 @@ $background-color: #f4f4f4;
 $grey-bg-color: #f5f5f5;
 $dark-bg-color: #333;
 
-
-
-
 $primary-text-color: #333;
 $secondary-text-color: #f1f1f1;
 $grey-text-color: #636161;
-
 
 $primary-border-color: #333;
 $secondary-border-color: #f1f1f1;
 $grey-border-color: #8080801c;
 
-
-@mixin animate($type:fadeIn, $duration:2s) {
+@mixin animate($type: fadeIn, $duration: 2s) {
     animation: $type;
     animation-duration: $duration;
+}
+
+.styled-checkbox {
+    position: absolute; // take it out of document flow
+    opacity: 0; // hide it
+
+    & + label {
+        position: relative;
+        cursor: pointer;
+        padding: 0;
+    }
+
+
+    // Box.
+    & + label:before {
+        content: "";
+        margin-right: 10px;
+        display: inline-block;
+        vertical-align: text-top;
+        width: 20px;
+        height: 20px;
+        background: white;
+        border:2px solid $dark-bg-color;
+        border-radius: 5px;
+    }
+
+    // Box hover
+    &:hover + label:before {
+        background: $dark-bg-color;
+    }
+
+    // Box focus
+    &:focus + label:before {
+        box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.12);
+    }
+
+    // Box checked
+    &:checked + label:before {
+        background: $dark-bg-color;
+    }
+
+    // Disabled state label.
+    &:disabled + label {
+        color: #b8b8b8;
+        cursor: auto;
+    }
+
+    // Disabled box.
+    &:disabled + label:before {
+        box-shadow: none;
+        background: #ddd;
+    }
+
+    // Checkmark. Could be replaced with an image
+    &:checked + label:after {
+        content: "✔";
+        position: absolute;
+        left: 4px;
+        color: white;
+        width: 2px;
+        height: 2px;
+    }
 }

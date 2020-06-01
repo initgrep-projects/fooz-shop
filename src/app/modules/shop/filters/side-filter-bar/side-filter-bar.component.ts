@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { FilterService } from '../filter-header/filter.service';
+import { FilterService } from '../filter.service';
 import { SubSink } from 'subsink';
 import { Category } from 'src/app/models/category';
 import { Size } from 'src/app/models/size';
@@ -14,9 +14,9 @@ export class SideFilterBarComponent implements OnInit, OnDestroy {
 
   private subs = new SubSink();
   categories: Category[] = [];
-  selectedCategory: Category;
+  selectedCategory: Category[];
   sizes: Size[] = [];
-  selectedSize: Size;
+  selectedSize: Size[];
   sortOrders: Sort[] = [];
   selectedSortOrder: Sort;
 
@@ -39,6 +39,15 @@ export class SideFilterBarComponent implements OnInit, OnDestroy {
         this.sortOrders = filters.sortOrders;
         this.selectedSortOrder = filters.selectedSortOrder;
       });
+  }
+
+  onCategoryFilterSelect(categories: Category[]){
+    console.log('onCategoryFilterSelect ', categories);
+    this.fhs.setSelectedCategories(categories);
+  }
+  onSizeFilterSelect(sizes: Size[]){
+    console.log('onSizeFilterSelect ', sizes);
+    this.fhs.setSelectedSizes(sizes); 
   }
 
   ngOnDestroy(){

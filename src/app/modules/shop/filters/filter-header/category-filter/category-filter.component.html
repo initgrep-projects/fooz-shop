@@ -4,8 +4,8 @@
             id="dropdownManual"
             ngbDropdownAnchor
             (focus)="categ.open()">
-        <fa-icon icon="{{ !!this.selectedCategory? this.selectedCategory.Icon : 'layer-group' }}"></fa-icon>
-        <span class=" d-none d-sm-inline"> {{!!this.selectedCategory? this.selectedCategory.Label : 'Categories'}}</span>
+        <fa-icon [icon]="['fas', getIcon() ]"></fa-icon>
+        <span class=" d-none d-sm-inline">{{!!this.selectedCategories[0]? this.selectedCategories[0].Label : 'Categories'}}</span>
     </button>
     <div ngbDropdownMenu
          aria-labelledby="dropdownManual">

@@ -1,6 +1,6 @@
 import * as fromHome from '../../home/store/home.reducer';
 import * as fromShop from '../../shop/store/shop.reducer';
-import * as fromFilters from '../../shop/filter-header/store/filter.reducer';
+import * as fromFilters from '../../shop/filters/store/filter.reducer';
 import * as fromCart from '../../cart/store/cart.reducer';
 
 import { ActionReducerMap } from '@ngrx/store';

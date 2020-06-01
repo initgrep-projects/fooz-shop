@@ -3,14 +3,13 @@ export interface hasEquals {
 }
 //https://stackoverflow.com/questions/7837456/how-to-compare-arrays-in-javascript
 export function isIdentical(a: hasEquals[], b: hasEquals[]) {
-    var i = a.length;
+    let i = a.length;
     if (i != b.length) return false;
     while (i--) {
         if (!a[i].equals(b[i])) return false;
     }
     return true;
-};  
-
+}; 
 
 export function generateGuid() {
     var result, i, j;

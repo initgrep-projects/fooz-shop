@@ -9,7 +9,7 @@ import { Category } from 'src/app/models/category';
 export class CategoryFilterComponent implements OnInit {
 
   @Input() categories: Category[];
-  @Input() selectedCategory: Category;
+  @Input() selectedCategories: Category[] = [];
   @Output() categoryChange = new EventEmitter<Category>();
 
 
@@ -23,5 +23,8 @@ export class CategoryFilterComponent implements OnInit {
     this.categoryChange.emit(category);
   }
 
+  getIcon() {
+    return !!this.selectedCategories[0] ? this.selectedCategories[0].Icon : 'layer-group';
+  }
 
 }

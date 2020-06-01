@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Category } from 'src/app/models/category';
 import { Store } from '@ngrx/store';
-import { selectCategory, selectSize, selectSortOrder, saveAllCategories, saveAllSizes, saveAllSortOrders } from './store/filter.action';
 import { Size } from 'src/app/models/size';
 import { Sort } from 'src/app/models/Sort';
 import { LogService } from 'src/app/services/log.service';
 import { FireStoreDbService } from 'src/app/services/firestore.db.service';
 import { map, take } from 'rxjs/operators';
 import { AppState } from '../../main/store/app.reducer';
+import { saveAllCategoriesAction, saveAllSizesAction, saveAllSortOrdersAction, selectedCategoriesAction, selectedSizesAction, selectSortOrderAction } from './store/filter.action';
 
 @Injectable({
   providedIn: 'root'
@@ -29,7 +29,7 @@ export class FilterService {
       .pipe(
         take(1),
         map(categories => {
-          this.store.dispatch(saveAllCategories({ payload: categories }));
+          this.store.dispatch(saveAllCategoriesAction({ payload: categories }));
         })
       ).subscribe();
   }
@@ -39,7 +39,7 @@ export class FilterService {
       .pipe(
         take(1),
         map(sizes => {
-          this.store.dispatch(saveAllSizes({ payload: sizes }));
+          this.store.dispatch(saveAllSizesAction({ payload: sizes }));
         })
       ).subscribe();
   }
@@ -49,29 +49,29 @@ export class FilterService {
       .pipe(
         take(1),
         map(sortOrders => {
-          this.store.dispatch(saveAllSortOrders({ payload: sortOrders }));
+          this.store.dispatch(saveAllSortOrdersAction({ payload: sortOrders }));
         })
       ).subscribe();
   }
-
+ 
 
   getFiltersFromStore() {
     return this.store.select('filters');
   }
 
-  setSelectedCategory(c: Category) {
+  setSelectedCategories(c: Category[]) {
     this.logger.info('selected category dispatched -- ', c);
-    this.store.dispatch(selectCategory({ payload: c }));
+    this.store.dispatch(selectedCategoriesAction({ payload: c }));
   }
 
-  setSelectedSize(s: Size) {
+  setSelectedSizes(s: Size[]) { 
     this.logger.info('selected size dispatched --', s);
-    this.store.dispatch(selectSize({ payload: s }));
+    this.store.dispatch(selectedSizesAction({ payload: s }));
   }
 
   setSelectedSortOrder(s: Sort) {
     this.logger.info('selected sort dispatached -- ', s);
-    this.store.dispatch(selectSortOrder({ payload: s }));
+    this.store.dispatch(selectSortOrderAction({ payload: s }));
   }
 
 }

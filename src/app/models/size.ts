@@ -11,7 +11,6 @@ export class Size {
     select() { this.selected = true; }
     deSelect() { this.selected = false; }
     equals(s: Size): boolean {
-        console.log("size equla ",s.label === this.label && s.letter === this.letter);
         return s.label === this.label && s.letter === this.letter;
     }
 }

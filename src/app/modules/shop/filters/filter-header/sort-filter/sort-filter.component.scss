@@ -1,0 +1,8 @@
+@import "../../../../../../variables.scss";
+button{
+   font-family: $roboto-font-family;
+   text-transform: capitalize;
+   span{
+       margin-left: .3rem;
+   }
+}

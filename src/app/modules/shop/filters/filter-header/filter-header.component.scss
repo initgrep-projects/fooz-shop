@@ -1,6 +1,4 @@
 section.filter-header {
-  margin-left: 10%;
-  margin-right: 10%;
   margin-top: 3rem;
 
   
@@ -10,7 +8,7 @@ section.filter-header {
   app-size-filter,
   app-main-filter {
     display: inline-block;
-    float: right;
+    // float: right;
   }
 
   

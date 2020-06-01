@@ -6,7 +6,8 @@
             ngbDropdownAnchor
             (focus)="size.open()">
         <fa-icon icon="tape"></fa-icon>
-        <span class=" d-none d-sm-inline">{{ !!this.selectedSize? 'Size: '+ this.selectedSize.Letter : 'size'}}</span>
+        <span class=" d-none d-sm-inline">{{ !!this.selectedSizes[0]? 'Size: '+ this.selectedSizes[0].Letter : 'size'}}</span>
+        <span class=" d-inline  d-sm-none"><b>{{ !!this.selectedSizes[0]?  this.selectedSizes[0].Letter : ''}}</b></span>
     </button>
     <div ngbDropdownMenu
          aria-labelledby="dropdownManual">

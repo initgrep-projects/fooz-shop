@@ -1,6 +1,7 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { Size } from '../models/size';
 import { Product } from '../models/product';
+import { isEmpty } from '../helpers/util';
 
 @Pipe({
   name: 'filterBySize'
@@ -8,26 +9,29 @@ import { Product } from '../models/product';
 export class FilterBySizePipe implements PipeTransform {
 
 
-  transform(products: Product[], size: Size) {
-    if (!products || !size) {
+  transform(products: Product[], sizes: Size[]) {
+    console.log('FilterBySizePipe = products = ', products);
+    console.log('FilterBySizePipe sizes = ', sizes);
+    if (isEmpty(products) || isEmpty(sizes)) {
       return products;
     }
-    return products.filter((p: Product) => this.applyFilter(p, size));
+    return products.filter((p: Product) => this.applyFilter(p, sizes));
   }
 
-  private applyFilter(product: Product, size: Size) {
-    if (!size) {
-      return true;
-    } else if (this.isSizeAvailable(product.Sizes, size)) {
+  private applyFilter(product: Product, sizes: Size[]) {
+    if (isEmpty(sizes)) {
       return true;
     }
-    return false;
-
+    return this.isSizeAvailable([...product.Sizes], sizes);
   }
 
-  private isSizeAvailable(sizes: Size[], givenSize: Size) {
-    console.log('isSize Available - ', sizes, givenSize.Letter);
-    return  sizes.findIndex((s) => s.Letter === givenSize.Letter) > -1;
+  private isSizeAvailable(sizes: Size[], givenSizes: Size[]) {
+    const isPresent =  givenSizes.filter(gs => {
+      return sizes.find(sz => sz.equals(gs));
+    }).length > 0;
+
+    console.log("isSizePresent = ",isPresent);
+    return isPresent;
   }
 
 }

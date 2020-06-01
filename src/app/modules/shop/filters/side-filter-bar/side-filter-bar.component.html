@@ -1,0 +1,28 @@
+
+<div class="side-filter-bar-wrapper ">
+
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item filter-group-heading">
+            <h6>
+                <fa-icon [icon]="['fas','filter']"></fa-icon>
+                <span>filters</span>
+            </h6>
+        </li>
+        <li class="list-group-item">
+            <app-side-filter [type]="'category'"
+                             [title]="'Category'"
+                             [values]="categories"
+                             (select)="onCategoryFilterSelect($event)"></app-side-filter>
+        </li>
+        <li class="list-group-item">
+            <app-side-filter [type]="'size'"
+                             [title]="'size'"
+                             [values]="sizes"
+                             (select)="onSizeFilterSelect($event)"></app-side-filter>
+        </li>
+
+
+
+
+    </ul>
+</div>

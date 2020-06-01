@@ -6,7 +6,6 @@ import { AppState } from '../main/store/app.reducer';
 import { FireStoreDbService } from 'src/app/services/firestore.db.service';
 import { CartItem } from 'src/app/models/cartItem';
 import { tap, map, take } from 'rxjs/operators';
-import { isIdentical } from 'src/app/helpers/util';
 import { AlertService } from '../shared/alert/alert.service';
 import { CART_ITEM_EXIST, CART_ITEM_MAX_QUANTITY } from 'src/app/helpers/constants';
 import { updateProductAction } from '../shop/store/shop.actions';

@@ -2,17 +2,19 @@
     <div class="row">
         <div class="col ">
 
-            <app-sort-filter [sortOrders]="sortOrders"
+            <app-sort-filter class="float-lg-right" [sortOrders]="sortOrders"
                              [selectedSortOrder]="selectedSortOrder"
                              (sortOrderChange)="onSortOrderChange($event)"></app-sort-filter>
 
 
-            <app-category-filter [categories]="categories"
-                                 [selectedCategory]="selectedCategory"
+            <app-category-filter class="d-lg-none"
+                                 [categories]="categories"
+                                 [selectedCategories]="selectedCategories"
                                  (categoryChange)="onCategoryChange($event)"></app-category-filter>
 
-            <app-size-filter [sizes]="sizes"
-                             [selectedSize]="selectedSize"
+            <app-size-filter class="d-lg-none"
+                             [sizes]="sizes"
+                             [selectedSizes]="selectedSizes"
                              (sizeChange)="onSizeChange($event)"></app-size-filter>
 
 

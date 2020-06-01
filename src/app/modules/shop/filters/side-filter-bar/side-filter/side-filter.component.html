@@ -1,0 +1,33 @@
+<div class="side-filter-wrapper">
+    <h6 class="filter-heading">{{title}}</h6>
+    <ul class="list-group list-group-flush"
+        *ngIf="isCategoryFilter">
+        <li class="list-group-item"
+            *ngFor="let value of values; let i = index">
+            <input class="styled-checkbox"
+                   id="sf-{{i}}"
+                   type="checkbox"
+                   (change)="onSelectFilter($event.target.checked, value)"
+                   >
+            <label for="sf-{{i}}">
+                <fa-icon icon="{{value.Icon}}"></fa-icon>
+                {{value.Label}}
+            </label>
+        </li>
+
+    </ul>
+    <ul class="list-group list-group-flush"
+        *ngIf="isSizeFilter">
+        <li class="list-group-item"
+            *ngFor="let value of values; let i = index">
+            <input class="styled-checkbox"
+                   id="szb-{{i}}"
+                   type="checkbox"
+                   (change)="onSelectFilter($event.target.checked, value)"
+                   >
+            <label for="szb-{{i}}">{{value.label}} - <b>{{value.Letter}}</b></label>
+        </li>
+
+    </ul>
+
+</div>

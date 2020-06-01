@@ -1,12 +1,12 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Product } from 'src/app/models/product';
 import { Category } from 'src/app/models/category';
-import { Subscription } from 'rxjs';
 import { Size } from 'src/app/models/size';
 import { Sort } from 'src/app/models/Sort';
 import { LogService } from 'src/app/services/log.service';
 import { ProductService } from '../product.service';
-import { FilterService } from '../filter-header/filter.service';
+import { FilterService } from '../filters/filter.service';
+import { SubSink } from 'subsink';
 
 @Component({
   selector: 'app-items',
@@ -17,11 +17,11 @@ export class ItemsComponent implements OnInit, OnDestroy {
 
   preloadItems = [];
   moreItemsLoading = false;
-  items: Product[];
-  selectedCategory: Category;
-  selectedSize: Size;
+  items: Product[] = [];
+  selectedCategories: Category[] = [];
+  selectedSizes: Size[] = [];
   selectedSort: Sort;
-  subs: Subscription[] = [];
+  subs = new SubSink();
 
   constructor(
     private productService: ProductService,
@@ -38,14 +38,14 @@ export class ItemsComponent implements OnInit, OnDestroy {
 
 
   addMoreProductsToStore() {
-    this.subs[this.subs.length + 1] =
+    this.subs.sink =
       this.productService.dispatchMoreProductsToStore().subscribe(() => {
         this.moreItemsLoading = true;
       });
   }
 
   getProducts() {
-    this.subs[this.subs.length + 1] =
+    this.subs.sink =
       this.productService.getShopFromStore()
         .subscribe(state => {
           setTimeout(() => {
@@ -58,18 +58,18 @@ export class ItemsComponent implements OnInit, OnDestroy {
   }
 
   getFilters() {
-    this.subs[this.subs.length + 1] =
+    this.subs.sink =
       this.filterService.getFiltersFromStore()
         .subscribe(filters => {
           this.logger.info('selected called from ItemsComponent');
-          this.selectedCategory = filters.selectedCategory;
-          this.selectedSize = filters.selectedSize;
+          this.selectedCategories = [...filters.selectedCategory];
+          this.selectedSizes = [...filters.selectedSize];
           this.selectedSort = filters.selectedSortOrder;
         });
   }
 
   ngOnDestroy() {
-    this.subs.forEach(sub => sub.unsubscribe());
+    this.subs.unsubscribe();
   }
 
 }

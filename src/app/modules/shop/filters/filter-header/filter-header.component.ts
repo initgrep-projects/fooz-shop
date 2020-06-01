@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Category } from 'src/app/models/category';
-import { Subscription } from 'rxjs';
-import { FilterService } from './filter.service';
+
+import { FilterService } from '../filter.service';
 import { Size } from 'src/app/models/size';
 import { Sort } from 'src/app/models/Sort';
 import { LogService } from 'src/app/services/log.service';
@@ -16,10 +16,10 @@ export class FilterHeaderComponent implements OnInit, OnDestroy {
 
 
   categories: Category[] = [];
-  selectedCategory: Category;
+  selectedCategories: Category[] = [];
 
   sizes: Size[] = [];
-  selectedSize: Size;
+  selectedSizes: Size[] = [];
 
   sortOrders: Sort[] = [];
   selectedSortOrder: Sort;
@@ -39,10 +39,10 @@ export class FilterHeaderComponent implements OnInit, OnDestroy {
     this.subs.sink=
       this.fhs.getFiltersFromStore().subscribe(filters => {
         this.categories = filters.categories;
-        this.selectedCategory = filters.selectedCategory;
-
+        this.selectedCategories = filters.selectedCategory;
+        
         this.sizes = filters.sizes;
-        this.selectedSize = filters.selectedSize;
+        this.selectedSizes = filters.selectedSize;
 
         this.sortOrders = filters.sortOrders;
         this.selectedSortOrder = filters.selectedSortOrder;
@@ -53,12 +53,12 @@ export class FilterHeaderComponent implements OnInit, OnDestroy {
 
   onCategoryChange(c: Category) {
     this.logger.info('selected category = ', c);
-    this.fhs.setSelectedCategory(c);
+    this.fhs.setSelectedCategories([c]);
   }
 
   onSizeChange(s: Size) {
     this.logger.info('selected size = ', s);
-    this.fhs.setSelectedSize(s);
+    this.fhs.setSelectedSizes([s]);
   }
 
   onSortOrderChange(s: Sort) {

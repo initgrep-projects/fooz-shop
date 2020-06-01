@@ -9,7 +9,7 @@ import { Size } from 'src/app/models/size';
 export class SizeFilterComponent implements OnInit {
 
   @Input() sizes: Size[];
-  @Input() selectedSize: Size;
+  @Input() selectedSizes: Size[] = [];
   @Output() sizeChange = new EventEmitter<Size>();
 
   constructor( ) { }

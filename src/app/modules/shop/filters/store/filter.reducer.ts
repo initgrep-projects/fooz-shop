@@ -1,54 +1,58 @@
 import { Category } from 'src/app/models/category';
 import { Size } from 'src/app/models/size';
-import { saveAllCategories, selectCategory, selectSize, saveAllSizes, saveAllSortOrders, selectSortOrder } from './filter.action';
 import { createReducer, on, Action } from '@ngrx/store';
 
 import { cloneDeep } from 'lodash';
 import { Sort } from 'src/app/models/Sort';
+import { saveAllCategoriesAction, selectedCategoriesAction, saveAllSizesAction, selectedSizesAction, saveAllSortOrdersAction, selectSortOrderAction } from './filter.action';
 
 
 
 export interface State {
     categories: Category[];
-    selectedCategory: Category;
+    selectedCategory: Category[];
+
     sizes: Size[];
-    selectedSize: Size;
+    selectedSize: Size[];
+
     sortOrders: Sort[];
     selectedSortOrder: Sort;
 }
 
 export const initialState: State = {
     categories: [],
-    selectedCategory: null,
+    selectedCategory: [],
+
     sizes: [],
-    selectedSize: null,
+    selectedSize: [],
+    
     sortOrders: [],
     selectedSortOrder: null
 };
 
 const filterReducer = createReducer(
     initialState,
-    on(saveAllCategories, (currentState, { payload }) => ({
+    on(saveAllCategoriesAction, (currentState, { payload }) => ({
         ...currentState,
         categories: [...payload]
     })),
-    on(selectCategory, (currentState, { payload }) => ({
+    on(selectedCategoriesAction, (currentState, { payload }) => ({
         ...currentState,
-        selectedCategory: cloneDeep(payload)
+        selectedCategory: [...payload]
     })),
-    on(saveAllSizes, (currentState, { payload }) => ({
+    on(saveAllSizesAction, (currentState, { payload }) => ({
         ...currentState,
         sizes: [...payload]
     })),
-    on(selectSize, (currentState, { payload }) => ({
+    on(selectedSizesAction, (currentState, { payload }) => ({
         ...currentState,
-        selectedSize: cloneDeep(payload)
+        selectedSize: [...payload]
     })),
-    on(saveAllSortOrders, (currentState, { payload }) => ({
+    on(saveAllSortOrdersAction, (currentState, { payload }) => ({
         ...currentState,
         sortOrders: [...payload]
     })),
-    on(selectSortOrder, (currentState, { payload }) => ({
+    on(selectSortOrderAction, (currentState, { payload }) => ({
         ...currentState,
         selectedSortOrder: cloneDeep(payload)
     }))

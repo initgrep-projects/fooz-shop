@@ -1,0 +1,22 @@
+@import "../../../../../variables.scss";
+
+div.side-filter-bar-wrapper{
+    font-family: $roboto-font-family;
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 5rem;
+
+    ul.list-group{
+        li.filter-group-heading{
+            h6{
+                span{
+                    margin-left: .5rem;
+                    letter-spacing: .065rem;
+                    text-transform: uppercase;
+                    font-weight: 600;
+                }
+            }
+        }
+    }
+
+}

@@ -1,0 +1,7 @@
+<div class="bread-crumb-wrapper bg-light">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a routerLink="home">{{homePath}}</a></li>
+        <li class="breadcrumb-item" *ngFor="let item of pathItems"><a routerLink="home">{{item}}</a></li>
+        <li class="breadcrumb-item active">{{currentPath}}</li>
+    </ol>
+</div>

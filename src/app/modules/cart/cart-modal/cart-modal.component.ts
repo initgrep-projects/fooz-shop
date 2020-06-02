@@ -10,12 +10,10 @@ import { CartItemsComponent } from '../cart-items/cart-items.component';
   styleUrls: ['./cart-modal.component.scss']
 })
 export class CartModalComponent implements OnInit, OnDestroy {
-
-  constructor(
-    private cartModelService: CartModalService
-  ) { }
-
+  
   private subs = new SubSink();
+  constructor(private cartModelService: CartModalService) { }
+
 
   ngOnInit(): void {
     /** to avoid circular ref between cartModelservice vs cartItemsComponent */

@@ -9,7 +9,6 @@ import { IconService } from 'src/app/services/icon.service';
 
 import { AngularFirestoreModule} from '@angular/fire/firestore';
 import { AngularFireModule } from '@angular/fire';
-import {AngularFireAuthModule} from '@angular/fire/auth';
 import { environment } from 'src/environments/environment';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -23,7 +22,7 @@ import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [
-    AppComponent,
+    AppComponent
   ],
   imports: [
     BrowserModule,
@@ -36,7 +35,6 @@ import { SharedModule } from '../shared/shared.module';
     StoreModule.forRoot(AppReducer),
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule,
-    AngularFireAuthModule,
     SharedModule
   ],
   providers: [],

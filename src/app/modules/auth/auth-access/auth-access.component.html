@@ -1,0 +1,5 @@
+<app-auth-login *ngIf="isLoginSelected"
+                (registerSelected)="onRegisterSelected($event)"></app-auth-login>
+
+<app-auth-register *ngIf="!isLoginSelected"
+                   (loginSelected)="onIsLoginSelected($event)"></app-auth-register>

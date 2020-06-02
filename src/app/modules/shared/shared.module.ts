@@ -14,8 +14,6 @@ import { ColorComponent } from './color/color.component';
 import { QuantityComponent } from './quantity/quantity.component';
 import { AlertComponent } from './alert/alert.component';
 
-
-
 @NgModule({
   declarations: [
     ItemComponent,
@@ -27,7 +25,7 @@ import { AlertComponent } from './alert/alert.component';
     SizeComponent,
     ColorComponent,
     QuantityComponent,
-    AlertComponent
+    AlertComponent,
   ],
   imports: [
     CommonModule,

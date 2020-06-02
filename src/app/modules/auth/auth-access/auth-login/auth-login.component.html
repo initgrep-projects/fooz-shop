@@ -1,0 +1,62 @@
+<div class="container-fluid auth-login-wrapper">
+
+  <div class="row">
+    <div class="col-12 col-lg-6 auth-login-banner d-none d-lg-block">
+      <div class="auth-ct-wrapper ">
+        <fa-icon icon="atom"></fa-icon>
+        <h1>FOOZ</h1>
+        <small>the design for excellence</small>
+      </div>
+    </div>
+    <div class="col-12 col-lg-6 auth-login-section">
+      <div class="auth-login-header mb-4">
+        <div class="close pt-2">
+          <a (click)="authModalService.closeModal()">
+            <fa-icon icon="times"></fa-icon>
+          </a>
+        </div>
+
+        <h5 class="">sign in</h5>
+
+
+      </div>
+      <div class="auth-login-form px-4">
+
+        <form [formGroup]="loginForm" (ngSubmit)="login()">
+          <div class="form-group">
+            <input type="email"
+                   class="form-control"
+                   id="email"
+                   aria-describedby="email or phone help"
+                   placeholder="Enter email"
+                   formControlName ="email"
+                   >
+            <small id="emailHelp"
+                   class="form-text text-muted">We'll never share your email with anyone else.</small>
+          </div>
+          <div class="form-group">
+            <input type="password"
+                   class="form-control"
+                   id="password"
+                   placeholder="Password"
+                   formControlName ="password"
+                   >
+            <a class="auth-fgt-password">forgot password?</a>
+          </div>
+          <div class="form-group">
+            <button type="submit"
+                    class="btn btn-dark btn-block my-4 mt-5 ">sign in</button>
+            <button type="button"
+                    class="btn btn-danger btn-block my-4 ">
+              <fa-icon [icon]="['fab','google']"></fa-icon>sign in with google
+            </button>
+          </div>
+        </form>
+      </div>
+      <div class="auth-login-footer px-4 pb-4">
+        <p>dont have an account yet? <a class="auth-signup"
+             (click)="emitRegisterSelected()">register</a></p>
+      </div>
+    </div>
+  </div>
+</div>

@@ -7,25 +7,25 @@ import { HeaderComponent } from './header.component';
 import { TopBarComponent } from './top-bar/top-bar.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { SearchComponent } from './nav-bar/search/search.component';
-import { AccountComponent } from './nav-bar/account/account.component';
 
 import { HeaderRoutingModule } from './header-routing.module';
 import { CartModule } from '../cart/cart.module';
+import { AuthModule } from '../auth/auth.module';
 
 @NgModule({
   declarations: [
     HeaderComponent,
     TopBarComponent,
     NavBarComponent,
-    SearchComponent,
-    AccountComponent
+    SearchComponent
   ],
   imports: [
     CommonModule,
     FontAwesomeModule,
+    HeaderRoutingModule,
     SharedModule,
     CartModule,
-    HeaderRoutingModule
+    AuthModule
   ],
   exports: [
     HeaderComponent

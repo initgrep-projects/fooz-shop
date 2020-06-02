@@ -1,0 +1,72 @@
+<div class="container-fluid auth-signup-wrapper">
+
+  <div class="row">
+    <div class="col-12 col-lg-6 auth-signup-banner d-none d-lg-block">
+      <div class="auth-ct-wrapper ">
+        <fa-icon icon="atom"></fa-icon>
+        <h1>FOOZ</h1>
+        <small>the design for excellence</small>
+      </div>
+    </div>
+    <div class="col-12 col-lg-6 auth-signup-section">
+      <div class="auth-signup-header mb-4">
+        <div class="close pt-2">
+          <a (click)="authModalService.closeModal()">
+            <fa-icon icon="times"></fa-icon>
+          </a>
+        </div>
+
+        <h5 class="">sign in</h5>
+
+      </div>
+      <div class="auth-signup-form px-4">
+
+        <form [formGroup]="registerForm">
+          <div class="form-group">
+            <input type="text"
+                   class="form-control"
+                   id="name"
+                   aria-describedby="name"
+                   placeholder="Enter your name">
+
+          </div>
+          <div class="form-group">
+            <input type="email"
+                   class="form-control"
+                   id="email"
+                   aria-describedby="email or phone help"
+                   placeholder="Enter email">
+            <small id="emailHelp"
+                   class="form-text text-muted">We'll never share your email with anyone else.</small>
+          </div>
+          <div class="form-group">
+            <input type="tel"
+                   class="form-control"
+                   id="phone"
+                   aria-describedby="phone help"
+                   placeholder="phone number">
+          </div>
+          <div class="form-group">
+            <input type="password"
+                   class="form-control"
+                   id="password"
+                   placeholder="Password">
+          </div>
+
+          <div class="form-group">
+            <button type="button"
+                    class="btn btn-dark btn-block my-4 mt-5 ">sign up</button>
+            <button type="button"
+                    class="btn btn-danger btn-block my-4 ">
+              <fa-icon [icon]="['fab','google']"></fa-icon>sign up using google
+            </button>
+          </div>
+        </form>
+      </div>
+      <div class="auth-signup-footer px-4 pb-4">
+        <p>already have an account? <a (click)="emitLoginSelected()"
+             class="auth-signup">sign in</a></p>
+      </div>
+    </div>
+  </div>
+</div>

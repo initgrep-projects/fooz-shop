@@ -1,0 +1,103 @@
+@import "../../../../../variables.scss";
+
+@mixin not-links {
+    color: $grey-text-color;
+    font-size: 0.7rem;
+    cursor: pointer;
+    text-transform: capitalize;
+    margin-top: 0.2rem;
+    padding: 0 0.5rem 0 0.5rem;
+    border-radius: 2px;
+    text-transform: capitalize;
+    letter-spacing: 0.025rem;
+    &:hover {
+        background-color: $dark-bg-color;
+        color: $secondary-text-color;
+        transition: all 0.5s ease-in;
+    }
+}
+
+div.auth-signup-wrapper {
+    font-family: $roboto-font-family;
+
+    div.auth-signup-banner {
+        background-image: url("../../../../../assets/img/splash5.jpg");
+        background-position: 90%;
+
+        div.auth-ct-wrapper {
+            color: $secondary-text-color;
+            text-align: center;
+            margin-top: 6em;
+            fa-icon {
+                font-size: 6rem;
+            }
+            h1 {
+                font-weight: 600;
+            }
+            small {
+                text-transform: capitalize;
+            }
+        }
+    }
+    div.auth-signup-section {
+        div.auth-signup-header {
+            div.close {
+                text-align: right;
+                width: 100%;
+                a {
+                    cursor: pointer;
+                    font-size: .9rem;
+                }
+            }
+
+            h5 {
+                text-align: center;
+                letter-spacing: .025rem;
+                &::first-letter {
+                    text-transform: capitalize;
+                }
+            }
+        }
+
+        div.auth-signup-form {
+            div.form-group {
+                input {
+                    &::placeholder {
+                        font-size: 0.8rem;
+                    }
+                }
+                small {
+                    font-size: 0.6rem;
+                    letter-spacing: 0.025rem;
+                }
+
+                a.auth-fgt-password {
+                    float: right;
+                    @include not-links();
+                }
+
+                button {
+                    text-transform: capitalize;
+                    fa-icon {
+                        float: left;
+                    }
+                }
+            }
+        }
+
+        div.auth-signup-footer {
+            margin-bottom: 2rem;
+            p {
+                font-size: 0.7rem;
+                letter-spacing: 0.025rem;
+                float: right;
+                &::first-letter {
+                    text-transform: capitalize;
+                }
+                a.auth-signup {
+                    @include not-links();
+                }
+            }
+        }
+    }
+}

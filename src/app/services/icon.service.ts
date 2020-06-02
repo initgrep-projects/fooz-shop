@@ -42,6 +42,7 @@ import {
   faBars,
   faExclamationCircle
 } from '@fortawesome/free-solid-svg-icons';
+import { faGoogle } from '@fortawesome/free-brands-svg-icons';
 
 @Injectable({
   providedIn: 'root'
@@ -92,7 +93,8 @@ export class IconService {
       faPlus,
       faMinus,
       faBars,
-      faExclamationCircle
+      faExclamationCircle,
+      faGoogle
     ];
    }
 

@@ -40,7 +40,12 @@ import {
   faPlus,
   faMinus,
   faBars,
-  faExclamationCircle
+  faExclamationCircle,
+  faWindowMaximize,
+  faStore,
+  faInfoCircle,
+  faHeadset,
+  faTruck
 } from '@fortawesome/free-solid-svg-icons';
 import { faGoogle } from '@fortawesome/free-brands-svg-icons';
 
@@ -94,7 +99,12 @@ export class IconService {
       faMinus,
       faBars,
       faExclamationCircle,
-      faGoogle
+      faGoogle,
+      faWindowMaximize,
+      faStore,
+      faInfoCircle,
+      faHeadset,
+      faTruck
     ];
    }
 

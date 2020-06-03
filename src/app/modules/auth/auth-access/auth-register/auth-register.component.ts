@@ -41,7 +41,7 @@ export class AuthRegisterComponent implements OnInit {
 
   }
 
-  closeAlert(alert){
+  closeAlert(){
     this.showAlert =  false;
   }
   emitLoginSelected(){

@@ -1,58 +1,66 @@
 @import "../../../../variables.scss";
 
 div.sidebar-content-wrapper {
-    margin-top: 1rem;
     font-family: $roboto-font-family;
-    a.nav-close {
-        float: right;
-        font-size: 1.5rem;
-        cursor: pointer;
-        margin-right: 1rem;
-    }
+    padding-left: 1rem;
+    div.header {
+        padding-top: 1rem;
+        background-color: $grey-bg-color;
+        min-height: 200px;
+        a.nav-close {
+            float: right;
+            font-size: 1.5rem;
+            cursor: pointer;
+            margin-right: 1rem;
+        }
 
-    a.sidenav-brand {
-        font-size: 2.5rem;
-        position: relative;
-        color: $primary-text-color;
-        display: block;
-        width: auto;
-        padding-left: 20%;
-        text-decoration: none;
-        padding-top: 4rem;
-        span {
-            letter-spacing: $heading-letter-spacing;
-            text-transform: uppercase;
-            font-weight: 600;
-            margin-left: 0.5rem;
+        a.sidenav-brand {
+            font-size: 1.5rem;
+            width: 80%;
+            position: relative;
+            color: $primary-text-color;
+            display: block;
+            text-decoration: none;
+            
+            span {
+                letter-spacing: $heading-letter-spacing;
+                text-transform: uppercase;
+                font-weight: 600;
+                margin-left: 0.5rem;
+            }
         }
     }
     ul.list-group {
-        padding-top: 2rem;
+        padding-top: 1rem;
         width: auto;
-        padding-left: 20%;
+        padding-left: 10;
         width: 70%;
 
         li {
             background-color: transparent;
             border-bottom: 0px solid transparent;
             // border:1px solid red;
+            animation: fadeInUp;
 
             a {
-                letter-spacing: $heading-letter-spacing;
+                font-size: .8rem;
+                letter-spacing: 0.1rem;
                 font-weight: 600;
                 text-decoration: none;
                 color: $primary-text-color;
                 cursor: pointer;
-                text-transform: capitalize;
+                text-transform: uppercase;
                 display: block;
-                width: 100%;
-                text-align: center;
-
+                // width: 70%;
+                // text-align: center;
+                fa-icon{
+                    margin-right: .6rem;
+                }
                 span {
                     position: absolute;
                     display: block;
                     width: 0%;
-                    height: 5px;
+                    height: 2px;
                     background-color: $primary-text-color;
                     // left: 5px;
                     top: 100%;
@@ -80,54 +88,45 @@ div.sidebar-content-wrapper {
 
 nav.navbar {
     font-family: $roboto-font-family;
-    background-color: white;
-
-    a.nav-toggle {
-        font-size: 1.4rem;
-        margin-left: 1rem;
-        cursor: pointer;
-    }
-
-    a.navbar-brand {
-        font-size: 1.4rem;
-        position: relative;
-        margin-left: 1rem;
-        color: $primary-text-color;
-        @include animate();
-        span {
-            letter-spacing: $heading-letter-spacing;
-            text-transform: uppercase;
-            // font-size: .9rem;
-            // font-family: $ptserif-font-family;
-            font-weight: 600;
-            margin-left: 0.5rem;
-        }
-
-        &.home {
-            margin-right: 40%;
-        }
-    }
-
-    ul.navbar-nav {
-        margin-left: 7%;
-        margin-top: 0.2rem;
-
+    color: $primary-text-color;
+    box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.05);
+    background-color: #fff;
+    ul.nav {
         li.nav-item {
             a.nav-link {
-                font-weight: 600;
-                font-size: 0.9rem;
-                letter-spacing: 0.025rem;
-                text-transform: capitalize;
                 color: $primary-text-color;
-                @include animate();
+                font-size: 1rem;
+                fa-icon[icon="bars"] {
+                    font-size: 1.5rem;
+                    cursor: pointer;
+                    :hover {
+                        font-weight: 1.3rem;
+                        transition: all 0.5s ease-in;
+                    }
+                }
+            }
+            a.nav-link.brand {
+                font-size: 1.5rem;
+                font-weight: 600;
+                text-transform: uppercase;
+                span {
+                    letter-spacing: 0.035rem;
+                }
+            }
+
+            a.app-link {
+                margin-top: 0.4rem;
+                text-transform: uppercase;
+                letter-spacing: 0.1rem;
+                font-size: 0.9rem;
                 span {
                     position: relative;
                     display: block;
                     width: 0%;
-                    height: 5px;
+                    height: 3px;
                     background-color: $primary-text-color;
                     // left: 5px;
-                    top: 80%;
+                    top: 100%;
                     transition: width 0.5s ease;
                     border-radius: 5px;
                 }
@@ -148,86 +147,31 @@ nav.navbar {
             }
         }
     }
-    ul.nav-portal {
-        border: 0px solid transparent;
-        font-size: 1.2rem;
-        font-weight: 300;
-        margin-right: 10%;
-        li {
-            border: 0px solid transparent;
-            background: transparent;
-            padding-top: 0px;
-            padding-bottom: 0px;
-            padding-left: 0px;
-        }
-    }
-}
-
-.sidenav a {
-    padding: 8px 8px 8px 32px;
-    text-decoration: none;
-    font-size: 25px;
-    color: #818181;
-    display: block;
-    transition: 0.3s;
-}
-
-.sidenav a:hover {
-    color: #f1f1f1;
-}
-
-.sidenav .closebtn {
-    position: absolute;
-    top: 0;
-    right: 25px;
-    font-size: 36px;
-    margin-left: 50px;
-}
-
-// Small devices (landscape phones, 576px and up)
-@media (min-width: 576px) {
-    nav.navbar {
-        a.navbar-brand {
-            &.home {
-                margin-right: 45%;
-            }
-        }
-    }
-}
-
-// Medium devices (tablets, 768px and up)
-@media (min-width: 768px) {
-    div.sidebar-content-wrapper {
-        ul.list-group {
-            width: 35%;
-        }
-    }
 }
 
 // Large devices (desktops, 992px and up)
 @media (min-width: 992px) {
-    div.sidebar-content-wrapper {
-        ul.list-group {
-            width: 60%;
-        }
-    }
-
     nav.navbar {
-        a.nav-toggle {
-            // display: none;
+        ul.nav-left {
+            margin-left: 10%;
         }
-        a.navbar-brand {
-            font-size: 1.5rem;
+        ul.nav-right {
+            margin-right: 10%;
+        }
 
-            &.home {
-                display: none;
-            }
+        ul.nav {
+            li.nav-item {
+                a.nav-link.brand {
+                    font-size: 2rem;
+                }
 
-            &.middle {
-                // border:1px solid red;
-                // left: 50%;
-                position: relative;
-                right: 25%;
+                a.app-link {
+                    margin-top: 0.4rem;
+                    line-height: 1.8;
+                    text-transform: uppercase;
+                    letter-spacing: 0.1rem;
+                    font-size: 1rem;
+                }
             }
         }
     }
@@ -235,16 +179,4 @@ nav.navbar {
 
 // Extra large devices (large desktops, 1200px and up)
 @media (min-width: 1200px) {
-    nav.navbar {
-        a.navbar-brand {
-            font-size: 2rem;
-
-            &.middle {
-                // border:1px solid red;
-                // left: 50%;
-                position: relative;
-                right: 30%;
-            }
-        }
-    }
 }

@@ -1,6 +1,9 @@
 <a [routerLink]="[{outlets: {'md': ['cart']}}]">
+    <div>
       <fa-icon class="cart" icon="shopping-cart"></fa-icon>
       <span class="badge badge-light badge-pill" *ngIf="cartItemSize > 0">{{ cartItemSize }}</span>
+    </div>
+      <span class="small d-none  d-md-block">cart</span>
 </a>
 
 <router-outlet name="md"></router-outlet>

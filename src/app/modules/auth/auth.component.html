@@ -1,4 +1,7 @@
 <a [routerLink]="[{outlets: {'secure': ['auth']}}]">
+   <div>
     <fa-icon icon="user-circle"></fa-icon>
+   </div>
+   <span class="small d-none d-md-block">profile</span>
 </a>
 <router-outlet name="secure"></router-outlet>

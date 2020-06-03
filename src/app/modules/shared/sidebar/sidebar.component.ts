@@ -90,7 +90,7 @@ export class SidebarComponent implements OnInit, OnDestroy, AfterViewInit {
     if (this.isOpen) {
       const isMobileTablet = mq.matches;
       if (isMobileTablet) {
-        this.renderer.setStyle(this.sideNav.nativeElement, 'width', '100%');
+        this.renderer.setStyle(this.sideNav.nativeElement, 'width', '70%');
       } else {
         this.renderer.setStyle(this.sideNav.nativeElement, 'width', '25%');
       }

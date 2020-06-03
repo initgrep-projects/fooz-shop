@@ -1,20 +1,29 @@
 @import "../../../variables.scss";
 
-a{
+a {
     color: $primary-text-color;
-    .cart {
-        cursor: pointer;
-        text-shadow: 4px 4px 2px rgba(150, 150, 150, 1);
-    }
+    text-decoration: none;
+    div{
+        text-align: center;
+        .cart {
+            cursor: pointer;
+            text-shadow: 4px 4px 2px rgba(150, 150, 150, 1);
+        }
     
-    .badge {
-        cursor: pointer;
-        font-size: .7rem;
-        border:2px solid #333;
-        border-radius: 5px;
-        margin-top: .4rem;
-        animation: bounce; 
-        animation-duration: 1s;
+        .badge {
+            cursor: pointer;
+            font-size: 0.7rem;
+            background-color: $dark-bg-color;
+            color: $secondary-text-color;
+            animation: bounde;
+            animation-duration: 0.4s;
+        }
+    
+    }
+    span {
+        text-decoration: none;
+        font-weight: 600;
+        letter-spacing: 0.1rem;
+        text-transform: uppercase;
     }
 }
-

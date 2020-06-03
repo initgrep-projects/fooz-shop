@@ -10,6 +10,7 @@ import { AuthAccessComponent } from './auth-access/auth-access.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthLoginComponent } from './auth-access/auth-login/auth-login.component';
 import { AuthRegisterComponent } from './auth-access/auth-register/auth-register.component';
+import { NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 
@@ -21,7 +22,8 @@ import { AuthRegisterComponent } from './auth-access/auth-register/auth-register
     AuthRoutingModule,
     SharedModule,
     AngularFireAuthModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgbAlertModule
   ],
   exports:[
     AuthComponent

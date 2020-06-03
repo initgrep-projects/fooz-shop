@@ -15,10 +15,18 @@
             <fa-icon icon="times"></fa-icon>
           </a>
         </div>
-
-        <h5 class="">sign in</h5>
-
+        <h5 class="">sign up</h5>
       </div>
+      <div class=" auth-signup-alerts px-4">
+        <ngb-alert [type]="'danger'"
+                  *ngIf ="showAlert"
+                   (close)="closeAlert()">
+          <fa-icon icon="exclamation-circle"
+                   class="mr-1"></fa-icon>
+          <span>{{authMessages.invalidSignup}}</span>
+        </ngb-alert>
+      </div>
+
       <div class="auth-signup-form px-4">
 
         <form [formGroup]="registerForm">
@@ -27,35 +35,55 @@
                    class="form-control"
                    id="name"
                    aria-describedby="name"
-                   placeholder="Enter your name">
-
+                   placeholder="Enter your name"
+                   formControlName="name">
+            <span class="text-danger"
+                  *ngIf="registerForm.controls.name.touched && !!registerForm.controls.name.errors">
+              {{authMessages.invalidName}}
+            </span>
           </div>
           <div class="form-group">
             <input type="email"
                    class="form-control"
                    id="email"
                    aria-describedby="email or phone help"
-                   placeholder="Enter email">
+                   placeholder="Enter email"
+                   formControlName="email">
             <small id="emailHelp"
                    class="form-text text-muted">We'll never share your email with anyone else.</small>
+            <span class="text-danger"
+                  *ngIf="registerForm.controls.email.touched && !!registerForm.controls.email.errors">
+              {{authMessages.invalidEmail}}
+            </span>
           </div>
           <div class="form-group">
             <input type="tel"
                    class="form-control"
                    id="phone"
                    aria-describedby="phone help"
-                   placeholder="phone number">
+                   placeholder="phone number"
+                   formControlName="phone">
+            <span class="text-danger"
+                  *ngIf="registerForm.controls.phone.touched && !!registerForm.controls.phone.errors">
+              {{authMessages.invalidPhone}}
+            </span>
           </div>
           <div class="form-group">
             <input type="password"
                    class="form-control"
                    id="password"
-                   placeholder="Password">
+                   placeholder="Password"
+                   formControlName="password">
+            <span class="text-danger"
+                  *ngIf="registerForm.controls.password.touched && !!registerForm.controls.password.errors">
+              {{authMessages.invalidPassword}}
+            </span>
           </div>
 
           <div class="form-group">
             <button type="button"
-                    class="btn btn-dark btn-block my-4 mt-5 ">sign up</button>
+                    class="btn btn-dark btn-block my-4 mt-5"
+                    [disabled]="!isValidForm">sign up</button>
             <button type="button"
                     class="btn btn-danger btn-block my-4 ">
               <fa-icon [icon]="['fab','google']"></fa-icon>sign up using google

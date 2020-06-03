@@ -16,3 +16,14 @@ export const CART_ITEM_EXIST = 'A similar product already exists in your cart. W
 export const CART_ITEM_MAX_QUANTITY = 'You have added all the available products of this type.';
 
 
+/** Auth **/
+export const AuthMessages = {
+    invalidName: 'Name should be 100 characters or less',
+    invalidEmail :  'please enter a valid email',
+    invalidPhone: 'please provide a valid phone number with country code.(+971234512345)',
+    invalidPassword: 'please provide password - must be 8 characters or more',
+    invalidCredentials: 'the account does not exist.',
+    invalidSignup: 'We are unable to create the account with email provided- Account already exists'
+
+}
+

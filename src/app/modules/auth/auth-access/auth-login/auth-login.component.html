@@ -15,37 +15,48 @@
             <fa-icon icon="times"></fa-icon>
           </a>
         </div>
-
         <h5 class="">sign in</h5>
-
-
+      </div>
+      <div class=" auth-login-alerts px-4">
+        <ngb-alert [type]="'danger'"
+                   [dismissible]="false">
+          <fa-icon icon="exclamation-circle"
+                   class="mr-1"></fa-icon>
+          <span>{{authMessages.invalidCredentials}}</span>
+        </ngb-alert>
       </div>
       <div class="auth-login-form px-4">
 
-        <form [formGroup]="loginForm" (ngSubmit)="login()">
+        <form [formGroup]="loginForm"
+              (ngSubmit)="login()">
           <div class="form-group">
             <input type="email"
                    class="form-control"
                    id="email"
                    aria-describedby="email or phone help"
                    placeholder="Enter email"
-                   formControlName ="email"
-                   >
-            <small id="emailHelp"
-                   class="form-text text-muted">We'll never share your email with anyone else.</small>
+                   formControlName="email">
+            <span class="text-danger"
+                  *ngIf="loginForm.controls.email.touched && !!loginForm.controls.email.errors">
+              {{authMessages.invalidEmail}}
+            </span>
           </div>
           <div class="form-group">
             <input type="password"
                    class="form-control"
                    id="password"
                    placeholder="Password"
-                   formControlName ="password"
-                   >
+                   formControlName="password">
+            <span class="text-danger"
+                  *ngIf="loginForm.controls.password.touched && !!loginForm.controls.password.errors">
+              {{authMessages.invalidPassword}}
+            </span>
             <a class="auth-fgt-password">forgot password?</a>
           </div>
           <div class="form-group">
             <button type="submit"
-                    class="btn btn-dark btn-block my-4 mt-5 ">sign in</button>
+                    class="btn btn-dark btn-block my-4 mt-5 "
+                    [disabled]="!isValidForm">sign in</button>
             <button type="button"
                     class="btn btn-danger btn-block my-4 ">
               <fa-icon [icon]="['fab','google']"></fa-icon>sign in with google

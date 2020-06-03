@@ -11,7 +11,7 @@ export class AuthAccessComponent implements OnInit {
 
   constructor(private authService: AuthService) { }
 
-  isLoginSelected: boolean = true;
+  isLoginSelected: boolean = false;
 
   ngOnInit(): void {
 

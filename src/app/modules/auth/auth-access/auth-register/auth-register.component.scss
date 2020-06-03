@@ -23,7 +23,8 @@ div.auth-signup-wrapper {
     div.auth-signup-banner {
         background-image: url("../../../../../assets/img/splash5.jpg");
         background-position: 90%;
-
+        border-top-left-radius: 4px;
+        border-bottom-left-radius: 4px;
         div.auth-ct-wrapper {
             color: $secondary-text-color;
             text-align: center;
@@ -46,15 +47,28 @@ div.auth-signup-wrapper {
                 width: 100%;
                 a {
                     cursor: pointer;
-                    font-size: .9rem;
+                    font-size: 0.9rem;
                 }
             }
 
             h5 {
                 text-align: center;
-                letter-spacing: .025rem;
+                letter-spacing: 0.025rem;
                 &::first-letter {
                     text-transform: capitalize;
+                }
+            }
+        }
+        div.auth-signup-alerts {
+            ngb-alert {
+                font-size: 0.8rem;
+                letter-spacing: 0.025rem;
+
+                span {
+                    // display: inline-block;
+                    &::first-letter {
+                        text-transform: capitalize;
+                    }
                 }
             }
         }
@@ -62,13 +76,29 @@ div.auth-signup-wrapper {
         div.auth-signup-form {
             div.form-group {
                 input {
+                    font-size: 0.8rem;
+                    letter-spacing: 0.025rem;
                     &::placeholder {
                         font-size: 0.8rem;
+                    }
+
+                    &:focus {
+                        outline-width: 0px;
+                        border: 1px solid $primary-border-color;
+                        color: $primary-text-color;
                     }
                 }
                 small {
                     font-size: 0.6rem;
                     letter-spacing: 0.025rem;
+                }
+                span.text-danger {
+                    font-size: 0.6rem;
+                    letter-spacing: 0.025rem;
+                    display: inline-block;
+                    &::first-letter {
+                        text-transform: capitalize;
+                    }
                 }
 
                 a.auth-fgt-password {

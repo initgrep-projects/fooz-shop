@@ -2,6 +2,7 @@
 
 div.quantity-wrapper {
     font-family: $roboto-font-family;
+    @include animate();
     span {
         border: 2px solid $primary-border-color;
         padding: 0px;
@@ -16,11 +17,11 @@ div.quantity-wrapper {
     }
     span.pre {
         border-right-width: 0px;
-        border-radius: 5px 0 0 5px;
+        border-radius: 2px 0 0 2px;
     }
     span.post {
         border-left-width: 0px;
-        border-radius: 0 5px 5px 0;
+        border-radius: 0 2px 2px 0;
     }
     span.pre,
     span.post {

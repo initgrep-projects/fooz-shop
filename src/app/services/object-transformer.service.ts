@@ -9,6 +9,7 @@ import { Sort } from '../models/Sort';
 import { Product } from '../models/product';
 import { DocumentData } from '@angular/fire/firestore';
 import { CartItem } from '../models/cartItem';
+import { User } from '../models/user';
 
 @Injectable({
   providedIn: 'root'
@@ -185,7 +186,9 @@ export class ObjectTransformerService {
   }
 
 
-
+  transformUser( {uid, email, displayName, isAnonymous, emailVerified, phoneNumber, photoURL}: firebase.User): User{
+      return new User(uid,email,displayName,emailVerified, phoneNumber,isAnonymous,photoURL);
+     }
 
 
 }

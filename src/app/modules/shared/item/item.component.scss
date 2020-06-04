@@ -6,6 +6,8 @@ div.item {
   margin-left: -13px;
   margin-right: -13px;
   font-family: $roboto-font-family;
+  box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.05);
+  @include animate();
   div.item-heading {
     width: 100%;
     height: 200px;

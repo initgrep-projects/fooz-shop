@@ -1,7 +1,7 @@
 <!--item start-->
-<div class="item  my-1 my-lg-3" (click)="routeToItemDetails()">
+<div class="item  my-1 my-lg-3">
 
-  <div class="item-heading">
+  <div class="item-heading"  (click)="routeToItemDetails()">
     <img *ngFor="let image of cardImages | slice:0:2"
          [src]="image.Url"
          alt="" />

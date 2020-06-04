@@ -8,14 +8,17 @@
               [sourcePage] = "'shop'"
               ></app-item>
   </div>
-  <div class="row">
+  <div class="row" *ngIf ="items.length > 0">
     <div class="col">
       <div class="more-items-wrapper text-center">
+       
         <button type="button"
-                class="btn btn-outline-dark"
+                class="btn btn-dark"
                 [ngClass] ="{'loading': !!moreItemsLoading, 'bg-black': !!moreItemsLoading}"
                 (click)="addMoreProductsToStore()">
-                show more Items
+                <fa-icon [icon]="['fas', 'spinner']" [spin]="true" *ngIf="moreItemsLoading"></fa-icon>
+               <span *ngIf="!moreItemsLoading">show more Items</span>
+               <span *ngIf ="moreItemsLoading">fetching items</span>
               </button>
       </div>
     </div>

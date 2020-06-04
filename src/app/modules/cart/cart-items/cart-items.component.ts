@@ -48,7 +48,7 @@ export class CartItemsComponent implements OnInit, OnDestroy {
     this.closeModal();
     setTimeout(() => {
       this.router.navigate(['shop'], { relativeTo: this.activatedRoute });
-    }, 1000);
+    }, 100);
   }
 
   ngOnDestroy() {

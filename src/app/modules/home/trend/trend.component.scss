@@ -10,7 +10,7 @@
 
 
 @mixin expand-slide {
-  flex: 1 1 50%;
+  flex: 1 1 23%;
   img {
     width: 100%;
     height: 100%;
@@ -36,7 +36,7 @@
       width: 100%;
       height: calc(100% - 5vh);
       object-fit: cover;
-      object-position: left center;
+      object-position: center;
       transition: 0.5s;
       cursor: pointer;
     }

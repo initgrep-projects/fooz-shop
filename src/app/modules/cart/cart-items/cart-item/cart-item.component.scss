@@ -18,9 +18,10 @@ div.media {
             text-decoration: none;
             font-size: 0.8rem;
             display: block;
-            // font-weight: 600;
+            font-weight: 600;
             line-height: 1.2;
             letter-spacing: 0.025rem;
+            @include animate();
 
             &:hover {
                 background-color: #333;
@@ -36,12 +37,14 @@ div.media {
                 border-width: 0;
                 padding: 0;
                 padding-bottom: 0.5rem;
+                @include animate();
                 span.color,
                 span.size {
                     letter-spacing: 0.035rem;
                     text-transform: capitalize;
                     // font-family: $ptserif-font-family;
-                    color: $grey-text-color;
+                    // color: $grey-text-color;
+                    font-size: .8rem;
                 }
                 span.badge{
                     border: 1px solid $grey-border-color;
@@ -74,8 +77,9 @@ div.media {
 
             button {
                 letter-spacing: 0.025rem;
-                font-size: 0.8rem;
+                font-size: 0.6rem;
                 float: right;
+                text-transform: uppercase;
             }
         }
     }

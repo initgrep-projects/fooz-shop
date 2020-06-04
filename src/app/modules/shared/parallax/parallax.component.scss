@@ -27,6 +27,7 @@ div.container-fluid {
       font-family: $ptserif-font-family;
       font-weight: 600;
       border-radius: 5px;
+      @include animate(fadeIn, 3s);
       
       &:before, &:after {
         content: "";

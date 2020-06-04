@@ -19,7 +19,9 @@
       </div>
       <div class=" auth-login-alerts px-4">
         <ngb-alert [type]="'danger'"
-                   [dismissible]="false">
+                   (close) = "closeAlert()"
+                   *ngIf="!isLoginSuccess"
+                   >
           <fa-icon icon="exclamation-circle"
                    class="mr-1"></fa-icon>
           <span>{{authMessages.invalidCredentials}}</span>
@@ -56,9 +58,15 @@
           <div class="form-group">
             <button type="submit"
                     class="btn btn-dark btn-block my-4 mt-5 "
-                    [disabled]="!isValidForm">sign in</button>
+                    [disabled]="!isValidForm">
+                    <fa-icon [icon]="['fas', 'spinner']" [spin]="true" *ngIf="isLoginInProgress"></fa-icon>
+                    <span *ngIf="isLoginInProgress"> authenticating </span>
+                    <span *ngIf ="!isLoginInProgress">sign in</span>
+                    </button>
             <button type="button"
-                    class="btn btn-danger btn-block my-4 ">
+                    class="btn btn-danger btn-block my-4"
+                    (click) ="loginWithGoogle()"
+                    >
               <fa-icon [icon]="['fab','google']"></fa-icon>sign in with google
             </button>
           </div>

@@ -19,7 +19,7 @@
       </div>
       <div class=" auth-signup-alerts px-4">
         <ngb-alert [type]="'danger'"
-                  *ngIf ="showAlert"
+                  *ngIf ="!isSignupSuccess"
                    (close)="closeAlert()">
           <fa-icon icon="exclamation-circle"
                    class="mr-1"></fa-icon>
@@ -29,7 +29,7 @@
 
       <div class="auth-signup-form px-4">
 
-        <form [formGroup]="registerForm">
+        <form [formGroup]="registerForm" (ngSubmit) ="register()">
           <div class="form-group">
             <input type="text"
                    class="form-control"
@@ -81,9 +81,13 @@
           </div>
 
           <div class="form-group">
-            <button type="button"
+            <button type="submit"
                     class="btn btn-dark btn-block my-4 mt-5"
-                    [disabled]="!isValidForm">sign up</button>
+                    [disabled]="!isValidForm">
+                    <fa-icon [icon]="['fas', 'spinner']" [spin]="true" *ngIf="isSignUpInProgress"></fa-icon>
+                    <span *ngIf="isSignUpInProgress"> Signing up </span>
+                    <span *ngIf ="!isSignUpInProgress">sign up</span>
+                  </button>
             <button type="button"
                     class="btn btn-danger btn-block my-4 ">
               <fa-icon [icon]="['fab','google']"></fa-icon>sign up using google

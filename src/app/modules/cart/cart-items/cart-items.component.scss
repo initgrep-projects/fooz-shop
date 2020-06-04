@@ -26,32 +26,13 @@ div.modal-footer {
     font-family: $roboto-font-family;
     justify-content: center;
     button {
-        padding: 0.4rem 1rem 0.5rem 1rem;
-        font-size: 0.8rem;
-        border-radius: 20px;
-        font-weight: bold;
+        font-size: 0.7rem;
         text-transform: uppercase;
+        @include animate(fadeInUp, .5s);
         span.text {
             letter-spacing: 0.025rem;
         }
-        span.l-caret {
-            margin-right: 0.5rem;
-            animation: fadeInRight 1s linear;
-            display: inline-block;
-        }
-        span.r-caret {
-            margin-left: 0.5rem;
-            animation: fadeInLeft 1s linear;
-            display: inline-block;
-        }
 
-        &:hover {
-            span.l-caret,
-            span.r-caret {
-                animation-iteration-count: infinite;
-                animation-play-state: running;
-            }
-        }
     }
 }
 @media (min-width: 768px) {

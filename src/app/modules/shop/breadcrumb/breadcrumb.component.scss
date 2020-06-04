@@ -5,7 +5,6 @@ div.bread-crumb-wrapper {
   ol.breadcrumb {
     background: transparent !important;
     font-family: $roboto-font-family;
-    // border: 1px solid red;
     margin: 0;
     .breadcrumb-item + .breadcrumb-item::before {
       content: "|";
@@ -17,6 +16,7 @@ div.bread-crumb-wrapper {
       font-weight: 500;
       color:$grey-text-color;
       text-transform: uppercase;
+      @include animate(fadeInUp, 1s);
       a{
         color: $primary-text-color;
         text-decoration: none;

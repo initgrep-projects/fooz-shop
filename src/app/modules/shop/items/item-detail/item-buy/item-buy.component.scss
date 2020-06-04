@@ -22,11 +22,10 @@ div.buy-wrapper{
     font-family: $roboto-font-family;
     button{
       margin-right: 1rem;
-      // margin-top: 1rem;
-      // font-weight: 600;
-      letter-spacing: .01rem;
+      letter-spacing: .025rem;
       width: 100%;
-      border-radius: 20px;
       box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+      font-size: .7rem;
+      text-transform: uppercase;
     }
   }

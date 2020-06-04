@@ -5,11 +5,18 @@ section.card-wrapper {
   // margin-right: 10%;
 
   div.more-items-wrapper {
-    font-family: $poppins-font-family;
+    font-family: $roboto-font-family;
     button {
-      text-transform: capitalize;
+      text-transform: uppercase;
       letter-spacing: 0.045rem;
       outline-width: 0px;
+      box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.05);
+      font-size: .8rem;
+      @include animate();
+
+      fa-icon{
+        margin-right: .5rem;
+      }
       &:hover,
       &:focus,
       &:active {

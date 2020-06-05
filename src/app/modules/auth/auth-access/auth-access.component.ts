@@ -12,14 +12,11 @@ import { SubSink } from 'subsink';
 export class AuthAccessComponent implements OnInit, OnDestroy {
   private subs = new SubSink();
 
-  constructor(private authService: AuthService) { }
+  constructor() { }
 
   isLoginSelected: boolean = true;
 
   ngOnInit(): void {
-    this.subs.sink = this.authService.getUserFromStore().subscribe((user: User) => {
-      console.log('store user subscription ', user);
-    });
   }
 
 

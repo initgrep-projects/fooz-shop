@@ -186,8 +186,10 @@ export class ObjectTransformerService {
   }
 
 
-  transformUser( {uid, email, displayName, isAnonymous, emailVerified, phoneNumber, photoURL}: firebase.User): User{
-      return new User(uid,email,displayName,emailVerified, phoneNumber,isAnonymous,photoURL);
+  transformUser( user: firebase.User): User{
+    console.log("firebase user = ", user.uid,user.email,user.displayName,user.emailVerified, user.phoneNumber,user.isAnonymous,user.photoURL);
+    window['firebaseUser'] = user;
+      return new User(user.uid,user.email,user.displayName,user.emailVerified, user.phoneNumber,user.isAnonymous,user.photoURL);
      }
 
 

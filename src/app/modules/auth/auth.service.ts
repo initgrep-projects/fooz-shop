@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { take, tap, map, switchMap } from 'rxjs/operators';
-import { Observable, from } from 'rxjs';
+import { map, tap } from 'rxjs/operators';
+import { Observable, from, defer, BehaviorSubject, observable } from 'rxjs';
 import * as firebase from 'firebase/app'
 import { Store } from '@ngrx/store';
 import { AppState } from '../main/store/app.reducer';
 import { User } from 'src/app/models/user';
-import { addUserAction } from './store/auth.actions';
+import { addUserAction, deleteUserAction } from './store/auth.actions';
 import { ObjectTransformerService } from 'src/app/services/object-transformer.service';
 
 @Injectable({
@@ -16,51 +16,39 @@ export class AuthService {
 
 
   user$: Observable<any>;
-
+  counter = 1;
   constructor(
     private angularFireAuth: AngularFireAuth,
     private store: Store<AppState>,
     private transformService: ObjectTransformerService
   ) {
 
-    this.signout();
+    window['logout'] = this.logOut
+    // window['loginAsAnonymous'] = this.loginAsAnonymous;
+    // window['register'] = this.registerUser;
+    // window['login'] = this.loginWithUserPass;
+  // this.logOut(); 
     this.user$ = this.angularFireAuth.user
       .pipe(
-        tap(user => {
-          console.log('login check => ', user?.isAnonymous);
+        map((user: firebase.User) => {
+          return !!user ? this.transformService.transformUser(user) : null
         }),
-        map(user => {
-          if(user) return user;
-          else from(this.loginAsAnonymous())
-        }),
-        map(user => {
-          console.log('user in second map', user);
-          if (user) {
-            const appUser =  transformService.transformUser(user);
-            /** TODO TMRW
-             * if(it is anonymous user)
-             *    save it to store directly. since we dont know who the person is
-             * else 
-             *   fetch the user object from db since this is signin and user might have already added additional details
-             *  save it to the store.
-             */
-            this.saveUserToStore(appUser);
-            return appUser;
-            }
-            return null;
+        tap((user: User) => {
+          if (!!user) {
+            this.saveUserToStore(user);
+          }else{
+            // this.loginAsAnonymous();
+          }
         })
+
       );
   }
 
-
-
-
   loginAsAnonymous() {
-    return firebase.auth().signInAnonymously();
+    console.log("Goiong Anonymous.. since no auth-user found");
+    // return firebase.auth().signInAnonymously();
 
   }
-
-
 
   loginWithGoogle() {
     let provider = new firebase.auth.GoogleAuthProvider();
@@ -72,23 +60,44 @@ export class AuthService {
 
   loginWithUserPass(value: { email: string, password: string }) {
     return firebase.auth().signInWithEmailAndPassword(value.email, value.password);
+
   }
 
   registerUser(value: { email: string, password: string }) {
-    return firebase.auth().createUserWithEmailAndPassword(value.email, value.password);
+    // return firebase.auth().createUserWithEmailAndPassword(value.email, value.password);
+    const credentials = firebase.auth.EmailAuthProvider.credential(value.email, value.password);
+    return new Promise((resolve, reject) => {
+      firebase.auth().currentUser.linkWithCredential(credentials)
+        .then(authCredentials => {
+          console.log('user upgraded after registeration ', authCredentials);
+          this.saveUserToStore(this.transformService.transformUser(authCredentials.user));
+          //save user to db also
+          resolve(authCredentials);
+        })
+        .catch(error => {
+          console.error('error happende during registeration ', error);
+          reject(error);
+        })
+    });
+
   }
 
-  signout() {
+
+  logOut() {
     return firebase.auth().signOut();
+
   }
 
   saveUserToStore(user: User) {
     this.store.dispatch(addUserAction({ payload: user }));
   }
 
-  getUserFromStore(){
-    return this.store.select('auth')
-    .pipe(map(state => state.user));
+  deleteUserFromStore() {
+    this.store.dispatch(deleteUserAction({ payload: 'anything' }));
   }
+
+  userFromStore$ = this.store.select('auth')
+    .pipe(map(state => state.user));
+
 
 }

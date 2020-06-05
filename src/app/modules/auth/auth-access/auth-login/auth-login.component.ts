@@ -46,8 +46,14 @@ export class AuthLoginComponent implements OnInit {
     this.isLoginInProgress = true;
     console.log('login onsubmit = ', this.loginForm);
     this.authSerivce.loginWithUserPass(this.loginForm.value)
-      .then(resp => this.isLoginSuccess = true)
-      .catch(error => this.isLoginSuccess = false)
+      .then(resp=> {
+        console.log("afterlogin upgrade ", resp);
+        this.isLoginSuccess = true;
+      })
+      .catch(error =>{
+        console.log('login error = ', error);
+        this.isLoginSuccess = false;
+      })
       .finally(() => this.isLoginInProgress = false);
 
   }

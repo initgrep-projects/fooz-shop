@@ -18,13 +18,11 @@ export class AppComponent implements OnInit, OnDestroy {
 
   constructor(
     private router: Router, 
-    private dbService: FireStoreDbService,
-    private authservice: AuthService
+    private dbService: FireStoreDbService
     ) { }
 
   ngOnInit(): void {
     this.scrollTopOnRouterChange();
-    this.listenToAuthUserChanges();
   }
 
 
@@ -38,9 +36,6 @@ export class AppComponent implements OnInit, OnDestroy {
       });
   }
 
-  listenToAuthUserChanges(){
-    this.subs.sink = this.authservice.user$.subscribe();
-  }
 
   ngOnDestroy(): void {
     this.subs.unsubscribe();

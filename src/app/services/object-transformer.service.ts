@@ -186,11 +186,17 @@ export class ObjectTransformerService {
   }
 
 
-  transformUser( user: firebase.User): User{
-    console.log("firebase user = ", user.uid,user.email,user.displayName,user.emailVerified, user.phoneNumber,user.isAnonymous,user.photoURL);
-    window['firebaseUser'] = user;
-      return new User(user.uid,user.email,user.displayName,user.emailVerified, user.phoneNumber,user.isAnonymous,user.photoURL);
-     }
+  transformUser(user: firebase.User): User {
+    console.log('firebase user = ', user.uid, user.email, user.displayName,
+      user.emailVerified, user.phoneNumber, user.isAnonymous, user.photoURL);
+    return new User(user.uid, user.email, user.displayName, user.emailVerified,
+      user.phoneNumber, user.isAnonymous, user.photoURL);
+  }
+
+  transformUserFromDocumentData(user: DocumentData) {
+    return new User(user.uid, user.email, user.name, user.isEmailVerified,
+      user.phoneNumber, user.isAnonymous, user.photoURL);
+  }
 
 
 }

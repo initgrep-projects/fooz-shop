@@ -8,6 +8,7 @@ export const CUSTOM_SIZE_INPUT = 'customsizeinput';
 export const TREND_COLLECTION = 'trend';
 export const CART_COLLECTION = 'cart';
 export const PRODUCT_PAGE_SIZE = 20;
+export const USER_COLLECTION = 'user';
 
 export const ALERT_TITLE = 'alert';
 export const OK_BUTTON = 'ok';
@@ -16,7 +17,10 @@ export const CART_ITEM_EXIST = 'A similar product already exists in your cart. W
 export const CART_ITEM_MAX_QUANTITY = 'You have added all the available products of this type.';
 
 
-/** Auth **/
+
+/**
+ * Auth related messages
+ */
 export const AuthMessages = {
     invalidName: 'Name should be 100 characters or less',
     invalidEmail :  'please enter a valid email',
@@ -24,6 +28,4 @@ export const AuthMessages = {
     invalidPassword: 'please provide password - must be 8 characters or more',
     invalidCredentials: 'The email address is not registered with us',
     invalidSignup: 'The email address is already in use by another account.'
-
-}
-
+};

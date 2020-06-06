@@ -3,7 +3,7 @@ import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/fire
 import { FakedataService } from './fakedata.service';
 import { Product } from '../models/product';
 
-import { classToPlain } from 'class-transformer';
+import { classToPlain, plainToClass } from 'class-transformer';
 import { ObjectTransformerService } from './object-transformer.service';
 import { map, tap } from 'rxjs/operators';
 import { Category } from '../models/category';
@@ -11,13 +11,14 @@ import { Size } from '../models/size';
 import { Sort } from '../models/Sort';
 import { CustomSizeInput } from '../models/custom-size';
 import { CartItem } from '../models/cartItem';
-import {
-  CART_COLLECTION, PRODUCT_COLLECTION, CATEGORY_COLLECTION,
-  SIZE_COLLECTION, CUSTOM_SIZE_INPUT, SORT_COLLECTION, TREND_COLLECTION, PRODUCT_PAGE_SIZE
-} from '../helpers/constants';
 import { generateGuid } from '../helpers/util';
 import { Image } from '../models/image';
+import { User } from '../models/user';
 
+import {
+  CART_COLLECTION, PRODUCT_COLLECTION, CATEGORY_COLLECTION,
+  SIZE_COLLECTION, CUSTOM_SIZE_INPUT, SORT_COLLECTION, TREND_COLLECTION, PRODUCT_PAGE_SIZE, USER_COLLECTION
+} from '../helpers/constants';
 
 @Injectable({
   providedIn: 'root'
@@ -35,6 +36,7 @@ export class FireStoreDbService {
   private customSizeInputCollection: AngularFirestoreCollection<CustomSizeInput>;
   private sortCollection: AngularFirestoreCollection<Sort>;
   private trendCollection: AngularFirestoreCollection<Image>;
+  private userCollection: AngularFirestoreCollection<User>;
 
   constructor(
     private db: AngularFirestore,
@@ -48,6 +50,7 @@ export class FireStoreDbService {
     this.customSizeInputCollection = this.db.collection<CustomSizeInput>(CUSTOM_SIZE_INPUT);
     this.sortCollection = this.db.collection<Sort>(SORT_COLLECTION);
     this.trendCollection = this.db.collection<Image>(TREND_COLLECTION);
+    this.userCollection = this.db.collection<User>(USER_COLLECTION);
     this.bootstrapTestData();
   }
 
@@ -75,12 +78,12 @@ export class FireStoreDbService {
   /**
    * add a different function for home component to fetch the latest onces only
    */
-  fetchProducts( pageSize: number = PRODUCT_PAGE_SIZE) {
+  fetchProducts(pageSize: number = PRODUCT_PAGE_SIZE) {
     return this.db.collection(PRODUCT_COLLECTION, ref =>
       ref
         .orderBy('timeStamp', 'asc')
         .limit(pageSize)
-        // .startAfter(this.lastTimeStamp)
+      // .startAfter(this.lastTimeStamp)
     ).get()
       .pipe(
         map(querySnapShot => {
@@ -249,15 +252,15 @@ export class FireStoreDbService {
    *  4)  fetch all items
    */
   saveCartItemToDb(item: CartItem) {
-    this.cartCollection.doc(item.Id).set(classToPlain(item));
+    return this.cartCollection.doc(item.Id).set(classToPlain(item));
   }
 
   updateCartItemToDb(item: CartItem) {
-    this.cartCollection.doc(item.Id).set(classToPlain(item));
+    return this.cartCollection.doc(item.Id).set(classToPlain(item));
 
   }
   deleteCartItemInDb(id: string) {
-    this.cartCollection.doc(id).delete();
+    return this.cartCollection.doc(id).delete();
   }
 
   fetchcartItemsFromDb() {
@@ -280,6 +283,51 @@ export class FireStoreDbService {
   /** cart Operations END */
 
 
+  /** Auth operations START */
+
+  fetchUser(id: string) {
+    return this.userCollection.doc(id).get()
+      .pipe(
+        map(querySnapShot => {
+          console.log('querysnapshot data = ', querySnapShot.data());
+          return this.objTransformer.transformUserFromDocumentData(querySnapShot.data());
+        })
+      );
+  }
+  /**
+   * Save user in firebase db
+   * @param user user object
+   */
+  saveUser(user: User) {
+    return this.userCollection.doc(user.UID).set(classToPlain(user), { merge: true });
+  }
+
+  /**
+   * update the user in firebase
+   * @param user the user Object
+   */
+  updateUser(user: User) {
+    return this.userCollection.doc(user.UID).update(classToPlain(user));
+  }
+
+  /**
+   *  make user inactive
+   * @param id the user id
+   */
+  deActivateuser(id: string) {
+    return this.userCollection.doc(id).update({ active: false });
+  }
+
+  /**
+   * delete the user
+   * @param id the user id
+   */
+  deleteUser(id: string) {
+    return this.userCollection.doc(id).delete();
+  }
+
+
+  /** Auth operations END */
 
 
 }

@@ -17,15 +17,10 @@ export class AuthComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.authService.user$.subscribe((user: firebase.User )=> {
-      console.log("subscibe user is ", user?.uid);
-      if(user === null){
-        this.authService.loginAsAnonymous();
-      }
-    });
-    
+    this.authService.user$.subscribe();
+
     this.authService.userFromStore$.subscribe(user => {
-      console.log('the user in the store is = ',user);
+      console.log('the user in the store is = ', user);
     });
 
   }

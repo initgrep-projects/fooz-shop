@@ -46,7 +46,9 @@ import {
   faInfoCircle,
   faHeadset,
   faTruck,
-  faSpinner
+  faSpinner,
+  faLongArrowAltRight,
+  faTruckLoading
 } from '@fortawesome/free-solid-svg-icons';
 import { faGoogle } from '@fortawesome/free-brands-svg-icons';
 
@@ -106,7 +108,9 @@ export class IconService {
       faInfoCircle,
       faHeadset,
       faTruck,
-      faSpinner
+      faSpinner,
+      faLongArrowAltRight,
+      faTruckLoading
     ];
    }
 

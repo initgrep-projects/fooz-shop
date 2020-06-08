@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { map, tap, switchMap } from 'rxjs/operators';
+import { map, tap, switchMap, take } from 'rxjs/operators';
 import { Observable, empty, EMPTY, of } from 'rxjs';
 import * as firebase from 'firebase/app';
 import { Store } from '@ngrx/store';
@@ -14,6 +14,9 @@ import { FireStoreDbService } from 'src/app/services/firestore.db.service';
   providedIn: 'root'
 })
 export class AuthService {
+
+  user$: Observable<User>;
+
   constructor(
     private angularFireAuth: AngularFireAuth,
     private store: Store<AppState>,
@@ -37,21 +40,19 @@ export class AuthService {
           }
           return this.db.fetchUser(user.uid);
         }),
-        tap((user: User) => {
+        map((user: User) => {
           console.log('tap user ', user);
           if (!!user) {
             this.saveUserToStore(user);
           } else {
             this.loginAsAnonymous();
           }
+          return user;
         })
 
       );
   }
 
-
-  user$: Observable<any>;
-  counter = 1;
 
   userFromStore$ = this.store.select('auth')
     .pipe(map(state => state.user));
@@ -98,10 +99,23 @@ export class AuthService {
   }
 
 
-  logOut() {
-    return firebase.auth().signOut();
+  logOut() :Promise<void> {
+    return new Promise((resolve, reject)=>{
+      firebase.auth().signOut()
+      .then(()=> {
+        this.deleteUserFromStore();
+        resolve();
+      })
+      .catch(()=> reject())
+    });
 
   }
+
+  getUserByEmail(value: { email: string }) {
+    return this.db.fetchUserByEmail(value.email)
+      .pipe(take(1));
+  }
+
 
   saveUserToStore(user: User) {
     this.store.dispatch(addUserAction({ payload: user }));

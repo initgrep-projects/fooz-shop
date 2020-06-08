@@ -1,6 +1,7 @@
 import { User } from 'src/app/models/user';
 import { createReducer, on, Action } from '@ngrx/store';
 import { addUserAction, deleteUserAction } from './auth.actions';
+import { cloneDeep} from 'lodash';
 
 
 
@@ -18,7 +19,7 @@ const theReducer = createReducer(
 
     on(addUserAction, (currentState, { payload }) => ({
         ...currentState,
-        user: { ...payload }
+        user: cloneDeep(payload)
     })),
 
     on(deleteUserAction, (currentState, { payload }) => ({

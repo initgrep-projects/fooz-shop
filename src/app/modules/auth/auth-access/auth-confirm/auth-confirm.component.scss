@@ -1,0 +1,43 @@
+@import "../../../../../variables.scss";
+
+div.auth-signup-form {
+    div.form-group {
+        input {
+            // font-size: 0.8rem;
+            letter-spacing: 0.025rem;
+            border: 1px solid $primary-border-color;
+            // transition: border-width .3s ease-in;
+            &::placeholder {
+                font-size: 0.8rem;
+            }
+
+            &:focus {
+                outline-width: 0px;
+                border: 2px solid $primary-border-color;
+                color: $primary-text-color;
+                box-shadow: none;
+            }
+        }
+        small {
+            font-size: 0.6rem;
+            letter-spacing: 0.025rem;
+        }
+        span.text-danger {
+            font-size: 0.6rem;
+            letter-spacing: 0.025rem;
+            display: inline-block;
+            &::first-letter {
+                text-transform: capitalize;
+            }
+        }
+
+       
+
+        button {
+            text-transform: uppercase;
+            fa-icon {
+                float: left;
+            }
+        }
+    }
+}

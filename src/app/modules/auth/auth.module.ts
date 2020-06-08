@@ -7,15 +7,21 @@ import { AuthRoutingModule } from './auth-routing.module';
 import { SharedModule } from '../shared/shared.module';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AuthAccessComponent } from './auth-access/auth-access.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { AuthLoginComponent } from './auth-access/auth-login/auth-login.component';
-import { AuthRegisterComponent } from './auth-access/auth-register/auth-register.component';
-import { NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
+import { AuthConfirmomponent } from './auth-access/auth-confirm/auth-confirm.component';
+import { NgbAlertModule, NgbPopoverModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 
 @NgModule({
-  declarations: [AuthComponent, AuthModalComponent, AuthAccessComponent, AuthLoginComponent, AuthRegisterComponent],
+  declarations: [
+    AuthComponent,
+    AuthModalComponent,
+    AuthAccessComponent,
+    AuthLoginComponent,
+    AuthConfirmomponent
+  ],
   imports: [
     CommonModule,
     FontAwesomeModule,
@@ -23,9 +29,10 @@ import { NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
     SharedModule,
     AngularFireAuthModule,
     ReactiveFormsModule,
-    NgbAlertModule
+    NgbAlertModule,
+    NgbPopoverModule
   ],
-  exports:[
+  exports: [
     AuthComponent
   ]
 })

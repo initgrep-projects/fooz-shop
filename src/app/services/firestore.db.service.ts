@@ -294,6 +294,23 @@ export class FireStoreDbService {
         })
       );
   }
+
+  fetchUserByEmail(email: string) {
+    return this.db.collection(USER_COLLECTION, ref =>
+      ref.where('email', '==', email)
+    )
+      .get()
+      .pipe(
+        map(querySnapShot => {
+          console.log('querysnapshot fetchUserByEmail data = ', querySnapShot);
+          const users: User[] = [];
+          querySnapShot.forEach(doc => {
+            users.push(this.objTransformer.transformUserFromDocumentData(doc.data()));
+          });
+          return users;
+        })
+      );
+  }
   /**
    * Save user in firebase db
    * @param user user object

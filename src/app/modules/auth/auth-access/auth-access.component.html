@@ -1,5 +1,32 @@
-<app-auth-login *ngIf="isLoginSelected"
-                (registerSelected)="onRegisterSelected($event)"></app-auth-login>
+<div class="container-fluid auth-login-wrapper">
 
-<app-auth-register *ngIf="!isLoginSelected"
-                   (loginSelected)="onIsLoginSelected($event)"></app-auth-register>
+    <div class="row">
+      <div class="col-12 col-lg-6 auth-login-banner d-none d-lg-block">
+        <div class="auth-ct-wrapper ">
+          <fa-icon icon="atom"></fa-icon>
+          <h1>FOOZ</h1>
+          <small>the design for excellence</small>
+        </div>
+      </div>
+  
+      <div class="col-12 col-lg-6 auth-login-section">
+        <div class="auth-login-header mb-4">
+          <div class="close pt-2">
+            <a (click)="modalService.dismissModal()">
+              <fa-icon icon="times"></fa-icon>
+            </a>
+          </div>
+          <h5> 
+           <b>Login</b> or <b>Sign up</b>
+          </h5>
+        </div>
+       
+       <app-auth-confirm *ngIf="!confirmedUser.isOpFinished" (userConfirmed) ="onUserConfirmation($event)"></app-auth-confirm>
+        <app-auth-login *ngIf="confirmedUser.isOpFinished" [email]="confirmedUser.email" [isExisting] = "confirmedUser.isExisting"></app-auth-login>
+  
+        <div class="auth-login-footer px-4 pb-4">
+         
+        </div>
+      </div>
+    </div>
+  </div>

@@ -1,8 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { AuthService } from '../auth.service';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { User } from 'src/app/models/user';
 import { SubSink } from 'subsink';
+import { AuthModalService } from '../auth-modal/auth-modal.service';
+import { confirmedUser } from './auth-confirm/auth-confirm.component';
 
 @Component({
   selector: 'app-auth-access',
@@ -11,24 +10,23 @@ import { SubSink } from 'subsink';
 })
 export class AuthAccessComponent implements OnInit, OnDestroy {
   private subs = new SubSink();
+  confirmedUser: confirmedUser = { email: '', isExisting: false, isOpFinished : false};
 
-  constructor() { }
+  constructor(
+    public modalService: AuthModalService
+  ) { }
 
-  isLoginSelected: boolean = true;
 
   ngOnInit(): void {
   }
 
 
-  onIsLoginSelected(value: boolean) {
-    this.isLoginSelected = true;
+  onUserConfirmation(value: confirmedUser) {
+    this.confirmedUser = value;
   }
 
-  onRegisterSelected(value: boolean) {
-    this.isLoginSelected = false;
-  }
 
-  ngOnDestroy(){
+  ngOnDestroy() {
     this.subs.unsubscribe();
   }
 }

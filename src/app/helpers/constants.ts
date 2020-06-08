@@ -26,6 +26,9 @@ export const AuthMessages = {
     invalidEmail :  'please enter a valid email',
     invalidPhone: 'please provide a valid phone number with country code.(+971234512345)',
     invalidPassword: 'please provide password - must be 8 characters or more',
-    invalidCredentials: 'The email address is not registered with us',
+    invalidCredentials: [
+        {code: 'auth/wrong-password', message: 'The password is invalid.'},
+        {code:'auth/user-not-found', message: 'We could not find the user with given credentials'},
+    ],
     invalidSignup: 'The email address is already in use by another account.'
 };

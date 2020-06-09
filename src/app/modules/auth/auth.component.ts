@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, OnDestroy } from '@angular/core';
 import { AuthService } from './auth.service';
 import { ObjectTransformerService } from 'src/app/services/object-transformer.service';
 import { Store } from '@ngrx/store';
@@ -11,7 +11,7 @@ import { User } from 'src/app/models/user';
   templateUrl: './auth.component.html',
   styleUrls: ['./auth.component.scss']
 })
-export class AuthComponent implements OnInit {
+export class AuthComponent implements OnInit, OnDestroy {
   private subs = new SubSink();
   authUser: User;
 
@@ -20,16 +20,13 @@ export class AuthComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
-
+    this.subs.sink = 
     this.authService.user$.subscribe();
 
-    this.subs.sink = 
-    this.authService.userFromStore$.subscribe(user => {
-      console.log('auth user   = ', user);
-      window['authuser'] = user;
-      this.authUser = user;
-    });
+  }
 
+  ngOnDestroy(){
+    this.subs.unsubscribe();
   }
 
 }

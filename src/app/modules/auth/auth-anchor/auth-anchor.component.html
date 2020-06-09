@@ -1,0 +1,111 @@
+<!-- auth header anchor //start-->
+<a class="auth-profile"
+   placement="bottom"
+   [ngbPopover]="popContent"
+   [popoverTitle]="popTitle"
+   triggers="mouseenter"
+   [autoClose]="'true'"
+   [popoverClass]="'pop-style'">
+   <div>
+      <fa-icon icon="user-circle"></fa-icon>
+   </div>
+   <span class="small d-none d-md-block">{{labels.profile}}</span>
+</a>
+
+<!--- auth header anchor //end-->
+
+<ng-template #popTitle>
+   <div class="row">
+      <div class="col-12 pop-title">
+         <div class="auth-anonymous"
+              *ngIf="!!authUser && authUser?.IsAnonymous">
+            <p><b>{{labels.welcome}}</b><br><span> {{labels.welcomeAuthMsg}}</span></p>
+            <a class="btn btn-sm btn-light"
+               [routerLink]="[{outlets: {'secure': ['auth']}}]">
+               <span>{{labels.login}}</span> | <span>{{labels.signup}}</span>
+            </a>
+         </div>
+         <div class="auth-loggedin"
+              *ngIf="!!authUser && !authUser?.IsAnonymous">
+            <img class="rounded-circle dp"
+                 [src]=" authUser.PhotoURL "
+                 [alt]=""
+                 *ngIf="!!authUser?.PhotoURL"
+                 >
+            <span class=" rounded-circle dp" 
+               *ngIf="!authUser?.PhotoURL && !!authUser?.Email"
+            >{{authUser.Email.substr(0,2)}}
+            </span>
+         
+            <p class="name">{{authUser?.Name}}</p>
+            <p class="email">{{authUser?.Email}}</p>
+            <a class="btn btn-sm btn-light">
+              {{labels.manageProfile}}
+            </a>
+         </div>
+      </div>
+   </div>
+</ng-template>
+
+<ng-template #popContent>
+   <div class="row">
+      <div class="col-12 pop-content">
+         <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+               <a href="#">
+                  <fa-icon icon="user-circle"></fa-icon>
+                  <span>profile</span>
+                  <span class="badge  badge-pill"
+                        [ngClass]="!authUser?.IsAnonymous && authUser?.IsEmailVerified ? 'badge-dark' : 'badge-danger'"
+                        *ngIf="!authUser?.IsAnonymous">{{ authUser?.IsEmailVerified ? labels.verifiedAccount : labels.verifyAccount}}</span>
+               </a>
+            </li>
+            <li class="list-group-item">
+               <a href="#">
+                  <fa-icon [icon]="['fas', 'truck-loading']"></fa-icon>
+                  <span>{{labels.orders}}</span>
+               </a>
+            </li>
+
+            <li class="list-group-item">
+               <a href="#">
+                  <fa-icon [icon]="['fas', 'address-book']"></fa-icon>
+                  <span>{{labels.addresses}}</span>
+               </a>
+            </li>
+           
+         </ul>
+         <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+               <a href="#">
+                  <fa-icon [icon]="['fas','info-circle']"></fa-icon>
+                  <span>{{labels.support}}</span>
+               </a>
+            </li>
+            <li class="list-group-item">
+               <a href="#">
+                  <fa-icon [icon]="['fas','headset']"></fa-icon>
+                  <span>{{labels.contact}}</span>
+               </a>
+            </li>
+         </ul>
+      </div>
+   </div>
+   <div class="row">
+      <div class="col-12 pop-footer">
+         <ul class="list-group list-group-flush"
+             *ngIf="!authUser?.IsAnonymous">
+            <li class="list-group-item">
+               <button class="btn btn-sm btn-light"
+                       (click)="authService.logOut()">
+                  {{labels.signout}}
+               </button>
+            </li>
+         </ul>
+      </div>
+   </div>
+
+</ng-template>
+
+<!-- router outlet for auth modal-->
+<router-outlet name="secure"></router-outlet>

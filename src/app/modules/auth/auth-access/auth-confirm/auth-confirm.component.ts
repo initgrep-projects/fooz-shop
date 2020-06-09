@@ -48,6 +48,8 @@ export class AuthConfirmomponent implements OnInit {
 
   }
 
+  
+
   confirmUser() {
     console.log('confirm Form value = ', this.confirmForm.value);
     this.isConfirmInProgress = true;

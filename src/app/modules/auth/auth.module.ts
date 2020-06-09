@@ -11,6 +11,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AuthLoginComponent } from './auth-access/auth-login/auth-login.component';
 import { AuthConfirmomponent } from './auth-access/auth-confirm/auth-confirm.component';
 import { NgbAlertModule, NgbPopoverModule } from '@ng-bootstrap/ng-bootstrap';
+import { AuthAnchorComponent } from './auth-anchor/auth-anchor.component';
 
 
 
@@ -20,7 +21,8 @@ import { NgbAlertModule, NgbPopoverModule } from '@ng-bootstrap/ng-bootstrap';
     AuthModalComponent,
     AuthAccessComponent,
     AuthLoginComponent,
-    AuthConfirmomponent
+    AuthConfirmomponent,
+    AuthAnchorComponent
   ],
   imports: [
     CommonModule,

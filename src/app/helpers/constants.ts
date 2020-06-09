@@ -29,6 +29,24 @@ export const AuthMessages = {
     invalidCredentials: [
         {code: 'auth/wrong-password', message: 'The password is invalid.'},
         {code:'auth/user-not-found', message: 'We could not find the user with given credentials'},
+        {code: 'auth/popup-closed-by-user', message: "Authentication using google was not successful."}
     ],
     invalidSignup: 'The email address is already in use by another account.'
 };
+
+export const authAnchorLabels = {
+        profile: 'profile',
+        welcome: 'welcome',
+        welcomeAuthMsg: 'To access account and manange orders',
+        login: 'log in',
+        signup: 'sign up',
+        signout: 'sign out',
+        manageProfile: 'Manage your profile',
+        verifiedAccount: 'verified',
+        verifyAccount:'verify your account ?',
+        orders: 'orders',
+        addresses: 'Addresses',
+        support: 'support',
+        contact: 'contact us'
+
+}

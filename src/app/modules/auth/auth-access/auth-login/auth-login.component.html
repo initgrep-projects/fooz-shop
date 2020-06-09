@@ -46,16 +46,18 @@
                  [spin]="true"
                  *ngIf="isLoginInProgress"></fa-icon>
         <span *ngIf="isLoginInProgress"> {{isExisting? 'signing in' : 'signin up'}} </span>
-        <span *ngIf="!isLoginInProgress">{{isExisting ? 'sign in' : 'sign up'}}</span>
+        <span *ngIf="!isLoginInProgress">{{isExisting ? 'log in' : 'sign up'}}</span>
       </button>
-      <button type="button"
-              class="btn btn-danger btn-block my-2 float-left"
-              (click)="loginWithGoogle()">
-        <fa-icon [icon]="['fab','google']"></fa-icon>sign in with google
-      </button>
+     
     </div>
   </form>
 </div>
+<!-- -->
 <div class="auth-login-footer px-4 pb-4">
-
+  <button type="button"
+  class="btn btn-outline-danger btn-block my-2 mb-5 float-left"
+  (click)="loginWithGoogle()"
+  >
+<fa-icon [icon]="['fab','google']"></fa-icon>sign in with google 
+</button>
 </div>

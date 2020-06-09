@@ -1,36 +1,35 @@
+<div class="auth-signup-form px-4">
+
+  <form [formGroup]="confirmForm"
+        (ngSubmit)="confirmUser()">
+
+    <div class="form-group">
+      <input type="email"
+             class="form-control form-control-lg"
+             id="email"
+             aria-describedby="email or phone help"
+             placeholder="Enter your email"
+             formControlName="email">
+      <span class="text-danger"
+            *ngIf="confirmForm.controls.email.touched && !!confirmForm.controls.email.errors">
+        {{authMessages.invalidEmail}}
+      </span>
+    </div>
 
 
-      <div class="auth-signup-form px-4">
+    <div class="form-group mb-5a mt-5">
+      <button type="submit"
+              class="btn btn-dark btn-block"
+              [disabled]="!isValidForm">
+        <fa-icon [icon]="['fas', 'spinner']"
+                 [spin]="true"
+                 *ngIf="isConfirmInProgress"></fa-icon>
+        <span *ngIf="isConfirmInProgress"> Confirming email</span>
+        <span *ngIf="!isConfirmInProgress">Continue</span>
+        <fa-icon class="float-right"
+                 [icon]="['fas', 'long-arrow-alt-right']"> </fa-icon>
+      </button>
+    </div>
+  </form>
+</div>
 
-        <form [formGroup]="confirmForm"
-              (ngSubmit)="confirmUser()">
-
-          <div class="form-group">
-            <input type="email"
-                   class="form-control form-control-lg"
-                   id="email"
-                   aria-describedby="email or phone help"
-                   placeholder="Enter your email"
-                   formControlName="email">
-            <span class="text-danger"
-                  *ngIf="confirmForm.controls.email.touched && !!confirmForm.controls.email.errors">
-              {{authMessages.invalidEmail}}
-            </span>
-          </div>
-
-
-          <div class="form-group">
-            <button type="submit"
-                    class="btn btn-dark btn-block my-4 mt-5"
-                    [disabled]="!isValidForm">
-              <fa-icon [icon]="['fas', 'spinner']"
-                       [spin]="true"
-                       *ngIf="isConfirmInProgress"></fa-icon>
-              <span *ngIf="isConfirmInProgress"> Confirming email</span>
-              <span *ngIf="!isConfirmInProgress">Continue</span>
-              <fa-icon class="float-right" [icon]="['fas', 'long-arrow-alt-right']"> </fa-icon>
-            </button>
-          </div>
-        </form>
-      </div>
-  

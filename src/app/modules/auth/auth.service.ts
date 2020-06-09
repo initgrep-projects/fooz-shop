@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { map, tap, switchMap, take } from 'rxjs/operators';
-import { Observable, empty, EMPTY, of } from 'rxjs';
+import { map, switchMap, take, tap } from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
 import * as firebase from 'firebase/app';
 import { Store } from '@ngrx/store';
 import { AppState } from '../main/store/app.reducer';
@@ -9,6 +9,7 @@ import { User } from 'src/app/models/user';
 import { addUserAction, deleteUserAction } from './store/auth.actions';
 import { ObjectTransformerService } from 'src/app/services/object-transformer.service';
 import { FireStoreDbService } from 'src/app/services/firestore.db.service';
+import { async } from '@angular/core/testing';
 
 @Injectable({
   providedIn: 'root'
@@ -25,14 +26,16 @@ export class AuthService {
   ) {
 
     window['logout'] = this.logOut;
-    // window['loginAsAnonymous'] = this.loginAsAnonymous;
-    // window['register'] = this.registerUser;
-    // window['login'] = this.loginWithUserPass;
-    // this.logOut();
+
     this.user$ = this.angularFireAuth.user
       .pipe(
+        tap((user: firebase.User) => {
+          if (!user) {
+            this.loginAsAnonymous();
+          }
+        }),
         switchMap((user: firebase.User) => {
-          console.log('user in switchmap = ', user);
+          console.log('user in switchmap = ', user?.uid, user?.email);
           if (!user) {
             return of(null);
           } else if (user.isAnonymous) {
@@ -41,11 +44,9 @@ export class AuthService {
           return this.db.fetchUser(user.uid);
         }),
         map((user: User) => {
-          console.log('tap user ', user);
+          console.log('tap user ', user?.UID, user?.Email);
           if (!!user) {
             this.saveUserToStore(user);
-          } else {
-            this.loginAsAnonymous();
           }
           return user;
         })
@@ -64,12 +65,25 @@ export class AuthService {
   }
 
   loginWithGoogle() {
-    const provider = new firebase.auth.GoogleAuthProvider();
-    provider.addScope('profile');
-    provider.addScope('email');
-    return this.angularFireAuth.auth.signInWithPopup(provider);
 
+    return new Promise(async (resolve, reject) => {
+      try {
+        const provider = new firebase.auth.GoogleAuthProvider();
+        provider.addScope('profile');
+        provider.addScope('email');
+        const authCredentials = await this.angularFireAuth.auth.signInWithPopup(provider);
+        console.log('google login authcredentials ->', authCredentials);
+        const authUser = this.transformService.transformUser(authCredentials.user);
+        await this.db.saveUser(authUser);
+        this.saveUserToStore(authUser);
+        resolve(authCredentials);
+      } catch (e) {
+        reject(e);
+      }
+    });
   }
+
+
 
   loginWithUserPass(value: { email: string, password: string }) {
     return firebase.auth().signInWithEmailAndPassword(value.email, value.password);
@@ -77,44 +91,59 @@ export class AuthService {
   }
 
   registerUser(value: { email: string, password: string }) {
-    // return firebase.auth().createUserWithEmailAndPassword(value.email, value.password);
-    const credentials = firebase.auth.EmailAuthProvider.credential(value.email, value.password);
-    return new Promise((resolve, reject) => {
-      firebase.auth().currentUser.linkWithCredential(credentials)
-        .then(authCredentials => {
-          console.log('user upgraded after registeration ', authCredentials);
-          const authUser = this.transformService.transformUser(authCredentials.user);
-          this.db.saveUser(authUser).then(() => {
-            console.log('Db save done, saving state in store');
-            this.saveUserToStore(authUser);
-          })
-            .catch(error => reject(error));
-          resolve(authCredentials);
-        })
-        .catch(error => {
-          console.error('error happende during registeration ', error);
-          reject(error);
-        });
+    return new Promise(async (resolve, reject) => {
+      try {
+        const credentials = firebase.auth.EmailAuthProvider.credential(value.email, value.password);
+        const authCredentials = await firebase.auth().currentUser.linkWithCredential(credentials);
+        console.log('user upgraded after registeration ', authCredentials);
+        const authUser = this.transformService.transformUser(authCredentials.user);
+        await this.db.saveUser(authUser);
+        this.saveUserToStore(authUser);
+        resolve(authCredentials);
+      } catch (e) {
+        reject(e);
+      }
+
     });
   }
 
 
-  logOut() :Promise<void> {
-    return new Promise((resolve, reject)=>{
+  logOut(): Promise<void> {
+    return new Promise((resolve, reject) => {
       firebase.auth().signOut()
-      .then(()=> {
-        this.deleteUserFromStore();
-        resolve();
-      })
-      .catch(()=> reject())
+        .then(() => {
+          this.deleteUserFromStore();
+          resolve();
+        })
+        .catch(() => reject())
     });
 
+  }
+
+  async syncUser(user: firebase.User): Promise<User> {
+    return new Promise(async (resolve, reject) => {
+      try {
+        const authUser = this.transformService.transformUser(user);
+        console.log('authuser found = ', authUser);
+        await this.db.saveUser(authUser);
+        console.log('db save done - sync in local store');
+        this.saveUserToStore(authUser);
+        console.log('sync in local store done');
+        resolve(authUser);
+      } catch (e) {
+        console.log('error in syncuser -> ', e);
+        reject(e);
+      }
+
+
+    });
   }
 
   getUserByEmail(value: { email: string }) {
     return this.db.fetchUserByEmail(value.email)
       .pipe(take(1));
   }
+
 
 
   saveUserToStore(user: User) {

@@ -19,7 +19,6 @@
 
 div.auth-login-wrapper {
     font-family: $roboto-font-family;
-
     div.auth-login-banner {
         background-image: url("../../../../assets/img/splash5.jpg");
         background-position: 90%;
@@ -29,7 +28,7 @@ div.auth-login-wrapper {
         div.auth-ct-wrapper {
             color: $secondary-text-color;
             text-align: center;
-            margin-top:10%;
+            margin-top:2vh;
             fa-icon {
                 font-size: 6rem;
             }

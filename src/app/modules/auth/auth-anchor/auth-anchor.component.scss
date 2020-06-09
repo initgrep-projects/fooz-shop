@@ -1,0 +1,148 @@
+@import "../../../../variables.scss";
+
+a.auth-profile {
+    color: $primary-text-color;
+    text-decoration: none;
+    cursor: pointer;
+    div {
+        text-align: center;
+        .cart {
+            cursor: pointer;
+            text-shadow: 4px 4px 2px rgba(150, 150, 150, 1);
+        }
+    }
+    span {
+        text-decoration: none;
+        font-weight: 600;
+        letter-spacing: 0.1rem;
+        text-transform: uppercase;
+        font-size: 60%;
+    }
+}
+
+div.pop-title {
+    font-family: $roboto-font-family;
+    width: 100%;
+    text-align: center;
+    div.auth-anonymous {
+        p {
+            b {
+                text-transform: uppercase;
+                letter-spacing: 0.045rem;
+            }
+            span {
+                font-size: 0.9rem;
+                letter-spacing: 0.025rem;
+            }
+        }
+
+        a.btn {
+            span {
+                letter-spacing: 0.025rem;
+                // font-weight: 600;
+                text-transform: capitalize;
+                padding: 0.5rem;
+                font-size: 0.8rem;
+            }
+        }
+    }
+
+    div.auth-loggedin {
+        text-align: center;
+        .dp {
+            width: 50px;
+            height: 50px;
+        }
+        span.dp {
+            display: block;
+            background-color: #f1f1f1;
+            left: 40%;
+            position: relative;
+            text-align: center;
+            padding-top: 15px;
+            letter-spacing: 0.025rem;
+            font-size: 60;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        p.name,
+        p.email {
+            margin: 0.5rem;
+            letter-spacing: 0.025rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+        a.btn {
+            text-transform: capitalize;
+            font-size: 0.8rem;
+            letter-spacing: 0.025rem;
+            &:hover {
+                font-weight: 600;
+                transition: all 0.5s ease-in;
+            }
+        }
+    }
+}
+
+div.pop-content {
+    font-family: $roboto-font-family;
+    ul.list-group.list-group-flush {
+        padding: 0rem 1rem 0rem 1rem;
+        border-bottom: 1px solid #f7f7f7;
+        li {
+            padding: 0.5rem 1rem 0.5rem 0rem;
+            border: none;
+            a {
+                display: block;
+                font-size: 1rem;
+                color: $primary-text-color;
+                font-size: 0.8rem;
+                text-transform: capitalize;
+                letter-spacing: 0.04rem;
+                text-decoration: none;
+                transition: all .2s ease-in;
+                fa-icon {
+                    margin-right: .6rem;
+                }
+
+                .badge {
+                    margin-left: 1rem;
+                    text-transform: lowercase;
+                    padding-bottom: 0.2rem;
+                }
+
+                &:hover{
+                    font-weight: 600;
+                }
+            }
+
+
+        }
+    }
+}
+
+div.pop-footer {
+    font-family: $roboto-font-family;
+    margin-bottom: 1rem;
+    text-align: center;
+    ul {
+        li {
+            button {
+                text-transform: capitalize;
+                letter-spacing: 0.025rem;
+                font-size: 0.8rem;
+            }
+        }
+    }
+}
+
+.pop-style {
+    font-family: $roboto-font-family !important;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    min-width: 350px;
+    max-width: 350px;
+    h3.popover-header {
+        background-color: white !important;
+        padding: 1rem;
+    }
+}

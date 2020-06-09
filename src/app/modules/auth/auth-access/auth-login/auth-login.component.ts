@@ -11,7 +11,7 @@ import { AuthService } from '../../auth.service';
   styleUrls: ['./auth-login.component.scss']
 })
 export class AuthLoginComponent implements OnInit, AfterViewInit {
-  authMessages =  AuthMessages;
+  authMessages = AuthMessages;
 
   private subs = new SubSink();
 
@@ -24,7 +24,7 @@ export class AuthLoginComponent implements OnInit, AfterViewInit {
   isLoginInProgress = false;
   isLoginSuccess = true;
   isValidForm = false;
-  alertMessage:string;
+  alertMessage: string;
 
 
   constructor(
@@ -66,40 +66,45 @@ export class AuthLoginComponent implements OnInit, AfterViewInit {
   login() {
     console.log('login onsubmit = ', this.loginForm);
     this.authService.loginWithUserPass(this.loginForm.value)
-      .then(resp => {
-        this.isLoginSuccess = true;
-        console.log('login success ', resp);
-      })
-      .catch(error => {
-        this.isLoginSuccess = false;
-        this.setAlertMessage(error.code);
-        console.log('login failure',error);
-
-      })
-      .finally(() => this.isLoginInProgress = false);
-
+      .then(resp => this.handleAuthSuccess(resp))
+      .catch(error =>this.handleAuthFailure(error))
+      .finally(() => this.handleAuthFinalize());
   }
 
-
-  register() {
-    this.authService.registerUser(this.loginForm.value)
-      .then(resp => this.isLoginSuccess = true)
-      .catch(error => {
-        this.isLoginSuccess = false;
-        this.setAlertMessage(error.code);
-      })
-      .finally(() => this.isLoginInProgress = false);
-  }
 
   loginWithGoogle() {
     this.authService.loginWithGoogle()
-      .then(response => console.log('register result = ', response))
-      .catch(err => console.error('register error = ', err));
+      .then(response => this.handleAuthSuccess(response))
+      .catch(err => this.handleAuthFailure(err));
 
   }
 
-  setAlertMessage(code:string){
-   this.alertMessage =  AuthMessages.invalidCredentials.find(item => item.code === code).message;
+  register() {
+    this.authService.registerUser(this.loginForm.value)
+      .then(resp => this.handleAuthSuccess(resp))
+      .catch(error => this.handleAuthFailure(error))
+      .finally(() => this.handleAuthFinalize());
+  }
+
+  private handleAuthSuccess(response) {
+    console.log('handleAuthSuccess called', response);
+    this.isLoginSuccess = true;
+    this.authModalService.dismissModal();
+  }
+
+  private handleAuthFailure(error){
+    console.log('handleAuthFailure called', error);
+    this.isLoginSuccess = false;
+    this.setAlertMessage(error.code);
+   
+  }
+
+  private handleAuthFinalize(){
+    this.isLoginInProgress = false;
+  }
+
+  private setAlertMessage(code: string) {
+    this.alertMessage = AuthMessages.invalidCredentials.find(item => item.code === code).message;
   }
 
   closeAlert() {

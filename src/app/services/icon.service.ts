@@ -48,7 +48,8 @@ import {
   faTruck,
   faSpinner,
   faLongArrowAltRight,
-  faTruckLoading
+  faTruckLoading,
+  faAddressBook
 } from '@fortawesome/free-solid-svg-icons';
 import { faGoogle } from '@fortawesome/free-brands-svg-icons';
 
@@ -110,7 +111,8 @@ export class IconService {
       faTruck,
       faSpinner,
       faLongArrowAltRight,
-      faTruckLoading
+      faTruckLoading,
+      faAddressBook
     ];
    }
 

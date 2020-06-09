@@ -316,7 +316,8 @@ export class FireStoreDbService {
    * @param user user object
    */
   saveUser(user: User) {
-    return this.userCollection.doc(user.UID).set(classToPlain(user), { merge: true });
+    console.log('saveUser called ->', classToPlain(user));
+    return this.userCollection.doc(user.UID).set(classToPlain(user));
   }
 
   /**

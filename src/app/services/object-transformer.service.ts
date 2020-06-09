@@ -187,11 +187,17 @@ export class ObjectTransformerService {
 
 
   transformUser(user: firebase.User): User {
+    if(!user){
+      return null;
+    }
     return new User(user.uid, user.email, user.displayName, user.emailVerified,
       user.phoneNumber, user.isAnonymous, user.photoURL);
   }
 
   transformUserFromDocumentData(user: DocumentData) {
+    if(!user) {
+      return null;
+    }
     return new User(user.uid, user.email, user.name, user.isEmailVerified,
       user.phoneNumber, user.isAnonymous, user.photoURL, user.roles);
   }

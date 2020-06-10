@@ -49,7 +49,11 @@ import {
   faSpinner,
   faLongArrowAltRight,
   faTruckLoading,
-  faAddressBook
+  faAddressBook,
+  faCartPlus,
+  faThumbsUp,
+  faUserLock,
+  faSignOutAlt
 } from '@fortawesome/free-solid-svg-icons';
 import { faGoogle } from '@fortawesome/free-brands-svg-icons';
 
@@ -112,7 +116,11 @@ export class IconService {
       faSpinner,
       faLongArrowAltRight,
       faTruckLoading,
-      faAddressBook
+      faAddressBook,
+      faCartPlus,
+      faThumbsUp,
+      faUserLock,
+      faSignOutAlt
     ];
    }
 

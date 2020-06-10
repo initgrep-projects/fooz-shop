@@ -1,9 +1,11 @@
-import { Component, OnInit, Input, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, Input, AfterViewInit, ViewChild, ElementRef, TemplateRef } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthModalService } from '../../auth-modal/auth-modal.service';
 import { AuthMessages } from '../../../../helpers/constants';
 import { SubSink } from 'subsink';
 import { AuthService } from '../../auth.service';
+import { ToastService } from 'src/app/modules/shared/toasts/toast.service';
+ 
 
 @Component({
   selector: 'app-auth-login',
@@ -12,6 +14,9 @@ import { AuthService } from '../../auth.service';
 })
 export class AuthLoginComponent implements OnInit, AfterViewInit {
   authMessages = AuthMessages;
+  labels = AuthMessages.authAnchorLabels;
+
+  @ViewChild('authSuccessToast') authSuccessToast: TemplateRef<any>;
 
   private subs = new SubSink();
 
@@ -22,6 +27,7 @@ export class AuthLoginComponent implements OnInit, AfterViewInit {
 
   loginForm: FormGroup;
   isLoginInProgress = false;
+  isGoogleLoginInProgress = false;
   isLoginSuccess = true;
   isValidForm = false;
   alertMessage: string;
@@ -29,7 +35,8 @@ export class AuthLoginComponent implements OnInit, AfterViewInit {
 
   constructor(
     public authModalService: AuthModalService,
-    private authService: AuthService
+    private authService: AuthService,
+    private toastService: ToastService
 
   ) { }
 
@@ -73,9 +80,11 @@ export class AuthLoginComponent implements OnInit, AfterViewInit {
 
 
   loginWithGoogle() {
+    this.isGoogleLoginInProgress = true;
     this.authService.loginWithGoogle()
       .then(response => this.handleAuthSuccess(response))
-      .catch(err => this.handleAuthFailure(err));
+      .catch(err => this.handleAuthFailure(err))
+      .finally(()=> this.isGoogleLoginInProgress = false);
 
   }
 
@@ -90,6 +99,7 @@ export class AuthLoginComponent implements OnInit, AfterViewInit {
     console.log('handleAuthSuccess called', response);
     this.isLoginSuccess = true;
     this.authModalService.dismissModal();
+    this.toastService.show(this.authMessages.loginSuccess,{ icon:'user-lock'});
   }
 
   private handleAuthFailure(error){

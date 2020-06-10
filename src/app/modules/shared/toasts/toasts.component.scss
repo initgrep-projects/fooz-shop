@@ -1,10 +1,36 @@
-div.toast-wrapper{
-    // border:1px solid red;
+@import '../../../../variables.scss';
+
+div.toast-outer-container{
     position: fixed;
-    min-width: 20%;
+    width: 90%;
+    margin:5%;
     z-index: 999;
-    right: 0px;
     min-height: 300px;
-    top: 12%;
-    
+    top: 10%;
+
+    @include md{
+        top: 6%;
+    }
+
+    @include lg{
+        top: 6%;
+    }
+    @include xl{
+        top: 2%;
+    }
+
+    div.container{
+        div.row{
+            div.toast-wrapper{
+                font-family: $roboto-font-family;
+                @include animate(bounceInDown, .8s);
+                span.toast-message{
+                    font-size:1rem;
+                    letter-spacing: .045rem;
+                    text-transform: capitalize;
+                }
+               
+            }
+        }
+    }
 }

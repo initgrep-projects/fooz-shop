@@ -1,6 +1,4 @@
 import { Component, OnInit, Input, OnDestroy } from '@angular/core';
-import { Product } from 'src/app/models/product';
-import { ToastService } from 'src/app/modules/shared/toasts/toast.service';
 import { ItemDetailService } from '../item-detail.service';
 import { CartService } from 'src/app/modules/cart/cart.service';
 import { SubSink } from 'subsink';
@@ -24,7 +22,6 @@ export class ItemBuyComponent implements OnInit, OnDestroy {
 
 
   constructor(
-    private toastService: ToastService,
     private itemdetailService: ItemDetailService,
     private cartService: CartService
   ) { }
@@ -58,11 +55,6 @@ export class ItemBuyComponent implements OnInit, OnDestroy {
     const item = cloneDeep(this.cartItem);
     this.isValidCart = this.itemdetailService.validateCartItem(item);
     if (this.isValidCart) {
-      this.toastService.show(
-        'Item added to Card Successfully ',
-        { classname: 'bg-dark text-light', delay: 1000 }
-      );
-
       this.cartService.addItem(item);
     }
   }

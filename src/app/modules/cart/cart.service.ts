@@ -7,8 +7,9 @@ import { FireStoreDbService } from 'src/app/services/firestore.db.service';
 import { CartItem } from 'src/app/models/cartItem';
 import { tap, map, take } from 'rxjs/operators';
 import { AlertService } from '../shared/alert/alert.service';
-import { CART_ITEM_EXIST, CART_ITEM_MAX_QUANTITY } from 'src/app/helpers/constants';
+import { CART_ITEM_EXIST, CART_ITEM_MAX_QUANTITY, toastLabels } from 'src/app/helpers/constants';
 import { updateProductAction } from '../shop/store/shop.actions';
+import { ToastService } from '../shared/toasts/toast.service';
 
 
 
@@ -20,7 +21,8 @@ export class CartService {
   constructor(
     private store: Store<AppState>,
     private fbDataService: FireStoreDbService,
-    private alertService: AlertService
+    private alertService: AlertService,
+    private toastService: ToastService
   ) {
 
     this.dispatchCartItemsToStore();
@@ -60,6 +62,7 @@ export class CartService {
         } else {
           this.saveCartItem(item);
           this.updateProductQuantity(item.Product, item.SelectedQuantity);
+          this.toastService.show(toastLabels.itemAddedToCart,{ icon:'cart-plus'});
         }
       });
 

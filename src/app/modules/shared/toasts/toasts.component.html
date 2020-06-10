@@ -1,15 +1,20 @@
-<div class="toast-wrapper" *ngIf="toastService.toasts.length > 0">
-    <ngb-toast *ngFor="let toast of toastService.toasts"
-           [class]="toast.classname"
-           [autohide]="true"
-           [delay]="toast.delay || 1000"
-           (hide)="toastService.remove(toast)"
-           >
-    <ng-template [ngIf]="isTemplate(toast)"
-                 [ngIfElse]="text">
-        <ng-template [ngTemplateOutlet]="toast.textOrTpl"></ng-template>
-    </ng-template>
-
-    <ng-template #text>{{ toast.textOrTpl }}</ng-template>
-</ngb-toast>
+<div class="toast-outer-container"
+     *ngIf="toastService.toasts.length > 0">
+    <div class="container">
+        <div class="row">
+            <div class="toast-wrapper col-12 col-md-6 col-lg-4 col-xl-3  mx-auto mt-4">
+                <ngb-toast *ngFor="let toast of toastService.toasts"
+                           [class]="toast.options.classname || 'bg-dark text-light'"
+                           [autohide]="true"
+                           [delay]="toast.options.delay || 2500"
+                           (hide)="toastService.remove(toast)">
+                    <span class="toast-message">
+                        <fa-icon class="mx-2"
+                                 icon = "{{toast.options.icon}}"></fa-icon>
+                        {{toast.textOrTpl}}
+                    </span>
+                </ngb-toast>
+            </div>
+        </div>
+    </div>
 </div>

@@ -17,36 +17,48 @@ export const CART_ITEM_EXIST = 'A similar product already exists in your cart. W
 export const CART_ITEM_MAX_QUANTITY = 'You have added all the available products of this type.';
 
 
+/**toast messages */
+export const toastLabels = {
+    itemAddedToCart: 'Item added to cart'
+}
+
+
 
 /**
  * Auth related messages
  */
 export const AuthMessages = {
     invalidName: 'Name should be 100 characters or less',
-    invalidEmail :  'please enter a valid email',
+    invalidEmail: 'please enter a valid email',
     invalidPhone: 'please provide a valid phone number with country code.(+971234512345)',
     invalidPassword: 'please provide password - must be 8 characters or more',
+    invalidSignup: 'The email address is already in use by another account.',
+    forgotpassword: 'forgot password ?',
+    loginSuccess: 'Logged in successfully',
+    logoutSuccess: 'logged out successfully',
     invalidCredentials: [
-        {code: 'auth/wrong-password', message: 'The password is invalid.'},
-        {code:'auth/user-not-found', message: 'We could not find the user with given credentials'},
-        {code: 'auth/popup-closed-by-user', message: "Authentication using google was not successful."}
+        { code: 'auth/wrong-password', message: 'Incorrect email or password' },
+        { code: 'auth/user-not-found', message: 'The email is not registered with us' },
+        { code: 'auth/popup-closed-by-user', message: "Google login was not successful" }
     ],
-    invalidSignup: 'The email address is already in use by another account.'
-};
-
-export const authAnchorLabels = {
+    authAnchorLabels: {
         profile: 'profile',
         welcome: 'welcome',
         welcomeAuthMsg: 'To access account and manange orders',
         login: 'log in',
         signup: 'sign up',
         signout: 'sign out',
+        signinIn: 'signing in',
+        signingUp: 'signing up',
+        googleSignIn: 'sign in with google',
         manageProfile: 'Manage your profile',
         verifiedAccount: 'verified',
-        verifyAccount:'verify your account ?',
+        verifyAccount: 'verify your account ?',
         orders: 'orders',
         addresses: 'Addresses',
         support: 'support',
         contact: 'contact us'
+    }
+};
 
-}
+

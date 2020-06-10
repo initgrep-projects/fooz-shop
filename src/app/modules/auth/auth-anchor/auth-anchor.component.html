@@ -97,7 +97,7 @@
              *ngIf="!authUser?.IsAnonymous">
             <li class="list-group-item">
                <button class="btn btn-sm btn-light"
-                       (click)="authService.logOut()">
+                       (click)="logOut()">
                   {{labels.signout}}
                </button>
             </li>

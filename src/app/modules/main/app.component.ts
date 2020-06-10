@@ -1,7 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
-import { Subscription } from 'rxjs';
-import { FireStoreDbService } from 'src/app/services/firestore.db.service';
 import { AuthService } from '../auth/auth.service';
 import { SubSink } from 'subsink';
 
@@ -18,7 +16,6 @@ export class AppComponent implements OnInit, OnDestroy {
 
   constructor(
     private router: Router, 
-    private dbService: FireStoreDbService
     ) { }
 
   ngOnInit(): void {

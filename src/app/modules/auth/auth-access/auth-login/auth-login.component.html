@@ -36,7 +36,7 @@
             *ngIf="loginForm.controls.password.touched && !!loginForm.controls.password.errors">
         {{authMessages.invalidPassword}}
       </span>
-      <a class="auth-fgt-password">forgot password?</a>
+      <a class="auth-fgt-password">{{authMessages.forgotpassword}}</a>
     </div>
     <div class="form-group">
       <button type="submit"
@@ -45,19 +45,23 @@
         <fa-icon [icon]="['fas', 'spinner']"
                  [spin]="true"
                  *ngIf="isLoginInProgress"></fa-icon>
-        <span *ngIf="isLoginInProgress"> {{isExisting? 'signing in' : 'signin up'}} </span>
-        <span *ngIf="!isLoginInProgress">{{isExisting ? 'log in' : 'sign up'}}</span>
+        <span *ngIf="isLoginInProgress"> {{isExisting? labels.signinIn : labels.signingUp}} </span>
+        <span *ngIf="!isLoginInProgress">{{isExisting ? labels.login : labels.signup}}</span>
       </button>
-     
+
     </div>
   </form>
 </div>
 <!-- -->
 <div class="auth-login-footer px-4 pb-4">
   <button type="button"
-  class="btn btn-outline-danger btn-block my-2 mb-5 float-left"
-  (click)="loginWithGoogle()"
-  >
-<fa-icon [icon]="['fab','google']"></fa-icon>sign in with google 
-</button>
+          class="btn btn-outline-danger btn-block my-2 mb-5 "
+          (click)="loginWithGoogle()">
+    <fa-icon class="float-left"
+             [icon]="['fab','google']"></fa-icon>{{labels.googleSignIn}}
+    <fa-icon class="float-right"
+             [icon]="['fas', 'spinner']"
+             [spin]="true"
+             *ngIf="isGoogleLoginInProgress"></fa-icon>
+  </button>
 </div>

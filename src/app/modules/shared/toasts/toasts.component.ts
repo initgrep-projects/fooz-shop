@@ -1,5 +1,5 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
-import { ToastService } from './toast.service';
+import { ToastService, Toast } from './toast.service';
 
 @Component({
   selector: 'app-toasts',
@@ -13,6 +13,10 @@ export class ToastsComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  isTemplate(toast) { return toast.textOrTpl instanceof TemplateRef; }
+  isTemplate(toast: Toast) {
+    const isTemplate = toast.textOrTpl instanceof TemplateRef;
+    console.log('isTemplate in toast = ', isTemplate);
+    return isTemplate;
+  }
 
 }

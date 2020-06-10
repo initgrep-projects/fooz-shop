@@ -2,7 +2,8 @@ import { Component, OnInit, OnDestroy, ViewEncapsulation } from '@angular/core';
 import { SubSink } from 'subsink';
 import { User } from 'src/app/models/user';
 import { AuthService } from '../auth.service';
-import { authAnchorLabels } from '../../../helpers/constants';
+import { AuthMessages } from '../../../helpers/constants';
+import { ToastService } from '../../shared/toasts/toast.service';
 
 @Component({
   selector: 'app-auth-anchor',
@@ -11,13 +12,15 @@ import { authAnchorLabels } from '../../../helpers/constants';
   styleUrls: ['./auth-anchor.component.scss']
 })
 export class AuthAnchorComponent implements OnInit, OnDestroy {
-  labels = authAnchorLabels;
+  authMessages = AuthMessages;
+  labels = AuthMessages.authAnchorLabels;
 
   private subs = new SubSink();
   authUser: User;
 
   constructor(
-    public authService: AuthService
+    private authService: AuthService,
+    private toastService: ToastService
   ) { }
 
   ngOnInit(): void {
@@ -28,6 +31,11 @@ export class AuthAnchorComponent implements OnInit, OnDestroy {
         this.authUser = user;
       });
 
+  }
+
+  async logOut(){
+    await this.authService.logOut();
+    this.toastService.show(this.authMessages.logoutSuccess,{icon:'sign-out-alt'});
   }
 
   ngOnDestroy() {

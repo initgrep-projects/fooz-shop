@@ -17,6 +17,7 @@ import { async } from '@angular/core/testing';
 export class AuthService {
 
   user$: Observable<User>;
+  userFromStore$: Observable<User>;
 
   constructor(
     private angularFireAuth: AngularFireAuth,
@@ -26,8 +27,22 @@ export class AuthService {
   ) {
 
     window['logout'] = this.logOut;
+    this.userFromStore$ = this.store.select('auth').pipe(map(state => state.user));
+    this.user$ = this.syncAuthChanges();
+  }
 
-    this.user$ = this.angularFireAuth.user
+
+  /**
+   * Every auth change be it anonymous, login, login with google or registeration
+   * will trigger the push in this subscription.
+   * This method will check 
+   * 1) if no auth -> return an anonymous auth
+   * 2) if auth -> return an auth
+   * 3) convert firebaseCredentials.user to @see User
+   */
+  
+  private syncAuthChanges(): Observable<User> {
+    return this.angularFireAuth.user
       .pipe(
         tap((user: firebase.User) => {
           if (!user) {
@@ -54,9 +69,6 @@ export class AuthService {
       );
   }
 
-
-  userFromStore$ = this.store.select('auth')
-    .pipe(map(state => state.user));
 
   loginAsAnonymous() {
     console.log('Goiong Anonymous.. since no auth-user found');

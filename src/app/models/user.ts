@@ -14,7 +14,7 @@ export class User {
     set UID(uid: string) { this.uid = uid; }
     get Name() { return this.name; }
     set Name(name: string) { this.name = name; }
-    get Email() { console.log('email = ', this.email); return this.email; }
+    get Email() { return this.email; }
     set Email(e: string) { this.email = e; }
 
     get IsEmailVerified() { return this.isEmailVerified; }

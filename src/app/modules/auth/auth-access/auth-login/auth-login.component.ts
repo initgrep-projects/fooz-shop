@@ -5,7 +5,7 @@ import { AuthMessages } from '../../../../helpers/constants';
 import { SubSink } from 'subsink';
 import { AuthService } from '../../auth.service';
 import { ToastService } from 'src/app/modules/shared/toasts/toast.service';
- 
+
 
 @Component({
   selector: 'app-auth-login',
@@ -31,6 +31,7 @@ export class AuthLoginComponent implements OnInit, AfterViewInit {
   isLoginSuccess = true;
   isValidForm = false;
   alertMessage: string;
+  passResetProgress = false;
 
 
   constructor(
@@ -74,7 +75,7 @@ export class AuthLoginComponent implements OnInit, AfterViewInit {
     console.log('login onsubmit = ', this.loginForm);
     this.authService.loginWithUserPass(this.loginForm.value)
       .then(resp => this.handleAuthSuccess(resp))
-      .catch(error =>this.handleAuthFailure(error))
+      .catch(error => this.handleAuthFailure(error))
       .finally(() => this.handleAuthFinalize());
   }
 
@@ -84,7 +85,7 @@ export class AuthLoginComponent implements OnInit, AfterViewInit {
     this.authService.loginWithGoogle()
       .then(response => this.handleAuthSuccess(response))
       .catch(err => this.handleAuthFailure(err))
-      .finally(()=> this.isGoogleLoginInProgress = false);
+      .finally(() => this.isGoogleLoginInProgress = false);
 
   }
 
@@ -95,21 +96,34 @@ export class AuthLoginComponent implements OnInit, AfterViewInit {
       .finally(() => this.handleAuthFinalize());
   }
 
+  resetPassword() {
+    console.log('email  = ', this.loginForm.value.email);
+    this.passResetProgress = true;
+    this.authService.resetPassword(this.loginForm.value.email)
+      .then(() => {
+        this.authModalService.dismissModal();
+        this.toastService.show(this.authMessages.passwordReset, { icon: 'unlock-alt' })
+      })
+      .catch(error => this.toastService.show(
+        this.authMessages.passwordReset, { icon: 'unlock-alt', classname: "bg-danger text-white" }))
+      .finally(() => this.passResetProgress = false)
+  }
+
   private handleAuthSuccess(response) {
     console.log('handleAuthSuccess called', response);
     this.isLoginSuccess = true;
     this.authModalService.dismissModal();
-    this.toastService.show(this.authMessages.loginSuccess,{ icon:'user-lock'});
+    this.toastService.show(this.authMessages.loginSuccess, { icon: 'user-lock' });
   }
 
-  private handleAuthFailure(error){
+  private handleAuthFailure(error) {
     console.log('handleAuthFailure called', error);
     this.isLoginSuccess = false;
     this.setAlertMessage(error.code);
-   
+
   }
 
-  private handleAuthFinalize(){
+  private handleAuthFinalize() {
     this.isLoginInProgress = false;
   }
 

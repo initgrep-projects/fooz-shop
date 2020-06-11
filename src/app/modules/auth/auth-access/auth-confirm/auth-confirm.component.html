@@ -11,7 +11,7 @@
              placeholder="Enter your email"
              formControlName="email">
       <span class="text-danger"
-            *ngIf="confirmForm.controls.email.touched && !!confirmForm.controls.email.errors">
+            *ngIf="confirmForm.controls.email.dirty && !!confirmForm.controls.email.errors">
         {{authMessages.invalidEmail}}
       </span>
     </div>

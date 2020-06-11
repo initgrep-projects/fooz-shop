@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, ViewEncapsulation, ViewChild } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewEncapsulation, ViewChild, AfterViewInit, ElementRef, Renderer2, OnChanges, DoCheck } from '@angular/core';
 import { SubSink } from 'subsink';
 import { User } from 'src/app/models/user';
 import { AuthService } from '../auth.service';
@@ -12,20 +12,32 @@ import { NgbPopover } from '@ng-bootstrap/ng-bootstrap';
   encapsulation: ViewEncapsulation.None,
   styleUrls: ['./auth-anchor.component.scss']
 })
-export class AuthAnchorComponent implements OnInit, OnDestroy {
+export class AuthAnchorComponent implements OnInit, OnDestroy, DoCheck {
   authMessages = AuthMessages;
   labels = AuthMessages.authAnchorLabels;
 
   private subs = new SubSink();
   authUser: User;
 
+
   @ViewChild(NgbPopover) popover: NgbPopover;
 
   constructor(
     private authService: AuthService,
-    private toastService: ToastService
+    private toastService: ToastService,
+    private elementRef: ElementRef
   ) { }
 
+  ngDoCheck() {
+    const popoverElement: HTMLElement = this.elementRef.nativeElement.querySelector('.pop-style');
+    if (!!popoverElement) {
+      popoverElement.addEventListener('mouseleave', () => {
+        this.closePopover();
+      });
+
+    }
+
+  }
   ngOnInit(): void {
     this.subs.sink =
       this.authService.userFromStore$.subscribe(user => {
@@ -43,8 +55,8 @@ export class AuthAnchorComponent implements OnInit, OnDestroy {
         this.toastService.show(this.authMessages.emailVerification, { icon: 'envelope-open-text' });
 
       }).catch(() => {
-        this.toastService.show(this.authMessages.emailVerificationFailed, { icon: 'envelope-open-text', classname: "bg-danger text-white" });
-
+        this.toastService.show(this.authMessages.emailVerificationFailed,
+          { icon: 'envelope-open-text', classname: "bg-danger text-white" });
       })
       .finally(() => this.closePopover());
 

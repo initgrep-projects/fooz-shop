@@ -11,12 +11,35 @@ a.auth-profile {
             text-shadow: 4px 4px 2px rgba(150, 150, 150, 1);
         }
     }
-    span {
+    fa-icon.fas {
+        display: none;
+    }
+    span.label {
         text-decoration: none;
         font-weight: 600;
         letter-spacing: 0.1rem;
         text-transform: uppercase;
         font-size: 60%;
+    }
+
+    span.hog {
+        position: relative;
+        display: block;
+        width: 0%;
+        height: 3px;
+        background-color: $primary-text-color;
+        // left: 5px;
+        top: 100%;
+        transition: width 0.5s ease;
+        border-radius: 5px;
+    }
+
+    &:hover {
+        fa-icon.far{ display: none;}
+        fa-icon.fas{display: inline-block;}
+        span.hog {
+            width: 100%;
+        }
     }
 }
 
@@ -100,9 +123,9 @@ div.pop-content {
                 text-transform: capitalize;
                 letter-spacing: 0.04rem;
                 text-decoration: none;
-                transition: all .2s ease-in;
+                transition: all 0.2s ease-in;
                 fa-icon {
-                    margin-right: .6rem;
+                    margin-right: 0.6rem;
                 }
 
                 .badge {
@@ -111,12 +134,10 @@ div.pop-content {
                     padding-bottom: 0.2rem;
                 }
 
-                &:hover{
+                &:hover {
                     font-weight: 600;
                 }
             }
-
-
         }
     }
 }

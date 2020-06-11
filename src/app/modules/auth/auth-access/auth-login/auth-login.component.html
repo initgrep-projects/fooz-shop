@@ -21,7 +21,7 @@
              formControlName="email"
              readonly>
       <span class="text-danger"
-            *ngIf="loginForm.controls.email.touched && !!loginForm.controls.email.errors">
+            *ngIf="loginForm.controls.email.dirty && !!loginForm.controls.email.errors">
         {{authMessages.invalidEmail}}
       </span>
     </div>
@@ -33,10 +33,16 @@
              formControlName="password"
              #password>
       <span class="text-danger"
-            *ngIf="loginForm.controls.password.touched && !!loginForm.controls.password.errors">
+            *ngIf="loginForm.controls.password.dirty && !!loginForm.controls.password.errors">
         {{authMessages.invalidPassword}}
       </span>
-      <a class="auth-fgt-password">{{authMessages.forgotpassword}}</a>
+      <a class="auth-fgt-password"
+         (click)="resetPassword()">{{authMessages.forgotpassword}}
+        <fa-icon class="float-right"
+                 [icon]="['fas', 'spinner']"
+                 [spin]="true"
+                 *ngIf="!!passResetProgress"></fa-icon>
+      </a>
     </div>
     <div class="form-group">
       <button type="submit"

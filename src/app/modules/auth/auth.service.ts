@@ -137,6 +137,19 @@ export class AuthService {
       }
 
     });
+  }
+
+  async resetPassword(email: string): Promise<void> {
+    return new Promise(async (resolve, reject) => {
+      try {
+        var auth = firebase.auth();
+        await auth.sendPasswordResetEmail(email);
+        resolve();
+      } catch (error) {
+        console.log('error happened while password reset', error);
+        reject(error);
+      }
+    });
 
   }
 

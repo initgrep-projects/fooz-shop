@@ -55,8 +55,11 @@ import {
   faUserLock,
   faSignOutAlt,
   faEnvelope,
-  faEnvelopeOpenText
+  faEnvelopeOpenText,
+  faUnlockAlt,
+  faUser as fasUser
 } from '@fortawesome/free-solid-svg-icons';
+import { faUser as farUser } from '@fortawesome/free-regular-svg-icons';
 import { faGoogle } from '@fortawesome/free-brands-svg-icons';
 
 @Injectable({
@@ -123,11 +126,14 @@ export class IconService {
       faThumbsUp,
       faUserLock,
       faSignOutAlt,
-      faEnvelopeOpenText
+      faEnvelopeOpenText,
+      faUnlockAlt,
+      fasUser,
+      farUser
     ];
-   }
+  }
 
-   getImportedIcons(): IconDefinition[] {
-     return this.icons;
-   }
+  getImportedIcons(): IconDefinition[] {
+    return this.icons;
+  }
 }

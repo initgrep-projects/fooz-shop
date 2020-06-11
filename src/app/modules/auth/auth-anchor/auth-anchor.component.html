@@ -4,15 +4,17 @@
    [ngbPopover]="popContent"
    [popoverTitle]="popTitle"
    triggers="mouseenter"
-   [autoClose]="'outside'"
+   [autoClose]="'true'"
    [popoverClass]="'pop-style'"
    #p = "ngbPopover"
    >
   
    <div>
-      <fa-icon icon="user-circle"></fa-icon>
+      <fa-icon class="far" [icon]="['far','user']"></fa-icon>
+      <fa-icon class="fas" [icon]="['fas','user']"></fa-icon>
    </div>
-   <span class="small d-none d-md-block">{{labels.profile}}</span>
+   <span class=" label small d-none d-md-block">{{labels.profile}}</span>
+   <span class="hog"></span>
 </a>
 
 <!--- auth header anchor //end-->
@@ -31,7 +33,8 @@
    </ng-template>
 
    <div class="row"
-        *ngIf="!!authUser ; else loading">
+        *ngIf="!!authUser ; else loading"
+        >
       <div class="col-12 pop-title">
          <div class="auth-anonymous"
               *ngIf="!!authUser && authUser?.IsAnonymous">
@@ -67,13 +70,13 @@
          <ul class="list-group list-group-flush">
             <li class="list-group-item">
                <a>
-                  <fa-icon icon="user-circle"></fa-icon>
+                  <fa-icon icon="user"></fa-icon>
                   <span>profile</span>
                   <span class="badge  badge-pill badge-dark"
                         *ngIf="!authUser?.IsAnonymous && authUser?.IsEmailVerified">{{  labels.verifiedAccount}}</span>
                   <span class="badge  badge-pill badge-danger"
                         *ngIf="!authUser?.IsAnonymous && !authUser?.IsEmailVerified"
-                        (click)="sendEmailVerification()">{{ authUser?.IsEmailVerified ? labels.verifiedAccount : labels.verifyAccount}}</span>
+                        (click)="sendEmailVerification()">{{ authUser?.IsEmailVerified ? labels.verifiedAccount : labels.notVerifyAccount}}</span>
                </a>
             </li>
             <li class="list-group-item">

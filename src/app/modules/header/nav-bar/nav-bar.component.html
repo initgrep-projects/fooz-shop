@@ -1,60 +1,72 @@
 <app-sidebar [bgColor]="'white'">
 
-  <div class="sidebar-content-wrapper" *ngIf="!isNavClosed">
+  <div class="sidebar-content-wrapper"
+       *ngIf="!isNavClosed">
     <div class="row">
       <div class="col-12 header">
-        <a class="nav-close">
-          <fa-icon icon="times"
-                   (click)="closeSideNav()"></fa-icon>
-        </a>
+        <div class="row">
+          <div class="col-12">
+            <a class="nav-close">
+              <fa-icon icon="times"
+                       (click)="closeSideNav()"></fa-icon>
+            </a>
 
-        <a class="sidenav-brand"
-           routerLink="home">
-          <fa-icon icon="atom"></fa-icon>
-          <span>Fooz</span>
-        </a>
+            <a class="sidenav-brand"
+               routerLink="home">
+              <fa-icon icon="atom"></fa-icon>
+              <span>Fooz</span>
+            </a>
+          </div>
+        </div>
+
+
 
       </div>
 
       <div class="col-12 ">
         <ul class="list-group list-group-flush ">
-          <li class="list-group-item " style="animation-duration: .5s;">
+          <li class="list-group-item "
+              style="animation-duration: .5s;">
             <a routerLink="home"
                routerLinkActive="active"
                (click)="closeSideNav()">
-               <fa-icon [icon] ="['fas','window-maximize']"></fa-icon>home
+              <fa-icon [icon]="['fas','window-maximize']"></fa-icon>home
               <span></span>
             </a>
           </li>
-          <li class="list-group-item" style="animation-duration: 1s;">
+          <li class="list-group-item"
+              style="animation-duration: 1s;">
             <a routerLink="shop"
                routerLinkActive="active"
                (click)="closeSideNav()">
-               <fa-icon [icon] ="['fas','store']"></fa-icon>shop
+              <fa-icon [icon]="['fas','store']"></fa-icon>shop
               <span></span>
             </a>
           </li>
-          <li class="list-group-item" style="animation-duration: 1.5s;">
+          <li class="list-group-item"
+              style="animation-duration: 1.5s;">
             <a routerLink=""
                routerLinkActive=""
                (click)="closeSideNav()">
-               <fa-icon [icon] ="['fas','info-circle']"></fa-icon>support
+              <fa-icon [icon]="['fas','info-circle']"></fa-icon>support
               <span></span>
             </a>
           </li>
-          <li class="list-group-item" style="animation-duration: 2s;">
+          <li class="list-group-item"
+              style="animation-duration: 2s;">
             <a routerLink=""
                routerLinkActive=""
                (click)="closeSideNav()">
-               <fa-icon [icon] ="['fas','headset']"></fa-icon>contact
+              <fa-icon [icon]="['fas','headset']"></fa-icon>contact
               <span></span>
             </a>
           </li>
-          <li class="list-group-item" style="animation-duration: 2.5s;">
+          <li class="list-group-item"
+              style="animation-duration: 2.5s;">
             <a routerLink=""
                routerLinkActive=""
                (click)="closeSideNav()">
-               <fa-icon [icon] ="['fas','truck']"></fa-icon>delivery
+              <fa-icon [icon]="['fas','truck']"></fa-icon>delivery
               <span></span>
             </a>
           </li>

@@ -53,7 +53,9 @@ import {
   faCartPlus,
   faThumbsUp,
   faUserLock,
-  faSignOutAlt
+  faSignOutAlt,
+  faEnvelope,
+  faEnvelopeOpenText
 } from '@fortawesome/free-solid-svg-icons';
 import { faGoogle } from '@fortawesome/free-brands-svg-icons';
 
@@ -120,7 +122,8 @@ export class IconService {
       faCartPlus,
       faThumbsUp,
       faUserLock,
-      faSignOutAlt
+      faSignOutAlt,
+      faEnvelopeOpenText
     ];
    }
 

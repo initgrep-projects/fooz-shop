@@ -36,6 +36,8 @@ export const AuthMessages = {
     forgotpassword: 'forgot password ?',
     loginSuccess: 'Logged in successfully',
     logoutSuccess: 'logged out successfully',
+    emailVerification: 'Verification email sent',
+    emailVerificationFailed: 'email verification did not complete',
     invalidCredentials: [
         { code: 'auth/wrong-password', message: 'Incorrect email or password' },
         { code: 'auth/user-not-found', message: 'The email is not registered with us' },

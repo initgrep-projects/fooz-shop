@@ -4,8 +4,11 @@
    [ngbPopover]="popContent"
    [popoverTitle]="popTitle"
    triggers="mouseenter"
-   [autoClose]="'true'"
-   [popoverClass]="'pop-style'">
+   [autoClose]="'outside'"
+   [popoverClass]="'pop-style'"
+   #p = "ngbPopover"
+   >
+  
    <div>
       <fa-icon icon="user-circle"></fa-icon>
    </div>
@@ -15,7 +18,20 @@
 <!--- auth header anchor //end-->
 
 <ng-template #popTitle>
-   <div class="row">
+   <ng-template #loading>
+      <div class="row">
+         <div class="col-12 text-center" >
+            <span>
+               <fa-icon [icon]="['fas', 'spinner']"
+                        [spin]="true"></fa-icon>
+
+            </span>
+         </div>
+      </div>
+   </ng-template>
+
+   <div class="row"
+        *ngIf="!!authUser ; else loading">
       <div class="col-12 pop-title">
          <div class="auth-anonymous"
               *ngIf="!!authUser && authUser?.IsAnonymous">
@@ -30,17 +46,15 @@
             <img class="rounded-circle dp"
                  [src]=" authUser.PhotoURL "
                  [alt]=""
-                 *ngIf="!!authUser?.PhotoURL"
-                 >
-            <span class=" rounded-circle dp" 
-               *ngIf="!authUser?.PhotoURL && !!authUser?.Email"
-            >{{authUser.Email.substr(0,2)}}
+                 *ngIf="!!authUser?.PhotoURL">
+            <span class=" rounded-circle dp"
+                  *ngIf="!authUser?.PhotoURL && !!authUser?.Email">{{authUser.Email.substr(0,2)}}
             </span>
-         
+
             <p class="name">{{authUser?.Name}}</p>
             <p class="email">{{authUser?.Email}}</p>
             <a class="btn btn-sm btn-light">
-              {{labels.manageProfile}}
+               {{labels.manageProfile}}
             </a>
          </div>
       </div>
@@ -52,12 +66,14 @@
       <div class="col-12 pop-content">
          <ul class="list-group list-group-flush">
             <li class="list-group-item">
-               <a href="#">
+               <a>
                   <fa-icon icon="user-circle"></fa-icon>
                   <span>profile</span>
-                  <span class="badge  badge-pill"
-                        [ngClass]="!authUser?.IsAnonymous && authUser?.IsEmailVerified ? 'badge-dark' : 'badge-danger'"
-                        *ngIf="!authUser?.IsAnonymous">{{ authUser?.IsEmailVerified ? labels.verifiedAccount : labels.verifyAccount}}</span>
+                  <span class="badge  badge-pill badge-dark"
+                        *ngIf="!authUser?.IsAnonymous && authUser?.IsEmailVerified">{{  labels.verifiedAccount}}</span>
+                  <span class="badge  badge-pill badge-danger"
+                        *ngIf="!authUser?.IsAnonymous && !authUser?.IsEmailVerified"
+                        (click)="sendEmailVerification()">{{ authUser?.IsEmailVerified ? labels.verifiedAccount : labels.verifyAccount}}</span>
                </a>
             </li>
             <li class="list-group-item">
@@ -73,7 +89,7 @@
                   <span>{{labels.addresses}}</span>
                </a>
             </li>
-           
+
          </ul>
          <ul class="list-group list-group-flush">
             <li class="list-group-item">

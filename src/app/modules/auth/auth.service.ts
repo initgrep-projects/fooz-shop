@@ -40,7 +40,7 @@ export class AuthService {
    * 2) if auth -> return an auth
    * 3) convert firebaseCredentials.user to @see User
    */
-  
+
   private syncAuthChanges(): Observable<User> {
     return this.angularFireAuth.user
       .pipe(
@@ -49,12 +49,16 @@ export class AuthService {
             this.loginAsAnonymous();
           }
         }),
+
         switchMap((user: firebase.User) => {
           console.log('user in switchmap = ', user?.uid, user?.email);
           if (!user) {
             return of(null);
           } else if (user.isAnonymous) {
             return of(this.transformService.transformUser(user));
+          } else if (user.emailVerified) {
+            const authUser = this.transformService.transformUser(user);
+            this.db.saveUser(authUser);
           }
           return this.db.fetchUser(user.uid);
         }),
@@ -119,6 +123,22 @@ export class AuthService {
     });
   }
 
+  async verifyEmail(): Promise<void> {
+    return new Promise(async (resolve, reject) => {
+      try {
+        const user = firebase.auth().currentUser;
+        console.log('current loggedin User = ', user.uid, user.email, user.emailVerified);
+        await user.sendEmailVerification();
+        console.log('verification success');
+        resolve();
+      } catch (error) {
+        console.error('email verify errored', error);
+        reject(error);
+      }
+
+    });
+
+  }
 
   logOut(): Promise<void> {
     return new Promise((resolve, reject) => {

@@ -1,9 +1,10 @@
-import { Component, OnInit, OnDestroy, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewEncapsulation, ViewChild } from '@angular/core';
 import { SubSink } from 'subsink';
 import { User } from 'src/app/models/user';
 import { AuthService } from '../auth.service';
 import { AuthMessages } from '../../../helpers/constants';
 import { ToastService } from '../../shared/toasts/toast.service';
+import { NgbPopover } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-auth-anchor',
@@ -18,6 +19,8 @@ export class AuthAnchorComponent implements OnInit, OnDestroy {
   private subs = new SubSink();
   authUser: User;
 
+  @ViewChild(NgbPopover) popover: NgbPopover;
+
   constructor(
     private authService: AuthService,
     private toastService: ToastService
@@ -29,13 +32,37 @@ export class AuthAnchorComponent implements OnInit, OnDestroy {
         console.log('auth user   = ', user);
         window['authuser'] = user;
         this.authUser = user;
+        this.closePopover();
       });
 
   }
 
-  async logOut(){
+  sendEmailVerification() {
+    this.authService.verifyEmail()
+      .then(() => {
+        this.toastService.show(this.authMessages.emailVerification, { icon: 'envelope-open-text' });
+
+      }).catch(() => {
+        this.toastService.show(this.authMessages.emailVerificationFailed, { icon: 'envelope-open-text', classname: "bg-danger text-white" });
+
+      })
+      .finally(() => this.closePopover());
+
+  }
+
+  async logOut() {
     await this.authService.logOut();
-    this.toastService.show(this.authMessages.logoutSuccess,{icon:'sign-out-alt'});
+    this.toastService.show(this.authMessages.logoutSuccess, { icon: 'sign-out-alt' });
+  }
+
+  closePopover() {
+    if (!!this.popover) {
+      this.popover.close();
+    }
+  }
+
+  openPopover() {
+    this.popover.open();
   }
 
   ngOnDestroy() {

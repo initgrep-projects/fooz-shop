@@ -1,0 +1,88 @@
+@import "../../../../variables.scss";
+
+div.pop-title-wrapper {
+    // border:1px solid red;
+
+    div.pop-title {
+        @include animate(fadeIn,.5s);
+        padding: 5px;
+        div.auth-anonymous {
+            text-align: center;
+            h6 {
+                font-weight: 600;
+                text-transform: uppercase;
+                letter-spacing: 0.025rem;
+                margin-bottom: 0.2rem;
+            }
+            p {
+                font-size: 0.8rem;
+                letter-spacing: 0.025rem;
+                margin-bottom: 0.5rem;
+            }
+            div.auth-control {
+                text-align: center;
+                margin-top: 2rem;
+                button {
+                    font-size: 0.8rem;
+                    letter-spacing: 0.025rem;
+                    text-transform: capitalize;
+                    border-radius: 20px;
+                    padding-left: 1rem;
+                    padding-right: 1rem;
+                }
+            }
+        }
+
+        div.auth-logged-in {
+            div.prof-img {
+                text-align: center;
+                img {
+                    width: 80px;
+                    height: 80px;
+                    border-radius: 20px;
+                }
+                h1.dp {
+                    width: 80px;
+                    height: 80px;
+                    border: 1px solid gray;
+                    display: inline-block;
+                    line-height: 2;
+                    text-transform: uppercase;
+                    font-weight: 600;
+                }
+            }
+            div.prof-info {
+                text-align: center;
+                span.name,
+                span.email {
+                    display: inline-block;
+                    font-size: 0.9rem;
+                    text-transform: capitalize;
+                    letter-spacing: 0.025rem;
+                    padding-left: 0.5rem;
+                }
+                span.badge {
+                    display: inline-block;
+                    font-weight: normal;
+                    letter-spacing: 0.025rem;
+                    font-weight: normal;
+                    padding-left: 1em;
+                    padding-right: 1em;
+                }
+            }
+
+            div.mg-profile {
+                text-align: center;
+                margin-top: 1rem;
+                button {
+                    font-size: 0.8rem;
+                    letter-spacing: 0.025rem;
+                    text-transform: capitalize;
+                    border-radius: 20px;
+                    padding-left: 1rem;
+                    padding-right: 1rem;
+                }
+            }
+        }
+    }
+}

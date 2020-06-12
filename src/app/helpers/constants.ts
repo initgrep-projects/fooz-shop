@@ -47,6 +47,8 @@ export const AuthMessages = {
     ],
     authAnchorLabels: {
         profile: 'profile',
+        cart: 'cart',
+        brandName: 'fooz',
         welcome: 'welcome',
         welcomeAuthMsg: 'To access account and manange orders',
         login: 'log in',
@@ -61,7 +63,10 @@ export const AuthMessages = {
         orders: 'orders',
         addresses: 'Addresses',
         support: 'support',
-        contact: 'contact us'
+        contact: 'contact us',
+        home: 'home',
+        shop: 'shop',
+        
     }
 };
 

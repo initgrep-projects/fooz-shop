@@ -2,7 +2,7 @@
 
 div.sidebar-content-wrapper {
     font-family: $roboto-font-family;
-    padding-left: 1rem;
+    // padding-left: 1rem;
     div.header {
         padding-top: 1rem;
         background-color: $grey-bg-color;
@@ -12,72 +12,6 @@ div.sidebar-content-wrapper {
             font-size: 1.5rem;
             cursor: pointer;
             margin-right: 1rem;
-        }
-
-        a.sidenav-brand {
-            font-size: 1.5rem;
-            width: 80%;
-            position: relative;
-            color: $primary-text-color;
-            display: block;
-            text-decoration: none;
-            
-            span {
-                letter-spacing: $heading-letter-spacing;
-                text-transform: uppercase;
-                font-weight: 600;
-                margin-left: 0.5rem;
-            }
-        }
-    }
-    ul.list-group {
-        padding-top: 1rem;
-        width: auto;
-        padding-left: 10;
-        width: 70%;
-
-        li {
-            background-color: transparent;
-            border-bottom: 0px solid transparent;
-            animation: fadeInUp;
-
-            a {
-                font-size: .8rem;
-                letter-spacing: 0.1rem;
-                font-weight: 600;
-                text-decoration: none;
-                color: $primary-text-color;
-                cursor: pointer;
-                text-transform: uppercase;
-                display: block;
-                fa-icon{
-                    margin-right: .6rem;
-                }
-                span {
-                    position: absolute;
-                    display: block;
-                    width: 0%;
-                    height: 2px;
-                    background-color: $primary-text-color;
-                    top: 100%;
-                    transition: width 0.5s ease;
-                    border-radius: 5px;
-                }
-
-                &:hover {
-                    span {
-                        width: 100%;
-                    }
-                }
-
-                &.active {
-                    color: $primary-text-color;
-                    font-weight: 600;
-                    span {
-                        width: 100%;
-                    }
-                }
-            }
         }
     }
 }

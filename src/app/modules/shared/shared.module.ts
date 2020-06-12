@@ -13,6 +13,10 @@ import { SizeComponent } from './size/size.component';
 import { ColorComponent } from './color/color.component';
 import { QuantityComponent } from './quantity/quantity.component';
 import { AlertComponent } from './alert/alert.component';
+import { UserCardComponent } from './user-card/user-card.component';
+import { AnchorsComponent } from './anchors/anchors.component';
+import { SignoutComponent } from './signout/signout.component';
+
 
 @NgModule({
   declarations: [
@@ -26,6 +30,9 @@ import { AlertComponent } from './alert/alert.component';
     ColorComponent,
     QuantityComponent,
     AlertComponent,
+    UserCardComponent,
+    AnchorsComponent,
+    SignoutComponent,
   ],
   imports: [
     CommonModule,
@@ -42,7 +49,10 @@ import { AlertComponent } from './alert/alert.component';
     LookbookItemComponent,
     SizeComponent,
     ColorComponent,
-    QuantityComponent
+    QuantityComponent,
+    UserCardComponent,
+    AnchorsComponent,
+    SignoutComponent
   ]
 })
 export class SharedModule { }

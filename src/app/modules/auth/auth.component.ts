@@ -1,8 +1,5 @@
 import { Component, OnInit, ViewEncapsulation, OnDestroy } from '@angular/core';
 import { AuthService } from './auth.service';
-import { ObjectTransformerService } from 'src/app/services/object-transformer.service';
-import { Store } from '@ngrx/store';
-import { AppState } from '../main/store/app.reducer';
 import { SubSink } from 'subsink';
 import { User } from 'src/app/models/user';
 

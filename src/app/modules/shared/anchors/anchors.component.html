@@ -1,0 +1,57 @@
+<ul class="list-group list-group-flush">
+  <li class="list-group-item">
+    <a routerLink=""
+       routerLinkActive=""
+       (click)="onClick()">
+      <fa-icon [icon]="['fas','truck-loading']"></fa-icon>{{labels.orders}}
+      <span *ngIf="!isPopup"></span>
+    </a>
+  </li>
+  <li class="list-group-item">
+    <a routerLink=""
+       routerLinkActive=""
+       (click)="onClick()">
+      <fa-icon [icon]="['fas','address-book']"></fa-icon>{{labels.addresses}}
+      <span *ngIf="!isPopup"></span>
+    </a>
+  </li>
+</ul>
+
+
+<ul class="list-group list-group-flush ">
+  <li class="list-group-item"
+      *ngIf="!isPopup">
+    <a routerLink="home"
+       routerLinkActive="active"
+       (click)="onClick()">
+      <fa-icon [icon]="['fas','window-maximize']"></fa-icon>{{labels.home}}
+      <span *ngIf="!isPopup"></span>
+    </a>
+  </li>
+  <li class="list-group-item"
+      *ngIf="!isPopup">
+    <a routerLink="shop"
+       routerLinkActive="active"
+       (click)="onClick()">
+      <fa-icon [icon]="['fas','store']"></fa-icon>{{labels.shop}}
+      <span *ngIf="!isPopup"></span>
+    </a>
+  </li>
+  <li class="list-group-item">
+    <a routerLink=""
+       routerLinkActive=""
+       (click)="onClick()">
+      <fa-icon [icon]="['fas','info-circle']"></fa-icon>{{labels.support}}
+      <span *ngIf="!isPopup"></span>
+    </a>
+  </li>
+  <li class="list-group-item">
+    <a routerLink=""
+       routerLinkActive=""
+       (click)="onClick()">
+      <fa-icon [icon]="['fas','headset']"></fa-icon>{{labels.contact}}
+      <span *ngIf="!isPopup"></span>
+    </a>
+  </li>
+
+</ul>

@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef, OnDestroy } from '@angular/core';
 import { CartService } from './cart.service';
 import { SubSink } from 'subsink';
+import { AuthMessages } from '../../helpers/constants';
 
 @Component({
   selector: 'app-cart',
@@ -8,7 +9,7 @@ import { SubSink } from 'subsink';
   styleUrls: ['./cart.component.scss']
 })
 export class CartComponent implements OnInit, OnDestroy {
-
+  labels = AuthMessages.authAnchorLabels;
   cartItemSize = 0;
   private subs = new SubSink();
 
@@ -27,7 +28,7 @@ export class CartComponent implements OnInit, OnDestroy {
   getCartSize() {
     console.log('cart size fetched from cart-component');
     this.subs.sink = this.cartService.getCartFromStore()
-      .subscribe(cart =>{
+      .subscribe(cart => {
         console.log('cart = ', cart);
         this.cartItemSize = cart.length
       });

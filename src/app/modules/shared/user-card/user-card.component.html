@@ -1,0 +1,60 @@
+<ng-template #loading>
+   <div class="col-12 text-center mx-2">
+      <span>
+         <fa-icon [icon]="['fas', 'spinner']"
+                  [spin]="true"></fa-icon>
+      </span>
+   </div>
+</ng-template>
+
+<div class="row  pop-title-wrapper mx-2 pb-2"
+     *ngIf="!!authUser; else loading">
+   <div class="col-12 pop-title">
+      <div class="auth-anonymous"
+           *ngIf="!!authUser && authUser?.IsAnonymous">
+         <h6>{{labels.welcome}}</h6>
+         <p>{{labels.welcomeAuthMsg}}</p>
+         <div class="auth-control">
+            <button class="btn btn-sm btn-outline-dark"
+               [routerLink]="[{outlets: {'secure': ['auth']}}]">
+               <span>{{labels.login}}</span> | <span>{{labels.signup}}</span>
+         </button>
+         </div>
+      </div>
+
+      <div class="auth-logged-in"
+           *ngIf="!!authUser && !authUser?.IsAnonymous">
+         <div class="prof-img ">
+            <img class="rounded-circle dp"
+                 height="50"
+                 [src]=" authUser.PhotoURL "
+                 [alt]=""
+                 *ngIf="!!authUser?.PhotoURL">
+            <h1 class=" rounded-circle dp"
+                *ngIf="!authUser?.PhotoURL && !!authUser?.Email">{{authUser.Email.substr(0,2)}}
+            </h1>
+         </div>
+
+         <div class="prof-info">
+
+
+            <span *ngIf="authUser?.Name"
+                  class="name">{{authUser?.Name}}</span>
+            <span *ngIf="!authUser?.Name"
+                  class="email">{{authUser?.Email}}</span>
+            <br>
+            <span class="badge  badge-pill badge-dark"
+                  *ngIf="!authUser?.IsAnonymous && authUser?.IsEmailVerified">{{  labels.verifiedAccount}}</span>
+
+            <span class="badge  badge-pill badge-danger"
+                  *ngIf="!authUser?.IsAnonymous && !authUser?.IsEmailVerified">{{  labels.notVerifyAccount}}</span>
+         </div>
+
+         <div class="mg-profile">
+            <button class="btn btn-sm btn-outline-dark">
+               {{labels.manageProfile}}
+            </button>
+         </div>
+      </div>
+   </div>
+</div>

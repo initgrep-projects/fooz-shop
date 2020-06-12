@@ -1,0 +1,42 @@
+<!-- auth header anchor //start-->
+<a class="auth-profile-nav"
+   placement="bottom"
+   [ngbPopover]="popContent"
+   [popoverTitle]="popTitle"
+   triggers="mouseenter"
+   [autoClose]="'true'"
+   [popoverClass]="'pop-style'"
+   #p="ngbPopover">
+
+   <div>
+      <fa-icon class="far"
+               [icon]="['far','user']"></fa-icon>
+      <fa-icon class="fas"
+               [icon]="['fas','user']"></fa-icon>
+   </div>
+   <span class=" label small d-none d-md-block">{{labels.profile}}</span>
+   <span class="hog"></span>
+</a>
+
+<!--- auth header anchor //end-->
+
+<ng-template #popTitle>
+   <app-user-card></app-user-card>
+</ng-template>
+
+<ng-template #popContent>
+   <div class="row">
+      <div class="col-12 pop-content">
+         <app-anchors [is-popup] ="true"></app-anchors>
+      </div>
+      <div class="col-12 pop-footer">
+         <app-signout></app-signout>
+      </div>
+   </div>
+   
+ 
+
+</ng-template>
+
+<!-- router outlet for auth modal-->
+<router-outlet name="secure"></router-outlet>

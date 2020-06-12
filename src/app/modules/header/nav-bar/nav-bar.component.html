@@ -10,67 +10,17 @@
               <fa-icon icon="times"
                        (click)="closeSideNav()"></fa-icon>
             </a>
-
-            <a class="sidenav-brand"
-               routerLink="home">
-              <fa-icon icon="atom"></fa-icon>
-              <span>Fooz</span>
-            </a>
+          </div>
+          <div class="col-12">
+            <app-user-card (userLoaded)="closeSideNav()"></app-user-card>
           </div>
         </div>
-
-
-
       </div>
-
       <div class="col-12 ">
-        <ul class="list-group list-group-flush ">
-          <li class="list-group-item "
-              style="animation-duration: .5s;">
-            <a routerLink="home"
-               routerLinkActive="active"
-               (click)="closeSideNav()">
-              <fa-icon [icon]="['fas','window-maximize']"></fa-icon>home
-              <span></span>
-            </a>
-          </li>
-          <li class="list-group-item"
-              style="animation-duration: 1s;">
-            <a routerLink="shop"
-               routerLinkActive="active"
-               (click)="closeSideNav()">
-              <fa-icon [icon]="['fas','store']"></fa-icon>shop
-              <span></span>
-            </a>
-          </li>
-          <li class="list-group-item"
-              style="animation-duration: 1.5s;">
-            <a routerLink=""
-               routerLinkActive=""
-               (click)="closeSideNav()">
-              <fa-icon [icon]="['fas','info-circle']"></fa-icon>support
-              <span></span>
-            </a>
-          </li>
-          <li class="list-group-item"
-              style="animation-duration: 2s;">
-            <a routerLink=""
-               routerLinkActive=""
-               (click)="closeSideNav()">
-              <fa-icon [icon]="['fas','headset']"></fa-icon>contact
-              <span></span>
-            </a>
-          </li>
-          <li class="list-group-item"
-              style="animation-duration: 2.5s;">
-            <a routerLink=""
-               routerLinkActive=""
-               (click)="closeSideNav()">
-              <fa-icon [icon]="['fas','truck']"></fa-icon>delivery
-              <span></span>
-            </a>
-          </li>
-        </ul>
+        <app-anchors (clicked)="closeSideNav()"></app-anchors>
+      </div>
+      <div class="col-12 text-center">
+        <app-signout (afterSignOut)="closeSideNav()"></app-signout>
       </div>
     </div>
   </div>
@@ -90,14 +40,14 @@
          routerLink="home">
         <fa-icon icon="atom"
                  class="d-none d-md-inline mr-1"></fa-icon>
-        <span>FOOZ</span>
+        <span>{{labels.brandName}}</span>
       </a>
     </li>
     <li class="nav-item mr-3 d-none d-md-block">
       <a class="nav-link app-link"
          routerLink="home"
          routerLinkActive="active">
-        home
+        {{labels.home}}
         <span></span>
       </a>
     </li>
@@ -105,7 +55,7 @@
       <a class="nav-link app-link"
          routerLink="shop"
          routerLinkActive="active">
-        shop
+        {{labels.shop}}
         <span></span>
       </a>
     </li>

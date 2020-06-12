@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef, OnDestroy } from '@angular/core';
 import { SidebarService } from 'src/app/modules/shared/sidebar/sidebar.service';
 import { SubSink } from 'subsink';
+import {AuthMessages} from '../../../helpers/constants';
 
 @Component({
   selector: 'app-nav-bar',
@@ -8,7 +9,7 @@ import { SubSink } from 'subsink';
   styleUrls: ['./nav-bar.component.scss']
 })
 export class NavBarComponent implements OnInit, OnDestroy {
-
+  labels = AuthMessages.authAnchorLabels;
   private subs = new SubSink();
   constructor(private sidebarService: SidebarService) { }
   isNavClosed = false;

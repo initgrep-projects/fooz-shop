@@ -1,0 +1,40 @@
+@import "../../../../variables.scss";
+
+ul.list-group {
+    padding-top: 1rem;
+    width: auto;
+    padding-left: 10;
+    border-bottom:1px solid #f6f6f6;
+
+    li {
+        background-color: transparent;
+        border-bottom: 0px solid transparent;
+        @include animate(fadeIn, .5s);
+       
+        padding:.5rem 0 .5rem 1rem;
+
+        a {
+            font-size: 0.8rem;
+            letter-spacing: 0.045rem;
+            text-decoration: none;
+            color: $primary-text-color;
+            cursor: pointer;
+            text-transform: capitalize;
+            display: block;
+    
+            fa-icon {
+                margin-right: 0.6rem;
+            }
+
+            &:hover {
+                font-weight: 600;
+            }
+
+            &.active {
+                color: $primary-text-color;
+                font-weight: 600;
+               
+            }
+        }
+    }
+}

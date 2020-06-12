@@ -1,6 +1,6 @@
 @import "../../../../variables.scss";
 
-a.auth-profile {
+a.auth-profile-nav {
     color: $primary-text-color;
     text-decoration: none;
     cursor: pointer;
@@ -43,69 +43,6 @@ a.auth-profile {
     }
 }
 
-div.pop-title {
-    font-family: $roboto-font-family;
-    width: 100%;
-    text-align: center;
-    div.auth-anonymous {
-        p {
-            b {
-                text-transform: uppercase;
-                letter-spacing: 0.045rem;
-            }
-            span {
-                font-size: 0.9rem;
-                letter-spacing: 0.025rem;
-            }
-        }
-
-        a.btn {
-            span {
-                letter-spacing: 0.025rem;
-                // font-weight: 600;
-                text-transform: capitalize;
-                padding: 0.5rem;
-                font-size: 0.8rem;
-            }
-        }
-    }
-
-    div.auth-loggedin {
-        text-align: center;
-        .dp {
-            width: 50px;
-            height: 50px;
-        }
-        span.dp {
-            display: block;
-            background-color: #f1f1f1;
-            left: 40%;
-            position: relative;
-            text-align: center;
-            padding-top: 15px;
-            letter-spacing: 0.025rem;
-            font-size: 60;
-            font-weight: 600;
-            text-transform: uppercase;
-        }
-        p.name,
-        p.email {
-            margin: 0.5rem;
-            letter-spacing: 0.025rem;
-            font-size: 0.9rem;
-            font-weight: 600;
-        }
-        a.btn {
-            text-transform: capitalize;
-            font-size: 0.8rem;
-            letter-spacing: 0.025rem;
-            &:hover {
-                font-weight: 600;
-                transition: all 0.5s ease-in;
-            }
-        }
-    }
-}
 
 div.pop-content {
     font-family: $roboto-font-family;
@@ -143,18 +80,8 @@ div.pop-content {
 }
 
 div.pop-footer {
-    font-family: $roboto-font-family;
     margin-bottom: 1rem;
     text-align: center;
-    ul {
-        li {
-            button {
-                text-transform: capitalize;
-                letter-spacing: 0.025rem;
-                font-size: 0.8rem;
-            }
-        }
-    }
 }
 
 .pop-style {

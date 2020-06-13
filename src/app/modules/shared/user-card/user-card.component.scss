@@ -8,14 +8,14 @@ div.pop-title-wrapper {
         padding: 5px;
         div.auth-anonymous {
             text-align: center;
-            h6 {
+            h5 {
                 font-weight: 600;
                 text-transform: uppercase;
                 letter-spacing: 0.025rem;
                 margin-bottom: 0.2rem;
             }
             p {
-                font-size: 0.8rem;
+                font-size: 1rem;
                 letter-spacing: 0.025rem;
                 margin-bottom: 0.5rem;
             }
@@ -23,12 +23,12 @@ div.pop-title-wrapper {
                 text-align: center;
                 margin-top: 2rem;
                 button {
-                    font-size: 0.8rem;
+                    font-size: 1rem;
                     letter-spacing: 0.025rem;
                     text-transform: capitalize;
                     border-radius: 20px;
-                    padding-left: 1rem;
-                    padding-right: 1rem;
+                    padding-left: 1.5rem;
+                    padding-right: 1.5rem;
                 }
             }
         }

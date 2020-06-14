@@ -1,15 +1,18 @@
 import { Injectable } from '@angular/core';
-import { Product } from 'src/app/models/product';
-import { addItemToCartAction, addItemsToCartAction, updateItemInCartAction, deleteItemInCartAction } from './store/cart.actions';
 import { Store } from '@ngrx/store';
-import { AppState } from '../main/store/app.reducer';
-import { FireStoreDbService } from 'src/app/services/firestore.db.service';
-import { CartItem } from 'src/app/models/cartItem';
-import { tap, map, take } from 'rxjs/operators';
-import { AlertService } from '../shared/alert/alert.service';
+import { isEmpty } from 'lodash';
+import { of, zip } from 'rxjs';
+import { map, switchMap, take, tap } from 'rxjs/operators';
 import { CART_ITEM_EXIST, CART_ITEM_MAX_QUANTITY, toastLabels } from 'src/app/helpers/constants';
-import { updateProductAction } from '../shop/store/shop.actions';
+import { CartItem } from 'src/app/models/cartItem';
+import { Product } from 'src/app/models/product';
+import { FireStoreDbService } from 'src/app/services/firestore.db.service';
+import { AuthService } from '../auth/auth.service';
+import { AppState } from '../main/store/app.reducer';
+import { AlertService } from '../shared/alert/alert.service';
 import { ToastService } from '../shared/toasts/toast.service';
+import { updateProductAction } from '../shop/store/shop.actions';
+import { addItemsToCartAction, addItemToCartAction, deleteItemInCartAction, updateItemInCartAction } from './store/cart.actions';
 
 
 
@@ -20,12 +23,12 @@ export class CartService {
 
   constructor(
     private store: Store<AppState>,
-    private fbDataService: FireStoreDbService,
+    private db: FireStoreDbService,
     private alertService: AlertService,
-    private toastService: ToastService
+    private toastService: ToastService,
+    private authService: AuthService
   ) {
 
-    this.dispatchCartItemsToStore();
   }
 
 
@@ -62,7 +65,7 @@ export class CartService {
         } else {
           this.saveCartItem(item);
           this.updateProductQuantity(item.Product, item.SelectedQuantity);
-          this.toastService.show(toastLabels.itemAddedToCart,{ icon:'cart-plus'});
+          this.toastService.show(toastLabels.itemAddedToCart, { icon: 'cart-plus' });
         }
       });
 
@@ -71,12 +74,13 @@ export class CartService {
   saveCartItem(item: CartItem) {
     console.log('saveItem called');
     this.store.dispatch(addItemToCartAction({ payload: item }));
-    this.fbDataService.saveCartItemToDb(item);
+    this.db.saveCartItemToDb(item);
   }
+
 
   updateCartItem(item: CartItem) {
     this.store.dispatch(updateItemInCartAction({ payload: item }));
-    this.fbDataService.updateCartItemToDb(item);
+    this.db.updateCartItemInDb(item);
   }
 
   /**
@@ -87,12 +91,12 @@ export class CartService {
   updateProductQuantity(p: Product, q: number) {
     p.Quantity = p.Quantity - q;
     this.store.dispatch(updateProductAction({ payload: p }));
-    // this.fbDataService.updateProduct(p);
+    // this.db.updateProduct(p);
   }
 
   deleteItem($id: string) {
     this.store.dispatch(deleteItemInCartAction({ payload: $id }));
-    this.fbDataService.deleteCartItemInDb($id);
+    this.db.deleteCartItemInDb($id);
   }
 
   searchItem(cart: CartItem[], item: CartItem) {
@@ -106,14 +110,52 @@ export class CartService {
       .pipe(map(state => state.cart));
   }
 
+  /**
+   * on the user change,
+   * a) load the existing cart items from db to store
+   * if:
+   * 1) current user was real user and last user was real user
+   * 2) current user was real anonymous and last user was real
+   * 
+   * else:
+   * 3) current user is anonymous and new user is real
+   *   -  update the current cartItems with current User
+   *   - do operation (a)
+   * 
+   */
   dispatchCartItemsToStore() {
-    return this.fbDataService.fetchcartItemsFromDb()
+
+    return this.authService.userFromStore$
       .pipe(
-        take(1),
-        tap(items => {
+        switchMap(user => {
+          return zip(of(user), this.getCartFromStore())
+        }),
+        tap(([user, cart]) => {
+          if (!!user && !user.IsAnonymous && !isEmpty(cart)) {
+            if (cart[0].IsAnonymousUser) {
+              const refreshedCartItems = cart.map(item => {
+                item.UserId = user.UID;
+                item.IsAnonymousUser = user.IsAnonymous;
+                return item;
+              });
+              this.db.updateCartInDb(refreshedCartItems);
+            }
+          }
+        }),
+        map(([user, cart]) => {
+          return user;
+        }),
+        switchMap(user => {
+          if (!!user) {
+            return this.db.fetchcartItemsFromDb(user.UID)
+          }
+          return of([]);
+        }),
+        tap((items: CartItem[]) => {
           this.store.dispatch(addItemsToCartAction({ payload: items }));
         })
-      ).subscribe();
+      )
+
   }
 
 }

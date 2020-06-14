@@ -1,24 +1,25 @@
-import { Injectable, Query } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
-import { FakedataService } from './fakedata.service';
-import { Product } from '../models/product';
-
-import { classToPlain, plainToClass } from 'class-transformer';
-import { ObjectTransformerService } from './object-transformer.service';
+import { classToPlain } from 'class-transformer';
 import { map, tap } from 'rxjs/operators';
+import {
+  CART_COLLECTION, CATEGORY_COLLECTION,
+  CUSTOM_SIZE_INPUT, PRODUCT_COLLECTION,
+  PRODUCT_PAGE_SIZE, SIZE_COLLECTION, SORT_COLLECTION, TREND_COLLECTION, USER_COLLECTION
+} from '../helpers/constants';
+import { generateGuid } from '../helpers/util';
+import { CartItem } from '../models/cartItem';
 import { Category } from '../models/category';
+import { CustomSizeInput } from '../models/custom-size';
+import { Image } from '../models/image';
+import { Product } from '../models/product';
 import { Size } from '../models/size';
 import { Sort } from '../models/Sort';
-import { CustomSizeInput } from '../models/custom-size';
-import { CartItem } from '../models/cartItem';
-import { generateGuid } from '../helpers/util';
-import { Image } from '../models/image';
 import { User } from '../models/user';
+import { FakedataService } from './fakedata.service';
+import { ObjectTransformerService } from './object-transformer.service';
 
-import {
-  CART_COLLECTION, PRODUCT_COLLECTION, CATEGORY_COLLECTION,
-  SIZE_COLLECTION, CUSTOM_SIZE_INPUT, SORT_COLLECTION, TREND_COLLECTION, PRODUCT_PAGE_SIZE, USER_COLLECTION
-} from '../helpers/constants';
+
 
 @Injectable({
   providedIn: 'root'
@@ -255,7 +256,20 @@ export class FireStoreDbService {
     return this.cartCollection.doc(item.Id).set(classToPlain(item));
   }
 
-  updateCartItemToDb(item: CartItem) {
+  updateCartInDb(items: CartItem[]): Promise<void> {
+    return new Promise((resolve, reject) => {
+      try {
+        items.forEach(async (item) => await this.updateCartItemInDb(item));
+        resolve();
+      } catch (e) {
+        reject(e);
+      }
+    });
+
+  }
+
+  
+  updateCartItemInDb(item: CartItem) {
     return this.cartCollection.doc(item.Id).set(classToPlain(item));
 
   }
@@ -263,8 +277,10 @@ export class FireStoreDbService {
     return this.cartCollection.doc(id).delete();
   }
 
-  fetchcartItemsFromDb() {
-    return this.cartCollection
+  fetchcartItemsFromDb(userId: string) {
+    return this.db.collection(CART_COLLECTION, ref =>
+      ref.where('userId', '==', userId)
+    )
       .get()
       .pipe(
         map(querySnapShot => {
@@ -302,7 +318,6 @@ export class FireStoreDbService {
       .get()
       .pipe(
         map(querySnapShot => {
-          console.log('querysnapshot fetchUserByEmail data = ', querySnapShot);
           const users: User[] = [];
           querySnapShot.forEach(doc => {
             users.push(this.objTransformer.transformUserFromDocumentData(doc.data()));

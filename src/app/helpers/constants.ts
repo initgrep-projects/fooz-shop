@@ -70,4 +70,11 @@ export const AuthMessages = {
     }
 };
 
+export const cartLabels = {
+        cart: 'shopping cart',
+        goToShopping: 'go to shoping',
+        goToCheckout: 'checkout items',
+        emptyCart: 'your cart is empty'
+}
+
 

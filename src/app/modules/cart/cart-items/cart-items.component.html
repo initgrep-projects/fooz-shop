@@ -1,14 +1,14 @@
 <div class="modal-header">
   <h4 class="modal-title">
-    <fa-icon class="cart" icon="shopping-cart"></fa-icon>Cart
+    <fa-icon class="cart" icon="shopping-cart"></fa-icon>{{labels.cart}}
   </h4>
   <button type="button" class="close" aria-label="Close" (click)="closeModal()">
     <fa-icon icon="times"></fa-icon>
   </button>
 </div>
 <div class="modal-body">
-  <div *ngIf="cart.length == 0"  class="alert alert-light" role="alert">
-    Your cart is empty.
+  <div *ngIf="cart?.length == 0"  class="alert alert-light" role="alert">
+    {{labels.emptyCart}}
   </div>
 
   <ul class="list-unstyled">
@@ -18,10 +18,10 @@
   </ul>
 </div>
 <div class="modal-footer">
-  <button type="button" class="btn btn-sm btn-secondary" (click)="routeToShop()">
-        <span class="text">go to shopping</span>
+  <button type="button" class="btn btn-sm btn-outline-dark" (click)="routeToShop()">
+        <span class="text">{{labels.goToShopping}}</span>
   </button>
   <button type="button" class="btn btn-sm btn-dark" *ngIf="cart.length > 0">
-    <span class="text">go to checkout</span>
+    <span class="text">{{labels.goToCheckout}}</span>
   </button>
 </div>

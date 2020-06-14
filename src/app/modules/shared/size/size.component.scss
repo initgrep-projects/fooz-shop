@@ -4,7 +4,7 @@ div.size-wrapper{
   font-family: $roboto-font-family;
     ul.list-inline {
         li.list-inline-item {
-          @include animate();
+          // @include animate();
           span {
             display: inline-block;
             border: 1px solid $grey-border-color;

@@ -1,10 +1,12 @@
-import { Component, OnInit, Input, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ItemDetailService } from '../item-detail.service';
 import { CartService } from 'src/app/modules/cart/cart.service';
 import { SubSink } from 'subsink';
 import { cloneDeep } from 'lodash';
 import { CartItem } from 'src/app/models/cartItem';
 import { generateGuid } from 'src/app/helpers/util';
+import { AuthService } from 'src/app/modules/auth/auth.service';
+import { User } from 'src/app/models/user';
 
 @Component({
   selector: 'app-item-buy',
@@ -13,22 +15,26 @@ import { generateGuid } from 'src/app/helpers/util';
 })
 export class ItemBuyComponent implements OnInit, OnDestroy {
   private subs = new SubSink();
-  /**
-   * to be done later when Authentication is implemented
-   */
-  userId = 'Ano';
   cartItem: CartItem;
   isValidCart = true;
-
+  authUser:User;
 
   constructor(
     private itemdetailService: ItemDetailService,
-    private cartService: CartService
+    private cartService: CartService,
+    private authService: AuthService
   ) { }
 
   ngOnInit(): void {
     this.cartItem = new CartItem();
-    this.cartItem.UserId = this.userId;
+    this.authService.userFromStore$.subscribe(user=> {
+      console.log('Auth User in itemBuy= ', user);
+      this.authUser = user;
+      this.cartItem.UserId = user?.UID;
+      this.cartItem.IsAnonymousUser = user?.IsAnonymous;
+    });
+
+   
     this.subs.sink = this.itemdetailService.inputProductChange
       .subscribe(p => {
         this.cartItem.Product = cloneDeep(p);
@@ -51,7 +57,6 @@ export class ItemBuyComponent implements OnInit, OnDestroy {
     console.log('addToCart Called  ', this.cartItem);
     this.cartItem.Id = generateGuid();
     this.cartItem.CreatedDate = Date.now();
-
     const item = cloneDeep(this.cartItem);
     this.isValidCart = this.itemdetailService.validateCartItem(item);
     if (this.isValidCart) {

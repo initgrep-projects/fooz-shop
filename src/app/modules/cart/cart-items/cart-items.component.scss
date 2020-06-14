@@ -6,7 +6,7 @@ div.modal-header {
         font-weight: 600;
         text-align: center;
         width: 100%;
-        letter-spacing: 0.25rem;
+        letter-spacing: 0.095rem;
         text-transform: uppercase;
         fa-icon.cart {
             margin-right: 1rem;
@@ -26,11 +26,13 @@ div.modal-footer {
     font-family: $roboto-font-family;
     justify-content: center;
     button {
-        font-size: 0.7rem;
+        font-size: .8rem;
         text-transform: uppercase;
+        letter-spacing: 0.045rem;
+        font-weight: 600;
         @include animate(fadeInUp, .5s);
         span.text {
-            letter-spacing: 0.025rem;
+            
         }
 
     }

@@ -4,6 +4,7 @@ import { CartItem } from 'src/app/models/cartItem';
 import { CartModalService } from '../cart-modal/cart-modal.service';
 import { SubSink } from 'subsink';
 import { Router, ActivatedRoute } from '@angular/router';
+import { cartLabels } from 'src/app/helpers/constants';
 
 
 @Component({
@@ -12,7 +13,7 @@ import { Router, ActivatedRoute } from '@angular/router';
   styleUrls: ['./cart-items.component.scss']
 })
 export class CartItemsComponent implements OnInit, OnDestroy {
-
+  labels = cartLabels;
   cart: CartItem[] = [];
   private subs = new SubSink();
 

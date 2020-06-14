@@ -10,6 +10,7 @@ export class CartItem {
         private id?: string,
         private createdDate?: number,
         private userId?: string,
+        private isAnonymousUser?: boolean,
         private product?: Product,
         private selectedQuantity?: number,
         private selectedColor?: Color,
@@ -20,6 +21,9 @@ export class CartItem {
 
     get UserId() { return this.userId; }
     set UserId(userId: string) { this.userId = userId; }
+
+    get IsAnonymousUser() { return this.isAnonymousUser; }
+    set IsAnonymousUser(iau: boolean) { this.isAnonymousUser = iau; }
 
     get Product() { return this.product; }
     set Product(product: Product) { this.product = product; }
@@ -42,7 +46,7 @@ export class CartItem {
     get Id() { return this.id; }
     set Id(id: string) { this.id = id; }
 
-    get CreatedDate() {return this.createdDate;}
+    get CreatedDate() { return this.createdDate; }
     set CreatedDate(t: number) { this.createdDate = t; }
 
     equals(_item: CartItem): boolean {

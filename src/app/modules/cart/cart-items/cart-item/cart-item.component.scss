@@ -21,7 +21,7 @@ div.media {
             font-weight: 600;
             line-height: 1.2;
             letter-spacing: 0.025rem;
-            @include animate();
+            // @include animate();
 
             &:hover {
                 background-color: #333;
@@ -37,7 +37,7 @@ div.media {
                 border-width: 0;
                 padding: 0;
                 padding-bottom: 0.5rem;
-                @include animate();
+                // @include animate();
                 span.color,
                 span.size {
                     letter-spacing: 0.035rem;
@@ -67,6 +67,7 @@ div.media {
             color: $grey-text-color;
         }
         h6.price {
+            @include animate(fadeIn, 1s);
             font-weight: 600;
             font-size: 0.8rem;
         }

@@ -189,8 +189,6 @@ export class AuthService {
       .pipe(take(1));
   }
 
-
-
   saveUserToStore(user: User) {
     this.store.dispatch(addUserAction({ payload: user }));
   }

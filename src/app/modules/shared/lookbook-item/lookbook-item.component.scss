@@ -60,6 +60,7 @@
     position: absolute;
     bottom: 10%;
     width: 100%;
+    border-radius: 5px;
     a {
       border: 2px solid $secondary-border-color;
       text-decoration: none;
@@ -75,7 +76,7 @@
       box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
       // opacity: 0;
       transition: all 0.5s ease-out;
-      text-transform: capitalize;
+      text-transform: uppercase;
       &:hover {
         background-color: $dark-bg-color;
         color: $secondary-text-color;
@@ -90,6 +91,7 @@
     width: 70%;
     text-align: center;
     left: 15%;
+    border-radius: 5px;
     span.title,
     span.price {
       display: block;

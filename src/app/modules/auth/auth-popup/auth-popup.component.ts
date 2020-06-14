@@ -15,7 +15,7 @@ import { NgbPopover } from '@ng-bootstrap/ng-bootstrap';
 export class AuthPopupComponent implements OnInit, OnDestroy, DoCheck {
   private subs = new SubSink();
   labels = AuthMessages.authAnchorLabels;
-  authUser: User;
+  
   @ViewChild(NgbPopover) popover: NgbPopover;
 
   constructor(private elementRef: ElementRef) { }
@@ -28,9 +28,7 @@ export class AuthPopupComponent implements OnInit, OnDestroy, DoCheck {
       });
     }
   }
-  ngOnInit(): void {
-
-  }
+  ngOnInit(): void {}
 
   closePopover() {
     if (!!this.popover) {

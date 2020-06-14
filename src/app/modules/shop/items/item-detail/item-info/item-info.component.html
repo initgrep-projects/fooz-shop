@@ -5,12 +5,13 @@
             <p class="prod-code"> Code: <span>{{product.Id}}</span></p>
             <p class="prod-desc">{{product.Description}}</p>
             <hr>
+            
             <p class="price-wrapper">
-               <app-item-quantity></app-item-quantity>
-               <span class="price">{{product.Price.Code}} : {{grossItemPrice}}</span>
-                
+                <app-item-quantity></app-item-quantity>
+                <span class="price">{{product.Price.Code}} : {{grossItemPrice}}</span>
+               <small class="tax-info small text-muted">inclusive of all taxes</small>
             </p>
-            <small class="tax-info small text-muted">inclusive of all taxes</small>
+            
             <hr>
         </div>
     </div>

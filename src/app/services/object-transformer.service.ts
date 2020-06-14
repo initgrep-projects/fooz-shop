@@ -171,6 +171,7 @@ export class ObjectTransformerService {
       param.id,
       param.createdDate,
       param.userId,
+      param.isAnonymousUser,
       this.transformProduct(param.product),
       param.selectedQuantity,
       this.transformColor(param.selectedColor),

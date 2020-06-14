@@ -1,12 +1,13 @@
 ul {
     li {
         button {
-            text-transform: capitalize;
+            text-transform: uppercase;
             letter-spacing: 0.045rem;
-            font-size: 1rem;
+            font-size: .8rem;
             border-radius: 20px;
             padding-left: 1rem;
             padding-right: 1rem;
+            font-weight: 600;
         }
     }
 }

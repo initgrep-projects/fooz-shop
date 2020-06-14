@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild, ElementRef, OnDestroy } from '@angular/co
 import { CartService } from './cart.service';
 import { SubSink } from 'subsink';
 import { AuthMessages } from '../../helpers/constants';
+import { AuthService } from '../auth/auth.service';
 
 @Component({
   selector: 'app-cart',
@@ -16,11 +17,12 @@ export class CartComponent implements OnInit, OnDestroy {
   @ViewChild('cartContent') cartContentRef: ElementRef;
 
   constructor(
-    private cartService: CartService
+    private cartService: CartService,
+    private authService: AuthService
   ) { }
 
   ngOnInit(): void {
-    console.log('cartcomponent init called ');
+    this.dispatchCartItemsOnUserChange();
     this.getCartSize();
   }
 
@@ -32,6 +34,12 @@ export class CartComponent implements OnInit, OnDestroy {
         console.log('cart = ', cart);
         this.cartItemSize = cart.length
       });
+  }
+
+  /** load the new items */
+  dispatchCartItemsOnUserChange() {
+    this.subs.sink = this.cartService.dispatchCartItemsToStore()
+    .subscribe();
   }
 
   ngOnDestroy() {

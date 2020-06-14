@@ -4,7 +4,8 @@
   flex: 1;
   img {
     width: 100%;
-    height: calc(100% - 5vh);
+    height: 100%;
+    
   }
 }
 
@@ -14,6 +15,7 @@
   img {
     width: 100%;
     height: 100%;
+    
   }
 }
 
@@ -34,7 +36,7 @@
 
     img {
       width: 100%;
-      height: calc(100% - 5vh);
+      height: 100%;
       object-fit: cover;
       object-position: center;
       transition: 0.5s;

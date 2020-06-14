@@ -2,7 +2,7 @@
 
 div.quantity-wrapper {
     font-family: $roboto-font-family;
-    @include animate();
+    // @include animate();
     span {
         border: 2px solid $primary-border-color;
         padding: 0px;
@@ -25,14 +25,16 @@ div.quantity-wrapper {
     }
     span.pre,
     span.post {
-        background: $dark-bg-color;
-        color: $secondary-text-color;
+        background: $grey-bg-color;
+        color: $primary-text-color;
+        transition: all .2s ease-in;
         cursor: pointer;
         &:hover,
         &:active,
         &:focus {
             background: $dark-bg-color;
             color: $secondary-text-color;
+            
         }
     }
 }

@@ -23,9 +23,28 @@ $grey-border-color: #8080801c;
     animation-duration: $duration;
 }
 
+.shake-animation{
+   animation: shake .82s cubic-bezier(.36,.07,.19,.97) both;
+    display: block;
+}
+
+@mixin validation-message() { 
+    display: block;
+    font-size: 0.7rem;
+    letter-spacing: 0.025rem;
+    padding-bottom: .3rem;
+    @include animate(fadeIn, 1s);
+    &::first-letter {
+        text-transform: capitalize !important;
+    }
+    fa-icon {
+        margin-right: 0.3rem;
+    }
+}
+
 //extra margin
 
-.mb-5a{
+.mb-5a {
     margin-bottom: 5rem;
 }
 
@@ -39,7 +58,6 @@ $grey-border-color: #8080801c;
         padding: 0;
     }
 
-
     // Box.
     & + label:before {
         content: "";
@@ -49,7 +67,7 @@ $grey-border-color: #8080801c;
         width: 15px;
         height: 15px;
         background: white;
-        border:2px solid $dark-bg-color;
+        border: 2px solid $dark-bg-color;
         border-radius: 5px;
     }
 
@@ -91,7 +109,6 @@ $grey-border-color: #8080801c;
     }
 }
 
-
 /** mixins for media queries **/
 
 // Small tablets and large smartphones (landscape view)
@@ -106,38 +123,37 @@ $screen-lg-min: 992px;
 // Large tablets and desktops
 $screen-xl-min: 1200px;
 
-
 // Small devices
 @mixin sm {
     @media (min-width: #{$screen-sm-min}) {
         @content;
     }
- }
- 
- // Medium devices
- @mixin md {
+}
+
+// Medium devices
+@mixin md {
     @media (min-width: #{$screen-md-min}) {
         @content;
     }
- }
- 
- // Large devices
- @mixin lg {
+}
+
+// Large devices
+@mixin lg {
     @media (min-width: #{$screen-lg-min}) {
         @content;
     }
- }
- 
- // Extra large devices
- @mixin xl {
+}
+
+// Extra large devices
+@mixin xl {
     @media (min-width: #{$screen-xl-min}) {
         @content;
     }
- }
+}
 
- // Custom devices
+// Custom devices
 @mixin rwd($screen) {
-    @media (min-width: $screen+'px') {
+    @media (min-width: $screen+"px") {
         @content;
     }
- }
+}

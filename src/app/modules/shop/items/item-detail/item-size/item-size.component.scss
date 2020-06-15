@@ -12,10 +12,10 @@ div.size-wrapper {
     letter-spacing: 0.1rem;
     margin-bottom: 1rem;
 
-    span {
+    span.customize {
       font-weight: 400;
       letter-spacing: 0.05rem;
-      font-size: 0.8rem;
+      font-size: 0.6rem;
       margin-left: 1rem;
       &:hover {
         background-color: #333;
@@ -26,5 +26,9 @@ div.size-wrapper {
         transition: .2s ease-in ;
       }
     }
+   
+  }
+  span.text-danger{
+    @include validation-message();
   }
 }

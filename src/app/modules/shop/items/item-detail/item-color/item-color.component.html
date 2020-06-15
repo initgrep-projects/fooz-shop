@@ -2,7 +2,14 @@
     <div class="col">
         <div class="size-wrapper">
             <h6>Select Color</h6>
-            <app-color [colors]="colors" (SelectionChange) ="OnSelectionChange($event)" ></app-color>
+            <span class="text-danger"
+                  *ngIf="!itemdetailService.invalidState.color">
+                {{labels.noColorProvided}}
+            </span>
+            <app-color [colors]="colors"
+                       [ngClass]="{'shake-animation': itemdetailService.invalidState.color === false }"
+                       (SelectionChange)="OnSelectionChange($event)"></app-color>
+
             <hr>
         </div>
     </div>

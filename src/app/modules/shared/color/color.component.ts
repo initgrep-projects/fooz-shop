@@ -46,6 +46,7 @@ export class ColorComponent implements OnInit, AfterViewInit {
         this.SelectionChange.emit(c);
       } else {
         this.resetSelection();
+        this.SelectionChange.emit(null);
       }
     }
 

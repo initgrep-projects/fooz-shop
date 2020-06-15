@@ -2,6 +2,7 @@ import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { Size } from 'src/app/models/size';
 import { ItemDetailService, CZ, SZ } from '../item-detail.service';
 import { SubSink } from 'subsink';
+import { itemLabels } from 'src/app/helpers/constants';
 
 @Component({
   selector: 'app-item-size',
@@ -9,12 +10,12 @@ import { SubSink } from 'subsink';
   styleUrls: ['./item-size.component.scss']
 })
 export class ItemSizeComponent implements OnInit, OnDestroy {
-
+  labels = itemLabels
   @Input() sizes: Size[];
   isVisible = true;
   subs = new SubSink();
 
-  constructor(private itemDetailService: ItemDetailService) { }
+  constructor(public itemDetailService: ItemDetailService) { }
 
 
   ngOnInit(): void {

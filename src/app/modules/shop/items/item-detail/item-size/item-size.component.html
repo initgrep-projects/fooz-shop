@@ -1,10 +1,19 @@
-<div class="row animated fadeIn " *ngIf ="isVisible">
+<div class="row animated fadeIn "
+     *ngIf="isVisible">
     <div class="col">
         <div class="size-wrapper">
-            <h6>select size 
-               <span (click)="hide()">Customize > </span>
-            </h6>   
-            <app-size  [sizes] = "sizes" (SelectionChange) = "onSelectionChange($event)"></app-size>
+            <h6>select size
+                <span class="customize"
+                      (click)="hide()">Customize > </span>
+            </h6>
+            <span class="text-danger"
+                  *ngIf="!itemDetailService.invalidState.size">
+                {{labels.noSizeProvided}}
+            </span>
+            <app-size [sizes]="sizes"
+                      (SelectionChange)="onSelectionChange($event)"
+                      [ngClass]="{'shake-animation': !itemDetailService.invalidState.size}"
+                      ></app-size>
         </div>
         <hr>
     </div>

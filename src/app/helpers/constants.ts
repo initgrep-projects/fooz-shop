@@ -77,4 +77,12 @@ export const cartLabels = {
         emptyCart: 'your cart is empty'
 }
 
+export const itemLabels = {
+    noColorProvided: 'please select a color',
+    noSizeProvided: 'please select a size',
+    noCategoryProvided: 'please select a category',
+    noQuantityProvided: 'please provide the quantity'
+
+}
+
 

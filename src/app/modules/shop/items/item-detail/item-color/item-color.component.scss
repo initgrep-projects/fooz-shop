@@ -1,17 +1,18 @@
-@import '../../../../../../variables.scss';
+@import "../../../../../../variables.scss";
 
 div.size-wrapper {
-    // margin-top: 1rem;
-    margin-bottom:1rem;
-    font-family: $roboto-font-family;
+  // margin-top: 1rem;
+  margin-bottom: 1rem;
+  font-family: $roboto-font-family;
 
-    h6 {
-      text-transform: uppercase;
-      font-weight: 600;
-      margin-right: 2rem;
-      letter-spacing: .10rem;
-      margin-bottom: 1rem;
-    }
-
-   
+  h6 {
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-right: 2rem;
+    letter-spacing: 0.1rem;
+    margin-bottom: 1rem;
   }
+  span.text-danger {
+    @include validation-message();
+  }
+}

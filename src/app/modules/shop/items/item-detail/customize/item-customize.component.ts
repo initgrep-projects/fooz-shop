@@ -3,6 +3,7 @@ import { ProductService } from '../../../product.service';
 import { CustomSize } from 'src/app/models/custom-size';
 import { ItemDetailService, CZ } from '../item-detail.service';
 import { SubSink } from 'subsink';
+import { itemLabels } from 'src/app/helpers/constants';
 
 @Component({
   selector: 'app-item-customize',
@@ -10,7 +11,7 @@ import { SubSink } from 'subsink';
   styleUrls: ['./item-customize.component.scss']
 })
 export class ItemCustomizeComponent implements OnInit, OnDestroy {
-
+  labels = itemLabels;
   private subs = new SubSink();
 
   widthSizeValues: number[] = [];
@@ -24,7 +25,7 @@ export class ItemCustomizeComponent implements OnInit, OnDestroy {
 
   constructor(
     private productService: ProductService,
-    private itemdetailService: ItemDetailService
+    public itemdetailService: ItemDetailService
   ) { }
 
   ngOnInit(): void {

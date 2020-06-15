@@ -13,12 +13,19 @@ import { isNull } from 'src/app/helpers/util';
 export const SZ = 'standard size';
 export const CZ = 'custom size';
 
+export interface invalidStateType {
+  color: boolean,
+  size: boolean,
+  quantity: boolean,
+  category: boolean
+}
+
 @Injectable({
   providedIn: 'root'
 })
 export class ItemDetailService {
 
-  invalidState = [];
+  invalidState: invalidStateType;
 
   inputProductChange = new BehaviorSubject<Product>(null);
   colorChange = new Subject<Color>();
@@ -28,7 +35,10 @@ export class ItemDetailService {
   customSizeChange = new BehaviorSubject<CustomSize>(null);
   sizeTypeChange = new Subject<String>();
 
-  constructor() { }
+  constructor() {
+    this.invalidState = { color: true, category: true, quantity: true, size: true };
+  }
+
 
   dispatchProduct(p: Product) {
     this.inputProductChange.next(this.getsanitzedProduct(p));
@@ -59,32 +69,46 @@ export class ItemDetailService {
 
   validateCartItem(cartItem: CartItem) {
     let isValid = true;
-    this.invalidState = [];
     if (isNull(cartItem.SelectedColor)) {
       isValid = isValid && false;
-      this.invalidState.push('Color');
+      this.invalidState.color = false;
+    } else {
+      isValid = isValid && true;
+      this.invalidState.color = true;
     }
     if (cartItem.SelectedQuantity === 0) {
       isValid = isValid && false;
-      this.invalidState.push('Quantity');
+      this.invalidState.quantity = false;
+    } else {
+      isValid = isValid && true;
+      this.invalidState.quantity = true;
     }
     if (isNull(cartItem.SelectedCategory)) {
       isValid = isValid && false;
-      this.invalidState.push('Category');
+      this.invalidState.category = false;
+    } else {
+      isValid = isValid && true;
+      this.invalidState.category = true;
     }
+
     if (isNull(cartItem.SelectedSize)) {
       console.log('size is null');
-      if(!this.isValidCustomSize(cartItem.SelectedCustomSize)){
+      if (!this.isValidCustomSize(cartItem.SelectedCustomSize)) {
         console.log('custom size is null');
         isValid = isValid && false;
-        this.invalidState.push('Size');
+        this.invalidState.size = false;
+      } else {
+        isValid = isValid && true;
+        this.invalidState.size = true;
       }
+    } else {
+      isValid = isValid && true;
+      this.invalidState.size = true;
     }
-  
     return isValid;
   }
 
- 
+
 
   private isValidCustomSize(cz: CustomSize) {
     if (isNull(cz)) { return false; }
@@ -99,6 +123,6 @@ export class ItemDetailService {
 
   private getsanitzedProduct(product: Product) {
     return cloneDeep(product);
-   
+
   }
 }

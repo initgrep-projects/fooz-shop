@@ -1,10 +1,42 @@
 <div class="item-image-wrapper animated fadeIn">
 
     <div class="row">
-        <div class="col-12 col-md-6" *ngFor='let image of images | slice: 0:4'>
+        <!-- <div class="col-12 col-md-6" *ngFor='let image of images | slice: 0:4'>
             <div class="item-image"><img [src] ="image.Url" /></div>
+        </div> -->
+        <div class=" col-lg-2 d-none d-lg-block">
+
+            <div class="item-image-thumb"
+                 *ngFor='let image of images | slice: 0:4'
+                 (click)="selectImage(image)"
+                 [ngClass]="{'active': image.equals(selectedImage[0])}">
+                <img [src]="image.Url"
+                     [ngStyle]="{'border-color':image.Color.Code}" />
+            </div>
+
         </div>
-       
+        <div class="col-12 col-lg-10">
+
+            <div class="item-image"
+                 *ngFor="let si of selectedImage">
+                <div class="slider-toolbar">
+
+                    <button type="button"
+                            class="btn btn-light left"
+                            (click)="goToNextImage(true)">
+                        <fa-icon icon="chevron-left"></fa-icon>
+                    </button>
+
+                    <button type="button"
+                            class="btn btn-light right"
+                            (click)="goToNextImage(false)">
+                        <fa-icon icon="chevron-right"></fa-icon>
+                    </button>
+                </div>
+                <img [src]="si?.Url" />
+
+            </div>
+
+        </div>
     </div>
 </div>
-

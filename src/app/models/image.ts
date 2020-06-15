@@ -6,4 +6,7 @@ export class Image {
 
     get Color() { return this.color; }
     get Url() { return this.url; }
+    equals(image: Image) {
+        return image.Color.equals(this.color) && image.Url === this.url;
+    }
 }

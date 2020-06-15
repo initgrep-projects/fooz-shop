@@ -61,7 +61,7 @@ export class FireStoreDbService {
     // this.saveSizes();
     // this.saveCustomSizeInputs();
     // this.saveSortOrders();
-    // this.saveTrendItems();
+    // this.saveTrendItems(); 
   }
 
 

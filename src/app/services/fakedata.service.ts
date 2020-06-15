@@ -34,15 +34,15 @@ export class FakedataService {
     const blackColor = new Color('black', '#333');
     const greyColor = new Color('grey', '#6c757d');
     const purpleColor = new Color('purple', '#6A5ACD');
-    const image1 = new Image('https://i.imgur.com/rnRqUoz.jpg', blackColor);
-    const image2 = new Image('https://i.imgur.com/ZMloszym.jpg', blackColor);
-    const image3 = new Image('https://i.imgur.com/ZMloszym.jpg', blackColor);
-    const image4 = new Image('https://i.imgur.com/fZube9X.jpg', blackColor);
+    const image1 = new Image('https://i.imgur.com/XMGXELs.jpg', blackColor);
+    const image2 = new Image('https://i.imgur.com/58Gz5BQ.jpg', blackColor);
+    const image3 = new Image('https://i.imgur.com/ONXLzwZ.jpg', blackColor);
+    const image4 = new Image('https://i.imgur.com/ZfmxJSa.jpg', blackColor);
 
-    const image1g = new Image('https://i.imgur.com/IQPOZ5A.jpg', greyColor);
+    const image1g = new Image('https://i.imgur.com/IgcZBiC.jpg', greyColor);
     const image2g = new Image('https://i.imgur.com/9YwoGKg.jpg', greyColor);
 
-    const image1p = new Image('https://i.imgur.com/J3Vq5Rl.jpg', purpleColor);
+    const image1p = new Image('https://i.imgur.com/9EIQbqZ.jpg', purpleColor);
     const image2p = new Image('https://i.imgur.com/hYMUHqS.jpg', purpleColor);
     return [image1, image2, image3, image4,  image1p, image1g];
   }
@@ -85,6 +85,8 @@ export class FakedataService {
     const blackColor = new Color('black', '#333');
     const greyColor = new Color('grey', '#6c757d');
     const purpleColor = new Color('purple', '#6A5ACD');
+    const silverColor = new Color('silver', '#BFC1C2');
+    const brownColor = new Color('brown', '#964B00');
 
     const smallSize = new Size('small', 'S');
     const mediumSize = new Size('medium', 'M');
@@ -102,67 +104,77 @@ export class FakedataService {
     const image1p = new Image('https://i.imgur.com/J3Vq5Rl.jpg', purpleColor);
     const image2p = new Image('https://i.imgur.com/hYMUHqS.jpg', purpleColor);
 
-    const a1000 = new Currency('QAR', 1000);
-    const a2200 = new Currency('QAR', 2200);
-    const a3100 = new Currency('QAR', 3100);
-    const a2300 = new Currency('QAR', 2300);
+    const a1000 = new Currency('QAR', 2100);
+    const a2200 = new Currency('QAR', 1650);
+    const a3100 = new Currency('QAR', 2700);
+    const a2300 = new Currency('QAR', 2900);
 
     return [
       new Product(
-        'Spring Dark Folded abaya',
-        '11331',
-        'Women Blue & White Printed Abaya with Colorful Buttons',
+        'silver  latest design abaya',
+        '51001',
+        'A very nice detailed description here',
         12,
-        1583666024657,
+        new Date().getTime(),
         a1000,
         soCategory,
-        [image1, image2, image3, image4],
-        [smallSize, mediumSize, xlSize]
+        [
+          new Image("https://i.imgur.com/dTJ7q2z.jpg", silverColor),
+          new Image('https://i.imgur.com/PAFcXGY.jpg', silverColor),
+          new Image('https://i.imgur.com/86JpXRY.jpg', silverColor),
+          new Image('https://i.imgur.com/IgcZBiC.jpg', silverColor)
+        ],
+        [smallSize, mediumSize,largeSize, xlSize]
       ),
       new Product(
-        'Autumn light Folded abaya',
-        '11332',
-        'Women Blue & White Printed Abaya with Colorful Buttons',
+        'brown latest design abaya',
+        '51002',
+        'A very nice detailed description here',
         12,
-        1583666094657,
-        a2200,
-        soCategory,
-        [image1, image2, image1g, image2g],
-        [smallSize, mediumSize]
-      ),
-      new Product(
-        'summer light Folded abaya',
-        '11333',
-        'Women Blue & White Printed Abaya with Colorful Buttons',
-        12,
-        1583696024657,
+        new Date().getTime(),
         a2200,
         coCategory,
-        [image1, image2, image1p, image2p],
-        [largeSize, xlSize]
+        [
+          new Image("https://i.imgur.com/qXOn4hB.jpg", brownColor),
+          new Image('https://i.imgur.com/9EIQbqZ.jpg', brownColor),
+          new Image('https://i.imgur.com/IClEoEy.jpg', brownColor),
+          new Image('https://i.imgur.com/pVkkclk.jpg', brownColor)
+        ],
+        [smallSize, mediumSize,largeSize, xlSize]
       ),
       new Product(
-        'winter center Folded abaya',
-        '11334',
-        'Women Blue & White Printed Abaya with Colorful Buttons',
+        'black first latest design abaya',
+        '51003',
+        'A very nice detailed description here',
         12,
-        1589666024657,
+        new Date().getTime(),
+        a2300,
+        coCategory,
+        [
+          new Image("https://i.imgur.com/XMGXELs.jpg", blackColor),
+          new Image('https://i.imgur.com/58Gz5BQ.jpg', blackColor),
+          new Image('https://i.imgur.com/ONXLzwZ.jpg', blackColor),
+          new Image('https://i.imgur.com/ZfmxJSa.jpg', blackColor)
+        ],
+        [smallSize, mediumSize,largeSize, xlSize]
+      ),
+
+      new Product(
+        'black first latest design abaya',
+        '51004',
+        'A very nice detailed description here',
+        12,
+        new Date().getTime(),
         a3100,
         coCategory,
-        [image1p, image2p, image1g, image2g],
-        [smallSize, mediumSize, largeSize, xlSize]
+        [
+          new Image("https://i.imgur.com/SuswP7o.jpg", blackColor),
+          new Image('https://i.imgur.com/gHNtSjV.jpg', blackColor),
+          new Image('https://i.imgur.com/o8JDpHl.jpg', blackColor),
+          new Image('https://i.imgur.com/m92gSoP.jpg', blackColor)
+        ],
+        [smallSize, mediumSize,largeSize, xlSize]
       ),
-      new Product(
-        'autumn purple Folded abaya',
-        '11335',
-        'Women Blue & White Printed Abaya with Colorful Buttons',
-        12,
-        1593666024657,
-        a2300,
-        soCategory,
-        [image1g, image2g, image1, image2],
-        [smallSize, mediumSize, largeSize, xlSize]
-      )
 
     ];
 

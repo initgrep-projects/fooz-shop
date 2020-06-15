@@ -1,14 +1,38 @@
-@import '../../../../../../variables.scss';
+@import "../../../../../../variables.scss";
 
-div.item-image-wrapper{
-    div.item-image {
-        width: 100%;
-        margin-top: 1rem;
-        img {
-          width: 100%;
-          cursor: zoom-in;
-          box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-          @include animate();
-        }
+div.item-image-wrapper {
+  margin-top: 1rem;
+  div.item-image {
+    width: 100%;
+    img {
+      width: 100%;
+      @include animate(fadeIn, 0.2s);
+    }
+    .slider-toolbar {
+      position: absolute;
+      width: 100%;
+      top:45%;
+      padding-right: 1rem;
+      padding-left: 1rem;
+      left:0;
+      .right{
+        float: right;
       }
+    }
+  }
+
+  div.item-image-thumb {
+    margin-bottom: 1rem;
+    cursor: pointer;
+    img {
+      width: 100%;
+      border-width: 1px;
+      border-style: solid;
+      border-radius: 4px;
+    }
+    &.active {
+      border-width: 4px;
+      transition: all 0.2s ease;
+    }
+  }
 }

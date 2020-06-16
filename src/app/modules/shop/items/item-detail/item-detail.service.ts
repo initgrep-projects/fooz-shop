@@ -1,14 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Product } from 'src/app/models/product';
 
-import { cloneDeep } from 'lodash';
+import { cloneDeep, isNull } from 'lodash';
 import { Subject, BehaviorSubject } from 'rxjs';
 import { Color } from 'src/app/models/color';
 import { Size } from 'src/app/models/size';
 import { Category } from 'src/app/models/category';
 import { CustomSize } from 'src/app/models/custom-size';
 import { CartItem } from 'src/app/models/cartItem';
-import { isNull } from 'src/app/helpers/util';
 
 export const SZ = 'standard size';
 export const CZ = 'custom size';

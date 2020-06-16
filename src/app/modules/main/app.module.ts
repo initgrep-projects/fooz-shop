@@ -18,6 +18,8 @@ import { FooterModule } from '../footer/footer.module';
 import { HomeModule } from '../home/home.module';
 import { ShopModule } from '../shop/shop.module';
 import { SharedModule } from '../shared/shared.module';
+import { CheckoutModule } from '../checkout/checkout.module';
+import { AccountModule } from '../account/account.module';
 
 
 @NgModule({
@@ -30,6 +32,8 @@ import { SharedModule } from '../shared/shared.module';
     FooterModule,
     HomeModule,
     ShopModule,
+    CheckoutModule,
+    AccountModule,
     AppRoutingModule,
     FontAwesomeModule,
     StoreModule.forRoot(AppReducer),

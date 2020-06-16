@@ -1,50 +1,54 @@
-<div class="media">
-  <img class="mr-3" [src]="item.Product.Images[0].Url" alt="{{item.Product.Name}}">
-  <div class="media-body">
-    <div class="row">
-      <div class="col-12 col-md-5">
-        <a class="mt-0 mb-1" (click) ="routeToItemDetails()">{{item.Product.Name}} - {{item.Product.Id}}</a>
-        <div class="my-1">
-          <ul class="list-group">
-            <li class="list-group-item">
-              <span class="color">colour: </span>
-              <app-color [colors]="[item.SelectedColor]" [displaySize]="'s'" [disable]="'true'"></app-color>
-            </li>
-            <li class="list-group-item" *ngIf="!!item.SelectedSize">
-              <span class="size">Size: </span>
-              <app-size [sizes]="[item.SelectedSize]" [displaySize]="'s'"></app-size>
-            </li>
-            <li class="list-group-item custom-size" *ngIf="!!item.SelectedCustomSize">
-              <span class="size">Size: </span>
-              <span class="badge">Width: {{item.SelectedCustomSize.Width}}</span>
-              <span class="badge">Length: {{item.SelectedCustomSize.Length}}</span>
-              <span class="badge">Bust: {{item.SelectedCustomSize.Bust}}</span>
-              <span class="badge">Arm: {{item.SelectedCustomSize.Arm}}</span>
-              <span class="badge">Hip: {{item.SelectedCustomSize.Hip}}</span>
-              
-            </li>
-            <li class="list-group-item">
-              <span class="size">Type: </span>
-              <span class="badge">{{item.SelectedCategory.Label}}</span>
-            </li>
-          </ul>
+<div class="card">
+  <div class="card-body">
+    <div class="media">
+      <img class="mr-3" [src]="item.Product.Images[0].Url" alt="{{item.Product.Name}}">
+      <div class="media-body">
+        <div class="row">
+          <div class="col-12 col-md-5">
+            <a class="mt-0 mb-1" (click) ="routeToItemDetails()">{{item.Product.Name}} - {{item.Product.Id}}</a>
+            <div class="my-1">
+              <ul class="list-group">
+                <li class="list-group-item">
+                  <span class="color">colour: </span>
+                  <app-color [colors]="[item.SelectedColor]" [displaySize]="'s'" [disable]="'true'"></app-color>
+                </li>
+                <li class="list-group-item" *ngIf="!!item.SelectedSize">
+                  <span class="size">Size: </span>
+                  <app-size [sizes]="[item.SelectedSize]" [displaySize]="'s'"></app-size>
+                </li>
+                <li class="list-group-item custom-size" *ngIf="!!item.SelectedCustomSize">
+                  <span class="size">Size: </span>
+                  <span class="badge">Width: {{item.SelectedCustomSize.Width}}</span>
+                  <span class="badge">Length: {{item.SelectedCustomSize.Length}}</span>
+                  <span class="badge">Bust: {{item.SelectedCustomSize.Bust}}</span>
+                  <span class="badge">Arm: {{item.SelectedCustomSize.Arm}}</span>
+                  <span class="badge">Hip: {{item.SelectedCustomSize.Hip}}</span>
+                  
+                </li>
+                <li class="list-group-item">
+                  <span class="size">Type: </span>
+                  <span class="badge">{{item.SelectedCategory.Label}}</span>
+                </li>
+              </ul>
+            </div>
+    
+          </div>
+          <div class="col-12 col-md-3 mb-3 mb-lg-0">
+            <span class="quantity d-md-none ">Quantity: </span>
+            <app-quantity class="d-inline-block d-md-block" [value] ="item.SelectedQuantity" (valueChange) = "onQuantityChange($event)"></app-quantity>
+          </div>
+          <div class="col-12 col-md-4">
+            <span class="price d-md-none ">Price: </span>
+            <h6 class=" price mt-0 mb-1 d-inline-block d-md-block">{{item.Product.Price.Code}}-{{grossItemPrice}}
+            </h6>
+          </div>
         </div>
-
-      </div>
-      <div class="col-12 col-md-3 mb-3 mb-lg-0">
-        <span class="quantity d-md-none ">Quantity: </span>
-        <app-quantity class="d-inline-block d-md-block" [value] ="item.SelectedQuantity" (valueChange) = "onQuantityChange($event)"></app-quantity>
-      </div>
-      <div class="col-12 col-md-4">
-        <span class="price d-md-none ">Price: </span>
-        <h6 class=" price mt-0 mb-1 d-inline-block d-md-block">{{item.Product.Price.Code}}-{{grossItemPrice}}
-        </h6>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-12">
-        <div class="cart-oper">
-          <button type="button" class="btn btn-sm btn-light" (click)="removeItem()">Remove</button>
+        <div class="row">
+          <div class="col-12">
+            <div class="cart-oper">
+              <button type="button" class="btn btn-sm btn-light" (click)="removeItem()">Remove</button>
+            </div>
+          </div>
         </div>
       </div>
     </div>

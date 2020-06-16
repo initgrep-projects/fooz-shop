@@ -6,8 +6,8 @@ import {
   CART_COLLECTION, CATEGORY_COLLECTION,
   CUSTOM_SIZE_INPUT, PRODUCT_COLLECTION,
   PRODUCT_PAGE_SIZE, SIZE_COLLECTION, SORT_COLLECTION, TREND_COLLECTION, USER_COLLECTION
-} from '../helpers/constants';
-import { generateGuid } from '../helpers/util';
+} from '../util/app.constants';
+import { generateGuid } from '../util/app.lib';
 import { CartItem } from '../models/cartItem';
 import { Category } from '../models/category';
 import { CustomSizeInput } from '../models/custom-size';

@@ -1,9 +1,6 @@
-import { Component, OnInit, OnDestroy, ViewEncapsulation, ViewChild, AfterViewInit, ElementRef, Renderer2, OnChanges, DoCheck } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewEncapsulation, ViewChild, ElementRef, DoCheck } from '@angular/core';
 import { SubSink } from 'subsink';
-import { User } from 'src/app/models/user';
-import { AuthService } from '../auth.service';
-import { AuthMessages } from '../../../helpers/constants';
-import { ToastService } from '../../shared/toasts/toast.service';
+import { AuthMessages } from '../../../util/app.labels';
 import { NgbPopover } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({

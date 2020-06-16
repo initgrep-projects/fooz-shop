@@ -1,6 +1,4 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Subscription } from 'rxjs';
-import { isEmpty } from 'src/app/helpers/util';
 import { ProductService } from '../../shop/product.service';
 import { Image } from 'src/app/models/image';
 import { SubSink } from 'subsink';

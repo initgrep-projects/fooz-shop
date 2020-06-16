@@ -4,7 +4,7 @@ import { CartItem } from 'src/app/models/cartItem';
 import { CartModalService } from '../cart-modal/cart-modal.service';
 import { SubSink } from 'subsink';
 import { Router, ActivatedRoute } from '@angular/router';
-import { cartLabels } from 'src/app/helpers/constants';
+import { cartLabels } from 'src/app/util/app.labels';
 
 
 @Component({

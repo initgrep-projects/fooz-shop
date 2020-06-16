@@ -4,21 +4,14 @@ import { SharedModule } from '../shared/shared.module';
 import { HomeRoutingModule } from './home-routing.module';
 
 import { HomeComponent } from './home.component';
-import { FeatureItemsComponent } from './feature-items/feature-items.component';
 import { TrendComponent } from './trend/trend.component';
 import { LookbookComponent } from './lookbook/lookbook.component';
 import {  NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
-
 import {  FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-
-
-
-
 
 @NgModule({
   declarations: [
     HomeComponent,
-    FeatureItemsComponent,
     TrendComponent,
     LookbookComponent
   ],
@@ -31,6 +24,7 @@ import {  FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
   ],
   exports: [
+
   ]
 })
 export class HomeModule {

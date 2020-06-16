@@ -33,7 +33,7 @@ export class ItemComponent implements OnInit {
   routeToItemDetails() {
 
     this.router.navigate(
-      ['item', this.item.Id],
+      ['/shop/item', this.item.Id],
        {
          queryParams: {source: this.sourcePage},
          relativeTo: this.activatedRoute

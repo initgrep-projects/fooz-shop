@@ -1,9 +1,10 @@
 import { Component, OnInit, OnDestroy, Output, EventEmitter } from '@angular/core';
 import { AuthService } from '../../auth/auth.service';
 import { ToastService } from '../toasts/toast.service';
-import {AuthMessages} from '../../../helpers/constants';
+
 import { User } from 'src/app/models/user';
 import { SubSink } from 'subsink';
+import { AuthMessages } from 'src/app/util/app.labels';
 
 
 @Component({

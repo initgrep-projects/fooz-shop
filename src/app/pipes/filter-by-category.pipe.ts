@@ -1,7 +1,8 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { Product } from '../models/product';
 import { Category } from '../models/category';
-import { isEmpty } from '../helpers/util';
+import { isEmpty } from 'lodash';
+
 
 @Pipe({
   name: 'filterByCategory'

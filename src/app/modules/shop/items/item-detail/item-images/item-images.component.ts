@@ -25,6 +25,10 @@ export class ItemImagesComponent implements OnInit, AfterContentInit {
 
   }
 
+  updateImageAndIndex(image: Image, index: number) {
+    this.selectImage(image);
+    this.currentIndex = index;
+  }
   selectImage(image: Image) {
     if (!isEmpty(this.selectedImage)) {
       this.selectedImage = [];
@@ -34,19 +38,15 @@ export class ItemImagesComponent implements OnInit, AfterContentInit {
 
   goToNextImage(isLeft: boolean) {
     if (isLeft) {
-      if (this.currentIndex >= 0) {
-        this.selectImage(this.images[this.currentIndex--]);
-      } else {
-        this.currentIndex = 0;
+      if (this.currentIndex > 0) {
+        --this.currentIndex;
+        this.selectImage(this.images[this.currentIndex]);
       }
     } else {
-      console.log('curr index : lenth', this.currentIndex, this.images.length);
       if (this.currentIndex < this.images.length - 1) {
-        this.selectImage(this.images[++this.currentIndex]);
-      } else {
-        this.currentIndex = this.images.length - 1;
+        this.currentIndex++;
+        this.selectImage(this.images[this.currentIndex]);
       }
-
     }
   }
 

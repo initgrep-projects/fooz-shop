@@ -16,6 +16,8 @@ import { AlertComponent } from './alert/alert.component';
 import { UserCardComponent } from './user-card/user-card.component';
 import { AnchorsComponent } from './anchors/anchors.component';
 import { SignoutComponent } from './signout/signout.component';
+import { FeatureItemsComponent } from './feature-items/feature-items.component';
+import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
 
 
 @NgModule({
@@ -33,6 +35,8 @@ import { SignoutComponent } from './signout/signout.component';
     UserCardComponent,
     AnchorsComponent,
     SignoutComponent,
+    FeatureItemsComponent,
+    BreadcrumbComponent
   ],
   imports: [
     CommonModule,
@@ -46,13 +50,15 @@ import { SignoutComponent } from './signout/signout.component';
     ToastsComponent,
     SidebarComponent,
     ParallaxComponent,
+    FeatureItemsComponent,
     LookbookItemComponent,
     SizeComponent,
     ColorComponent,
     QuantityComponent,
     UserCardComponent,
     AnchorsComponent,
-    SignoutComponent
+    SignoutComponent,
+    BreadcrumbComponent
   ]
 })
 export class SharedModule { }

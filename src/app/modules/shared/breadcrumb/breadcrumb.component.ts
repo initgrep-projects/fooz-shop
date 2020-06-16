@@ -1,9 +1,6 @@
 import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { Location } from '@angular/common';
-import { isEmpty } from 'src/app/helpers/util';
-import { Router, NavigationStart } from '@angular/router';
-import { tap } from 'rxjs/operators';
-import { Subscription } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-breadcrumb',

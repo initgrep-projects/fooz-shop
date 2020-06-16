@@ -3,7 +3,7 @@ import { ProductService } from '../../../product.service';
 import { CustomSize } from 'src/app/models/custom-size';
 import { ItemDetailService, CZ } from '../item-detail.service';
 import { SubSink } from 'subsink';
-import { itemLabels } from 'src/app/helpers/constants';
+import { itemLabels } from 'src/app/util/app.labels';
 
 @Component({
   selector: 'app-item-customize',

@@ -2,7 +2,6 @@ import { createReducer, on, Action } from '@ngrx/store';
 import { addItemsToCartAction, addItemToCartAction, deleteItemInCartAction, updateItemInCartAction } from './cart.actions';
 import { CartItem } from 'src/app/models/cartItem';
 import { cloneDeep } from 'lodash';
-import { isIdentical } from 'src/app/helpers/util';
 
 
 export interface State {

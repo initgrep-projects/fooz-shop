@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Color } from 'src/app/models/color';
 import { ItemDetailService } from '../item-detail.service';
-import { itemLabels } from 'src/app/helpers/constants';
+import { itemLabels } from 'src/app/util/app.labels';
 
 @Component({
   selector: 'app-item-color',

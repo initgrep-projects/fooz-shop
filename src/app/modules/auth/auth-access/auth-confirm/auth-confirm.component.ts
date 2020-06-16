@@ -3,8 +3,9 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthModalService } from '../../auth-modal/auth-modal.service';
 import { SubSink } from 'subsink';
 import { AuthService } from '../../auth.service';
-import { isEmpty } from 'src/app/helpers/util';
-import { AuthMessages } from '../../../../helpers/constants';
+
+import { isEmpty } from 'lodash';
+import { AuthMessages } from 'src/app/util/app.labels';
 
 export interface confirmedUser {
   email: string;

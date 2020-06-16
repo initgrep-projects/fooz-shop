@@ -6,8 +6,7 @@ import { ProductResolver } from 'src/app/services/product-resolver.service';
 
 
 const homeRoutes: Routes  = [
-  {path : 'home', component: HomeComponent},
-  {path: 'home/item/:id', component: ItemDetailComponent , resolve: {product: ProductResolver}}
+  {path : 'home', component: HomeComponent}
 ];
 
 @NgModule({

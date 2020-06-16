@@ -2,7 +2,7 @@ import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { Size } from 'src/app/models/size';
 import { ItemDetailService, CZ, SZ } from '../item-detail.service';
 import { SubSink } from 'subsink';
-import { itemLabels } from 'src/app/helpers/constants';
+import { itemLabels } from 'src/app/util/app.labels';
 
 @Component({
   selector: 'app-item-size',

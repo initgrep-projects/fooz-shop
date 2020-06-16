@@ -1,7 +1,8 @@
 import { Component, OnInit, ViewChild, ElementRef, OnDestroy } from '@angular/core';
 import { SidebarService } from 'src/app/modules/shared/sidebar/sidebar.service';
 import { SubSink } from 'subsink';
-import {AuthMessages} from '../../../helpers/constants';
+import { AuthMessages } from 'src/app/util/app.labels';
+
 
 @Component({
   selector: 'app-nav-bar',

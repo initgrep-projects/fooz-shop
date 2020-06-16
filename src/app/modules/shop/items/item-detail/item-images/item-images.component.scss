@@ -6,29 +6,35 @@ div.item-image-wrapper {
     width: 100%;
     img {
       width: 100%;
-      @include animate(fadeIn, 0.2s);
+      // @include animate(fadeIn, 0.2s);
     }
     .slider-toolbar {
       position: absolute;
       width: 100%;
-      top:45%;
+      top: 45%;
       padding-right: 1rem;
       padding-left: 1rem;
-      left:0;
-      .right{
-        float: right;
+      left: 0;
+      button {
+        &:focus {
+          box-shadow: none;
+        }
+        &.right {
+          float: right;
+        }
       }
     }
   }
 
   div.item-image-thumb {
     margin-bottom: 1rem;
+    border-width: 2px;
+    border-style: solid;
+    border-radius: 4px;
     cursor: pointer;
     img {
       width: 100%;
-      border-width: 1px;
-      border-style: solid;
-      border-radius: 4px;
+      border-radius: 2px;
     }
     &.active {
       border-width: 4px;

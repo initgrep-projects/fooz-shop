@@ -4,7 +4,7 @@ import { CartService } from 'src/app/modules/cart/cart.service';
 import { SubSink } from 'subsink';
 import { cloneDeep } from 'lodash';
 import { CartItem } from 'src/app/models/cartItem';
-import { generateGuid } from 'src/app/helpers/util';
+import { generateGuid } from 'src/app/util/app.lib';
 import { AuthService } from 'src/app/modules/auth/auth.service';
 import { User } from 'src/app/models/user';
 

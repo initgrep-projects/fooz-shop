@@ -3,7 +3,6 @@ import { Color } from './color';
 import { Size } from './size';
 import { CustomSize } from './custom-size';
 import { Category } from './category';
-import { generateGuid } from '../helpers/util';
 
 export class CartItem {
     constructor(

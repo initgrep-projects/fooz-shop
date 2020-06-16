@@ -1,6 +1,6 @@
 import { Component, OnInit, TemplateRef, ViewChild, Input, AfterContentInit, AfterViewInit, ViewContainerRef } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { OK_BUTTON, CANCEL_BUTTON, ALERT_TITLE } from 'src/app/helpers/constants';
+import { OK_BUTTON, CANCEL_BUTTON, ALERT_TITLE } from 'src/app/util/app.constants';
 
 
 

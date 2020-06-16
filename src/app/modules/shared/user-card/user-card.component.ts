@@ -1,9 +1,10 @@
 import { Component, OnInit, Input, OnDestroy, Output, EventEmitter } from '@angular/core';
 import { User } from 'src/app/models/user';
-import { AuthMessages } from '../../../helpers/constants';
+
 import { AuthService } from '../../auth/auth.service';
 import { ToastService } from '../toasts/toast.service';
 import { SubSink } from 'subsink';
+import { AuthMessages } from 'src/app/util/app.labels';
 
 @Component({
   selector: 'app-user-card',

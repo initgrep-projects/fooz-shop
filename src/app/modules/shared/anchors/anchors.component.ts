@@ -1,5 +1,6 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
-import { AuthMessages } from '../../../helpers/constants';
+import { AuthMessages } from 'src/app/util/app.labels';
+
 
 @Component({
   selector: 'app-anchors',

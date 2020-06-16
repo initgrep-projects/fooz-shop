@@ -1,0 +1,35 @@
+
+@import '../../../../variables.scss';
+
+div.app-account-menu{
+    overflow-x: scroll;
+    font-family: $roboto-font-family;
+    border-right: 1px solid #333;
+    @include md{
+        overflow: hidden;
+    }
+    ul.list-group{
+        flex-direction: row;
+        @include md{
+            flex-direction: column;
+        }
+
+        li{
+            border:none;
+            a{
+                text-transform: capitalize;
+                letter-spacing: .045rem;
+                color: $primary-text-color;
+                text-decoration: none;
+                &:hover{
+                    font-weight: 600;
+                }
+
+                &.active{
+                    font-weight: 600;
+                    border-bottom: 2px solid $primary-border-color;
+                }
+            }
+        }
+    }
+}

@@ -1,7 +1,7 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { Size } from '../models/size';
 import { Product } from '../models/product';
-import { isEmpty } from '../helpers/util';
+import { isEmpty } from 'lodash';
 
 @Pipe({
   name: 'filterBySize'

@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, AfterViewInit, ViewChild, ElementRef, TemplateRef } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthModalService } from '../../auth-modal/auth-modal.service';
-import { AuthMessages } from '../../../../helpers/constants';
+import { AuthMessages } from '../../../../util/app.labels';
 import { SubSink } from 'subsink';
 import { AuthService } from '../../auth.service';
 import { ToastService } from 'src/app/modules/shared/toasts/toast.service';

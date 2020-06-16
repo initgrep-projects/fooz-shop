@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef, OnDestroy } from '@angular/core';
 import { CartService } from './cart.service';
 import { SubSink } from 'subsink';
-import { AuthMessages } from '../../helpers/constants';
+import { AuthMessages } from '../../util/app.labels';
 import { AuthService } from '../auth/auth.service';
 
 @Component({

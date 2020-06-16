@@ -28,7 +28,6 @@ import { SizeFilterComponent } from './filters/filter-header/size-filter/size-fi
 import { SortFilterComponent } from './filters/filter-header/sort-filter/sort-filter.component';
 import { CategoryFilterComponent } from './filters/filter-header/category-filter/category-filter.component';
 import { MainFilterComponent } from './filters/filter-header/main-filter/main-filter.component';
-import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
 import { SideFilterBarComponent } from './filters/side-filter-bar/side-filter-bar.component';
 import { SideFilterComponent } from './filters/side-filter-bar/side-filter/side-filter.component';
 
@@ -55,7 +54,6 @@ import { SideFilterComponent } from './filters/side-filter-bar/side-filter/side-
     SortFilterComponent,
     CategoryFilterComponent,
     MainFilterComponent,
-    BreadcrumbComponent,
     FilterByCategoryPipe,
     FilterBySizePipe,
     SortPipe,

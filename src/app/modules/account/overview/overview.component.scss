@@ -1,0 +1,12 @@
+@import "../../../../variables.scss";
+
+div.account-user-dash{
+    font-family: $roboto-font-family;
+    div.card{
+        h6{
+            text-transform: uppercase;
+            font-weight: bold;
+            letter-spacing: .025rem;
+        }
+    }
+}

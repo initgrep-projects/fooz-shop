@@ -7,13 +7,13 @@ div.item {
   div.item-heading {
     width: 100%;
     height: 400px;
-    // background-color: $background-color;
+    background-color: $background-color;
     border-radius: 5px;
-    background: linear-gradient(#13141540, transparent);
+    // background: linear-gradient(#9fa0a140, transparent);
   }
   div.item-body {
     position: relative;
-    background: radial-gradient(#13141540, transparent);
+    // background: linear-gradient(#8b8c8d40, transparent);
     div.color-codes {
       font-size: 1.2rem;
       text-align: center;

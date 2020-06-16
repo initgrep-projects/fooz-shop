@@ -1,0 +1,141 @@
+@import "../../../../variables.scss";
+
+div.card.pre-card {
+    div.card-body {
+        div.media {
+            div.image-box {
+                display: inline-block;
+                width: 5rem;
+                height: 5rem;
+                margin: 0.25rem;
+                background-color: $background-color;
+                
+            }
+            div.media-body {
+              h5{
+                  width: 100%;
+                  height: 20px;
+                  background-color:$background-color;
+              }
+              p{
+                width: 100%;
+                height: 20px;
+                background-color: $background-color; 
+              }
+            }
+        }
+    }
+}
+
+
+div.card {
+    font-family: $roboto-font-family;
+    div.card-body {
+        div.media {
+            div.media-body {
+                div.name-code-wrapper {
+                    display: flex;
+                    flex-direction: row;
+                    cursor: pointer;
+                    @include md {
+                        flex-direction: row;
+                    }
+                    h6 {
+                        letter-spacing: 0.025rem;
+                        text-transform: capitalize;
+                       
+                        &.code {
+                            font-size: 0.8rem;
+                            letter-spacing: 0.025rem;
+                            font-weight: 600;
+                            padding: 0.1rem;
+                            line-height: 1.5;
+                            @include md {
+                                margin-left: 1rem;
+                            }
+                        }
+                    }
+
+                    &:hover {
+                        h6 {
+                           font-weight: 600;
+                           transition: all .1s ease-in;
+                        }
+                    }
+                }
+
+                div.quan-price-wrapper {
+                    display: flex;
+
+                    app-quantity {
+                        flex: 0 0 12%;
+                    }
+                    h6.icon {
+                        flex: 0 0 10%;
+                        padding-left: 0.5rem;
+                        padding-right: 0.5rem;
+                        line-height: 1.5;
+                    }
+                    h6.item-price {
+                        flex: 0 0 10%;
+                        margin-top: 0.2rem;
+                        letter-spacing: 0.025rem;
+                        text-transform: uppercase;
+                        line-height: 1.2;
+                        font-size: 0.9rem;
+                        font-weight: 600;
+                    }
+                }
+
+                div.row {
+                    div.item-property {
+                        span.label {
+                            text-transform: uppercase;
+                            letter-spacing: 0.045rem;
+                            font-size: 0.8rem;
+                            margin-right: 0.5rem;
+                        }
+                        span.value {
+                            letter-spacing: 0.025rem;
+                            font-size: 0.8rem;
+                            font-weight: 600;
+                            text-transform: uppercase;
+                        }
+                    }
+                    div.gross-price-wrapper {
+                        display: flex;
+                        @include md {
+                            justify-content: flex-end;
+                        }
+                        span.label {
+                            text-transform: uppercase;
+                            letter-spacing: 0.025rem;
+                            font-size: 0.8rem;
+                            margin-right: 0.5rem;
+                        }
+                        h6 {
+                            font-size: 0.9rem;
+                            font-weight: 600;
+                        }
+                    }
+
+                    div.item-control {
+                        button {
+                            text-transform: uppercase;
+                            letter-spacing: 0.045rem;
+                            font-size: 0.8rem;
+                            font-weight: 600;
+                            width: 100%;
+                            display: block;
+                            @include md {
+                                font-size: 0.6rem;
+                                display: inline-block;
+                                width: auto;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,5 +1,8 @@
 <!--item start-->
-<div class="item  my-1 my-lg-3">
+<ng-template #loading>
+  <app-pre-card></app-pre-card>
+</ng-template>
+<div class="item  my-1 my-lg-3" *ngIf="!!item; else loading ">
 
   <div class="item-heading"  (click)="routeToItemDetails()">
     <img *ngFor="let image of cardImages | slice:0:2"

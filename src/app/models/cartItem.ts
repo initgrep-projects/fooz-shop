@@ -49,17 +49,13 @@ export class CartItem {
     set CreatedDate(t: number) { this.createdDate = t; }
 
     equals(_item: CartItem): boolean {
-
-        // console.log(" user_ids equal ?", _item.userId === this.userId);
-        // console.log("selected size = ", this.selectedSize, _item.selectedSize, this.isEqualSize(_item.SelectedSize));
-        // console.log("selected customSize ", this.SelectedCustomSize, _item.selectedCustomSize, this.isEqualCustomSize(_item.SelectedCustomSize));
-        // console.log('selected catgeory = ', _item.SelectedCategory.equals(this.SelectedCategory));
+        console.log('cartItem = ', _item);
 
         const result = _item.userId === this.userId
             && this.isEqualSize(_item.SelectedSize)
             && this.isEqualCustomSize(_item.SelectedCustomSize)
-            && _item.SelectedColor.equals(this.SelectedColor)
-            && _item.SelectedCategory.equals(this.SelectedCategory)
+            && _item.SelectedColor.equals(this.selectedColor)
+            && _item.SelectedCategory.equals(this.selectedCategory)
             && _item.Product.equals(this.Product);
         console.log("isItem equal ", result);
 

@@ -1,7 +1,7 @@
 @import "../../../../variables.scss";
 
 div.pop-title-wrapper {
-    // border:1px solid red;
+   font-family: $roboto-font-family;
 
     div.pop-title {
         @include animate(fadeIn,.5s);

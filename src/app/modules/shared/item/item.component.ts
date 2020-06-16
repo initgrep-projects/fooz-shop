@@ -4,7 +4,6 @@ import { Product } from 'src/app/models/product';
 import { Image } from 'src/app/models/image';
 import { Color } from 'src/app/models/color';
 import { LogService } from 'src/app/services/log.service';
-import { SourceMapGenerator } from '@angular/compiler/src/output/source_map';
 
 @Component({
   // tslint:disable-next-line: component-selector
@@ -31,13 +30,8 @@ export class ItemComponent implements OnInit {
   }
 
   routeToItemDetails() {
-
     this.router.navigate(
-      ['/shop/item', this.item.Id],
-       {
-         queryParams: {source: this.sourcePage},
-         relativeTo: this.activatedRoute
-        });
+      ['shop/item', this.item.Id]);
   }
 
   setInitImages() {

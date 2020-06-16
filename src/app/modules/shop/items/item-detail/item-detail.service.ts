@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Product } from 'src/app/models/product';
 
-import { cloneDeep, isNull } from 'lodash';
+import { cloneDeep, isNull, isUndefined } from 'lodash';
 import { Subject, BehaviorSubject } from 'rxjs';
 import { Color } from 'src/app/models/color';
 import { Size } from 'src/app/models/size';
@@ -40,6 +40,7 @@ export class ItemDetailService {
 
 
   dispatchProduct(p: Product) {
+    console.log('new product dispatched => ',p);
     this.inputProductChange.next(this.getsanitzedProduct(p));
   }
 
@@ -68,7 +69,7 @@ export class ItemDetailService {
 
   validateCartItem(cartItem: CartItem) {
     let isValid = true;
-    if (isNull(cartItem.SelectedColor)) {
+    if (isNull(cartItem.SelectedColor) || isUndefined(cartItem.SelectedColor)) {
       isValid = isValid && false;
       this.invalidState.color = false;
     } else {
@@ -82,7 +83,7 @@ export class ItemDetailService {
       isValid = isValid && true;
       this.invalidState.quantity = true;
     }
-    if (isNull(cartItem.SelectedCategory)) {
+    if (isNull(cartItem.SelectedCategory) || isUndefined(cartItem.SelectedCategory)) {
       isValid = isValid && false;
       this.invalidState.category = false;
     } else {
@@ -90,7 +91,7 @@ export class ItemDetailService {
       this.invalidState.category = true;
     }
 
-    if (isNull(cartItem.SelectedSize)) {
+    if (isNull(cartItem.SelectedSize) || isUndefined(cartItem.SelectedSize)) {
       console.log('size is null');
       if (!this.isValidCustomSize(cartItem.SelectedCustomSize)) {
         console.log('custom size is null');

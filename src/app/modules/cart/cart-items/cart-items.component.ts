@@ -5,6 +5,7 @@ import { CartModalService } from '../cart-modal/cart-modal.service';
 import { SubSink } from 'subsink';
 import { Router, ActivatedRoute } from '@angular/router';
 import { cartLabels } from 'src/app/util/app.labels';
+import { isEmpty } from 'lodash';
 
 
 @Component({
@@ -14,8 +15,9 @@ import { cartLabels } from 'src/app/util/app.labels';
 })
 export class CartItemsComponent implements OnInit, OnDestroy {
   labels = cartLabels;
-  cart: CartItem[] = [];
+  cart: CartItem[];
   private subs = new SubSink();
+  isCartLoading = true;
 
   constructor(
     private cartService: CartService,
@@ -36,8 +38,8 @@ export class CartItemsComponent implements OnInit, OnDestroy {
     this.subs.sink =
       this.cartService.getCartFromStore()
         .subscribe(cart => {
-          this.cart = cart;
-          console.log('cart from store = ', this.cart);
+          this.cart = [...cart];
+          this.isCartLoading = false;
         });
   }
 
@@ -45,11 +47,36 @@ export class CartItemsComponent implements OnInit, OnDestroy {
     this.cartModalService.dismissModal();
   }
 
+  routeToItemDetails(id: string) {
+    this.closeModal();
+    setTimeout(() => {
+      this.router.navigate(
+        ['shop/item', id],
+      );
+    }, 100);
+  }
+
+  updateCartItem(item: CartItem) {
+    this.cartService.updateCartItem(item);
+    this.cartService.updateProductQuantity(item.Product, item.SelectedQuantity);
+  }
+
+  removeItem(id: string) {
+    this.cartService.deleteItem(id);
+  }
+
   routeToShop() {
     this.closeModal();
     setTimeout(() => {
       this.router.navigate(['shop'], { relativeTo: this.activatedRoute });
     }, 100);
+  }
+
+  isEmptyCart(){
+    if(!this.isCartLoading && isEmpty(this.cart)){
+      return true;
+    }
+    return false;
   }
 
   ngOnDestroy() {

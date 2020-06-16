@@ -1,12 +1,31 @@
 @import "../../../../variables.scss";
-
-div.account-user-dash{
+div.account-user-card{
+    margin-top: 1rem;
+}
+div.account-user-dash {
     font-family: $roboto-font-family;
-    div.card{
-        h6{
-            text-transform: uppercase;
-            font-weight: bold;
-            letter-spacing: .025rem;
+    a {
+        color: $primary-text-color;
+        text-decoration: none;
+        display: block;
+        margin-bottom: 1rem;
+        div.card {
+           div.card-body{
+            h6 {
+                text-transform: uppercase;
+                font-weight: bold;
+                letter-spacing: 0.045rem;
+            }
+            span{
+                letter-spacing: .025rem;
+            }
+           }
+
+        }
+        &:hover{
+            div.card{
+                background-color: $grey-bg-color;
+            }
         }
     }
 }

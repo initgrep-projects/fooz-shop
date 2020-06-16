@@ -1,0 +1,83 @@
+<ng-template #loading>
+  <div class="card pre-card">
+    <div class="card-body">
+      <div class="media">
+        <div  class="image-box border align-self-center mr-3 loading" ></div>
+        <div class="media-body">
+          <h5 class="mt-0 loading"></h5>
+          <p class="loading"></p>
+          <p class="mb-0 loading"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</ng-template>
+
+<div class="card">
+  <div class="card-body" *ngIf="!!item; else loading">
+    <div class="media">
+      <img [src]="item.Product.Images[0].Url"
+           class="align-self-center mr-3"
+           width="128">
+      <div class="media-body">
+        <div class="name-code-wrapper" (click)="goToItem()">
+          <h6 class="mt-0">{{item.Product.Name}}</h6>
+          <h6 class=" code">{{item.Product.Id}}</h6>
+        </div>
+        <div class="quan-price-wrapper">
+          <app-quantity [value]="item.SelectedQuantity" (valueChange) = "onQuantityChange($event)"></app-quantity>
+          <h6 class="icon ">
+            <fa-icon icon="times"></fa-icon>
+          </h6>
+          <h6 class="item-price">
+            <span class="pill">{{item.Product.Price.Code}}-{{item.Product.Price.Amount}}</span>
+          </h6>
+        </div>
+        <div class="row">
+          <div class="col-12 col-md-8 ">
+            <div class="item-property">
+              <span class="label">color:</span>
+              <span class="value">{{item.SelectedColor.Name}}</span>
+            </div>
+            <div class="item-property"
+                 *ngIf="!!item.SelectedSize">
+              <span class="label">size:</span>
+              <span class="value">{{item.SelectedSize.Letter}}</span>
+            </div>
+
+            <div class="item-property" *ngIf="!!item.SelectedCustomSize">
+              <span class="label">Size: </span>
+              <span class="badge">Width: {{item.SelectedCustomSize.Width}}</span>
+              <span class="badge">Length: {{item.SelectedCustomSize.Length}}</span>
+              <span class="badge">Bust: {{item.SelectedCustomSize.Bust}}</span>
+              <span class="badge">Arm: {{item.SelectedCustomSize.Arm}}</span>
+              <span class="badge">Hip: {{item.SelectedCustomSize.Hip}}</span>
+            </div>
+            <div class="item-property">
+              <span class="label">Type: </span>
+              <span class="value">{{item.SelectedCategory.Label}}</span>
+            </div>
+
+          </div>
+          <div class="col-12 col-md-4">
+            <div class="gross-price-wrapper">
+              <span class="label">Total Price: </span>
+              <h6 class=" ">{{item.Product.Price.Code}}-{{this.item.SelectedQuantity * this.item.Product.Price.Amount}}
+              </h6>
+            </div>
+          </div>
+          <div class="col-12 text-right border-top pt-2 mt-2">
+            <div class="item-control">
+              <button type="button"
+                      class="btn btn-sm btn-light"
+                      (click) ="deleteItem()"
+                      >Remove</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

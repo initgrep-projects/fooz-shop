@@ -1,27 +1,42 @@
 <div class="modal-header">
   <h4 class="modal-title">
-    <fa-icon class="cart" icon="shopping-cart"></fa-icon>{{labels.cart}}
+    <fa-icon class="cart"
+             icon="shopping-cart"></fa-icon>{{labels.cart}}
   </h4>
-  <button type="button" class="close" aria-label="Close" (click)="closeModal()">
+  <button type="button"
+          class="close"
+          aria-label="Close"
+          (click)="closeModal()">
     <fa-icon icon="times"></fa-icon>
   </button>
 </div>
 <div class="modal-body">
-  <div *ngIf="cart?.length == 0"  class="alert alert-light" role="alert">
-    {{labels.emptyCart}}
-  </div>
 
-  <ul class="list-unstyled">
-    <li class=" mb-1 py-2" *ngFor="let item of cart">
-      <app-cart-item [item]="item"></app-cart-item>
+  <ul class="list-unstyled"
+      *ngIf="cart?.length > 0 && !isCartLoading">
+    <li class=" mb-1 py-2"
+        *ngFor="let item of cart">
+      <app-cart-item [item]="item"
+                     (clicked)="routeToItemDetails($event)"
+                     (itemDelete)="removeItem($event)"
+                     (quantityChange)="updateCartItem($event)"></app-cart-item>
     </li>
   </ul>
+  <div *ngIf="isEmptyCart()"
+       class="alert alert-light"
+       role="alert">
+    {{labels.emptyCart}}
+  </div>
 </div>
 <div class="modal-footer">
-  <button type="button" class="btn btn-sm btn-outline-dark" (click)="routeToShop()">
-        <span class="text">{{labels.goToShopping}}</span>
+  <button type="button"
+          class="btn btn-sm btn-outline-dark"
+          (click)="routeToShop()">
+    <span class="text">{{labels.goToShopping}}</span>
   </button>
-  <button type="button" class="btn btn-sm btn-dark" *ngIf="cart.length > 0">
+  <button type="button"
+          class="btn btn-sm btn-dark"
+          *ngIf="cart?.length > 0">
     <span class="text">{{labels.goToCheckout}}</span>
   </button>
 </div>

@@ -1,16 +1,17 @@
-import { Component, OnInit, Input, OnDestroy } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy, OnChanges } from '@angular/core';
 import { Product } from 'src/app/models/product';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { ItemDetailService } from './item-detail.service';
 import {SubSink} from 'subsink';
+import { cloneDeep } from 'lodash';
 
 @Component({
   selector: 'app-item-detail',
   templateUrl: './item-detail.component.html',
   styleUrls: ['./item-detail.component.scss']
 })
-export class ItemDetailComponent implements OnInit, OnDestroy {
+export class ItemDetailComponent implements OnInit, OnDestroy, OnChanges {
 
   product: Product;
 
@@ -25,11 +26,15 @@ export class ItemDetailComponent implements OnInit, OnDestroy {
     this.recieveProductFromResolver();
   }
 
+  ngOnChanges(){
+    console.log('onChanges product => ', this.product);
+  }
+
   recieveProductFromResolver() {
     this.subs.sink =
       this.route.data.subscribe(data => {
-        this.product = data.product;
-        this.itemdetailSerive.dispatchProduct(data.product);
+        this.product = cloneDeep(data.product);
+        this.itemdetailSerive.dispatchProduct(this.product);
       });
   }
 

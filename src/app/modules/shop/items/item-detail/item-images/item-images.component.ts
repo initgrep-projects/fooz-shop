@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, AfterContentInit } from '@angular/core';
+import { Component, OnInit, Input, AfterContentInit, OnChanges, SimpleChange } from '@angular/core';
 import { Image } from 'src/app/models/image';
 import { isEmpty } from 'lodash';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
@@ -8,7 +8,7 @@ import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
   templateUrl: './item-images.component.html',
   styleUrls: ['./item-images.component.scss']
 })
-export class ItemImagesComponent implements OnInit, AfterContentInit {
+export class ItemImagesComponent implements OnInit, AfterContentInit, OnChanges {
 
   @Input() images: Image[];
   selectedImage: Image[] = [];
@@ -23,6 +23,12 @@ export class ItemImagesComponent implements OnInit, AfterContentInit {
 
   ngOnInit(): void {
 
+  }
+
+  ngOnChanges(){
+    console.log('any changes in images com', this.images);
+    this.selectImage(this.images[0]);
+    this.currentIndex = 0;
   }
 
   updateImageAndIndex(image: Image, index: number) {

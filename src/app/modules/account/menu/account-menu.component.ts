@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { accountRoutes } from '../account-routing.module';
 
 @Component({
   selector: 'app-account-menu',
@@ -11,7 +10,7 @@ export class AccountMenuComponent implements OnInit {
  
   constructor() { }
 
-  ngOnInit(): void {
+  ngOnInit(): void {  
   }
 
 }

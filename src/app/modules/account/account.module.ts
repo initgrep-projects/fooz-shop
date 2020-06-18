@@ -7,18 +7,26 @@ import { SharedModule } from '../shared/shared.module';
 import { OverviewComponent } from './overview/overview.component';
 import { OrdersComponent } from './orders/orders.component';
 import { AddressesComponent } from './addresses/addresses.component';
-import { ProfileComponent } from './profile/profile.component';
+import { UserProfileComponent } from './profile/user-profile.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
 @NgModule({
-  declarations: [AccountComponent, AccountMenuComponent, OverviewComponent, OrdersComponent, AddressesComponent, ProfileComponent],
+  declarations: [
+    AccountComponent,
+    AccountMenuComponent,
+    OverviewComponent,
+    OrdersComponent,
+    AddressesComponent,
+    UserProfileComponent],
   imports: [
     CommonModule,
     AccountRoutingModule,
     FontAwesomeModule,
-    SharedModule
+    SharedModule,
+    ReactiveFormsModule
   ]
 })
 export class AccountModule { }

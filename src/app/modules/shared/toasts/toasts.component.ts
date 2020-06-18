@@ -1,5 +1,5 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
-import { ToastService, Toast } from './toast.service';
+import { ToastService, Toast, toastType } from './toast.service';
 
 @Component({
   selector: 'app-toasts',
@@ -15,8 +15,18 @@ export class ToastsComponent implements OnInit {
 
   isTemplate(toast: Toast) {
     const isTemplate = toast.textOrTpl instanceof TemplateRef;
-    console.log('isTemplate in toast = ', isTemplate);
     return isTemplate;
+  }
+
+  getClassNameByType(toast:Toast){
+    if(!toast.options.type || toast.options.type === toastType.SUCCESS){
+      return "bg-dark text-light";
+    }
+    if(toast.options.type === toastType.ERROR){
+      return "bg-danger text-white";
+    }else if(toast.options.type === toastType.WARNING){
+      return "bg-warning text-dark";
+    }
   }
 
 }

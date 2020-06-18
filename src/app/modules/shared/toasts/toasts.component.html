@@ -4,7 +4,7 @@
         <div class="row">
             <div class="toast-wrapper col-12 col-md-6 col-lg-4 col-xl-3  mx-auto mt-4">
                 <ngb-toast *ngFor="let toast of toastService.toasts"
-                           [class]="toast.options.classname || 'bg-dark text-light'"
+                           [class]= getClassNameByType(toast)
                            [autohide]="true"
                            [delay]="toast.options.delay || 2500"
                            (hide)="toastService.remove(toast)">

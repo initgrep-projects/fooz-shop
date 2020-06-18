@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnDestroy } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy, OnChanges } from '@angular/core';
 import { Product } from 'src/app/models/product';
 import { SubSink } from 'subsink';
 import { ItemDetailService } from '../item-detail.service';
@@ -8,22 +8,25 @@ import { ItemDetailService } from '../item-detail.service';
   templateUrl: './item-info.component.html',
   styleUrls: ['./item-info.component.scss']
 })
-export class ItemInfoComponent implements OnInit, OnDestroy {
-  
+export class ItemInfoComponent implements OnInit, OnDestroy, OnChanges {
+
   @Input() product: Product;
-  grossItemPrice:number;
+  grossItemPrice: number;
   private subs = new SubSink();
-  constructor(private itemDetailService:ItemDetailService) { }
+  constructor(private itemDetailService: ItemDetailService) { }
 
   ngOnInit(): void {
-    console.log('price before ', this.product.Price.Amount);
     this.grossItemPrice = this.product.Price.Amount;
-    console.log('price after ', this.product.Price.Amount, this.grossItemPrice);
-    // this.subs.sink = 
-    this.itemDetailService.quantityChange.subscribe(value => this.grossItemPrice = this.product.Price.Amount * value);
+    this.subs.sink =
+      this.itemDetailService.quantityChange.subscribe(value => this.grossItemPrice = this.product.Price.Amount * value);
   }
 
-  ngOnDestroy(){
+  ngOnChanges() {
+    this.grossItemPrice = this.product.Price.Amount;
+  }
+
+
+  ngOnDestroy() {
     this.subs.unsubscribe();
   }
 }

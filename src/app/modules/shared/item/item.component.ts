@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 import { Product } from 'src/app/models/product';
 import { Image } from 'src/app/models/image';
 import { Color } from 'src/app/models/color';
@@ -19,8 +19,7 @@ export class ItemComponent implements OnInit {
 
   constructor(
     private logger: LogService,
-    private router: Router,
-    private activatedRoute: ActivatedRoute
+    private router: Router
   ) { }
 
 

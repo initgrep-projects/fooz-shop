@@ -1,12 +1,17 @@
 import { Injectable, TemplateRef } from '@angular/core';
 
 
+export enum toastType{
+  SUCCESS = 1,
+  WARNING = 2,
+  ERROR = 3
+}
 export interface Toast {
   textOrTpl: string | TemplateRef<any>,
   options?: ToastOptions
 }
 export interface ToastOptions {
-  classname?: string,
+  type?: toastType,
   delay?: string
   icon?: string
 }

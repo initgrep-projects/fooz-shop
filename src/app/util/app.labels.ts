@@ -22,6 +22,9 @@ export const AuthMessages = {
     emailVerificationFailed: 'Verification email failed',
     passwordReset: 'Password Reset email sent',
     passwordResetFail: 'password reset email failed',
+    profileUpdateSuccess: 'profile updated',
+    profiledUpdatedFailure: 'profile update failed',
+    saveProfile: 'save profile',
     invalidCredentials: [
         { code: 'auth/wrong-password', message: 'Incorrect email or password' },
         { code: 'auth/user-not-found', message: 'The email is not registered with us' },
@@ -39,7 +42,7 @@ export const AuthMessages = {
         signinIn: 'signing in',
         signingUp: 'signing up',
         googleSignIn: 'sign in with google',
-        manageProfile: 'Manage your profile',
+        manageProfile: 'Manage your account',
         verifiedAccount: 'verified',
         notVerifyAccount: 'pending verification',
         orders: 'orders',

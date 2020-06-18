@@ -49,7 +49,6 @@ export class AuthService {
             this.loginAsAnonymous();
           }
         }),
-
         switchMap((user: firebase.User) => {
           console.log('user in switchmap = ', user?.uid, user?.email);
           if (!user) {
@@ -58,14 +57,14 @@ export class AuthService {
             return of(this.transformService.transformUser(user));
           } else if (user.emailVerified) {
             const authUser = this.transformService.transformUser(user);
-            this.db.saveUser(authUser);
+            this.saveUserInDb(authUser);
           }
           return this.db.fetchUser(user.uid);
         }),
         map((user: User) => {
           console.log('tap user ', user?.UID, user?.Email);
           if (!!user) {
-            this.saveUserToStore(user);
+            this.saveUserInStore(user);
           }
           return user;
         })
@@ -90,8 +89,8 @@ export class AuthService {
         const authCredentials = await this.angularFireAuth.auth.signInWithPopup(provider);
         console.log('google login authcredentials ->', authCredentials);
         const authUser = this.transformService.transformUser(authCredentials.user);
-        await this.db.saveUser(authUser);
-        this.saveUserToStore(authUser);
+        await this.saveUserInDb(authUser);
+        this.saveUserInStore(authUser);
         resolve(authCredentials);
       } catch (e) {
         reject(e);
@@ -114,7 +113,7 @@ export class AuthService {
         console.log('user upgraded after registeration ', authCredentials);
         const authUser = this.transformService.transformUser(authCredentials.user);
         await this.db.saveUser(authUser);
-        this.saveUserToStore(authUser);
+        this.saveUserInStore(authUser);
         resolve(authCredentials);
       } catch (e) {
         reject(e);
@@ -172,7 +171,7 @@ export class AuthService {
         console.log('authuser found = ', authUser);
         await this.db.saveUser(authUser);
         console.log('db save done - sync in local store');
-        this.saveUserToStore(authUser);
+        this.saveUserInStore(authUser);
         console.log('sync in local store done');
         resolve(authUser);
       } catch (e) {
@@ -189,8 +188,15 @@ export class AuthService {
       .pipe(take(1));
   }
 
-  saveUserToStore(user: User) {
+  saveUserInStore(user: User) {
     this.store.dispatch(addUserAction({ payload: user }));
+  }
+  saveUserInDb(user: User) {
+    return this.db.saveUser(user);
+  }
+
+  updateUserInDb(user: User) {
+    return this.db.updateUser(user);
   }
 
   deleteUserFromStore() {

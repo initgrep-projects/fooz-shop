@@ -4,7 +4,7 @@ import { AuthModalService } from '../../auth-modal/auth-modal.service';
 import { AuthMessages } from '../../../../util/app.labels';
 import { SubSink } from 'subsink';
 import { AuthService } from '../../auth.service';
-import { ToastService } from 'src/app/modules/shared/toasts/toast.service';
+import { ToastService, toastType } from 'src/app/modules/shared/toasts/toast.service';
 
 
 @Component({
@@ -105,7 +105,7 @@ export class AuthLoginComponent implements OnInit, AfterViewInit {
         this.toastService.show(this.authMessages.passwordReset, { icon: 'unlock-alt' })
       })
       .catch(error => this.toastService.show(
-        this.authMessages.passwordReset, { icon: 'unlock-alt', classname: "bg-danger text-white" }))
+        this.authMessages.passwordReset, { icon: 'unlock-alt', type: toastType.ERROR}))
       .finally(() => this.passResetProgress = false)
   }
 

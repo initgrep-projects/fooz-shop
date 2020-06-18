@@ -1,0 +1,62 @@
+@import "../../../../variables.scss";
+
+div.app-user-profile {
+    font-family: $roboto-font-family;
+    div.row {
+        div.col-12 {
+            div.card {
+                text-align: center;
+                div.card-body {
+                    h5.card-title {
+                        text-transform: uppercase;
+                        font-weight: 600;
+                        letter-spacing: 0.025rem;
+                        padding-top: 1rem;
+                    }
+
+                    form {
+                        div.form-group {
+                            text-align: left;
+                            label {
+                                font-size: 0.8rem;
+                                text-transform: capitalize;
+                                letter-spacing: 0.025rem;
+                            }
+                            input {
+                                &::placeholder {
+                                    font-size: 0.8rem;
+                                    text-transform: capitalize;
+                                    letter-spacing: 0.025rem;
+                                }
+
+                                &:focus {
+                                    box-shadow: none;
+                                    border: 1px solid $primary-border-color;
+                                }
+                            }
+                            span {
+                                font-size: 0.6rem;
+                                letter-spacing: 0.025rem;
+                                display: inline-block;
+                                &::first-letter {
+                                    text-transform: capitalize;
+                                }
+                            }
+
+                            &.form-crtl{
+                                text-align: right;
+                                button{
+                                    letter-spacing: .045rem;
+                                    text-transform: uppercase;
+                                    font-size: .8rem;
+                                }
+                            }
+                        }
+
+                        
+                    }
+                }
+            }
+        }
+    }
+}

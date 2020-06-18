@@ -3,7 +3,7 @@ import { AccountComponent } from '../modules/account/account.component';
 import { OverviewComponent } from '../modules/account/overview/overview.component';
 import { OrdersComponent } from '../modules/account/orders/orders.component';
 import { AddressesComponent } from '../modules/account/addresses/addresses.component';
-import { ProfileComponent } from '../modules/account/profile/profile.component';
+import { UserProfileComponent } from '../modules/account/profile/user-profile.component';
 
 export const accountRoutes: Routes= [
     {
@@ -29,7 +29,7 @@ export const accountRoutes: Routes= [
         },
         {
           path: 'profile',
-          component: ProfileComponent
+          component: UserProfileComponent
         }
       ]
     }

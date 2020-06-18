@@ -10,11 +10,10 @@ ul.list-group {
         background-color: transparent;
         border-bottom: 0px solid transparent;
         @include animate(fadeIn, .5s);
-       
         padding:.5rem 0 .5rem 1rem;
 
         a {
-            font-size: 1rem;
+            font-size: .9rem;
             letter-spacing: 0.045rem;
             text-decoration: none;
             color: $primary-text-color;

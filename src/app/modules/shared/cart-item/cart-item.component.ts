@@ -8,7 +8,7 @@ import { CartService } from '../../cart/cart.service';
   templateUrl: './cart-item.component.html',
   styleUrls: ['./cart-item.component.scss']
 })
-export class CartItemComponent implements OnInit, AfterViewInit {
+export class CartItemComponent implements OnInit {
 
   @Input() item:CartItem;
   @Output() itemDelete = new EventEmitter<string>();
@@ -18,9 +18,7 @@ export class CartItemComponent implements OnInit, AfterViewInit {
 
   constructor(private cartService: CartService) { }
 
-  ngAfterViewInit(){
-  
-  }
+ 
   ngOnInit(): void { }
 
 

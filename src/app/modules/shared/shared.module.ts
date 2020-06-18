@@ -19,6 +19,7 @@ import { SignoutComponent } from './signout/signout.component';
 import { FeatureItemsComponent } from './feature-items/feature-items.component';
 import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
 import { CartItemComponent } from './cart-item/cart-item.component';
+import { PreTileCardComponent } from './pre-tile-card/pre-tile-card.component';
 
 
 @NgModule({
@@ -38,7 +39,8 @@ import { CartItemComponent } from './cart-item/cart-item.component';
     SignoutComponent,
     FeatureItemsComponent,
     BreadcrumbComponent,
-    CartItemComponent
+    CartItemComponent,
+    PreTileCardComponent
   ],
   imports: [
     CommonModule,
@@ -49,6 +51,7 @@ import { CartItemComponent } from './cart-item/cart-item.component';
   exports: [
     ItemComponent,
     PreCardComponent,
+    PreTileCardComponent,
     ToastsComponent,
     SidebarComponent,
     ParallaxComponent,

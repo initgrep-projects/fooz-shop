@@ -1,6 +1,6 @@
-@import "../../../../variables.scss";
+@import "../../../../../variables.scss"; 
 
-div.app-user-profile {
+div.app-user-profile-edit {
     font-family: $roboto-font-family;
     div.row {
         div.col-12 {
@@ -13,6 +13,7 @@ div.app-user-profile {
                         letter-spacing: 0.025rem;
                         padding-top: 1rem;
                     }
+                    
 
                     form {
                         div.form-group {

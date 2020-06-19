@@ -1,0 +1,48 @@
+@import "../../../../../variables.scss";
+div.app-user-profile {
+    font-family: $roboto-font-family;
+    div.card {
+        div.card-body {
+            &.email-wrapper {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+                @include sm {
+                    flex-direction: row;
+                    justify-content: space-between;
+                }
+
+                h6 {
+                    letter-spacing: 0.025rem;
+                }
+                button {
+                    border-radius: 20px;
+                    font-size: 0.8rem;
+                    letter-spacing: 0.025rem;
+                    padding: 0 1rem;
+                    text-transform: lowercase;
+                }
+            }
+            &.phone-wrapper{
+                display: flex;
+                flex-direction: column;
+                div.phone,div.name{
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: flex-start;
+                    label{
+                        font-size: .8rem;
+                        letter-spacing: .025rem;
+                        text-transform: uppercase;
+                        margin-right: 1rem;
+                        font-weight: 600;
+                    }
+                    h6{
+                        letter-spacing: .025rem;
+                    }
+                }
+            }
+        }
+    }
+}

@@ -69,6 +69,10 @@ div.pop-title-wrapper {
                     font-weight: normal;
                     padding-left: 1em;
                     padding-right: 1em;
+
+                    &.not-verified{
+                        cursor: pointer;
+                    }
                 }
             }
 

@@ -7,9 +7,12 @@ import { SharedModule } from '../shared/shared.module';
 import { OverviewComponent } from './overview/overview.component';
 import { OrdersComponent } from './orders/orders.component';
 import { AddressesComponent } from './addresses/addresses.component';
-import { UserProfileComponent } from './profile/user-profile.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ReactiveFormsModule } from '@angular/forms';
+import { UserProfileComponent } from './profile/user-profile/user-profile.component';
+import { UserProfileEditComponent } from './profile/user-profile-edit/user-profile-edit.component';
+import { UserAddressEditComponent } from './addresses/user-address-edit/user-address-edit.component';
+import { UserAddressComponent } from './addresses/user-address/user-address.component';
 
 
 
@@ -20,7 +23,11 @@ import { ReactiveFormsModule } from '@angular/forms';
     OverviewComponent,
     OrdersComponent,
     AddressesComponent,
-    UserProfileComponent],
+    UserProfileEditComponent,
+    UserProfileComponent,
+    UserAddressEditComponent,
+    UserAddressComponent
+  ],
   imports: [
     CommonModule,
     AccountRoutingModule,

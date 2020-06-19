@@ -2,27 +2,29 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { SubSink } from 'subsink';
 import { AuthMessages } from 'src/app/util/app.labels';
-import { AuthService } from '../../auth/auth.service';
 import { User } from 'src/app/models/user';
 import { cloneDeep } from 'lodash';
-import { ToastService } from '../../shared/toasts/toast.service';
+import { AuthService } from 'src/app/modules/auth/auth.service';
+import { ToastService, toastType } from 'src/app/modules/shared/toasts/toast.service';
+import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-user-profile',
-  templateUrl: './user-profile.component.html',
-  styleUrls: ['./user-profile.component.scss']
+  selector: 'app-user-profile-edit',
+  templateUrl: './user-profile-edit.component.html',
+  styleUrls: ['./user-profile-edit.component.scss']
 })
-export class UserProfileComponent implements OnInit, OnDestroy {
+export class UserProfileEditComponent implements OnInit, OnDestroy {
   private subs = new SubSink();
   authUser: User;
-  labels = AuthMessages
+  labels = AuthMessages;
   editProfileForm: FormGroup;
   isSaveProgress = false;
 
 
   constructor(
     private authService: AuthService,
-    private toastService: ToastService
+    private toastService: ToastService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -70,8 +72,10 @@ export class UserProfileComponent implements OnInit, OnDestroy {
       this.authService.saveUserInStore(this.authUser);
       await this.authService.saveUserInDb(this.authUser);
       this.toastService.show(this.labels.profileUpdateSuccess, { icon: 'user' });
+      this.router.navigate(['my/account/profile']);
+      
     } catch (e) {
-      // this.toastService.show(this.labels.profileUpdateSuccess, { icon: 'fasUser' , classname=""});
+      this.toastService.show(this.labels.profileUpdateSuccess, { icon: 'fasUser', type: toastType.ERROR });
     }
 
   }

@@ -1,9 +1,9 @@
 <ng-template #loading>
    <div class="col-12 text-center mx-2">
-      <span>
-         <fa-icon [icon]="['fas', 'spinner']"
-                  [spin]="true"></fa-icon>
-      </span>
+      <div class="spinner-border text-secondary"
+           role="status">
+         <span class="sr-only">Loading...</span>
+      </div>
    </div>
 </ng-template>
 
@@ -16,9 +16,9 @@
          <p>{{labels.welcomeAuthMsg}}</p>
          <div class="auth-control">
             <button class="btn btn-sm btn-outline-dark"
-               [routerLink]="[{outlets: {'secure': ['auth']}}]">
+                    [routerLink]="[{outlets: {'secure': ['auth']}}]">
                <span>{{labels.login}}</span> | <span>{{labels.signup}}</span>
-         </button>
+            </button>
          </div>
       </div>
 
@@ -46,12 +46,15 @@
             <span class="badge  badge-pill badge-dark"
                   *ngIf="!authUser?.IsAnonymous && authUser?.IsEmailVerified">{{  labels.verifiedAccount}}</span>
 
-            <span class="badge  badge-pill badge-danger"
-                  *ngIf="!authUser?.IsAnonymous && !authUser?.IsEmailVerified">{{  labels.notVerifyAccount}}</span>
+            <span class="badge  badge-pill badge-danger not-verified"
+                  *ngIf="!authUser?.IsAnonymous && !authUser?.IsEmailVerified"
+                  (click)="sendEmailVerification()"
+                  >{{  labels.notVerifyAccount}}</span>
          </div>
 
          <div class="mg-profile">
-            <button class="btn btn-sm btn-outline-dark" (click)="routeToAccount()">
+            <button class="btn btn-sm btn-outline-dark"
+                    (click)="routeToAccount()">
                {{labels.manageProfile}}
             </button>
          </div>

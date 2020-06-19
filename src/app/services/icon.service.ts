@@ -58,7 +58,8 @@ import {
   faEnvelopeOpenText,
   faUnlockAlt,
   faUser as fasUser,
-  faChevronLeft
+  faChevronLeft,
+  faCheckCircle
 } from '@fortawesome/free-solid-svg-icons';
 import { faUser as farUser } from '@fortawesome/free-regular-svg-icons';
 import { faGoogle } from '@fortawesome/free-brands-svg-icons';
@@ -131,7 +132,8 @@ export class IconService {
       faEnvelopeOpenText,
       faUnlockAlt,
       fasUser,
-      farUser
+      farUser,
+      faCheckCircle
     ];
   }
 

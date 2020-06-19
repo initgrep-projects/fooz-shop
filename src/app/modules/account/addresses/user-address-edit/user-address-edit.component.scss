@@ -1,0 +1,33 @@
+div.app-user-address-edit{
+    form{
+        div.form-group{
+            margin-top: 1rem;
+            margin-bottom: 0rem;
+            input{
+                border:none;
+                border-radius: 0px;
+                border-bottom: 2px solid #333;
+                padding:.5rem;
+
+                &:focus{
+                    box-shadow: none;
+                }
+            
+            }
+            input:focus ~ label{
+                font-weight: 600;
+                text-transform: uppercase;
+                transform: translateY(-20px);
+                margin-left: .2rem;
+                transition: all .2s ease;
+            }
+
+            label{
+                position: relative;
+                top:-30px;
+                margin-left: 1rem;
+            }
+           
+        }
+    }
+}

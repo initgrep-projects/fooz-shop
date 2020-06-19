@@ -24,7 +24,6 @@ export const AuthMessages = {
     passwordResetFail: 'password reset email failed',
     profileUpdateSuccess: 'profile updated',
     profiledUpdatedFailure: 'profile update failed',
-    saveProfile: 'save profile',
     invalidCredentials: [
         { code: 'auth/wrong-password', message: 'Incorrect email or password' },
         { code: 'auth/user-not-found', message: 'The email is not registered with us' },
@@ -52,6 +51,14 @@ export const AuthMessages = {
         home: 'home',
         shop: 'shop',
         
+    },
+    
+    formLabels: {
+        name: 'name',
+        email: 'email',
+        phone: 'phone',
+        editProfile: 'edit',
+        saveProfile: 'save profile',
     }
 };
 

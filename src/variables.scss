@@ -18,6 +18,17 @@ $primary-border-color: #333;
 $secondary-border-color: #f1f1f1;
 $grey-border-color: #8080801c;
 
+$success-light: #28a7451c;
+$danger-light: #dc354517;
+
+.bg-success-light{
+    background-color: $success-light !important;
+}
+.bg-danger-light{
+    background-color: $danger-light !important;
+}
+
+
 @mixin animate($type: fadeIn, $duration: 2s) {
     animation: $type;
     animation-duration: $duration;

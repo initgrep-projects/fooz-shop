@@ -20,6 +20,7 @@ import { FeatureItemsComponent } from './feature-items/feature-items.component';
 import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
 import { CartItemComponent } from './cart-item/cart-item.component';
 import { PreTileCardComponent } from './pre-tile-card/pre-tile-card.component';
+import { MatfocusDirective } from './directives/matfocus.directive';
 
 
 @NgModule({
@@ -40,7 +41,8 @@ import { PreTileCardComponent } from './pre-tile-card/pre-tile-card.component';
     FeatureItemsComponent,
     BreadcrumbComponent,
     CartItemComponent,
-    PreTileCardComponent
+    PreTileCardComponent,
+    MatfocusDirective
   ],
   imports: [
     CommonModule,
@@ -64,7 +66,8 @@ import { PreTileCardComponent } from './pre-tile-card/pre-tile-card.component';
     AnchorsComponent,
     SignoutComponent,
     BreadcrumbComponent,
-    CartItemComponent
+    CartItemComponent,
+    MatfocusDirective
   ]
 })
 export class SharedModule { }

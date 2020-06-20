@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
 @Component({
@@ -12,6 +12,10 @@ export class UserAddressEditComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  isSameElement(name:ElementRef){
+   return name?.nativeElement?.id === 'name';
   }
 
 }

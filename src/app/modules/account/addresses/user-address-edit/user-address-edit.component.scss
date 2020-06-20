@@ -1,33 +1,45 @@
-div.app-user-address-edit{
-    form{
-        div.form-group{
+@import "../../../../../variables.scss";
+
+div.app-user-address-edit {
+    font-family: $roboto-font-family;
+    form {
+        div.form-group {
             margin-top: 1rem;
             margin-bottom: 0rem;
-            input{
-                border:none;
+            input {
+                border: none;
                 border-radius: 0px;
                 border-bottom: 2px solid #333;
-                padding:.5rem;
+                padding: 0.5rem;
 
-                &:focus{
+                &:focus {
                     box-shadow: none;
                 }
-            
             }
-            input:focus ~ label{
+            input:focus + label {
                 font-weight: 600;
                 text-transform: uppercase;
                 transform: translateY(-20px);
-                margin-left: .2rem;
-                transition: all .2s ease;
+                margin-left: 0.2rem;
+                transition: all 0.2s ease;
+                font-size: 0.7rem;
+                letter-spacing: 0.1rem;
             }
 
-            label{
-                position: relative;
-                top:-30px;
-                margin-left: 1rem;
-            }
            
+
+            label {
+                position: relative;
+                top: -30px;
+                margin-left: 1rem;
+                font-size: 0.8rem;
+                letter-spacing: 0.025rem;
+                text-transform: capitalize;
+
+                &.active{
+                    top: -50px;
+                }
+            }
         }
     }
 }

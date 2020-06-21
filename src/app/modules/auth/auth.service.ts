@@ -10,6 +10,7 @@ import { addUserAction, deleteUserAction } from './store/auth.actions';
 import { ObjectTransformerService } from 'src/app/services/object-transformer.service';
 import { FireStoreDbService } from 'src/app/services/firestore.db.service';
 import { async } from '@angular/core/testing';
+import { cloneDeep } from 'lodash';
 
 @Injectable({
   providedIn: 'root'
@@ -56,8 +57,17 @@ export class AuthService {
           } else if (user.isAnonymous) {
             return of(this.transformService.transformUser(user));
           } else if (user.emailVerified) {
-            const authUser = this.transformService.transformUser(user);
-            this.saveUserInDb(authUser);
+            return this.getUser(user.uid)
+            .pipe(
+              take(1),
+              switchMap(async dbUser => {
+                if(!!dbUser && !dbUser.IsEmailVerified){
+                  dbUser.IsEmailVerified = true;
+                  await this.updateUserInDb(dbUser);
+                }
+                return dbUser;
+              })
+            );
           }
           return this.db.fetchUser(user.uid);
         }),
@@ -181,6 +191,10 @@ export class AuthService {
 
 
     });
+  }
+
+  getUser(id:string){
+    return this.db.fetchUser(id);
   }
 
   getUserByEmail(value: { email: string }) {

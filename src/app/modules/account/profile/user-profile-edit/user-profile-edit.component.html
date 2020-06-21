@@ -26,32 +26,38 @@
                     <form [formGroup]="editProfileForm"
                           (ngSubmit)="submit()">
                         <div class="form-group">
-                            <label for="fullname">{{labels.formLabels.name}}</label>
+                            
                             <input type="text"
                                    class="form-control"
                                    id="fullname"
-                                   placeholder="name"
-                                   formControlName="name">
+                                   formControlName="name"
+                                   appMatfocus
+                                   >
+                                   <label for="fullname">{{labels.formLabels.name}}</label>
                             <span class="text-danger"
                                   *ngIf="editProfileForm.controls.name.dirty && !!editProfileForm.controls.name.errors">{{labels.invalidName}}</span>
                         </div>
                         <div class="form-group">
-                            <label for="email">{{labels.formLabels.email}}</label>
+                           
                             <input type="email"
                                    class="form-control"
                                    id="email"
-                                   placeholder="email"
-                                   formControlName="email">
+                                   formControlName="email"
+                                   appMatfocus
+                                   >
+                                   <label for="email">{{labels.formLabels.email}}</label>
                             <span class="text-danger"
                                   *ngIf="editProfileForm.controls.email.dirty && !!editProfileForm.controls.email.errors">{{labels.invalidEmail}}</span>
                         </div>
                         <div class="form-group">
-                            <label for="phone">{{labels.formLabels.phone}}</label>
+                            
                             <input type="tel"
                                    class="form-control"
                                    id="phone"
-                                   placeholder="phone number"
-                                   formControlName="phone">
+                                   formControlName="phone"
+                                   appMatfocus
+                                   >
+                                   <label for="phone">{{labels.formLabels.phone}}</label>
                             <span class="text-danger"
                                   *ngIf="editProfileForm.controls.phone.dirty && !!editProfileForm.controls.phone.errors">{{labels.invalidPhone}}</span>
                         </div>

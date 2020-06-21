@@ -1,28 +1,49 @@
 @import "../../../../../variables.scss";
 
 div.auth-signup-form {
+    min-height: 200px;
     div.form-group {
+        margin-top: 1rem;
+        margin-bottom: 0rem;
         input {
-            // font-size: 0.8rem;
+            border: none;
+            border-radius: 0px;
+            border-bottom: 2px solid #333;
+            padding: 0.5rem 0rem;
+            font-size: 0.8rem;
             letter-spacing: 0.025rem;
-            border: 1px solid $primary-border-color;
-            // transition: border-width .3s ease-in;
-            &::placeholder {
-                font-size: 0.8rem;
-            }
 
             &:focus {
-                outline-width: 0px;
-                border: 2px solid $primary-border-color;
-                color: $primary-text-color;
                 box-shadow: none;
             }
+        }
+        input:focus + label {
+            font-weight: 600;
+            text-transform: uppercase;
+            top: -50px;
+            margin-left: 0rem;
+            font-size: 0.7rem;
+            letter-spacing: 0.1rem;
+        }
+
+        label {
+            position: relative;
+            top: -30px;
+            margin-left: 0.5rem;
+            font-size: 0.7rem;
+            letter-spacing: 0.01rem;
+            text-transform: uppercase;
+
+            transition: all 0.2s ease;
         }
         small {
             font-size: 0.6rem;
             letter-spacing: 0.025rem;
         }
         span.text-danger {
+            position: absolute;
+            margin-top: 0.3rem;
+            left: 40px;
             font-size: 0.6rem;
             letter-spacing: 0.025rem;
             display: inline-block;
@@ -30,8 +51,6 @@ div.auth-signup-form {
                 text-transform: capitalize;
             }
         }
-
-       
 
         button {
             text-transform: uppercase;

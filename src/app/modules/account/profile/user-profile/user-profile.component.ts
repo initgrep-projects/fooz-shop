@@ -29,8 +29,11 @@ export class UserProfileComponent implements OnInit {
     this.subs.sink =
       this.authService.userFromStore$
         .subscribe((user: User) => {
+          console.log("user change in user profile ", user);
           if (!!user && !user.IsAnonymous) {
             this.authUser = cloneDeep(user);
+          } else{
+            this.authUser = null;
           }
         });
   }

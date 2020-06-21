@@ -305,7 +305,6 @@ export class FireStoreDbService {
     return this.userCollection.doc(id).get()
       .pipe(
         map(querySnapShot => {
-          console.log('querysnapshot data = ', querySnapShot.data());
           return this.objTransformer.transformUserFromDocumentData(querySnapShot.data());
         })
       );

@@ -1,96 +1,121 @@
 <div class="container app-user-address-edit">
     <div class="row">
         <div class="col-12">
-            <form formGroup="addressForm">
+            <form [formGroup]="addressForm">
+                <div class="row ">
+                    <div class="col-12 col-md-8">
+                        <div class="card px-3">
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <input type="text"
+                                           class="form-control"
+                                           id="name"
+                                           formControlName="name"
+                                           aria-describedby="enter your full name"
+                                           appMatfocus>
+                                    <label for="name">Name</label>
+                                </div>
+                                <div class="form-group">
 
-                <div class="row border border-secondary px-3">
-                    <div class="col-12">
-                        <div class="form-group">
-
-                            <input type="text"
-                                   class="form-control"
-                                   id="name"
-                                   aria-describedby="enter your full name"
-                                   #name
-                                   >
-                            <label for="name"
-                            appMatfocus="name"
-                            >Name</label>
-                        </div>
-                        <div class="form-group">
-
-                            <input type="tel"
-                                   class="form-control"
-                                   id="phone"
-                                   aria-describedby="enter phone number">
-                            <label for="phone">Phone</label>
+                                    <input type="tel"
+                                           class="form-control"
+                                           id="phone"
+                                           formControlName = "phone"
+                                           aria-describedby="enter phone number"
+                                           appMatfocus>
+                                    <label for="phone">Phone</label>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="row border border-primary mt-2 border-round">
-                    <div class="col-12">
-                        <div class="form-group">
+                <div class="row row mt-2" >
+                    <div class="col-12 col-md-8">
+                        <div class="card px-3" formGroupName ="address">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <input type="text"
+                                                   class="form-control"
+                                                   id="street"
+                                                   formControlName = "street"
+                                                   aria-describedby="enter your full name"
+                                                   appMatfocus>
+                                            <label for="street">Address (House No, Building, Street, Area) *</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12 col-md-6">
 
-                            <input type="text"
-                                   class="form-control"
-                                   id="name"
-                                   aria-describedby="enter your full name">
-                            <label for="name">Address (House No, Building, Street, Area) *</label>
+                                        <div class="form-group">
+
+                                            <input type="text"
+                                                   class="form-control"
+                                                   id="country"
+                                                   formControlName ="country"
+                                                   aria-describedby="enter your full name"
+                                                   appMatfocus>
+                                            <label for="country">country</label>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <div class="form-group">
+
+                                            <input type="text"
+                                                   class="form-control"
+                                                   id="state"
+                                                   formControlName ="state"
+                                                   aria-describedby="enter your full name"
+                                                   appMatfocus>
+                                            <label for="state">state</label>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12 col-md-6">
+                                        <div class="form-group">
+
+                                            <input type="text"
+                                                   class="form-control"
+                                                   id="city"
+                                                   formControlName="city"
+                                                   aria-describedby="enter your full name"
+                                                   appMatfocus>
+                                            <label for="city">city</label>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-12 col-md-4">
+                                        <div class="form-group">
+                                            <input type="text"
+                                                   class="form-control"
+                                                   id="zipcode"
+                                                   formControlName ="zipcode"
+                                                   aria-describedby="enter your full name"
+                                                   appMatfocus>
+                                            <label for="zipcode">zip code</label>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
                         </div>
-
                     </div>
-                    <div class="col-12 col-md-3">
-
-                        <div class="form-group">
-
-                            <input type="text"
-                                   class="form-control"
-                                   id="country"
-                                   aria-describedby="enter your full name">
-                            <label for="country">country</label>
-                        </div>
-
-                    </div>
-                    <div class="col-12 col-md-3">
-                        <div class="form-group">
-
-                            <input type="text"
-                                   class="form-control"
-                                   id="state"
-                                   aria-describedby="enter your full name">
-                            <label for="state">state</label>
-                        </div>
-
-                    </div>
-                    <div class="col-12 col-md-3">
-                        <div class="form-group">
-
-                            <input type="text"
-                                   class="form-control"
-                                   id="city"
-                                   aria-describedby="enter your full name">
-                            <label for="city">city</label>
-                        </div>
-
-                    </div>
-                    <div class="col-12 col-md-3">
-                        <div class="form-group">
-
-                            <input type="text"
-                                   class="form-control"
-                                   id="zipcode"
-                                   aria-describedby="enter your full name">
-                            <label for="zipcode">zip code</label>
-                        </div>
-
-                    </div>
-
                 </div>
 
 
-
-                <button type="submit"
-                        class="btn btn-primary">Submit</button>
+                <div class="row mt-3" >
+                    <div class="col-12 col-md-8">
+                        <button type="submit"
+                        class="btn btn-sm btn-dark btn-block">save</button>
+                    </div>
+                </div>
             </form>
         </div>
     </div>

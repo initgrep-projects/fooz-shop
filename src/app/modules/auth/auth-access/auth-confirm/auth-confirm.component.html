@@ -8,8 +8,10 @@
              class="form-control form-control-lg"
              id="email"
              aria-describedby="email or phone help"
-             placeholder="Enter your email"
-             formControlName="email">
+             formControlName="email"
+             appMatfocus
+             >
+             <label for="email">{{authMessages.formLabels.email}}</label>       
       <span class="text-danger"
             *ngIf="confirmForm.controls.email.dirty && !!confirmForm.controls.email.errors">
         {{authMessages.invalidEmail}}

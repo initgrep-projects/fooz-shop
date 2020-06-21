@@ -17,28 +17,52 @@ div.app-user-profile-edit {
 
                     form {
                         div.form-group {
+                            
                             text-align: left;
-                            label {
-                                font-size: 0.8rem;
-                                text-transform: capitalize;
-                                letter-spacing: 0.025rem;
-                            }
+                            margin-top: 1rem;
+                            margin-bottom: 0rem;
                             input {
-                                &::placeholder {
-                                    font-size: 0.8rem;
-                                    text-transform: capitalize;
-                                    letter-spacing: 0.025rem;
-                                }
-
+                                border: none;
+                                border-radius: 0px;
+                                border-bottom: 2px solid #333;
+                                padding: 0.5rem 0rem;
+                                font-size: .8rem;
+                                letter-spacing: 0.1rem;
+                
                                 &:focus {
                                     box-shadow: none;
-                                    border: 1px solid $primary-border-color;
                                 }
                             }
+                            input:focus + label {
+                                font-weight: 600;
+                                text-transform: uppercase;
+                                top: -50px;
+                                margin-left: 0rem;
+                                font-size: 0.7rem;
+                                letter-spacing: 0.1rem;
+                            }
+                
+                           
+                
+                            label {
+                                position: relative;
+                                top: -30px;
+                                margin-left: .5rem;
+                                font-size: 0.7rem;
+                                letter-spacing: 0.01rem;
+                                text-transform: uppercase;
+                                
+                                transition: all 0.2s ease;
+                            }
+
+
                             span {
+                                position: absolute;
+                                margin-top: .4rem;
                                 font-size: 0.6rem;
                                 letter-spacing: 0.025rem;
                                 display: inline-block;
+                                left: 20px;
                                 &::first-letter {
                                     text-transform: capitalize;
                                 }

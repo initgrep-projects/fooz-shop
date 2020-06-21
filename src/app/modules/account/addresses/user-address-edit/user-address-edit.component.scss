@@ -10,7 +10,9 @@ div.app-user-address-edit {
                 border: none;
                 border-radius: 0px;
                 border-bottom: 2px solid #333;
-                padding: 0.5rem;
+                padding: 0.5rem 0rem;
+                font-size: 0.8rem;
+                letter-spacing: 0.025rem;
 
                 &:focus {
                     box-shadow: none;
@@ -19,27 +21,27 @@ div.app-user-address-edit {
             input:focus + label {
                 font-weight: 600;
                 text-transform: uppercase;
-                transform: translateY(-20px);
-                margin-left: 0.2rem;
-                transition: all 0.2s ease;
+                top: -50px;
+                margin-left: 0rem;
                 font-size: 0.7rem;
                 letter-spacing: 0.1rem;
             }
 
-           
-
             label {
                 position: relative;
                 top: -30px;
-                margin-left: 1rem;
-                font-size: 0.8rem;
-                letter-spacing: 0.025rem;
-                text-transform: capitalize;
+                margin-left: 0.5rem;
+                font-size: 0.7rem;
+                letter-spacing: 0.01rem;
+                text-transform: uppercase;
 
-                &.active{
-                    top: -50px;
-                }
+                transition: all 0.2s ease;
             }
         }
+    }
+    button {
+        letter-spacing: 0.045rem;
+        text-transform: uppercase;
+        font-size: 0.8rem;
     }
 }

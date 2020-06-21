@@ -57,6 +57,7 @@ export const AuthMessages = {
         name: 'name',
         email: 'email',
         phone: 'phone',
+        password: 'password',
         editProfile: 'edit',
         saveProfile: 'save profile',
     }

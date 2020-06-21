@@ -1,5 +1,5 @@
 import { Component, OnInit, ElementRef } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormGroup, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-user-address-edit',
@@ -7,15 +7,27 @@ import { FormGroup } from '@angular/forms';
   styleUrls: ['./user-address-edit.component.scss']
 })
 export class UserAddressEditComponent implements OnInit {
+  addressForm = this.formBuilder.group({
+    name: [''],
+    phone: [''],
+    address: this.formBuilder.group({
+      street: [''],
+      country: [''],
+      state: [''],
+      city: [''],
+      zipcode: ['560076']
+    })
+  });
 
-  addressForm:FormGroup;
-  constructor() { }
+  constructor(private formBuilder: FormBuilder) { }
+
 
   ngOnInit(): void {
+
+
+
   }
 
-  isSameElement(name:ElementRef){
-   return name?.nativeElement?.id === 'name';
-  }
+
 
 }

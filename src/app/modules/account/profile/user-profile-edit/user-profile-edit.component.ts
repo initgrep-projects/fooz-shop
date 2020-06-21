@@ -70,7 +70,8 @@ export class UserProfileEditComponent implements OnInit, OnDestroy {
         this.authUser.Name = name;
       }
       this.authService.saveUserInStore(this.authUser);
-      await this.authService.saveUserInDb(this.authUser);
+      console.log('authuser = ', this.authUser);
+      await this.authService.updateUserInDb(this.authUser);
       this.toastService.show(this.labels.profileUpdateSuccess, { icon: 'user' });
       this.router.navigate(['my/account/profile']);
       

@@ -17,9 +17,10 @@
              class="form-control form-control-lg"
              id="email"
              aria-describedby="email or phone help"
-             placeholder="Enter email"
              formControlName="email"
-             readonly>
+             readonly
+             
+             >
       <span class="text-danger"
             *ngIf="loginForm.controls.email.dirty && !!loginForm.controls.email.errors">
         {{authMessages.invalidEmail}}
@@ -29,9 +30,11 @@
       <input type="password"
              class="form-control form-control-lg"
              id="password"
-             placeholder="Password"
              formControlName="password"
-             #password>
+             #password
+             appMatfocus
+             >
+             <label for="password">{{authMessages.formLabels.password}}</label>
       <span class="text-danger"
             *ngIf="loginForm.controls.password.dirty && !!loginForm.controls.password.errors">
         {{authMessages.invalidPassword}}

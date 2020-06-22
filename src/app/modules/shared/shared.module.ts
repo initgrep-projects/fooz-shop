@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ItemComponent } from './item/item.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { PreCardComponent } from './pre-card/pre-card.component';
-import { NgbToastModule, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbToastModule, NgbActiveModal, NgbTypeaheadModule } from '@ng-bootstrap/ng-bootstrap';
 import { ToastsComponent } from './toasts/toasts.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { ParallaxComponent } from './parallax/parallax.component';

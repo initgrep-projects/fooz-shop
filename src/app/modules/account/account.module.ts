@@ -13,6 +13,7 @@ import { UserProfileComponent } from './profile/user-profile/user-profile.compon
 import { UserProfileEditComponent } from './profile/user-profile-edit/user-profile-edit.component';
 import { UserAddressEditComponent } from './addresses/user-address-edit/user-address-edit.component';
 import { UserAddressComponent } from './addresses/user-address/user-address.component';
+import { NgbTypeaheadModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 
@@ -33,7 +34,8 @@ import { UserAddressComponent } from './addresses/user-address/user-address.comp
     AccountRoutingModule,
     FontAwesomeModule,
     SharedModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgbTypeaheadModule
   ]
 })
 export class AccountModule { }

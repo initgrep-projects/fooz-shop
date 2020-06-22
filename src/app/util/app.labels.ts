@@ -12,9 +12,14 @@ export const toastLabels = {
 export const AuthMessages = {
     invalidName: 'Name should be 100 characters or less',
     invalidEmail: 'please enter a valid email',
-    invalidPhone: 'please provide a valid phone number with country code.(+971234512345)',
+    invalidPhone: 'please provide phone number with country code (+971234512345)',
     invalidPassword: 'please provide password - must be 8 characters or more',
     invalidSignup: 'The email address is already in use by another account.',
+    invalidStreet: 'please provide your complete street address',
+    invalidCountry: 'please provide your Country Name',
+    invalidState: 'please provide your state name',
+    invalidCity: 'Please provide your city name',
+    invalidZipCode: 'Please provide a valid zip code',
     forgotpassword: 'forgot password ?',
     loginSuccess: 'Logged in successfully',
     logoutSuccess: 'logged out successfully',
@@ -57,9 +62,15 @@ export const AuthMessages = {
         name: 'name',
         email: 'email',
         phone: 'phone',
+        street: 'street (House No,Building,Street,Area) *',
+        city: 'city',
+        state: 'state',
+        country: 'country',
+        zipcode: 'zipcode',
         password: 'password',
         editProfile: 'edit',
         saveProfile: 'save profile',
+        saveAddress: 'save Address'
     }
 };
 

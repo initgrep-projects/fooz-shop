@@ -1,13 +1,14 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-import { StoreModule} from '@ngrx/store';
+import { StoreModule } from '@ngrx/store';
 import { AppReducer } from './store/app.reducer';
 import 'reflect-metadata';
 
 import { FaIconLibrary, FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { IconService } from 'src/app/services/icon.service';
 
-import { AngularFirestoreModule} from '@angular/fire/firestore';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireModule } from '@angular/fire';
 import { environment } from 'src/environments/environment';
 
@@ -28,6 +29,7 @@ import { AccountModule } from '../account/account.module';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     HeaderModule,
     FooterModule,
     HomeModule,
@@ -39,7 +41,7 @@ import { AccountModule } from '../account/account.module';
     StoreModule.forRoot(AppReducer),
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule,
-    SharedModule
+    SharedModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

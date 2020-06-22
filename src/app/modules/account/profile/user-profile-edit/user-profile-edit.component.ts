@@ -45,7 +45,7 @@ export class UserProfileEditComponent implements OnInit, OnDestroy {
     this.editProfileForm = new FormGroup({
       'name': new FormControl('', [Validators.required, Validators.max(100)]),
       'email': new FormControl('', [Validators.required, Validators.email]),
-      'phone': new FormControl('', [Validators.required, Validators.min(8), Validators.pattern('^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$')])
+      'phone': new FormControl('', [Validators.required, Validators.min(8), Validators.pattern('^[+]*[0-9]{1,12}')])
     });
   }
 

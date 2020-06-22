@@ -1,37 +1,45 @@
 <div class="container app-user-address-edit">
     <div class="row">
         <div class="col-12">
-            <form [formGroup]="addressForm">
+            <form [formGroup]="addressForm"
+                  (ngSubmit)="saveAddress()">
                 <div class="row ">
                     <div class="col-12 col-md-8">
                         <div class="card px-3">
                             <div class="card-body">
-                                <div class="form-group">
-                                    <input type="text"
-                                           class="form-control"
-                                           id="name"
-                                           formControlName="name"
-                                           aria-describedby="enter your full name"
-                                           appMatfocus>
-                                    <label for="name">Name</label>
-                                </div>
-                                <div class="form-group">
-
-                                    <input type="tel"
-                                           class="form-control"
-                                           id="phone"
-                                           formControlName = "phone"
-                                           aria-describedby="enter phone number"
-                                           appMatfocus>
-                                    <label for="phone">Phone</label>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <input type="text"
+                                                   class="form-control"
+                                                   id="name"
+                                                   formControlName="name"
+                                                   aria-describedby="enter your full name"
+                                                   appMatfocus>
+                                            <label for="name">{{labels.formLabels.name}}</label>
+                                            <span class="text-danger"
+                                                  *ngIf="addressForm.controls.name.touched && !!addressForm.controls.name.errors">{{labels.invalidName}}</span>
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="tel"
+                                                   class="form-control"
+                                                   id="phone"
+                                                   formControlName="phone"
+                                                   aria-describedby="enter phone number"
+                                                   appMatfocus>
+                                            <label for="phone">{{labels.formLabels.phone}}</label>
+                                            <span class="text-danger"
+                                                  *ngIf="addressForm.controls.phone.touched && !!addressForm.controls.phone.errors">{{labels.invalidPhone}}</span>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="row row mt-2" >
-                    <div class="col-12 col-md-8">
-                        <div class="card px-3" formGroupName ="address">
+                <div class="row row mt-2">
+                    <div class="col-12 col-md-10">
+                        <div class="card px-3">
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-12">
@@ -39,27 +47,38 @@
                                             <input type="text"
                                                    class="form-control"
                                                    id="street"
-                                                   formControlName = "street"
-                                                   aria-describedby="enter your full name"
+                                                   formControlName="street"
+                                                   aria-describedby="enter your street address"
                                                    appMatfocus>
-                                            <label for="street">Address (House No, Building, Street, Area) *</label>
+                                            <label for="street">{{labels.formLabels.street}}</label>
+                                            <span class="text-danger"
+                                                  *ngIf="addressForm.controls.street.touched && !!addressForm.controls.street.errors">{{labels.invalidStreet}}</span>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-12 col-md-6">
+                                    <div class="col-10 col-md-5">
 
                                         <div class="form-group">
-
                                             <input type="text"
                                                    class="form-control"
                                                    id="country"
-                                                   formControlName ="country"
-                                                   aria-describedby="enter your full name"
-                                                   appMatfocus>
-                                            <label for="country">country</label>
+                                                   formControlName="country"
+                                                   aria-describedby="enter your country name"
+                                                   [ngbTypeahead]="findCountry"
+                                                   [appMatfocus]="'country-label'">
+                                            
+                                            <label id="country-label"
+                                                   for="country">{{labels.formLabels.country}}</label>
+                                            <span class="text-danger"
+                                                  *ngIf="addressForm.controls.country.touched && addressForm.controls.country.invalid">{{labels.invalidCountry}}</span>
                                         </div>
 
+                                    </div>
+                                    <div class="col-1">
+                                        <div class="spinner-grow text-dark" style="height: 1rem; width: 1rem;" role="status">
+                                            <span class="sr-only">Loading...</span>
+                                          </div>
                                     </div>
                                     <div class="col-12 col-md-6">
                                         <div class="form-group">
@@ -67,10 +86,12 @@
                                             <input type="text"
                                                    class="form-control"
                                                    id="state"
-                                                   formControlName ="state"
-                                                   aria-describedby="enter your full name"
+                                                   formControlName="state"
+                                                   aria-describedby="enter your state name"
                                                    appMatfocus>
-                                            <label for="state">state</label>
+                                            <label for="state">{{labels.formLabels.state}}</label>
+                                            <span class="text-danger"
+                                                  *ngIf="addressForm.controls.state.touched && addressForm.controls.state.invalid">{{labels.invalidState}}</span>
                                         </div>
 
                                     </div>
@@ -83,9 +104,11 @@
                                                    class="form-control"
                                                    id="city"
                                                    formControlName="city"
-                                                   aria-describedby="enter your full name"
+                                                   aria-describedby="enter your city name"
                                                    appMatfocus>
-                                            <label for="city">city</label>
+                                            <label for="city">{{labels.formLabels.city}}</label>
+                                            <span class="text-danger"
+                                                  *ngIf="addressForm.controls.city.touched && addressForm.controls.city.invalid">{{labels.invalidCity}}</span>
                                         </div>
 
                                     </div>
@@ -94,26 +117,27 @@
                                             <input type="text"
                                                    class="form-control"
                                                    id="zipcode"
-                                                   formControlName ="zipcode"
-                                                   aria-describedby="enter your full name"
+                                                   formControlName="zipcode"
+                                                   aria-describedby="enter your zipcode"
                                                    appMatfocus>
-                                            <label for="zipcode">zip code</label>
+                                            <label for="zipcode">{{labels.formLabels.zipcode}}</label>
+                                            <span class="text-danger"
+                                                  *ngIf="addressForm.controls.zipcode.touched && addressForm.controls.zipcode.invalid">
+                                                {{labels.invalidCity}}</span>
                                         </div>
-
                                     </div>
-
                                 </div>
-
                             </div>
                         </div>
                     </div>
                 </div>
 
 
-                <div class="row mt-3" >
+                <div class="row mt-3">
                     <div class="col-12 col-md-8">
                         <button type="submit"
-                        class="btn btn-sm btn-dark btn-block">save</button>
+                                class="btn btn-sm btn-dark btn-block"
+                                [disabled]="!addressForm.valid">{{labels.formLabels.saveAddress}}</button>
                     </div>
                 </div>
             </form>

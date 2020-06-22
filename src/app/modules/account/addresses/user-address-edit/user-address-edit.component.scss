@@ -37,6 +37,18 @@ div.app-user-address-edit {
 
                 transition: all 0.2s ease;
             }
+
+            span {
+                position: absolute;
+                margin-top: .4rem;
+                font-size: 0.6rem;
+                letter-spacing: 0.025rem;
+                display: inline-block;
+                left: 20px;
+                &::first-letter {
+                    text-transform: capitalize;
+                }
+            }
         }
     }
     button {

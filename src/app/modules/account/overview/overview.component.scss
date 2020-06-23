@@ -1,7 +1,13 @@
 @import "../../../../variables.scss";
 
-div.account-user-dash {
+div.app-account-user-dash {
     font-family: $roboto-font-family;
+    padding-left: 0px;
+    padding-right: 0px;
+    @include md {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
     a {
         color: $primary-text-color;
         text-decoration: none;

@@ -1,1 +1,30 @@
-<p>user-address works!</p>
+<div class="card app-user-address">
+    <div class="card-body">
+        <ul class="list-group">
+            <li class="list-item">
+                <span class="property name">{{address.Name}}</span>
+            </li>
+            <li class="list-item">
+                <span class="street property">{{address.Street}}</span>
+            </li>
+            <li class="list-item">
+                <span class="property">
+                    {{address.City}}-{{address.ZipCode}}
+                </span>
+            </li>
+            <li class="list-item">
+                <span class="property">{{address.State}}, {{address.Country}}</span>
+            </li>
+            <li class="list-item">
+                <label for="phone">Phone:</label>
+                <span class="phone property">{{address.Phone}}</span>
+            </li>
+        </ul>
+    </div>
+    <div class="card-footer">
+        <a [routerLink]="['/my/account/address/edit', address.Id]"
+           class="card-link btn btn-light">Edit</a>
+        <a class="card-link btn btn-light"
+           (click)="removeAddress()">remove</a>
+    </div>
+</div>

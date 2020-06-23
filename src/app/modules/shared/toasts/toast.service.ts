@@ -21,7 +21,6 @@ export interface ToastOptions {
 export class ToastService {
 
   toasts: Toast[] = [];
-
   constructor() { }
 
   /**

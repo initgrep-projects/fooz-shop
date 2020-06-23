@@ -45,7 +45,7 @@ export class UserProfileEditComponent implements OnInit, OnDestroy {
     this.editProfileForm = new FormGroup({
       'name': new FormControl('', [Validators.required, Validators.max(100)]),
       'email': new FormControl('', [Validators.required, Validators.email]),
-      'phone': new FormControl('', [Validators.required, Validators.min(8), Validators.pattern('^[+]*[0-9]{1,12}')])
+      'phone': new FormControl('', [Validators.required, Validators.pattern('^[+]?[0-9]{12}')])
     });
   }
 
@@ -74,11 +74,15 @@ export class UserProfileEditComponent implements OnInit, OnDestroy {
       await this.authService.updateUserInDb(this.authUser);
       this.toastService.show(this.labels.profileUpdateSuccess, { icon: 'user' });
       this.router.navigate(['my/account/profile']);
-      
+
     } catch (e) {
       this.toastService.show(this.labels.profileUpdateSuccess, { icon: 'fasUser', type: toastType.ERROR });
     }
 
+  }
+
+  onPhoneChange(errors) {
+    console.log('errors = ', errors);
   }
 
   async submit() {

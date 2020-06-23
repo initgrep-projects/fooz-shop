@@ -2,6 +2,12 @@
 
 div.app-user-address-edit {
     font-family: $roboto-font-family;
+    padding-left: 0px;
+    padding-right: 0px;
+    @include md {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
     form {
         div.form-group {
             margin-top: 1rem;
@@ -40,7 +46,7 @@ div.app-user-address-edit {
 
             span {
                 position: absolute;
-                margin-top: .4rem;
+                margin-top: 0.4rem;
                 font-size: 0.6rem;
                 letter-spacing: 0.025rem;
                 display: inline-block;
@@ -50,6 +56,17 @@ div.app-user-address-edit {
                 }
             }
         }
+    }
+
+    div.country-spinner,
+    div.state-spinner,
+    div.city-spinner {
+        height: 0.8rem;
+        width: 0.8rem;
+        padding: 0;
+        border-width: 2px;
+        margin-left: -3rem;
+        margin-top: 1.6rem;
     }
     button {
         letter-spacing: 0.045rem;

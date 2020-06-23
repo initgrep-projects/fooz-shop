@@ -8,6 +8,8 @@ import { ToastService, Toast, toastType } from './toast.service';
 })
 export class ToastsComponent implements OnInit {
 
+  private defaultIcon = "exclamation-circle";
+
   constructor(public toastService: ToastService) { }
 
   ngOnInit(): void {
@@ -18,15 +20,23 @@ export class ToastsComponent implements OnInit {
     return isTemplate;
   }
 
-  getClassNameByType(toast:Toast){
-    if(!toast.options.type || toast.options.type === toastType.SUCCESS){
+  getClassNameByType(toast: Toast) {
+    if (!toast.options.type || toast.options.type === toastType.SUCCESS) {
       return "bg-dark text-light";
     }
-    if(toast.options.type === toastType.ERROR){
+    if (toast.options.type === toastType.ERROR) {
       return "bg-danger text-white";
-    }else if(toast.options.type === toastType.WARNING){
+    } else if (toast.options.type === toastType.WARNING) {
       return "bg-warning text-dark";
     }
   }
+
+  getIcon(toast: Toast) {
+    if (!!toast.options.icon) {
+      return toast.options.icon;
+    }
+    return this.defaultIcon;
+  }
+
 
 }

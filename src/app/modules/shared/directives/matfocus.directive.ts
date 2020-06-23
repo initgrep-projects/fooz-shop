@@ -30,7 +30,6 @@ export class MatfocusDirective implements OnInit {
   addlabelStyle() {
     const value = this.elementRef.nativeElement.value;
     const nextSibling = this.getLabel(this.elementRef.nativeElement);
-    console.log(' addlabelStyle next sibling  = ', nextSibling);
     if (!!value) {
       this.addStylesForValuedInput(nextSibling);
     } else {

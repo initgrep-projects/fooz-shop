@@ -10,6 +10,7 @@ import { Product } from '../models/product';
 import { DocumentData } from '@angular/fire/firestore';
 import { CartItem } from '../models/cartItem';
 import { User } from '../models/user';
+import { Address } from '../models/address';
 
 @Injectable({
   providedIn: 'root'
@@ -188,7 +189,7 @@ export class ObjectTransformerService {
 
 
   transformUser(user: firebase.User): User {
-    if(!user){
+    if (!user) {
       return null;
     }
     return new User(user.uid, user.email, user.displayName, user.emailVerified,
@@ -196,11 +197,31 @@ export class ObjectTransformerService {
   }
 
   transformUserFromDocumentData(user: DocumentData) {
-    if(!user) {
+    if (!user) {
       return null;
     }
     return new User(user.uid, user.email, user.name, user.isEmailVerified,
       user.phoneNumber, user.isAnonymous, user.photoURL, user.roles);
+  }
+
+  transformAddressFromDocumentData(param: DocumentData): Address {
+    if (!param) {
+      return null;
+    }
+    return new Address(param.id,param.userId, param.name, param.phone, param.street, param.country, param.state, param.city, param.zipcode, param.createdDate);
+  }
+
+  /** use to for saving data from ui to db */
+  transformAddress(param: {
+    id:string,
+    userId: string, city: string, country: string,
+    name: string, phone: string, state: string,
+    street: string, zipcode: string
+  }) {
+    if (!param) {
+      return null;
+    }
+    return new Address(param.id, param.userId, param.name, param.phone, param.street, param.country, param.state, param.city, param.zipcode);
   }
 
 

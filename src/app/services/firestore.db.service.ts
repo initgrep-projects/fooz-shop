@@ -5,7 +5,7 @@ import { map, tap } from 'rxjs/operators';
 import {
   CART_COLLECTION, CATEGORY_COLLECTION,
   CUSTOM_SIZE_INPUT, PRODUCT_COLLECTION,
-  PRODUCT_PAGE_SIZE, SIZE_COLLECTION, SORT_COLLECTION, TREND_COLLECTION, USER_COLLECTION
+  PRODUCT_PAGE_SIZE, SIZE_COLLECTION, SORT_COLLECTION, TREND_COLLECTION, USER_COLLECTION, ADDRESS_COLLECTION
 } from '../util/app.constants';
 import { generateGuid } from '../util/app.lib';
 import { CartItem } from '../models/cartItem';
@@ -18,6 +18,8 @@ import { Sort } from '../models/Sort';
 import { User } from '../models/user';
 import { FakedataService } from './fakedata.service';
 import { ObjectTransformerService } from './object-transformer.service';
+import { Address } from '../models/address';
+import { Observable } from 'rxjs';
 
 
 
@@ -38,6 +40,7 @@ export class FireStoreDbService {
   private sortCollection: AngularFirestoreCollection<Sort>;
   private trendCollection: AngularFirestoreCollection<Image>;
   private userCollection: AngularFirestoreCollection<User>;
+  private addressCollection: AngularFirestoreCollection<Address>;
 
   constructor(
     private db: AngularFirestore,
@@ -52,6 +55,7 @@ export class FireStoreDbService {
     this.sortCollection = this.db.collection<Sort>(SORT_COLLECTION);
     this.trendCollection = this.db.collection<Image>(TREND_COLLECTION);
     this.userCollection = this.db.collection<User>(USER_COLLECTION);
+    this.addressCollection = this.db.collection<Address>(ADDRESS_COLLECTION);
     this.bootstrapTestData();
   }
 
@@ -79,7 +83,7 @@ export class FireStoreDbService {
   /**
    * add a different function for home component to fetch the latest onces only
    */
-  fetchProducts(pageSize: number = PRODUCT_PAGE_SIZE) {
+  fetchProducts(pageSize: number = PRODUCT_PAGE_SIZE): Observable<Product[]> {
     return this.db.collection(PRODUCT_COLLECTION, ref =>
       ref
         .orderBy('timeStamp', 'asc')
@@ -104,7 +108,7 @@ export class FireStoreDbService {
   /**
    * fetch more products for pagination
    */
-  fetchMoreProducts() {
+  fetchMoreProducts(): Observable<Product[]> {
     return this.db.collection(PRODUCT_COLLECTION, ref => ref
       .orderBy('timeStamp', 'asc')
       .limit(PRODUCT_PAGE_SIZE)
@@ -125,7 +129,7 @@ export class FireStoreDbService {
   }
 
 
-  fetchProductById(id: string) {
+  fetchProductById(id: string): Observable<Product> {
     return this.db.collection(PRODUCT_COLLECTION, ref =>
       ref.where('id', '==', id)
     )
@@ -149,7 +153,7 @@ export class FireStoreDbService {
       .forEach(category => this.categoryCollection.doc(generateGuid()).set(classToPlain(category)));
   }
 
-  fetchCategories() {
+  fetchCategories(): Observable<Category[]> {
     return this.categoryCollection
       .get()
       .pipe(
@@ -168,7 +172,7 @@ export class FireStoreDbService {
       .forEach(size => this.sizeCollection.doc(generateGuid()).set(classToPlain(size)));
   }
 
-  fetchSizes() {
+  fetchSizes(): Observable<Size[]> {
     return this.sizeCollection
       .get()
       .pipe(
@@ -187,7 +191,7 @@ export class FireStoreDbService {
     this.customSizeInputCollection.doc(generateGuid()).set(classToPlain(customSizeInput));
   }
 
-  fetchCustomSizeInputs() {
+  fetchCustomSizeInputs(): Observable<CustomSizeInput> {
     return this.customSizeInputCollection
       .get()
       .pipe(
@@ -208,7 +212,7 @@ export class FireStoreDbService {
   }
 
 
-  fetchSortOrders() {
+  fetchSortOrders(): Observable<Sort[]> {
     return this.sortCollection
       .get()
       .pipe(
@@ -228,7 +232,7 @@ export class FireStoreDbService {
     });
   }
 
-  fetchTrendItems() {
+  fetchTrendItems(): Observable<Image[]> {
     return this.trendCollection
       .get()
       .pipe(
@@ -268,7 +272,7 @@ export class FireStoreDbService {
 
   }
 
-  
+
   updateCartItemInDb(item: CartItem) {
     return this.cartCollection.doc(item.Id).set(classToPlain(item));
 
@@ -277,7 +281,7 @@ export class FireStoreDbService {
     return this.cartCollection.doc(id).delete();
   }
 
-  fetchcartItemsFromDb(userId: string) {
+  fetchcartItemsFromDb(userId: string): Observable<CartItem[]> {
     return this.db.collection(CART_COLLECTION, ref =>
       ref.where('userId', '==', userId)
     )
@@ -301,7 +305,7 @@ export class FireStoreDbService {
 
   /** Auth operations START */
 
-  fetchUser(id: string) {
+  fetchUser(id: string): Observable<User> {
     return this.userCollection.doc(id).get()
       .pipe(
         map(querySnapShot => {
@@ -310,7 +314,7 @@ export class FireStoreDbService {
       );
   }
 
-  fetchUserByEmail(email: string) {
+  fetchUserByEmail(email: string): Observable<User[]> {
     return this.db.collection(USER_COLLECTION, ref =>
       ref.where('email', '==', email)
     )
@@ -346,7 +350,7 @@ export class FireStoreDbService {
    *  make user inactive
    * @param id the user id
    */
-  deActivateuser(id: string) {
+  deActivateUser(id: string) {
     return this.userCollection.doc(id).update({ active: false });
   }
 
@@ -358,8 +362,36 @@ export class FireStoreDbService {
     return this.userCollection.doc(id).delete();
   }
 
-
   /** Auth operations END */
 
+  /** Address Operations start */
+  saveAddress(address: Address) {
+    return this.addressCollection.doc(address.Id).set(classToPlain(address));
+  }
+
+  updateAddress(address: Address) {
+    return this.addressCollection.doc(address.Id).update(classToPlain(address));
+  }
+
+  deleteAddress(id: string) {
+    return this.addressCollection.doc(id).delete();
+  }
+
+  getAddresses(userId: string): Observable<Address[]> {
+    return this.db.collection(ADDRESS_COLLECTION, ref =>
+      ref.where('userId', '==', userId)
+    )
+      .get()
+      .pipe(
+        map(querySnapShot => {
+          const addresses: Address[] = [];
+          querySnapShot.forEach(doc => {
+            addresses.push(this.objTransformer.transformAddressFromDocumentData(doc.data()));
+          });
+          return addresses;
+        })
+      );
+  }
+  /** Address Operations End */
 
 }

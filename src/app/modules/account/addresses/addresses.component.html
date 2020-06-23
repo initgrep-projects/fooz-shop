@@ -1,1 +1,7 @@
-<app-user-address-edit></app-user-address-edit>
+<div class="container app-addresses">
+    <div class="row">
+        <div class="col-12 col-md-10 py-2" *ngFor="let address of addresses">
+          <app-user-address [address]="address"></app-user-address>
+        </div>
+    </div>
+</div>

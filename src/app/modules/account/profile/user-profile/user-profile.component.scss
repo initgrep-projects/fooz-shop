@@ -1,6 +1,12 @@
 @import "../../../../../variables.scss";
 div.app-user-profile {
     font-family: $roboto-font-family;
+    padding-left: 0px;
+    padding-right: 0px;
+    @include md {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
     div.card {
         div.card-body {
             &.email-wrapper {

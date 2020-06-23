@@ -1,7 +1,7 @@
 <ng-template #loading>
     <div class="container">
         <div class="row">
-            <div class="col-12 col-md-8 col-lg-6">
+            <div class="col-12 col-md-10 ">
                 <div class="card">
                     <div class="card-body text-center">
                         <div class="spinner-border text-secondary"
@@ -15,10 +15,10 @@
         </div>
     </div>
 </ng-template>
-<div class="container app-user-profile-edit mt-5 mt-md-0"
+<div class="container app-user-profile-edit"
      *ngIf="!!authUser; else loading">
     <div class="row">
-        <div class="col-12 col-md-8 col-lg-6">
+        <div class="col-12 col-md-10">
             <div class="card">
 
                 <div class="card-body">
@@ -35,7 +35,7 @@
                                    >
                                    <label for="fullname">{{labels.formLabels.name}}</label>
                             <span class="text-danger"
-                                  *ngIf="editProfileForm.controls.name.dirty && !!editProfileForm.controls.name.errors">{{labels.invalidName}}</span>
+                                  *ngIf="editProfileForm.controls.name.touched && !!editProfileForm.controls.name.errors">{{labels.invalidName}}</span>
                         </div>
                         <div class="form-group">
                            
@@ -47,7 +47,7 @@
                                    >
                                    <label for="email">{{labels.formLabels.email}}</label>
                             <span class="text-danger"
-                                  *ngIf="editProfileForm.controls.email.dirty && !!editProfileForm.controls.email.errors">{{labels.invalidEmail}}</span>
+                                  *ngIf="editProfileForm.controls.email.touched && !!editProfileForm.controls.email.errors">{{labels.invalidEmail}}</span>
                         </div>
                         <div class="form-group">
                             
@@ -56,15 +56,17 @@
                                    id="phone"
                                    formControlName="phone"
                                    appMatfocus
+                                  
+                                   (change)="onPhoneChange(editProfileForm.controls.phone.errors)"
                                    >
-                                   <label for="phone">{{labels.formLabels.phone}}</label>
+                                   <label for="phone">{{labels.formLabels.phone}}+p</label>
                             <span class="text-danger"
                                   *ngIf="editProfileForm.controls.phone.dirty && !!editProfileForm.controls.phone.errors">{{labels.invalidPhone}}</span>
                         </div>
                         <div class="form-group form-crtl">
                             <button type="submit"
                                     class="btn btn-block btn-dark"
-                                    [disabled]="!editProfileForm.valid || !editProfileForm.dirty">
+                                    [disabled]="!editProfileForm.valid">
                                 <fa-icon [icon]="['fas', 'spinner']"
                                          [spin]="true"
                                          *ngIf="isSaveProgress"

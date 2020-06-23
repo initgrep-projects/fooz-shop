@@ -11,6 +11,13 @@ export interface Country {
   country_phone_code: number;
 
 }
+export interface State {
+  state_name: string;
+}
+
+export interface City {
+  city_name: string;
+}
 
 @Injectable({
   providedIn: 'root'
@@ -21,16 +28,54 @@ export class GeoAddressService {
   constructor(private httpClient: HttpClient) {
   }
 
-
-
-
   searchCountry(term: string): Observable<string[]> {
+    return this.getEndPointResults<Country>(environment.geoAddress.countriesUrl)
+      .pipe(
+        map(countries => {
+          return countries
+            .filter(c => this.isMatched(c.country_name, term))
+            .map(c => c.country_name);
+        })
+      );
+  }
+
+  searchState(country: string, term: string): Observable<string[]> {
+    return this.getEndPointResults<State>(environment.geoAddress.statesUrl + country)
+      .pipe(
+        map(states => {
+          return states
+            .filter(c => this.isMatched(c.state_name, term))
+            .map(c => c.state_name);
+        })
+      );
+  }
+
+  searchCity(state: string, term: string): Observable<string[]> {
+    return this.getEndPointResults<City>(environment.geoAddress.cityUrl + state)
+      .pipe(
+        take(1),
+        map(city => {
+          return city
+            .filter(c => this.isMatched(c.city_name, term))
+            .map(c => c.city_name);
+        })
+      );
+  }
+
+
+  private isMatched(state: string, t: string) {
+    const c = state.toLowerCase();
+    const term = t.toLowerCase();
+    return (c.indexOf(term) !== -1);
+  }
+
+  private getEndPointResults<T>(url: string): Observable<T[]> {
     return this.getToken()
       .pipe(
         switchMap(token => {
           return this.httpClient
-            .get<Country[]>(
-              environment.geoAddress.countriesUrl,
+            .get<T[]>(
+              url,
               {
                 headers: new HttpHeaders({
                   'Accept': 'application/json',
@@ -39,24 +84,10 @@ export class GeoAddressService {
               }
             )
         }),
-        take(1),
-        map(countries => {
-          return countries
-            .filter(c => this.isMatch(c, term))
-            .map(c => c.country_name);
-        })
-      )
-
+        take(1));
   }
 
-  private isMatch(country: Country, t: string) {
-    const c = country.country_name.toLowerCase();
-    const s = country.country_short_name.toLowerCase();
-    const term = t.toLowerCase();
-    return (c.indexOf(term) !== -1 || s === term);
-  }
-
-  getToken(): Observable<string> {
+  private getToken(): Observable<string> {
     if (this.currentToken) {
       return of(this.currentToken);
     } else {

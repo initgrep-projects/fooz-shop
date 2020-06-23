@@ -1,10 +1,30 @@
-<div class="container app-user-address-edit">
+<ng-template #loading>
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-md-10 ">
+                <div class="card ">
+                    <div class="card-body text-center">
+                        <div class="spinner-border text-secondary"
+                             style="width: 3rem; height: 3rem;"
+                             role="status">
+                            <span class="sr-only">Loading...</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</ng-template>
+
+<div class="container app-user-address-edit"
+     *ngIf="!!authUser; else loading">
     <div class="row">
         <div class="col-12">
             <form [formGroup]="addressForm"
-                  (ngSubmit)="saveAddress()">
+                  (ngSubmit)="submit()">
                 <div class="row ">
-                    <div class="col-12 col-md-8">
+                    <div class="col-12 col-md-10">
                         <div class="card px-3">
                             <div class="card-body">
                                 <div class="row">
@@ -58,6 +78,17 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-10 col-md-5">
+                                        <ng-template #crt
+                                                     let-r="result"
+                                                     let-t="term">
+                                            <button class="btn btn-dark text-white"
+                                                    style="font-size: .6rem;">
+                                                <ngb-highlight [result]="r"
+                                                               [term]="t">
+                                                    {{r}}
+                                                </ngb-highlight>
+                                            </button>
+                                        </ng-template>
 
                                         <div class="form-group">
                                             <input type="text"
@@ -66,51 +97,101 @@
                                                    formControlName="country"
                                                    aria-describedby="enter your country name"
                                                    [ngbTypeahead]="findCountry"
+                                                   [resultTemplate]="crt"
+                                                   [editable]="false"
+                                                   [placement]="'bottom'"
                                                    [appMatfocus]="'country-label'">
-                                            
+
                                             <label id="country-label"
                                                    for="country">{{labels.formLabels.country}}</label>
                                             <span class="text-danger"
-                                                  *ngIf="addressForm.controls.country.touched && addressForm.controls.country.invalid">{{labels.invalidCountry}}</span>
+                                                  *ngIf="(addressForm.controls.country.touched 
+                                                  && addressForm.controls.country.invalid )">{{labels.invalidCountry}}</span>
                                         </div>
 
                                     </div>
                                     <div class="col-1">
-                                        <div class="spinner-grow text-dark" style="height: 1rem; width: 1rem;" role="status">
+                                        <div class="spinner-border country-spinner"
+                                             role="status"
+                                             *ngIf="searchingCtr">
                                             <span class="sr-only">Loading...</span>
-                                          </div>
+                                        </div>
                                     </div>
-                                    <div class="col-12 col-md-6">
+                                    <div class="col-12 col-md-5">
                                         <div class="form-group">
-
+                                            <ng-template #scrt
+                                                         let-r="result"
+                                                         let-t="term">
+                                                <button class="btn btn-dark text-white"
+                                                        style="font-size: .6rem;">
+                                                    <ngb-highlight [result]="r"
+                                                                   [term]="t">
+                                                        {{r}}
+                                                    </ngb-highlight>
+                                                </button>
+                                            </ng-template>
                                             <input type="text"
                                                    class="form-control"
                                                    id="state"
                                                    formControlName="state"
                                                    aria-describedby="enter your state name"
-                                                   appMatfocus>
-                                            <label for="state">{{labels.formLabels.state}}</label>
+                                                   [appMatfocus]="'state-label'"
+                                                   [ngbTypeahead]="findState"
+                                                   [resultTemplate]="scrt"
+                                                   [editable]="false"
+                                                   [placement]="'bottom'">
+                                            <label for="state"
+                                                   id="state-label">{{labels.formLabels.state}}</label>
                                             <span class="text-danger"
                                                   *ngIf="addressForm.controls.state.touched && addressForm.controls.state.invalid">{{labels.invalidState}}</span>
                                         </div>
 
                                     </div>
+                                    <div class="col-1">
+                                        <div class="spinner-border state-spinner"
+                                             role="status"
+                                             *ngIf="searchingState">
+                                            <span class="sr-only">Loading...</span>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-12 col-md-6">
+                                    <div class="col-12 col-md-5">
                                         <div class="form-group">
-
+                                            <ng-template #ccrt
+                                                         let-r="result"
+                                                         let-t="term">
+                                                <button class="btn btn-dark text-white"
+                                                        style="font-size: .6rem;">
+                                                    <ngb-highlight [result]="r"
+                                                                   [term]="t">
+                                                        {{r}}
+                                                    </ngb-highlight>
+                                                </button>
+                                            </ng-template>
                                             <input type="text"
                                                    class="form-control"
                                                    id="city"
                                                    formControlName="city"
                                                    aria-describedby="enter your city name"
-                                                   appMatfocus>
-                                            <label for="city">{{labels.formLabels.city}}</label>
+                                                   [appMatfocus]="'city-label'"
+                                                   [ngbTypeahead]="findCity"
+                                                   [resultTemplate]="ccrt"
+                                                   [editable]="false"
+                                                   [placement]="'bottom'">
+
+                                            <label for="city"
+                                                   id="city-label">{{labels.formLabels.city}}</label>
                                             <span class="text-danger"
                                                   *ngIf="addressForm.controls.city.touched && addressForm.controls.city.invalid">{{labels.invalidCity}}</span>
                                         </div>
-
+                                    </div>
+                                    <div class="col-1">
+                                        <div class="spinner-border city-spinner"
+                                             role="status"
+                                             *ngIf="searchingCity">
+                                            <span class="sr-only">Loading...</span>
+                                        </div>
                                     </div>
                                     <div class="col-12 col-md-4">
                                         <div class="form-group">
@@ -134,10 +215,16 @@
 
 
                 <div class="row mt-3">
-                    <div class="col-12 col-md-8">
+                    <div class="col-12 col-md-8 offset-md-1 ">
                         <button type="submit"
-                                class="btn btn-sm btn-dark btn-block"
-                                [disabled]="!addressForm.valid">{{labels.formLabels.saveAddress}}</button>
+                                class="btn  btn-dark btn-block"
+                                [disabled]="!addressForm.valid">
+                            <fa-icon [icon]="['fas', 'spinner']"
+                                     [spin]="true"
+                                     *ngIf="saveProgress"></fa-icon>
+
+                            {{isUpdateMode ?labels.formLabels.updateAddress :labels.formLabels.saveAddress}}
+                        </button>
                     </div>
                 </div>
             </form>

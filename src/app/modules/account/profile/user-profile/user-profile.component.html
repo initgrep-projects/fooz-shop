@@ -1,7 +1,7 @@
 <ng-template #loading>
     <div class="container">
         <div class="row">
-            <div class="col-12 col-md-10 col-xl-8">
+            <div class="col-12 col-md-10 ">
                 <div class="card ">
                     <div class="card-body text-center">
                         <div class="spinner-border text-secondary"
@@ -19,7 +19,7 @@
 <div class="container app-user-profile"
      *ngIf="!!authUser; else loading">
     <div class="row">
-        <div class="col-12 col-md-10 col-xl-8">
+        <div class="col-12 col-md-10">
             <div class="card "
                  [ngClass]="{'bg-danger-light': !authUser?.IsEmailVerified, 'bg-success-light': authUser?.IsEmailVerified}">
                 <div class="card-body email-wrapper">
@@ -47,7 +47,7 @@
 
     <div class="row mt-2"
          *ngIf="!!authUser?.Name || !!authUser?.PhoneNumber">
-        <div class="col-12 col-md-10 col-xl-8">
+        <div class="col-12 col-md-10">
             <div class="card">
                 <div class="card-body phone-wrapper">
                     <div class="name"
@@ -68,7 +68,7 @@
         </div>
     </div>
     <div class="row mt-2 prof-controls" >
-        <div class="col-12 col-md-10 col-xl-8">
+        <div class="col-12 col-md-10">
             <button type="button"
                     class="btn btn-sm btn-block btn-dark"
                     (click)="routeToProfileEdit()">{{labels.formLabels.editProfile}}

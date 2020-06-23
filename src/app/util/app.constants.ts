@@ -8,6 +8,7 @@ export const TREND_COLLECTION = 'trend';
 export const CART_COLLECTION = 'cart';
 export const PRODUCT_PAGE_SIZE = 20;
 export const USER_COLLECTION = 'user';
+export const ADDRESS_COLLECTION = 'address';
 
 export const ALERT_TITLE = 'alert';
 export const OK_BUTTON = 'ok';

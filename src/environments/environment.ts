@@ -19,7 +19,8 @@ export const environment = {
     accessTokenUrl: 'https://www.universal-tutorial.com/api/getaccesstoken',
     userEmail: 'initgrep@gmail.com',
     countriesUrl: 'https://www.universal-tutorial.com/api/countries/',
-    statesUrl: 'https://www.universal-tutorial.com/api/states/'
+    statesUrl: 'https://www.universal-tutorial.com/api/states/',
+    cityUrl: 'https://www.universal-tutorial.com/api/cities/'
 
   }
 

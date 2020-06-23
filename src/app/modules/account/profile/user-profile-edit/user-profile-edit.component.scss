@@ -2,6 +2,12 @@
 
 div.app-user-profile-edit {
     font-family: $roboto-font-family;
+    padding-left: 0px;
+    padding-right: 0px;
+    @include md {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
     div.row {
         div.col-12 {
             div.card {

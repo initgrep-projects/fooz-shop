@@ -23,8 +23,8 @@
     </div>
     <div class="card-footer">
         <a [routerLink]="['/my/account/address/edit', address.Id]"
-           class="card-link btn btn-light">Edit</a>
+           class="card-link btn btn-light">{{labels.editAddress}}</a>
         <a class="card-link btn btn-light"
-           (click)="removeAddress()">remove</a>
+           (click)="removeAddress()">{{labels.removeAddress}}</a>
     </div>
 </div>

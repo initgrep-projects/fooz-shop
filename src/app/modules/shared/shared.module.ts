@@ -21,6 +21,7 @@ import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
 import { CartItemComponent } from './cart-item/cart-item.component';
 import { PreTileCardComponent } from './pre-tile-card/pre-tile-card.component';
 import { MatfocusDirective } from './directives/matfocus.directive';
+import { ClearInputDirective } from './directives/clear-input.directive';
 
 
 @NgModule({
@@ -42,7 +43,8 @@ import { MatfocusDirective } from './directives/matfocus.directive';
     BreadcrumbComponent,
     CartItemComponent,
     PreTileCardComponent,
-    MatfocusDirective
+    MatfocusDirective,
+    ClearInputDirective
   ],
   imports: [
     CommonModule,
@@ -67,7 +69,8 @@ import { MatfocusDirective } from './directives/matfocus.directive';
     SignoutComponent,
     BreadcrumbComponent,
     CartItemComponent,
-    MatfocusDirective
+    MatfocusDirective,
+    ClearInputDirective
   ]
 })
 export class SharedModule { }

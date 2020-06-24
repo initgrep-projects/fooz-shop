@@ -1,5 +1,4 @@
-import { Directive, ElementRef, Input, OnInit, HostListener, HostBinding } from '@angular/core';
-import { stringify } from 'querystring';
+import { Directive, ElementRef, Input, OnInit, HostListener } from '@angular/core';
 
 @Directive({
   selector: '[appMatfocus]'
@@ -22,8 +21,8 @@ export class MatfocusDirective implements OnInit {
     this.addlabelStyle()
   }
 
-  @HostListener('change')
-  change(data: Event) {
+  @HostListener('mouseout')
+  mouseOut() {
     this.addlabelStyle();
   }
 

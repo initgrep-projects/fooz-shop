@@ -9,7 +9,7 @@ export interface AccountState {
 }
 
 export const initialState: AccountState = {
-    addresses: []
+    addresses: null
 };
 
 const theReducer = createReducer(
@@ -21,7 +21,7 @@ const theReducer = createReducer(
     })),
     on(syncAddressesAction, (currentState, { payload }) => ({
         ...currentState,
-        addresses: getSortedItems([ ...payload])
+        addresses: getSortedItems(!!payload ? [...payload] : null)
     })),
     on(updateAddressAction, (currentState, { payload }) => ({
         ...currentState,
@@ -33,7 +33,10 @@ const theReducer = createReducer(
     }))
 );
 
+
+
 function getSortedItems(address: Address[]) {
+    if (!address){ return null;}
     return address.sort((a, b) => {
         if (a.CreatedDate < b.CreatedDate) {
             return 1;

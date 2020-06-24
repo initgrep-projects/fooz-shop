@@ -1,9 +1,9 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { AuthMessages } from 'src/app/util/app.labels';
-import { GeoAddressService, Country } from 'src/app/services/geo-address.service';
-import { Observable, of, throwError } from 'rxjs';
-import { debounceTime, distinctUntilChanged, tap, switchMap, map, catchError } from 'rxjs/operators';
+import { GeoAddressService } from 'src/app/services/geo-address.service';
+import { Observable, of } from 'rxjs';
+import {  distinctUntilChanged, tap, switchMap, catchError } from 'rxjs/operators';
 import { AuthService } from 'src/app/modules/auth/auth.service';
 import { User } from 'src/app/models/user';
 import { SubSink } from 'subsink';
@@ -32,7 +32,7 @@ export class UserAddressEditComponent implements OnInit, OnDestroy {
     country: ['', Validators.required],
     state: ['', Validators.required],
     city: ['', Validators.required],
-    zipcode: ['', Validators.required]
+    zipcode: ['', [Validators.required, Validators.pattern('^[0-9]{5,12}$')]]
 
   });
 

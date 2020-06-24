@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { AddressService } from './address.service';
 import { SubSink } from 'subsink';
 import { Address } from 'src/app/models/address';
-import { tap } from 'rxjs/operators';
+import { tap, startWith, take } from 'rxjs/operators';
 import { AuthMessages } from 'src/app/util/app.labels';
 import { Router } from '@angular/router';
 
@@ -14,24 +14,19 @@ import { Router } from '@angular/router';
 export class AddressesComponent implements OnInit, OnDestroy {
   labels = AuthMessages;
   private subs = new SubSink();
-  addresses: Address[] = [];
+  addresses: Address[];
   isloading = true;
   isEmpty = false;
+  isError = false;
 
   constructor(
-    private addressService: AddressService,
+    public addressService: AddressService,
     private router: Router,
   ) { }
 
   ngOnInit(): void {
     this.subs.sink =
       this.addressService.syncAddressesFromDB$.subscribe();
-
-    this.subs.sink =
-      this.addressService.getAddresses()
-        .subscribe(addresses => {
-          this.addresses = addresses;
-        });
   }
 
   routeToNewAddress() {

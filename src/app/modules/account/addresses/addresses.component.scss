@@ -24,4 +24,12 @@ div.app-addresses{
             }
         }
     }
+    .app-addresses-alert{
+        div.alert{
+            font-weight: 600;
+           &::first-letter{
+            text-transform: uppercase;
+           }
+        }
+    }
 }

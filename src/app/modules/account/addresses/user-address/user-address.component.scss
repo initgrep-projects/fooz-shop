@@ -2,6 +2,7 @@
 
 div.card.app-user-address {
     font-family: $roboto-font-family;
+    cursor: pointer;
     div.card-body {
         ul.list-group {
             padding: 0.5rem;
@@ -24,7 +25,8 @@ div.card.app-user-address {
         }
     }
     div.card-footer{
-        display: none;
+        display: flex;
+        // opacity: 0;
         justify-content: space-between;
         background-color: transparent;
 
@@ -38,9 +40,5 @@ div.card.app-user-address {
 
     }
 
-    &:hover{
-       div.card-footer{
-           display: flex;
-       }
-    }
+  
 }

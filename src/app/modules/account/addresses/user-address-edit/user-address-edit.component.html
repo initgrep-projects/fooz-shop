@@ -1,7 +1,7 @@
 <ng-template #loading>
     <div class="container">
         <div class="row">
-            <div class="col-12 col-md-10 ">
+            <div class="col-12 col-md-12 col-lg-10 col-xl-10">
                 <div class="card ">
                     <div class="card-body text-center">
                         <div class="spinner-border text-secondary"
@@ -24,7 +24,7 @@
             <form [formGroup]="addressForm"
                   (ngSubmit)="submit()">
                 <div class="row ">
-                    <div class="col-12 col-md-10">
+                    <div class="col-12 col-md-12 col-lg-10 ">
                         <div class="card px-3">
                             <div class="card-body">
                                 <div class="row">
@@ -58,7 +58,7 @@
                     </div>
                 </div>
                 <div class="row row mt-2">
-                    <div class="col-12 col-md-10">
+                    <div class="col-12 col-md-12 col-lg-10">
                         <div class="card px-3">
                             <div class="card-body">
                                 <div class="row">
@@ -100,7 +100,10 @@
                                                    [resultTemplate]="crt"
                                                    [editable]="false"
                                                    [placement]="'bottom'"
-                                                   [appMatfocus]="'country-label'">
+                                                   [appMatfocus]="'country-label'"
+                                                   [appClearInput]="[addressForm.controls.state, addressForm.controls.city, addressForm.controls.zipcode]"
+                                                   
+                                                   >
 
                                             <label id="country-label"
                                                    for="country">{{labels.formLabels.country}}</label>
@@ -117,7 +120,7 @@
                                             <span class="sr-only">Loading...</span>
                                         </div>
                                     </div>
-                                    <div class="col-12 col-md-5">
+                                    <div class="col-10 col-md-5">
                                         <div class="form-group">
                                             <ng-template #scrt
                                                          let-r="result"
@@ -135,11 +138,13 @@
                                                    id="state"
                                                    formControlName="state"
                                                    aria-describedby="enter your state name"
-                                                   [appMatfocus]="'state-label'"
                                                    [ngbTypeahead]="findState"
                                                    [resultTemplate]="scrt"
                                                    [editable]="false"
-                                                   [placement]="'bottom'">
+                                                   [placement]="'bottom'"
+                                                   [appMatfocus]="'state-label'"
+                                                   [appClearInput]="[ addressForm.controls.city, addressForm.controls.zipcode]"
+                                                   >
                                             <label for="state"
                                                    id="state-label">{{labels.formLabels.state}}</label>
                                             <span class="text-danger"
@@ -156,7 +161,7 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-12 col-md-5">
+                                    <div class="col-10 col-md-5">
                                         <div class="form-group">
                                             <ng-template #ccrt
                                                          let-r="result"
@@ -174,11 +179,13 @@
                                                    id="city"
                                                    formControlName="city"
                                                    aria-describedby="enter your city name"
-                                                   [appMatfocus]="'city-label'"
                                                    [ngbTypeahead]="findCity"
                                                    [resultTemplate]="ccrt"
                                                    [editable]="false"
-                                                   [placement]="'bottom'">
+                                                   [placement]="'bottom'"
+                                                   [appMatfocus]="'city-label'"
+                                                   [appClearInput]="[ addressForm.controls.zipcode]"
+                                                   >
 
                                             <label for="city"
                                                    id="city-label">{{labels.formLabels.city}}</label>
@@ -193,18 +200,19 @@
                                             <span class="sr-only">Loading...</span>
                                         </div>
                                     </div>
-                                    <div class="col-12 col-md-4">
+                                    <div class="col-5 col-md-4">
                                         <div class="form-group">
                                             <input type="text"
                                                    class="form-control"
                                                    id="zipcode"
                                                    formControlName="zipcode"
                                                    aria-describedby="enter your zipcode"
-                                                   appMatfocus>
+                                                   appMatfocus
+                                                   >
                                             <label for="zipcode">{{labels.formLabels.zipcode}}</label>
                                             <span class="text-danger"
                                                   *ngIf="addressForm.controls.zipcode.touched && addressForm.controls.zipcode.invalid">
-                                                {{labels.invalidCity}}</span>
+                                                {{labels.invalidZipCode}}</span>
                                         </div>
                                     </div>
                                 </div>

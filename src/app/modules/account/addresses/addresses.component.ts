@@ -2,7 +2,9 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { AddressService } from './address.service';
 import { SubSink } from 'subsink';
 import { Address } from 'src/app/models/address';
-import { AuthService } from '../../auth/auth.service';
+import { tap } from 'rxjs/operators';
+import { AuthMessages } from 'src/app/util/app.labels';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-addresses',
@@ -10,26 +12,37 @@ import { AuthService } from '../../auth/auth.service';
   styleUrls: ['./addresses.component.scss']
 })
 export class AddressesComponent implements OnInit, OnDestroy {
+  labels = AuthMessages;
   private subs = new SubSink();
   addresses: Address[] = [];
+  isloading = true;
+  isEmpty = false;
 
   constructor(
     private addressService: AddressService,
-    private authService: AuthService
-    ) { }
+    private router: Router,
+  ) { }
 
   ngOnInit(): void {
-    this.subs.sink = 
-    this.addressService.syncAddressesFromDB$.subscribe();
+    this.subs.sink =
+      this.addressService.syncAddressesFromDB$.subscribe();
 
-    this.subs.sink = 
-    this.addressService.getAddresses().subscribe(addresses => {
-      this.addresses = addresses;
-    });
+    this.subs.sink =
+      this.addressService.getAddresses()
+        .subscribe(addresses => {
+          this.addresses = addresses;
+        });
   }
 
-  ngOnDestroy():void{
+  routeToNewAddress() {
+    this.router.navigate(['my/account/address/new']);
+  }
+
+
+  ngOnDestroy(): void {
     this.subs.unsubscribe();
   }
+
+
 
 }

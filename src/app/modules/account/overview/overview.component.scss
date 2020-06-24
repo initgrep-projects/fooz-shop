@@ -8,26 +8,31 @@ div.app-account-user-dash {
         padding-left: 15px;
         padding-right: 15px;
     }
+    div.app-user-card {
+        div.card-body {
+            background-color: $grey-bg-color;
+        }
+    }
+
     a {
         color: $primary-text-color;
         text-decoration: none;
         display: block;
         margin-bottom: 1rem;
         div.card {
-           div.card-body{
-            h6 {
-                text-transform: uppercase;
-                font-weight: bold;
-                letter-spacing: 0.045rem;
+            div.card-body {
+                h6 {
+                    text-transform: uppercase;
+                    font-weight: bold;
+                    letter-spacing: 0.045rem;
+                }
+                span {
+                    letter-spacing: 0.025rem;
+                }
             }
-            span{
-                letter-spacing: .025rem;
-            }
-           }
-
         }
-        &:hover{
-            div.card{
+        &:hover {
+            div.card {
                 background-color: $grey-bg-color;
             }
         }

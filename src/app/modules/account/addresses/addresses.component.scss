@@ -1,4 +1,27 @@
 
 div.app-addresses{
-   
+    div.app-addresses-header{
+        div.card{
+            div.card-body{
+               div.heading{
+                   display: flex;
+                   justify-content: space-between;
+
+                   h6{
+                    text-transform: uppercase;
+                    letter-spacing: .025rem;
+                    font-weight: 600;
+                }
+                button{
+                    font-size: .8rem;
+                    span{
+                        margin-left: .5rem;
+                        text-transform: uppercase;
+                        font-weight: 600;
+                    }
+                }
+               }
+            }
+        }
+    }
 }

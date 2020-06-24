@@ -24,14 +24,23 @@ div.card.app-user-address {
         }
     }
     div.card-footer{
-        display: flex;
+        display: none;
         justify-content: space-between;
         background-color: transparent;
+
         a.card-link{
             text-transform: uppercase;
             font-size: .8rem;
             letter-spacing: .045rem;
             font-weight: 600;
         }
+
+
+    }
+
+    &:hover{
+       div.card-footer{
+           display: flex;
+       }
     }
 }

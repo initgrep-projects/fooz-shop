@@ -35,6 +35,8 @@ export const AuthMessages = {
     addressUpdateFailed: 'address update failed',
     addressRemoveSuccess: 'address removed',
     addressRemoveFailed: 'address remove failed',
+    addAddress : 'add new address',
+    addressTitle: 'addresses',
     invalidCredentials: [
         { code: 'auth/wrong-password', message: 'Incorrect email or password' },
         { code: 'auth/user-not-found', message: 'The email is not registered with us' },

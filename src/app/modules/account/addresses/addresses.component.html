@@ -1,7 +1,36 @@
 <div class="container app-addresses">
-    <div class="row">
-        <div class="col-12 col-md-10 py-2" *ngFor="let address of addresses">
-          <app-user-address [address]="address"></app-user-address>
+  <div class="row">
+    <div class="col-12 col-md-10 app-addresses-header">
+      <div class="card ">
+        <div class="card-body">
+          <div class="heading">
+            <h6>{{labels.addressTitle}}</h6>
+            <button class="btn btn-sm btn-light"
+            (click)="routeToNewAddress()"
+            >
+              <fa-icon icon="plus"></fa-icon>
+              <span>{{labels.addAddress}}</span>
+            </button>
+          </div>
         </div>
+      </div>
     </div>
+  </div>
+  <div class="row"
+       *ngIf="addresses.length > 0; else loading">
+    <div class="col-12 col-md-10 py-2"
+         *ngFor="let address of addresses">
+      <app-user-address [address]="address"></app-user-address>
+    </div>
+  </div>
 </div>
+
+<ng-template #loading>
+  <div class="container">
+    <div class="row">
+      <div class="col-12 col-md-10 py-2">
+        <p>loading</p>
+      </div>
+    </div>
+  </div>
+</ng-template>

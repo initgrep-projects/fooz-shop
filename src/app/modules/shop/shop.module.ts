@@ -30,6 +30,7 @@ import { CategoryFilterComponent } from './filters/filter-header/category-filter
 import { MainFilterComponent } from './filters/filter-header/main-filter/main-filter.component';
 import { SideFilterBarComponent } from './filters/side-filter-bar/side-filter-bar.component';
 import { SideFilterComponent } from './filters/side-filter-bar/side-filter/side-filter.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 

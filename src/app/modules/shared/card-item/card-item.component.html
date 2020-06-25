@@ -1,0 +1,48 @@
+<div class="card app-card-item ">
+    <div class="card inner-card"
+         (click)="routeToItemDetails()">
+        <div *ngFor="let s of selectedImages | slice:0:1">
+            <img [src]="s.Url"
+                 class="card-img-top">
+            <div class="card-img-overlay hovered left">
+                <img [src]="s.Url"
+                     class="card-img-top">
+            </div>
+        </div>
+        <div class="card-img-overlay">
+            <div class="item-size ">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item"
+                        *ngFor="let size of item.Sizes">
+                        <span class="size">{{size.Letter}}</span>
+                    </li>
+                </ul>
+            </div>
+            <div class="item-control">
+                <button type="button"
+                        class="btn btn-light btn-sm"
+                        (click)="routeToItemDetails()">view details</button>
+            </div>
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="color-codes">
+            <div class="color"
+                 *ngFor="let color of  item.Colors; index as i">
+
+                <span class="color-icon"
+                      [ngClass]="{'active': color.equals(selectedColor)}"
+                      [ngStyle]="{'backgroundColor': color.Code}"
+                      (click)="getImagesForColor(color)"></span>
+            </div>
+
+        </div>
+        <div class="info">
+            <h6>{{item.Id}}</h6>
+            <p class="name">
+                {{item.Name}}
+            </p>
+            <p class="price">{{item.Price.Code}}-{{item.Price.Amount}}</p>
+        </div>
+    </div>
+</div>

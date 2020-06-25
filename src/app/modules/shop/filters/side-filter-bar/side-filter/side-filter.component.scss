@@ -7,10 +7,12 @@ div.side-filter-wrapper{
         text-transform: capitalize;
     }
     ul{
+
         li{
             @include animate();
             border-width: 0px !important;
             padding: 0rem 1rem 0rem 0rem;
+            background-color: transparent;
             label{
                 letter-spacing: .025rem;
                 font-size: .8rem;

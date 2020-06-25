@@ -1,0 +1,178 @@
+@import "../../../../variables.scss";
+
+div.app-card-item {
+    font-family: $roboto-font-family;
+    overflow: hidden;
+    cursor: pointer;
+    border: 0px solid #33333342;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    margin-left: -10px;
+    margin-right: -10px;
+    margin-bottom: 0.5rem;
+    margin-top: 0.5rem;
+    // @include animate(fadeInUp, 1s);
+    @include md {
+        margin-left: 0px;
+        margin-right: 0px;
+    }
+    @include lg {
+        margin-bottom: 1rem;
+        margin-top: 1rem;
+    }
+
+    img {
+        // @include animate(zoomIn, .5s);
+    }
+
+    div.inner-card {
+        border-width: 0;
+        div.card-img-overlay {
+            padding: 0px;
+            &.hovered {
+                transition: 0.5s ease;
+                width: 100%;
+                opacity: 0;
+
+                &.left {
+                    left: 100%;
+                    box-shadow: -1px 0px 2px 0px rgba(0, 0, 0, 0.12);
+                    img {
+                        height: 100%;
+                    }
+                }
+            }
+
+            div.item-size {
+                position: absolute;
+                right: 0;
+                top: 0;
+
+                ul {
+                    li {
+                        background-color: transparent;
+                        font-size: 0.6rem;
+                        padding: 0.5rem;
+                    }
+                }
+                @include md {
+                    ul {
+                        li {
+                            font-size: 0.6rem;
+                            padding: 0.75rem;
+                        }
+                    }
+                }
+                @include lg {
+                    ul {
+                        li {
+                            font-size: 0.7rem;
+                            padding: 0.75rem 1rem;
+                        }
+                    }
+                }
+            }
+
+            div.item-control {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                display: none;
+                align-items: center;
+                justify-content: center;
+
+                button {
+                    border-radius: 20px;
+                    text-transform: uppercase;
+                    font-size: 0.6rem;
+                    padding: 0.3rem 1rem 0.2rem 1rem;
+                    font-weight: 600;
+                    letter-spacing: 0.035rem;
+                    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+                    opacity: 0;
+                    transition: 0.5s ease;
+                }
+
+                &:hover {
+                    button {
+                        opacity: 1;
+                    }
+                }
+
+                @include md {
+                    display: flex;
+                }
+            }
+        }
+
+        &:hover {
+            div.card-img-overlay {
+                &.hovered {
+                    opacity: 1;
+
+                    &.left {
+                        left: 0;
+                    }
+                }
+            }
+        }
+    }
+
+    div.card-body {
+        padding: 0.5rem 0.25rem;
+        div.color-codes {
+            width: 100%;
+            display: flex;
+            justify-content: left;
+            div.color {
+                margin-left: 0.3rem;
+                cursor: pointer;
+
+                span.color-icon {
+                    width: 16px;
+                    height: 16px;
+                    display: inline-block;
+                    border-radius: 50%;
+                    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+
+                    &.active {
+                        width: 24px;
+                        height: 24px;
+                    }
+                    
+
+                }
+            }
+
+            @include md {
+                justify-content: center;
+            }
+        }
+        div.info {
+            width: 100%;
+            text-align: left;
+
+            p,
+            h6 {
+                font-size: 0.6rem;
+                letter-spacing: 0.025rem;
+                margin-bottom: 0.3rem;
+            }
+            p.price {
+                font-weight: 600;
+            }
+
+            @include md {
+                text-align: center;
+                p,
+                h6 {
+                    font-size: 0.8rem;
+                    letter-spacing: 0.035rem;
+                }
+            }
+        }
+    }
+
+    &:hover {
+        box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+    }
+}

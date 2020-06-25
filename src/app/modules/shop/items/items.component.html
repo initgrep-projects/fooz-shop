@@ -1,24 +1,28 @@
 <section class="card-wrapper ">
-  <div class="row">
-   
-    <app-item class="col-6 col-sm-4 col-md-4 col-lg-4 col-xl-3 my-1"
-              *ngFor="let product of items | filterBySize: selectedSizes | filterByCategory: selectedCategories | sort: selectedSort"
-              [item]="product"
-              [sourcePage] = "'shop'"
-              ></app-item>
+  <div class="row my-">
+
+
+    <div class="col-6 col-sm-4 col-md-4 col-lg-3" 
+         *ngFor="let item of items | filterBySize: selectedSizes | filterByCategory: selectedCategories | sort: selectedSort">
+      <app-card-item [item]="item"></app-card-item>
+    </div>
+
   </div>
-  <div class="row" *ngIf ="items.length > 0">
+  <div class="row"
+       *ngIf="items.length > 0">
     <div class="col">
       <div class="more-items-wrapper text-center">
-       
+
         <button type="button"
                 class="btn btn-outline-dark"
-                [ngClass] ="{'loading': !!moreItemsLoading, 'bg-black': !!moreItemsLoading}"
+                [ngClass]="{'loading': !!moreItemsLoading, 'bg-black': !!moreItemsLoading}"
                 (click)="addMoreProductsToStore()">
-                <fa-icon [icon]="['fas', 'spinner']" [spin]="true" *ngIf="moreItemsLoading"></fa-icon>
-               <span *ngIf="!moreItemsLoading">show more Items</span>
-               <span *ngIf ="moreItemsLoading">fetching items</span>
-              </button>
+          <fa-icon [icon]="['fas', 'spinner']"
+                   [spin]="true"
+                   *ngIf="moreItemsLoading"></fa-icon>
+          <span *ngIf="!moreItemsLoading">show more Items</span>
+          <span *ngIf="moreItemsLoading">fetching items</span>
+        </button>
       </div>
     </div>
   </div>

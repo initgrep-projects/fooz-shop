@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { CommonModule } from '@angular/common';
 import { ItemComponent } from './item/item.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -22,6 +23,7 @@ import { CartItemComponent } from './cart-item/cart-item.component';
 import { PreTileCardComponent } from './pre-tile-card/pre-tile-card.component';
 import { MatfocusDirective } from './directives/matfocus.directive';
 import { ClearInputDirective } from './directives/clear-input.directive';
+import { CardItemComponent } from './card-item/card-item.component';
 
 
 @NgModule({
@@ -44,10 +46,12 @@ import { ClearInputDirective } from './directives/clear-input.directive';
     CartItemComponent,
     PreTileCardComponent,
     MatfocusDirective,
-    ClearInputDirective
+    ClearInputDirective,
+    CardItemComponent
   ],
   imports: [
     CommonModule,
+    BrowserAnimationsModule,
     RouterModule,
     FontAwesomeModule,
     NgbToastModule,
@@ -70,7 +74,8 @@ import { ClearInputDirective } from './directives/clear-input.directive';
     BreadcrumbComponent,
     CartItemComponent,
     MatfocusDirective,
-    ClearInputDirective
+    ClearInputDirective,
+    CardItemComponent
   ]
 })
 export class SharedModule { }

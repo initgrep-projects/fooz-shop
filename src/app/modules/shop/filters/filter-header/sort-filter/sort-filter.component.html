@@ -1,7 +1,7 @@
 <div class="filter-item"
 ngbDropdown
 #sort="ngbDropdown">
-<button class="btn btn-outline-dark mr-2"
+<button class="btn mr-2 head"
        id="dropdownManual"
        ngbDropdownAnchor
        (focus)="sort.open()">
@@ -11,7 +11,7 @@ ngbDropdown
 <div ngbDropdownMenu
     aria-labelledby="dropdownManual">
 
-    <button ngbDropdownItem
+    <button ngbDropdownItem class="menu"
     *ngFor="let sortOrder of sortOrders"
     (click) = "emitSortOrderChange(sortOrder)"
     >

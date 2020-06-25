@@ -8,6 +8,7 @@ div.side-filter-bar-wrapper{
 
     ul.list-group{
         li.list-group-item{
+            background-color: transparent;
             @include animate(fadeIn,3s);
         }
         li.filter-group-heading{

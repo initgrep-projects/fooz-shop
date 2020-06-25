@@ -1,9 +1,23 @@
 @import "../../../../../../variables.scss";
-button{
-   font-family: $roboto-font-family;
-    text-transform: capitalize;
-    @include animate();
-    span{
-        margin-left: .3rem;
+button {
+    font-family: $roboto-font-family;
+    text-transform: uppercase;
+
+    font-size: 0.8rem;
+    letter-spacing: 0.025rem;
+    span {
+        margin-left: 0.3rem;
+    }
+
+    &.head {
+        border-bottom: 2px solid $primary-border-color;
+        border-radius: 0px;
+        @include animate();
+
+        &:focus,
+        &:hover {
+            box-shadow: none;
+            background-color: rgba($color: #000000, $alpha: 0.1);
+        }
     }
 }

@@ -7,11 +7,14 @@ import { UserProfileComponent } from '../modules/account/profile/user-profile/us
 import { UserProfileEditComponent } from '../modules/account/profile/user-profile-edit/user-profile-edit.component';
 import { UserAddressEditComponent } from '../modules/account/addresses/user-address-edit/user-address-edit.component';
 import { AddressResolver } from '../modules/account/addresses/address-resolver.service';
+import { AuthGuardService } from '../modules/auth/auth-guard.service';
+import { CartModalComponent } from '../modules/cart/cart-modal/cart-modal.component';
 
 export const accountRoutes: Routes = [
   {
     path: 'my/account',
     component: AccountComponent,
+    canActivate:[AuthGuardService],
     children: [
       {
         path: '',
@@ -20,34 +23,50 @@ export const accountRoutes: Routes = [
       },
       {
         path: 'dashboard',
-        component: OverviewComponent
+        component: OverviewComponent,
+        canActivateChild:[AuthGuardService]
       },
       {
         path: 'orders',
-        component: OrdersComponent
+        component: OrdersComponent,
+        canActivateChild:[AuthGuardService]
       },
       {
         path: 'addresses',
-        component: AddressesComponent
+        component: AddressesComponent,
+        canActivateChild:[AuthGuardService]
       },
       {
         path: 'address/edit/:id',
         component: UserAddressEditComponent,
-        resolve: { address: AddressResolver }
+        resolve: { address: AddressResolver },
+        canActivateChild:[AuthGuardService]
 
       },
       {
         path: 'address/new',
-        component: UserAddressEditComponent
+        component: UserAddressEditComponent,
+        canActivateChild:[AuthGuardService]
       },
       {
         path: 'profile',
-        component: UserProfileComponent
+        component: UserProfileComponent,
+        canActivateChild:[AuthGuardService]
       },
       {
         path: 'profile/edit',
-        component: UserProfileEditComponent
+        component: UserProfileEditComponent,
+        canActivateChild:[AuthGuardService]
       }
     ]
   }
 ]
+
+/** No Auth Guard service for cart */
+export const cartRoutes:Routes = [
+  {
+    path: 'cart',
+    component: CartModalComponent,
+    outlet: 'md'
+  },
+];

@@ -2,14 +2,21 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { AddressService } from './address.service';
 import { SubSink } from 'subsink';
 import { Address } from 'src/app/models/address';
-import { tap, startWith, take } from 'rxjs/operators';
 import { AuthMessages } from 'src/app/util/app.labels';
 import { Router } from '@angular/router';
+import { staggerFadeIn, fadeIn } from 'src/app/animations/fadeAnimation';
+import { staggerSlideIn, slideIn } from 'src/app/animations/slideAnimations';
 
 @Component({
   selector: 'app-addresses',
   templateUrl: './addresses.component.html',
-  styleUrls: ['./addresses.component.scss']
+  styleUrls: ['./addresses.component.scss'],
+  animations:[
+    staggerFadeIn,
+    staggerSlideIn,
+    fadeIn,
+    slideIn
+  ]
 })
 export class AddressesComponent implements OnInit, OnDestroy {
   labels = AuthMessages;

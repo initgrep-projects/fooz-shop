@@ -23,6 +23,7 @@ export const AuthMessages = {
     forgotpassword: 'forgot password ?',
     loginSuccess: 'Logged in successfully',
     logoutSuccess: 'logged out successfully',
+    logoutFail: 'log out failed',
     emailVerification: 'Verification email sent',
     emailVerificationFailed: 'Verification email failed',
     passwordReset: 'Password Reset email sent',

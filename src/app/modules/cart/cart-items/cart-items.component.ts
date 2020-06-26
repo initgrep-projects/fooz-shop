@@ -5,19 +5,21 @@ import { CartModalService } from '../cart-modal/cart-modal.service';
 import { SubSink } from 'subsink';
 import { Router, ActivatedRoute } from '@angular/router';
 import { cartLabels } from 'src/app/util/app.labels';
-import { isEmpty } from 'lodash';
+import { staggerFadeIn } from 'src/app/animations/fadeAnimation';
 
 
 @Component({
   selector: 'app-cart-items',
   templateUrl: './cart-items.component.html',
-  styleUrls: ['./cart-items.component.scss']
+  styleUrls: ['./cart-items.component.scss'],
+  animations:[
+    staggerFadeIn
+  ]
 })
 export class CartItemsComponent implements OnInit, OnDestroy {
   labels = cartLabels;
   cart: CartItem[];
   private subs = new SubSink();
-  isCartLoading = true;
 
   constructor(
     private cartService: CartService,
@@ -36,10 +38,9 @@ export class CartItemsComponent implements OnInit, OnDestroy {
   getCart() {
     console.log('cart fetched from cart-items');
     this.subs.sink =
-      this.cartService.getCartFromStore()
+      this.cartService.cart$
         .subscribe(cart => {
           this.cart = [...cart];
-          this.isCartLoading = false;
         });
   }
 
@@ -72,12 +73,6 @@ export class CartItemsComponent implements OnInit, OnDestroy {
     }, 100);
   }
 
-  isEmptyCart(){
-    if(!this.isCartLoading && isEmpty(this.cart)){
-      return true;
-    }
-    return false;
-  }
 
   ngOnDestroy() {
     this.subs.unsubscribe();

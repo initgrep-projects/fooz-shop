@@ -1,10 +1,14 @@
 import { Component, OnInit, Input, Output, EventEmitter, AfterViewInit, ViewChildren, QueryList, ElementRef, Renderer2 } from '@angular/core';
 import { Size } from 'src/app/models/size';
+import { staggerFadeIn } from 'src/app/animations/fadeAnimation';
 
 @Component({
   selector: 'app-size',
   templateUrl: './size.component.html',
-  styleUrls: ['./size.component.scss']
+  styleUrls: ['./size.component.scss'],
+  animations: [
+    staggerFadeIn
+  ]
 })
 export class SizeComponent implements OnInit, AfterViewInit {
 

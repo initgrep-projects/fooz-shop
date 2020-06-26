@@ -1,5 +1,5 @@
 <div class="size-wrapper">
-    <ul class="list-inline">
+    <ul class="list-inline" [@staggerFadeIn]="sizes.length">
         <li class="list-inline-item"
             *ngFor="let s of sizes"
             (click)="selectSize(s)">

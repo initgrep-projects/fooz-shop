@@ -17,14 +17,24 @@
   </div>
   <div class="row"
        *ngIf="addressService.addresses$ | async as addresses; else loading">
-    <div class="col-12 col-md-10 py-2 app-addresses-alert text-center"
-         *ngIf="addresses.length === 0">
-      <div class="alert">{{labels.NoAddressesPresent}}</div>
+
+    <div class="col-12">
+      <div class="row"
+           *ngIf="addresses.length === 0" @slideIn >
+        <div class="col-12 col-md-10 py-2 app-addresses-alert text-center">
+          <div class="alert">{{labels.NoAddressesPresent}}</div>
+        </div>
+      </div>
+      <div class="row"
+           [@staggerFadeIn]="addresses.length">
+        <div class="col-12 col-md-10 py-2"
+             *ngFor="let address of addresses ">
+          <app-user-address [address]="address"></app-user-address>
+        </div>
+      </div>
     </div>
-    <div class="col-12 col-md-10 py-2"
-         *ngFor="let address of addresses ">
-      <app-user-address [address]="address"></app-user-address>
-    </div>
+
+
   </div>
 </div>
 

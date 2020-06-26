@@ -29,7 +29,7 @@ export class CartComponent implements OnInit, OnDestroy {
 
   getCartSize() {
     console.log('cart size fetched from cart-component');
-    this.subs.sink = this.cartService.getCartFromStore()
+    this.subs.sink = this.cartService.cart$
       .subscribe(cart => {
         console.log('cart = ', cart);
         this.cartItemSize = cart.length

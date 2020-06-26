@@ -14,6 +14,7 @@ import { generateGuid } from 'src/app/util/app.lib';
 import { ToastService, toastType } from 'src/app/modules/shared/toasts/toast.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { cloneDeep } from 'lodash';
+import { fadeIn } from 'src/app/animations/fadeAnimation';
 
 
 
@@ -21,7 +22,8 @@ import { cloneDeep } from 'lodash';
 @Component({
   selector: 'app-user-address-edit',
   templateUrl: './user-address-edit.component.html',
-  styleUrls: ['./user-address-edit.component.scss']
+  styleUrls: ['./user-address-edit.component.scss'],
+  animations: [fadeIn]
 })
 export class UserAddressEditComponent implements OnInit, OnDestroy {
   labels = AuthMessages;

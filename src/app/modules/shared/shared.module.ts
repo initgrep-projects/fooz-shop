@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { CommonModule } from '@angular/common';
 import { ItemComponent } from './item/item.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -51,7 +50,6 @@ import { CardItemComponent } from './card-item/card-item.component';
   ],
   imports: [
     CommonModule,
-    BrowserAnimationsModule,
     RouterModule,
     FontAwesomeModule,
     NgbToastModule,

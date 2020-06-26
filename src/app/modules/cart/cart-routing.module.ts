@@ -1,21 +1,13 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import { CartModalComponent } from './cart-modal/cart-modal.component';
-
-const routes:Routes = [
-  {
-    path: 'cart',
-    component: CartModalComponent,
-    outlet: 'md'
-  },
-];
+import { RouterModule } from '@angular/router';
+import {cartRoutes} from 'src/app/config/app.routes';
 
 
 
 @NgModule({
   declarations: [],
   imports: [
-    RouterModule.forChild(routes)
+    RouterModule.forChild(cartRoutes)
   ],
   exports:[
     RouterModule

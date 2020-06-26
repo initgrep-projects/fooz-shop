@@ -18,6 +18,7 @@ export class UserCardComponent implements OnInit, OnDestroy {
   authMessages = AuthMessages;
   labels = AuthMessages.authAnchorLabels;
   @Output() userLoaded = new EventEmitter();
+  @Output() manageProfile = new EventEmitter();
 
 
   constructor(
@@ -47,7 +48,9 @@ export class UserCardComponent implements OnInit, OnDestroy {
   }
 
   routeToAccount() {
+    this.manageProfile.emit();
     this.router.navigate(['my/account']);
+
   }
 
   ngOnDestroy() {

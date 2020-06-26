@@ -13,7 +13,7 @@
 <div class="modal-body">
 
   <ul class="list-unstyled"
-      *ngIf="cart?.length > 0 && !isCartLoading">
+      *ngIf="cart?.length > 0" [@staggerFadeIn] ="cart.length">
     <li class=" mb-1 py-2"
         *ngFor="let item of cart">
       <app-cart-item [item]="item"
@@ -22,7 +22,7 @@
                      (quantityChange)="updateCartItem($event)"></app-cart-item>
     </li>
   </ul>
-  <div *ngIf="isEmptyCart()"
+  <div *ngIf="cart?.length == 0"
        class="alert alert-light"
        role="alert">
     {{labels.emptyCart}}

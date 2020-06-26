@@ -7,11 +7,15 @@ import { cloneDeep } from 'lodash';
 import { AuthService } from 'src/app/modules/auth/auth.service';
 import { ToastService, toastType } from 'src/app/modules/shared/toasts/toast.service';
 import { Router } from '@angular/router';
+import { fadeIn } from 'src/app/animations/fadeAnimation';
 
 @Component({
   selector: 'app-user-profile-edit',
   templateUrl: './user-profile-edit.component.html',
-  styleUrls: ['./user-profile-edit.component.scss']
+  styleUrls: ['./user-profile-edit.component.scss'],
+  animations: [
+    fadeIn
+  ]
 })
 export class UserProfileEditComponent implements OnInit, OnDestroy {
   private subs = new SubSink();

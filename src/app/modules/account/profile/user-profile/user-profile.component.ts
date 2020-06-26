@@ -6,11 +6,15 @@ import { cloneDeep } from 'lodash';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ToastService, toastType } from 'src/app/modules/shared/toasts/toast.service';
 import { AuthMessages } from 'src/app/util/app.labels';
+import { fadeIn } from 'src/app/animations/fadeAnimation';
 
 @Component({
   selector: 'app-user-profile',
   templateUrl: './user-profile.component.html',
-  styleUrls: ['./user-profile.component.scss']
+  styleUrls: ['./user-profile.component.scss'],
+  animations: [
+    fadeIn
+  ]
 })
 export class UserProfileComponent implements OnInit {
   labels = AuthMessages;

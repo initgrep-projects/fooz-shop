@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { isEmpty } from 'lodash';
-import { of, zip } from 'rxjs';
+import { of, zip, Observable } from 'rxjs';
 import { map, switchMap, take, tap } from 'rxjs/operators';
 import { CART_ITEM_EXIST, CART_ITEM_MAX_QUANTITY } from 'src/app/util/app.constants';
 
@@ -23,6 +23,8 @@ import { toastLabels } from 'src/app/util/app.labels';
 })
 export class CartService {
 
+  cart$: Observable<CartItem[]>;
+
   constructor(
     private store: Store<AppState>,
     private db: FireStoreDbService,
@@ -30,13 +32,15 @@ export class CartService {
     private toastService: ToastService,
     private authService: AuthService
   ) {
-
+    this.cart$  =  this.store.select('cart').pipe(map(state => state.cart));
   }
+
+ 
 
 
   addItem(item: CartItem) {
 
-    this.getCartFromStore()
+    this.cart$
       .pipe(take(1))
       .subscribe(cart => {
         console.log('saveItem to cart called', cart);
@@ -107,10 +111,8 @@ export class CartService {
 
 
 
-  getCartFromStore() {
-    return this.store.select('cart')
-      .pipe(map(state => state.cart));
-  }
+ 
+  
 
   /**
    * on the user change,
@@ -130,7 +132,7 @@ export class CartService {
     return this.authService.userFromStore$
       .pipe(
         switchMap(user => {
-          return zip(of(user), this.getCartFromStore())
+          return zip(of(user), this.cart$)
         }),
         tap(([user, cart]) => {
           if (!!user && !user.IsAnonymous && !isEmpty(cart)) {

@@ -21,7 +21,7 @@ div.app-card-item {
     }
 
     img {
-        // @include animate(zoomIn, .5s);
+        @include animate(zoomIn, .5s);
     }
 
     div.inner-card {

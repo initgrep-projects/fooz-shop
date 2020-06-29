@@ -108,3 +108,7 @@ export const featureItemsLabels = {
 }
 
 
+export const homeLabels = {
+    lookbookViewAll : "View All"
+}
+

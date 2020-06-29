@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Product } from 'src/app/models/product';
 import { Subscription } from 'rxjs';
 import { ProductService } from '../../shop/product.service';
+import { HomeService } from '../home.service';
 
 @Component({
   selector: 'app-lookbook',
@@ -10,20 +11,17 @@ import { ProductService } from '../../shop/product.service';
 })
 export class LookbookComponent implements OnInit, OnDestroy {
 
-  products: Product[] = [];
   subs: Subscription[] = [];
-  isLoading = true;
-  constructor(private productService: ProductService) { }
+
+  constructor(
+    public homeService: HomeService
+  ) { }
 
   ngOnInit() {
-    this.fetchLatestProducts();
+
   }
 
-  fetchLatestProducts() {
-    this.subs[this.subs.length + 1] =
-      this.productService.getShopFromStore()
-        .subscribe(state => this.products = state.products.slice(0, 5));
-  }
+  
 
   ngOnDestroy() {
     this.subs.forEach(sub => sub.unsubscribe());

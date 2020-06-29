@@ -1,14 +1,14 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Product } from 'src/app/models/product';
-
+import { LookBookItem } from 'src/app/models/lookbook';
+import { homeLabels} from 'src/app/util/app.labels';
 @Component({
   selector: 'app-lookbook-item',
   templateUrl: './lookbook-item.component.html',
   styleUrls: ['./lookbook-item.component.scss']
 })
 export class LookbookItemComponent implements OnInit {
-
-  @Input('item') product: Product;
+  labels = homeLabels;
+  @Input('item') item: LookBookItem;
   
   constructor() { }
 

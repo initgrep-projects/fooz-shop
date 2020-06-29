@@ -1,22 +1,8 @@
-<div class="lookbook-card">
-    <div class="lb-card-header">
-       <img [src]="product.Images[1].Url" alt="" class="img-fluid">
-   </div>
-   <div class="card-tag">
-       <span class="title">#fooz</span>
-   </div>
-   <div class="card-like">
-       <span class="like">
-        <fa-icon class="cart"
-        icon="shopping-cart"></fa-icon>
-       </span>
-   </div>
-   <div class="card-msg">
-       <a class="btn btn-sm btn-outline-light">quick add</a>
-   </div>
-   <div class="card-desc">
-       <span class="title">{{product.Name}}</span>
-       <span class="price">{{product.Price.Code}} : {{product.Price.Amount}} </span>
-   </div>
-
+<div class="card app-lookbook-item">
+    <div class="card-body">
+        <h5 class="card-title">{{item.Label}}</h5>
+        <a class="stretched-link text-dark" [routerLink]="['/shop']">{{labels.lookbookViewAll}}</a>
+        <img [src]="item.Image.Url" alt="" class="img-fluid" >
+        
+    </div>
 </div>

@@ -14,20 +14,12 @@ export class TrendComponent implements OnInit, OnDestroy {
 
   constructor(private productService: ProductService) { }
   private subs = new SubSink();
-  trendImages: Image[];
+  
   isLoading = true;
 
 
   ngOnInit() {
-    this.getTrendItemsFromStore();
-  }
-
-  getTrendItemsFromStore() {
-    this.subs.sink =
-      this.productService.getShopFromStore()
-        .subscribe(state => {
-          this.trendImages = [... state.trendItems];
-        });
+    // this.getTrendItemsFromStore();
   }
 
   ngOnDestroy() {

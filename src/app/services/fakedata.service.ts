@@ -8,6 +8,7 @@ import { Image } from 'src/app/models/image';
 import { Currency } from 'src/app/models/currency';
 import { Sort } from 'src/app/models/Sort';
 import { CustomSizeInput } from '../models/custom-size';
+import { LookBookItem } from '../models/lookbook';
 
 
 @Injectable({
@@ -19,6 +20,26 @@ export class FakedataService {
   ) {
     logger.info('remote service is initialized ');
     this.getProducts();
+  }
+
+
+
+  getLookBook(){
+    // https://i.imgur.com/WZ35TTq.jpg fooz trend
+    const foozTrend =  new Image('https://i.imgur.com/WZ35TTq.jpg',new Color('green', '#808000'));
+    const lookBookItem1 = new LookBookItem(foozTrend,'fooz trend');
+
+    // https://i.imgur.com/qHo8OQX.jpg Fooz special
+
+    const foozSpecial = new Image('https://i.imgur.com/qHo8OQX.jpg',new Color('pink', '#FFB6C1'));
+    const lookBookItem2 = new LookBookItem(foozSpecial,'fooz Special');
+    // https://i.imgur.com/T2KSOdO.jpg Fooz Everyday
+
+    const centerOpen = new Image('https://i.imgur.com/T2KSOdO.jpg',new Color('black', '#f1f1f1'));
+    const lookBookItem3 =  new LookBookItem(centerOpen,'fooz everyday');
+
+    return [lookBookItem1, lookBookItem2, lookBookItem3];
+
   }
 
   getSizes() {
@@ -46,6 +67,9 @@ export class FakedataService {
     const image2p = new Image('https://i.imgur.com/hYMUHqS.jpg', purpleColor);
     return [image1, image2, image3, image4,  image1p, image1g];
   }
+
+
+
 
   getCustomSizeInput() {
     const widthSizeValues: number[] = [19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34];

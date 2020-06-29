@@ -1,14 +1,11 @@
-<section class="trend-item-wrapper  ">
-    <app-parallax [title]="'Latest Abaya'" [imgUrl] = "'../../../../assets/img/splash4.jpg'"></app-parallax>
-  </section>
+<div class="container app-lookbook mb-2">
 
-<section class="container look-book mb-2">
-
-    <div class="row">
-        <div class="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-4 my-2 " *ngFor="let product of products">
-          <app-lookbook-item [item] = "product"></app-lookbook-item>
-        </div>
-
+  <div class="row">
+    <div class="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-4 my-2 "
+         *ngFor="let item of homeService.lookbookItems$ | async as lookbook">
+      <app-lookbook-item [item]="item"></app-lookbook-item>
     </div>
 
-</section>
+  </div>
+
+</div>

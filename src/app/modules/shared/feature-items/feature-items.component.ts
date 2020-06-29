@@ -12,7 +12,7 @@ import { featureItemsLabels } from 'src/app/util/app.labels';
 })
 export class FeatureItemsComponent implements OnInit, OnDestroy {
   labels = featureItemsLabels;
-  @Input() showParallax: boolean = true;
+  @Input() keepWide: boolean = false;
   @Input() title:string;
 
   preLoadItems = [];

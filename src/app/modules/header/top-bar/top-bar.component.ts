@@ -8,7 +8,6 @@ import {faInstagram} from '@fortawesome/free-brands-svg-icons';
 })
 export class TopBarComponent implements OnInit {
 
-  faInstagram = faInstagram;
   constructor() { }
 
   ngOnInit(): void {

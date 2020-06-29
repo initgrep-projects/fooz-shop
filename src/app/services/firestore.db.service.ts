@@ -5,7 +5,7 @@ import { map, tap } from 'rxjs/operators';
 import {
   CART_COLLECTION, CATEGORY_COLLECTION,
   CUSTOM_SIZE_INPUT, PRODUCT_COLLECTION,
-  PRODUCT_PAGE_SIZE, SIZE_COLLECTION, SORT_COLLECTION, TREND_COLLECTION, USER_COLLECTION, ADDRESS_COLLECTION
+  PRODUCT_PAGE_SIZE, SIZE_COLLECTION, SORT_COLLECTION, TREND_COLLECTION, USER_COLLECTION, ADDRESS_COLLECTION, LOOKBOOK_COLLECTION
 } from '../util/app.constants';
 import { generateGuid } from '../util/app.lib';
 import { CartItem } from '../models/cartItem';
@@ -20,6 +20,7 @@ import { FakedataService } from './fakedata.service';
 import { ObjectTransformerService } from './object-transformer.service';
 import { Address } from '../models/address';
 import { Observable } from 'rxjs';
+import { LookBookItem } from '../models/lookbook';
 
 
 
@@ -41,6 +42,8 @@ export class FireStoreDbService {
   private trendCollection: AngularFirestoreCollection<Image>;
   private userCollection: AngularFirestoreCollection<User>;
   private addressCollection: AngularFirestoreCollection<Address>;
+  private lookBookCollection: AngularFirestoreCollection<LookBookItem>;
+
 
   constructor(
     private db: AngularFirestore,
@@ -56,6 +59,7 @@ export class FireStoreDbService {
     this.trendCollection = this.db.collection<Image>(TREND_COLLECTION);
     this.userCollection = this.db.collection<User>(USER_COLLECTION);
     this.addressCollection = this.db.collection<Address>(ADDRESS_COLLECTION);
+    this.lookBookCollection = this.db.collection<LookBookItem>(LOOKBOOK_COLLECTION);
     this.bootstrapTestData();
   }
 
@@ -66,6 +70,7 @@ export class FireStoreDbService {
     // this.saveCustomSizeInputs();
     // this.saveSortOrders();
     // this.saveTrendItems(); 
+    // this.saveLookBook()
   }
 
 
@@ -393,5 +398,28 @@ export class FireStoreDbService {
       );
   }
   /** Address Operations End */
+
+  /** Lookbook items */
+
+  saveLookBook() {
+    this.fakedataService.getLookBook()
+      .forEach(lb => this.lookBookCollection.doc(generateGuid()).set(classToPlain(lb)));
+  }
+
+  fetchLookBookItems(): Observable<LookBookItem[]> {
+    return this.lookBookCollection
+      .get()
+      .pipe(
+        map(querySnapShot => {
+          const items: LookBookItem[] = [];
+          querySnapShot.forEach(doc => {
+            items.push(this.objTransformer.transformLookBookItem(doc.data()));
+          });
+          return items;
+        })
+      );
+  }
+
+  /**lookbookitems //end */
 
 }

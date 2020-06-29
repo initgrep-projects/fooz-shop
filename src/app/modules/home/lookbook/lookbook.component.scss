@@ -1,34 +1,7 @@
 @import "../../../../variables.scss";
 
-section.look-book {
-  // margin: auto;
-  margin-top: -5vh;
-  // padding-right: 2%;
-  // padding-left: 2%;
-}
-
-// Small devices (landscape phones, 576px and up)
-@media (min-width: 576px) {
-  section.look-book {
-    margin-top: -5vh;
-  }
-}
-
-// Medium devices (tablets, 768px and up)
-@media (min-width: 768px) {
-}
-
-// Large devices (desktops, 992px and up)
-@media (min-width: 992px) {
-  section.look-book {
-    margin-top: -5vh;
-  }
-}
-
-// Extra large devices (large desktops, 1200px and up)
-@media (min-width: 1200px) {
-  section.look-book {
-    margin-top: -10vh;
-   
-  }
+div.app-lookbook{
+  background-color: #fff;
+  top: -4rem;
+  position: relative;
 }

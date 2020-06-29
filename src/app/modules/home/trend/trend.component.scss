@@ -5,33 +5,28 @@
   img {
     width: 100%;
     height: 100%;
-    
   }
 }
-
 
 @mixin expand-slide {
   flex: 1 1 23%;
   img {
     width: 100%;
     height: 100%;
-    
   }
 }
 
 .fooz-container {
   display: flex;
   width: 100%;
-  // padding: 4% 2%;
   box-sizing: border-box;
-  height: 40vh;
+  height: 600px;
 
   .box {
     flex: 1;
     overflow: hidden;
     transition: 0.5s;
     margin: 0 2%;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
     line-height: 0;
 
     img {
@@ -43,52 +38,66 @@
       cursor: pointer;
     }
 
-    &:hover {
-      @include expand-slide();
-    }
-    &:nth-child(3) {
-      @include expand-slide();
+    &::after {
+      content: "";
+      display: block;
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      background: rgba(127, 127, 127, 0.5);
+      background-image: radial-gradient(black 10%, transparent 33%);
+      background-size: 2px 2px;
+      // border:2px solid red;
     }
 
-    &:nth-child(1):hover ~ .box:nth-child(3) {
-      @include reset-slide();
-    }
-    &:nth-child(2):hover ~ .box:nth-child(3) {
-      @include reset-slide();
-    }
-    &:nth-child(4):hover > .box:nth-child(3) {
-      @include reset-slide();
-    }
-    &:nth-child(5):hover > .box:nth-child(3) {
-      @include reset-slide();
-    }
+    // &:hover {
+    //   @include expand-slide();
+    // }
+    // &:nth-child(3) {
+    //   @include expand-slide();
+    // }
+
+    // &:nth-child(1):hover ~ .box:nth-child(3) {
+    //   @include reset-slide();
+    // }
+    // &:nth-child(2):hover ~ .box:nth-child(3) {
+    //   @include reset-slide();
+    // }
+    // &:nth-child(4):hover > .box:nth-child(3) {
+    //   @include reset-slide();
+    // }
+    // &:nth-child(5):hover > .box:nth-child(3) {
+    //   @include reset-slide();
+    // }
   }
 }
 
-// Small devices (landscape phones, 576px and up)
-@media (min-width: 576px) {
-  .fooz-container {
-    height: 60vh;
-  }
-}
+// // Small devices (landscape phones, 576px and up)
+// @media (min-width: 576px) {
+//   .fooz-container {
+//     height: 60vh;
+//   }
+// }
 
-// Medium devices (tablets, 768px and up)
-@media (min-width: 768px) {
-  .fooz-container {
-    height: 60vh;
-  }
-}
+// // Medium devices (tablets, 768px and up)
+// @media (min-width: 768px) {
+//   .fooz-container {
+//     height: 60vh;
+//   }
+// }
 
-// Large devices (desktops, 992px and up)
-@media (min-width: 992px) {
-  .fooz-container {
-    height: 70vh;
-  }
-}
+// // Large devices (desktops, 992px and up)
+// @media (min-width: 992px) {
+//   .fooz-container {
+//     height: 70vh;
+//   }
+// }
 
-// Extra large devices (large desktops, 1200px and up)
-@media (min-width: 1200px) {
-  .fooz-container {
-    height: 90vh;
-  }
-}
+// // Extra large devices (large desktops, 1200px and up)
+// @media (min-width: 1200px) {
+//   .fooz-container {
+//     height: 90vh;
+//   }
+// }

@@ -11,6 +11,7 @@ import { DocumentData } from '@angular/fire/firestore';
 import { CartItem } from '../models/cartItem';
 import { User } from '../models/user';
 import { Address } from '../models/address';
+import { LookBookItem } from '../models/lookbook';
 
 @Injectable({
   providedIn: 'root'
@@ -224,5 +225,9 @@ export class ObjectTransformerService {
     return new Address(param.id, param.userId, param.name, param.phone, param.street, param.country, param.state, param.city, param.zipcode);
   }
 
+
+  transformLookBookItem(param: DocumentData){
+    return new LookBookItem(this.transformImage(param.image), param.label);
+  }
 
 }

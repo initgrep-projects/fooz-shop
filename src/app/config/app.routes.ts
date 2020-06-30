@@ -9,12 +9,25 @@ import { UserAddressEditComponent } from '../modules/account/addresses/user-addr
 import { AddressResolver } from '../modules/account/addresses/address-resolver.service';
 import { AuthGuardService } from '../modules/auth/auth-guard.service';
 import { CartModalComponent } from '../modules/cart/cart-modal/cart-modal.component';
+import { AuthModalComponent } from '../modules/auth/auth-modal/auth-modal.component';
+import { HomeComponent } from '../modules/home/home.component';
+import { ShopComponent } from '../modules/shop/shop.component';
+import { ItemDetailComponent } from '../modules/shop/items/item-detail/item-detail.component';
+import { ProductResolver } from '../services/product-resolver.service';
+import { CheckoutComponent } from '../modules/checkout/checkout.component';
+
+export const checkoutRoutes: Routes = [
+  {
+    path: 'shop/checkout/cart',
+    component: CheckoutComponent,
+  }
+]
 
 export const accountRoutes: Routes = [
   {
     path: 'my/account',
     component: AccountComponent,
-    canActivate:[AuthGuardService],
+    canActivate: [AuthGuardService],
     children: [
       {
         path: '',
@@ -24,49 +37,92 @@ export const accountRoutes: Routes = [
       {
         path: 'dashboard',
         component: OverviewComponent,
-        canActivateChild:[AuthGuardService]
+        canActivateChild: [AuthGuardService]
       },
       {
         path: 'orders',
         component: OrdersComponent,
-        canActivateChild:[AuthGuardService]
+        canActivateChild: [AuthGuardService]
       },
       {
         path: 'addresses',
         component: AddressesComponent,
-        canActivateChild:[AuthGuardService]
+        canActivateChild: [AuthGuardService]
       },
       {
         path: 'address/edit/:id',
         component: UserAddressEditComponent,
         resolve: { address: AddressResolver },
-        canActivateChild:[AuthGuardService]
+        canActivateChild: [AuthGuardService]
 
       },
       {
         path: 'address/new',
         component: UserAddressEditComponent,
-        canActivateChild:[AuthGuardService]
+        canActivateChild: [AuthGuardService]
       },
       {
         path: 'profile',
         component: UserProfileComponent,
-        canActivateChild:[AuthGuardService]
+        canActivateChild: [AuthGuardService]
       },
       {
         path: 'profile/edit',
         component: UserProfileEditComponent,
-        canActivateChild:[AuthGuardService]
+        canActivateChild: [AuthGuardService]
       }
     ]
   }
 ]
 
 /** No Auth Guard service for cart */
-export const cartRoutes:Routes = [
+export const cartRoutes: Routes = [
   {
     path: 'cart',
     component: CartModalComponent,
     outlet: 'md'
   },
 ];
+
+
+
+export const appRoutes: Routes = [
+  {
+    path: '',
+    redirectTo: '/home',
+    pathMatch: 'full'
+  },
+  {
+    path: '**',
+    redirectTo: '/home',
+    pathMatch: 'full'
+  },
+
+];
+
+export const homeRoutes: Routes = [
+  { path: 'home', component: HomeComponent }
+];
+
+
+export const shopRoutes: Routes = [
+  {
+    path: 'shop',
+    component: ShopComponent,
+  },
+  {
+    path: 'shop/item/:id',
+    component: ItemDetailComponent,
+    resolve: { product: ProductResolver },
+  }
+
+];
+
+export const authRoutes: Routes = [
+  {
+    path: 'auth',
+    component: AuthModalComponent,
+    outlet: 'secure'
+  }
+]
+

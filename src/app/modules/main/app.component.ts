@@ -10,8 +10,8 @@ import { SubSink } from 'subsink';
 export class AppComponent implements OnInit, OnDestroy {
 
   title = 'foozshop';
-
   subs = new SubSink();
+  appLoaded = false;
 
   constructor(
     private router: Router, 
@@ -32,6 +32,9 @@ export class AppComponent implements OnInit, OnDestroy {
       });
   }
 
+  onload(){
+    this.appLoaded = true;
+  }
 
   ngOnDestroy(): void {
     this.subs.unsubscribe();

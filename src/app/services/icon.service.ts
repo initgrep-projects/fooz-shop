@@ -59,7 +59,8 @@ import {
   faUnlockAlt,
   faUser as fasUser,
   faChevronLeft,
-  faCheckCircle
+  faCheckCircle,
+  faShippingFast
 } from '@fortawesome/free-solid-svg-icons';
 import { faUser as farUser } from '@fortawesome/free-regular-svg-icons';
 import { faGoogle } from '@fortawesome/free-brands-svg-icons';
@@ -98,6 +99,7 @@ export class IconService {
       faDoorOpen,
       faLongArrowAltUp,
       faLongArrowAltDown,
+      faLongArrowAltRight,
       faArrowsAltH,
       faArrowsAltV,
       faLayerGroup,
@@ -133,7 +135,8 @@ export class IconService {
       faUnlockAlt,
       fasUser,
       farUser,
-      faCheckCircle
+      faCheckCircle,
+      faShippingFast
     ];
   }
 

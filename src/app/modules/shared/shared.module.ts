@@ -23,6 +23,7 @@ import { PreTileCardComponent } from './pre-tile-card/pre-tile-card.component';
 import { MatfocusDirective } from './directives/matfocus.directive';
 import { ClearInputDirective } from './directives/clear-input.directive';
 import { CardItemComponent } from './card-item/card-item.component';
+import { StatusComponent } from './status/status.component';
 
 
 @NgModule({
@@ -46,7 +47,8 @@ import { CardItemComponent } from './card-item/card-item.component';
     PreTileCardComponent,
     MatfocusDirective,
     ClearInputDirective,
-    CardItemComponent
+    CardItemComponent,
+    StatusComponent
   ],
   imports: [
     CommonModule,
@@ -73,7 +75,8 @@ import { CardItemComponent } from './card-item/card-item.component';
     CartItemComponent,
     MatfocusDirective,
     ClearInputDirective,
-    CardItemComponent
+    CardItemComponent,
+    StatusComponent
   ]
 })
 export class SharedModule { }

@@ -1,103 +1,84 @@
 @import "../../../../variables.scss";
 
-@mixin reset-slide {
-  flex: 1;
-  img {
-    width: 100%;
-    height: 100%;
-  }
-}
-
-@mixin expand-slide {
-  flex: 1 1 23%;
-  img {
-    width: 100%;
-    height: 100%;
-  }
-}
-
 .fooz-container {
   display: flex;
   width: 100%;
   box-sizing: border-box;
-  height: 600px;
+  height: 650px;
 
   .box {
     flex: 1;
     overflow: hidden;
     transition: 0.5s;
-    margin: 0 2%;
+    margin: 0 0;
     line-height: 0;
-
-    img {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    // border : 1px solid red;
+    div.box-body {
+      position: relative;
       width: 100%;
       height: 100%;
-      object-fit: cover;
-      object-position: center;
-      transition: 0.5s;
-      cursor: pointer;
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        object-position: center;
+        transition: 0.5s;
+        transition: all 0.5s ease;
+        // position: relative;
+        // top: -200px;
+      }
+
+      &::after {
+        content: "";
+        display: block;
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        background: rgba(127, 127, 127, 0.5);
+        background-image: radial-gradient(black 10%, transparent 33%);
+        background-size: 2px 2px;
+        // border:2px solid red;
+        pointer-events: none;
+      }
     }
 
-    &::after {
-      content: "";
-      display: block;
+    div.box-control {
       position: absolute;
-      left: 0;
-      right: 0;
-      top: 0;
-      bottom: 0;
-      background: rgba(127, 127, 127, 0.5);
-      background-image: radial-gradient(black 10%, transparent 33%);
-      background-size: 2px 2px;
-      // border:2px solid red;
+      // width: 100%;
+
+      left: 12%;
+      bottom: 15%;
+      padding: 1rem;
+      
+
+      h2 {
+        text-transform: uppercase;
+        letter-spacing: 0.25rem;
+        font-weight: 600;
+        background-color: #f1f1f1;
+        color: #333;
+        display: inline-block;
+        padding: 0.5rem 1rem;
+        font-size: 2.5rem;
+        border-radius: 4px;
+        @include animate(fadeInUp, 1s);
+      }
+
+      a {
+        padding: 0.5rem 1rem;
+        font-size: 1rem;
+        color: $secondary-text-color;
+        @include animate(fadeInUp, 2s);
+        span {
+          text-transform: uppercase;
+          margin-right: 1rem;
+        }
+      }
     }
-
-    // &:hover {
-    //   @include expand-slide();
-    // }
-    // &:nth-child(3) {
-    //   @include expand-slide();
-    // }
-
-    // &:nth-child(1):hover ~ .box:nth-child(3) {
-    //   @include reset-slide();
-    // }
-    // &:nth-child(2):hover ~ .box:nth-child(3) {
-    //   @include reset-slide();
-    // }
-    // &:nth-child(4):hover > .box:nth-child(3) {
-    //   @include reset-slide();
-    // }
-    // &:nth-child(5):hover > .box:nth-child(3) {
-    //   @include reset-slide();
-    // }
   }
 }
-
-// // Small devices (landscape phones, 576px and up)
-// @media (min-width: 576px) {
-//   .fooz-container {
-//     height: 60vh;
-//   }
-// }
-
-// // Medium devices (tablets, 768px and up)
-// @media (min-width: 768px) {
-//   .fooz-container {
-//     height: 60vh;
-//   }
-// }
-
-// // Large devices (desktops, 992px and up)
-// @media (min-width: 992px) {
-//   .fooz-container {
-//     height: 70vh;
-//   }
-// }
-
-// // Extra large devices (large desktops, 1200px and up)
-// @media (min-width: 1200px) {
-//   .fooz-container {
-//     height: 90vh;
-//   }
-// }

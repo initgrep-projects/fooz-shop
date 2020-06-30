@@ -26,8 +26,8 @@ export const staggerFadeIn = trigger('staggerFadeIn', [
 
     query(':leave', stagger('300ms', [
       animate('1s ease-in', keyframes([
-        style({ opacity: 1, backgroundColor: 'rgba(255,0,0,0.5)' }),
-        style({ opacity: .5, backgroundColor: 'rgba(255,0,0,0.2)' }),
+        style({ opacity: 1}),
+        style({ opacity: .5}),
         style({ opacity: 0 }),
       ]))]), { optional: true })
 

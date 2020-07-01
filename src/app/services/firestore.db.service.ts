@@ -1,26 +1,27 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
+import { AngularFirestore, AngularFirestoreCollection, QuerySnapshot, DocumentData } from '@angular/fire/firestore';
 import { classToPlain } from 'class-transformer';
+import { Observable } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
-import {
-  CART_COLLECTION, CATEGORY_COLLECTION,
-  CUSTOM_SIZE_INPUT, PRODUCT_COLLECTION,
-  PRODUCT_PAGE_SIZE, SIZE_COLLECTION, SORT_COLLECTION, TREND_COLLECTION, USER_COLLECTION, ADDRESS_COLLECTION, LOOKBOOK_COLLECTION
-} from '../util/app.constants';
-import { generateGuid } from '../util/app.lib';
+import { Address } from '../models/address';
 import { CartItem } from '../models/cartItem';
 import { Category } from '../models/category';
 import { CustomSizeInput } from '../models/custom-size';
 import { Image } from '../models/image';
+import { LookBookItem } from '../models/lookbook';
 import { Product } from '../models/product';
 import { Size } from '../models/size';
 import { Sort } from '../models/Sort';
 import { User } from '../models/user';
+import {
+  ADDRESS_COLLECTION, CART_COLLECTION, CATEGORY_COLLECTION,
+  CUSTOM_SIZE_INPUT,
+  LOOKBOOK_COLLECTION, PRODUCT_COLLECTION,
+  PRODUCT_PAGE_SIZE, SIZE_COLLECTION, SORT_COLLECTION, TREND_COLLECTION, USER_COLLECTION
+} from '../util/app.constants';
+import { generateGuid } from '../util/app.lib';
 import { FakedataService } from './fakedata.service';
 import { ObjectTransformerService } from './object-transformer.service';
-import { Address } from '../models/address';
-import { Observable } from 'rxjs';
-import { LookBookItem } from '../models/lookbook';
 
 
 
@@ -107,8 +108,27 @@ export class FireStoreDbService {
       );
   }
 
+  /**
+   * fetches latest products with a limit of 10
+   */
+  fetchLatestProducts(): Observable<Product[]> {
+    console.log("fetchLatestProducts called");
+    return this.db.collection(PRODUCT_COLLECTION, ref =>
+      ref
+        .orderBy('timeStamp', 'desc')
+        .limit(10)
+    ).get()
+      .pipe(
+        map(querySnapShot => {
+          const products: Product[] = [];
+          querySnapShot.forEach(doc => {
+            products.push(this.objTransformer.transformProductFromDocData(doc.data()));
+          });
+          return products;
+        })
+      );
 
-
+  }
 
   /**
    * fetch more products for pagination

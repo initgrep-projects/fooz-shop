@@ -13,7 +13,7 @@ import { AuthModalComponent } from '../modules/auth/auth-modal/auth-modal.compon
 import { HomeComponent } from '../modules/home/home.component';
 import { ShopComponent } from '../modules/shop/shop.component';
 import { ItemDetailComponent } from '../modules/shop/items/item-detail/item-detail.component';
-import { ProductResolver } from '../services/product-resolver.service';
+import { ProductResolver } from '../modules/shop/product-resolver.service';
 import { CheckoutComponent } from '../modules/checkout/checkout.component';
 
 export const checkoutRoutes: Routes = [

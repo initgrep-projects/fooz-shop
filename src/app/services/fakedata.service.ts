@@ -22,7 +22,7 @@ export class FakedataService {
     this.getProducts();
   }
 
-
+  
 
   getLookBook(){
     // https://i.imgur.com/WZ35TTq.jpg fooz trend
@@ -53,19 +53,8 @@ export class FakedataService {
   getTrendItems() {
 
     const blackColor = new Color('black', '#333');
-    const greyColor = new Color('grey', '#6c757d');
-    const purpleColor = new Color('purple', '#6A5ACD');
-    const image1 = new Image('https://i.imgur.com/XMGXELs.jpg', blackColor);
-    const image2 = new Image('https://i.imgur.com/58Gz5BQ.jpg', blackColor);
-    const image3 = new Image('https://i.imgur.com/ONXLzwZ.jpg', blackColor);
-    const image4 = new Image('https://i.imgur.com/ZfmxJSa.jpg', blackColor);
-
-    const image1g = new Image('https://i.imgur.com/IgcZBiC.jpg', greyColor);
-    const image2g = new Image('https://i.imgur.com/9YwoGKg.jpg', greyColor);
-
-    const image1p = new Image('https://i.imgur.com/9EIQbqZ.jpg', purpleColor);
-    const image2p = new Image('https://i.imgur.com/hYMUHqS.jpg', purpleColor);
-    return [image1, image2, image3, image4,  image1p, image1g];
+    const image1 = new Image('https://i.imgur.com/BhaiCf6.png', blackColor);
+    return [image1];
   }
 
 

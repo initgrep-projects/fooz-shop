@@ -4,7 +4,18 @@
   display: flex;
   width: 100%;
   box-sizing: border-box;
-  height: 650px;
+  height: 350px;
+
+  @include md {
+    height: 500px;
+  }
+
+  @include lg {
+    height: 600px;
+  }
+  @include xl {
+    height: 650px;
+  }
 
   .box {
     flex: 1;
@@ -23,7 +34,7 @@
       img {
         width: 100%;
         height: 100%;
-        object-fit: contain;
+        object-fit: cover;
         object-position: center;
         transition: 0.5s;
         transition: all 0.5s ease;
@@ -31,30 +42,38 @@
         // top: -200px;
       }
 
-      &::after {
-        content: "";
-        display: block;
-        position: absolute;
-        left: 0;
-        right: 0;
-        top: 0;
-        bottom: 0;
-        background: rgba(127, 127, 127, 0.5);
-        background-image: radial-gradient(black 10%, transparent 33%);
-        background-size: 2px 2px;
-        // border:2px solid red;
-        pointer-events: none;
-      }
+      // &::after {
+      //   content: "";
+      //   display: block;
+      //   position: absolute;
+      //   left: 0;
+      //   right: 0;
+      //   top: 0;
+      //   bottom: 0;
+      //   background: rgba(127, 127, 127, 0.5);
+      //   background-image: radial-gradient(black 10%, transparent 33%);
+      //   background-size: 2px 2px;
+      //   // border:2px solid red;
+      //   pointer-events: none;
+      // }
     }
 
     div.box-control {
       position: absolute;
-      // width: 100%;
-
-      left: 12%;
       bottom: 15%;
       padding: 1rem;
-      
+      padding-bottom: 2rem;
+      text-align: center;
+      width: 100%;
+      @include md {
+        padding-left: 5%;
+        text-align: left;
+      }
+
+      @include xl {
+        padding-left: 14%;
+        padding-bottom: 1rem;
+      }
 
       h2 {
         text-transform: uppercase;
@@ -64,7 +83,7 @@
         color: #333;
         display: inline-block;
         padding: 0.5rem 1rem;
-        font-size: 2.5rem;
+        font-size: 1.5rem;
         border-radius: 4px;
         @include animate(fadeInUp, 1s);
       }

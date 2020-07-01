@@ -22,6 +22,8 @@ import { ShopModule } from '../shop/shop.module';
 import { SharedModule } from '../shared/shared.module';
 import { CheckoutModule } from '../checkout/checkout.module';
 import { AccountModule } from '../account/account.module';
+import { EffectsModule } from '@ngrx/effects';
+import { HomeEffects } from '../home/store/home.effects';
 
 
 @NgModule({
@@ -41,6 +43,7 @@ import { AccountModule } from '../account/account.module';
     AppRoutingModule,
     FontAwesomeModule,
     StoreModule.forRoot(AppReducer),
+    EffectsModule.forRoot([]),
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule,
     SharedModule,

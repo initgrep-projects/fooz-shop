@@ -1,32 +1,21 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ProductService } from '../../shop/product.service';
-import { Image } from 'src/app/models/image';
-import { SubSink } from 'subsink';
+import { Component, OnInit } from '@angular/core';
 import { fadeIn } from 'src/app/animations/fadeAnimation';
+import { HomeService } from '../home.service';
 
 
 @Component({
   selector: 'app-trend',
   templateUrl: './trend.component.html',
   styleUrls: ['./trend.component.scss'],
-  animations:[
+  animations: [
     fadeIn
   ]
 })
-export class TrendComponent implements OnInit, OnDestroy {
+export class TrendComponent implements OnInit {
 
-  constructor(private productService: ProductService) { }
-  private subs = new SubSink();
-  
-  isLoading = true;
-
+  constructor(public hs: HomeService) { }
 
   ngOnInit() {
-    // this.getTrendItemsFromStore();
-  }
-
-  ngOnDestroy() {
-    this.subs.unsubscribe();
   }
 
 

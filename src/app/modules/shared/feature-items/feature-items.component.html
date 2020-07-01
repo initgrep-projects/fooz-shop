@@ -2,7 +2,6 @@
 <section class="card-wrapper ">
   <div class="row">
     <div class="col content-heading">
-      <!-- <h6 class=" pt-5 "><span class="x"></span> <span>Latest Abayas</span><span class="y"></span> </h6> -->
       <span class="shop-msg">{{  !title ? labels.title : title}}</span>
       <span class="shop-msg">
         <fa-icon icon="arrow-alt-circle-down"></fa-icon>
@@ -12,9 +11,9 @@
 </section>
 
 <div class="container">
-  <div class="row">
+  <div class="row" [@staggerFadeIn]="products.length">
     <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-3"
-         *ngFor="let item of items | slice: 0:6;">
+         *ngFor="let item of products">
       <app-card-item [item]="item"></app-card-item>
     </div>
 

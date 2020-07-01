@@ -1,4 +1,4 @@
 <app-trend></app-trend>
-<app-lookbook ></app-lookbook>
-<app-feature-items></app-feature-items>
-
+<app-lookbook></app-lookbook>
+<app-feature-items *ngIf="homeService.latestProducts$ | async as prods"
+                   [products]="prods"></app-feature-items>

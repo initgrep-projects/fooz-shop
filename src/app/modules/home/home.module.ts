@@ -8,6 +8,8 @@ import { TrendComponent } from './trend/trend.component';
 import { LookbookComponent } from './lookbook/lookbook.component';
 import {  NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
 import {  FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { EffectsModule } from '@ngrx/effects';
+import { HomeEffects } from './store/home.effects';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,8 @@ import {  FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     HomeRoutingModule,
     NgbCarouselModule,
     FontAwesomeModule,
-    SharedModule
+    SharedModule,
+    EffectsModule.forFeature([HomeEffects])
 
   ],
   exports: [

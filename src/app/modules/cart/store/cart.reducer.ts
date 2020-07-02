@@ -1,15 +1,18 @@
 import { createReducer, on, Action } from '@ngrx/store';
-import { addItemsToCartAction, addItemToCartAction, deleteItemInCartAction, updateItemInCartAction } from './cart.actions';
+import { addItemsToCartAction, addItemToCartAction, deleteItemInCartAction, updateItemInCartAction, loadFailureCartAction } from './cart.actions';
 import { CartItem } from 'src/app/models/cartItem';
-import { cloneDeep } from 'lodash';
+import { cloneDeep, clone } from 'lodash';
+import { AppError } from 'src/app/models/app-error';
 
 
 export interface State {
     cart: CartItem[];
+    error: AppError;
 }
 
 export const initialState: State = {
-    cart: []
+    cart: null,
+    error: null
 };
 
 const cartReducer = createReducer(
@@ -17,12 +20,12 @@ const cartReducer = createReducer(
 
     on(addItemsToCartAction, (currentState, { payload }) => ({
         ...currentState,
-        cart: getSortedItems([...payload])
+        cart: getSortedItems(!!payload ? [...payload] : null)
     })),
 
     on(addItemToCartAction, (currentState, { payload }) => ({
         ...currentState,
-        cart: getSortedItems( [...currentState.cart, cloneDeep(payload)])
+        cart: getSortedItems([...currentState.cart, cloneDeep(payload)])
     })),
     on(deleteItemInCartAction, (currentState, { payload }) => ({
         ...currentState,
@@ -32,15 +35,21 @@ const cartReducer = createReducer(
         ...currentState,
         cart: getUpdatedCart(currentState.cart, payload)
     })),
+    on(loadFailureCartAction, (currentState, { error }) => ({
+        ...currentState,
+        error: clone(error)
+    }))
 
 );
 
-function getSortedItems(items: CartItem[]){
-   return items.sort((a,b) => {
-        if(a.CreatedDate < b.CreatedDate) {
+function getSortedItems(items: CartItem[]) {
+    console.log("sorted items for cart ", items);
+    if (!items ) { return null; }
+    return items.sort((a, b) => {
+        if (a.CreatedDate < b.CreatedDate) {
             return 1;
-        } 
-        if(a.CreatedDate > b.CreatedDate) {
+        }
+        if (a.CreatedDate > b.CreatedDate) {
             return -1;
         }
         return 0;

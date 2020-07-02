@@ -35,8 +35,9 @@ export class SideFilterComponent implements OnInit {
 
   onSelectFilter(isChecked: boolean, value: any) {
     console.log('onSelectFilter - ', isChecked, value);
+    console.log('this.selectedValues = ', this.selectedValues);
     if (isChecked) {
-      this.selectedValues.push(value);
+      this.selectedValues = [...this.selectedValues, value];
     } else {
       if (this.isCategoryFilter) {
         const selectedCategories = this.selectedValues as Category[];

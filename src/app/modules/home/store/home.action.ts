@@ -2,14 +2,14 @@ import { createAction, props } from '@ngrx/store';
 import { AppError } from 'src/app/models/app-error';
 import { LookBookItem } from 'src/app/models/lookbook';
 import { Product } from 'src/app/models/product';
-import { ADD_LATEST_PRODUCTS_ACTION, ADD_LOOKBOOK_ITEMS_ACTION, LOAD_LATEST_PRODUCTS_ACTION, LOAD_LOOKBOOK_ITEMS_ACTION, LOAD_FAILURE_FOR_HOME, LOAD_TREND_ITEMS, ADD_TREND_ITEMS } from 'src/app/util/app.constants';
+import { ADD_LATEST_PRODUCTS_ACTION, ADD_LOOKBOOK_ITEMS_ACTION, LOAD_LATEST_PRODUCTS_ACTION, LOAD_LOOKBOOK_ITEMS_ACTION, LOAD_FAILURE_FOR_HOME_ACTION, LOAD_TREND_ITEMS_ACTION, ADD_TREND_ITEMS_ACTION } from 'src/app/util/app.constants';
 import { Image } from 'src/app/models/image';
 
 export const loadLookBookItems = createAction(
     LOAD_LOOKBOOK_ITEMS_ACTION
 );
-export const loadFailure = createAction(
-    LOAD_FAILURE_FOR_HOME,
+export const loadFailureAtHome = createAction(
+    LOAD_FAILURE_FOR_HOME_ACTION,
     props<{ error: AppError }>()
 );
 export const addLookBookItems = createAction(
@@ -27,11 +27,11 @@ export const addlatestProducts = createAction(
 );
 
 export const loadTrendItems = createAction(
-    LOAD_TREND_ITEMS
+    LOAD_TREND_ITEMS_ACTION
 );
 
 export const addTrendItems = createAction(
-    ADD_TREND_ITEMS,
+    ADD_TREND_ITEMS_ACTION,
     props<{ payload: Image[] }>()
 )
 

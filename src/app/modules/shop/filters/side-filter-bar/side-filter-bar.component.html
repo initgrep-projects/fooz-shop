@@ -11,13 +11,13 @@
         <li class="list-group-item">
             <app-side-filter [type]="'category'"
                              [title]="'Category'"
-                             [values]="categories"
+                             [values]="fhs.categories$ |async"
                              (select)="onCategoryFilterSelect($event)"></app-side-filter>
         </li>
         <li class="list-group-item">
             <app-side-filter [type]="'size'"
                              [title]="'size'"
-                             [values]="sizes"
+                             [values]="fhs.sizes$ | async"
                              (select)="onSizeFilterSelect($event)"></app-side-filter>
         </li>
 

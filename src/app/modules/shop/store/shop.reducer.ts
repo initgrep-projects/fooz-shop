@@ -1,21 +1,21 @@
-import { createReducer, on, Action } from '@ngrx/store';
-import { addProductsAction, appendProductsAction, addCustomSizeInputAction, updateProductAction, addTrendItemsAction } from './shop.actions';
-import { Product } from 'src/app/models/product';
+import { Action, createReducer, on } from '@ngrx/store';
+import { cloneDeep, clone } from 'lodash';
 import { CustomSizeInput } from 'src/app/models/custom-size';
-import { cloneDeep } from 'lodash';
-import { Image } from 'src/app/models/image';
+import { Product } from 'src/app/models/product';
+import { addCustomSizeInputAction, addProductsAction, appendProductsAction, updateProductAction, loadFailureAtShop } from './shop.actions';
+import { AppError } from 'src/app/models/app-error';
 
 
 export interface State {
     products: Product[];
     customSizeInput: CustomSizeInput;
-    trendItems: Image[];
+    error: AppError
 }
 
 export const initialState: State = {
     products: [],
     customSizeInput: null,
-    trendItems: []
+    error: null
 };
 
 const shopReducer = createReducer(
@@ -36,9 +36,9 @@ const shopReducer = createReducer(
         ...currentState,
         customSizeInput: cloneDeep(payload)
     })),
-    on(addTrendItemsAction, (currentState, { payload }) => ({
-        ...currentState,
-        trendItems: [...payload]
+    on(loadFailureAtShop, (state, { error }) => ({
+        ...state,
+        error: clone(error)
     }))
 );
 

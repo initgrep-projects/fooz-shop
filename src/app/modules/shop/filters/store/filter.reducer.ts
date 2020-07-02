@@ -1,38 +1,37 @@
+import { Action, createReducer, on } from '@ngrx/store';
+import { clone, cloneDeep } from 'lodash';
+import { AppError } from 'src/app/models/app-error';
 import { Category } from 'src/app/models/category';
 import { Size } from 'src/app/models/size';
-import { createReducer, on, Action } from '@ngrx/store';
-
-import { cloneDeep } from 'lodash';
 import { Sort } from 'src/app/models/Sort';
-import { saveAllCategoriesAction, selectedCategoriesAction, saveAllSizesAction, selectedSizesAction, saveAllSortOrdersAction, selectSortOrderAction } from './filter.action';
+import {addAllCategoriesAction, addAllSizesAction, addAllSortOrdersAction, loadFailureAtFilter, selectedCategoriesAction, selectedSizesAction, selectSortOrderAction } from './filter.action';
+
 
 
 
 export interface State {
     categories: Category[];
     selectedCategory: Category[];
-
     sizes: Size[];
     selectedSize: Size[];
-
     sortOrders: Sort[];
     selectedSortOrder: Sort;
+    error: AppError
 }
 
 export const initialState: State = {
     categories: [],
     selectedCategory: [],
-
     sizes: [],
     selectedSize: [],
-    
     sortOrders: [],
-    selectedSortOrder: null
+    selectedSortOrder: null,
+    error: null
 };
 
 const filterReducer = createReducer(
     initialState,
-    on(saveAllCategoriesAction, (currentState, { payload }) => ({
+    on(addAllCategoriesAction, (currentState, { payload }) => ({
         ...currentState,
         categories: [...payload]
     })),
@@ -40,7 +39,7 @@ const filterReducer = createReducer(
         ...currentState,
         selectedCategory: [...payload]
     })),
-    on(saveAllSizesAction, (currentState, { payload }) => ({
+    on(addAllSizesAction, (currentState, { payload }) => ({
         ...currentState,
         sizes: [...payload]
     })),
@@ -48,13 +47,17 @@ const filterReducer = createReducer(
         ...currentState,
         selectedSize: [...payload]
     })),
-    on(saveAllSortOrdersAction, (currentState, { payload }) => ({
+    on(addAllSortOrdersAction, (currentState, { payload }) => ({
         ...currentState,
         sortOrders: [...payload]
     })),
     on(selectSortOrderAction, (currentState, { payload }) => ({
         ...currentState,
         selectedSortOrder: cloneDeep(payload)
+    })),
+    on(loadFailureAtFilter, (state, { error }) => ({
+        ...state,
+        error: clone(error)
     }))
 
 );

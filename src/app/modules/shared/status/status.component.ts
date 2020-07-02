@@ -18,10 +18,11 @@ import { ProductService } from '../../shop/product.service';
     fadeIn
   ]
 })
-export class StatusComponent implements OnInit {
+export class StatusComponent implements OnInit, OnDestroy {
+  private subs = new SubSink();
   statusObservables: Observable<any>[] = [];
   @Output() loaded = new EventEmitter();
-  
+
   constructor(
     private ps: ProductService,
     private hs: HomeService,
@@ -33,27 +34,39 @@ export class StatusComponent implements OnInit {
 
 
     this.location.onUrlChange((url, state) => {
-      console.log('status url = ', url, state);
 
       if (url.indexOf('home')) {
-        console.log("we have a home route");
+        console.log("home routes");
         this.statusObservables = [this.hs.latestProducts$, this.hs.lookbookItems$, this.hs.trendItems$];
+      } else if (url.indexOf('shop')) {
+        console.log('shop routes');
+        this.statusObservables = [this.ps.products$, this.ps.customSizeInputs$];
       }
 
-      const sub = combineLatest(this.statusObservables)
-        .subscribe(([ps, ls]) => {
-          console.log("before everything loaded in home page", ps, ls);
-          if (!isEmpty(ps) && !isEmpty(ls)) {
-            console.log("everything loaded in home page", ps, ls);
-            this.loaded.emit();
-            sub.unsubscribe();
-          }
-        });
+      this.checkstatus();
 
     });
 
   }
 
 
+  checkstatus() {
+    if (!isEmpty(this.statusObservables)) {
+      this.subs.sink = combineLatest(this.statusObservables)
+        .subscribe(([ps, ls]) => {
+          console.log("before everything loaded in home page", ps, ls);
+          if (!isEmpty(ps) && !isEmpty(ls)) {
+            console.log("everything loaded in home page", ps, ls);
+            this.loaded.emit();
+          }
+        });
+    } else {
+      this.loaded.emit();
+    }
+  }
+
+  ngOnDestroy() {
+    this.subs.unsubscribe();
+  }
 
 }

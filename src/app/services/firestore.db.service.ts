@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore, AngularFirestoreCollection, QuerySnapshot, DocumentData } from '@angular/fire/firestore';
+import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { classToPlain } from 'class-transformer';
 import { Observable } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
@@ -306,7 +306,7 @@ export class FireStoreDbService {
     return this.cartCollection.doc(id).delete();
   }
 
-  fetchcartItemsFromDb(userId: string): Observable<CartItem[]> {
+  fetchCart(userId: string): Observable<CartItem[]> {
     return this.db.collection(CART_COLLECTION, ref =>
       ref.where('userId', '==', userId)
     )

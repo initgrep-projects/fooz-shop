@@ -27,13 +27,13 @@ export class SortPipe implements PipeTransform {
   }
 
   private descendingOrder(products: Product[]) {
-    return products.sort((first, last) => {
+    return products.slice().sort((first, last) => {
       return first.Price.Amount - last.Price.Amount;
     });
   }
 
   private ascendingOrder(products: Product[]) {
-    return products.sort((first, last) => {
+    return products.slice().sort((first, last) => {
       return last.Price.Amount - first.Price.Amount;
     });
   }

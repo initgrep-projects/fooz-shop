@@ -2,21 +2,20 @@
     <div class="row">
         <div class="col ">
 
-            <app-sort-filter class="float-lg-right" [sortOrders]="sortOrders"
-                             [selectedSortOrder]="selectedSortOrder"
+            <app-sort-filter class="float-lg-right" [sortOrders]="fhs.sorts$ | async "
+                             [selectedSortOrder]="fhs.selectedSort$ | async"
                              (sortOrderChange)="onSortOrderChange($event)"></app-sort-filter>
 
 
             <app-category-filter class="d-lg-none"
-                                 [categories]="categories"
-                                 [selectedCategories]="selectedCategories"
+                                 [categories]="fhs.categories$ | async"
+                                 [selectedCategories]="fhs.selectedCategories$ | async"
                                  (categoryChange)="onCategoryChange($event)"></app-category-filter>
 
             <app-size-filter class="d-lg-none"
-                             [sizes]="sizes"
-                             [selectedSizes]="selectedSizes"
+                             [sizes]="fhs.sizes$ | async"
+                             [selectedSizes]="fhs.selectedSizes$ | async"
                              (sizeChange)="onSizeChange($event)"></app-size-filter>
-
 
 
         </div>

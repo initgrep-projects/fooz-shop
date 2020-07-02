@@ -1,70 +1,39 @@
 import { Injectable } from '@angular/core';
-import { Category } from 'src/app/models/category';
 import { Store } from '@ngrx/store';
+import { Category } from 'src/app/models/category';
 import { Size } from 'src/app/models/size';
 import { Sort } from 'src/app/models/Sort';
 import { LogService } from 'src/app/services/log.service';
-import { FireStoreDbService } from 'src/app/services/firestore.db.service';
-import { map, take } from 'rxjs/operators';
 import { AppState } from '../../main/store/app.reducer';
-import { saveAllCategoriesAction, saveAllSizesAction, saveAllSortOrdersAction, selectedCategoriesAction, selectedSizesAction, selectSortOrderAction } from './store/filter.action';
+import { loadAllCategoriesAction, loadAllSizesAction, loadAllSortOrdersAction, selectedCategoriesAction, selectedSizesAction, selectSortOrderAction } from './store/filter.action';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FilterService {
+  categories$ = this.store.select('filters').pipe(map(state => state.categories));
+  sizes$ = this.store.select('filters').pipe(map(state => state.sizes));
+  sorts$ = this.store.select('filters').pipe(map(state => state.sortOrders));
+  selectedCategories$ = this.store.select('filters').pipe(map(state => state.selectedCategory));
+  selectedSizes$ = this.store.select('filters').pipe(map(state => state.selectedSize));
+  selectedSort$ = this.store.select('filters').pipe(map(state => state.selectedSortOrder));
 
   constructor(private store: Store<AppState>,
-              private logger: LogService,
-              private fbDBStore: FireStoreDbService
+    private logger: LogService
   ) {
-    this.dispatchCategoriesToStore();
-    this.dispatchSizesToStore();
-    this.dispatchSortOrdersToStore();
+    this.store.dispatch(loadAllCategoriesAction());
+    this.store.dispatch(loadAllSizesAction());
+    this.store.dispatch(loadAllSortOrdersAction());
   }
 
-
-  dispatchCategoriesToStore() {
-    return this.fbDBStore.fetchCategories()
-      .pipe(
-        take(1),
-        map(categories => {
-          this.store.dispatch(saveAllCategoriesAction({ payload: categories }));
-        })
-      ).subscribe();
-  }
-
-  dispatchSizesToStore() {
-    return this.fbDBStore.fetchSizes()
-      .pipe(
-        take(1),
-        map(sizes => {
-          this.store.dispatch(saveAllSizesAction({ payload: sizes }));
-        })
-      ).subscribe();
-  }
-
-  dispatchSortOrdersToStore() {
-    return this.fbDBStore.fetchSortOrders()
-      .pipe(
-        take(1),
-        map(sortOrders => {
-          this.store.dispatch(saveAllSortOrdersAction({ payload: sortOrders }));
-        })
-      ).subscribe();
-  }
- 
-
-  getFiltersFromStore() {
-    return this.store.select('filters');
-  }
 
   setSelectedCategories(c: Category[]) {
     this.logger.info('selected category dispatched -- ', c);
     this.store.dispatch(selectedCategoriesAction({ payload: c }));
   }
 
-  setSelectedSizes(s: Size[]) { 
+  setSelectedSizes(s: Size[]) {
     this.logger.info('selected size dispatched --', s);
     this.store.dispatch(selectedSizesAction({ payload: s }));
   }

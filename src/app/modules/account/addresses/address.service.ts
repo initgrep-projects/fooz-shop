@@ -14,6 +14,7 @@ import { addAddressAction, deleteAddressAction, syncAddressesAction, updateAddre
 })
 export class AddressService {
 
+  addresses$ = this.store.select('account').pipe(map(state => state.addresses));
 
   constructor(
     private db: FireStoreDbService,
@@ -21,7 +22,6 @@ export class AddressService {
     private authService: AuthService
   ) {}
 
-  addresses$ = this.store.select('account').pipe(map(state => state.addresses));
 
 
   saveAddress(address: Address): Promise<void> {
@@ -47,8 +47,6 @@ export class AddressService {
         .catch(error => reject(error));
     });
   }
-
-
 
 
   getAddressById(id: string): Observable<Address> {

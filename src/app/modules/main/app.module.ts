@@ -1,29 +1,29 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-import { StoreModule } from '@ngrx/store';
-import { AppReducer } from './store/app.reducer';
-import 'reflect-metadata';
-
-import { FaIconLibrary, FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { IconService } from 'src/app/services/icon.service';
-
-import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FaIconLibrary, FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import 'reflect-metadata';
+import { IconService } from 'src/app/services/icon.service';
 import { environment } from 'src/environments/environment';
-
+import { AccountModule } from '../account/account.module';
+import { CheckoutModule } from '../checkout/checkout.module';
+import { FooterModule } from '../footer/footer.module';
+import { HeaderModule } from '../header/header.module';
+import { HomeModule } from '../home/home.module';
+import { SharedModule } from '../shared/shared.module';
+import { ShopModule } from '../shop/shop.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HeaderModule } from '../header/header.module';
-import { FooterModule } from '../footer/footer.module';
-import { HomeModule } from '../home/home.module';
-import { ShopModule } from '../shop/shop.module';
-import { SharedModule } from '../shared/shared.module';
-import { CheckoutModule } from '../checkout/checkout.module';
-import { AccountModule } from '../account/account.module';
-import { EffectsModule } from '@ngrx/effects';
-import { HomeEffects } from '../home/store/home.effects';
+import { AppReducer } from './store/app.reducer';
+
+
+
 
 
 @NgModule({
@@ -47,6 +47,7 @@ import { HomeEffects } from '../home/store/home.effects';
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule,
     SharedModule,
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
   ],
   providers: [],
   bootstrap: [AppComponent]

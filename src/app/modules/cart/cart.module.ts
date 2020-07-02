@@ -6,6 +6,8 @@ import { CartRoutingModule } from './cart-routing.module';
 import { CartItemsComponent } from './cart-items/cart-items.component';
 import { CartModalComponent } from './cart-modal/cart-modal.component';
 import { SharedModule } from '../shared/shared.module';
+import { EffectsModule } from '@ngrx/effects';
+import { CartEffects } from './store/cart.effects';
 
 
 
@@ -19,7 +21,8 @@ import { SharedModule } from '../shared/shared.module';
     CommonModule,
     FontAwesomeModule,
     CartRoutingModule,
-    SharedModule
+    SharedModule,
+    EffectsModule.forFeature([CartEffects])
   ],
   exports: [
     CartComponent

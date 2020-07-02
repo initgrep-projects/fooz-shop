@@ -12,42 +12,19 @@ import { SubSink } from 'subsink';
   templateUrl: './filter-header.component.html',
   styleUrls: ['./filter-header.component.scss']
 })
-export class FilterHeaderComponent implements OnInit, OnDestroy {
-
-
-  categories: Category[] = [];
-  selectedCategories: Category[] = [];
-
-  sizes: Size[] = [];
-  selectedSizes: Size[] = [];
-
-  sortOrders: Sort[] = [];
-  selectedSortOrder: Sort;
+export class FilterHeaderComponent implements OnInit {
 
   constructor(
-    private fhs: FilterService,
+    public fhs: FilterService,
     private logger: LogService) { }
 
-  private subs = new SubSink();
 
 
   ngOnInit(): void {
-    this.fetchFilters();
+ 
   }
 
-  fetchFilters() {
-    this.subs.sink=
-      this.fhs.getFiltersFromStore().subscribe(filters => {
-        this.categories = filters.categories;
-        this.selectedCategories = filters.selectedCategory;
-        
-        this.sizes = filters.sizes;
-        this.selectedSizes = filters.selectedSize;
-
-        this.sortOrders = filters.sortOrders;
-        this.selectedSortOrder = filters.selectedSortOrder;
-      });
-  }
+ 
 
 
 
@@ -66,10 +43,6 @@ export class FilterHeaderComponent implements OnInit, OnDestroy {
     this.fhs.setSelectedSortOrder(s);
   }
 
-
-  ngOnDestroy(): void {
-    this.subs.unsubscribe();
-  }
 
 
 }

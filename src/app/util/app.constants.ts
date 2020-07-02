@@ -23,10 +23,37 @@ export const DATA_LOAD_ERROR_DETAILS = 'we are unable to connect to server. plea
 
 /** store action constants */
 
-export const LOAD_FAILURE_FOR_HOME = '[home ] load  failure';
+export const LOAD_FAILURE_FOR_HOME_ACTION = '[home ] load  failure';
 export const LOAD_LOOKBOOK_ITEMS_ACTION = '[home ] load lookbookItems';
 export const ADD_LOOKBOOK_ITEMS_ACTION = '[home ]  add lookbook items';
 export const LOAD_LATEST_PRODUCTS_ACTION = '[home ] load latestProducts';
 export const ADD_LATEST_PRODUCTS_ACTION = '[home] add latestProducts';
-export const LOAD_TREND_ITEMS = '[home] load trend items';
-export const ADD_TREND_ITEMS = '[home] add trend items';
+export const LOAD_TREND_ITEMS_ACTION = '[home] load trend items';
+export const ADD_TREND_ITEMS_ACTION = '[home] add trend items';
+
+export const LOAD_FAILURE_FOR_SHOP_ACTION = '[shop] load  failure';
+export const LOAD_PRODUCTS_ACTION =   '[shop] load products';
+export const LOAD_MORE_PRODUCTS_ACTION =   '[shop] load more products';
+export const ADD_PRODUCTS_ACTION = '[shop] add products';
+export const APPEND_PRODUCTS_ACTION = '[shop] append products';
+export const UPDATE_PRODUCTS_ACTION = '[shop] update product';
+export const LOAD_CUSTOMSIZE_INPUT_ACTION = '[shop] load customsize inputs';
+export const ADD_CUSTOMZIE_INPUT_ACTION = '[shop] add Custom Size Inputs';
+
+export const LOAD_ALL_CATEGORY_ACTION = '[Filter] load all categories';
+export const ADD_ALL_CATEGORIES_ACTION =  '[Filter] add all categories';
+export const SELECTED_CATEGORIES_ACTION = '[Filter] selected categories';
+export const LOAD_ALL_SIZES_ACTION = '[Filter] load all sizes';
+export const ADD_ALL_SIZES_ACTION ='[Filter] add all sizes';
+export const SELECTED_SIZES_ACTION = '[Filter] selected sizes';
+export const LOAD_ALL_SORT_ORDERS_ACTION =  '[Filter] load all sort orders';
+export const ADD_ALL_SORT_ORDERS_ACTION =  '[Filter] add all sort orders';
+export const SELECT_SORT_ORDER_ACTION = '[Filter] select sort order';
+export const LOAD_FAILURE_FOR_FILTER_ACTION =  '[Filter] load failure'
+
+export const LOAD_CART_ACTION = '[cart] load items';
+export const ADD_ITEMS_TO_CART_ACTION = '[cart]  add items';
+export const ADD_ITEM_TO_CART_ACTION = '[cart]  add item';
+export const DELETE_ITEM_IN_CART_ACTION = '[cart]  delete item';
+export const UPDATE_ITEM_IN_CART_ACTION = '[cart]  update item';
+export const LOAD_FAILURE_IN_CART_ACTION = '[cart] load failure';

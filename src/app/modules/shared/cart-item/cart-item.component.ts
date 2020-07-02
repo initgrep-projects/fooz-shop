@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter, AfterViewInit } from '@angular/core';
 import { CartItem } from 'src/app/models/cartItem';
-import { cloneDeep } from 'lodash';
+import { cloneDeep, clone } from 'lodash';
 import { CartService } from '../../cart/cart.service';
 
 @Component({
@@ -23,9 +23,9 @@ export class CartItemComponent implements OnInit {
 
 
   onQuantityChange(q: number){
-    this.item.SelectedQuantity =  q;
- 
-    this.quantityChange.emit(this.item);
+    const item =  cloneDeep(this.item);
+    item.SelectedQuantity = q;
+    this.quantityChange.emit(item);
   }
 
   deleteItem(){

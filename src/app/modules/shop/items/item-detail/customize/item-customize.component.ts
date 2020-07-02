@@ -1,9 +1,9 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ProductService } from '../../../product.service';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CustomSize } from 'src/app/models/custom-size';
-import { ItemDetailService, CZ } from '../item-detail.service';
-import { SubSink } from 'subsink';
 import { itemLabels } from 'src/app/util/app.labels';
+import { SubSink } from 'subsink';
+import { ProductService } from '../../../product.service';
+import { CZ, ItemDetailService } from '../item-detail.service';
 
 @Component({
   selector: 'app-item-customize',
@@ -48,13 +48,13 @@ export class ItemCustomizeComponent implements OnInit, OnDestroy {
 
   getCustomSizeInputs() {
     this.subs.sink =
-      this.productService.getShopFromStore()
-        .subscribe(state => {
-          this.widthSizeValues = state.customSizeInput.Width;
-          this.lengthSizeValues = state.customSizeInput.Length;
-          this.armSizeValues = state.customSizeInput.Arm;
-          this.bustSizeValues = state.customSizeInput.Bust;
-          this.hipSizeValues = state.customSizeInput.Hip;
+      this.productService.customSizeInputs$
+        .subscribe(inputs => {
+          this.widthSizeValues =inputs.Width;
+          this.lengthSizeValues =inputs.Length;
+          this.armSizeValues =inputs.Arm;
+          this.bustSizeValues =inputs.Bust;
+          this.hipSizeValues =inputs.Hip;
         });
   }
 

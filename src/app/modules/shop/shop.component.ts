@@ -1,6 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ProductService } from './product.service';
-import { Subscription } from 'rxjs';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-shop',
@@ -10,7 +8,7 @@ import { Subscription } from 'rxjs';
 export class ShopComponent implements OnInit {
 
 
-  constructor(private productService: ProductService) { }
+  constructor() { }
 
   ngOnInit(): void {
   }

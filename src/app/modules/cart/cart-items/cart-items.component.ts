@@ -1,60 +1,31 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { CartService } from '../cart.service';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CartItem } from 'src/app/models/cartItem';
-import { CartModalService } from '../cart-modal/cart-modal.service';
-import { SubSink } from 'subsink';
-import { Router, ActivatedRoute } from '@angular/router';
 import { cartLabels } from 'src/app/util/app.labels';
-import { staggerFadeIn } from 'src/app/animations/fadeAnimation';
+import { SubSink } from 'subsink';
+import { CartModalService } from '../cart-modal/cart-modal.service';
+import { CartService } from '../cart.service';
 
 
 @Component({
   selector: 'app-cart-items',
   templateUrl: './cart-items.component.html',
-  styleUrls: ['./cart-items.component.scss'],
-  animations:[
-    staggerFadeIn
-  ]
+  styleUrls: ['./cart-items.component.scss']
 })
 export class CartItemsComponent implements OnInit, OnDestroy {
-  labels = cartLabels;
-  cart: CartItem[];
   private subs = new SubSink();
+  labels = cartLabels;
+  cart: CartItem[] = null;
 
   constructor(
-    private cartService: CartService,
+    public cartService: CartService,
     private cartModalService: CartModalService,
     private router: Router,
     private activatedRoute: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
-    this.getCart();
-  }
-
-  /**
-   * get the cart items from the store
-   */
-  getCart() {
-    console.log('cart fetched from cart-items');
-    this.subs.sink =
-      this.cartService.cart$
-        .subscribe(cart => {
-          this.cart = [...cart];
-        });
-  }
-
-  closeModal() {
-    this.cartModalService.dismissModal();
-  }
-
-  routeToItemDetails(id: string) {
-    this.closeModal();
-    setTimeout(() => {
-      this.router.navigate(
-        ['shop/item', id],
-      );
-    }, 100);
+    this.subs.sink = this.cartService.cart$.subscribe(cart => this.cart = cart);
   }
 
   updateCartItem(item: CartItem) {
@@ -66,6 +37,15 @@ export class CartItemsComponent implements OnInit, OnDestroy {
     this.cartService.deleteItem(id);
   }
 
+  routeToItemDetails(id: string) {
+    this.closeModal();
+    setTimeout(() => {
+      this.router.navigate(
+        ['shop/item', id],
+      );
+    }, 100);
+  }
+
   routeToShop() {
     this.closeModal();
     setTimeout(() => {
@@ -73,8 +53,13 @@ export class CartItemsComponent implements OnInit, OnDestroy {
     }, 100);
   }
 
+  closeModal() {
+    this.cartModalService.dismissModal();
+  }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     this.subs.unsubscribe();
   }
+
+
 }

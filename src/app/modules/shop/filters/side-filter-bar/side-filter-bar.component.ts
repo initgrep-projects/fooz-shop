@@ -10,48 +10,25 @@ import { Sort } from 'src/app/models/Sort';
   templateUrl: './side-filter-bar.component.html',
   styleUrls: ['./side-filter-bar.component.scss']
 })
-export class SideFilterBarComponent implements OnInit, OnDestroy {
+export class SideFilterBarComponent implements OnInit {
 
-  private subs = new SubSink();
-  categories: Category[] = [];
-  selectedCategory: Category[];
-  sizes: Size[] = [];
-  selectedSize: Size[];
-  sortOrders: Sort[] = [];
-  selectedSortOrder: Sort;
 
-  constructor(private fhs: FilterService) { }
+
+  constructor(public fhs: FilterService) { }
 
   ngOnInit(): void {
-    this.fetchFilters();
+
   }
 
-
-  fetchFilters() {
-    this.subs.sink =
-      this.fhs.getFiltersFromStore().subscribe(filters => {
-        this.categories = filters.categories;
-        this.selectedCategory = filters.selectedCategory;
-
-        this.sizes = filters.sizes;
-        this.selectedSize = filters.selectedSize;
-
-        this.sortOrders = filters.sortOrders;
-        this.selectedSortOrder = filters.selectedSortOrder;
-      });
-  }
-
-  onCategoryFilterSelect(categories: Category[]){
+  onCategoryFilterSelect(categories: Category[]) {
     console.log('onCategoryFilterSelect ', categories);
     this.fhs.setSelectedCategories(categories);
   }
-  onSizeFilterSelect(sizes: Size[]){
+  onSizeFilterSelect(sizes: Size[]) {
     console.log('onSizeFilterSelect ', sizes);
-    this.fhs.setSelectedSizes(sizes); 
+    this.fhs.setSelectedSizes(sizes);
   }
 
-  ngOnDestroy(){
-    this.subs.unsubscribe();
-  }
+
 
 }

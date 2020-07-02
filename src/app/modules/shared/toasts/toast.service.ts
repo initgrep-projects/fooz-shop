@@ -1,7 +1,7 @@
 import { Injectable, TemplateRef } from '@angular/core';
 
 
-export enum toastType{
+export enum toastType {
   SUCCESS = 1,
   WARNING = 2,
   ERROR = 3
@@ -34,6 +34,18 @@ export class ToastService {
       options: { ...options }
     };
     this.toasts.push(toast);
+  }
+
+  failure(text: string, icon?: string) {
+    this.show(text, { type: toastType.WARNING });
+  }
+  
+  success(text: string, icon?: string) {
+    this.show(text, { type: toastType.SUCCESS });
+  }
+
+  warning(text: string, icon?: string) {
+    this.show(text, { type: toastType.WARNING });
   }
 
   remove(toast: any) {

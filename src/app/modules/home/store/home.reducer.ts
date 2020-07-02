@@ -4,7 +4,7 @@ import { AppError } from 'src/app/models/app-error';
 import { Image } from 'src/app/models/image';
 import { LookBookItem } from 'src/app/models/lookbook';
 import { Product } from 'src/app/models/product';
-import { addlatestProducts, addLookBookItems, addTrendItems, loadFailure } from './home.action';
+import { addlatestProducts, addLookBookItems, addTrendItems, loadFailureAtHome } from './home.action';
 
 export interface State {
     lookbook: LookBookItem[];
@@ -35,7 +35,7 @@ const theReducer = createReducer(
         ...state,
         trend: [...payload]
     })),
-    on(loadFailure, (state, { error }) => ({
+    on(loadFailureAtHome, (state, { error }) => ({
         ...state,
         error: clone(error)
     }))

@@ -1,8 +1,7 @@
-import { Component, OnInit, ViewChild, ElementRef, OnDestroy } from '@angular/core';
-import { CartService } from './cart.service';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { SubSink } from 'subsink';
 import { AuthMessages } from '../../util/app.labels';
-import { AuthService } from '../auth/auth.service';
+import { CartService } from './cart.service';
 
 @Component({
   selector: 'app-cart',
@@ -11,34 +10,19 @@ import { AuthService } from '../auth/auth.service';
 })
 export class CartComponent implements OnInit, OnDestroy {
   labels = AuthMessages.authAnchorLabels;
-  cartItemSize = 0;
   private subs = new SubSink();
 
-  @ViewChild('cartContent') cartContentRef: ElementRef;
-
   constructor(
-    private cartService: CartService,
-    private authService: AuthService
+    public cartService: CartService
   ) { }
 
   ngOnInit(): void {
-    this.dispatchCartItemsOnUserChange();
-    this.getCartSize();
-  }
-
-
-  getCartSize() {
-    console.log('cart size fetched from cart-component');
-    this.subs.sink = this.cartService.cart$
-      .subscribe(cart => {
-        console.log('cart = ', cart);
-        this.cartItemSize = cart.length
-      });
+    this.loadCartOnUserChange();
   }
 
   /** load the new items */
-  dispatchCartItemsOnUserChange() {
-    this.subs.sink = this.cartService.dispatchCartItemsToStore()
+  loadCartOnUserChange() {
+    this.subs.sink = this.cartService.loadCartItemsOnUserChange()
     .subscribe();
   }
 

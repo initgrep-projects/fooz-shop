@@ -12,21 +12,35 @@
 </div>
 <div class="modal-body">
 
-  <ul class="list-unstyled"
-      *ngIf="cart?.length > 0" [@staggerFadeIn] ="cart.length">
-    <li class=" mb-1 py-2"
-        *ngFor="let item of cart">
-      <app-cart-item [item]="item"
-                     (clicked)="routeToItemDetails($event)"
-                     (itemDelete)="removeItem($event)"
-                     (quantityChange)="updateCartItem($event)"></app-cart-item>
-    </li>
-  </ul>
-  <div *ngIf="cart?.length == 0"
-       class="alert alert-light"
-       role="alert">
-    {{labels.emptyCart}}
+  <div *ngIf="!!cart; else loading">
+    
+    <div *ngIf="cart?.length == 0"
+         class="alert alert-light"
+         role="alert">
+      {{labels.emptyCart}}
+    </div>
+    <ul class="list-unstyled">
+      <li class=" mb-1 py-2"
+          *ngFor="let item of cart">
+        <app-cart-item [item]="item"
+                       (clicked)="routeToItemDetails($event)"
+                       (itemDelete)="removeItem($event)"
+                       (quantityChange)="updateCartItem($event)"></app-cart-item>
+      </li>
+    </ul>
+
   </div>
+  <ng-template #loading>
+
+    <div class="card">
+      <div class="card-body text-center">
+        <div class="spinner-border"
+             role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+      </div>
+    </div>
+  </ng-template>
 </div>
 <div class="modal-footer">
   <button type="button"

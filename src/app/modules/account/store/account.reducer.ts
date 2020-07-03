@@ -1,27 +1,33 @@
+import { Action, createReducer, on } from '@ngrx/store';
+import { clone } from 'lodash';
 import { Address } from 'src/app/models/address';
-import { createReducer, on, Action } from '@ngrx/store';
-import { addAddressAction, updateAddressAction, deleteAddressAction, syncAddressesAction } from './account.actions';
+import { AppError } from 'src/app/models/app-error';
+import { Country } from 'src/app/services/geo-address.service';
+import { addAddressAction, addAddressesAction, addCountriesAction, deleteAddressAction, loadFailureInAccountAction, updateAddressAction } from './account.actions';
 
 
 
 export interface AccountState {
     addresses: Address[];
+    countries: Country[];
+    error: AppError
 }
 
 export const initialState: AccountState = {
-    addresses: null
+    addresses: null,
+    countries: null,
+    error: null
 };
 
 const theReducer = createReducer(
     initialState,
-
+    on(addAddressesAction, (currentState, { payload }) => ({
+        ...currentState,
+        addresses: getSortedItems(!!payload ? [...payload] : null)
+    })),
     on(addAddressAction, (currentState, { payload }) => ({
         ...currentState,
         addresses: getSortedItems([...currentState.addresses, payload])
-    })),
-    on(syncAddressesAction, (currentState, { payload }) => ({
-        ...currentState,
-        addresses: getSortedItems(!!payload ? [...payload] : null)
     })),
     on(updateAddressAction, (currentState, { payload }) => ({
         ...currentState,
@@ -30,13 +36,21 @@ const theReducer = createReducer(
     on(deleteAddressAction, (currentState, { payload }) => ({
         ...currentState,
         addresses: getSortedItems(currentState.addresses.filter(c => c.Id !== payload))
+    })),
+    on(addCountriesAction, (currentState, { payload }) => ({
+        ...currentState,
+        countries: !!payload ? [...payload] : null
+    })),
+    on(loadFailureInAccountAction, (currentState, { error }) => ({
+        ...currentState,
+        error: clone(error)
     }))
 );
 
 
 
 function getSortedItems(address: Address[]) {
-    if (!address){ return null;}
+    if (!address) { return null; }
     return address.sort((a, b) => {
         if (a.CreatedDate < b.CreatedDate) {
             return 1;

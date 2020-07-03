@@ -1,4 +1,4 @@
-<div class="container app-addresses">
+<div class="container app-addresses" @fadeIn>
   <div class="row">
     <div class="col-12 col-md-10 app-addresses-header">
       <div class="card ">
@@ -20,7 +20,7 @@
 
     <div class="col-12">
       <div class="row"
-           *ngIf="addresses.length === 0" @slideIn >
+           *ngIf="addresses.length === 0">
         <div class="col-12 col-md-10 py-2 app-addresses-alert text-center">
           <div class="alert">{{labels.NoAddressesPresent}}</div>
         </div>

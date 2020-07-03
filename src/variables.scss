@@ -204,7 +204,8 @@ $screen-xl-min: 1200px;
   .dropdown-menu{
       .dropdown-item{
           &.active{
-              background-color: transparent !important;
+              background-color: #333 !important;
+              color: #f1f1f1;
           }
       }
   }

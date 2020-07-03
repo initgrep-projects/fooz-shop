@@ -25,8 +25,7 @@ export interface City {
 export class GeoAddressService {
   currentToken: string = '';
 
-  constructor(private httpClient: HttpClient) {
-  }
+  constructor(private httpClient: HttpClient) {}
 
   searchCountry(term: string): Observable<string[]> {
     return this.getEndPointResults<Country>(environment.geoAddress.countriesUrl)
@@ -38,6 +37,13 @@ export class GeoAddressService {
         })
       );
   }
+
+  
+  getCountries(): Observable<Country[]> {
+    return this.getEndPointResults<Country>(environment.geoAddress.countriesUrl);
+  }
+
+  
 
   searchState(country: string, term: string): Observable<string[]> {
     return this.getEndPointResults<State>(environment.geoAddress.statesUrl + country)
@@ -83,8 +89,7 @@ export class GeoAddressService {
                 })
               }
             )
-        }),
-        take(1));
+        }));
   }
 
   private getToken(): Observable<string> {
@@ -112,7 +117,6 @@ export class GeoAddressService {
       map((obj: { auth_token: string }) => obj),
       tap(obj => {
         this.currentToken = obj.auth_token;
-        console.log('token fetched for address', obj.auth_token);
       })
 
     );

@@ -57,3 +57,12 @@ export const ADD_ITEM_TO_CART_ACTION = '[cart]  add item';
 export const DELETE_ITEM_IN_CART_ACTION = '[cart]  delete item';
 export const UPDATE_ITEM_IN_CART_ACTION = '[cart]  update item';
 export const LOAD_FAILURE_IN_CART_ACTION = '[cart] load failure';
+
+export const LOAD_ADDRESSES_ACTION = '[account] load all Addresses';
+export const ADD_ADDRESSES_ACTION = '[account]  add all addresses';
+export const ADD_ADDRESS_ACTION = '[account]  add address';
+export const UPDATE_ADDRESS_ACTION = '[account]  update address';
+export const DELETE_ADDRESS_ACTION = '[account]  delete address';
+export const LOAD_COUNTRIES_ACTION = '[account] load  countries';
+export const ADD_COUNTRIES_ACTION = '[account] add countries';
+export const LOAD_FAILURE_IN_ACCOUNT_ACTION = '[account] load failure';

@@ -3,14 +3,14 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { AuthMessages } from 'src/app/util/app.labels';
 import { GeoAddressService } from 'src/app/services/geo-address.service';
 import { Observable, of } from 'rxjs';
-import {  distinctUntilChanged, tap, switchMap, catchError } from 'rxjs/operators';
+import {  distinctUntilChanged, tap, switchMap, catchError, map } from 'rxjs/operators';
 import { AuthService } from 'src/app/modules/auth/auth.service';
 import { User } from 'src/app/models/user';
 import { SubSink } from 'subsink';
 import { AddressService } from '../address.service';
 import { Address } from 'src/app/models/address';
 import { ObjectTransformerService } from 'src/app/services/object-transformer.service';
-import { generateGuid } from 'src/app/util/app.lib';
+import { generateGuid, isMatched } from 'src/app/util/app.lib';
 import { ToastService, toastType } from 'src/app/modules/shared/toasts/toast.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { cloneDeep } from 'lodash';
@@ -155,8 +155,11 @@ export class UserAddressEditComponent implements OnInit, OnDestroy {
       distinctUntilChanged(),
       tap(() => this.searchingCtr = true),
       switchMap(term => {
-        return this.geoAdressService.searchCountry(term)
+        return this.addressService.countries$
           .pipe(
+            map(countries => countries
+              .filter(c => isMatched(c.country_name, term))
+              .map(c => c.country_name)),
             tap(() => {
               this.searchCtrFailed = false;
               this.searchingCtr = false;

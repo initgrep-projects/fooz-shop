@@ -14,6 +14,8 @@ import { UserProfileEditComponent } from './profile/user-profile-edit/user-profi
 import { UserAddressEditComponent } from './addresses/user-address-edit/user-address-edit.component';
 import { UserAddressComponent } from './addresses/user-address/user-address.component';
 import { NgbTypeaheadModule } from '@ng-bootstrap/ng-bootstrap';
+import { EffectsModule } from '@ngrx/effects';
+import { AccountEffects } from './store/account.effects';
 
 
 
@@ -35,7 +37,8 @@ import { NgbTypeaheadModule } from '@ng-bootstrap/ng-bootstrap';
     FontAwesomeModule,
     SharedModule,
     ReactiveFormsModule,
-    NgbTypeaheadModule
+    NgbTypeaheadModule,
+    EffectsModule.forFeature([AccountEffects])
   ]
 })
 export class AccountModule { }

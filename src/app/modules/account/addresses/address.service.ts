@@ -1,13 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { isEmpty } from 'lodash';
-import { Observable, of, BehaviorSubject, Subject, throwError } from 'rxjs';
-import { map, switchMap, take, tap, startWith, catchError } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { map, take } from 'rxjs/operators';
 import { Address } from 'src/app/models/address';
 import { FireStoreDbService } from 'src/app/services/firestore.db.service';
-import { AuthService } from '../../auth/auth.service';
 import { AppState } from '../../main/store/app.reducer';
-import { addAddressAction, deleteAddressAction, syncAddressesAction, updateAddressAction } from '../store/account.actions';
+import { addAddressAction, deleteAddressAction, updateAddressAction, loadAddressesAction, loadCountriesAction } from '../store/account.actions';
 
 @Injectable({
   providedIn: 'root'
@@ -15,12 +14,15 @@ import { addAddressAction, deleteAddressAction, syncAddressesAction, updateAddre
 export class AddressService {
 
   addresses$ = this.store.select('account').pipe(map(state => state.addresses));
+  countries$ = this.store.select('account').pipe(map(state => state.countries));
 
   constructor(
     private db: FireStoreDbService,
-    private store: Store<AppState>,
-    private authService: AuthService
-  ) {}
+    private store: Store<AppState>
+  ) {
+    this.store.dispatch(loadAddressesAction());
+    this.store.dispatch(loadCountriesAction());
+  }
 
 
 
@@ -72,19 +74,6 @@ export class AddressService {
         }).catch(error => reject(error));
     });
   }
-
-  syncAddressesFromDB$ =
-    this.authService.userFromStore$
-      .pipe(
-        switchMap(user => {
-          if (!!user) {
-            return this.db.getAddresses(user.UID);
-          } 
-          return of(null);
-
-        }),
-        tap(addresses => this.store.dispatch(syncAddressesAction({ payload: addresses })))
-      );
 
 }
 

@@ -30,3 +30,14 @@ export function generateGuid() {
   export function isNull<T>(ob: T): boolean{
     return ob === undefined || ob === null;
   }
+
+/**
+ * 
+ * @param state 
+ * @param t 
+ */
+  export function isMatched(element: string, searchTerm: string) {
+    const c = element.toLowerCase();
+    const term = searchTerm.toLowerCase();
+    return (c.indexOf(term) !== -1);
+  }

@@ -1,7 +1,6 @@
-import { Component, OnInit, Input, Output, EventEmitter, AfterViewInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { cloneDeep } from 'lodash';
 import { CartItem } from 'src/app/models/cartItem';
-import { cloneDeep, clone } from 'lodash';
-import { CartService } from '../../cart/cart.service';
 
 @Component({
   selector: 'app-cart-item',
@@ -16,7 +15,7 @@ export class CartItemComponent implements OnInit {
   @Output() clicked = new EventEmitter<string>();
 
 
-  constructor(private cartService: CartService) { }
+  constructor() { }
 
  
   ngOnInit(): void { }

@@ -6,7 +6,7 @@ import { map, switchMap, take, tap } from 'rxjs/operators';
 import { CartItem } from 'src/app/models/cartItem';
 import { Product } from 'src/app/models/product';
 import { FireStoreDbService } from 'src/app/services/firestore.db.service';
-import { CART_ITEM_EXIST, CART_ITEM_MAX_QUANTITY } from 'src/app/util/app.constants';
+import { CART_ITEM_EXIST, CART_ITEM_MAX_QUANTITY, DUPLICATE_ALERT_TITLE, ADD_BUTTON, REMOVE_ALERT_TITLE, REMOVE_BUTTON, CART_REMOVE_ITEM_MSG } from 'src/app/util/app.constants';
 import { toastLabels } from 'src/app/util/app.labels';
 import { AuthService } from '../auth/auth.service';
 import { AppState } from '../main/store/app.reducer';
@@ -45,7 +45,7 @@ export class CartService {
         } else {
           this.saveCartItem(item);
           this.updateProductQuantity(item.Product, item.SelectedQuantity);
-          this.toastService.success(toastLabels.itemAddedToCart,'cart-plus' );
+          this.toastService.success(toastLabels.itemAddedToCart, 'cart-plus');
         }
       });
   }
@@ -57,8 +57,11 @@ export class CartService {
       this.alertService.open({ message: CART_ITEM_MAX_QUANTITY, controls: { cancel: { visible: false } } });
     } else {
       this.alertService.open({
-        message: CART_ITEM_EXIST, controls: {
+        message: CART_ITEM_EXIST,
+        title: DUPLICATE_ALERT_TITLE,
+        controls: {
           confirm: {
+            text: ADD_BUTTON,
             onConfirm: () => {
               matchedItem.SelectedQuantity = updatedQuantity;
               this.updateCartItem(matchedItem);
@@ -95,8 +98,20 @@ export class CartService {
   }
 
   deleteItem($id: string) {
-    this.store.dispatch(deleteItemInCartAction({ payload: $id }));
-    this.db.deleteCartItemInDb($id);
+    this.alertService.open({
+      title: REMOVE_ALERT_TITLE,
+      message: CART_REMOVE_ITEM_MSG,
+      controls: {
+        confirm: {
+          text: REMOVE_BUTTON,
+          onConfirm: () => {
+            this.store.dispatch(deleteItemInCartAction({ payload: $id }));
+            this.db.deleteCartItemInDb($id);
+          }
+        }
+      }
+    });
+
   }
 
   searchItem(cart: CartItem[], item: CartItem) {

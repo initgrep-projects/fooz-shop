@@ -90,9 +90,11 @@
 
       a {
         padding: 0.5rem 1rem;
-        font-size: 1rem;
+        font-size: .8rem;
+        font-weight: 600;
+        letter-spacing: .045rem;
         color: $secondary-text-color;
-        @include animate(fadeInUp, 2s);
+        @include animate(fadeInUp, 1.5s);
         span {
           text-transform: uppercase;
           margin-right: 1rem;

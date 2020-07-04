@@ -14,7 +14,9 @@ export class AlertService {
   ) { }
 
   open(content: AlertConfig) {
-    this.modalRef = this.modalService.open(AlertComponent);
+    this.modalRef = this.modalService.open(AlertComponent,{
+      centered: true
+    });
     const instance: AlertComponent = this.modalRef.componentInstance;
     instance.config = content;
     instance.initProvidedConfig();

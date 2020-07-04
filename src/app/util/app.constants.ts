@@ -12,10 +12,15 @@ export const ADDRESS_COLLECTION = 'address';
 export const LOOKBOOK_COLLECTION = "lookbook";
 
 export const ALERT_TITLE = 'alert';
+export const DUPLICATE_ALERT_TITLE = 'Duplicate item';
+export const REMOVE_ALERT_TITLE = "remove item";
 export const OK_BUTTON = 'ok';
+export const ADD_BUTTON = 'add';
+export const REMOVE_BUTTON = 'remove';
 export const CANCEL_BUTTON = 'cancel';
-export const CART_ITEM_EXIST = 'A similar product already exists in your cart. Would u like to add again?';
+export const CART_ITEM_EXIST = 'Are you sure you want to add this item again?';
 export const CART_ITEM_MAX_QUANTITY = 'You have added all the available products of this type.';
+export const CART_REMOVE_ITEM_MSG = 'Are you sure you want to remove this item?'
 
 /**Error Constants */
 export const DATA_LOAD_ERROR = 'Connection Error';

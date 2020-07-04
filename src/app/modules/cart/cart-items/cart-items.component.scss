@@ -2,7 +2,8 @@
 
 div.modal-header {
     font-family: $roboto-font-family;
-    h4.modal-title {
+    border-bottom-width: 0;
+    h5.modal-title {
         font-weight: 600;
         text-align: center;
         width: 100%;
@@ -12,6 +13,13 @@ div.modal-header {
             margin-right: 1rem;
         }
     }
+
+    button{
+        &:focus{
+            outline: none;
+        }
+    }
+    
 }
 div.modal-body {
     div.alert {
@@ -24,12 +32,13 @@ div.modal-body {
 
 div.modal-footer {
     font-family: $roboto-font-family;
-    justify-content: center;
+    justify-content: space-between;
     button {
         font-size: .8rem;
         text-transform: uppercase;
         letter-spacing: 0.045rem;
         font-weight: 600;
+        padding:1rem 1rem;
         @include animate(fadeInUp, .5s);
         span.text {
             
@@ -37,8 +46,4 @@ div.modal-footer {
 
     }
 }
-@media (min-width: 768px) {
-    div.modal-footer {
-        justify-content: space-between;
-    }
-}
+

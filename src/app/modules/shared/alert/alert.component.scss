@@ -2,8 +2,21 @@
 
 div.modal-header {
     font-family: $roboto-font-family;
-    h4 {
-        text-transform: capitalize;
+    border-bottom-width: 0px;
+    h6 {
+        margin-bottom: 0;
+        line-height: 1.5;
+        font-weight: 600;
+        color: $primary-text-color;
+        text-transform: uppercase;
+        letter-spacing: 0.025rem;
+    }
+
+    button{
+
+        &:focus{
+            outline: none;
+        }
     }
 }
 
@@ -11,6 +24,7 @@ div.modal-body {
     font-family: $roboto-font-family;
     p {
         letter-spacing: 0.025rem;
+        color: #878787;
     }
 }
 
@@ -18,10 +32,10 @@ div.modal-footer {
     font-family: $roboto-font-family;
     justify-content: space-between;
     button {
-        padding: 0.2rem 1rem 0.2rem 1rem;
-        font-size: 0.8rem;
-        border-radius: 20px;
+        padding: .5rem 1rem ;
+        font-size: .8rem;
         font-weight: bold;
         text-transform: uppercase;
+        letter-spacing: .045rem;
     }
 }

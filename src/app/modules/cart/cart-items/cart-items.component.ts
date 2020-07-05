@@ -53,6 +53,13 @@ export class CartItemsComponent implements OnInit, OnDestroy {
     }, 100);
   }
 
+  routeToCheckout(){
+    this.closeModal();
+    setTimeout(() => {
+      this.router.navigate(['/checkout/cart']);
+    }, 100);
+  }
+
   closeModal() {
     this.cartModalService.dismissModal();
   }

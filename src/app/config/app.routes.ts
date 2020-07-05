@@ -1,25 +1,38 @@
 import { Routes } from '@angular/router';
 import { AccountComponent } from '../modules/account/account.component';
-import { OverviewComponent } from '../modules/account/overview/overview.component';
-import { OrdersComponent } from '../modules/account/orders/orders.component';
-import { AddressesComponent } from '../modules/account/addresses/addresses.component';
-import { UserProfileComponent } from '../modules/account/profile/user-profile/user-profile.component';
-import { UserProfileEditComponent } from '../modules/account/profile/user-profile-edit/user-profile-edit.component';
-import { UserAddressEditComponent } from '../modules/account/addresses/user-address-edit/user-address-edit.component';
 import { AddressResolver } from '../modules/account/addresses/address-resolver.service';
+import { AddressesComponent } from '../modules/account/addresses/addresses.component';
+import { UserAddressEditComponent } from '../modules/account/addresses/user-address-edit/user-address-edit.component';
+import { OrdersComponent } from '../modules/account/orders/orders.component';
+import { OverviewComponent } from '../modules/account/overview/overview.component';
+import { UserProfileEditComponent } from '../modules/account/profile/user-profile-edit/user-profile-edit.component';
+import { UserProfileComponent } from '../modules/account/profile/user-profile/user-profile.component';
 import { AuthGuardService } from '../modules/auth/auth-guard.service';
-import { CartModalComponent } from '../modules/cart/cart-modal/cart-modal.component';
 import { AuthModalComponent } from '../modules/auth/auth-modal/auth-modal.component';
+import { CartModalComponent } from '../modules/cart/cart-modal/cart-modal.component';
+import { CartViewComponent } from '../modules/checkout/cart-view/cart-view.component';
+import { CheckoutComponent } from '../modules/checkout/checkout.component';
+import { OrderComponent } from '../modules/checkout/order/order.component';
 import { HomeComponent } from '../modules/home/home.component';
-import { ShopComponent } from '../modules/shop/shop.component';
 import { ItemDetailComponent } from '../modules/shop/items/item-detail/item-detail.component';
 import { ProductResolver } from '../modules/shop/product-resolver.service';
-import { CheckoutComponent } from '../modules/checkout/checkout.component';
+import { ShopComponent } from '../modules/shop/shop.component';
 
 export const checkoutRoutes: Routes = [
   {
-    path: 'shop/checkout/cart',
+    path: 'checkout',
     component: CheckoutComponent,
+    children:[
+      {
+        path: 'cart',
+        component: CartViewComponent
+        
+      },
+      {
+        path: 'order',
+        component: OrderComponent
+      }
+    ]
   }
 ]
 

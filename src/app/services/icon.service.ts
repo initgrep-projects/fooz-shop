@@ -60,10 +60,11 @@ import {
   faUser as fasUser,
   faChevronLeft,
   faCheckCircle,
-  faShippingFast
+  faShippingFast,
+  faShieldAlt
 } from '@fortawesome/free-solid-svg-icons';
 import { faUser as farUser } from '@fortawesome/free-regular-svg-icons';
-import { faGoogle } from '@fortawesome/free-brands-svg-icons';
+import { faGoogle, faCcVisa, faCcAmex, faCcMastercard, faCcPaypal } from '@fortawesome/free-brands-svg-icons';
 
 @Injectable({
   providedIn: 'root'
@@ -136,7 +137,12 @@ export class IconService {
       fasUser,
       farUser,
       faCheckCircle,
-      faShippingFast
+      faShippingFast,
+      faCcVisa,
+      faCcAmex,
+      faCcMastercard,
+      faCcPaypal,
+      faShieldAlt
     ];
   }
 

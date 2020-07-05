@@ -13,7 +13,7 @@
 <div class="modal-body">
 
   <div *ngIf="!!cart; else loading">
-    
+
     <div *ngIf="cart?.length == 0"
          class="alert alert-light"
          role="alert">
@@ -50,7 +50,8 @@
   </button>
   <button type="button"
           class="btn btn-sm btn-dark"
-          *ngIf="cart?.length > 0">
+          *ngIf="cart?.length > 0"
+          (click)="routeToCheckout()">
     <span class="text">{{labels.goToCheckout}}</span>
   </button>
 </div>

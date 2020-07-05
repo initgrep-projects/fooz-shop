@@ -1,0 +1,94 @@
+@import "../../../../variables.scss";
+div.app-order-amount {
+    font-family: $roboto-font-family;
+    width: 100%;
+    z-index: 0;
+    top: 100px;
+
+    div.order-amount-body {
+        div.card {
+            border-top: 1px solid #f0f0f0;
+            box-shadow: 0 -2px 10px 0 rgba(0, 0, 0, 0.1);
+            div.card-header {
+                background-color: #fff;
+                padding: 1.5rem 1rem 1rem 1.5rem;
+                h6 {
+                    text-transform: uppercase;
+                    letter-spacing: 0.05rem;
+                    font-weight: 600;
+                }
+            }
+
+            div.card-body {
+                padding: 1rem 1rem 1rem 1.5rem;
+                ul {
+                    li {
+                        border: none;
+                        padding-left: 0rem;
+                        padding-bottom: 0rem;
+                        div.inner {
+                            h6 {
+                                letter-spacing: 0.045rem;
+                                text-transform: uppercase;
+                                font-size: 0.9rem;
+                                &.right {
+                                    span.code {
+                                        margin-right: 0.5rem;
+                                    }
+                                }
+                            }
+
+                            &.delivery,
+                            &.tax {
+                                h6.right {
+                                    color: var(--secondary);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            div.card-footer {
+                background-color: #fff;
+                padding: 1rem 1.5rem;
+                .inner {
+                    h6 {
+                        font-weight: 600;
+                        text-transform: uppercase;
+                        letter-spacing: 0.045rem;
+                        &.right {
+                            span.code {
+                                margin-right: 0.5rem;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    div.order-amount-footer {
+   
+        p {
+            color: var(--secondary);
+            span {
+                font-size: 0.8rem;
+                letter-spacing: 0.06rem;
+                margin-top: -1rem;
+                position: relative;
+                top: -10px;
+                margin-left: 0.5rem;
+            }
+        }
+        fa-icon {
+            font-size: 2rem;
+        }
+
+        .cc-cards {
+            fa-icon {
+                margin-left: 0.5rem;
+            }
+        }
+    }
+}

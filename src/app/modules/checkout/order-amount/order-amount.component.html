@@ -1,0 +1,65 @@
+<div class="app-order-amount sticky-top">
+
+  <div class="order-amount-body">
+    <div class="card">
+        <div class="card-header">
+            <h6>price details</h6>
+        </div>
+        <div class="card-body">
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                    <div class="inner d-flex justify-content-between">
+                        <h6 class="left">Price ({{itemQuantity}} items)</h6>
+                        <h6 class="right">
+                            <span class="code">{{currencyCode}}</span>
+                            <span class="amount">{{totalPrice}}</span>
+                        </h6>
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <div class="inner delivery d-flex justify-content-between">
+                        <h6 class="left">DELIVERY fee</h6>
+                        <h6 class="right">{{deliveryFee >0 ? deliveryFee : 'FREE' }}</h6>
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <div class="inner tax d-flex justify-content-between">
+                        <h6 class="left">tax</h6>
+                        <h6 class="right">
+                            <span class="code">{{currencyCode}}</span>
+                            <span class="amount">{{totalTax}}</span>
+                        </h6>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="card-footer">
+            <div class=" inner d-flex justify-content-between">
+                <h6 class="left">Total amount</h6>
+                <h6 class="right">
+                    <span class="code">{{currencyCode}}</span>
+                    <span class="amount">{{grossAmount}}</span>
+                </h6>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <div class="order-amount-footer pt-2 ">
+        <div class="card">
+            <div class="card-body">
+                <p>
+                    <fa-icon icon="shield-alt"></fa-icon>
+                    <span>safe and secure payments</span>
+                </p>
+                <div class="cc-cards text-center">
+                    <fa-icon [icon]="['fab','cc-visa']"></fa-icon>
+                    <fa-icon [icon]="['fab','cc-mastercard']"></fa-icon>
+                    <fa-icon [icon]="['fab','cc-paypal']"></fa-icon>
+    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

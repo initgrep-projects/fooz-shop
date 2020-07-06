@@ -17,7 +17,6 @@ export class AddressesComponent implements OnInit {
   labels = AuthMessages;
   addresses: Address[];
 
-
   constructor(
     public addressService: AddressService,
     private router: Router,
@@ -27,6 +26,10 @@ export class AddressesComponent implements OnInit {
 
   routeToNewAddress() {
     this.router.navigate(['my/account/address/new']);
+  }
+
+  deleteAddress(add:Address){
+    this.addressService.removeAddress(add.Id);
   }
 
 }

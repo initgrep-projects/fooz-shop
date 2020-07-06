@@ -7,17 +7,19 @@ import { Address } from 'src/app/models/address';
 import { FireStoreDbService } from 'src/app/services/firestore.db.service';
 import { AppState } from '../../main/store/app.reducer';
 import { addAddressAction, deleteAddressAction, updateAddressAction, loadAddressesAction, loadCountriesAction } from '../store/account.actions';
-
+import { ToastService, toastType } from '../../shared/toasts/toast.service';
+import { AuthMessages } from 'src/app/util/app.labels';
 @Injectable({
   providedIn: 'root'
 })
 export class AddressService {
-
+  labels = AuthMessages;
   addresses$ = this.store.select('account').pipe(map(state => state.addresses));
   countries$ = this.store.select('account').pipe(map(state => state.countries));
 
   constructor(
     private db: FireStoreDbService,
+    private toastService: ToastService,
     private store: Store<AppState>
   ) {
     this.store.dispatch(loadAddressesAction());
@@ -65,14 +67,12 @@ export class AddressService {
       )
   }
 
-  removeAddress(id: string): Promise<void> {
-    return new Promise((resolve, reject) => {
-      this.db.deleteAddress(id)
-        .then(() => {
-          this.store.dispatch(deleteAddressAction({ payload: id }));
-          resolve();
-        }).catch(error => reject(error));
-    });
+  removeAddress(id: string) {
+    this.db.deleteAddress(id)
+      .then(() => {
+        this.store.dispatch(deleteAddressAction({ payload: id }));
+        this.toastService.show(this.labels.addressRemoveSuccess);
+      }).catch(error => this.toastService.show(this.labels.addressRemoveFailed, { type: toastType.ERROR }));
   }
 
 }

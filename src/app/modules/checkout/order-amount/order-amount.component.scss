@@ -29,7 +29,7 @@ div.app-order-amount {
                         div.inner {
                             h6 {
                                 letter-spacing: 0.045rem;
-                                text-transform: uppercase;
+                                text-transform: capitalize;
                                 font-size: 0.9rem;
                                 &.right {
                                     span.code {

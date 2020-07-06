@@ -29,6 +29,11 @@ export const checkoutRoutes: Routes = [
         
       },
       {
+        path: 'address',
+        component: AddressesComponent
+        
+      },
+      {
         path: 'order',
         component: OrderComponent
       }

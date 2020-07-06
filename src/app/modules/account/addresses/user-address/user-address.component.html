@@ -23,8 +23,13 @@
     </div>
     <div class="card-footer">
         <a [routerLink]="['/my/account/address/edit', address.Id]"
+            *ngIf ="!!enableEdit"
            class="card-link btn btn-light">{{labels.editAddress}}</a>
         <a class="card-link btn btn-light"
-           (click)="removeAddress()">{{labels.removeAddress}}</a>
+           *ngIf="!!enableDelete"
+           (click)="deleteAddress()">{{labels.removeAddress}}</a>
+        <a class="card-link btn btn-light"
+           *ngIf="!!enableSelect"
+           (click)="selectAddress()">{{labels.removeAddress}}</a>
     </div>
 </div>

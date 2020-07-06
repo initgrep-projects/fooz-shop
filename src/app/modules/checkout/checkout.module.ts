@@ -7,6 +7,7 @@ import { OrderComponent } from './order/order.component';
 import { SharedModule } from '../shared/shared.module';
 import { OrderAmountComponent } from './order-amount/order-amount.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 
@@ -16,7 +17,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     CommonModule,
     CheckoutRoutingModule,
     FontAwesomeModule,
-    SharedModule
+    SharedModule,
+    NgbAccordionModule
   ]
 })
 export class CheckoutModule { }

@@ -1,7 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Address } from 'src/app/models/address';
 import { AddressService } from '../address.service';
-import { ToastService, toastType } from 'src/app/modules/shared/toasts/toast.service';
+import { ToastService } from 'src/app/modules/shared/toasts/toast.service';
 import { AuthMessages } from 'src/app/util/app.labels';
 
 
@@ -16,6 +16,13 @@ import { AuthMessages } from 'src/app/util/app.labels';
 export class UserAddressComponent implements OnInit {
   labels = AuthMessages;
   @Input() address:Address
+  @Input() enableSelect = false;
+  @Input() enableDelete = false;
+  @Input() enableEdit = false;
+
+  @Output() delete = new EventEmitter<Address>();
+  @Output() select = new EventEmitter<Address>();
+  
   constructor(
     private addressService: AddressService,
     private toastService: ToastService
@@ -24,10 +31,12 @@ export class UserAddressComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  removeAddress(){
-    this.addressService.removeAddress(this.address.Id)
-    .then(()=> this.toastService.show(this.labels.addressRemoveSuccess))
-    .catch(error => this.toastService.show(this.labels.addressRemoveFailed, {type:toastType.ERROR}));
+   deleteAddress(){
+   this.delete.emit(this.address);
+  }
+
+   selectAddress(){
+    this.select.emit(this.address);
   }
 
  

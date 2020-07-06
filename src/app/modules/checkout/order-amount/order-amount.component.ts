@@ -4,6 +4,7 @@ import { SubSink } from 'subsink';
 import { map, tap } from 'rxjs/operators';
 import { isEmpty } from 'lodash';
 import { faQuran } from '@fortawesome/free-solid-svg-icons';
+import { cartLabels } from 'src/app/util/app.labels';
 
 @Component({
   selector: 'app-order-amount',
@@ -11,6 +12,7 @@ import { faQuran } from '@fortawesome/free-solid-svg-icons';
   styleUrls: ['./order-amount.component.scss']
 })
 export class OrderAmountComponent implements OnInit, OnDestroy {
+  labels = cartLabels;
   private subs = new SubSink();
   totalPrice = 0;
   grossAmount = 0;

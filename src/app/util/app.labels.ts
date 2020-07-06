@@ -91,7 +91,19 @@ export const cartLabels = {
         cart: 'shopping cart',
         goToShopping: 'go to shoping',
         goToCheckout: 'checkout items',
-        emptyCart: 'your cart is empty'
+        emptyCart: 'your cart is empty',
+        reviewCart: 'review cart',
+        totalItems: 'total items',
+        orderButtonLabel: 'place order',
+        priceDetails: 'price details',
+        price: 'price',
+        items: 'items',
+        deliveryFee: 'delivery fee',
+        free: 'FREE',
+        tax: 'tax',
+        totalAmount: 'Total Amount',
+        paymentMessage: 'safe and secure payments'
+
 }
 
 export const itemLabels = {

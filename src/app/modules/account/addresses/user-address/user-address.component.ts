@@ -10,19 +10,19 @@ import { AuthMessages } from 'src/app/util/app.labels';
   templateUrl: './user-address.component.html',
   styleUrls: ['./user-address.component.scss'],
   animations: [
-    
+
   ]
 })
 export class UserAddressComponent implements OnInit {
   labels = AuthMessages;
-  @Input() address:Address
+  @Input() address: Address
   @Input() enableSelect = false;
   @Input() enableDelete = false;
   @Input() enableEdit = false;
 
   @Output() delete = new EventEmitter<Address>();
   @Output() select = new EventEmitter<Address>();
-  
+
   constructor(
     private addressService: AddressService,
     private toastService: ToastService
@@ -31,14 +31,14 @@ export class UserAddressComponent implements OnInit {
   ngOnInit(): void {
   }
 
-   deleteAddress(){
-   this.delete.emit(this.address);
+  deleteAddress() {
+    this.delete.emit(this.address);
   }
 
-   selectAddress(){
+  selectAddress() {
     this.select.emit(this.address);
   }
 
- 
+
 
 }

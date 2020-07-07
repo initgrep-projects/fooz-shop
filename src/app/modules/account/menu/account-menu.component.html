@@ -1,21 +1,32 @@
 <div class="app-account-menu h-100">
-    <ul class="list-group list-group-flush" @staggerSlideInList>
-        <li class="list-group-item">
-            <a routerLink="dashboard" routerLinkActive="active">
-                <span>overview</span>
-            </a>
-        </li>
-        <li class="list-group-item">
-            <a routerLink="orders" routerLinkActive="active">
-                <span>orders</span>
-            </a></li>
-        <li class="list-group-item">
-            <a routerLink="addresses" routerLinkActive="active">
-                <span>addresses</span>
-            </a></li>
-        <li class="list-group-item">
-            <a routerLink="profile" routerLinkActive="active">
-                <span>profile</span>
-            </a></li>
-    </ul>
+
+    <div class="card ">
+        <div class="card-body">
+            <ul class="list-group list-group-flush"
+                @fadeIn>
+                <li class="list-group-item" >
+                    <a routerLink="dashboard"
+                       routerLinkActive="active">
+                        <span>overview</span>
+                    </a>
+                </li>
+                <li class="list-group-item">
+                    <a routerLink="orders"
+                      >
+                        <span>orders</span>
+                    </a></li>
+                <li class="list-group-item">
+                    <a routerLink="addresses"
+                       routerLinkActive="active">
+                        <span>addresses</span>
+                    </a></li>
+                <li class="list-group-item">
+                    <a routerLink="profile"
+                       routerLinkActive="active">
+                        <span>profile</span>
+                    </a></li>
+            </ul>
+        </div>
+    </div>
+
 </div>

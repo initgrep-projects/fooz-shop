@@ -3,9 +3,12 @@
 div.card.app-user-address {
     font-family: $roboto-font-family;
     cursor: pointer;
+    border-top: 1px solid #f0f0f0;
+    box-shadow: 0 1px 10px 0 rgba(0, 0, 0, 0.1);
     div.card-body {
+        padding:1rem;
         ul.list-group {
-            padding: 0.5rem;
+           
             li.list-item {
                 list-style: none;
                 span.property {

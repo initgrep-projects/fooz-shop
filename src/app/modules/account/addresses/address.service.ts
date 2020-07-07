@@ -70,8 +70,9 @@ export class AddressService {
   removeAddress(id: string) {
     this.db.deleteAddress(id)
       .then(() => {
-        this.store.dispatch(deleteAddressAction({ payload: id }));
-        this.toastService.show(this.labels.addressRemoveSuccess);
+        console.log('addresses removal called');
+        // this.store.dispatch(deleteAddressAction({ payload: id }));
+        // this.toastService.show(this.labels.addressRemoveSuccess);
       }).catch(error => this.toastService.show(this.labels.addressRemoveFailed, { type: toastType.ERROR }));
   }
 

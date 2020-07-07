@@ -1,4 +1,5 @@
-<div class="container app-account-user-dash" @fadeIn>
+<div class="container app-account-user-dash"
+     @fadeIn>
     <div class="row">
         <div class="col-12">
             <div class="card app-user-card">
@@ -10,37 +11,40 @@
     </div>
     <div class="row mt-5 account-user-dash ">
         <div class="col-12 col-sm-6 col-md-4">
-           <a routerLink="../orders">
-            <div class="card">
-                <div class="card-body text-center">
-                    <fa-icon icon="truck-loading"></fa-icon>
-                    <h6 class="card-title">orders</h6>
-                    <span class="small">3 orders</span>
+            <a routerLink="../orders">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <fa-icon icon="truck-loading"></fa-icon>
+                        <h6 class="card-title">orders</h6>
+                        <span class="small">3 orders</span>
+                    </div>
                 </div>
-            </div>
-           </a>
+            </a>
         </div>
         <div class="col-12 col-sm-6 col-md-4">
-           <a routerLink="../addresses">
-            <div class="card">
-                <div class="card-body text-center">
-                    <fa-icon icon="address-book"></fa-icon>
-                    <h6 class="card-title ">addresses</h6>
-                    <span class="small">1 Address</span>
+            <a routerLink="../addresses">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <fa-icon icon="address-book"></fa-icon>
+                        <h6 class="card-title ">addresses</h6>
+                        <span class="small" *ngIf="addressService.addresses$ | async as addresses">
+                            saved address - <span class="badge badge-dark"> {{addresses.length }} </span>
+                        </span>
+
+                    </div>
                 </div>
-            </div>
-           </a>
+            </a>
         </div>
         <div class="col-12 col-sm-6 col-md-4">
-           <a routerLink="../profile">
-            <div class="card">
-                <div class="card-body text-center">
-                    <fa-icon icon="user-circle"></fa-icon>
-                    <h6 class="card-title">profile</h6>
-                    <span class="small">edit </span>
+            <a routerLink="../profile">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <fa-icon icon="user-circle"></fa-icon>
+                        <h6 class="card-title">profile</h6>
+                        <span class="small">edit </span>
+                    </div>
                 </div>
-            </div>
-           </a>
+            </a>
         </div>
     </div>
 </div>

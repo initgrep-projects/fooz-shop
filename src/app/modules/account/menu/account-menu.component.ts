@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { staggerSlideInList } from 'src/app/animations/slideAnimations';
+import { fadeIn } from 'src/app/animations/fadeAnimation';
 
 
 @Component({
@@ -7,7 +8,7 @@ import { staggerSlideInList } from 'src/app/animations/slideAnimations';
   templateUrl: './account-menu.component.html',
   styleUrls: ['./account-menu.component.scss'],
   animations: [
-    staggerSlideInList
+    fadeIn
   ]
 })
 export class AccountMenuComponent implements OnInit {

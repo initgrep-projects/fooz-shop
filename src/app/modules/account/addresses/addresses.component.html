@@ -1,57 +1,40 @@
-<div class="container app-addresses"
+<div class="app-addresses"
      @fadeIn>
-  <div class="row">
-    <div class="col-12 col-md-10 app-addresses-header">
-      <div class="card ">
-        <div class="card-body">
-          <div class="heading">
-            <h6>{{labels.addressTitle}}</h6>
-            <button class="btn btn-sm btn-light"
-                    (click)="routeToNewAddress()">
-              <fa-icon icon="plus"></fa-icon>
-              <span>{{labels.addAddress}}</span>
-            </button>
-          </div>
+
+  <div class="app-address-header">
+    <div class="card ">
+      <div class="card-body">
+        <div class="heading">
+          <h6>{{labels.addressTitle}}</h6>
+          <button class="btn btn-sm btn-light"
+                  (click)="routeToNewAddress()">
+            <fa-icon icon="plus"></fa-icon>
+            <span>{{labels.addAddress}}</span>
+          </button>
         </div>
       </div>
     </div>
   </div>
-  <div class="row"
+
+  <div class="app-address-body mt-3"
        *ngIf="addressService.addresses$ | async as addresses; else loading">
-
-    <div class="col-12">
-      <div class="row"
-           *ngIf="addresses.length === 0">
-        <div class="col-12 col-md-10 py-2 app-addresses-alert text-center">
-          <div class="alert">{{labels.NoAddressesPresent}}</div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-12 col-md-10 py-2"
-             *ngFor="let address of addresses ">
-          <app-user-address [address]="address"
-                            [enableDelete]="true"
-                            [enableEdit]="true"
-                            (delete) ="deleteAddress($event)"
-                            ></app-user-address>
-        </div>
-      </div>
-    </div>
-
-
+    <div class="alert bg-light app-addresses-alert text-center"
+         *ngIf="addresses.length === 0">{{labels.NoAddressesPresent}}</div>
+    <app-user-address *ngFor="let address of addresses "
+                      [address]="address"
+                      [enableDelete]="true"
+                      [enableEdit]="true"
+                      (delete)="deleteAddress($event)"></app-user-address>
   </div>
+
 </div>
 
 <ng-template #loading>
-  <div class="container">
-    <div class="row">
-      <div class="col-12 col-md-10 py-2 text-center">
-        <div class="spinner-border text-secondary"
-             style="width: 3rem; height: 3rem;"
-             role="status">
-          <span class="sr-only">Loading...</span>
-        </div>
-      </div>
+  <div class="alert alert-light text-center">
+    <div class="spinner-border text-secondary"
+         style="width: 3rem; height: 3rem;"
+         role="status">
+      <span class="sr-only">Loading...</span>
     </div>
   </div>
 </ng-template>

@@ -61,7 +61,8 @@ import {
   faChevronLeft,
   faCheckCircle,
   faShippingFast,
-  faShieldAlt
+  faShieldAlt,
+  faPencilAlt
 } from '@fortawesome/free-solid-svg-icons';
 import { faUser as farUser } from '@fortawesome/free-regular-svg-icons';
 import { faGoogle, faCcVisa, faCcAmex, faCcMastercard, faCcPaypal } from '@fortawesome/free-brands-svg-icons';
@@ -142,7 +143,8 @@ export class IconService {
       faCcAmex,
       faCcMastercard,
       faCcPaypal,
-      faShieldAlt
+      faShieldAlt,
+      faPencilAlt
     ];
   }
 

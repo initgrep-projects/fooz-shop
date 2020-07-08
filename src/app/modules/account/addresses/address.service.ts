@@ -9,6 +9,7 @@ import { AppState } from '../../main/store/app.reducer';
 import { addAddressAction, deleteAddressAction, updateAddressAction, loadAddressesAction, loadCountriesAction } from '../store/account.actions';
 import { ToastService, toastType } from '../../shared/toasts/toast.service';
 import { AuthMessages } from 'src/app/util/app.labels';
+import { AlertService } from '../../shared/alert/alert.service';
 @Injectable({
   providedIn: 'root'
 })
@@ -20,6 +21,7 @@ export class AddressService {
   constructor(
     private db: FireStoreDbService,
     private toastService: ToastService,
+    private alertService: AlertService,
     private store: Store<AppState>
   ) {
     this.store.dispatch(loadAddressesAction());
@@ -68,12 +70,13 @@ export class AddressService {
   }
 
   removeAddress(id: string) {
+
     this.db.deleteAddress(id)
       .then(() => {
         console.log('addresses removal called');
-        // this.store.dispatch(deleteAddressAction({ payload: id }));
-        // this.toastService.show(this.labels.addressRemoveSuccess);
-      }).catch(error => this.toastService.show(this.labels.addressRemoveFailed, { type: toastType.ERROR }));
+        this.store.dispatch(deleteAddressAction({ payload: id }));
+        this.toastService.show(this.labels.addressRemoveSuccess);
+      }).catch(error => this.toastService.failure(this.labels.addressRemoveFailed));
   }
 
 }

@@ -8,6 +8,8 @@ div.app-user-profile {
         padding-right: 15px;
     }
     div.card {
+        border-top: 1px solid #f0f0f0;
+        box-shadow: 0 1px 10px 0 rgba(0, 0, 0, 0.1);
         div.card-body {
             &.email-wrapper {
                 display: flex;
@@ -23,40 +25,43 @@ div.app-user-profile {
                     letter-spacing: 0.025rem;
                 }
                 button {
-                    border-radius: 20px;
                     font-size: 0.8rem;
                     letter-spacing: 0.025rem;
-                    padding: 0 1rem;
-                    text-transform: lowercase;
+                    span {
+                        margin-left: 0.5rem;
+                        text-transform: uppercase;
+                        font-weight: 600;
+                    }
                 }
             }
-            &.phone-wrapper{
+            &.phone-wrapper {
                 display: flex;
                 flex-direction: column;
-                div.phone,div.name{
+                div.phone,
+                div.name {
                     display: flex;
                     flex-direction: row;
                     justify-content: flex-start;
-                    label{
-                        font-size: .8rem;
-                        letter-spacing: .025rem;
+                    label {
+                        font-size: 0.8rem;
+                        letter-spacing: 0.025rem;
                         text-transform: uppercase;
                         margin-right: 1rem;
                         font-weight: 600;
                     }
-                    h6{
-                        letter-spacing: .025rem;
+                    h6 {
+                        letter-spacing: 0.025rem;
                     }
                 }
             }
         }
     }
 
-    div.prof-controls{
-        button{
-            font-size: .8rem;
+    div.prof-controls {
+        button {
+            font-size: 0.8rem;
             text-transform: uppercase;
-            letter-spacing: .045rem;
+            letter-spacing: 0.045rem;
         }
     }
 }

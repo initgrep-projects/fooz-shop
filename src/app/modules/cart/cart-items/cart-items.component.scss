@@ -31,8 +31,14 @@ div.modal-body {
 }
 
 div.modal-footer {
+    display: flex;
     font-family: $roboto-font-family;
-    justify-content: space-between;
+    justify-content: center;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    @include md{
+        justify-content: space-between;
+    }
     button {
         font-size: .8rem;
         text-transform: uppercase;
@@ -40,9 +46,6 @@ div.modal-footer {
         font-weight: 600;
         padding:1rem 1rem;
         @include animate(fadeInUp, .5s);
-        span.text {
-            
-        }
 
     }
 }

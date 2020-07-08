@@ -37,15 +37,15 @@ export class ToastService {
   }
 
   failure(text: string, icon?: string) {
-    this.show(text, { type: toastType.WARNING });
+    this.show(text, { type: toastType.WARNING, icon :icon });
   }
   
   success(text: string, icon?: string) {
-    this.show(text, { type: toastType.SUCCESS });
+    this.show(text, { type: toastType.SUCCESS, icon: icon });
   }
 
   warning(text: string, icon?: string) {
-    this.show(text, { type: toastType.WARNING });
+    this.show(text, { type: toastType.WARNING, icon: icon });
   }
 
   remove(toast: any) {

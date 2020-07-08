@@ -39,14 +39,13 @@ export class MatfocusDirective implements OnInit {
 
   addStylesForValuedInput(nextSibling: any) {
 
-    nextSibling.style.top = '-50px';
+    nextSibling.style.top = '-60px';
     nextSibling.style.fontWeight = '600';
     nextSibling.style.textTransform = 'uppercase';
     nextSibling.style.marginLeft = '0rem';
     nextSibling.style.transition = 'all 0.2s ease';
     nextSibling.style.fontSize = '0.7rem';
     nextSibling.style.letterSpacing = '0.1rem';
-    nextSibling.style.top = '-50px';
 
   }
 

@@ -1,82 +1,72 @@
 <ng-template #loading>
-    <div class="container">
-        <div class="row">
-            <div class="col-12 col-md-10 ">
-                <div class="card">
-                    <div class="card-body text-center">
-                        <div class="spinner-border text-secondary"
-                             style="width: 3rem; height: 3rem;"
-                             role="status">
-                            <span class="sr-only">Loading...</span>
-                        </div>
-                    </div>
-                </div>
+    <div class="card">
+        <div class="card-body text-center">
+            <div class="spinner-border text-secondary"
+                 style="width: 3rem; height: 3rem;"
+                 role="status">
+                <span class="sr-only">Loading...</span>
             </div>
         </div>
     </div>
 </ng-template>
-<div class="container app-user-profile-edit" @fadeIn
+<div class=" app-user-profile-edit"
+     @fadeIn
      *ngIf="!!authUser; else loading">
-    <div class="row">
-        <div class="col-12 col-md-10">
-            <div class="card">
 
-                <div class="card-body">
-                    <h5 class="card-title">profile</h5>
-                    <form [formGroup]="editProfileForm"
-                          (ngSubmit)="submit()">
-                        <div class="form-group">
-                            
-                            <input type="text"
-                                   class="form-control"
-                                   id="fullname"
-                                   formControlName="name"
-                                   appMatfocus
-                                   >
-                                   <label for="fullname">{{labels.formLabels.name}}</label>
-                            <span class="text-danger"
-                                  *ngIf="editProfileForm.controls.name.touched && !!editProfileForm.controls.name.errors">{{labels.invalidName}}</span>
-                        </div>
-                        <div class="form-group">
-                           
-                            <input type="email"
-                                   class="form-control"
-                                   id="email"
-                                   formControlName="email"
-                                   appMatfocus
-                                   >
-                                   <label for="email">{{labels.formLabels.email}}</label>
-                            <span class="text-danger"
-                                  *ngIf="editProfileForm.controls.email.touched && !!editProfileForm.controls.email.errors">{{labels.invalidEmail}}</span>
-                        </div>
-                        <div class="form-group">
-                            
-                            <input type="tel"
-                                   class="form-control"
-                                   id="phone"
-                                   formControlName="phone"
-                                   appMatfocus
-                                  
-                                   (change)="onPhoneChange(editProfileForm.controls.phone.errors)"
-                                   >
-                                   <label for="phone">{{labels.formLabels.phone}}+p</label>
-                            <span class="text-danger"
-                                  *ngIf="editProfileForm.controls.phone.dirty && !!editProfileForm.controls.phone.errors">{{labels.invalidPhone}}</span>
-                        </div>
-                        <div class="form-group form-crtl">
-                            <button type="submit"
-                                    class="btn btn-block btn-dark"
-                                    [disabled]="!editProfileForm.valid">
-                                <fa-icon [icon]="['fas', 'spinner']"
-                                         [spin]="true"
-                                         *ngIf="isSaveProgress"
-                                         ></fa-icon>
-                                {{labels.formLabels.saveProfile}}
-                            </button>
-                        </div>
-                    </form>
+    <div class="card">
+
+        <div class="card-body">
+            <h5 class="card-title">profile</h5>
+            <form [formGroup]="editProfileForm"
+                  (ngSubmit)="submit()">
+                <div class="form-group">
+
+                    <input type="text"
+                           class="form-control"
+                           id="fullname"
+                           formControlName="name"
+                           appMatfocus>
+                    <label for="fullname">{{labels.formLabels.name}}</label>
+                    <span class="text-danger"
+                          *ngIf="editProfileForm.controls.name.touched && !!editProfileForm.controls.name.errors">{{labels.invalidName}}</span>
                 </div>
-            </div>
+                <div class="form-group">
+
+                    <input type="email"
+                           class="form-control"
+                           id="email"
+                           formControlName="email"
+                           appMatfocus>
+                    <label for="email">{{labels.formLabels.email}}</label>
+                    <span class="text-danger"
+                          *ngIf="editProfileForm.controls.email.touched && !!editProfileForm.controls.email.errors">{{labels.invalidEmail}}</span>
+                </div>
+                <div class="form-group">
+
+                    <input type="tel"
+                           class="form-control"
+                           id="phone"
+                           formControlName="phone"
+                           appMatfocus
+                           (change)="onPhoneChange(editProfileForm.controls.phone.errors)">
+                    <label for="phone">{{labels.formLabels.phone}}</label>
+                    <span class="text-danger"
+                          *ngIf="editProfileForm.controls.phone.dirty && !!editProfileForm.controls.phone.errors">{{labels.invalidPhone}}</span>
+                </div>
+                <div class="form-crtl">
+                    <button type="button"
+                            class="btn  btn-outline-dark mx-1"
+                            (click)="editProfileForm.reset()"> {{labels.formLabels.resetProfile}} </button>
+                    <button type="submit"
+                            class="btn btn-dark mx-1"
+                            [disabled]="!editProfileForm.valid">
+                        <fa-icon [icon]="['fas', 'spinner']"
+                                 [spin]="true"
+                                 *ngIf="isSaveProgress"></fa-icon>
+                        {{labels.formLabels.saveProfile}}
+                    </button>
+                </div>
+            </form>
         </div>
     </div>
 </div>

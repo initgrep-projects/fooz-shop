@@ -82,8 +82,10 @@ export const AuthMessages = {
         password: 'password',
         editProfile: 'edit',
         saveProfile: 'save profile',
+        resetProfile: 'reset profile',
         saveAddress: 'save Address',
-        updateAddress: 'update Address'
+        updateAddress: 'update Address',
+        resetAddress: 'reset address'
     }
 };
 

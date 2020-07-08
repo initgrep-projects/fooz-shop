@@ -1,90 +1,88 @@
-@import "../../../../../variables.scss"; 
+@import "../../../../../variables.scss";
 
 div.app-user-profile-edit {
     font-family: $roboto-font-family;
     padding-left: 0px;
     padding-right: 0px;
+
     @include md {
         padding-left: 15px;
         padding-right: 15px;
     }
-    div.row {
-        div.col-12 {
-            div.card {
-                text-align: center;
-                div.card-body {
-                    h5.card-title {
-                        text-transform: uppercase;
-                        font-weight: 600;
-                        letter-spacing: 0.025rem;
-                        padding-top: 1rem;
-                    }
-                    
 
-                    form {
-                        div.form-group {
-                            
-                            text-align: left;
-                            margin-top: 1rem;
-                            margin-bottom: 0rem;
-                            input {
-                                border: none;
-                                border-radius: 0px;
-                                border-bottom: 2px solid #333;
-                                padding: 0.5rem 0rem;
-                                font-size: .8rem;
-                                letter-spacing: 0.1rem;
-                
-                                &:focus {
-                                    box-shadow: none;
-                                }
-                            }
-                            input:focus + label {
-                                font-weight: 600;
-                                text-transform: uppercase;
-                                top: -50px;
-                                margin-left: 0rem;
-                                font-size: 0.7rem;
-                                letter-spacing: 0.1rem;
-                            }
-                
-                           
-                
-                            label {
-                                position: relative;
-                                top: -30px;
-                                margin-left: .5rem;
-                                font-size: 0.7rem;
-                                letter-spacing: 0.01rem;
-                                text-transform: uppercase;
-                                
-                                transition: all 0.2s ease;
-                            }
+    div.card {
+        text-align: center;
+        border-top: 1px solid #f0f0f0;
+        box-shadow: 0 1px 10px 0 rgba(0, 0, 0, 0.1);
+        div.card-body {
+            h5.card-title {
+                text-transform: uppercase;
+                font-weight: 600;
+                letter-spacing: 0.025rem;
+                padding-top: 1rem;
+            }
 
+            form {
+                div.form-group {
+                    text-align: left;
+                    margin-top: 1rem;
+                    margin-bottom: 0rem;
+                    input {
+                        border: none;
+                        border-radius: 0px;
+                        border-bottom: 2px solid #333;
+                        padding: 0.5rem 0rem;
+                        font-size: 0.8rem;
+                        letter-spacing: 0.1rem;
 
-                            span {
-                                position: absolute;
-                                margin-top: .4rem;
-                                font-size: 0.6rem;
-                                letter-spacing: 0.025rem;
-                                display: inline-block;
-                                left: 20px;
-                                &::first-letter {
-                                    text-transform: capitalize;
-                                }
-                            }
-
-                            &.form-crtl{
-                                text-align: right;
-                                button{
-                                    letter-spacing: .045rem;
-                                    text-transform: uppercase;
-                                    font-size: .8rem;
-                                }
-                            }
+                        &:focus {
+                            box-shadow: none;
                         }
+                    }
+                    input:focus + label {
+                        font-weight: 600;
+                        text-transform: uppercase;
+                        top: -50px;
+                        margin-left: 0rem;
+                        font-size: 0.7rem;
+                        letter-spacing: 0.1rem;
+                    }
 
-                        
+                    label {
+                        position: relative;
+                        top: -30px;
+                        margin-left: 0.5rem;
+                        font-size: 0.7rem;
+                        letter-spacing: 0.01rem;
+                        text-transform: uppercase;
+
+                        transition: all 0.2s ease;
+                    }
+
+                    span {
+                        position: absolute;
+                        margin-top: 0.4rem;
+                        font-size: 0.6rem;
+                        letter-spacing: 0.025rem;
+                        display: inline-block;
+                        left: 20px;
+                        &::first-letter {
+                            text-transform: capitalize;
+                        }
+                    }
+                }
+
+                div.form-crtl {
+                    display: flex;
+                    justify-content: center;
+                    @include md {
+                        justify-content: space-between;
+                    }
+                    button {
+                        letter-spacing: 0.045rem;
+                        text-transform: uppercase;
+                        font-size: 0.8rem;
+                        padding: 1rem 3rem;
                     }
                 }
             }

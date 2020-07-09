@@ -6,7 +6,7 @@ import { map, switchMap, take, tap } from 'rxjs/operators';
 import { CartItem } from 'src/app/models/cartItem';
 import { Product } from 'src/app/models/product';
 import { FireStoreDbService } from 'src/app/services/firestore.db.service';
-import { CART_ITEM_EXIST, CART_ITEM_MAX_QUANTITY, DUPLICATE_ALERT_TITLE, ADD_BUTTON, REMOVE_ALERT_TITLE, REMOVE_BUTTON, CART_REMOVE_ITEM_MSG } from 'src/app/util/app.constants';
+import { ADD_BUTTON, CART_ITEM_EXIST, CART_ITEM_MAX_QUANTITY, DUPLICATE_ALERT_TITLE } from 'src/app/util/app.constants';
 import { toastLabels } from 'src/app/util/app.labels';
 import { AuthService } from '../auth/auth.service';
 import { AppState } from '../main/store/app.reducer';
@@ -97,21 +97,28 @@ export class CartService {
     // this.db.updateProduct(p);
   }
 
-  deleteItem($id: string) {
-    this.alertService.open({
-      title: REMOVE_ALERT_TITLE,
-      message: CART_REMOVE_ITEM_MSG,
-      controls: {
-        confirm: {
-          text: REMOVE_BUTTON,
-          onConfirm: () => {
-            this.store.dispatch(deleteItemInCartAction({ payload: $id }));
-            this.db.deleteCartItemInDb($id);
-          }
-        }
-      }
-    });
+  // deleteItem($id: string) {
+  //   this.alertService.open({
+  //     title: REMOVE_ALERT_TITLE,
+  //     message: CART_REMOVE_ITEM_MSG,
+  //     controls: {
+  //       confirm: {
+  //         text: REMOVE_BUTTON,
+  //         onConfirm: () => {
+  //           this.store.dispatch(deleteItemInCartAction({ payload: $id }));
+  //           this.db.deleteCartItemInDb($id);
+  //         }
+  //       }
+  //     }
+  //   });
 
+  // }
+
+  deleteItem($id: string) {
+    this.alertService.showRemoveAlert(() => {
+      this.store.dispatch(deleteItemInCartAction({ payload: $id }));
+      this.db.deleteCartItemInDb($id);
+    });
   }
 
   searchItem(cart: CartItem[], item: CartItem) {

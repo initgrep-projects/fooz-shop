@@ -44,7 +44,6 @@ export class AddressService {
 
   updateAddress(address: Address): Promise<void> {
     return new Promise((resolve, reject) => {
-
       this.db.updateAddress(address)
         .then(() => {
           this.store.dispatch(updateAddressAction({ payload: address }));
@@ -70,13 +69,15 @@ export class AddressService {
   }
 
   removeAddress(id: string) {
+    this.alertService.showRemoveAlert(() => {
+      this.db.deleteAddress(id)
+        .then(() => {
+          console.log('addresses removal called');
+          this.store.dispatch(deleteAddressAction({ payload: id }));
+          this.toastService.show(this.labels.addressRemoveSuccess);
+        }).catch(error => this.toastService.failure(this.labels.addressRemoveFailed));
+    });
 
-    this.db.deleteAddress(id)
-      .then(() => {
-        console.log('addresses removal called');
-        this.store.dispatch(deleteAddressAction({ payload: id }));
-        this.toastService.show(this.labels.addressRemoveSuccess);
-      }).catch(error => this.toastService.failure(this.labels.addressRemoveFailed));
   }
 
 }

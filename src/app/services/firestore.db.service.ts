@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { classToPlain } from 'class-transformer';
-import { Observable } from 'rxjs';
-import { map, tap } from 'rxjs/operators';
+import { Observable, of, from } from 'rxjs';
+import { map, tap, take } from 'rxjs/operators';
 import { Address } from '../models/address';
 import { CartItem } from '../models/cartItem';
 import { Category } from '../models/category';
@@ -390,16 +390,16 @@ export class FireStoreDbService {
   /** Auth operations END */
 
   /** Address Operations start */
-  saveAddress(address: Address) {
-    return this.addressCollection.doc(address.Id).set(classToPlain(address));
+  saveAddress(address: Address): Observable<boolean> {
+    return this.toObservable(this.addressCollection.doc(address.Id).set(classToPlain(address)));
   }
 
-  updateAddress(address: Address) {
-    return this.addressCollection.doc(address.Id).update(classToPlain(address));
+  updateAddress(address: Address): Observable<boolean> {
+    return this.toObservable(this.addressCollection.doc(address.Id).update(classToPlain(address)));
   }
 
-  deleteAddress(id: string) {
-    return this.addressCollection.doc(id).delete();
+  deleteAddress(id: string): Observable<boolean> {
+    return this.toObservable(this.addressCollection.doc(id).delete());
   }
 
   getAddresses(userId: string): Observable<Address[]> {
@@ -441,5 +441,20 @@ export class FireStoreDbService {
   }
 
   /**lookbookitems //end */
+
+  /**
+   *  template function to convert a promise<void> to promise<boolean>
+   * @param promisefn promise<void> type
+   */
+  private toObservable(promisefn: Promise<void>): Observable<boolean> {
+    return new Observable<boolean>(observer => {
+      promisefn
+        .then(() => {
+          observer.next(true);
+          observer.complete();
+        })
+        .catch(err => observer.error(err));
+    });
+  }
 
 }

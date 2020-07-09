@@ -1,9 +1,21 @@
 import { Injectable, ComponentFactoryResolver, Injector, Inject, ApplicationRef, TemplateRef, Type } from '@angular/core';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { AlertComponent, AlertConfig } from './alert.component';
+import { AlertComponent } from './alert.component';
 import { REMOVE_ALERT_TITLE, REMOVE_BUTTON, REMOVE_ALERT_MSG, ALERT_TITLE, CANCEL_BUTTON, OK_BUTTON } from 'src/app/util/app.constants';
 import { isFunction } from 'lodash';
+import { Observable } from 'rxjs';
+import { take } from 'rxjs/operators';
 
+
+
+export interface AlertConfig {
+  title?: string;
+  message: string;
+  controls?: {
+    confirm?: { visible?: boolean, text?: string, onConfirm?: () => void },
+    cancel?: { visible?: boolean, text?: string, onCancel?: () => void }
+  };
+}
 
 @Injectable({
   providedIn: 'root'
@@ -15,16 +27,16 @@ export class AlertService {
     private modalService: NgbModal
   ) { }
 
-  open(content: AlertConfig) {
-    this.modalRef = this.modalService.open(AlertComponent,{
-      centered: true
-    });
+  open(content: AlertConfig):Observable<boolean>{
+    this.modalRef = this.modalService.open(AlertComponent,{centered: true});
     const instance: AlertComponent = this.modalRef.componentInstance;
     instance.Config = this.initProvidedConfig(content);
+    return instance.alertEvent.asObservable();
   }
 
-  
+
   showRemoveAlert(confirmCallback: any){
+  
     this.open({
       title: REMOVE_ALERT_TITLE,
       message: REMOVE_ALERT_MSG,
@@ -34,11 +46,26 @@ export class AlertService {
           onConfirm: confirmCallback
         }
       }
-    });
+    })
+    .pipe(take(1));
+  }
+
+  
+  confirmRemoval(): Observable<boolean>{
+   return this.open({
+      title: REMOVE_ALERT_TITLE,
+      message: REMOVE_ALERT_MSG,
+      controls: {
+        confirm: {
+          text: REMOVE_BUTTON
+        }
+      }
+    })
+    .pipe(take(1));
   }
 
 
-  initProvidedConfig(config: AlertConfig): AlertConfig {
+  private initProvidedConfig(config: AlertConfig): AlertConfig {
     const cfg: AlertConfig = { message: config.message };
     cfg.title = config.title ? config.title : ALERT_TITLE;
 

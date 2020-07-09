@@ -40,7 +40,8 @@ export const AuthMessages = {
     addAddress : 'add new address',
     addressTitle: 'addresses',
     editAddress: "Edit",
-    removeAddress: "Remove",
+    removeAddress: 'Remove',
+    selectAddress: 'select',
     invalidCredentials: [
         { code: 'auth/wrong-password', message: 'Incorrect email or password' },
         { code: 'auth/user-not-found', message: 'The email is not registered with us' },

@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { isEmpty } from 'lodash';
-import { Observable } from 'rxjs';
-import { map, take } from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
+import { map, take, tap, switchMap, catchError } from 'rxjs/operators';
 import { Address } from 'src/app/models/address';
 import { FireStoreDbService } from 'src/app/services/firestore.db.service';
 import { AppState } from '../../main/store/app.reducer';
@@ -30,27 +30,52 @@ export class AddressService {
 
 
 
-  saveAddress(address: Address): Promise<void> {
-    return new Promise((resolve, reject) => {
-
-      this.db.saveAddress(address)
-        .then(() => {
-          this.store.dispatch(addAddressAction({ payload: address }));
-          resolve();
-        })
-        .catch(error => reject(error));
-    });
+  saveAddress(address: Address){
+      return this.db.saveAddress(address)
+      .pipe(
+        tap(isOK => {
+          if(isOK){
+            this.store.dispatch(addAddressAction({ payload: address }));
+            this.toastService.success(this.labels.addressAddSuccess);
+          }
+        }),
+        catchError(error => {
+          this.toastService.failure(this.labels.addressAddFailed);
+          return of(error);
+        }));
   }
 
-  updateAddress(address: Address): Promise<void> {
-    return new Promise((resolve, reject) => {
-      this.db.updateAddress(address)
-        .then(() => {
-          this.store.dispatch(updateAddressAction({ payload: address }));
-          resolve();
-        })
-        .catch(error => reject(error));
-    });
+  updateAddress(address: Address) {
+    return this.db.updateAddress(address)
+      .pipe(
+        tap(isOK => {
+          console.log("isOk = ", isOK);
+          if (isOK) {
+            this.store.dispatch(updateAddressAction({ payload: address }));
+            this.toastService.success(this.labels.addressUpdateSuccess);
+          }
+        }),
+        catchError(error => {
+          this.toastService.failure(this.labels.addressUpdateFailed);
+          return of(error);
+        }));
+  }
+
+
+  removeAddress(id: string) {
+    return this.alertService.confirmRemoval()
+      .pipe(
+        switchMap(isOK => isOK ? this.db.deleteAddress(id) : of(false)),
+        tap((isOK) => {
+          if (isOK) {
+            this.store.dispatch(deleteAddressAction({ payload: id }));
+            this.toastService.show(this.labels.addressRemoveSuccess);
+          }
+        }),
+        catchError(error => {
+          this.toastService.failure(this.labels.addressRemoveFailed);
+          return of(error);
+        }));
   }
 
 
@@ -64,21 +89,9 @@ export class AddressService {
             return adds.pop();
           }
           return null;
-        })
-      )
+        }));
   }
 
-  removeAddress(id: string) {
-    this.alertService.showRemoveAlert(() => {
-      this.db.deleteAddress(id)
-        .then(() => {
-          console.log('addresses removal called');
-          this.store.dispatch(deleteAddressAction({ payload: id }));
-          this.toastService.show(this.labels.addressRemoveSuccess);
-        }).catch(error => this.toastService.failure(this.labels.addressRemoveFailed));
-    });
-
-  }
 
 }
 

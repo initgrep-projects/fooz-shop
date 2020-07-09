@@ -1,16 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { AlertConfig } from './alert.service';
 
-
-
-export interface AlertConfig {
-  title?: string;
-  message: string;
-  controls?: {
-    confirm?: { visible?: boolean, text?: string, onConfirm?: () => void },
-    cancel?: { visible?: boolean, text?: string, onCancel?: () => void }
-  };
-}
 
 @Component({
   selector: 'app-alert',
@@ -19,8 +10,9 @@ export interface AlertConfig {
 })
 export class AlertComponent implements OnInit {
   config: AlertConfig;
-
   @Input() set Config(config: AlertConfig) { this.config = config; }
+
+  @Output() alertEvent = new EventEmitter<boolean>();
 
   constructor(public modal: NgbActiveModal) { }
 
@@ -28,11 +20,11 @@ export class AlertComponent implements OnInit {
 
   confirm() {
     this.modal.dismiss('Confirm');
-    this.config.controls.confirm.onConfirm();
+    this.alertEvent.emit(true);
   }
-  
+
   cancel() {
     this.modal.dismiss('Cancel');
-    this.config.controls.cancel.onCancel();
+    this.alertEvent.emit(false);
   }
 }

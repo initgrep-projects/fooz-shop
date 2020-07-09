@@ -28,8 +28,8 @@ export class AddressesComponent implements OnInit {
     this.router.navigate(['my/account/address/new']);
   }
 
-  deleteAddress(add:Address){
-    this.addressService.removeAddress(add.Id);
+   deleteAddress(add:Address){
+    this.addressService.removeAddress(add.Id).subscribe();
   }
 
 }

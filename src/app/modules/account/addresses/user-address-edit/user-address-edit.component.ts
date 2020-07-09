@@ -3,7 +3,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { AuthMessages } from 'src/app/util/app.labels';
 import { GeoAddressService } from 'src/app/services/geo-address.service';
 import { Observable, of } from 'rxjs';
-import {  distinctUntilChanged, tap, switchMap, catchError, map } from 'rxjs/operators';
+import { distinctUntilChanged, tap, switchMap, catchError, map } from 'rxjs/operators';
 import { AuthService } from 'src/app/modules/auth/auth.service';
 import { User } from 'src/app/models/user';
 import { SubSink } from 'subsink';
@@ -120,32 +120,25 @@ export class UserAddressEditComponent implements OnInit, OnDestroy {
     const address = this.objTransformService.transformAddress(this.addressForm.value);
     address.UserId = this.authUser.UID;
     address.Id = generateGuid();
-    this.addressService.saveAddress(address)
-      .then(() => {
-        this.toastService.show(this.labels.addressAddSuccess, { type: toastType.SUCCESS });
-        this.routeToAddresses();
-      })
-      .catch((e) => this.toastService.show(this.labels.addressAddFailed, { type: toastType.ERROR }))
-      .finally(() => this.saveProgress = false);
-  }
 
+    this.subs.sink = this.addressService.saveAddress(address)
+      .subscribe(isSuccess => {
+        this.routeToAddresses();
+        this.saveProgress = false;
+      });
+  }
 
   updateAddress() {
     this.saveProgress = true;
-    console.log('form value ', this.addressForm.value);
-    console.log('post address', this.address);
     const updatedAddress = this.objTransformService.transformAddress(this.addressForm.value);
     updatedAddress.Id = this.address.Id;
     updatedAddress.CreatedDate = this.address.CreatedDate;
     updatedAddress.UserId = this.address.UserId;
-    console.log('updated address = ', updatedAddress);
-    this.addressService.updateAddress(updatedAddress)
-      .then(() => {
-        this.toastService.show(this.labels.addressUpdateSuccess, { type: toastType.SUCCESS });
+    this.subs.sink = this.addressService.updateAddress(updatedAddress)
+      .subscribe((issuccess) => {
         this.routeToAddresses();
-      })
-      .catch((e) => this.toastService.show(this.labels.addressUpdateFailed, { type: toastType.ERROR }))
-      .finally(() => this.saveProgress = false);
+        this.saveProgress = false;
+      });
   }
 
 

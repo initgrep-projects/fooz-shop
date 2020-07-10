@@ -2,14 +2,14 @@ import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { isEmpty } from 'lodash';
 import { Observable, of } from 'rxjs';
-import { map, take, tap, switchMap, catchError } from 'rxjs/operators';
+import { catchError, map, switchMap, take, tap } from 'rxjs/operators';
 import { Address } from 'src/app/models/address';
-import { FireStoreDbService } from 'src/app/services/firestore.db.service';
-import { AppState } from '../../main/store/app.reducer';
-import { addAddressAction, deleteAddressAction, updateAddressAction, loadAddressesAction, loadCountriesAction } from '../store/account.actions';
-import { ToastService, toastType } from '../../shared/toasts/toast.service';
+import { AddressRemoteService } from 'src/app/services/remote/address-remote.service';
 import { AuthMessages } from 'src/app/util/app.labels';
+import { AppState } from '../../main/store/app.reducer';
 import { AlertService } from '../../shared/alert/alert.service';
+import { ToastService } from '../../shared/toasts/toast.service';
+import { addAddressAction, deleteAddressAction, loadAddressesAction, loadCountriesAction, updateAddressAction } from '../store/account.actions';
 @Injectable({
   providedIn: 'root'
 })
@@ -19,7 +19,7 @@ export class AddressService {
   countries$ = this.store.select('account').pipe(map(state => state.countries));
 
   constructor(
-    private db: FireStoreDbService,
+    private db: AddressRemoteService,
     private toastService: ToastService,
     private alertService: AlertService,
     private store: Store<AppState>

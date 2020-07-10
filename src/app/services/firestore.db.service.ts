@@ -1,10 +1,8 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { classToPlain } from 'class-transformer';
-import { Observable, of, from } from 'rxjs';
-import { map, tap, take } from 'rxjs/operators';
-import { Address } from '../models/address';
-import { CartItem } from '../models/cartItem';
+import { Observable } from 'rxjs';
+import { map, tap } from 'rxjs/operators';
 import { Category } from '../models/category';
 import { CustomSizeInput } from '../models/custom-size';
 import { Image } from '../models/image';
@@ -14,7 +12,7 @@ import { Size } from '../models/size';
 import { Sort } from '../models/Sort';
 import { User } from '../models/user';
 import {
-  ADDRESS_COLLECTION, CART_COLLECTION, CATEGORY_COLLECTION,
+  CATEGORY_COLLECTION,
   CUSTOM_SIZE_INPUT,
   LOOKBOOK_COLLECTION, PRODUCT_COLLECTION,
   PRODUCT_PAGE_SIZE, SIZE_COLLECTION, SORT_COLLECTION, TREND_COLLECTION, USER_COLLECTION
@@ -42,7 +40,7 @@ export class FireStoreDbService {
   private sortCollection: AngularFirestoreCollection<Sort>;
   private trendCollection: AngularFirestoreCollection<Image>;
   private userCollection: AngularFirestoreCollection<User>;
-  private addressCollection: AngularFirestoreCollection<Address>;
+  
   private lookBookCollection: AngularFirestoreCollection<LookBookItem>;
 
 
@@ -59,7 +57,7 @@ export class FireStoreDbService {
     this.sortCollection = this.db.collection<Sort>(SORT_COLLECTION);
     this.trendCollection = this.db.collection<Image>(TREND_COLLECTION);
     this.userCollection = this.db.collection<User>(USER_COLLECTION);
-    this.addressCollection = this.db.collection<Address>(ADDRESS_COLLECTION);
+    
     this.lookBookCollection = this.db.collection<LookBookItem>(LOOKBOOK_COLLECTION);
     this.bootstrapTestData();
   }
@@ -334,35 +332,7 @@ export class FireStoreDbService {
 
   /** Auth operations END */
 
-  /** Address Operations start */
-  saveAddress(address: Address): Observable<boolean> {
-    return this.toObservable(this.addressCollection.doc(address.Id).set(classToPlain(address)));
-  }
 
-  updateAddress(address: Address): Observable<boolean> {
-    return this.toObservable(this.addressCollection.doc(address.Id).update(classToPlain(address)));
-  }
-
-  deleteAddress(id: string): Observable<boolean> {
-    return this.toObservable(this.addressCollection.doc(id).delete());
-  }
-
-  getAddresses(userId: string): Observable<Address[]> {
-    return this.db.collection(ADDRESS_COLLECTION, ref =>
-      ref.where('userId', '==', userId)
-    )
-      .get()
-      .pipe(
-        map(querySnapShot => {
-          const addresses: Address[] = [];
-          querySnapShot.forEach(doc => {
-            addresses.push(this.objTransformer.transformAddressFromDocumentData(doc.data()));
-          });
-          return addresses;
-        })
-      );
-  }
-  /** Address Operations End */
 
   /** Lookbook items */
 

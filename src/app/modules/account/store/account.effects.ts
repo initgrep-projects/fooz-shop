@@ -8,13 +8,14 @@ import { LOAD_ADDRESSES_ACTION, LOAD_COUNTRIES_ACTION } from 'src/app/util/app.c
 import { AuthService } from '../../auth/auth.service';
 import { addAddressesAction, loadFailureInAccountAction, addCountriesAction } from './account.actions';
 import { GeoAddressService } from 'src/app/services/geo-address.service';
+import { AddressRemoteService } from 'src/app/services/remote/address-remote.service';
 
 
 @Injectable()
 export class AccountEffects {
     constructor(
         private action$: Actions,
-        private db: FireStoreDbService,
+        private db: AddressRemoteService,
         private geo: GeoAddressService,
         private auth: AuthService,
         private err: AppErrorService

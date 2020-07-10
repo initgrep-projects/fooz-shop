@@ -1,36 +1,43 @@
-@import '../../../../variables.scss';
+@import "../../../../variables.scss";
 
-div.toast-outer-container{
+div.toast-outer-container {
     position: fixed;
-    width: 90%;
-    margin:5%;
+    width: 100%;
     z-index: 1051;
     min-height: 300px;
     top: 10%;
+    bottom: auto;
 
-    @include md{
-        top: 6%;
+    @include md {
+        width: 100%;
+        min-height: 100px;
+        bottom: 0;
+        top: auto;
     }
 
-    @include lg{
-        top: 6%;
-    }
-    @include xl{
-        top: 2%;
-    }
-
-    div.container{
-        div.row{
-            div.toast-wrapper{
-                font-family: $roboto-font-family;
-                @include animate(bounceInDown, .8s);
-                span.toast-message{
-                    font-size:1rem;
-                    letter-spacing: .045rem;
-                    text-transform: capitalize;
-                }
-               
-            }
+    div.toast-wrapper {
+        font-family: $roboto-font-family;
+        display: flex;
+        width: 100%;
+        padding: 15px;
+        justify-content: center;
+        flex: content;
+        flex-direction: column;
+        align-content: center;
+        flex-wrap: wrap;
+        @include animate(bounceInDown, 0.8s);
+        @include md {
+            @include animate(bounceInUp, 0.8s);
+            flex-wrap: nowrap;
+        }
+        
+        span.toast-message {
+            font-size: 1rem;
+            letter-spacing: 0.045rem;
+            text-transform: capitalize;
+            display: block;
+            width: 100%;
+            padding: 0.5rem;
         }
     }
 }

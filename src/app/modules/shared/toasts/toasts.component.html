@@ -1,20 +1,17 @@
+<!-- *ngIf="toastService.toasts.length > 0"  -->
 <div class="toast-outer-container"
      *ngIf="toastService.toasts.length > 0">
-    <div class="container">
-        <div class="row">
-            <div class="toast-wrapper col-12 col-md-6 col-lg-4 col-xl-3  mx-auto mt-4">
-                <ngb-toast *ngFor="let toast of toastService.toasts"
-                           [class]= getClassNameByType(toast)
-                           [autohide]="true"
-                           [delay]="toast.options.delay || 1000"
-                           (hide)="toastService.remove(toast)">
-                    <span class="toast-message">
-                        <fa-icon class="mx-2"
-                                 [icon] = "getIcon(toast)"></fa-icon>
-                        {{toast.textOrTpl}}
-                    </span>
-                </ngb-toast>
-            </div>
-        </div>
+    <div class="toast-wrapper ">
+        <ngb-toast *ngFor="let toast of toastService.toasts"
+                   [class]=getClassNameByType(toast)
+                   [autohide]="true"
+                   [delay]="toast.options.delay || 1500"
+                   (hide)="toastService.remove(toast)">
+            <span class="toast-message">
+                <fa-icon class="mx-1"
+                         [icon]="getIcon(toast)"></fa-icon>
+                {{toast.textOrTpl}}
+            </span>
+        </ngb-toast>
     </div>
 </div>

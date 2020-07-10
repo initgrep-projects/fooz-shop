@@ -14,11 +14,21 @@
 
   <div *ngIf="!!cart; else loading">
 
-    <div *ngIf="cart?.length == 0"
-         class="alert alert-light"
-         role="alert">
-      {{labels.emptyCart}}
+    <div class="app-cart-empty text-center"
+         *ngIf="cart?.length == 0">
+      <div class="alert alert-light"
+           role="alert">
+        {{labels.emptyCart}}
+      </div>
+
+      <button type="button"
+              class="btn btn-sm btn-dark"
+              (click)="routeToShop()">
+        <span class="text">{{labels.goToShopping}}</span>
+      </button>
     </div>
+
+
     <ul class="list-unstyled">
       <li class=" mb-1 py-2"
           *ngFor="let item of cart">
@@ -42,7 +52,8 @@
     </div>
   </ng-template>
 </div>
-<div class="modal-footer">
+<div class="modal-footer"
+     *ngIf="cart?.length > 0">
   <button type="button"
           class="btn btn-sm btn-outline-dark"
           (click)="routeToShop()">
@@ -50,7 +61,6 @@
   </button>
   <button type="button"
           class="btn btn-sm btn-dark"
-          *ngIf="cart?.length > 0"
           (click)="routeToCheckout()">
     <span class="text">{{labels.goToCheckout}}</span>
   </button>

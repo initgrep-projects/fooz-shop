@@ -1,13 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { Store } from '@ngrx/store';
 import { of } from 'rxjs';
 import { catchError, map, mergeMap, switchMap } from 'rxjs/operators';
 import { AppErrorService } from 'src/app/services/app-error.service';
-import { FireStoreDbService } from 'src/app/services/firestore.db.service';
+import { CartRemoteService } from 'src/app/services/remote/cart-remote.service';
 import { LOAD_CART_ACTION } from 'src/app/util/app.constants';
 import { AuthService } from '../../auth/auth.service';
-import { AppState } from '../../main/store/app.reducer';
 import { addItemsToCartAction, loadFailureCartAction } from './cart.actions';
 
 @Injectable()
@@ -15,10 +13,9 @@ export class CartEffects {
 
     constructor(
         private action$: Actions,
-        private db: FireStoreDbService,
+        private db: CartRemoteService,
         private err: AppErrorService,
-        private auth: AuthService,
-        private store: Store<AppState>
+        private auth: AuthService
     ) { }
 
 

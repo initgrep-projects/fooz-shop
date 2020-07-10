@@ -1,10 +1,10 @@
-import { Injectable, ComponentFactoryResolver, Injector, Inject, ApplicationRef, TemplateRef, Type } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { AlertComponent } from './alert.component';
-import { REMOVE_ALERT_TITLE, REMOVE_BUTTON, REMOVE_ALERT_MSG, ALERT_TITLE, CANCEL_BUTTON, OK_BUTTON } from 'src/app/util/app.constants';
 import { isFunction } from 'lodash';
 import { Observable } from 'rxjs';
 import { take } from 'rxjs/operators';
+import { ADD_BUTTON, ALERT_TITLE, CANCEL_BUTTON, DUPLICATE_ALERT_MSG, DUPLICATE_ALERT_TITLE, OK_BUTTON, REMOVE_ALERT_MSG, REMOVE_ALERT_TITLE, REMOVE_BUTTON } from 'src/app/util/app.constants';
+import { AlertComponent } from './alert.component';
 
 
 
@@ -27,32 +27,15 @@ export class AlertService {
     private modalService: NgbModal
   ) { }
 
-  open(content: AlertConfig):Observable<boolean>{
-    this.modalRef = this.modalService.open(AlertComponent,{centered: true});
+  open(content: AlertConfig): Observable<boolean> {
+    this.modalRef = this.modalService.open(AlertComponent, { centered: true });
     const instance: AlertComponent = this.modalRef.componentInstance;
     instance.Config = this.initProvidedConfig(content);
     return instance.alertEvent.asObservable();
   }
 
-
-  showRemoveAlert(confirmCallback: any){
-  
-    this.open({
-      title: REMOVE_ALERT_TITLE,
-      message: REMOVE_ALERT_MSG,
-      controls: {
-        confirm: {
-          text: REMOVE_BUTTON,
-          onConfirm: confirmCallback
-        }
-      }
-    })
-    .pipe(take(1));
-  }
-
-  
-  confirmRemoval(): Observable<boolean>{
-   return this.open({
+  confirmRemoval(): Observable<boolean> {
+    return this.open({
       title: REMOVE_ALERT_TITLE,
       message: REMOVE_ALERT_MSG,
       controls: {
@@ -60,8 +43,19 @@ export class AlertService {
           text: REMOVE_BUTTON
         }
       }
-    })
-    .pipe(take(1));
+    }).pipe(take(1));
+  }
+
+  confirmDuplicate(): Observable<boolean> {
+    return this.open({
+      title: DUPLICATE_ALERT_TITLE,
+      message: DUPLICATE_ALERT_MSG,
+      controls: {
+        confirm: {
+          text: ADD_BUTTON
+        }
+      }
+    }).pipe(take(1));
   }
 
 

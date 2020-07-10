@@ -22,11 +22,27 @@ div.modal-header {
     
 }
 div.modal-body {
-    div.alert {
-        text-align: center;
-        text-transform: uppercase;
-        color: #333;
-        font-weight: 600;
+   
+
+    div.app-cart-empty{
+        padding:2rem;
+        div.alert {
+            text-align: center;
+            text-transform: uppercase;
+            color: #333;
+            font-weight: 600;
+            @include animate(fadeInUp, .5s);
+        }
+
+        button {
+            font-size: .8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.045rem;
+            font-weight: 600;
+            padding:1rem 1rem;
+            @include animate(fadeInUp, .5s);
+    
+        }
     }
 }
 

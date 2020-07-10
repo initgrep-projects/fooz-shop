@@ -61,7 +61,7 @@ export class ItemBuyComponent implements OnInit, OnDestroy {
     this.isValidCart = this.itemdetailService.validateCartItem(item);
     console.log('isValid = ', this.isValidCart);
     if (this.isValidCart) {
-      this.cartService.addItem(item);
+      this.subs.sink = this.cartService.addItem(item).subscribe();
     }
   }
 

@@ -34,7 +34,7 @@ export class FireStoreDbService {
   pageSize = 2;
 
 
-  private cartCollection: AngularFirestoreCollection<CartItem>;
+ 
   private productCollection: AngularFirestoreCollection<Product>;
   private categoryCollection: AngularFirestoreCollection<Category>;
   private sizeCollection: AngularFirestoreCollection<Size>;
@@ -51,7 +51,7 @@ export class FireStoreDbService {
     private fakedataService: FakedataService,
     private objTransformer: ObjectTransformerService) {
 
-    this.cartCollection = this.db.collection<CartItem>(CART_COLLECTION);
+
     this.productCollection = this.db.collection<Product>(PRODUCT_COLLECTION);
     this.categoryCollection = this.db.collection<Category>(CATEGORY_COLLECTION);
     this.sizeCollection = this.db.collection<Size>(SIZE_COLLECTION);
@@ -271,62 +271,7 @@ export class FireStoreDbService {
       );
   }
 
-  /** cart Operations START
-   *
-   *  1) save an item to db
-   *  2) if the item is already present -- increase quantity
-   *    //update the item in db and store
-   *
-   *  3) update the item directly in cart ex: add remove more quanity
-   *  4) delete the item
-   *  4)  fetch all items
-   */
-  saveCartItemToDb(item: CartItem) {
-    return this.cartCollection.doc(item.Id).set(classToPlain(item));
-  }
-
-  updateCartInDb(items: CartItem[]): Promise<void> {
-    return new Promise((resolve, reject) => {
-      try {
-        items.forEach(async (item) => await this.updateCartItemInDb(item));
-        resolve();
-      } catch (e) {
-        reject(e);
-      }
-    });
-
-  }
-
-
-  updateCartItemInDb(item: CartItem) {
-    return this.cartCollection.doc(item.Id).set(classToPlain(item));
-
-  }
-  deleteCartItemInDb(id: string) {
-    return this.cartCollection.doc(id).delete();
-  }
-
-  fetchCart(userId: string): Observable<CartItem[]> {
-    return this.db.collection(CART_COLLECTION, ref =>
-      ref.where('userId', '==', userId)
-    )
-      .get()
-      .pipe(
-        map(querySnapShot => {
-          const items: CartItem[] = [];
-          querySnapShot.forEach(doc => {
-            items.push(this.objTransformer.transformcartItem(doc.data()));
-          });
-          console.log('Cart Items fetched from db = ', items);
-          return items;
-        })
-      );
-  }
-
-
-
-  /** cart Operations END */
-
+  
 
   /** Auth operations START */
 

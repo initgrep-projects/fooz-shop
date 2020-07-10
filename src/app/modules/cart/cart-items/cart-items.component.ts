@@ -34,7 +34,7 @@ export class CartItemsComponent implements OnInit, OnDestroy {
   }
 
   removeItem(id: string) {
-    this.cartService.deleteItem(id);
+    this.subs.sink = this.cartService.deleteItem(id).subscribe();
   }
 
   routeToItemDetails(id: string) {

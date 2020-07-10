@@ -15,11 +15,12 @@ export const ALERT_TITLE = 'alert';
 export const DUPLICATE_ALERT_TITLE = 'Duplicate item';
 export const REMOVE_ALERT_TITLE = "remove item";
 export const REMOVE_ALERT_MSG= 'Are you sure you want to remove this item?'
+export const DUPLICATE_ALERT_MSG = 'Are you sure you want to add this item again?';
 export const OK_BUTTON = 'ok';
 export const ADD_BUTTON = 'add';
 export const REMOVE_BUTTON = 'remove';
 export const CANCEL_BUTTON = 'cancel';
-export const CART_ITEM_EXIST = 'Are you sure you want to add this item again?';
+
 export const CART_ITEM_MAX_QUANTITY = 'You have added all the available products of this type.';
 
 /**Error Constants */

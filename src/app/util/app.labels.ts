@@ -105,7 +105,13 @@ export const cartLabels = {
         free: 'FREE',
         tax: 'tax',
         totalAmount: 'Total Amount',
-        paymentMessage: 'safe and secure payments'
+        paymentMessage: 'safe and secure payments',
+        deleteItem: 'cart Item deleted',
+        deleteItemFailed: 'cart Item delete failed',
+        addItem: 'cart item added to cart',
+        addItemFailed: 'cart Item add failed',
+        updateItem: 'cart item updated',
+        updateItemFailed: 'cart item updated'
 
 }
 

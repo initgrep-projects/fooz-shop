@@ -1,19 +1,19 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { cloneDeep, isEmpty } from 'lodash';
-import { of, zip } from 'rxjs';
-import { map, switchMap, take, tap } from 'rxjs/operators';
+import { Observable, of, zip, from } from 'rxjs';
+import { catchError, map, switchMap, take, tap } from 'rxjs/operators';
 import { CartItem } from 'src/app/models/cartItem';
 import { Product } from 'src/app/models/product';
 import { FireStoreDbService } from 'src/app/services/firestore.db.service';
-import { ADD_BUTTON, CART_ITEM_EXIST, CART_ITEM_MAX_QUANTITY, DUPLICATE_ALERT_TITLE } from 'src/app/util/app.constants';
-import { toastLabels } from 'src/app/util/app.labels';
+import { cartLabels } from 'src/app/util/app.labels';
 import { AuthService } from '../auth/auth.service';
 import { AppState } from '../main/store/app.reducer';
 import { AlertService } from '../shared/alert/alert.service';
 import { ToastService } from '../shared/toasts/toast.service';
 import { updateProductAction } from '../shop/store/shop.actions';
 import { addItemToCartAction, deleteItemInCartAction, loadItemsToCartAction, updateItemInCartAction } from './store/cart.actions';
+import { CartRemoteService } from 'src/app/services/remote/cart-remote.service';
 
 
 
@@ -27,7 +27,7 @@ export class CartService {
 
   constructor(
     private store: Store<AppState>,
-    private db: FireStoreDbService,
+    private db: CartRemoteService,
     private alertService: AlertService,
     private toastService: ToastService,
     private authService: AuthService
@@ -35,54 +35,67 @@ export class CartService {
     this.store.dispatch(loadItemsToCartAction());
   }
 
-
   addItem(item: CartItem) {
-    this.cart$.pipe(take(1))
-      .subscribe(cart => {
-        const matchedItem = this.searchItem(cart, item);
-        if (!!matchedItem) {
-          this.updateQuantityInExistingItem(matchedItem, item);
-        } else {
-          this.saveCartItem(item);
+    console.log("addItem called ");
+    return this.cart$.pipe(
+      take(1),
+      map(cart => this.findItem(cart, item)),
+      switchMap(duplicateItem => !!duplicateItem ? this.updateQuantityForDuplicateItem(duplicateItem, item) : of(false)),
+      switchMap(isDuplicate => !isDuplicate ? this.saveCartItem(item) : of(false)),
+      tap(isSaved => {
+        if (isSaved) {
           this.updateProductQuantity(item.Product, item.SelectedQuantity);
-          this.toastService.success(toastLabels.itemAddedToCart, 'cart-plus');
         }
-      });
+      }),
+      catchError(error => of(error))
+    );
   }
 
-  updateQuantityInExistingItem(matchedItem: CartItem, item: CartItem) {
-    console.log('updating the existing item');
-    const updatedQuantity = matchedItem.SelectedQuantity + item.SelectedQuantity;
-    if (updatedQuantity > item.Product.Quantity) {
-      this.alertService.open({ message: CART_ITEM_MAX_QUANTITY, controls: { cancel: { visible: false } } });
-    } else {
-      this.alertService.open({
-        message: CART_ITEM_EXIST,
-        title: DUPLICATE_ALERT_TITLE,
-        controls: {
-          confirm: {
-            text: ADD_BUTTON,
-            onConfirm: () => {
-              matchedItem.SelectedQuantity = updatedQuantity;
-              this.updateCartItem(matchedItem);
-              this.updateProductQuantity(item.Product, item.SelectedQuantity);
-            }
+  updateQuantityForDuplicateItem(matchedItem: CartItem, item: CartItem): Observable<boolean> {
+    return this.alertService.confirmDuplicate()
+      .pipe(
+        switchMap(isOK => {
+          if (isOK) {
+            const updatedQuantity = matchedItem.SelectedQuantity + item.SelectedQuantity;
+            const updatedCartItem = cloneDeep(matchedItem);
+            updatedCartItem.SelectedQuantity = updatedQuantity;
+            return this.updateCartItem(updatedCartItem);
           }
+          return of(isOK);
+        }),
+        tap(isOK => {
+          if (isOK) {
+            this.updateProductQuantity(item.Product, item.SelectedQuantity);
+          }
+        }),
+        catchError(error => of(error))
+      );
+  }
+
+
+  saveCartItem(item: CartItem): Observable<boolean> {
+    return this.db.saveCartItemToDb(item)
+      .pipe(tap(isOK => {
+        if (isOK) {
+          this.store.dispatch(addItemToCartAction({ payload: item }));
+          this.toastService.success(cartLabels.addItem, 'cart-plus');
         }
-      });
-    }
+      }),
+        catchError(error => {
+          this.toastService.failure(cartLabels.addItemFailed);
+          return of(error);
+        }));
   }
 
-
-  saveCartItem(item: CartItem) {
-    console.log('saveItem called');
-    this.store.dispatch(addItemToCartAction({ payload: item }));
-    this.db.saveCartItemToDb(item);
-  }
-
-  updateCartItem(item: CartItem) {
-    this.store.dispatch(updateItemInCartAction({ payload: item }));
-    this.db.updateCartItemInDb(item);
+  updateCartItem(item: CartItem): Observable<boolean> {
+    return this.db.updateCartItem(item)
+      .pipe(
+        tap(isOk => {
+          if (isOk) {
+            this.store.dispatch(updateItemInCartAction({ payload: item }));
+            this.toastService.success(cartLabels.updateItem);
+          }
+        }));
   }
 
   /**
@@ -97,31 +110,25 @@ export class CartService {
     // this.db.updateProduct(p);
   }
 
-  // deleteItem($id: string) {
-  //   this.alertService.open({
-  //     title: REMOVE_ALERT_TITLE,
-  //     message: CART_REMOVE_ITEM_MSG,
-  //     controls: {
-  //       confirm: {
-  //         text: REMOVE_BUTTON,
-  //         onConfirm: () => {
-  //           this.store.dispatch(deleteItemInCartAction({ payload: $id }));
-  //           this.db.deleteCartItemInDb($id);
-  //         }
-  //       }
-  //     }
-  //   });
 
-  // }
-
-  deleteItem($id: string) {
-    this.alertService.showRemoveAlert(() => {
-      this.store.dispatch(deleteItemInCartAction({ payload: $id }));
-      this.db.deleteCartItemInDb($id);
-    });
+  deleteItem(id: string) {
+    return this.alertService.confirmRemoval()
+      .pipe(
+        switchMap(isOk => isOk ? this.db.deleteCartItem(id) : of(isOk)),
+        tap(isOk => {
+          if (isOk) {
+            this.store.dispatch(deleteItemInCartAction({ payload: id }));
+            this.toastService.success(cartLabels.deleteItem);
+          }
+        }),
+        catchError(error => {
+          this.toastService.failure(cartLabels.deleteItemFailed);
+          return of(error);
+        })
+      );
   }
 
-  searchItem(cart: CartItem[], item: CartItem) {
+  findItem(cart: CartItem[], item: CartItem) {
     return cart.find($item => $item.equals(item));
   }
 
@@ -144,7 +151,7 @@ export class CartService {
         switchMap(user => {
           return zip(of(user), this.cart$)
         }),
-        tap(([user, cart]) => {
+        map(([user, cart]) => {
           if (!!user && !user.IsAnonymous && !isEmpty(cart)) {
             if (cart[0].IsAnonymousUser) {
               const refreshedCartItems = cloneDeep(cart).map(item => {
@@ -152,10 +159,11 @@ export class CartService {
                 item.IsAnonymousUser = user.IsAnonymous;
                 return item;
               });
-              this.db.updateCartInDb(refreshedCartItems);
+              this.db.updateCart(refreshedCartItems);
             }
           }
           this.store.dispatch(loadItemsToCartAction());
+          return cart;
         })
       )
   }

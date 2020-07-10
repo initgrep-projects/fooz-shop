@@ -27,12 +27,7 @@ export class AlertService {
     private modalService: NgbModal
   ) { }
 
-  open(content: AlertConfig): Observable<boolean> {
-    this.modalRef = this.modalService.open(AlertComponent, { centered: true });
-    const instance: AlertComponent = this.modalRef.componentInstance;
-    instance.Config = this.initProvidedConfig(content);
-    return instance.alertEvent.asObservable();
-  }
+
 
   confirmRemoval(): Observable<boolean> {
     return this.open({
@@ -58,6 +53,12 @@ export class AlertService {
     }).pipe(take(1));
   }
 
+  private open(content: AlertConfig): Observable<boolean> {
+    this.modalRef = this.modalService.open(AlertComponent, { centered: true });
+    const instance: AlertComponent = this.modalRef.componentInstance;
+    instance.Config = this.initProvidedConfig(content);
+    return instance.alertEvent.asObservable();
+  }
 
   private initProvidedConfig(config: AlertConfig): AlertConfig {
     const cfg: AlertConfig = { message: config.message };

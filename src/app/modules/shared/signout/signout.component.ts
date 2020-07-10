@@ -37,10 +37,10 @@ export class SignoutComponent implements OnInit, OnDestroy {
     try {
       await this.authService.logOut();
       this.afterSignOut.emit();
-      this.toastService.show(this.authMessages.logoutSuccess, { icon: 'sign-out-alt' });
+      this.toastService.success(this.authMessages.logoutSuccess,'sign-out-alt' );
       this.router.navigate(['shop']);
     } catch (e) {
-      this.toastService.show(this.authMessages.logoutFail, { type: toastType.ERROR });
+      this.toastService.failure(this.authMessages.logoutFail);
     }
   }
 

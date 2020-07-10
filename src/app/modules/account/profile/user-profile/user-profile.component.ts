@@ -45,11 +45,10 @@ export class UserProfileComponent implements OnInit {
   sendEmailVerification() {
     this.authService.verifyEmail()
       .then(() => {
-        this.toastService.show(this.labels.emailVerification, { icon: 'envelope-open-text' });
+        this.toastService.success(this.labels.emailVerification, 'envelope-open-text');
 
       }).catch(() => {
-        this.toastService.show(this.labels.emailVerificationFailed,
-          { icon: 'envelope-open-text', type: toastType.ERROR });
+        this.toastService.failure(this.labels.emailVerificationFailed,'envelope-open-text');
       });
   }
 

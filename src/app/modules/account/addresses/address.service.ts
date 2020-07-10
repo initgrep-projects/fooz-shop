@@ -69,7 +69,7 @@ export class AddressService {
         tap((isOK) => {
           if (isOK) {
             this.store.dispatch(deleteAddressAction({ payload: id }));
-            this.toastService.show(this.labels.addressRemoveSuccess);
+            this.toastService.success(this.labels.addressRemoveSuccess);
           }
         }),
         catchError(error => {

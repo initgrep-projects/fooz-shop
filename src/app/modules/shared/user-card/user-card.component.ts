@@ -39,11 +39,10 @@ export class UserCardComponent implements OnInit, OnDestroy {
   sendEmailVerification() {
     this.authService.verifyEmail()
       .then(() => {
-        this.toastService.show(this.authMessages.emailVerification, { icon: 'envelope-open-text' });
+        this.toastService.success(this.authMessages.emailVerification,  'envelope-open-text' );
 
       }).catch(() => {
-        this.toastService.show(this.authMessages.emailVerificationFailed,
-          { icon: 'envelope-open-text', type : toastType.ERROR });
+        this.toastService.failure(this.authMessages.emailVerificationFailed,'envelope-open-text');
       });
   }
 

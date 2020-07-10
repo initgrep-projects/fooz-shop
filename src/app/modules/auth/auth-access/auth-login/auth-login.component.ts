@@ -102,10 +102,9 @@ export class AuthLoginComponent implements OnInit, AfterViewInit {
     this.authService.resetPassword(this.loginForm.value.email)
       .then(() => {
         this.authModalService.dismissModal();
-        this.toastService.show(this.authMessages.passwordReset, { icon: 'unlock-alt' })
+        this.toastService.success(this.authMessages.passwordReset ,'unlock-alt')
       })
-      .catch(error => this.toastService.show(
-        this.authMessages.passwordReset, { icon: 'unlock-alt', type: toastType.ERROR}))
+      .catch(error => this.toastService.failure(this.authMessages.passwordReset, 'unlock-alt'))
       .finally(() => this.passResetProgress = false)
   }
 
@@ -113,7 +112,7 @@ export class AuthLoginComponent implements OnInit, AfterViewInit {
     console.log('handleAuthSuccess called', response);
     this.isLoginSuccess = true;
     this.authModalService.dismissModal();
-    this.toastService.show(this.authMessages.loginSuccess, { icon: 'user-lock' });
+    this.toastService.success(this.authMessages.loginSuccess, 'user-lock');
   }
 
   private handleAuthFailure(error) {

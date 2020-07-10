@@ -76,11 +76,11 @@ export class UserProfileEditComponent implements OnInit, OnDestroy {
       this.authService.saveUserInStore(this.authUser);
       console.log('authuser = ', this.authUser);
       await this.authService.updateUserInDb(this.authUser);
-      this.toastService.show(this.labels.profileUpdateSuccess, { icon: 'user' });
+      this.toastService.success(this.labels.profileUpdateSuccess, 'user');
       this.router.navigate(['my/account/profile']);
 
     } catch (e) {
-      this.toastService.show(this.labels.profileUpdateSuccess, { icon: 'fasUser', type: toastType.ERROR });
+      this.toastService.failure(this.labels.profileUpdateSuccess, 'fasUser');
     }
 
   }

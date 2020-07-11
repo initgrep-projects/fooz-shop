@@ -1,11 +1,10 @@
-import { Component, OnInit, Input, OnDestroy, Output, EventEmitter } from '@angular/core';
-import { User } from 'src/app/models/user';
-
-import { AuthService } from '../../auth/auth.service';
-import { ToastService, toastType } from '../toasts/toast.service';
-import { SubSink } from 'subsink';
-import { AuthMessages } from 'src/app/util/app.labels';
+import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
+import { User } from 'src/app/models/user';
+import { AuthMessages } from 'src/app/util/app.labels';
+import { SubSink } from 'subsink';
+import { AuthService } from '../../auth/auth.service';
+
 
 @Component({
   selector: 'app-user-card',
@@ -23,7 +22,6 @@ export class UserCardComponent implements OnInit, OnDestroy {
 
   constructor(
     private authService: AuthService,
-    private toastService: ToastService,
     private router: Router
   ) { }
 
@@ -37,13 +35,8 @@ export class UserCardComponent implements OnInit, OnDestroy {
   }
 
   sendEmailVerification() {
-    this.authService.verifyEmail()
-      .then(() => {
-        this.toastService.success(this.authMessages.emailVerification,  'envelope-open-text' );
-
-      }).catch(() => {
-        this.toastService.failure(this.authMessages.emailVerificationFailed,'envelope-open-text');
-      });
+    this.subs.sink = 
+    this.authService.verifyEmail().subscribe();
   }
 
   routeToAccount() {

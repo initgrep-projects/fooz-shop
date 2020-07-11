@@ -2,13 +2,16 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Store } from '@ngrx/store';
 import * as firebase from 'firebase/app';
-import { Observable, of } from 'rxjs';
-import { map, switchMap, take, tap } from 'rxjs/operators';
+import { Observable, of, from } from 'rxjs';
+import { map, switchMap, take, tap, catchError } from 'rxjs/operators';
 import { User } from 'src/app/models/user';
 import { ObjectTransformerService } from 'src/app/services/object-transformer.service';
 import { UserRemoteService } from 'src/app/services/remote/user-remote.service';
 import { AppState } from '../main/store/app.reducer';
 import { addUserAction, deleteUserAction } from './store/auth.actions';
+import { toObservable } from 'src/app/util/app.lib';
+import { ToastService } from '../shared/toasts/toast.service';
+import { AuthMessages as labels } from 'src/app/util/app.labels';
 
 @Injectable({
   providedIn: 'root'
@@ -22,10 +25,10 @@ export class AuthService {
     private angularFireAuth: AngularFireAuth,
     private store: Store<AppState>,
     private transformService: ObjectTransformerService,
-    private db: UserRemoteService
+    private db: UserRemoteService,
+    private toastService: ToastService
   ) {
 
-    window['logout'] = this.logOut;
     this.userFromStore$ = this.store.select('auth').pipe(map(state => state.user));
     this.user$ = this.syncAuthChanges();
   }
@@ -43,172 +46,156 @@ export class AuthService {
   private syncAuthChanges(): Observable<User> {
     return this.angularFireAuth.user
       .pipe(
-        tap((user: firebase.User) => {
-          if (!user) {
-            this.loginAsAnonymous();
+        map(user => this.transformService.transformUser(user)),
+        switchMap((user) => !!user ? of(user) : this.loginAsAnonymous()),
+        switchMap(user => {
+          if (user.IsAnonymous) {
+            return of(user);
+          } else if (user.IsEmailVerified) {
+            return this.updateEmailIfNotUpdated(user);
           }
         }),
-        switchMap((user: firebase.User) => {
-          console.log('user in switchmap = ', user?.uid, user?.email);
-          if (!user) {
-            return of(null);
-          } else if (user.isAnonymous) {
-            return of(this.transformService.transformUser(user));
-          } else if (user.emailVerified) {
-            return this.getUser(user.uid)
-            .pipe(
-              take(1),
-              switchMap(async dbUser => {
-                if(!!dbUser && !dbUser.IsEmailVerified){
-                  dbUser.IsEmailVerified = true;
-                  await this.updateUserInDb(dbUser);
-                }
-                return dbUser;
-              })
-            );
-          }
-          return this.db.fetchUser(user.uid);
-        }),
-        map((user: User) => {
-          console.log('tap user ', user?.UID, user?.Email);
+        tap(user => {
           if (!!user) {
-            this.saveUserInStore(user);
+            this.store.dispatch(addUserAction({ payload: user }));
           }
-          return user;
         })
+      );
+  }
 
+  private updateEmailIfNotUpdated(user: User): Observable<User> {
+    return this.getUser(user.UID)
+      .pipe(
+        take(1),
+        switchMap(dbUser => {
+          if (!!dbUser && !dbUser.IsEmailVerified) {
+            dbUser.IsEmailVerified = true;
+            return this.db.updateUser(dbUser);
+          }
+          return of(true);
+        }),
+        switchMap(isUpdated => isUpdated ? this.db.fetchUser(user.UID) : of(user))
+      );
+  }
+
+  private loginAsAnonymous(): Observable<User> {
+    console.log('Goiong Anonymous.. since no auth-user found');
+    return from(firebase.auth().signInAnonymously())
+      .pipe(map(credentials => this.transformService.transformUser(credentials.user)));
+
+
+  }
+
+  loginWithGoogle(): Observable<User> {
+    const provider = new firebase.auth.GoogleAuthProvider();
+    provider.addScope('profile');
+    provider.addScope('email');
+    return from(this.angularFireAuth.auth.signInWithPopup(provider))
+      .pipe(
+        map(credential => this.transformService.transformUser(credential.user)),
+        tap(user => this.saveUser(user))
       );
   }
 
 
-  loginAsAnonymous() {
-    console.log('Goiong Anonymous.. since no auth-user found');
-    return firebase.auth().signInAnonymously();
-
-  }
-
-  loginWithGoogle() {
-
-    return new Promise(async (resolve, reject) => {
-      try {
-        const provider = new firebase.auth.GoogleAuthProvider();
-        provider.addScope('profile');
-        provider.addScope('email');
-        const authCredentials = await this.angularFireAuth.auth.signInWithPopup(provider);
-        console.log('google login authcredentials ->', authCredentials);
-        const authUser = this.transformService.transformUser(authCredentials.user);
-        await this.saveUserInDb(authUser);
-        this.saveUserInStore(authUser);
-        resolve(authCredentials);
-      } catch (e) {
-        reject(e);
-      }
-    });
-  }
-
-
-
   loginWithUserPass(value: { email: string, password: string }) {
-    return firebase.auth().signInWithEmailAndPassword(value.email, value.password);
+    return from(firebase.auth().signInWithEmailAndPassword(value.email, value.password));
 
   }
 
-  registerUser(value: { email: string, password: string }) {
-    return new Promise(async (resolve, reject) => {
-      try {
-        const credentials = firebase.auth.EmailAuthProvider.credential(value.email, value.password);
-        const authCredentials = await firebase.auth().currentUser.linkWithCredential(credentials);
-        console.log('user upgraded after registeration ', authCredentials);
-        const authUser = this.transformService.transformUser(authCredentials.user);
-        await this.db.saveUser(authUser);
-        this.saveUserInStore(authUser);
-        resolve(authCredentials);
-      } catch (e) {
-        reject(e);
-      }
-
-    });
+  registerUser(value: { email: string, password: string }): Observable<User> {
+    const credentials = firebase.auth.EmailAuthProvider.credential(value.email, value.password);
+    return from(firebase.auth().currentUser.linkWithCredential(credentials))
+      .pipe(
+        map(credential => this.transformService.transformUser(credential.user)),
+        tap(user => this.saveUser(user))
+      );
   }
 
-  async verifyEmail(): Promise<void> {
-    return new Promise(async (resolve, reject) => {
-      try {
-        const user = firebase.auth().currentUser;
-        console.log('current loggedin User = ', user.uid, user.email, user.emailVerified);
-        await user.sendEmailVerification();
-        console.log('verification success');
-        resolve();
-      } catch (error) {
-        console.error('email verify errored', error);
-        reject(error);
-      }
-
-    });
-  }
-
-  async resetPassword(email: string): Promise<void> {
-    return new Promise(async (resolve, reject) => {
-      try {
-        var auth = firebase.auth();
-        await auth.sendPasswordResetEmail(email);
-        resolve();
-      } catch (error) {
-        console.log('error happened while password reset', error);
-        reject(error);
-      }
-    });
-
-  }
-
-  logOut(): Promise<void> {
-    return new Promise((resolve, reject) => {
-      firebase.auth().signOut()
-        .then(() => {
-          this.deleteUserFromStore();
-          resolve();
+  verifyEmail(): Observable<boolean> {
+    return toObservable(firebase.auth().currentUser.sendEmailVerification())
+      .pipe(
+        tap(isOK => {
+          if (isOK) {
+            this.toastService.success(labels.emailVerification, 'envelope-open-text');
+          }
+        }),
+        catchError(error => {
+          this.toastService.failure(labels.emailVerificationFailed, 'envelope-open-text');
+          return of(error);
         })
-        .catch(() => reject())
-    });
-
+      );
   }
 
-  async syncUser(user: firebase.User): Promise<User> {
-    return new Promise(async (resolve, reject) => {
-      try {
-        const authUser = this.transformService.transformUser(user);
-        console.log('authuser found = ', authUser);
-        await this.db.saveUser(authUser);
-        console.log('db save done - sync in local store');
-        this.saveUserInStore(authUser);
-        console.log('sync in local store done');
-        resolve(authUser);
-      } catch (e) {
-        console.log('error in syncuser -> ', e);
-        reject(e);
-      }
-
-
-    });
+  resetPassword(email: string): Observable<boolean> {
+    return toObservable(firebase.auth().sendPasswordResetEmail(email))
+      .pipe(
+        tap(isOK => {
+          if (isOK) {
+            this.toastService.success(labels.passwordReset, 'unlock-alt')
+          }
+        }),
+        catchError(error => {
+          this.toastService.failure(labels.passwordReset, 'unlock-alt')
+          return of(error);
+        })
+      )
   }
 
-  getUser(id:string){
+  logOut(): Observable<boolean> {
+    console.log("isSuccess called");
+    return toObservable(firebase.auth().signOut())
+      .pipe(
+        tap(isOK => {
+          console.log("logout success ", isOK);
+          if (isOK) {
+            this.toastService.success(labels.logoutSuccess, 'sign-out-alt');
+            this.deleteUserFromStore();
+          }
+        }),
+        catchError(e => {
+          this.toastService.failure(labels.logoutFail);
+          return of(e);
+        })
+      );
+  }
+
+  getUser(id: string): Observable<User> {
     return this.db.fetchUser(id);
   }
 
-  getUserByEmail(value: { email: string }) {
+  getUserByEmail(value: { email: string }): Observable<User[]> {
     return this.db.fetchUserByEmail(value.email)
       .pipe(take(1));
   }
 
-  saveUserInStore(user: User) {
-    this.store.dispatch(addUserAction({ payload: user }));
-  }
-  saveUserInDb(user: User) {
-    return this.db.saveUser(user);
+  saveUser(user: User) {
+    return this.db.saveUser(user)
+      .pipe(
+        tap(isOK => {
+          if (isOK) {
+            this.store.dispatch(addUserAction({ payload: user }));
+          }
+        }),
+        catchError(error => of(error))
+      );
   }
 
-  updateUserInDb(user: User) {
-    return this.db.updateUser(user);
+
+  updateUser(user: User): Observable<boolean> {
+    return this.db.updateUser(user)
+      .pipe(
+        tap(isOK => {
+          if (isOK) {
+            this.store.dispatch(addUserAction({ payload: user }));
+            this.toastService.success(labels.profileUpdateSuccess, 'user');
+          }
+        }),
+        catchError(error => {
+          this.toastService.failure(labels.profileUpdateSuccess, 'fasUser');
+          return of(error);
+        })
+      );
   }
 
   deleteUserFromStore() {

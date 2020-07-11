@@ -1,10 +1,11 @@
-import { Component, OnInit, Input, AfterViewInit, ViewChild, ElementRef, TemplateRef } from '@angular/core';
+import { Component, OnInit, Input, AfterViewInit, ViewChild, ElementRef, TemplateRef, OnDestroy } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthModalService } from '../../auth-modal/auth-modal.service';
 import { AuthMessages } from '../../../../util/app.labels';
 import { SubSink } from 'subsink';
 import { AuthService } from '../../auth.service';
 import { ToastService, toastType } from 'src/app/modules/shared/toasts/toast.service';
+import { catchError } from 'rxjs/operators';
 
 
 @Component({
@@ -12,7 +13,7 @@ import { ToastService, toastType } from 'src/app/modules/shared/toasts/toast.ser
   templateUrl: './auth-login.component.html',
   styleUrls: ['./auth-login.component.scss']
 })
-export class AuthLoginComponent implements OnInit, AfterViewInit {
+export class AuthLoginComponent implements OnInit, AfterViewInit, OnDestroy {
   authMessages = AuthMessages;
   labels = AuthMessages.authAnchorLabels;
 
@@ -72,44 +73,46 @@ export class AuthLoginComponent implements OnInit, AfterViewInit {
   }
 
   login() {
-    console.log('login onsubmit = ', this.loginForm);
-    this.authService.loginWithUserPass(this.loginForm.value)
-      .then(resp => this.handleAuthSuccess(resp))
-      .catch(error => this.handleAuthFailure(error))
-      .finally(() => this.handleAuthFinalize());
+    this.subs.sink = this.authService.loginWithUserPass(this.loginForm.value)
+      .subscribe(
+        (user) => this.handleAuthSuccess(),
+        err => this.handleAuthFailure(err),
+        () => this.handleAuthFinalize()
+      );
   }
 
 
   loginWithGoogle() {
     this.isGoogleLoginInProgress = true;
-    this.authService.loginWithGoogle()
-      .then(response => this.handleAuthSuccess(response))
-      .catch(err => this.handleAuthFailure(err))
-      .finally(() => this.isGoogleLoginInProgress = false);
-
+    this.subs.sink = this.authService.loginWithGoogle()
+      .subscribe(
+        (user) => this.handleAuthSuccess(),
+        err => this.handleAuthFailure(err),
+        () => this.isGoogleLoginInProgress = false
+      );
   }
 
   register() {
-    this.authService.registerUser(this.loginForm.value)
-      .then(resp => this.handleAuthSuccess(resp))
-      .catch(error => this.handleAuthFailure(error))
-      .finally(() => this.handleAuthFinalize());
+    this.subs.sink = this.authService.registerUser(this.loginForm.value)
+      .subscribe(
+        (user) => this.handleAuthSuccess(),
+        err => this.handleAuthFailure(err),
+        () => this.handleAuthFinalize()
+      );
   }
 
   resetPassword() {
-    console.log('email  = ', this.loginForm.value.email);
     this.passResetProgress = true;
-    this.authService.resetPassword(this.loginForm.value.email)
-      .then(() => {
-        this.authModalService.dismissModal();
-        this.toastService.success(this.authMessages.passwordReset ,'unlock-alt')
-      })
-      .catch(error => this.toastService.failure(this.authMessages.passwordReset, 'unlock-alt'))
-      .finally(() => this.passResetProgress = false)
+    this.subs.sink = this.authService.resetPassword(this.loginForm.value.email)
+      .subscribe(
+        isSuccess => this.authModalService.dismissModal(),
+        error => { },
+        () => this.passResetProgress = false
+      );
   }
 
-  private handleAuthSuccess(response) {
-    console.log('handleAuthSuccess called', response);
+  private handleAuthSuccess() {
+
     this.isLoginSuccess = true;
     this.authModalService.dismissModal();
     this.toastService.success(this.authMessages.loginSuccess, 'user-lock');
@@ -118,6 +121,7 @@ export class AuthLoginComponent implements OnInit, AfterViewInit {
   private handleAuthFailure(error) {
     console.log('handleAuthFailure called', error);
     this.isLoginSuccess = false;
+    this.isLoginInProgress = false;
     this.setAlertMessage(error.code);
 
   }
@@ -134,6 +138,9 @@ export class AuthLoginComponent implements OnInit, AfterViewInit {
     this.isLoginSuccess = true;
   }
 
+  ngOnDestroy() {
+    this.subs.unsubscribe();
+  }
 
 
 }

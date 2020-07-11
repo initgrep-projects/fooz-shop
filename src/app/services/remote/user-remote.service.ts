@@ -6,6 +6,7 @@ import { map } from 'rxjs/operators';
 import { User } from 'src/app/models/user';
 import { USER_COLLECTION } from 'src/app/util/app.constants';
 import { ObjectTransformerService } from '../object-transformer.service';
+import { toObservable } from 'src/app/util/app.lib';
 
 @Injectable({
   providedIn: 'root'
@@ -51,33 +52,32 @@ export class UserRemoteService {
    * Save user in firebase db
    * @param user user object
    */
-  saveUser(user: User) {
-    console.log('saveUser called ->', classToPlain(user));
-    return this.userCollection.doc(user.UID).set(classToPlain(user));
+  saveUser(user: User): Observable<boolean> {
+    return toObservable(this.userCollection.doc(user.UID).set(classToPlain(user)));
   }
 
   /**
    * update the user in firebase
    * @param user the user Object
    */
-  updateUser(user: User) {
-    return this.userCollection.doc(user.UID).update(classToPlain(user));
+  updateUser(user: User): Observable<boolean> {
+    return toObservable(this.userCollection.doc(user.UID).update(classToPlain(user)));
   }
 
   /**
    *  make user inactive
    * @param id the user id
    */
-  deActivateUser(id: string) {
-    return this.userCollection.doc(id).update({ active: false });
+  deActivateUser(id: string): Observable<boolean> {
+    return toObservable(this.userCollection.doc(id).update({ active: false }));
   }
 
   /**
    * delete the user
    * @param id the user id
    */
-  deleteUser(id: string) {
-    return this.userCollection.doc(id).delete();
+  deleteUser(id: string): Observable<boolean> {
+    return toObservable(this.userCollection.doc(id).delete());
   }
 
   /** Auth operations END */

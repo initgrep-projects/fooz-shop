@@ -61,28 +61,21 @@ export class UserProfileEditComponent implements OnInit, OnDestroy {
     });
   }
 
-  async updateUserProfile({ email, name, phone }) {
-    try {
-      if (!!email && email !== this.authUser.Email) {
-        this.authUser.Email = email;
-        this.authUser.IsAnonymous = false;
-      }
-      if (!!phone) {
-        this.authUser.PhoneNumber = phone;
-      }
-      if (!!name) {
-        this.authUser.Name = name;
-      }
-      this.authService.saveUserInStore(this.authUser);
-      console.log('authuser = ', this.authUser);
-      await this.authService.updateUserInDb(this.authUser);
-      this.toastService.success(this.labels.profileUpdateSuccess, 'user');
-      this.router.navigate(['my/account/profile']);
+  updateUserProfile({ email, name, phone }) {
 
-    } catch (e) {
-      this.toastService.failure(this.labels.profileUpdateSuccess, 'fasUser');
+    if (!!email && email !== this.authUser.Email) {
+      this.authUser.Email = email;
+      this.authUser.IsAnonymous = false;
+    }
+    if (!!phone) {
+      this.authUser.PhoneNumber = phone;
+    }
+    if (!!name) {
+      this.authUser.Name = name;
     }
 
+    this.authService.updateUser(this.authUser)
+      .subscribe(isok => this.router.navigate(['my/account/profile']));
   }
 
   onPhoneChange(errors) {

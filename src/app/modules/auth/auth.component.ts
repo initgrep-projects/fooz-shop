@@ -18,7 +18,7 @@ export class AuthComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.subs.sink = 
-    this.authService.user$.subscribe();
+    this.authService.user$.subscribe(user => console.log("syncUser = ", user));
 
   }
 

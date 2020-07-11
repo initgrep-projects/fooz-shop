@@ -1,14 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
-import { mergeMap, switchMap, map, catchError } from 'rxjs/operators';
+import { catchError, map, mergeMap, switchMap } from 'rxjs/operators';
 import { AppErrorService } from 'src/app/services/app-error.service';
-import { FireStoreDbService } from 'src/app/services/firestore.db.service';
-import { LOAD_ADDRESSES_ACTION, LOAD_COUNTRIES_ACTION } from 'src/app/util/app.constants';
-import { AuthService } from '../../auth/auth.service';
-import { addAddressesAction, loadFailureInAccountAction, addCountriesAction } from './account.actions';
 import { GeoAddressService } from 'src/app/services/geo-address.service';
 import { AddressRemoteService } from 'src/app/services/remote/address-remote.service';
+import { LOAD_ADDRESSES_ACTION, LOAD_COUNTRIES_ACTION } from 'src/app/util/app.constants';
+import { AuthService } from '../../auth/auth.service';
+import { addAddressesAction, addCountriesAction, loadFailureInAccountAction } from './account.actions';
 
 
 @Injectable()

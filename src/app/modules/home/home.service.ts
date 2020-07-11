@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
-import { FireStoreDbService } from 'src/app/services/firestore.db.service';
-import { take, tap, map } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
+import { map } from 'rxjs/operators';
 import { AppState } from '../main/store/app.reducer';
-import { addLookBookItems, loadLookBookItems, loadLatestProducts, loadTrendItems } from './store/home.action';
+import { loadLatestProducts, loadLookBookItems, loadTrendItems } from './store/home.action';
 
 @Injectable({
   providedIn: 'root'

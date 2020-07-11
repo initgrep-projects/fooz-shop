@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { of } from 'rxjs';
 import { map, switchMap, take } from 'rxjs/operators';
-import { FireStoreDbService } from 'src/app/services/firestore.db.service';
+import { ProductRemoteService } from 'src/app/services/remote/product-remote.service';
 import { AppState } from '../main/store/app.reducer';
 import { loadCustomSizeInputs, loadMoreProducts, loadProducts } from './store/shop.actions';
 
@@ -15,7 +15,7 @@ export class ProductService {
 
   constructor(
     private store: Store<AppState>,
-    private fbDbService: FireStoreDbService) {
+    private fbDbService: ProductRemoteService) {
     this.store.dispatch(loadProducts());
     this.store.dispatch(loadCustomSizeInputs())
   }

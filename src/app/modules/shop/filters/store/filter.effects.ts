@@ -1,17 +1,17 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { FireStoreDbService } from 'src/app/services/firestore.db.service';
-import { LOAD_ALL_CATEGORY_ACTION, LOAD_ALL_SIZES_ACTION, LOAD_ALL_SORT_ORDERS_ACTION } from 'src/app/util/app.constants';
-import { mergeMap, map, catchError } from 'rxjs/operators';
-import { addAllCategoriesAction, loadFailureAtFilter, addAllSizesAction, addAllSortOrdersAction } from './filter.action';
-import { AppErrorService } from 'src/app/services/app-error.service';
 import { of } from 'rxjs';
+import { catchError, map, mergeMap } from 'rxjs/operators';
+import { AppErrorService } from 'src/app/services/app-error.service';
+import { ProductRemoteService } from 'src/app/services/remote/product-remote.service';
+import { LOAD_ALL_CATEGORY_ACTION, LOAD_ALL_SIZES_ACTION, LOAD_ALL_SORT_ORDERS_ACTION } from 'src/app/util/app.constants';
+import { addAllCategoriesAction, addAllSizesAction, addAllSortOrdersAction, loadFailureAtFilter } from './filter.action';
 
 @Injectable()
 export class FilterEffects {
     constructor(
         private action$: Actions,
-        private db: FireStoreDbService,
+        private db: ProductRemoteService,
         private errService: AppErrorService
     ) { }
 

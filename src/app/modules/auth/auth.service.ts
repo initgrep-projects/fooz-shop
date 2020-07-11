@@ -1,16 +1,14 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { map, switchMap, take, tap } from 'rxjs/operators';
-import { Observable, of } from 'rxjs';
-import * as firebase from 'firebase/app';
 import { Store } from '@ngrx/store';
-import { AppState } from '../main/store/app.reducer';
+import * as firebase from 'firebase/app';
+import { Observable, of } from 'rxjs';
+import { map, switchMap, take, tap } from 'rxjs/operators';
 import { User } from 'src/app/models/user';
-import { addUserAction, deleteUserAction } from './store/auth.actions';
 import { ObjectTransformerService } from 'src/app/services/object-transformer.service';
-import { FireStoreDbService } from 'src/app/services/firestore.db.service';
-import { async } from '@angular/core/testing';
-import { cloneDeep } from 'lodash';
+import { UserRemoteService } from 'src/app/services/remote/user-remote.service';
+import { AppState } from '../main/store/app.reducer';
+import { addUserAction, deleteUserAction } from './store/auth.actions';
 
 @Injectable({
   providedIn: 'root'
@@ -24,7 +22,7 @@ export class AuthService {
     private angularFireAuth: AngularFireAuth,
     private store: Store<AppState>,
     private transformService: ObjectTransformerService,
-    private db: FireStoreDbService
+    private db: UserRemoteService
   ) {
 
     window['logout'] = this.logOut;

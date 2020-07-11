@@ -21,9 +21,7 @@ export const environment = {
     countriesUrl: 'https://www.universal-tutorial.com/api/countries/',
     statesUrl: 'https://www.universal-tutorial.com/api/states/',
     cityUrl: 'https://www.universal-tutorial.com/api/cities/'
-
   }
-
 
 };
 

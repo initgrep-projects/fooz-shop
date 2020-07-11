@@ -3,30 +3,29 @@ import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/fire
 import { classToPlain } from 'class-transformer';
 import { Observable } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
-import { Category } from '../models/category';
-import { CustomSizeInput } from '../models/custom-size';
-import { Image } from '../models/image';
-import { LookBookItem } from '../models/lookbook';
-import { Product } from '../models/product';
-import { Size } from '../models/size';
-import { Sort } from '../models/Sort';
-import { User } from '../models/user';
+import { Category } from '../../models/category';
+import { CustomSizeInput } from '../../models/custom-size';
+import { Image } from '../../models/image';
+import { LookBookItem } from '../../models/lookbook';
+import { Product } from '../../models/product';
+import { Size } from '../../models/size';
+import { Sort } from '../../models/Sort';
 import {
   CATEGORY_COLLECTION,
   CUSTOM_SIZE_INPUT,
   LOOKBOOK_COLLECTION, PRODUCT_COLLECTION,
-  PRODUCT_PAGE_SIZE, SIZE_COLLECTION, SORT_COLLECTION, TREND_COLLECTION, USER_COLLECTION
-} from '../util/app.constants';
-import { generateGuid } from '../util/app.lib';
-import { FakedataService } from './fakedata.service';
-import { ObjectTransformerService } from './object-transformer.service';
+  PRODUCT_PAGE_SIZE, SIZE_COLLECTION, SORT_COLLECTION, TREND_COLLECTION
+} from '../../util/app.constants';
+import { generateGuid } from '../../util/app.lib';
+import { FakedataService } from '../fakedata.service';
+import { ObjectTransformerService } from '../object-transformer.service';
 
 
 
 @Injectable({
   providedIn: 'root'
 })
-export class FireStoreDbService {
+export class ProductRemoteService {
 
   lastTimeStamp = 0;
   pageSize = 2;
@@ -39,7 +38,7 @@ export class FireStoreDbService {
   private customSizeInputCollection: AngularFirestoreCollection<CustomSizeInput>;
   private sortCollection: AngularFirestoreCollection<Sort>;
   private trendCollection: AngularFirestoreCollection<Image>;
-  private userCollection: AngularFirestoreCollection<User>;
+ 
   
   private lookBookCollection: AngularFirestoreCollection<LookBookItem>;
 
@@ -51,14 +50,17 @@ export class FireStoreDbService {
 
 
     this.productCollection = this.db.collection<Product>(PRODUCT_COLLECTION);
+    this.lookBookCollection = this.db.collection<LookBookItem>(LOOKBOOK_COLLECTION);
+    this.trendCollection = this.db.collection<Image>(TREND_COLLECTION);
+    
+    /** To be removed to a different service later
+     * after we have a seperate admin dashboard
+     */
     this.categoryCollection = this.db.collection<Category>(CATEGORY_COLLECTION);
     this.sizeCollection = this.db.collection<Size>(SIZE_COLLECTION);
     this.customSizeInputCollection = this.db.collection<CustomSizeInput>(CUSTOM_SIZE_INPUT);
     this.sortCollection = this.db.collection<Sort>(SORT_COLLECTION);
-    this.trendCollection = this.db.collection<Image>(TREND_COLLECTION);
-    this.userCollection = this.db.collection<User>(USER_COLLECTION);
     
-    this.lookBookCollection = this.db.collection<LookBookItem>(LOOKBOOK_COLLECTION);
     this.bootstrapTestData();
   }
 
@@ -269,70 +271,6 @@ export class FireStoreDbService {
       );
   }
 
-  
-
-  /** Auth operations START */
-
-  fetchUser(id: string): Observable<User> {
-    return this.userCollection.doc(id).get()
-      .pipe(
-        map(querySnapShot => {
-          return this.objTransformer.transformUserFromDocumentData(querySnapShot.data());
-        })
-      );
-  }
-
-  fetchUserByEmail(email: string): Observable<User[]> {
-    return this.db.collection(USER_COLLECTION, ref =>
-      ref.where('email', '==', email)
-    )
-      .get()
-      .pipe(
-        map(querySnapShot => {
-          const users: User[] = [];
-          querySnapShot.forEach(doc => {
-            users.push(this.objTransformer.transformUserFromDocumentData(doc.data()));
-          });
-          return users;
-        })
-      );
-  }
-  /**
-   * Save user in firebase db
-   * @param user user object
-   */
-  saveUser(user: User) {
-    console.log('saveUser called ->', classToPlain(user));
-    return this.userCollection.doc(user.UID).set(classToPlain(user));
-  }
-
-  /**
-   * update the user in firebase
-   * @param user the user Object
-   */
-  updateUser(user: User) {
-    return this.userCollection.doc(user.UID).update(classToPlain(user));
-  }
-
-  /**
-   *  make user inactive
-   * @param id the user id
-   */
-  deActivateUser(id: string) {
-    return this.userCollection.doc(id).update({ active: false });
-  }
-
-  /**
-   * delete the user
-   * @param id the user id
-   */
-  deleteUser(id: string) {
-    return this.userCollection.doc(id).delete();
-  }
-
-  /** Auth operations END */
-
-
 
   /** Lookbook items */
 
@@ -357,19 +295,6 @@ export class FireStoreDbService {
 
   /**lookbookitems //end */
 
-  /**
-   *  template function to convert a promise<void> to promise<boolean>
-   * @param promisefn promise<void> type
-   */
-  private toObservable(promisefn: Promise<void>): Observable<boolean> {
-    return new Observable<boolean>(observer => {
-      promisefn
-        .then(() => {
-          observer.next(true);
-          observer.complete();
-        })
-        .catch(err => observer.error(err));
-    });
-  }
+
 
 }

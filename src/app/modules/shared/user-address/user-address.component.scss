@@ -1,14 +1,37 @@
-@import "../../../../../variables.scss";
+@import "../../../../variables.scss";
 
 div.card.app-user-address {
     font-family: $roboto-font-family;
     cursor: pointer;
     border-top: 1px solid #f0f0f0;
     box-shadow: 0 1px 10px 0 rgba(0, 0, 0, 0.1);
+
+    &.selected{
+        background-color: rgba(0,255,0,.1);
+        border:2px dashed  rgba(0,255,0,.1);
+        transition: background-color .6s ease-in-out, border .2s ease-in;
+    }
     div.card-body {
-        padding:1rem;
+        padding: 1rem;
+
+        ul.list-select {
+            list-style: none;
+            margin: 0;
+            padding: 0 .5rem 0 0 ;
+            li.list-select-item {
+                fa-icon.normal{
+                    color: $grey-text-color;
+                    &:hover{
+                        color: #333;
+                    }
+                }
+                fa-icon.selected{
+                    color: var(--green);
+                }
+               
+            }
+        }
         ul.list-group {
-           
             li.list-item {
                 list-style: none;
                 span.property {
@@ -27,21 +50,18 @@ div.card.app-user-address {
             }
         }
     }
-    div.card-footer{
+    div.card-footer {
         display: flex;
         // opacity: 0;
         justify-content: space-between;
         background-color: transparent;
+        @include animate(fadeIn, 1s);
 
-        a.card-link{
+        a.card-link {
             text-transform: uppercase;
-            font-size: .8rem;
-            letter-spacing: .045rem;
+            font-size: 0.8rem;
+            letter-spacing: 0.045rem;
             font-weight: 600;
         }
-
-
     }
-
-  
 }

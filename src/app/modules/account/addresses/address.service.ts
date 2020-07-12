@@ -9,13 +9,14 @@ import { AuthMessages } from 'src/app/util/app.labels';
 import { AppState } from '../../main/store/app.reducer';
 import { AlertService } from '../../shared/alert/alert.service';
 import { ToastService } from '../../shared/toasts/toast.service';
-import { addAddressAction, deleteAddressAction, loadAddressesAction, loadCountriesAction, updateAddressAction } from '../store/account.actions';
+import { addAddressAction, deleteAddressAction, loadAddressesAction, loadCountriesAction, updateAddressAction, addSelectedAddressAction, loadSelectedAddressAction } from '../store/account.actions';
 @Injectable({
   providedIn: 'root'
 })
 export class AddressService {
   labels = AuthMessages;
   addresses$ = this.store.select('account').pipe(map(state => state.addresses));
+  selectedAddress$ = this.store.select('account').pipe(map(state => state.selectedAddress));
   countries$ = this.store.select('account').pipe(map(state => state.countries));
 
   constructor(
@@ -24,17 +25,18 @@ export class AddressService {
     private alertService: AlertService,
     private store: Store<AppState>
   ) {
+    this.store.dispatch(loadSelectedAddressAction());
     this.store.dispatch(loadAddressesAction());
     this.store.dispatch(loadCountriesAction());
   }
 
 
 
-  saveAddress(address: Address){
-      return this.db.saveAddress(address)
+  saveAddress(address: Address) {
+    return this.db.saveAddress(address)
       .pipe(
         tap(isOK => {
-          if(isOK){
+          if (isOK) {
             this.store.dispatch(addAddressAction({ payload: address }));
             this.toastService.success(this.labels.addressAddSuccess);
           }
@@ -44,6 +46,7 @@ export class AddressService {
           return of(error);
         }));
   }
+
 
   updateAddress(address: Address) {
     return this.db.updateAddress(address)
@@ -90,6 +93,20 @@ export class AddressService {
           }
           return null;
         }));
+  }
+
+  saveSelectedAddress(add: Address) {
+    console.log('saveSelectedAddress called');
+    this.selectedAddress$
+    .pipe(
+      switchMap(address => this.db.deleteSelectedAddress(address.Id)),
+      switchMap(isOK =>  this.db.saveSelectedAddress(add)),
+      tap(isOK => {
+        console.log('save selected address ', isOK);
+        if (isOK) {
+          this.store.dispatch(addSelectedAddressAction({ payload: add }));
+        }
+      }));
   }
 
 

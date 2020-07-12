@@ -12,7 +12,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { UserProfileComponent } from './profile/user-profile/user-profile.component';
 import { UserProfileEditComponent } from './profile/user-profile-edit/user-profile-edit.component';
 import { UserAddressEditComponent } from './addresses/user-address-edit/user-address-edit.component';
-import { UserAddressComponent } from './addresses/user-address/user-address.component';
 import { NgbTypeaheadModule } from '@ng-bootstrap/ng-bootstrap';
 import { EffectsModule } from '@ngrx/effects';
 import { AccountEffects } from './store/account.effects';
@@ -29,7 +28,6 @@ import { AccountEffects } from './store/account.effects';
     UserProfileEditComponent,
     UserProfileComponent,
     UserAddressEditComponent,
-    UserAddressComponent
   ],
   imports: [
     CommonModule,

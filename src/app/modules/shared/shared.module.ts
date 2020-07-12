@@ -24,6 +24,7 @@ import { MatfocusDirective } from './directives/matfocus.directive';
 import { ClearInputDirective } from './directives/clear-input.directive';
 import { CardItemComponent } from './card-item/card-item.component';
 import { StatusComponent } from './status/status.component';
+import { UserAddressComponent } from './user-address/user-address.component';
 
 
 @NgModule({
@@ -48,7 +49,8 @@ import { StatusComponent } from './status/status.component';
     MatfocusDirective,
     ClearInputDirective,
     CardItemComponent,
-    StatusComponent
+    StatusComponent,
+    UserAddressComponent
   ],
   imports: [
     CommonModule,
@@ -76,7 +78,8 @@ import { StatusComponent } from './status/status.component';
     MatfocusDirective,
     ClearInputDirective,
     CardItemComponent,
-    StatusComponent
+    StatusComponent,
+    UserAddressComponent
   ]
 })
 export class SharedModule { }

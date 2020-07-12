@@ -1,36 +1,34 @@
 <div class="app-cart-view"
      *ngIf="cartService.cart$ | async as cart">
     <div class="cart-view-header">
-        <div class="row">
-            <div class="col-12">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="head-wrapper">
-                            <h6>{{labels.reviewCart}}</h6>
-                            <h6>{{labels.totalItems}} -  <span class="badge badge-dark">{{cart.length}}</span> </h6>
-                        </div>
-                    </div>
+
+        <div class="card">
+            <div class="card-body">
+                <div class="head-wrapper">
+                    <h6>{{labels.reviewCart}}</h6>
+                    <h6>{{labels.totalItems}} - <span class="badge badge-dark">{{cart.length}}</span> </h6>
                 </div>
             </div>
         </div>
+
     </div>
     <div class=" cart-view-body">
-        <div class="row">
-            <div class="col-12 py-2"
-                 *ngFor="let item of cart">
-                <app-cart-item [item]="item"
-                               (itemDelete)="removeItem($event)"
-                               (quantityChange)="updateCartItem($event)"></app-cart-item>
-            </div>
+
+        <div class=" py-2"
+             *ngFor="let item of cart">
+            <app-cart-item [item]="item"
+                           (itemDelete)="removeItem($event)"
+                           (quantityChange)="updateCartItem($event)"></app-cart-item>
         </div>
+
     </div>
     <div class="cart-view-footer">
-        <div class="row">
-            <div class="col-12">
-                <div class="cart-view-controls">
-                    <button class="btn btn-dark m-2">{{labels.orderButtonLabel}}</button>
-                </div>
-            </div>
+
+        <div class="cart-view-controls">
+            <a class="btn btn-dark m-2"
+            [routerLink]="['../address']"
+            >{{labels.orderButtonLabel}}</a>
         </div>
     </div>
+
 </div>

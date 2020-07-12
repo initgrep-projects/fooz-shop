@@ -1,7 +1,5 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Address } from 'src/app/models/address';
-import { AddressService } from '../address.service';
-import { ToastService } from 'src/app/modules/shared/toasts/toast.service';
 import { AuthMessages } from 'src/app/util/app.labels';
 
 
@@ -19,24 +17,36 @@ export class UserAddressComponent implements OnInit {
   @Input() enableSelect = false;
   @Input() enableDelete = false;
   @Input() enableEdit = false;
+  @Input() isSelected = false;
+  isClicked = false;
 
   @Output() delete = new EventEmitter<Address>();
   @Output() select = new EventEmitter<Address>();
 
-  constructor(
-    private addressService: AddressService,
-    private toastService: ToastService
-  ) { }
 
-  ngOnInit(): void {
-  }
+
+  constructor() { }
+
+  ngOnInit(): void { }
+
+
 
   deleteAddress() {
     this.delete.emit(this.address);
   }
 
-  selectAddress() {
-    this.select.emit(this.address);
+  clicked() {
+    this.isClicked = !this.isClicked;
+    this.selectAddress();
+  }
+
+  private selectAddress() {
+    if (this.enableSelect) {
+      if (!this.isSelected) {
+        this.isSelected = true;
+        this.select.emit(this.address);
+      }
+    }
   }
 
 

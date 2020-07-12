@@ -17,6 +17,7 @@ import { HomeComponent } from '../modules/home/home.component';
 import { ItemDetailComponent } from '../modules/shop/items/item-detail/item-detail.component';
 import { ProductResolver } from '../modules/shop/product-resolver.service';
 import { ShopComponent } from '../modules/shop/shop.component';
+import { AddressViewComponent } from '../modules/checkout/address-view/address-view.component';
 
 export const checkoutRoutes: Routes = [
   {
@@ -30,7 +31,7 @@ export const checkoutRoutes: Routes = [
       },
       {
         path: 'address',
-        component: AddressesComponent
+        component: AddressViewComponent
         
       },
       {

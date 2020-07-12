@@ -64,7 +64,10 @@ import {
   faShieldAlt,
   faPencilAlt
 } from '@fortawesome/free-solid-svg-icons';
-import { faUser as farUser } from '@fortawesome/free-regular-svg-icons';
+import { 
+  faUser as farUser,
+  faCircle as farCircle,
+ } from '@fortawesome/free-regular-svg-icons';
 import { faGoogle, faCcVisa, faCcAmex, faCcMastercard, faCcPaypal } from '@fortawesome/free-brands-svg-icons';
 
 @Injectable({
@@ -144,7 +147,8 @@ export class IconService {
       faCcMastercard,
       faCcPaypal,
       faShieldAlt,
-      faPencilAlt
+      faPencilAlt,
+      farCircle
     ];
   }
 

@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { fadeIn } from 'src/app/animations/fadeAnimation';
 import { Address } from 'src/app/models/address';
 import { AuthMessages } from 'src/app/util/app.labels';
 import { AddressService } from './address.service';
+import { SubSink } from 'subsink';
 
 @Component({
   selector: 'app-addresses',
@@ -14,15 +15,16 @@ import { AddressService } from './address.service';
   ]
 })
 export class AddressesComponent implements OnInit {
+  private subs = new SubSink();
   labels = AuthMessages;
   addresses: Address[];
-
+  
   constructor(
     public addressService: AddressService,
     private router: Router,
   ) { }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {}
 
   routeToNewAddress() {
     this.router.navigate(['my/account/address/new']);

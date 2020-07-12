@@ -1,0 +1,48 @@
+<div class="card app-user-address my-1" (click)="clicked()"
+[ngClass] = "{'selected': isSelected}"
+>
+    <div class="card-body">
+        <div class="d-flex flex-row" >
+            <ul class="list-select"  *ngIf="!!enableSelect">
+                <li class="list-select-item">
+                    <fa-icon class="normal"
+                             [icon]="['far','circle']"
+                             *ngIf="!isSelected"></fa-icon>
+                    <fa-icon class="selected"
+                             icon="check-circle"
+                             *ngIf="isSelected"></fa-icon>
+                </li>
+            </ul>
+            <ul class="list-group">
+                <li class="list-item">
+                    <span class="property name">{{address.Name}}</span>
+                </li>
+                <li class="list-item">
+                    <span class="street property">{{address.Street}}</span>
+                </li>
+                <li class="list-item">
+                    <span class="property">
+                        {{address.City}}-{{address.ZipCode}}
+                    </span>
+                </li>
+                <li class="list-item">
+                    <span class="property">{{address.State}}, {{address.Country}}</span>
+                </li>
+                <li class="list-item">
+                    <label for="phone">Phone:</label>
+                    <span class="phone property">{{address.Phone}}</span>
+                </li>
+            </ul>
+
+
+        </div>
+    </div>
+    <div class="card-footer" *ngIf="isClicked  || isSelected">
+        <a [routerLink]="['/my/account/address/edit', address.Id]"
+           *ngIf="!!enableEdit"
+           class="card-link btn btn-light">{{labels.editAddress}}</a>
+        <a class="card-link btn btn-light"
+           *ngIf="!!enableDelete"
+           (click)="deleteAddress()">{{labels.removeAddress}}</a>
+    </div>
+</div>

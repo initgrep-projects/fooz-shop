@@ -1,3 +1,5 @@
+import { add, isNull } from 'lodash';
+
 export class Address {
     constructor(
         private id: string,
@@ -47,4 +49,20 @@ export class Address {
 
     get CreatedDate() { return this.createdDate; }
     set CreatedDate(t: number) { this.createdDate = t; }
+
+    equals(ad: Address) {
+        if (isNull(ad) || isNull(this)) {
+            return false;
+        }
+        return this.Id === ad.Id
+            && this.UserId === ad.UserId
+            && this.Name === ad.Name
+            && this.Phone === ad.Phone
+            && this.Street === ad.Street
+            && this.Country === ad.Country
+            && this.State === ad.State
+            && this.City === ad.City
+            && this.ZipCode === ad.ZipCode;
+
+    }
 }

@@ -26,7 +26,6 @@ div.app-cart-view {
     }
 
     div.cart-view-footer {
-        font-family: $roboto-font-family;
         position: sticky;
         position: -webkit-sticky;
         bottom: 0px;
@@ -36,12 +35,13 @@ div.app-cart-view {
         div.cart-view-controls {
             display: flex;
             justify-content: right;
-            button {
+            a {
                 font-size: 0.8rem;
                 font-weight: 600;
                 letter-spacing: 0.06rem;
                 text-transform: uppercase;
                 padding: 1rem 3rem;
+                color: $secondary-text-color;
             }
         }
     }

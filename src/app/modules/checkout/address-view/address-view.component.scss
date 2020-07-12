@@ -1,0 +1,62 @@
+@import "../../../../variables.scss";
+
+div.app-address-view {
+    font-family: $roboto-font-family;
+    div.address-view-header {
+        div.head-wrapper {
+            display: flex;
+            justify-content: space-between;
+
+            h6 {
+                text-transform: capitalize;
+                letter-spacing: 0.025rem;
+                // font-weight: 600;
+            }
+            a {
+                font-size: 0.8rem;
+                span {
+                    margin-left: 0.5rem;
+                    text-transform: uppercase;
+                    font-weight: 600;
+                }
+            }
+        }
+    }
+
+    div.address-view-body {
+        div.selected-ad-wrapper{
+            @include animate();
+        }
+        div.selected-ad-wrapper,
+        div.other-ad-wrapper {
+            label {
+                color: var(--secondary);
+                text-transform: uppercase;
+                font-size: 0.8rem;
+                letter-spacing: 0.08rem;
+                font-weight: 600;
+                margin-left: 1rem;
+            }
+        }
+    }
+    div.address-view-footer {
+        position: sticky;
+        position: -webkit-sticky;
+        bottom: 0px;
+        background-color: #fff;
+        border-top: 1px solid #f0f0f0;
+        box-shadow: 0 -2px 10px 0 rgba(0, 0, 0, 0.1);
+        div.address-view-controls {
+            display: flex;
+            justify-content: right;
+            a {
+                font-size: 0.8rem;
+                font-weight: 600;
+                letter-spacing: 0.06rem;
+                text-transform: uppercase;
+                padding: 1rem 3rem;
+                color: $secondary-text-color;
+            }
+        }
+    }
+}

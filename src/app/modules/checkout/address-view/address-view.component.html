@@ -1,0 +1,46 @@
+<div class="app-address-view"
+     *ngIf="addService.addresses$ |async as addresses">
+    <div class="address-view-header">
+        <div class="card">
+            <div class="card-body">
+                <div class="head-wrapper">
+                    <h6>select shipping Address </h6>
+                    <a class="btn btn-sm btn-light"
+                       [routerLink]="['/my/account/address/new']">
+                        <fa-icon icon="plus"></fa-icon>
+                        <span>{{labels.addAddress}}</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="address-view-body">
+        <div class=" selected-ad-wrapper py-2" 
+             *ngIf="!!selectedAddress">
+            <label>Selected address</label>
+            <app-user-address [address]="selectedAddress"
+                              [enableEdit]="true"
+                              [enableSelect]="true"
+                              [isSelected]="true"></app-user-address>
+        </div>
+
+        <div class=" other-ad-wrapper py-2" [@staggerFadeIn]="addresses.length">
+            <label>Other address</label>
+            <div *ngFor="let address of addresses" >
+                <app-user-address 
+                                  [address]="address"
+                                  [enableEdit]="true"
+                                  [enableSelect]="true"
+                                  (select)="addService.saveSelectedAddress($event)"></app-user-address>
+            </div>
+
+
+        </div>
+    </div>
+    <div class="address-view-footer">
+        <div class="address-view-controls">
+            <a class="btn btn-dark m-2">CONTINUE</a>
+        </div>
+    </div>
+</div>

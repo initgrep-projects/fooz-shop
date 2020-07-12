@@ -1,7 +1,7 @@
 <ul class="list-group list-group-flush"
     *ngIf=" !authUser?.IsAnonymous">
     <li class="list-group-item">
-        <button class="btn btn-outline-dark btn-sm"
+        <button class="btn btn-dark btn-sm"
            (click)="logOut()">
             {{labels.signout}}
         </button>

@@ -142,22 +142,16 @@ export class AuthService {
       )
   }
 
-  logOut(): Observable<boolean> {
-    console.log("isSuccess called");
-    return toObservable(firebase.auth().signOut())
-      .pipe(
-        tap(isOK => {
-          console.log("logout success ", isOK);
-          if (isOK) {
-            this.toastService.success(labels.logoutSuccess, 'sign-out-alt');
-            this.deleteUserFromStore();
-          }
-        }),
-        catchError(e => {
-          this.toastService.failure(labels.logoutFail);
-          return of(e);
-        })
-      );
+  async logOut() {
+    console.log("logout called");
+    try {
+      await firebase.auth().signOut();
+      this.toastService.success(labels.logoutSuccess, 'sign-out-alt');
+      this.deleteUserFromStore();
+    }
+    catch (e) {
+      return this.toastService.failure(labels.logoutFail);
+    }
   }
 
   getUser(id: string): Observable<User> {

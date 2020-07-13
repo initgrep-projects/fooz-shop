@@ -5,9 +5,9 @@ import { catchError, map, mergeMap, switchMap } from 'rxjs/operators';
 import { AppErrorService } from 'src/app/services/app-error.service';
 import { GeoAddressService } from 'src/app/services/geo-address.service';
 import { AddressRemoteService } from 'src/app/services/remote/address-remote.service';
-import { LOAD_ADDRESSES_ACTION, LOAD_COUNTRIES_ACTION, LOAD_SELECTED_ADDRESS_ACTION } from 'src/app/util/app.constants';
+import { LOAD_ADDRESSES_ACTION, LOAD_COUNTRIES_ACTION } from 'src/app/util/app.constants';
 import { AuthService } from '../../auth/auth.service';
-import { addAddressesAction, addCountriesAction, loadFailureInAccountAction, addSelectedAddressAction } from './account.actions';
+import { addAddressesAction, addCountriesAction, loadFailureInAccountAction } from './account.actions';
 
 
 @Injectable()
@@ -33,19 +33,7 @@ export class AccountEffects {
                     ))
         ));
 
-    loadSelectedAddress = createEffect(() =>
-        this.action$.pipe(
-            ofType(LOAD_SELECTED_ADDRESS_ACTION),
-            mergeMap(() =>
-                this.auth.userFromStore$
-                    .pipe(
-                        switchMap(user => !!user ? this.db.getSelectedAddress(user.UID) : of(null)),
-                        map(ad => addSelectedAddressAction({ payload: ad })),
-                        catchError(() => of(loadFailureInAccountAction({ error: this.err.dataFetchError() })))
-                    )
-            )
-        )
-    );
+  
 
     loadCountries$ = createEffect(() =>
         this.action$.pipe(

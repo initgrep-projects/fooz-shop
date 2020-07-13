@@ -1,22 +1,22 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { isEmpty } from 'lodash';
-import { Observable, of } from 'rxjs';
-import { catchError, map, switchMap, take, tap } from 'rxjs/operators';
+import { isEmpty, clone } from 'lodash';
+import { Observable, of, merge } from 'rxjs';
+import { catchError, map, switchMap, take, tap, mergeMap } from 'rxjs/operators';
 import { Address } from 'src/app/models/address';
 import { AddressRemoteService } from 'src/app/services/remote/address-remote.service';
 import { AuthMessages } from 'src/app/util/app.labels';
 import { AppState } from '../../main/store/app.reducer';
 import { AlertService } from '../../shared/alert/alert.service';
 import { ToastService } from '../../shared/toasts/toast.service';
-import { addAddressAction, deleteAddressAction, loadAddressesAction, loadCountriesAction, updateAddressAction, addSelectedAddressAction, loadSelectedAddressAction } from '../store/account.actions';
+import { addAddressAction, deleteAddressAction, loadAddressesAction, loadCountriesAction, updateAddressAction } from '../store/account.actions';
 @Injectable({
   providedIn: 'root'
 })
 export class AddressService {
   labels = AuthMessages;
   addresses$ = this.store.select('account').pipe(map(state => state.addresses));
-  selectedAddress$ = this.store.select('account').pipe(map(state => state.selectedAddress));
+  selectedAddress$ = this.addresses$.pipe(map(ads => !ads ? null : ads.find(ad => ad.IsSelected)));
   countries$ = this.store.select('account').pipe(map(state => state.countries));
 
   constructor(
@@ -25,7 +25,6 @@ export class AddressService {
     private alertService: AlertService,
     private store: Store<AppState>
   ) {
-    this.store.dispatch(loadSelectedAddressAction());
     this.store.dispatch(loadAddressesAction());
     this.store.dispatch(loadCountriesAction());
   }
@@ -95,20 +94,30 @@ export class AddressService {
         }));
   }
 
-  saveSelectedAddress(add: Address) {
-    console.log('saveSelectedAddress called');
-    this.selectedAddress$
-    .pipe(
-      switchMap(address => this.db.deleteSelectedAddress(address.Id)),
-      switchMap(isOK =>  this.db.saveSelectedAddress(add)),
-      tap(isOK => {
-        console.log('save selected address ', isOK);
-        if (isOK) {
-          this.store.dispatch(addSelectedAddressAction({ payload: add }));
+  updateSelection(param: Address) {
+    return this.addresses$.pipe(
+      take(1),
+      map(addresses => this.toggleSelections(addresses, param)),
+      switchMap(updatedList => {
+        return this.db.updateAddressSelection(updatedList);
+      }),
+      tap(ok => {
+        if (ok) {
+          this.store.dispatch(loadAddressesAction());
         }
-      }));
+      }),
+
+      catchError(err => of(err))
+    );
   }
 
+  private toggleSelections(allAddress: Address[], selected: Address) {
+    return allAddress.map(ad => {
+      const a = clone(ad);
+      a.IsSelected = ad.equals(selected) ? true : false;
+      return a;
+    });
+  }
 
 }
 

@@ -1,5 +1,5 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Router, NavigationEnd } from '@angular/router';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { NavigationEnd, Router } from '@angular/router';
 import { SubSink } from 'subsink';
 
 @Component({
@@ -8,14 +8,14 @@ import { SubSink } from 'subsink';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit, OnDestroy {
+  private subs = new SubSink();
 
   title = 'foozshop';
-  subs = new SubSink();
   appLoaded = false;
 
   constructor(
-    private router: Router, 
-    ) { }
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
     this.scrollTopOnRouterChange();
@@ -23,7 +23,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
 
   scrollTopOnRouterChange() {
-    this.subs.sink = 
+    this.subs.sink =
       this.router.events.subscribe((event) => {
         if (!(event instanceof NavigationEnd)) {
           return;
@@ -32,7 +32,7 @@ export class AppComponent implements OnInit, OnDestroy {
       });
   }
 
-  onload(){
+  onload() {
     this.appLoaded = true;
   }
 

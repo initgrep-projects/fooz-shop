@@ -209,24 +209,26 @@ export class ObjectTransformerService {
     if (!param) {
       return null;
     }
-    return new Address(param.id,param.userId, param.name, param.phone, param.street, param.country, param.state, param.city, param.zipcode, param.createdDate);
+    return new Address(param.id, param.userId, param.name, param.phone,
+      param.street, param.country, param.state, param.city, param.zipcode, param.isSelected, param.createdDate);
   }
 
   /** use to for saving data from ui to db */
   transformAddress(param: {
-    id:string,
+    id: string,
     userId: string, city: string, country: string,
     name: string, phone: string, state: string,
-    street: string, zipcode: string
+    street: string, zipcode: string, isSelected: boolean
   }) {
     if (!param) {
       return null;
     }
-    return new Address(param.id, param.userId, param.name, param.phone, param.street, param.country, param.state, param.city, param.zipcode);
+    return new Address(param.id, param.userId, param.name, param.phone,
+      param.street, param.country, param.state, param.city, param.zipcode, param.isSelected);
   }
 
 
-  transformLookBookItem(param: DocumentData){
+  transformLookBookItem(param: DocumentData) {
     return new LookBookItem(this.transformImage(param.image), param.label);
   }
 

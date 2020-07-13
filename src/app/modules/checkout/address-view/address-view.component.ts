@@ -1,9 +1,10 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { AddressService } from '../../account/addresses/address.service';
+import { DOCUMENT } from '@angular/common';
+import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
+import { staggerFadeIn } from 'src/app/animations/fadeAnimation';
 import { Address } from 'src/app/models/address';
-import { SubSink } from 'subsink';
 import { AuthMessages } from 'src/app/util/app.labels';
-import { fadeIn, staggerFadeIn } from 'src/app/animations/fadeAnimation';
+import { SubSink } from 'subsink';
+import { AddressService } from '../../account/addresses/address.service';
 
 @Component({
   selector: 'app-address-view',
@@ -16,19 +17,27 @@ import { fadeIn, staggerFadeIn } from 'src/app/animations/fadeAnimation';
 export class AddressViewComponent implements OnInit, OnDestroy {
   private subs = new SubSink();
   labels = AuthMessages;
-  selectedAddress: Address;
-  constructor(public addService: AddressService) { }
+  constructor(public addService: AddressService,
+    @Inject(DOCUMENT) private document: Document
+  ) { }
 
-  ngOnInit(): void {
-    this.subs.sink = 
-    this.addService.selectedAddress$.subscribe(ad => {
-      console.log('selected address= ',ad);
-      this.selectedAddress = ad;
-    });
+  ngOnInit(): void {}
+
+  updateAddressSelection(address: Address) {
+    this.subs.sink = this.addService.updateSelection(address).subscribe(
+      () => {
+        this.document.body.scrollIntoView({
+          block: 'start',
+          behavior: 'smooth'
+        })
+      }
+    );
   }
 
   ngOnDestroy() {
     this.subs.unsubscribe();
   }
+
+
 
 }

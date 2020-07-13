@@ -11,12 +11,11 @@ export class Address {
         private state: string,
         private city: string,
         private zipcode: string,
-        private createdDate?: number
+        private isSelected: boolean = false,
+        private createdDate: number = new Date().getTime(),
+
     ) {
-        console.log('createdData for address = ', this.createdDate);
-        if (!this.createdDate) {
-            this.createdDate = new Date().getTime();
-        }
+
     }
 
 
@@ -50,11 +49,15 @@ export class Address {
     get CreatedDate() { return this.createdDate; }
     set CreatedDate(t: number) { this.createdDate = t; }
 
+    get IsSelected() { return this.isSelected; }
+    set IsSelected(iss: boolean) { this.isSelected = iss; }
+
     equals(ad: Address) {
         if (isNull(ad) || isNull(this)) {
             return false;
         }
-        return this.Id === ad.Id
+        const isEqual =
+            this.Id === ad.Id
             && this.UserId === ad.UserId
             && this.Name === ad.Name
             && this.Phone === ad.Phone
@@ -62,7 +65,10 @@ export class Address {
             && this.Country === ad.Country
             && this.State === ad.State
             && this.City === ad.City
-            && this.ZipCode === ad.ZipCode;
+            && this.ZipCode === ad.ZipCode
+            && this.IsSelected === ad.IsSelected;
+        console.log('isEqual = ', isEqual);
+        return isEqual;
 
     }
 }

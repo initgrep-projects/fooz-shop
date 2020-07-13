@@ -1,20 +1,20 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { AuthMessages } from 'src/app/util/app.labels';
-import { GeoAddressService } from 'src/app/services/geo-address.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { cloneDeep } from 'lodash';
 import { Observable, of } from 'rxjs';
-import { distinctUntilChanged, tap, switchMap, catchError, map } from 'rxjs/operators';
-import { AuthService } from 'src/app/modules/auth/auth.service';
+import { catchError, distinctUntilChanged, map, switchMap, tap } from 'rxjs/operators';
+import { fadeIn } from 'src/app/animations/fadeAnimation';
+import { Address } from 'src/app/models/address';
 import { User } from 'src/app/models/user';
+import { AuthService } from 'src/app/modules/auth/auth.service';
+import { GeoAddressService } from 'src/app/services/geo-address.service';
+import { ObjectTransformerService } from 'src/app/services/object-transformer.service';
+import { AuthMessages } from 'src/app/util/app.labels';
+import { generateGuid, isMatched } from 'src/app/util/app.lib';
 import { SubSink } from 'subsink';
 import { AddressService } from '../address.service';
-import { Address } from 'src/app/models/address';
-import { ObjectTransformerService } from 'src/app/services/object-transformer.service';
-import { generateGuid, isMatched } from 'src/app/util/app.lib';
-import { ToastService, toastType } from 'src/app/modules/shared/toasts/toast.service';
-import { Router, ActivatedRoute } from '@angular/router';
-import { cloneDeep } from 'lodash';
-import { fadeIn } from 'src/app/animations/fadeAnimation';
+import { Location } from '@angular/common';
 
 
 
@@ -34,7 +34,8 @@ export class UserAddressEditComponent implements OnInit, OnDestroy {
     country: ['', Validators.required],
     state: ['', Validators.required],
     city: ['', Validators.required],
-    zipcode: ['', [Validators.required, Validators.pattern('^[0-9]{5,12}$')]]
+    zipcode: ['', [Validators.required, Validators.pattern('^[0-9]{5,12}$')]],
+    isSelected: [false]
 
   });
 
@@ -60,8 +61,8 @@ export class UserAddressEditComponent implements OnInit, OnDestroy {
     private authService: AuthService,
     private addressService: AddressService,
     private objTransformService: ObjectTransformerService,
-    private toastService: ToastService,
     private router: Router,
+    private location: Location,
     private activatedRoute: ActivatedRoute
   ) { }
 
@@ -89,7 +90,8 @@ export class UserAddressEditComponent implements OnInit, OnDestroy {
   patchAddressUser(user: User) {
     this.addressForm.patchValue({
       name: user.Name,
-      phone: user.PhoneNumber
+      phone: user.PhoneNumber,
+      isSelected: false
     });
   }
 
@@ -101,7 +103,8 @@ export class UserAddressEditComponent implements OnInit, OnDestroy {
       country: address.Country,
       state: address.State,
       city: address.City,
-      zipcode: address.ZipCode
+      zipcode: address.ZipCode,
+      isSelected: address.IsSelected
     });
   }
 
@@ -117,26 +120,28 @@ export class UserAddressEditComponent implements OnInit, OnDestroy {
 
   saveAddress() {
     this.saveProgress = true;
+    console.log('save address = ',this.addressForm.value);
     const address = this.objTransformService.transformAddress(this.addressForm.value);
     address.UserId = this.authUser.UID;
     address.Id = generateGuid();
 
     this.subs.sink = this.addressService.saveAddress(address)
       .subscribe(isSuccess => {
-        this.routeToAddresses();
         this.saveProgress = false;
+        this.location.back();
       });
   }
 
   updateAddress() {
     this.saveProgress = true;
+    console.log('update address = ',this.addressForm.value);
     const updatedAddress = this.objTransformService.transformAddress(this.addressForm.value);
     updatedAddress.Id = this.address.Id;
     updatedAddress.CreatedDate = this.address.CreatedDate;
     updatedAddress.UserId = this.address.UserId;
     this.subs.sink = this.addressService.updateAddress(updatedAddress)
       .subscribe((issuccess) => {
-        this.routeToAddresses();
+        this.location.back();
         this.saveProgress = false;
       });
   }

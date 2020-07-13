@@ -1,22 +1,20 @@
 import { Action, createReducer, on } from '@ngrx/store';
-import { clone, cloneDeep } from 'lodash';
+import { clone } from 'lodash';
 import { Address } from 'src/app/models/address';
 import { AppError } from 'src/app/models/app-error';
 import { Country } from 'src/app/services/geo-address.service';
-import { addAddressAction, addAddressesAction, addCountriesAction, addSelectedAddressAction, deleteAddressAction, loadFailureInAccountAction, updateAddressAction } from './account.actions';
+import { addAddressAction, addAddressesAction, addCountriesAction, deleteAddressAction, loadFailureInAccountAction, updateAddressAction } from './account.actions';
 
 
 
 export interface AccountState {
     addresses: Address[];
-    selectedAddress: Address;
     countries: Country[];
     error: AppError
 }
 
 export const initialState: AccountState = {
     addresses: null,
-    selectedAddress: null,
     countries: null,
     error: null
 };
@@ -44,10 +42,6 @@ const theReducer = createReducer(
         countries: !!payload ? [...payload] : null
     })),
 
-    on(addSelectedAddressAction, (currentState, { payload }) => ({
-        ...currentState,
-        selectedAddress: cloneDeep(payload)
-    })),
     on(loadFailureInAccountAction, (currentState, { error }) => ({
         ...currentState,
         error: clone(error)

@@ -9,7 +9,6 @@ export const CART_COLLECTION = 'cart';
 export const PRODUCT_PAGE_SIZE = 20;
 export const USER_COLLECTION = 'user';
 export const ADDRESS_COLLECTION = 'address';
-export const SELECTED_ADDRESS_COLLECTION = 'selectedAddress';
 export const LOOKBOOK_COLLECTION = "lookbook";
 
 export const ALERT_TITLE = 'alert';
@@ -68,8 +67,6 @@ export const LOAD_FAILURE_IN_CART_ACTION = '[cart] load failure';
 export const LOAD_ADDRESSES_ACTION = '[account] load all Addresses';
 export const ADD_ADDRESSES_ACTION = '[account]  add all addresses';
 export const ADD_ADDRESS_ACTION = '[account]  add address';
-export const LOAD_SELECTED_ADDRESS_ACTION = '[account] load selected address';
-export const ADD_SELECTED_ADDRESS_ACTION = '[account]  add selected address';
 export const UPDATE_ADDRESS_ACTION = '[account]  update address';
 export const DELETE_ADDRESS_ACTION = '[account]  delete address';
 export const LOAD_COUNTRIES_ACTION = '[account] load  countries';

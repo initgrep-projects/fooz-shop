@@ -1,5 +1,5 @@
 <div class="app-address-view"
-     *ngIf="addService.addresses$ |async as addresses">
+     *ngIf="addService.addresses$ |async as addresses; else loading">
     <div class="address-view-header">
         <div class="card">
             <div class="card-body">
@@ -16,8 +16,8 @@
 
     </div>
     <div class="address-view-body">
-        <div class=" selected-ad-wrapper py-2" 
-             *ngIf="!!selectedAddress">
+        <div class=" selected-ad-wrapper py-2"
+             *ngIf="addService.selectedAddress$ | async as selectedAddress">
             <label>Selected address</label>
             <app-user-address [address]="selectedAddress"
                               [enableEdit]="true"
@@ -25,14 +25,16 @@
                               [isSelected]="true"></app-user-address>
         </div>
 
-        <div class=" other-ad-wrapper py-2" [@staggerFadeIn]="addresses.length">
+        <div class=" other-ad-wrapper py-2"
+             [@staggerFadeIn]="addresses.length">
             <label>Other address</label>
-            <div *ngFor="let address of addresses" >
-                <app-user-address 
-                                  [address]="address"
+            <div *ngFor="let address of addresses">
+               
+                <app-user-address *ngIf="!address.IsSelected" [address]="address"
                                   [enableEdit]="true"
                                   [enableSelect]="true"
-                                  (select)="addService.saveSelectedAddress($event)"></app-user-address>
+                                  [isSelected] ="address.IsSelected"
+                                  (select)="updateAddressSelection(address)"></app-user-address>
             </div>
 
 
@@ -40,7 +42,18 @@
     </div>
     <div class="address-view-footer">
         <div class="address-view-controls">
-            <a class="btn btn-dark m-2">CONTINUE</a>
+            <button class="btn btn-dark m-2" 
+            [disabled]="!(addService.selectedAddress$ | async)"
+            >CONTINUE</button>
         </div>
     </div>
 </div>
+
+<ng-template #loading>
+    <div class="text-center">
+        <div class="spinner-border text-secondary"
+             role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+</ng-template>

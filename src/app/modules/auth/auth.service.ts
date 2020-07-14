@@ -54,6 +54,7 @@ export class AuthService {
           } else if (user.IsEmailVerified) {
             return this.updateEmailIfNotUpdated(user);
           }
+          return of(user);
         }),
         tap(user => {
           if (!!user) {
@@ -105,7 +106,7 @@ export class AuthService {
 
   registerUser(value: { email: string, password: string }): Observable<User> {
     const credentials = firebase.auth.EmailAuthProvider.credential(value.email, value.password);
-    return from(firebase.auth().currentUser.linkWithCredential(credentials))
+    return from(firebase.auth().createUserWithEmailAndPassword(value.email,value.password))
       .pipe(
         map(credential => this.transformService.transformUser(credential.user)),
         tap(user => this.saveUser(user))
@@ -186,7 +187,8 @@ export class AuthService {
           }
         }),
         catchError(error => {
-          this.toastService.failure(labels.profileUpdateSuccess, 'fasUser');
+          console.log(`error in update user ${error}`);
+          this.toastService.failure(labels.profiledUpdatedFailure, 'fasUser');
           return of(error);
         })
       );

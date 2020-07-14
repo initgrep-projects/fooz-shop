@@ -60,3 +60,15 @@ export function toObservable(promisefn: Promise<void>): Observable<boolean> {
   });
 }
 
+
+export function toObservableFromPromise<T>(promisefn: () => Promise<T>): Observable<T> {
+  return new Observable<T>(observer => {
+    promisefn()
+      .then((a) => {
+        console.log('toObservableFromPromise then ', a);
+        observer.next(a);
+        observer.complete();
+      })
+      .catch(err => observer.error(err));
+  });
+}

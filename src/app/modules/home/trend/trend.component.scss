@@ -1,6 +1,7 @@
 @import "../../../../variables.scss";
 
 .fooz-container {
+  font-family: $roboto-font-family;
   display: flex;
   width: 100%;
   box-sizing: border-box;
@@ -90,9 +91,9 @@
 
       a {
         padding: 0.5rem 1rem;
-        font-size: .8rem;
+        font-size: 0.8rem;
         font-weight: 600;
-        letter-spacing: .045rem;
+        letter-spacing: 0.045rem;
         color: $secondary-text-color;
         @include animate(fadeInUp, 1.5s);
         span {

@@ -1,8 +1,8 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, OnDestroy } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthModalService } from '../../auth-modal/auth-modal.service';
 import { SubSink } from 'subsink';
-import { AuthService } from '../../auth.service';
+import { AuthService, signInType } from '../../auth.service';
 
 import { isEmpty } from 'lodash';
 import { AuthMessages } from 'src/app/util/app.labels';
@@ -19,7 +19,7 @@ export interface confirmedUser {
   templateUrl: './auth-confirm.component.html',
   styleUrls: ['./auth-confirm.component.scss']
 })
-export class AuthConfirmomponent implements OnInit {
+export class AuthConfirmomponent implements OnInit, OnDestroy {
 
   private subs = new SubSink();
 
@@ -49,22 +49,25 @@ export class AuthConfirmomponent implements OnInit {
 
   }
 
-  
-
   confirmUser() {
     console.log('confirm Form value = ', this.confirmForm.value);
     this.isConfirmInProgress = true;
-    this.authService.getUserByEmail(this.confirmForm.value).subscribe(users => {
-      if (!isEmpty(users) && users.length === 1) {
-        console.log('user is present - redirect to sign in/ singup');
-        this.userConfirmed.emit({ email: this.confirmForm.value.email, isExisting: true, isOpFinished: true });
-      } else {
-        this.userConfirmed.emit({ email: this.confirmForm.value.email, isExisting: false, isOpFinished: true });
-      }
 
-      this.isConfirmInProgress = false;
-    });
+    this.subs.sink =
+      this.authService.fetchSignInMethod(this.confirmForm.value.email)
+        .subscribe(methods => {
+          if (methods.findIndex(m => m === signInType.NONE) === -1) {
+            console.log('user is present - redirect to sign in/ singup');
+            this.userConfirmed.emit({ email: this.confirmForm.value.email, isExisting: true, isOpFinished: true });
+          } else {
+            this.userConfirmed.emit({ email: this.confirmForm.value.email, isExisting: false, isOpFinished: true });
+          }
+          this.isConfirmInProgress = false;
+        });
   }
 
- 
+  ngOnDestroy() {
+    this.subs.unsubscribe();
+  }
+
 }

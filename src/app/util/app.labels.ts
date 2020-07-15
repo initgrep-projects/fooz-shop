@@ -61,7 +61,7 @@ export const AuthMessages = {
         googleSignIn: 'sign in with google',
         manageProfile: 'Manage your account',
         verifiedAccount: 'verified',
-        notVerifyAccount: 'pending verification',
+        notVerifyAccount: 'verify account',
         orders: 'orders',
         addresses: 'Addresses',
         support: 'support',

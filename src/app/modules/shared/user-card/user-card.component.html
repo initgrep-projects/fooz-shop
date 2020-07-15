@@ -46,10 +46,14 @@
             <span class="badge  badge-pill badge-dark"
                   *ngIf="!authUser?.IsAnonymous && authUser?.IsEmailVerified">{{  labels.verifiedAccount}}</span>
 
-            <span class="badge  badge-pill badge-danger not-verified"
-                  *ngIf="!authUser?.IsAnonymous && !authUser?.IsEmailVerified"
-                  (click)="sendEmailVerification()"
-                  >{{  labels.notVerifyAccount}}</span>
+            <button class="btn btn-small btn-danger not-verified"
+                    *ngIf="!authUser?.IsAnonymous && !authUser?.IsEmailVerified"
+                    (click)="sendEmailVerification()">
+               <span>{{labels.notVerifyAccount}}</span>
+               <fa-icon [icon]="['fas', 'spinner']"
+                        [spin]="true"
+                        *ngIf="isVerificationInProgress"></fa-icon>
+            </button>
          </div>
 
          <div class="mg-profile">

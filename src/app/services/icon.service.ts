@@ -54,7 +54,6 @@ import {
   faThumbsUp,
   faUserLock,
   faSignOutAlt,
-  faEnvelope,
   faEnvelopeOpenText,
   faUnlockAlt,
   faUser as fasUser,
@@ -62,7 +61,9 @@ import {
   faCheckCircle,
   faShippingFast,
   faShieldAlt,
-  faPencilAlt
+  faPencilAlt,
+  faDesktop,
+
 } from '@fortawesome/free-solid-svg-icons';
 import { 
   faUser as farUser,
@@ -148,7 +149,8 @@ export class IconService {
       faCcPaypal,
       faShieldAlt,
       faPencilAlt,
-      farCircle
+      farCircle,
+      faDesktop
     ];
   }
 

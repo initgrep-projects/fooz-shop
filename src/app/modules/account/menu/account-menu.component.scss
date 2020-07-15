@@ -3,36 +3,30 @@
 div.app-account-menu {
     overflow-x: auto;
     font-family: $roboto-font-family;
-
+    box-shadow: 0 1px 10px 0 rgba(0, 0, 0, 0.1);
+   
     @include md {
         overflow: hidden;
         border-bottom-width: 0px;
-        min-height: 400px;
-        height: auto;
+        height: 400px;
     }
 
     div.card {
-        // box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-        // border-top: 1px solid #f0f0f0;
-        box-shadow: 0 1px 10px 0 rgba(0, 0, 0, 0.1);
+        height: 100%;
+        div.card-header,
         div.card-body {
             overflow-x: auto;
+            padding:0;
+            padding-top: 1.2rem;
             ul.list-group {
-                flex-direction: row;
-                @include md {
-                    flex-direction: column;
-                    // padding: 0rem 1rem;
-                }
+                border:none;
+                
 
                 li {
                     background: transparent;
                     cursor: pointer;
                     transition: all 0.5s;
                     border: none;
-                    @include md {
-                        border-bottom: 1px solid #f1f1f1;
-                    }
-
                     a {
                         text-transform: uppercase;
                         letter-spacing: 0.045rem;
@@ -43,6 +37,10 @@ div.app-account-menu {
                         &.active {
                             font-weight: 600;
                             // border-bottom: 2px solid $primary-border-color;
+                        }
+
+                        fa-icon{
+                            padding: 0 1rem 0 0.5rem;
                         }
                     }
 

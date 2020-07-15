@@ -1,7 +1,9 @@
+import { BuiltinType } from '@angular/compiler';
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Store } from '@ngrx/store';
 import * as firebase from 'firebase/app';
+import { isEmpty } from 'lodash';
 import { defer, from, Observable, of } from 'rxjs';
 import { catchError, map, switchMap, take, tap } from 'rxjs/operators';
 import { User } from 'src/app/models/user';
@@ -12,6 +14,12 @@ import { toObservable } from 'src/app/util/app.lib';
 import { AppState } from '../main/store/app.reducer';
 import { ToastService } from '../shared/toasts/toast.service';
 import { addUserAction, deleteUserAction } from './store/auth.actions';
+
+export enum signInType {
+  NONE,
+  GOOGLE,
+  PASSWORD
+}
 
 @Injectable({
   providedIn: 'root'
@@ -31,6 +39,7 @@ export class AuthService {
 
     this.userFromStore$ = this.store.select('auth').pipe(map(state => state.user));
     this.user$ = this.syncAuthChanges();
+    window['firebase'] = firebase;
   }
 
 
@@ -220,6 +229,20 @@ export class AuthService {
           return of(error);
         })
       );
+  }
+
+  //DONE
+  fetchSignInMethod(email: string): Observable<signInType[]> {
+    return defer(async () => {
+      const methods = await firebase.auth().fetchSignInMethodsForEmail(email);
+      if (isEmpty(methods)) {
+        return [signInType.NONE];
+      }
+      return methods.map(m => m === 'google.com' ? signInType.GOOGLE : signInType.PASSWORD)
+    });
+
+
+
   }
 
   //DONE

@@ -2,7 +2,9 @@
      @fadeIn>
     <div class="row">
         <div class="col-12">
-            <div class="card app-user-card">
+            <div class="card app-user-card"
+            [ngClass]="{'bg-danger-light': !authUser?.IsEmailVerified, 'bg-success-light': authUser?.IsEmailVerified}">
+            
                 <div class="card-body">
                     <app-user-card></app-user-card>
                 </div>
@@ -14,7 +16,7 @@
             <a routerLink="../orders">
                 <div class="card">
                     <div class="card-body text-center">
-                        <fa-icon icon="truck-loading"></fa-icon>
+                        <fa-icon icon="shopping-bag"></fa-icon>
                         <h6 class="card-title">orders</h6>
                         <span class="small">3 orders</span>
                     </div>

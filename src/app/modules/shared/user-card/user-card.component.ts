@@ -16,6 +16,7 @@ export class UserCardComponent implements OnInit, OnDestroy {
   authUser: User;
   authMessages = AuthMessages;
   labels = AuthMessages.authAnchorLabels;
+  isVerificationInProgress = false;
   @Output() userLoaded = new EventEmitter();
   @Output() manageProfile = new EventEmitter();
 
@@ -35,8 +36,11 @@ export class UserCardComponent implements OnInit, OnDestroy {
   }
 
   sendEmailVerification() {
-    this.subs.sink = 
-    this.authService.verifyEmail().subscribe();
+    this.isVerificationInProgress = true;
+    this.subs.sink =
+      this.authService.verifyEmail().subscribe(
+        () => this.isVerificationInProgress = false
+      );
   }
 
   routeToAccount() {

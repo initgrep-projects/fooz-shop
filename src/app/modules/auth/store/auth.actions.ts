@@ -6,6 +6,5 @@ export const addUserAction = createAction(
     props<{payload: User}>()
 );
 export const deleteUserAction = createAction(
-    '[auth]  remove user',
-    props<{payload: string}>()
+    '[auth]  remove user'
 );

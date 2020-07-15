@@ -22,7 +22,7 @@ const theReducer = createReducer(
         user: cloneDeep(payload)
     })),
 
-    on(deleteUserAction, (currentState, { payload }) => ({
+    on(deleteUserAction, (currentState, { }) => ({
         ...currentState,
         user: null
     })), 

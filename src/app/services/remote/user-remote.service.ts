@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { classToPlain } from 'class-transformer';
-import { Observable } from 'rxjs';
+import { defer, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { User } from 'src/app/models/user';
 import { USER_COLLECTION } from 'src/app/util/app.constants';
-import { ObjectTransformerService } from '../object-transformer.service';
 import { toObservable } from 'src/app/util/app.lib';
+import { ObjectTransformerService } from '../object-transformer.service';
 
 @Injectable({
   providedIn: 'root'
@@ -53,15 +53,29 @@ export class UserRemoteService {
    * @param user user object
    */
   saveUser(user: User): Observable<boolean> {
-    return toObservable(this.userCollection.doc(user.UID).set(classToPlain(user)));
+    console.log('db-save called');
+    return defer(() =>
+      this.userCollection.doc(user.UID).set(classToPlain(user))
+        .then(() => {
+          console.log('user created in db');
+          return true;
+        }));
   }
+
+
 
   /**
    * update the user in firebase
    * @param user the user Object
    */
   updateUser(user: User): Observable<boolean> {
-    return toObservable(this.userCollection.doc(user.UID).update(classToPlain(user)));
+    return defer(() =>
+      this.userCollection.doc(user.UID).update(classToPlain(user))
+        .then(() => {
+          console.log('user updated');
+          return true;
+        })
+    )
   }
 
   /**

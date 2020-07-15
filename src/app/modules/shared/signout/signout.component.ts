@@ -3,6 +3,7 @@ import { User } from 'src/app/models/user';
 import { AuthMessages } from 'src/app/util/app.labels';
 import { SubSink } from 'subsink';
 import { AuthService } from '../../auth/auth.service';
+import { Router } from '@angular/router';
 
 
 
@@ -20,6 +21,7 @@ export class SignoutComponent implements OnInit, OnDestroy {
 
   constructor(
     public authService: AuthService,
+    public router: Router
   ) { }
 
   ngOnInit(): void {
@@ -30,7 +32,10 @@ export class SignoutComponent implements OnInit, OnDestroy {
   }
 
   logOut() {
-  this.authService.logOut();
+    this.subs.sink = this.authService.logOut()
+      .subscribe(() => {
+        this.router.navigate(['/shop']);
+      })
 
   }
 

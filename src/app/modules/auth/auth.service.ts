@@ -2,16 +2,16 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Store } from '@ngrx/store';
 import * as firebase from 'firebase/app';
-import { Observable, of, from } from 'rxjs';
-import { map, switchMap, take, tap, catchError } from 'rxjs/operators';
+import { defer, from, Observable, of } from 'rxjs';
+import { catchError, map, switchMap, take, tap } from 'rxjs/operators';
 import { User } from 'src/app/models/user';
 import { ObjectTransformerService } from 'src/app/services/object-transformer.service';
 import { UserRemoteService } from 'src/app/services/remote/user-remote.service';
-import { AppState } from '../main/store/app.reducer';
-import { addUserAction, deleteUserAction } from './store/auth.actions';
-import { toObservable } from 'src/app/util/app.lib';
-import { ToastService } from '../shared/toasts/toast.service';
 import { AuthMessages as labels } from 'src/app/util/app.labels';
+import { toObservable } from 'src/app/util/app.lib';
+import { AppState } from '../main/store/app.reducer';
+import { ToastService } from '../shared/toasts/toast.service';
+import { addUserAction, deleteUserAction } from './store/auth.actions';
 
 @Injectable({
   providedIn: 'root'
@@ -43,6 +43,7 @@ export class AuthService {
    * 3) convert firebaseCredentials.user to @see User
    */
 
+  //DONE
   private syncAuthChanges(): Observable<User> {
     return this.angularFireAuth.user
       .pipe(
@@ -54,7 +55,7 @@ export class AuthService {
           } else if (user.IsEmailVerified) {
             return this.updateEmailIfNotUpdated(user);
           }
-          return of(user);
+          return this.db.fetchUser(user.UID);
         }),
         tap(user => {
           if (!!user) {
@@ -64,6 +65,7 @@ export class AuthService {
       );
   }
 
+  //DONE
   private updateEmailIfNotUpdated(user: User): Observable<User> {
     return this.getUser(user.UID)
       .pipe(
@@ -79,40 +81,48 @@ export class AuthService {
       );
   }
 
+  //DONE
   private loginAsAnonymous(): Observable<User> {
     console.log('Goiong Anonymous.. since no auth-user found');
     return from(firebase.auth().signInAnonymously())
       .pipe(map(credentials => this.transformService.transformUser(credentials.user)));
-
-
   }
 
-  loginWithGoogle(): Observable<User> {
-    const provider = new firebase.auth.GoogleAuthProvider();
-    provider.addScope('profile');
-    provider.addScope('email');
-    return from(this.angularFireAuth.auth.signInWithPopup(provider))
+  //DONE
+  loginWithGoogle(): Observable<boolean> {
+    return defer(async () => {
+      const provider = new firebase.auth.GoogleAuthProvider();
+      provider.addScope('profile');
+      provider.addScope('email');
+      const cred = await this.angularFireAuth.auth.signInWithPopup(provider);
+      return cred.user;
+    })
       .pipe(
-        map(credential => this.transformService.transformUser(credential.user)),
-        tap(user => this.saveUser(user))
+        map(user => this.transformService.transformUser(user)),
+        switchMap(user => this.saveUser(user))
       );
   }
 
-
+  //DONE
   loginWithUserPass(value: { email: string, password: string }) {
     return from(firebase.auth().signInWithEmailAndPassword(value.email, value.password));
 
   }
 
-  registerUser(value: { email: string, password: string }): Observable<User> {
-    const credentials = firebase.auth.EmailAuthProvider.credential(value.email, value.password);
-    return from(firebase.auth().createUserWithEmailAndPassword(value.email,value.password))
+  //DONE
+  registerUser(value: { email: string, password: string }): Observable<boolean> {
+    return defer(async () => {
+      const cred = await firebase.auth().createUserWithEmailAndPassword(value.email, value.password);
+      return cred.user;
+    })
       .pipe(
-        map(credential => this.transformService.transformUser(credential.user)),
-        tap(user => this.saveUser(user))
+        map(user => this.transformService.transformUser(user)),
+        switchMap(user => this.saveUser(user))
       );
   }
 
+
+  //DONE
   verifyEmail(): Observable<boolean> {
     return toObservable(firebase.auth().currentUser.sendEmailVerification())
       .pipe(
@@ -128,6 +138,7 @@ export class AuthService {
       );
   }
 
+  //DONE
   resetPassword(email: string): Observable<boolean> {
     return toObservable(firebase.auth().sendPasswordResetEmail(email))
       .pipe(
@@ -143,27 +154,40 @@ export class AuthService {
       )
   }
 
-  async logOut() {
+  //DONE
+  logOut() {
     console.log("logout called");
-    try {
+    return defer(async () => {
       await firebase.auth().signOut();
-      this.toastService.success(labels.logoutSuccess, 'sign-out-alt');
-      this.deleteUserFromStore();
-    }
-    catch (e) {
-      return this.toastService.failure(labels.logoutFail);
-    }
+      return true;
+    })
+      .pipe(
+        tap(ok => {
+          if (ok) {
+            this.deleteUserFromStore();
+            this.toastService.success(labels.logoutSuccess, 'sign-out-alt');
+          }
+        }),
+        catchError(e => {
+          this.toastService.failure(labels.logoutFail);
+          return of(e);
+        })
+      );
+
   }
 
+  //DONE
   getUser(id: string): Observable<User> {
     return this.db.fetchUser(id);
   }
 
+  //DONE
   getUserByEmail(value: { email: string }): Observable<User[]> {
     return this.db.fetchUserByEmail(value.email)
       .pipe(take(1));
   }
 
+  //DONE
   saveUser(user: User) {
     return this.db.saveUser(user)
       .pipe(
@@ -176,10 +200,14 @@ export class AuthService {
       );
   }
 
-
+  //DONE
   updateUser(user: User): Observable<boolean> {
-    return this.db.updateUser(user)
+    return defer(async () => {
+      await firebase.auth().currentUser.updateEmail(user.Email);
+      return true;
+    })
       .pipe(
+        switchMap(ok => ok ? this.db.updateUser(user) : of(ok)),
         tap(isOK => {
           if (isOK) {
             this.store.dispatch(addUserAction({ payload: user }));
@@ -194,8 +222,9 @@ export class AuthService {
       );
   }
 
+  //DONE
   deleteUserFromStore() {
-    this.store.dispatch(deleteUserAction({ payload: 'anything' }));
+    this.store.dispatch(deleteUserAction());
   }
 
 

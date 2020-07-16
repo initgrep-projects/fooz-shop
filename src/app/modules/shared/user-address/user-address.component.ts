@@ -7,9 +7,7 @@ import { AuthMessages } from 'src/app/util/app.labels';
   selector: 'app-user-address',
   templateUrl: './user-address.component.html',
   styleUrls: ['./user-address.component.scss'],
-  animations: [
-
-  ]
+  animations: []
 })
 export class UserAddressComponent implements OnInit {
   labels = AuthMessages;

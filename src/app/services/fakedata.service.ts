@@ -100,6 +100,7 @@ export class FakedataService {
     const purpleColor = new Color('purple', '#6A5ACD');
     const silverColor = new Color('silver', '#BFC1C2');
     const brownColor = new Color('brown', '#964B00');
+    const greenColor = new Color('green', '#32CD32');
 
     const smallSize = new Size('small', 'S');
     const mediumSize = new Size('medium', 'M');
@@ -132,10 +133,10 @@ export class FakedataService {
         a1000,
         soCategory,
         [
-          new Image("https://i.imgur.com/dTJ7q2z.jpg", silverColor),
-          new Image('https://i.imgur.com/PAFcXGY.jpg', silverColor),
-          new Image('https://i.imgur.com/86JpXRY.jpg', silverColor),
-          new Image('https://i.imgur.com/IgcZBiC.jpg', silverColor)
+          new Image("https://i.imgur.com/xqILoNX.jpg", blackColor),
+          new Image('https://i.imgur.com/JuCQoF2.jpg', blackColor),
+          new Image('https://i.imgur.com/0rsWG6L.jpg', blackColor),
+          new Image('https://i.imgur.com/xqILoNX.jpg', blackColor)
         ],
         [smallSize, mediumSize,largeSize, xlSize]
       ),
@@ -148,10 +149,10 @@ export class FakedataService {
         a2200,
         coCategory,
         [
-          new Image("https://i.imgur.com/qXOn4hB.jpg", brownColor),
-          new Image('https://i.imgur.com/9EIQbqZ.jpg', brownColor),
-          new Image('https://i.imgur.com/IClEoEy.jpg', brownColor),
-          new Image('https://i.imgur.com/pVkkclk.jpg', brownColor)
+          new Image("https://i.imgur.com/23M00fQ.jpg", brownColor),
+          new Image('https://i.imgur.com/6M2lov5.jpg', brownColor),
+          new Image('https://i.imgur.com/ajzsGOn.jpg', brownColor),
+          new Image('https://i.imgur.com/ajzsGOn.jpg', brownColor)
         ],
         [smallSize, mediumSize,largeSize, xlSize]
       ),
@@ -164,10 +165,10 @@ export class FakedataService {
         a2300,
         coCategory,
         [
-          new Image("https://i.imgur.com/XMGXELs.jpg", blackColor),
-          new Image('https://i.imgur.com/58Gz5BQ.jpg', blackColor),
-          new Image('https://i.imgur.com/ONXLzwZ.jpg', blackColor),
-          new Image('https://i.imgur.com/ZfmxJSa.jpg', blackColor)
+          new Image("https://i.imgur.com/orcMuEN.jpg", blackColor),
+          new Image('https://i.imgur.com/hP3cJSM.jpg', blackColor),
+          new Image('https://i.imgur.com/7RSOuvB.jpg', blackColor),
+          new Image('https://i.imgur.com/hP3cJSM.jpg', blackColor)
         ],
         [smallSize, mediumSize,largeSize, xlSize]
       ),
@@ -181,10 +182,44 @@ export class FakedataService {
         a3100,
         coCategory,
         [
-          new Image("https://i.imgur.com/SuswP7o.jpg", blackColor),
-          new Image('https://i.imgur.com/gHNtSjV.jpg', blackColor),
-          new Image('https://i.imgur.com/o8JDpHl.jpg', blackColor),
-          new Image('https://i.imgur.com/m92gSoP.jpg', blackColor)
+          new Image("https://i.imgur.com/P5Aat6M.jpg", blackColor),
+          new Image('https://i.imgur.com/Xm5K60c.jpg', blackColor),
+          new Image('https://i.imgur.com/umPSO0J.jpg', blackColor),
+          new Image('https://i.imgur.com/fyyjtHm.jpg', blackColor)
+        ],
+        [smallSize, mediumSize,largeSize, xlSize]
+      ),
+
+      new Product(
+        'Abayas chick look',
+        '51005',
+        'A very nice detailed description here',
+        12,
+        new Date().getTime(),
+        a3100,
+        coCategory,
+        [
+          new Image("https://i.imgur.com/WZ35TTq.jpg", brownColor),
+          new Image('https://i.imgur.com/ay0MsBh.jpg', brownColor),
+          new Image('https://i.imgur.com/k6oMXgf.jpg', greenColor),
+          new Image('https://i.imgur.com/bieyoPz.jpg', greenColor)
+        ],
+        [smallSize, mediumSize,largeSize, xlSize]
+      ),
+
+      new Product(
+        'trendy abaya design',
+        '51006',
+        'A very nice detailed description here',
+        12,
+        new Date().getTime(),
+        a3100,
+        coCategory,
+        [
+          new Image("https://i.imgur.com/If13JVZ.jpg", brownColor),
+          new Image('https://i.imgur.com/axk6rzQ.jpg', brownColor),
+          new Image('https://i.imgur.com/zt0UCkA.jpg', greenColor),
+          new Image('https://i.imgur.com/B7qzImE.jpg', greenColor)
         ],
         [smallSize, mediumSize,largeSize, xlSize]
       ),

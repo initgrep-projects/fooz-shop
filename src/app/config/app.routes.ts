@@ -10,14 +10,14 @@ import { UserProfileComponent } from '../modules/account/profile/user-profile/us
 import { AuthGuardService } from '../modules/auth/auth-guard.service';
 import { AuthModalComponent } from '../modules/auth/auth-modal/auth-modal.component';
 import { CartModalComponent } from '../modules/cart/cart-modal/cart-modal.component';
+import { AddressViewComponent } from '../modules/checkout/address-view/address-view.component';
 import { CartViewComponent } from '../modules/checkout/cart-view/cart-view.component';
 import { CheckoutComponent } from '../modules/checkout/checkout.component';
-import { OrderComponent } from '../modules/checkout/order/order.component';
+import { PaymentComponent } from '../modules/checkout/payment/payment.component';
 import { HomeComponent } from '../modules/home/home.component';
 import { ItemDetailComponent } from '../modules/shop/items/item-detail/item-detail.component';
 import { ProductResolver } from '../modules/shop/product-resolver.service';
 import { ShopComponent } from '../modules/shop/shop.component';
-import { AddressViewComponent } from '../modules/checkout/address-view/address-view.component';
 
 export const checkoutRoutes: Routes = [
   {
@@ -35,8 +35,8 @@ export const checkoutRoutes: Routes = [
         
       },
       {
-        path: 'order',
-        component: OrderComponent
+        path: 'payment',
+        component: PaymentComponent
       }
     ]
   }

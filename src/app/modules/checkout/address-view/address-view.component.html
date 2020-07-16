@@ -25,8 +25,7 @@
                               [isSelected]="true"></app-user-address>
         </div>
 
-        <div class=" other-ad-wrapper py-2"
-             [@staggerFadeIn]="addresses.length">
+        <div class=" other-ad-wrapper py-2">
             <label>Other address</label>
             <div *ngFor="let address of addresses">
                
@@ -44,6 +43,7 @@
         <div class="address-view-controls">
             <button class="btn btn-dark m-2" 
             [disabled]="!(addService.selectedAddress$ | async)"
+            (click)="routeToPayment()"
             >CONTINUE</button>
         </div>
     </div>

@@ -7,7 +7,7 @@ export const environment = {
   firebaseConfig : {
     apiKey: 'AIzaSyCd-ji6MKq7zO6xkvZSq3ynGYOrAHltVY8',
     authDomain: 'foozabayas.firebaseapp.com',
-    databaseURL: 'localhost:3200',
+    databaseURL: 'https://foozabayas.firebaseio.com',
     projectId: 'foozabayas',
     storageBucket: 'foozabayas.appspot.com',
     messagingSenderId: '226094433636',

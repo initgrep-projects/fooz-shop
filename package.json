@@ -34,6 +34,7 @@
     "g": "^2.0.1",
     "hammerjs": "^2.0.8",
     "lodash": "^4.17.15",
+    "paypal-checkout": "^4.0.315",
     "reflect-metadata": "^0.1.13",
     "rxjs": "~6.5.4",
     "subsink": "^1.0.1",

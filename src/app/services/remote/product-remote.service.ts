@@ -71,7 +71,7 @@ export class ProductRemoteService {
     // this.saveCustomSizeInputs();
     // this.saveSortOrders();
     // this.saveTrendItems(); 
-    // this.saveLookBook()
+    // this.saveLookBook();
   }
 
 

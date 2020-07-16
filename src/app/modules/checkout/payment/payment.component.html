@@ -1,0 +1,37 @@
+<div class="app-payment">
+    <div class="card"
+         *ngIf="authService.userFromStore$ | async as user">
+        <div class="card-body">
+            <h5 class="">LOGIN</h5>
+            <p>{{user.Name}}</p>
+        </div>
+    </div>
+    <div class="card" *ngIf="addressService.selectedAddress$ | async as address">
+        <div class="card-body">
+            <h5>ADDRESS</h5>
+            <p>
+                <span>{{address.Name}}</span>
+                <span>{{address.Phone}}</span>
+                <span>{{address.Street}}</span>
+                <span>{{address.City}}</span>
+                <span>{{address.State}}</span>
+                <span>{{address.ZipCode}}</span>
+                <span>{{address.Country}}</span>
+                <p>
+        </div>
+    </div>
+    <div class="card"
+         *ngIf="cartService.cart$ | async as cart">
+        <div class="card-header">
+            <h6>ORDER SUMMARY</h6>
+            <p>{{cart.length}} items</p>
+        </div>
+        <div class="card-body">
+
+            <div *ngFor="let item of cart">
+                <h5>{{item.Product.Name}}</h5>
+                <small>{{item.Product.Id}}</small>
+            </div>
+        </div>
+    </div>
+</div>

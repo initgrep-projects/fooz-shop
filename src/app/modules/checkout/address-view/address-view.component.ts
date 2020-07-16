@@ -5,6 +5,7 @@ import { Address } from 'src/app/models/address';
 import { AuthMessages } from 'src/app/util/app.labels';
 import { SubSink } from 'subsink';
 import { AddressService } from '../../account/addresses/address.service';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-address-view',
@@ -18,10 +19,12 @@ export class AddressViewComponent implements OnInit, OnDestroy {
   private subs = new SubSink();
   labels = AuthMessages;
   constructor(public addService: AddressService,
-    @Inject(DOCUMENT) private document: Document
+    @Inject(DOCUMENT) private document: Document,
+    private router: Router,
+    private route: ActivatedRoute
   ) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   updateAddressSelection(address: Address) {
     this.subs.sink = this.addService.updateSelection(address).subscribe(
@@ -32,6 +35,10 @@ export class AddressViewComponent implements OnInit, OnDestroy {
         })
       }
     );
+  }
+
+  routeToPayment() {
+    this.router.navigate(['/checkout/payment']);
   }
 
   ngOnDestroy() {

@@ -42,6 +42,13 @@ export const AuthMessages = {
     editAddress: "Edit",
     removeAddress: 'Remove',
     selectAddress: 'select',
+    EmailNotVerified: 'Email is not verified',
+    NameNotPresent: 'Name is not provided',
+    PhoneNotPresent: 'Phone Number is Not provided',
+    PhoneNotVerified: 'Phone Number is Not verified',
+    profileUpdateAlertTitle:  'profile update required',
+    
+
     invalidCredentials: [
         { code: 'auth/wrong-password', message: 'Incorrect email or password' },
         { code: 'auth/user-not-found', message: 'The email is not registered with us' },
@@ -81,7 +88,7 @@ export const AuthMessages = {
         country: 'country',
         zipcode: 'zipcode',
         password: 'password',
-        editProfile: 'edit',
+        editProfile: 'update profile',
         saveProfile: 'save profile',
         resetProfile: 'reset profile',
         saveAddress: 'save Address',

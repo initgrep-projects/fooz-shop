@@ -20,6 +20,7 @@ $grey-border-color: #8080801c;
 
 $success-light: rgba(0,255,0,.1);
 $danger-light: rgba(255,0,0,.1);
+$warning-light: rgba(246, 229, 163, 0.4);
 
 
 .bg-success-light{
@@ -29,6 +30,15 @@ $danger-light: rgba(255,0,0,.1);
 .bg-danger-light{
     background-color: $danger-light !important;
     border:2px dashed $danger-light  !important;
+}
+.bg-warning-light{
+    background-color: $warning-light !important;
+    border:2px dashed $warning-light  !important;
+}
+
+
+.card-shadow{
+    box-shadow: 0 -2px 10px 0 rgba(0, 0, 0, 0.1);
 }
 
 

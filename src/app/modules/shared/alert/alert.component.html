@@ -1,25 +1,26 @@
-<div class="modal-header">
-  <h6 class="modal-title"
-      id="modal-title">
-     {{config.title}}
-  </h6>
-  <button type="button"
-          class="close"
-          aria-describedby="modal-title"
-          (click)="cancel()">
-    <fa-icon icon="times"></fa-icon>
-  </button>
-</div>
-<div class="modal-body">
-  <p>{{config.message}}</p>
-</div>
-<div class="modal-footer">
-  <button type="button"
-          class="btn btn-secondary"
-          *ngIf="config.controls.cancel.visible"
-          (click)="cancel()">{{config.controls.cancel.text}}</button>
-  <button type="button"
-          class="btn btn-dark"
-          *ngIf="config.controls.confirm.visible"
-          (click)="confirm()">{{config.controls.confirm.text}}</button>
+<div class=" app-alert alert card-shadow my-2"
+     [ngClass]="{
+         'bg-success-light': config.type === type.SUCCESS,
+         'bg-danger-light':config.type ===type.DANGER,
+         'bg-warning-light':config.type === type.WARNING 
+        }">
+    <div class="d-flex justify-content-between align-items-center">
+        <div class="left">
+            <h6>{{config.title}}</h6>
+            <ul>
+                <li *ngFor="let msg of config.messages">
+                    <small>{{msg}}</small>
+                </li>
+            </ul>
+        </div>
+        <div class="right"
+             *ngIf="config.control">
+            <button class="btn btn-sm btn-danger"
+            (click) ="controlClicked()"
+            >
+                <fa-icon icon="{{config.control.icon}}"></fa-icon>
+                <span>{{config.control.title}}</span>
+            </button>
+        </div>
+    </div>
 </div>

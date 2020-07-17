@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { CartItem } from 'src/app/models/cartItem';
-import { Observable, of, merge, forkJoin } from 'rxjs';
+import { Observable, of, merge, forkJoin, from } from 'rxjs';
 import { classToPlain } from 'class-transformer';
 import { CART_COLLECTION } from 'src/app/util/app.constants';
 import { toObservable } from 'src/app/util/app.lib';
@@ -29,7 +29,8 @@ export class CartRemoteService {
   }
   
   updateCartItem(item: CartItem): Observable<boolean> {
-    return toObservable(this.cartCollection.doc(item.Id).set(classToPlain(item)));
+    console.log('update cartItem')
+    return from(this.cartCollection.doc(item.Id).set(classToPlain(item)).then(()=> true));
 
   }
 

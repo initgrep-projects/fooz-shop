@@ -1,7 +1,17 @@
-import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
-import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { AlertConfig } from './alert.service';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
+export enum AlertType {
+  SUCCESS, WARNING, DANGER
+}
+export interface AlertConfig {
+  type: AlertType
+  title: string,
+  messages: string[],
+  control?: {
+    title: string,
+    icon: string
+  }
+}
 
 @Component({
   selector: 'app-alert',
@@ -9,22 +19,17 @@ import { AlertConfig } from './alert.service';
   styleUrls: ['./alert.component.scss']
 })
 export class AlertComponent implements OnInit {
-  config: AlertConfig;
-  @Input() set Config(config: AlertConfig) { this.config = config; }
+  type = AlertType;
+  @Input() config: AlertConfig
+  @Output() controlClick = new EventEmitter<boolean>();
 
-  @Output() alertEvent = new EventEmitter<boolean>();
+  constructor() { }
 
-  constructor(public modal: NgbActiveModal) { }
-
-  ngOnInit(): void {}
-
-  confirm() {
-    this.modal.dismiss('Confirm');
-    this.alertEvent.emit(true);
+  ngOnInit(): void {
   }
 
-  cancel() {
-    this.modal.dismiss('Cancel');
-    this.alertEvent.emit(false);
+  controlClicked(){
+    this.controlClick.emit(true);
   }
+
 }

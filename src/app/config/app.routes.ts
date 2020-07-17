@@ -23,20 +23,23 @@ export const checkoutRoutes: Routes = [
   {
     path: 'checkout',
     component: CheckoutComponent,
+    canActivate: [AuthGuardService],
     children:[
       {
         path: 'cart',
-        component: CartViewComponent
-        
+        component: CartViewComponent,
+        canActivateChild: [AuthGuardService]
       },
       {
         path: 'address',
-        component: AddressViewComponent
+        component: AddressViewComponent,
+        canActivateChild: [AuthGuardService]
         
       },
       {
         path: 'payment',
-        component: PaymentComponent
+        component: PaymentComponent,
+        canActivateChild: [AuthGuardService]
       }
     ]
   }

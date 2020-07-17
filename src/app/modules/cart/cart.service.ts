@@ -9,10 +9,10 @@ import { CartRemoteService } from 'src/app/services/remote/cart-remote.service';
 import { cartLabels } from 'src/app/util/app.labels';
 import { AuthService } from '../auth/auth.service';
 import { AppState } from '../main/store/app.reducer';
-import { AlertService } from '../shared/alert/alert.service';
 import { ToastService } from '../shared/toasts/toast.service';
 import { updateProductAction } from '../shop/store/shop.actions';
 import { addItemToCartAction, deleteItemInCartAction, loadItemsToCartAction, updateItemInCartAction } from './store/cart.actions';
+import { DialogService } from '../shared/dialog/dialog.service';
 
 
 
@@ -27,7 +27,7 @@ export class CartService {
   constructor(
     private store: Store<AppState>,
     private db: CartRemoteService,
-    private alertService: AlertService,
+    private dialog: DialogService,
     private toastService: ToastService,
     private authService: AuthService
   ) {
@@ -51,7 +51,7 @@ export class CartService {
   }
 
   updateQuantityForDuplicateItem(matchedItem: CartItem, item: CartItem): Observable<boolean> {
-    return this.alertService.confirmDuplicate()
+    return this.dialog.confirmDuplicate()
       .pipe(
         switchMap(isOK => {
           if (isOK) {
@@ -87,10 +87,13 @@ export class CartService {
   }
 
   updateCartItem(item: CartItem): Observable<boolean> {
+    console.log('update cartItem called in service');
     return this.db.updateCartItem(item)
       .pipe(
         tap(isOk => {
+          console.log('isOK called');
           if (isOk) {
+            
             this.store.dispatch(updateItemInCartAction({ payload: item }));
             this.toastService.success(cartLabels.updateItem);
           }
@@ -111,7 +114,7 @@ export class CartService {
 
 
   deleteItem(id: string) {
-    return this.alertService.confirmRemoval()
+    return this.dialog.confirmRemoval()
       .pipe(
         switchMap(isOk => isOk ? this.db.deleteCartItem(id) : of(isOk)),
         tap(isOk => {

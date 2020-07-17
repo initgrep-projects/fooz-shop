@@ -1,30 +1,31 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ItemComponent } from './item/item.component';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { PreCardComponent } from './pre-card/pre-card.component';
-import { NgbToastModule, NgbActiveModal, NgbTypeaheadModule } from '@ng-bootstrap/ng-bootstrap';
-import { ToastsComponent } from './toasts/toasts.component';
-import { SidebarComponent } from './sidebar/sidebar.component';
-import { ParallaxComponent } from './parallax/parallax.component';
-import { LookbookItemComponent } from './lookbook-item/lookbook-item.component';
+import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { SizeComponent } from './size/size.component';
-import { ColorComponent } from './color/color.component';
-import { QuantityComponent } from './quantity/quantity.component';
-import { AlertComponent } from './alert/alert.component';
-import { UserCardComponent } from './user-card/user-card.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { NgbToastModule } from '@ng-bootstrap/ng-bootstrap';
 import { AnchorsComponent } from './anchors/anchors.component';
-import { SignoutComponent } from './signout/signout.component';
-import { FeatureItemsComponent } from './feature-items/feature-items.component';
 import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
-import { CartItemComponent } from './cart-item/cart-item.component';
-import { PreTileCardComponent } from './pre-tile-card/pre-tile-card.component';
-import { MatfocusDirective } from './directives/matfocus.directive';
-import { ClearInputDirective } from './directives/clear-input.directive';
 import { CardItemComponent } from './card-item/card-item.component';
+import { CartItemComponent } from './cart-item/cart-item.component';
+import { ColorComponent } from './color/color.component';
+import { ClearInputDirective } from './directives/clear-input.directive';
+import { MatfocusDirective } from './directives/matfocus.directive';
+import { FeatureItemsComponent } from './feature-items/feature-items.component';
+import { ItemComponent } from './item/item.component';
+import { LookbookItemComponent } from './lookbook-item/lookbook-item.component';
+import { ParallaxComponent } from './parallax/parallax.component';
+import { PreCardComponent } from './pre-card/pre-card.component';
+import { PreTileCardComponent } from './pre-tile-card/pre-tile-card.component';
+import { QuantityComponent } from './quantity/quantity.component';
+import { SidebarComponent } from './sidebar/sidebar.component';
+import { SignoutComponent } from './signout/signout.component';
+import { SizeComponent } from './size/size.component';
 import { StatusComponent } from './status/status.component';
+import { ToastsComponent } from './toasts/toasts.component';
 import { UserAddressComponent } from './user-address/user-address.component';
+import { UserCardComponent } from './user-card/user-card.component';
+import { DialogComponent } from './dialog/dialog.component';
+import { AlertComponent } from './alert/alert.component';
 
 
 @NgModule({
@@ -38,7 +39,7 @@ import { UserAddressComponent } from './user-address/user-address.component';
     SizeComponent,
     ColorComponent,
     QuantityComponent,
-    AlertComponent,
+    DialogComponent,
     UserCardComponent,
     AnchorsComponent,
     SignoutComponent,
@@ -50,7 +51,8 @@ import { UserAddressComponent } from './user-address/user-address.component';
     ClearInputDirective,
     CardItemComponent,
     StatusComponent,
-    UserAddressComponent
+    UserAddressComponent,
+    AlertComponent
   ],
   imports: [
     CommonModule,
@@ -79,7 +81,8 @@ import { UserAddressComponent } from './user-address/user-address.component';
     ClearInputDirective,
     CardItemComponent,
     StatusComponent,
-    UserAddressComponent
+    UserAddressComponent,
+    AlertComponent
   ]
 })
 export class SharedModule { }

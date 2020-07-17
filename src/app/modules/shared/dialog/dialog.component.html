@@ -1,0 +1,25 @@
+<div class="modal-header">
+  <h6 class="modal-title"
+      id="modal-title">
+     {{config.title}}
+  </h6>
+  <button type="button"
+          class="close"
+          aria-describedby="modal-title"
+          (click)="cancel()">
+    <fa-icon icon="times"></fa-icon>
+  </button>
+</div>
+<div class="modal-body">
+  <p>{{config.message}}</p>
+</div>
+<div class="modal-footer">
+  <button type="button"
+          class="btn btn-secondary"
+          *ngIf="config.controls.cancel.visible"
+          (click)="cancel()">{{config.controls.cancel.text}}</button>
+  <button type="button"
+          class="btn btn-dark"
+          *ngIf="config.controls.confirm.visible"
+          (click)="confirm()">{{config.controls.confirm.text}}</button>
+</div>

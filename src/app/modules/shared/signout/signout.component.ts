@@ -32,8 +32,8 @@ export class SignoutComponent implements OnInit, OnDestroy {
   }
 
   logOut() {
-    this.subs.sink = this.authService.logOut()
-      .subscribe(() => {
+    this.authService.logOut()
+      .then(() => {
         this.router.navigate(['/shop']);
       })
 

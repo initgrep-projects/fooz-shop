@@ -14,7 +14,7 @@
           <h6 class=" code">{{item.Product.Id}}</h6>
         </div>
         <div class="quan-price-wrapper">
-          <app-quantity [value]="item.SelectedQuantity" (valueChange) = "onQuantityChange($event)"></app-quantity>
+          <app-quantity [value]="itemSelectedQuantity" (valueChange) = "onQuantityChange($event)"></app-quantity>
           <h6 class="icon ">
             <fa-icon icon="times"></fa-icon>
           </h6>
@@ -51,7 +51,7 @@
           <div class="col-12 col-md-4">
             <div class="gross-price-wrapper">
               <span class="label">Total Price: </span>
-              <h6 class=" ">{{item.Product.Price.Code}}-{{this.item.SelectedQuantity * this.item.Product.Price.Amount}}
+              <h6 class=" ">{{item.Product.Price.Code}}-{{this.itemSelectedQuantity * this.item.Product.Price.Amount}}
               </h6>
             </div>
           </div>

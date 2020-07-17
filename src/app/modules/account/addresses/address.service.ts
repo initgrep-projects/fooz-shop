@@ -7,9 +7,9 @@ import { Address } from 'src/app/models/address';
 import { AddressRemoteService } from 'src/app/services/remote/address-remote.service';
 import { AuthMessages } from 'src/app/util/app.labels';
 import { AppState } from '../../main/store/app.reducer';
-import { AlertService } from '../../shared/alert/alert.service';
 import { ToastService } from '../../shared/toasts/toast.service';
 import { addAddressAction, deleteAddressAction, loadAddressesAction, loadCountriesAction, updateAddressAction } from '../store/account.actions';
+import { DialogService } from '../../shared/dialog/dialog.service';
 @Injectable({
   providedIn: 'root'
 })
@@ -22,7 +22,7 @@ export class AddressService {
   constructor(
     private db: AddressRemoteService,
     private toastService: ToastService,
-    private alertService: AlertService,
+    private dialog: DialogService,
     private store: Store<AppState>
   ) {
     this.store.dispatch(loadAddressesAction());
@@ -65,7 +65,7 @@ export class AddressService {
 
 
   removeAddress(id: string) {
-    return this.alertService.confirmRemoval()
+    return this.dialog.confirmRemoval()
       .pipe(
         switchMap(isOK => isOK ? this.db.deleteAddress(id) : of(false)),
         tap((isOK) => {

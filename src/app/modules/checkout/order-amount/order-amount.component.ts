@@ -1,15 +1,17 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { CartService } from '../../cart/cart.service';
-import { SubSink } from 'subsink';
-import { map, tap } from 'rxjs/operators';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { isEmpty } from 'lodash';
-import { faQuran } from '@fortawesome/free-solid-svg-icons';
+import { fadeIn } from 'src/app/animations/fadeAnimation';
 import { cartLabels } from 'src/app/util/app.labels';
+import { SubSink } from 'subsink';
+import { CartService } from '../../cart/cart.service';
 
 @Component({
   selector: 'app-order-amount',
   templateUrl: './order-amount.component.html',
-  styleUrls: ['./order-amount.component.scss']
+  styleUrls: ['./order-amount.component.scss'],
+  animations: [
+    fadeIn
+  ]
 })
 export class OrderAmountComponent implements OnInit, OnDestroy {
   labels = cartLabels;

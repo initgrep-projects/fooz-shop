@@ -163,26 +163,17 @@ export class AuthService {
       )
   }
 
-  //DONE
-  logOut() {
-    console.log("logout called");
-    return defer(async () => {
-      await firebase.auth().signOut();
-      return true;
-    })
-      .pipe(
-        tap(ok => {
-          if (ok) {
-            this.deleteUserFromStore();
-            this.toastService.success(labels.logoutSuccess, 'sign-out-alt');
-          }
-        }),
-        catchError(e => {
-          this.toastService.failure(labels.logoutFail);
-          return of(e);
-        })
-      );
+  //NOT DONE
 
+  async logOut() {
+    console.log("logout called");
+    try {
+      await firebase.auth().signOut();
+      this.toastService.success(labels.logoutSuccess, 'sign-out-alt');
+    }
+    catch (error) {
+      this.toastService.failure(labels.logoutFail);
+    }
   }
 
   //DONE

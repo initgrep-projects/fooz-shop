@@ -63,7 +63,7 @@ import {
   faShieldAlt,
   faPencilAlt,
   faDesktop,
-
+  faEdit
 } from '@fortawesome/free-solid-svg-icons';
 import { 
   faUser as farUser,
@@ -150,7 +150,8 @@ export class IconService {
       faShieldAlt,
       faPencilAlt,
       farCircle,
-      faDesktop
+      faDesktop,
+      faEdit
     ];
   }
 

@@ -9,7 +9,7 @@ div.card.app-user-address {
     &.selected{
         background-color: rgba(0,255,0,.1);
         border:2px dashed  rgba(0,255,0,.1);
-        transition: background-color .3s ease-in-out, border .1s ease-in;
+        // transition: background-color .3s ease-in-out, border .1s ease-in;
     }
     div.card-body {
         padding: 1rem;

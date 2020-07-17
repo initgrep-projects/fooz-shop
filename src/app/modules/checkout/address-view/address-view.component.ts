@@ -6,6 +6,9 @@ import { AuthMessages } from 'src/app/util/app.labels';
 import { SubSink } from 'subsink';
 import { AddressService } from '../../account/addresses/address.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { AuthService } from '../../auth/auth.service';
+import { AlertConfig, AlertType } from '../../shared/alert/alert.component';
+import { ProfileService } from '../../account/profile/profile.service';
 
 @Component({
   selector: 'app-address-view',
@@ -18,27 +21,35 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class AddressViewComponent implements OnInit, OnDestroy {
   private subs = new SubSink();
   labels = AuthMessages;
-  constructor(public addService: AddressService,
+
+  constructor(
+    public addService: AddressService,
+    public profileService: ProfileService,
     @Inject(DOCUMENT) private document: Document,
     private router: Router,
-    private route: ActivatedRoute
   ) { }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+  }
 
   updateAddressSelection(address: Address) {
-    this.subs.sink = this.addService.updateSelection(address).subscribe(
-      () => {
-        this.document.body.scrollIntoView({
-          block: 'start',
-          behavior: 'smooth'
-        })
-      }
-    );
+    this.subs.sink = this.addService.updateSelection(address)
+      .subscribe(
+        () => {
+          this.document.body.scrollIntoView({
+            block: 'start',
+            behavior: 'smooth'
+          })
+        }
+      );
   }
 
   routeToPayment() {
     this.router.navigate(['/checkout/payment']);
+  }
+
+  updateProfile(){
+    this.router.navigate(['/my/account/profile/edit']);
   }
 
   ngOnDestroy() {

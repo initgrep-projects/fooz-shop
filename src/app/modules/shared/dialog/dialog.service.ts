@@ -1,26 +1,25 @@
 import { Injectable } from '@angular/core';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { isFunction } from 'lodash';
 import { Observable } from 'rxjs';
 import { take } from 'rxjs/operators';
-import { ADD_BUTTON, ALERT_TITLE, CANCEL_BUTTON, DUPLICATE_ALERT_MSG, DUPLICATE_ALERT_TITLE, OK_BUTTON, REMOVE_ALERT_MSG, REMOVE_ALERT_TITLE, REMOVE_BUTTON } from 'src/app/util/app.constants';
-import { AlertComponent } from './alert.component';
+import { ADD_BUTTON, ALERT_TITLE, CANCEL_BUTTON, DUPLICATE_ALERT_MSG, DUPLICATE_ALERT_TITLE, OK_BUTTON, REMOVE_ALERT_MSG, REMOVE_ALERT_TITLE, REMOVE_BUTTON, UPDATE_ALERT_TITLE } from 'src/app/util/app.constants';
+import { DialogComponent } from './dialog.component';
 
 
 
-export interface AlertConfig {
+export interface DialogConfig {
   title?: string;
   message: string;
   controls?: {
-    confirm?: { visible?: boolean, text?: string, onConfirm?: () => void },
-    cancel?: { visible?: boolean, text?: string, onCancel?: () => void }
+    confirm?: { visible?: boolean, text?: string },
+    cancel?: { visible?: boolean, text?: string }
   };
 }
 
 @Injectable({
   providedIn: 'root'
 })
-export class AlertService {
+export class DialogService {
   private modalRef: NgbModalRef;
 
   constructor(
@@ -53,19 +52,31 @@ export class AlertService {
     }).pipe(take(1));
   }
 
-  private open(content: AlertConfig): Observable<boolean> {
-    this.modalRef = this.modalService.open(AlertComponent, { centered: true });
-    const instance: AlertComponent = this.modalRef.componentInstance;
+  confirmUpdate(): Observable<boolean>{
+    return this.open({
+      title: UPDATE_ALERT_TITLE,
+      message: DUPLICATE_ALERT_MSG,
+      controls: {
+        confirm: {
+          text: ADD_BUTTON
+        }
+      }
+    }).pipe(take(1));
+  }
+
+  private open(content: DialogConfig): Observable<boolean> {
+    this.modalRef = this.modalService.open(DialogComponent, { centered: true });
+    const instance: DialogComponent = this.modalRef.componentInstance;
     instance.Config = this.initProvidedConfig(content);
     return instance.alertEvent.asObservable();
   }
 
-  private initProvidedConfig(config: AlertConfig): AlertConfig {
-    const cfg: AlertConfig = { message: config.message };
+  private initProvidedConfig(config: DialogConfig): DialogConfig {
+    const cfg: DialogConfig = { message: config.message };
     cfg.title = config.title ? config.title : ALERT_TITLE;
 
-    const defaultCancel = { visible: true, text: CANCEL_BUTTON, onCancel: () => { } };
-    const defaultConfirm = { visible: true, text: OK_BUTTON, onConfirm: () => { } };
+    const defaultCancel = { visible: true, text: CANCEL_BUTTON };
+    const defaultConfirm = { visible: true, text: OK_BUTTON };
     if (!!config.controls) {
       cfg.controls = {};
       if (!!config.controls.confirm) {
@@ -73,7 +84,6 @@ export class AlertService {
         cfg.controls.confirm = {
           visible: $confirm.visible === false ? false : true,
           text: !!$confirm.text ? $confirm.text : OK_BUTTON,
-          onConfirm: !!isFunction($confirm.onConfirm) ? $confirm.onConfirm : () => { }
         };
       } else {
         cfg.controls.confirm = defaultConfirm;
@@ -83,8 +93,7 @@ export class AlertService {
         const $cancel = config.controls.cancel;
         cfg.controls.cancel = {
           visible: $cancel.visible === false ? false : true,
-          text: !!$cancel.text ? $cancel.text : CANCEL_BUTTON,
-          onCancel: !!!isFunction($cancel.onCancel) ? $cancel.onCancel : () => { }
+          text: !!$cancel.text ? $cancel.text : CANCEL_BUTTON
         };
       } else {
         cfg.controls.cancel = defaultCancel;

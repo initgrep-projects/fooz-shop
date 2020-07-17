@@ -34,7 +34,7 @@ div.app-cart-view {
         box-shadow: 0 -2px 10px 0 rgba(0, 0, 0, 0.1);
         div.cart-view-controls {
             display: flex;
-            justify-content: right;
+            justify-content: flex-end;
             a {
                 font-size: 0.8rem;
                 font-weight: 600;

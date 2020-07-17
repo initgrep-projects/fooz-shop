@@ -21,7 +21,8 @@
             <h6 class="mt-0"
                 *ngIf="!!authUser?.Email">{{authUser?.Email}}</h6>
             <button type="button"
-                    class="btn btn-sm btn-light"
+                    class="btn btn-sm"
+                    [ngClass]="!authUser?.IsEmailVerified ? 'btn-danger': 'btn-light'"
                     (click)="routeToProfileEdit()">
                 <fa-icon icon="pencil-alt"></fa-icon>
                 <span>{{labels.formLabels.editProfile}}</span>

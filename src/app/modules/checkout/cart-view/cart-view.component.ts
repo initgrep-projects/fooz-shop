@@ -3,6 +3,8 @@ import { CartService } from '../../cart/cart.service';
 import { CartItem } from 'src/app/models/cartItem';
 import { cartLabels } from 'src/app/util/app.labels';
 import { fadeIn, staggerFadeIn } from 'src/app/animations/fadeAnimation';
+import { ProfileService } from '../../account/profile/profile.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cart-view',
@@ -15,7 +17,11 @@ import { fadeIn, staggerFadeIn } from 'src/app/animations/fadeAnimation';
 })
 export class CartViewComponent implements OnInit {
   labels = cartLabels;
-  constructor(public cartService: CartService) { }
+  constructor(
+    public cartService: CartService,
+    public profileService: ProfileService,
+    private router: Router
+    ) { }
 
   ngOnInit(): void {
   }
@@ -25,6 +31,9 @@ export class CartViewComponent implements OnInit {
     this.cartService.updateProductQuantity(item.Product, item.SelectedQuantity);
   }
 
+  updateProfile(){
+    this.router.navigate(['/my/account/profile/edit']);
+  } 
   removeItem(id: string) {
     this.cartService.deleteItem(id);
   }

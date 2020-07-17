@@ -19,6 +19,7 @@ import {
 import { generateGuid } from '../../util/app.lib';
 import { FakedataService } from '../fakedata.service';
 import { ObjectTransformerService } from '../object-transformer.service';
+import { environment } from 'src/environments/environment';
 
 
 
@@ -31,15 +32,12 @@ export class ProductRemoteService {
   pageSize = 2;
 
 
- 
   private productCollection: AngularFirestoreCollection<Product>;
   private categoryCollection: AngularFirestoreCollection<Category>;
   private sizeCollection: AngularFirestoreCollection<Size>;
   private customSizeInputCollection: AngularFirestoreCollection<CustomSizeInput>;
   private sortCollection: AngularFirestoreCollection<Sort>;
   private trendCollection: AngularFirestoreCollection<Image>;
- 
-  
   private lookBookCollection: AngularFirestoreCollection<LookBookItem>;
 
 
@@ -52,7 +50,7 @@ export class ProductRemoteService {
     this.productCollection = this.db.collection<Product>(PRODUCT_COLLECTION);
     this.lookBookCollection = this.db.collection<LookBookItem>(LOOKBOOK_COLLECTION);
     this.trendCollection = this.db.collection<Image>(TREND_COLLECTION);
-    
+
     /** To be removed to a different service later
      * after we have a seperate admin dashboard
      */
@@ -60,18 +58,19 @@ export class ProductRemoteService {
     this.sizeCollection = this.db.collection<Size>(SIZE_COLLECTION);
     this.customSizeInputCollection = this.db.collection<CustomSizeInput>(CUSTOM_SIZE_INPUT);
     this.sortCollection = this.db.collection<Sort>(SORT_COLLECTION);
-    
-    this.bootstrapTestData();
+
+    // this.bootstrapTestData();
   }
 
   private bootstrapTestData() {
-    // this.saveProducts();
-    // this.saveCategories();
-    // this.saveSizes();
-    // this.saveCustomSizeInputs();
-    // this.saveSortOrders();
-    // this.saveTrendItems(); 
-    // this.saveLookBook();
+      this.saveProducts();
+      this.saveCategories();
+      this.saveSizes();
+      this.saveCustomSizeInputs();
+      this.saveSortOrders();
+      this.saveTrendItems();
+      this.saveLookBook();
+    
   }
 
 

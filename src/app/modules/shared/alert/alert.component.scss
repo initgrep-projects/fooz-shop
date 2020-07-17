@@ -1,41 +1,23 @@
 @import "../../../../variables.scss";
 
-div.modal-header {
-    font-family: $roboto-font-family;
-    border-bottom-width: 0px;
-    h6 {
-        margin-bottom: 0;
-        line-height: 1.5;
-        font-weight: 600;
-        color: $primary-text-color;
-        text-transform: uppercase;
-        letter-spacing: 0.025rem;
-    }
-
-    button{
-
-        &:focus{
-            outline: none;
+div.app-alert {
+    div.left {
+        padding: 0.5rem;
+        h6 {
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.045rem;
         }
     }
-}
-
-div.modal-body {
-    font-family: $roboto-font-family;
-    p {
-        letter-spacing: 0.025rem;
-        color: #878787;
-    }
-}
-
-div.modal-footer {
-    font-family: $roboto-font-family;
-    justify-content: space-between;
-    button {
-        padding: .5rem 1rem ;
-        font-size: .8rem;
-        font-weight: bold;
-        text-transform: uppercase;
-        letter-spacing: .045rem;
+    div.right {
+        button {
+            color: $secondary-text-color;
+            font-size: 0.8rem;
+            span {
+                margin: 0 0.5rem;
+                text-transform: uppercase;
+                font-weight: 600;
+            }
+        }
     }
 }

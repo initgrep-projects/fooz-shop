@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, AfterContentInit } from '@angular/core';
 import { cloneDeep } from 'lodash';
 import { CartItem } from 'src/app/models/cartItem';
 
@@ -7,23 +7,27 @@ import { CartItem } from 'src/app/models/cartItem';
   templateUrl: './cart-item.component.html',
   styleUrls: ['./cart-item.component.scss']
 })
-export class CartItemComponent implements OnInit {
+export class CartItemComponent implements OnInit, AfterContentInit {
 
   @Input() item:CartItem;
   @Output() itemDelete = new EventEmitter<string>();
   @Output() quantityChange =  new EventEmitter<CartItem>();
   @Output() clicked = new EventEmitter<string>();
 
+  itemSelectedQuantity: number;
 
   constructor() { }
 
  
   ngOnInit(): void { }
 
+  ngAfterContentInit(){
+    this.itemSelectedQuantity = this.item.SelectedQuantity;
+  }
 
   onQuantityChange(q: number){
     const item =  cloneDeep(this.item);
-    item.SelectedQuantity = q;
+    this.itemSelectedQuantity = q;
     this.quantityChange.emit(item);
   }
 

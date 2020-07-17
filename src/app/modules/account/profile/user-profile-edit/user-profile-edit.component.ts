@@ -1,13 +1,12 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { SubSink } from 'subsink';
-import { AuthMessages } from 'src/app/util/app.labels';
-import { User } from 'src/app/models/user';
+import { Location } from '@angular/common';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { cloneDeep } from 'lodash';
-import { AuthService } from 'src/app/modules/auth/auth.service';
-import { ToastService, toastType } from 'src/app/modules/shared/toasts/toast.service';
-import { Router } from '@angular/router';
 import { fadeIn } from 'src/app/animations/fadeAnimation';
+import { User } from 'src/app/models/user';
+import { AuthService } from 'src/app/modules/auth/auth.service';
+import { AuthMessages } from 'src/app/util/app.labels';
+import { SubSink } from 'subsink';
 
 @Component({
   selector: 'app-user-profile-edit',
@@ -27,8 +26,7 @@ export class UserProfileEditComponent implements OnInit, OnDestroy {
 
   constructor(
     private authService: AuthService,
-    private toastService: ToastService,
-    private router: Router
+    private location: Location
   ) { }
 
   ngOnInit(): void {
@@ -75,7 +73,7 @@ export class UserProfileEditComponent implements OnInit, OnDestroy {
     }
 
     this.authService.updateUser(this.authUser)
-      .subscribe(isok => this.router.navigate(['my/account/profile']));
+      .subscribe(isok => this.location.back());
   }
 
   onPhoneChange(errors) {

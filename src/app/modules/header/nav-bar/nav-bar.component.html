@@ -1,59 +1,30 @@
-
-
-<nav class="navbar sticky-top navbar-light  justify-content-between flex-nowrap flex-row">
-
-  <ul class="nav navbar-nav flex-row nav-left">
-    <li class="nav-item mr-2 d-md-none">
-      <a class="nav-link">
-        <fa-icon icon="bars"
-                 (click)="openSideNav()"></fa-icon>
-      </a>
-    </li>
-    <li class="nav-item mr-5">
-      <a class="nav-link brand"
-         routerLink="home">
-        <fa-icon icon="atom"
-                 class="d-none d-md-inline mr-1"></fa-icon>
-        <span>{{labels.brandName}}</span>
-      </a>
-    </li>
-    <li class="nav-item mr-3 d-none d-md-block">
-      <a class="nav-link app-link"
-         routerLink="home"
-         routerLinkActive="active">
-        {{labels.home}}
-        <span></span>
-      </a>
-    </li>
-    <li class="nav-item d-none d-md-block">
-      <a class="nav-link app-link"
-         routerLink="shop"
-         routerLinkActive="active">
-        {{labels.shop}}
-        <span></span>
-      </a>
-    </li>
-  </ul>
-
-  <ul class="nav navbar-nav flex-row float-right nav-right">
-    <!-- <li class="nav-item mr-3 mr-lg-4">
-      <a class="nav-link ">
-        <app-search ></app-search>
-      </a>
-    </li> -->
-    <li class="nav-item d-none d-md-block mr-md-4">
-      <a class="nav-link app-control">
-        <app-auth></app-auth>
-      </a>
-    </li>
-
-    <li class="nav-item ">
-      <a class="nav-link app-control">
-        <app-cart></app-cart>
-      </a>
-
-    </li>
-
-  </ul>
-
+<nav class="app-nav-bar border border-dark">
+  <div class="top">
+    <div class="brand">
+      <fa-icon icon ="atom"></fa-icon>
+    </div>
+    <div class="top-links">
+      <ul class="nav navbar-nav flex-row ">
+        <!-- <li class="nav-item mr-3 mr-lg-4">
+          <a class="nav-link ">
+            <app-search ></app-search>
+          </a>
+        </li> -->
+        <li class="nav-item d-none d-md-block mr-md-4">
+          <a class="nav-link app-control">
+            <app-auth></app-auth>
+          </a>
+        </li>
+    
+        <li class="nav-item ">
+          <a class="nav-link app-control">
+            <app-cart></app-cart>
+          </a>
+    
+        </li>
+    
+      </ul>
+    </div>
+  </div>
+  <div class="bottom">p</div>
 </nav>

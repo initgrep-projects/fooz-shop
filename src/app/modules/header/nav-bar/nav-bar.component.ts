@@ -9,32 +9,12 @@ import { AuthMessages } from 'src/app/util/app.labels';
   templateUrl: './nav-bar.component.html',
   styleUrls: ['./nav-bar.component.scss']
 })
-export class NavBarComponent implements OnInit, OnDestroy {
-  labels = AuthMessages.authAnchorLabels;
-  private subs = new SubSink();
-  constructor(private sidebarService: SidebarService) { }
-  isNavClosed = false;
+export class NavBarComponent implements OnInit {
+ 
 
   ngOnInit(): void {
-    this.subs.sink =
-      this.sidebarService.openSideBar.subscribe(opened => {
-        this.isNavClosed = false;
-      });
-    this.subs.sink =
-      this.sidebarService.closeSideBar.subscribe(opened => {
-        this.isNavClosed = true;
-      });
+   
   }
 
-  openSideNav() {
-    this.sidebarService.open();
-  }
 
-  closeSideNav() {
-    this.sidebarService.close();
-
-  }
-  ngOnDestroy() {
-    this.subs.unsubscribe();
-  }
 }

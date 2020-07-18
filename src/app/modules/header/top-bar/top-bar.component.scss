@@ -1,2 +1,118 @@
-@import '../../../../variables.scss';
+@import "../../../../variables.scss";
 
+div.sidebar-content-wrapper {
+    font-family: $roboto-font-family;
+    // padding-left: 1rem;
+    div.header {
+        padding-top: 1rem;
+        background-color: $grey-bg-color;
+        min-height: 200px;
+        a.nav-close {
+            float: right;
+            font-size: 1.5rem;
+            cursor: pointer;
+            margin-right: 1rem;
+        }
+    }
+}
+
+nav.navbar {
+    font-family: $roboto-font-family;
+    color: $primary-text-color;
+    box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.05);
+    background-color: #fff;
+    ul.nav {
+        li.nav-item {
+            a.nav-link {
+                color: $primary-text-color;
+                font-size: 1rem;
+                fa-icon[icon="bars"] {
+                    font-size: 1.5rem;
+                    cursor: pointer;
+                    :hover {
+                        font-weight: 1.3rem;
+                        transition: all 0.5s ease-in;
+                    }
+                }
+            }
+            a.nav-link.brand {
+                font-size: 1.5rem;
+                font-weight: 600;
+                text-transform: uppercase;
+                @include animate(fadeIn, 1s);
+                span {
+                    letter-spacing: 0.035rem;
+                }
+            }
+
+            a.app-link {
+                margin-top: 0.4rem;
+                text-transform: uppercase;
+                letter-spacing: 0.1rem;
+                font-size: 0.9rem;
+                @include animate(fadeIn, 2s);
+                span {
+                    position: relative;
+                    display: block;
+                    width: 0%;
+                    height: 3px;
+                    background-color: $primary-text-color;
+                    // left: 5px;
+                    top: 100%;
+                    transition: width 0.5s ease;
+                    border-radius: 5px;
+                }
+
+                &:hover {
+                    span {
+                        width: 100%;
+                    }
+                }
+
+                &.active {
+                    color: $primary-text-color;
+                    font-weight: 600;
+                    span {
+                        width: 100%;
+                    }
+                }
+            }
+
+            a.app-control{
+                @include animate(fadeIn, 2s);
+            }
+        }
+    }
+}
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) {
+    nav.navbar {
+        ul.nav-left {
+            margin-left: 10%;
+        }
+        ul.nav-right {
+            margin-right: 10%;
+        }
+
+        ul.nav {
+            li.nav-item {
+                a.nav-link.brand {
+                    font-size: 2rem;
+                }
+
+                a.app-link {
+                    margin-top: 1rem;
+                    line-height: 1.4;
+                    text-transform: uppercase;
+                    letter-spacing: 0.095rem;
+                    font-size: .9rem;
+                }
+            }
+        }
+    }
+}
+
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) {
+}

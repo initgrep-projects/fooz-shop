@@ -22,7 +22,7 @@ export class ToastsComponent implements OnInit {
 
   getClassNameByType(toast: Toast) {
     if (!toast.options.type || toast.options.type === toastType.SUCCESS) {
-      return "bg-dark text-light";
+      return "bg-darkest text-light";
     }
     if (toast.options.type === toastType.ERROR) {
       return "bg-danger text-white";

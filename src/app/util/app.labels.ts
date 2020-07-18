@@ -69,6 +69,7 @@ export const AuthMessages = {
         manageProfile: 'Manage your account',
         verifiedAccount: 'verified',
         notVerifyAccount: 'verify account',
+        overview: 'overview',
         orders: 'orders',
         addresses: 'Addresses',
         support: 'support',

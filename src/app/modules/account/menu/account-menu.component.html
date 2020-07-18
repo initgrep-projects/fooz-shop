@@ -8,7 +8,7 @@
                     <a routerLink="dashboard"
                        routerLinkActive="active">
                         <fa-icon icon="desktop"></fa-icon>
-                        <span>overview</span>
+                        <span>{{labels.overview}}</span>
                     </a>
                 </li>
 
@@ -22,19 +22,20 @@
                        routerLinkActive="active">
                         <fa-icon class="fas"
                                  [icon]="['fas','user']"></fa-icon>
-                        <span>profile</span>
+                        <span>{{labels.profile}}</span>
                     </a></li>
 
                 <li class="list-group-item">
-                    <a routerLink="orders">
+                    <a routerLink="orders"
+                    routerLinkActive="active">
                         <fa-icon icon="shopping-bag"></fa-icon>
-                        <span>orders</span>
+                        <span>{{labels.orders}}</span>
                     </a></li>
                 <li class="list-group-item">
                     <a routerLink="addresses"
                        routerLinkActive="active">
                         <fa-icon icon="address-book"></fa-icon>
-                        <span>addresses</span>
+                        <span>{{labels.addresses}}</span>
                     </a></li>
 
             </ul>

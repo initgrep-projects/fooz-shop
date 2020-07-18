@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { staggerSlideInList } from 'src/app/animations/slideAnimations';
 import { fadeIn } from 'src/app/animations/fadeAnimation';
+import { AuthMessages } from 'src/app/util/app.labels';
+
 
 
 @Component({
@@ -12,7 +13,7 @@ import { fadeIn } from 'src/app/animations/fadeAnimation';
   ]
 })
 export class AccountMenuComponent implements OnInit {
-
+  labels = AuthMessages.authAnchorLabels;
  
   constructor() { }
 

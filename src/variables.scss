@@ -22,6 +22,9 @@ $success-light: rgba(0,255,0,.1);
 $danger-light: rgba(255,0,0,.1);
 $warning-light: rgba(246, 229, 163, 0.4);
 
+.bg-darkest{
+   background-color:  #000000 !important;
+}
 
 .bg-success-light{
     background-color: $success-light !important;

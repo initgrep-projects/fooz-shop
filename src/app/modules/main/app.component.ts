@@ -11,7 +11,7 @@ export class AppComponent implements OnInit, OnDestroy {
   private subs = new SubSink();
 
   title = 'foozshop';
-  appLoaded = false;
+
 
   constructor(
     private router: Router
@@ -32,9 +32,7 @@ export class AppComponent implements OnInit, OnDestroy {
       });
   }
 
-  onload() {
-    this.appLoaded = true;
-  }
+ 
 
   ngOnDestroy(): void {
     this.subs.unsubscribe();

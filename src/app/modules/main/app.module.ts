@@ -21,6 +21,7 @@ import { ShopModule } from '../shop/shop.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AppReducer } from './store/app.reducer';
+import { MediatorComponent } from './mediator/mediator.component';
 
 
 
@@ -28,7 +29,8 @@ import { AppReducer } from './store/app.reducer';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    MediatorComponent
   ],
   imports: [
     BrowserModule,

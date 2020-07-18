@@ -38,7 +38,7 @@
         </div>
     </div>
     <div class="card-footer" *ngIf="isClicked  || isSelected">
-        <a [routerLink]="['/my/account/address/edit', address.Id]"
+        <a [routerLink]="['edit', address.Id]"
            *ngIf="!!enableEdit"
            class="card-link btn btn-light">{{labels.editAddress}}</a>
         <a class="card-link btn btn-light"

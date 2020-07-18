@@ -93,7 +93,6 @@ export class CartService {
         tap(isOk => {
           console.log('isOK called');
           if (isOk) {
-            
             this.store.dispatch(updateItemInCartAction({ payload: item }));
             this.toastService.success(cartLabels.updateItem);
           }

@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { fadeIn } from 'src/app/animations/fadeAnimation';
 import { Address } from 'src/app/models/address';
 import { AuthMessages } from 'src/app/util/app.labels';
@@ -18,19 +18,20 @@ export class AddressesComponent implements OnInit {
   private subs = new SubSink();
   labels = AuthMessages;
   addresses: Address[];
-  
+
   constructor(
     public addressService: AddressService,
     private router: Router,
+    private activatedRoute: ActivatedRoute
   ) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   routeToNewAddress() {
-    this.router.navigate(['my/account/address/new']);
+    this.router.navigate(['new'], { relativeTo: this.activatedRoute });
   }
 
-   deleteAddress(add:Address){
+  deleteAddress(add: Address) {
     this.addressService.removeAddress(add.Id).subscribe();
   }
 

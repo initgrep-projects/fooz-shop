@@ -45,7 +45,7 @@ export class UserCardComponent implements OnInit, OnDestroy {
 
   routeToAccount() {
     this.manageProfile.emit();
-    this.router.navigate(['my/account']);
+    this.router.navigate(['account']);
 
   }
 

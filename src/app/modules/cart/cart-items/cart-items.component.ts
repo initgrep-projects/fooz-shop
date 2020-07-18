@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CartItem } from 'src/app/models/cartItem';
 import { cartLabels } from 'src/app/util/app.labels';
@@ -29,8 +29,12 @@ export class CartItemsComponent implements OnInit, OnDestroy {
   }
 
   updateCartItem(item: CartItem) {
-    this.cartService.updateCartItem(item);
-    this.cartService.updateProductQuantity(item.Product, item.SelectedQuantity);
+    
+    this.subs.sink =
+      this.cartService.updateCartItem(item).subscribe(
+        ok => this.cartService.updateProductQuantity(item.Product, item.SelectedQuantity)
+      );
+
   }
 
   removeItem(id: string) {
@@ -53,7 +57,7 @@ export class CartItemsComponent implements OnInit, OnDestroy {
     }, 100);
   }
 
-  routeToCheckout(){
+  routeToCheckout() {
     this.closeModal();
     setTimeout(() => {
       this.router.navigate(['/checkout/cart']);

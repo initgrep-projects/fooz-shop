@@ -47,7 +47,7 @@ export const checkoutRoutes: Routes = [
 
 export const accountRoutes: Routes = [
   {
-    path: 'my/account',
+    path: 'account',
     component: AccountComponent,
     canActivate: [AuthGuardService],
     children: [
@@ -72,14 +72,14 @@ export const accountRoutes: Routes = [
         canActivateChild: [AuthGuardService]
       },
       {
-        path: 'address/edit/:id',
+        path: 'addresses/edit/:id',
         component: UserAddressEditComponent,
         resolve: { address: AddressResolver },
         canActivateChild: [AuthGuardService]
 
       },
       {
-        path: 'address/new',
+        path: 'addresses/new',
         component: UserAddressEditComponent,
         canActivateChild: [AuthGuardService]
       },

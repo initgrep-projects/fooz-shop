@@ -45,6 +45,14 @@ div.app-address-view {
                 margin-left: 1rem;
             }
         }
+        div.no-ad-wrapper{
+            div.alert.app-addresses-alert {
+                font-weight: 600;
+                &::first-letter {
+                    text-transform: uppercase;
+                }
+            }
+        }
     }
     div.address-view-footer {
         position: sticky;

@@ -4,8 +4,8 @@
     <a routerLink="home"
        routerLinkActive="active"
        (click)="onClick()">
-      <fa-icon [icon]="['fas','window-maximize']"></fa-icon>{{labels.home}}
-      <span *ngIf="!isPopup"></span>
+      <fa-icon [icon]="['fas','window-maximize']"></fa-icon>
+      <span class="label">{{labels.home}}</span>
     </a>
   </li>
   <li class="list-group-item"
@@ -13,8 +13,8 @@
     <a routerLink="shop"
        routerLinkActive="active"
        (click)="onClick()">
-      <fa-icon [icon]="['fas','store']"></fa-icon>{{labels.shop}}
-      <span *ngIf="!isPopup"></span>
+      <fa-icon [icon]="['fas','store']"></fa-icon>
+      <span class="label">{{labels.shop}}</span>
     </a>
   </li>
 
@@ -22,19 +22,19 @@
 
 <ul class="list-group list-group-flush">
   <li class="list-group-item">
-    <a routerLink="/my/account/orders"
+    <a routerLink="/account/orders"
        routerLinkActive=""
        (click)="onClick()">
-      <fa-icon [icon]="['fas','shopping-bag']"></fa-icon>{{labels.orders}}
-      <span *ngIf="!isPopup"></span>
+      <fa-icon [icon]="['fas','shopping-bag']"></fa-icon>
+      <span class="label">{{labels.orders}}</span>
     </a>
   </li>
   <li class="list-group-item">
-    <a routerLink="/my/account/addresses"
+    <a routerLink="/account/addresses"
        routerLinkActive=""
        (click)="onClick()">
-      <fa-icon [icon]="['fas','address-book']"></fa-icon>{{labels.addresses}}
-      <span *ngIf="!isPopup"></span>
+      <fa-icon [icon]="['fas','address-book']"></fa-icon>
+      <span class="label">{{labels.addresses}}</span>
     </a>
   </li>
 
@@ -42,16 +42,16 @@
     <a routerLink=""
        routerLinkActive=""
        (click)="onClick()">
-      <fa-icon [icon]="['fas','info-circle']"></fa-icon>{{labels.support}}
-      <span *ngIf="!isPopup"></span>
+      <fa-icon [icon]="['fas','info-circle']"></fa-icon>
+      <span class="label">{{labels.support}}</span>
     </a>
   </li>
   <li class="list-group-item">
     <a routerLink=""
        routerLinkActive=""
        (click)="onClick()">
-      <fa-icon [icon]="['fas','headset']"></fa-icon>{{labels.contact}}
-      <span *ngIf="!isPopup"></span>
+      <fa-icon [icon]="['fas','headset']"></fa-icon>
+      <span class="label">{{labels.contact}}</span>
     </a>
   </li>
 </ul>

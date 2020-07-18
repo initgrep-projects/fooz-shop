@@ -22,7 +22,10 @@ ul.list-group {
             display: block;
     
             fa-icon {
-                margin-right: 1rem;
+                font-size: 1rem;
+            }
+            span.label{
+                margin-left: 1rem;
             }
 
             &:hover {

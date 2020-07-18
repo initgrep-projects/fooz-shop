@@ -1,4 +1,9 @@
-<div class="sidenav-mask" #sidenavMask></div>
-<div id="mySidenav" class="sidenav" #sidenav >
-<ng-content></ng-content>
+<div class="sidenav-mask"
+     #sidenavMask
+     (click)="close()"></div>
+<div id="mySidenav"
+     class="sidenav"
+     #sidenav
+     (click)="close()">
+    <ng-content></ng-content>
 </div>

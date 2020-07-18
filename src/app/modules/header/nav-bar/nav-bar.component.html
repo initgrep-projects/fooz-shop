@@ -1,31 +1,4 @@
-<app-sidebar [bgColor]="'white'">
 
-  <div class="sidebar-content-wrapper"
-       *ngIf="!isNavClosed">
-    <div class="row">
-      <div class="col-12 header">
-        <div class="row">
-          <div class="col-12">
-            <a class="nav-close">
-              <fa-icon icon="times"
-                       (click)="closeSideNav()"></fa-icon>
-            </a>
-          </div>
-          <div class="col-12">
-            <app-user-card (userLoaded)="closeSideNav()"
-                           (manageProfile)="closeSideNav()"></app-user-card>
-          </div>
-        </div>
-      </div>
-      <div class="col-12 ">
-        <app-anchors (clicked)="closeSideNav()"></app-anchors>
-      </div>
-      <div class="col-12 text-center">
-        <app-signout (afterSignOut)="closeSideNav()"></app-signout>
-      </div>
-    </div>
-  </div>
-</app-sidebar>
 
 <nav class="navbar sticky-top navbar-light  justify-content-between flex-nowrap flex-row">
 

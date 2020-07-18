@@ -49,7 +49,7 @@ export class AddressViewComponent implements OnInit, OnDestroy {
   }
 
   updateProfile(){
-    this.router.navigate(['/my/account/profile/edit']);
+    this.router.navigate(['/account/profile/edit']);
   }
 
   ngOnDestroy() {

@@ -1,0 +1,26 @@
+<app-sidebar [bgColor]="'white'">
+
+    <div class="sidebar-content-wrapper"
+         >
+      <div class="row">
+        <div class="col-12 header">
+          <div class="row">
+            <div class="col-12">
+              <a class="nav-close">
+                <fa-icon icon="times"></fa-icon>
+              </a>
+            </div>
+            <div class="col-12">
+              <app-user-card></app-user-card>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 ">
+          <app-anchors></app-anchors>
+        </div>
+        <div class="col-12 text-center">
+          <app-signout></app-signout>
+        </div>
+      </div>
+    </div>
+  </app-sidebar>

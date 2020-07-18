@@ -32,7 +32,7 @@ export class CartViewComponent implements OnInit {
   }
 
   updateProfile(){
-    this.router.navigate(['/my/account/profile/edit']);
+    this.router.navigate(['/account/profile/edit']);
   } 
   removeItem(id: string) {
     this.cartService.deleteItem(id);

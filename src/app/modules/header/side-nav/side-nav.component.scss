@@ -1,0 +1,17 @@
+@import "../../../../variables.scss";
+
+div.sidebar-content-wrapper {
+    font-family: $roboto-font-family;
+    // padding-left: 1rem;
+    div.header {
+        padding-top: 1rem;
+        background-color: $grey-bg-color;
+        min-height: 200px;
+        a.nav-close {
+            float: right;
+            font-size: 1.5rem;
+            cursor: pointer;
+            margin-right: 1rem;
+        }
+    }
+}

@@ -1,30 +1,64 @@
-<nav class="app-nav-bar border border-dark">
+<nav class="app-nav-bar "
+     appHeaderScroll>
   <div class="top">
     <div class="brand">
-      <fa-icon icon ="atom"></fa-icon>
+      <a class="icon d-none d-md-inline" href="http://">
+        <fa-icon icon="atom"></fa-icon>
+      </a>
+
+      <fa-icon icon="bars"
+               class="d-md-none"
+               (click)="sideBarService.open()"></fa-icon>
+
+      <span class="name">FOOZ ABAYA</span>
     </div>
     <div class="top-links">
       <ul class="nav navbar-nav flex-row ">
-        <!-- <li class="nav-item mr-3 mr-lg-4">
+        <!-- <li class=" mr-3 mr-lg-4">
           <a class="nav-link ">
             <app-search ></app-search>
           </a>
         </li> -->
-        <li class="nav-item d-none d-md-block mr-md-4">
-          <a class="nav-link app-control">
+        <li class="nav-item d-none d-md-block mx-md-2">
+          <a class=" app-control">
             <app-auth></app-auth>
           </a>
         </li>
-    
-        <li class="nav-item ">
-          <a class="nav-link app-control">
+
+        <li class="nav-item mx-2 ">
+          <a class=" app-control">
             <app-cart></app-cart>
           </a>
-    
         </li>
-    
+
       </ul>
     </div>
   </div>
-  <div class="bottom">p</div>
+  <div class="bottom">
+
+    <ul class="nav navbar-nav flex-row nav-left">
+      <li class="nav-item ">
+        <a class=" app-link">
+          <fa-icon [icon]="['fa','long-arrow-left']"></fa-icon>
+        </a>
+        
+      </li>
+      <li class="nav-item ">
+        <a class=" app-link"
+           routerLink="home"
+           routerLinkActive="active">
+          {{labels.home}}
+        </a>
+        <span class="indicator"></span>
+      </li>
+      <li class="nav-item">
+        <a class="app-link"
+           routerLink="shop"
+           routerLinkActive="active">
+          {{labels.shop}}
+        </a>
+        <span class="indicator"></span>
+      </li>
+    </ul>
+  </div>
 </nav>

@@ -1,22 +1,109 @@
+@import "../../../../variables.scss";
 nav.app-nav-bar {
+    font-family: $roboto-font-family;
     width: 100%;
     position: sticky;
-    min-height: 200px;
-    box-shadow: 0px 2px 2px #010101;
+    top: -1px;
+    // box-shadow: 0px 1px 2px #010101;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
     margin-bottom: 2px;
     display: flex;
     flex-direction: column;
     z-index: 1020;
+    background-color: $bg-black;
+    color: $secondary-text-color;
+
+    @include md {
+        padding: 1rem 5% 0 5%;
+    }
     div.top {
-        // width: 100%;
         padding: 1rem;
-        border:1px solid red;
-        display:  flex;
+        // border: 1px solid red;
+        display: flex;
         justify-content: space-between;
+        div.brand {
+            a.icon {
+                font-size: 2rem;
+                color: $secondary-text-color;
+                @include md {
+                    font-size: 3rem;
+                }
+                fa-icon {
+                    transition: font-size 0.5s ease-in;
+                    cursor: pointer;
+                }
+            }
+            
+            fa-icon[icon="bars"] {
+                transition: font-size 0.5s ease-in;
+                cursor: pointer;
+                font-size: 1.5rem;
+            }
+
+            .name {
+                font-size: 1rem;
+                text-transform: uppercase;
+                font-weight: 600;
+                letter-spacing: 0.06rem;
+                padding: 0 1rem;
+                transition: font-size 0.5s ease-in;
+                @include md {
+                    font-size: 2rem;
+                }
+            }
+        }
+        div.top-links {
+            display: flex;
+            align-items: center;
+
+            ul {
+                li {
+                    a {
+                        font-weight: 600;
+                    }
+                }
+            }
+        }
     }
     div.bottom {
-        // width: 100%;
-        padding: 1rem;
-        border:2px solid green;
+        ul.nav {
+            li.nav-item {
+                text-align: center;
+                a {
+                    color: $secondary-text-color;
+                    letter-spacing: 0.045rem;
+                    text-transform: uppercase;
+                    font-size: 0.8rem;
+                    font-weight: 600;
+                    text-decoration: none;
+                    padding: 0.5rem 0.7rem;
+                    margin: 0 0.1rem;
+                    transition: background-color 0.2s ease-in, border-bottom 0.3s ease-out;
+                    display: inline-block;
+
+                    &:hover {
+                        background-color: #333;
+                    }
+                    &.active {
+                        background-color: #333;
+                        & ~ span.indicator {
+                            height: 2px;
+                            width: 100%;
+                        }
+                    }
+                }
+
+                span.indicator {
+                    display: block;
+                    position: relative;
+                    left: 0px;
+                    height: 0px;
+                    background: #f1f1f1;
+                    border-radius: 5px;
+                    transition: width 0.2s ease-in;
+                    width: 0;
+                }
+            }
+        }
     }
 }

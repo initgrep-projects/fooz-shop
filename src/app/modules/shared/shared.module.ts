@@ -26,6 +26,7 @@ import { UserAddressComponent } from './user-address/user-address.component';
 import { UserCardComponent } from './user-card/user-card.component';
 import { DialogComponent } from './dialog/dialog.component';
 import { AlertComponent } from './alert/alert.component';
+import { HeaderScrollDirective } from './directives/header-scroll.directive';
 
 
 @NgModule({
@@ -52,7 +53,8 @@ import { AlertComponent } from './alert/alert.component';
     CardItemComponent,
     StatusComponent,
     UserAddressComponent,
-    AlertComponent
+    AlertComponent,
+    HeaderScrollDirective
   ],
   imports: [
     CommonModule,
@@ -79,6 +81,7 @@ import { AlertComponent } from './alert/alert.component';
     CartItemComponent,
     MatfocusDirective,
     ClearInputDirective,
+    HeaderScrollDirective,
     CardItemComponent,
     StatusComponent,
     UserAddressComponent,

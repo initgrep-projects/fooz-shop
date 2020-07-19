@@ -1,7 +1,6 @@
-import { Component, OnInit, ViewChild, ElementRef, OnDestroy } from '@angular/core';
-import { SidebarService } from 'src/app/modules/shared/sidebar/sidebar.service';
-import { SubSink } from 'subsink';
+import { Component, OnInit } from '@angular/core';
 import { AuthMessages } from 'src/app/util/app.labels';
+import { SidebarService } from '../../shared/sidebar/sidebar.service';
 
 
 @Component({
@@ -10,7 +9,9 @@ import { AuthMessages } from 'src/app/util/app.labels';
   styleUrls: ['./nav-bar.component.scss']
 })
 export class NavBarComponent implements OnInit {
- 
+  labels = AuthMessages.authAnchorLabels;
+
+  constructor(public sideBarService: SidebarService){}
 
   ngOnInit(): void {
    

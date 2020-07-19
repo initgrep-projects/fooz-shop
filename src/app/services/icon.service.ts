@@ -27,6 +27,7 @@ import {
   faDoorOpen,
   faLongArrowAltUp,
   faLongArrowAltDown,
+  faLongArrowAltLeft,
   faArrowsAltH,
   faArrowsAltV,
   faStop,

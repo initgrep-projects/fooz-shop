@@ -1,7 +1,6 @@
-import { Directive, Input, ElementRef, HostListener, OnInit, OnChanges, Inject } from '@angular/core';
-import { DOCUMENT } from '@angular/common';
+import { Directive, ElementRef, HostListener, Input, OnInit } from '@angular/core';
+import { AbstractControl, NgControl } from '@angular/forms';
 import { isEmpty } from 'lodash';
-import { NgControl, AbstractControl } from '@angular/forms';
 
 @Directive({
   selector: '[appClearInput]'

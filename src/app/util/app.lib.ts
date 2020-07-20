@@ -71,4 +71,14 @@ export function toObservableFromPromise<T>(promisefn: () => Promise<T>): Observa
       })
       .catch(err => observer.error(err));
   });
+
+  
+}
+
+export function encodeURL(url: string){
+  return encodeURIComponent(url);
+}
+
+export function decodeURL(url:string){
+  return decodeURIComponent(url);
 }

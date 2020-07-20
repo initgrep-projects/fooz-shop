@@ -1,8 +1,12 @@
 <div class="card app-lookbook-item">
     <div class="card-body">
         <h5 class="card-title">{{item.Label}}</h5>
-        <a class="stretched-link text-dark" [routerLink]="['/shop']">{{labels.lookbookViewAll}}</a>
-        <img [src]="item.Image.Url" alt="" class="img-fluid" >
-        
+        <a class="stretched-link text-dark"
+           [routerLink]="['/shop']"
+           [queryParams]="{col: encode(item.Label)}">{{labels.lookbookViewAll}}</a>
+        <img [src]="item.Image.Url"
+             alt=""
+             class="img-fluid">
+
     </div>
 </div>

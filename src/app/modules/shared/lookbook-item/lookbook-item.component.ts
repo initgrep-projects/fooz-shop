@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { LookBookItem } from 'src/app/models/lookbook';
 import { homeLabels} from 'src/app/util/app.labels';
+
 @Component({
   selector: 'app-lookbook-item',
   templateUrl: './lookbook-item.component.html',
@@ -15,4 +16,7 @@ export class LookbookItemComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  encode(url:string){
+    return encodeURIComponent(url);
+  }
 }

@@ -1,4 +1,6 @@
+@import '../../../../variables.scss';
 ul {
+    font-family: $roboto-font-family;
     li {
         button {
             text-transform: uppercase;

@@ -1,0 +1,26 @@
+@import "../../../../variables.scss";
+
+div.app-collection {
+    font-family: $ptserif-font-family;
+    h5.collection-title {
+        text-transform: uppercase;
+        letter-spacing: 0.2rem;
+        font-weight: 600;
+        font-size: 0.9rem;
+        text-align: center;
+
+        @include md {
+            font-size: 1.2rem;
+        }
+        @include lg {
+            // text-align: left;
+            font-size: 1.4rem;
+        }
+    }
+    p{
+        text-align: center;
+        letter-spacing: .1rem;
+        text-transform: uppercase;
+        font-size: .6rem;
+    }
+}

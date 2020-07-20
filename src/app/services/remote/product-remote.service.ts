@@ -63,13 +63,13 @@ export class ProductRemoteService {
   }
 
   private bootstrapTestData() {
-      this.saveProducts();
-      this.saveCategories();
-      this.saveSizes();
-      this.saveCustomSizeInputs();
-      this.saveSortOrders();
-      this.saveTrendItems();
-      this.saveLookBook();
+      // this.saveProducts();
+      // this.saveCategories();
+      // this.saveSizes();
+      // this.saveCustomSizeInputs();
+      // this.saveSortOrders();
+      // this.saveTrendItems();
+      // this.saveLookBook();
     
   }
 

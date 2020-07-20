@@ -5,6 +5,7 @@ div.pop-title-wrapper {
 
     div.pop-title {
         @include animate(fadeIn, 0.5s);
+        color: $primary-text-color;
         padding: 5px;
         div.auth-anonymous {
             text-align: center;

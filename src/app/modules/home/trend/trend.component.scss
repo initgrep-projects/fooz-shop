@@ -84,9 +84,12 @@
         color: #333;
         display: inline-block;
         padding: 0.5rem 1rem;
-        font-size: 1.5rem;
         border-radius: 4px;
-        @include animate(fadeInUp, 1s);
+        @include animate(fadeInUp, .5s);
+        font-size: 1rem;
+        @include md{
+          font-size: 1.5rem;
+        }
       }
 
       a {
@@ -95,7 +98,7 @@
         font-weight: 600;
         letter-spacing: 0.045rem;
         color: $secondary-text-color;
-        @include animate(fadeInUp, 1.5s);
+        @include animate(fadeInUp, 1s);
         span {
           text-transform: uppercase;
           margin-right: 1rem;

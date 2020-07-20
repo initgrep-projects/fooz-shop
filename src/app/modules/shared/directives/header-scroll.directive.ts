@@ -26,14 +26,13 @@ export class HeaderScrollDirective {
       if (number > 50) {
         this.renderer.setStyle(topElement, 'padding', '0');
         this.renderer.setStyle(topElement, 'transition', 'padding .5s ease-out')
-        this.renderer.setStyle(brand, 'transition', 'all .5s ease-out');
-        this.renderer.setStyle(brandName, 'transition', 'all .5s ease-out');
+        this.renderer.setStyle(brand, 'transition', 'font-size .2s ease-out');
+        this.renderer.setStyle(brandName, 'transition', 'font-size .2s ease-out');
         this.renderer.setStyle(brand, 'font-size', '2rem');
         this.renderer.setStyle(brandName, 'font-size', '1.5rem');
       }
-      else {
+      else if(number === 0) {
         this.renderer.setStyle(topElement, 'padding', '1rem');
-        this.renderer.setStyle(topElement, 'transition', 'padding .5s ease-out');
         this.renderer.setStyle(brand, 'font-size', '3rem');
         this.renderer.setStyle(brandName, 'font-size', '2rem');
       }

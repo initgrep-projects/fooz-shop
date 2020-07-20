@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { filter, map, switchMap } from 'rxjs/operators';
+import { HomeService } from '../home/home.service';
 
 @Component({
   selector: 'app-shop',
@@ -8,8 +11,22 @@ import { Component, OnInit } from '@angular/core';
 export class ShopComponent implements OnInit {
 
 
-  constructor() { }
 
-  ngOnInit(): void {
-  }
+  constructor(
+    private route: ActivatedRoute,
+    private hs: HomeService
+  ) { }
+
+  ngOnInit() { }
+
+  collectionTitle$ = this.route.queryParams
+    .pipe(
+      map(param => decodeURIComponent(param.col)),
+      switchMap(
+        title => this.hs.lookbookItems$
+        .pipe(
+          map(lbs => lbs.filter(lb => lb.Label === title)),
+          map(lbs => lbs?.pop())
+          )));
+
 }

@@ -27,16 +27,16 @@ export class FakedataService {
   getLookBook(){
     // https://i.imgur.com/WZ35TTq.jpg fooz trend
     const foozTrend =  new Image('https://i.imgur.com/WZ35TTq.jpg',new Color('green', '#808000'));
-    const lookBookItem1 = new LookBookItem(foozTrend,'fooz trend');
+    const lookBookItem1 = new LookBookItem(foozTrend,'fooz tinted', 'Tint is the new black');
 
     // https://i.imgur.com/qHo8OQX.jpg Fooz special
 
     const foozSpecial = new Image('https://i.imgur.com/qHo8OQX.jpg',new Color('pink', '#FFB6C1'));
-    const lookBookItem2 = new LookBookItem(foozSpecial,'fooz Special');
+    const lookBookItem2 = new LookBookItem(foozSpecial,'fooz casual', 'Everyday stylish');
     // https://i.imgur.com/T2KSOdO.jpg Fooz Everyday
 
     const centerOpen = new Image('https://i.imgur.com/T2KSOdO.jpg',new Color('black', '#f1f1f1'));
-    const lookBookItem3 =  new LookBookItem(centerOpen,'fooz everyday');
+    const lookBookItem3 =  new LookBookItem(centerOpen,'fooz chick', 'Be classy');
 
     return [lookBookItem1, lookBookItem2, lookBookItem3];
 

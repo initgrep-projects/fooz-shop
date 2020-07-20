@@ -4,19 +4,18 @@ div.side-filter-wrapper{
     h6.filter-heading{
         font-weight: 600;
         letter-spacing: .09rem;
-        text-transform: capitalize;
+        text-transform: uppercase;
+        letter-spacing: .03rem;
     }
     ul{
-
         li{
-            @include animate();
             border-width: 0px !important;
             padding: 0rem 1rem 0rem 0rem;
             background-color: transparent;
             label{
-                letter-spacing: .025rem;
+                letter-spacing: .045rem;
                 font-size: .8rem;
-                text-transform: capitalize;
+                text-transform: uppercase;
             }
         }
     }

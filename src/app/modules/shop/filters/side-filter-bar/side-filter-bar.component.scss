@@ -1,27 +1,26 @@
 @import "../../../../../variables.scss";
 
-div.side-filter-bar-wrapper{
+div.side-filter-bar-wrapper {
     font-family: $roboto-font-family;
     display: flex;
     justify-content: flex-end;
     margin-top: 5rem;
-
-    ul.list-group{
-        li.list-group-item{
+    position: sticky;
+    top: 150px;
+    @include animate(fadeIn,1s);
+    ul.list-group {
+        li.list-group-item {
             background-color: transparent;
-            @include animate(fadeIn,3s);
         }
-        li.filter-group-heading{
-           
-            h6{
-                span{
-                    margin-left: .5rem;
-                    letter-spacing: .065rem;
+        li.filter-group-heading {
+            h6 {
+                span {
+                    margin-left: 0.5rem;
+                    letter-spacing: 0.065rem;
                     text-transform: uppercase;
                     font-weight: 600;
                 }
             }
         }
     }
-
 }

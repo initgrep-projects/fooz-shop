@@ -30,6 +30,7 @@ import { ShopRoutingModule } from './shop-routing.module';
 import { ShopComponent } from './shop.component';
 import { ShopEffects } from './store/shop.effects';
 import { FilterEffects } from './filters/store/filter.effects';
+import { CollectionComponent } from './collection/collection.component';
 
 
 
@@ -61,7 +62,8 @@ import { FilterEffects } from './filters/store/filter.effects';
     FilterBySizePipe,
     SortPipe,
     SideFilterBarComponent,
-    SideFilterComponent
+    SideFilterComponent,
+    CollectionComponent
   ],
   imports: [
     CommonModule,

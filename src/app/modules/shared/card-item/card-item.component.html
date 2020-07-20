@@ -1,11 +1,11 @@
 <div class="card app-card-item ">
     <div class="card inner-card"
          (click)="routeToItemDetails()">
-        <div *ngFor="let s of selectedImages | slice:0:1">
-            <img [src]="s.Url"
+        <div >
+            <img [src]="selectedImages[0].Url"
                  class="card-img-top">
             <div class="card-img-overlay hovered left">
-                <img [src]="s.Url"
+                <img [src]="selectedImages[1].Url"
                      class="card-img-top">
             </div>
         </div>

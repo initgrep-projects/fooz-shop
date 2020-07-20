@@ -229,7 +229,7 @@ export class ObjectTransformerService {
 
 
   transformLookBookItem(param: DocumentData) {
-    return new LookBookItem(this.transformImage(param.image), param.label);
+    return new LookBookItem(this.transformImage(param.image), param.label, param.description);
   }
 
 }

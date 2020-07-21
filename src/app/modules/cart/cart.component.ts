@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { SubSink } from 'subsink';
 import { AuthMessages } from '../../util/app.labels';
 import { CartService } from './cart.service';
@@ -10,6 +10,7 @@ import { CartService } from './cart.service';
 })
 export class CartComponent implements OnInit, OnDestroy {
   labels = AuthMessages.authAnchorLabels;
+  @Input() styleClass:string;
   private subs = new SubSink();
 
   constructor(

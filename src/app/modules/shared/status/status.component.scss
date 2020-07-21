@@ -5,10 +5,11 @@ div.container-fluid {
     align-items: center;
     justify-content: center;
     min-height: 100vh;
-    // border: 20px solid rgba(0, 0, 0, 0.12);
-
+    position: absolute;
+    background: rgba(0, 0, 0, 0.3);
+    z-index: 2000;
     div.loading-wrapper {
-        // box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+
         box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.05);
         div.card {
             .card-footer {

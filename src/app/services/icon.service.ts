@@ -64,11 +64,12 @@ import {
   faShieldAlt,
   faPencilAlt,
   faDesktop,
-  faEdit
+  faEdit,
+  faArrowLeft
 } from '@fortawesome/free-solid-svg-icons';
 import { 
   faUser as farUser,
-  faCircle as farCircle,
+  faCircle as farCircle
  } from '@fortawesome/free-regular-svg-icons';
 import { faGoogle, faCcVisa, faCcAmex, faCcMastercard, faCcPaypal } from '@fortawesome/free-brands-svg-icons';
 
@@ -107,6 +108,7 @@ export class IconService {
       faLongArrowAltUp,
       faLongArrowAltDown,
       faLongArrowAltRight,
+      faLongArrowAltLeft,
       faArrowsAltH,
       faArrowsAltV,
       faLayerGroup,
@@ -152,7 +154,8 @@ export class IconService {
       faPencilAlt,
       farCircle,
       faDesktop,
-      faEdit
+      faEdit,
+      faArrowLeft
     ];
   }
 

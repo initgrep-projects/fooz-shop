@@ -1,0 +1,38 @@
+<nav class="app-sec-nav-bar">
+    <div class="left">
+       <button class="btn btn-dark" (click)="location.back()">
+         <fa-icon icon = "arrow-left"></fa-icon>
+       </button> 
+    </div>
+    <div class="center">
+        <div class="brand">
+            <a class=" "
+            [routerLink]="['/home']"
+            >
+              <fa-icon icon="atom"></fa-icon>
+              <span class="name">FOOZ ABAYA</span>
+            </a>
+          </div>
+    </div>
+    <div class="right">
+        <ul class="nav navbar-nav flex-row ">
+            <!-- <li class=" mr-3 mr-lg-4">
+              <a class="nav-link ">
+                <app-search ></app-search>
+              </a>
+            </li> -->
+            <!-- <li class="nav-item d-none d-md-block mx-md-2">
+              <a class=" app-control">
+                <app-auth></app-auth>
+              </a>
+            </li> -->
+    
+            <li class="nav-item mx-2 ">
+              <a class=" app-control">
+                <app-cart [styleClass]="'text-light'"></app-cart>
+              </a>
+            </li>
+    
+          </ul>
+    </div>
+</nav>

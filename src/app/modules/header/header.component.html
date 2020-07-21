@@ -1,4 +1,8 @@
 
 <app-side-nav></app-side-nav>
-<app-nav-bar></app-nav-bar>
-<!-- <app-top-bar></app-top-bar> -->
+<!-- <app-sec-nav-bar></app-sec-nav-bar> -->
+<app-nav-bar *ngIf="statusService.isMainRoute$ | async as isPresent; else subRoute"></app-nav-bar>
+<ng-template #subRoute>
+    <app-sec-nav-bar></app-sec-nav-bar>
+</ng-template>
+

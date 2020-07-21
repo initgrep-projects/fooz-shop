@@ -1,14 +1,15 @@
-import { Injectable } from '@angular/core';
-import { NgbModalRef, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Location } from '@angular/common';
-import { Router, NavigationStart } from '@angular/router';
-import {  tap } from 'rxjs/operators';
+import { Injectable } from '@angular/core';
+import { NavigationStart, Router } from '@angular/router';
+import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CartModalService {
   modalRef: NgbModalRef;
+ 
 
   constructor(
     private modalService: NgbModal,

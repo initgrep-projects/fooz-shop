@@ -25,7 +25,7 @@ export class ShopComponent implements OnInit {
       switchMap(
         title => this.hs.lookbookItems$
         .pipe(
-          map(lbs => lbs.filter(lb => lb.Label === title)),
+          map(lbs => lbs?.filter(lb => lb.Label === title)),
           map(lbs => lbs?.pop())
           )));
 

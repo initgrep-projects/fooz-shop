@@ -22,6 +22,7 @@ export class StatusComponent implements OnInit, OnDestroy {
   private subs = new SubSink();
   statusObservables: Observable<any>[] = [];
   @Output() loaded = new EventEmitter();
+  isLoaded = false;
 
   constructor(
     private ps: ProductService,
@@ -58,10 +59,12 @@ export class StatusComponent implements OnInit, OnDestroy {
           if (!isEmpty(ps) && !isEmpty(ls)) {
             console.log("everything loaded in home page", ps, ls);
             this.loaded.emit();
+            this.isLoaded = true;
           }
         });
     } else {
       this.loaded.emit();
+      this.isLoaded = true;
     }
   }
 

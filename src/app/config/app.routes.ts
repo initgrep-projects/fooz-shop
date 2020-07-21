@@ -24,7 +24,7 @@ export const checkoutRoutes: Routes = [
     path: 'checkout',
     component: CheckoutComponent,
     canActivate: [AuthGuardService],
-    children:[
+    children: [
       {
         path: 'cart',
         component: CartViewComponent,
@@ -34,7 +34,7 @@ export const checkoutRoutes: Routes = [
         path: 'address',
         component: AddressViewComponent,
         canActivateChild: [AuthGuardService]
-        
+
       },
       {
         path: 'payment',
@@ -146,5 +146,10 @@ export const authRoutes: Routes = [
     component: AuthModalComponent,
     outlet: 'secure'
   }
-]
+];
+
+export const navLayoutRoutes = [
+  'shop/item',
+  'checkout'
+];
 

@@ -1,10 +1,9 @@
-import { Component, OnInit, Input, OnDestroy, OnChanges } from '@angular/core';
-import { Product } from 'src/app/models/product';
+import { Component, OnChanges, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Subscription } from 'rxjs';
-import { ItemDetailService } from './item-detail.service';
-import {SubSink} from 'subsink';
 import { cloneDeep } from 'lodash';
+import { Product } from 'src/app/models/product';
+import { SubSink } from 'subsink';
+import { ItemDetailService } from './item-detail.service';
 
 @Component({
   selector: 'app-item-detail',
@@ -14,7 +13,6 @@ import { cloneDeep } from 'lodash';
 export class ItemDetailComponent implements OnInit, OnDestroy, OnChanges {
 
   product: Product;
-
   subs = new SubSink();
 
   constructor(

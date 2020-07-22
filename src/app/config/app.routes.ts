@@ -148,8 +148,10 @@ export const authRoutes: Routes = [
   }
 ];
 
-export const navLayoutRoutes = [
+export const secondaryLayoutConfig = [
   'shop/item',
   'checkout'
 ];
+
+
 

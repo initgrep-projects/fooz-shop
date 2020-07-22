@@ -9,6 +9,7 @@ import { Currency } from 'src/app/models/currency';
 import { Sort } from 'src/app/models/Sort';
 import { CustomSizeInput } from '../models/custom-size';
 import { LookBookItem } from '../models/lookbook';
+import { Brand } from '../models/brand';
 
 
 @Injectable({
@@ -22,7 +23,9 @@ export class FakedataService {
     this.getProducts();
   }
 
-  
+  getBrand(){
+    return new Brand('fooz abayas','','qatar');
+  }
 
   getLookBook(){
     // https://i.imgur.com/WZ35TTq.jpg fooz trend
@@ -41,6 +44,8 @@ export class FakedataService {
     return [lookBookItem1, lookBookItem2, lookBookItem3];
 
   }
+
+
 
   getSizes() {
     const smallSize = new Size('small', 'S');

@@ -12,6 +12,7 @@ import { CartItem } from '../models/cartItem';
 import { User } from '../models/user';
 import { Address } from '../models/address';
 import { LookBookItem } from '../models/lookbook';
+import { Brand } from '../models/brand';
 
 @Injectable({
   providedIn: 'root'
@@ -229,7 +230,11 @@ export class ObjectTransformerService {
 
 
   transformLookBookItem(param: DocumentData) {
-    return new LookBookItem(this.transformImage(param.image), param.label, param.description);
+    return !param ? null : new LookBookItem(this.transformImage(param.image), param.label, param.description);
+  }
+
+  transformBrand(param: DocumentData) {
+    return !param ? null : new Brand(param.name, param.logo, param.country);
   }
 
 }

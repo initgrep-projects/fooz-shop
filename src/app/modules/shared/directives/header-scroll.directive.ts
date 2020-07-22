@@ -20,8 +20,8 @@ export class HeaderScrollDirective {
       const number = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
 
       const topElement = this.elementRef.nativeElement.children[0];
-      const brand = topElement.children[0].children[0];
-      const brandName = topElement.children[0].children[2];
+      const brand = topElement.children[0].children[0].children[0];
+      const brandName = topElement.children[0].children[0].children[1];
 
       if (number > 50) {
         this.renderer.setStyle(topElement, 'padding', '0');

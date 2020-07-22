@@ -2,6 +2,7 @@ export const HOME_PAGE_FLAG = 'home';
 export const CATEGORY_COLLECTION = 'category';
 export const PRODUCT_COLLECTION = 'product';
 export const SIZE_COLLECTION = 'size';
+export const BRAND_COLLECTION = 'brand';
 export const SORT_COLLECTION = 'sortorder';
 export const CUSTOM_SIZE_INPUT = 'customsizeinput';
 export const TREND_COLLECTION = 'trend';
@@ -30,6 +31,10 @@ export const DATA_LOAD_ERROR = 'Connection Error';
 export const DATA_LOAD_ERROR_DETAILS = 'we are unable to connect to server. please check your internet connection';
 
 /** store action constants */
+
+export const LOAD_BRAND_ACTION = '[header] load brand';
+export const SAVE_BRAND_ACTION = '[header] save brand';
+export const LOAD_BRAND_FAILURE_ACTION = '[header] load failure';
 
 export const LOAD_FAILURE_FOR_HOME_ACTION = '[home ] load  failure';
 export const LOAD_LOOKBOOK_ITEMS_ACTION = '[home ] load lookbookItems';

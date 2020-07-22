@@ -11,6 +11,8 @@ import { SearchComponent } from './nav-bar/search/search.component';
 import { SideNavComponent } from './side-nav/side-nav.component';
 import { SecNavBarComponent } from './sec-nav-bar/sec-nav-bar.component';
 import { InfoBarComponent } from './info-bar/info-bar.component';
+import { EffectsModule } from '@ngrx/effects';
+import { HeaderEffects } from './store/header.effects';
 
 
 
@@ -29,7 +31,8 @@ import { InfoBarComponent } from './info-bar/info-bar.component';
     HeaderRoutingModule,
     SharedModule,
     CartModule,
-    AuthModule
+    AuthModule,
+    EffectsModule.forFeature([HeaderEffects])
   ],
   exports: [
     HeaderComponent

@@ -1,5 +1,6 @@
+import { transition, trigger, useAnimation } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
-import { fadeIn } from 'src/app/animations/fadeAnimation';
+import { fadeIn } from 'ng-animate';
 import { HomeService } from '../home.service';
 
 
@@ -8,7 +9,7 @@ import { HomeService } from '../home.service';
   templateUrl: './trend.component.html',
   styleUrls: ['./trend.component.scss'],
   animations: [
-    fadeIn
+    trigger('fadeIn', [transition('* => *', useAnimation(fadeIn))])
   ]
 })
 export class TrendComponent implements OnInit {

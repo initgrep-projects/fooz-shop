@@ -14,12 +14,13 @@ import {
   CATEGORY_COLLECTION,
   CUSTOM_SIZE_INPUT,
   LOOKBOOK_COLLECTION, PRODUCT_COLLECTION,
-  PRODUCT_PAGE_SIZE, SIZE_COLLECTION, SORT_COLLECTION, TREND_COLLECTION
+  PRODUCT_PAGE_SIZE, SIZE_COLLECTION, SORT_COLLECTION, TREND_COLLECTION, BRAND_COLLECTION
 } from '../../util/app.constants';
 import { generateGuid } from '../../util/app.lib';
 import { FakedataService } from '../fakedata.service';
 import { ObjectTransformerService } from '../object-transformer.service';
 import { environment } from 'src/environments/environment';
+import { Brand } from 'src/app/models/brand';
 
 
 
@@ -39,7 +40,7 @@ export class ProductRemoteService {
   private sortCollection: AngularFirestoreCollection<Sort>;
   private trendCollection: AngularFirestoreCollection<Image>;
   private lookBookCollection: AngularFirestoreCollection<LookBookItem>;
-
+  private brandCollection: AngularFirestoreCollection<Brand>;
 
   constructor(
     private db: AngularFirestore,
@@ -58,22 +59,41 @@ export class ProductRemoteService {
     this.sizeCollection = this.db.collection<Size>(SIZE_COLLECTION);
     this.customSizeInputCollection = this.db.collection<CustomSizeInput>(CUSTOM_SIZE_INPUT);
     this.sortCollection = this.db.collection<Sort>(SORT_COLLECTION);
+    this.brandCollection = this.db.collection<Brand>(BRAND_COLLECTION);
 
     // this.bootstrapTestData();
   }
 
   private bootstrapTestData() {
-      // this.saveProducts();
-      // this.saveCategories();
-      // this.saveSizes();
-      // this.saveCustomSizeInputs();
-      // this.saveSortOrders();
-      // this.saveTrendItems();
-      // this.saveLookBook();
-    
+    this.saveBrand();
+    this.saveProducts();
+    this.saveCategories();
+    this.saveSizes();
+    this.saveCustomSizeInputs();
+    this.saveSortOrders();
+    this.saveTrendItems();
+    this.saveLookBook();
+
   }
 
+  saveBrand() {
+    const brand = this.fakedataService.getBrand();
+    this.brandCollection.doc(generateGuid()).set(classToPlain(brand));
+  }
 
+  fetchBrand() {
+    return this.brandCollection.get()
+      .pipe(
+        map(querySnapShot => {
+          let brand: Brand;
+          querySnapShot.forEach(doc => {
+            brand = this.objTransformer.transformBrand(doc.data());
+          });
+          console.log('brand fetched ', brand);
+          return brand;
+        })
+      );
+  }
 
   saveProducts() {
     this.fakedataService.getProducts()

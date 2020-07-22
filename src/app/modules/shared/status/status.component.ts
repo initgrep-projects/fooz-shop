@@ -2,11 +2,12 @@ import { Location } from '@angular/common';
 import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
 import { isEmpty } from 'lodash';
 import { combineLatest, Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 import { fadeIn } from 'src/app/animations/fadeAnimation';
 import { SubSink } from 'subsink';
+import { HeaderService } from '../../header/header.service';
 import { HomeService } from '../../home/home.service';
 import { ProductService } from '../../shop/product.service';
+import { StatusService } from './status.service';
 
 
 
@@ -20,53 +21,25 @@ import { ProductService } from '../../shop/product.service';
 })
 export class StatusComponent implements OnInit, OnDestroy {
   private subs = new SubSink();
-  statusObservables: Observable<any>[] = [];
   @Output() loaded = new EventEmitter();
   isLoaded = false;
 
   constructor(
-    private ps: ProductService,
-    private hs: HomeService,
-    private location: Location
+   private ss:StatusService
   ) { }
 
   ngOnInit(): void {
-
-
-
-    this.location.onUrlChange((url, state) => {
-
-      if (url.indexOf('home')) {
-        console.log("home routes");
-        this.statusObservables = [this.hs.latestProducts$, this.hs.lookbookItems$, this.hs.trendItems$];
-      } else if (url.indexOf('shop')) {
-        console.log('shop routes');
-        this.statusObservables = [this.ps.products$, this.ps.customSizeInputs$];
-      }
-
-      this.checkstatus();
-
-    });
-
+    this.subs.sink =
+      this.ss.routeObservable$.subscribe(
+        state => {
+          console.log('state called => ', state); 
+          this.isLoaded = state;
+          this.loaded.emit();
+        }
+      )
   }
 
 
-  checkstatus() {
-    if (!isEmpty(this.statusObservables)) {
-      this.subs.sink = combineLatest(this.statusObservables)
-        .subscribe(([ps, ls]) => {
-          console.log("before everything loaded in home page", ps, ls);
-          if (!isEmpty(ps) && !isEmpty(ls)) {
-            console.log("everything loaded in home page", ps, ls);
-            this.loaded.emit();
-            this.isLoaded = true;
-          }
-        });
-    } else {
-      this.loaded.emit();
-      this.isLoaded = true;
-    }
-  }
 
   ngOnDestroy() {
     this.subs.unsubscribe();

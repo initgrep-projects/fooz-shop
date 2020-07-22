@@ -47,8 +47,10 @@ nav.app-sec-nav-bar {
     div.center {
         div.brand {
             padding: 0.375rem 0.75rem;
+            font-family: $ptserif-font-family;
             a {
                 color: $secondary-text-color;
+                text-decoration: none;
                 fa-icon {
                     font-size: 1rem;
                     display: none;
@@ -62,6 +64,7 @@ nav.app-sec-nav-bar {
                     font-weight: 600;
                     letter-spacing: 0.06rem;
                     margin: 0 0.5rem;
+                    text-transform: uppercase;
                     @include md {
                         font-size: 1.5rem;
                     }

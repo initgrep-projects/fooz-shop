@@ -1,7 +1,7 @@
 <div class="container app-lookbook mb-2">
 
   <div class="row"
-       *ngIf="homeService.lookbookItems$ | async as lookbook; else loading" 
+       *ngIf="homeService.lookbookItems$ | async as lookbook" 
        [@staggerFadeIn]="lookbook.length"
        >
 
@@ -11,6 +11,3 @@
     </div>
   </div>
 </div>
-
-
-<ng-template #loading> loading stuff</ng-template>

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { faInstagram } from '@fortawesome/free-brands-svg-icons';
+import { StatusService } from '../shared/status/status.service';
+import { HeaderService } from '../header/header.service';
+import { footerLables } from 'src/app/util/app.labels';
 
 @Component({
   selector: 'app-footer',
@@ -7,10 +9,11 @@ import { faInstagram } from '@fortawesome/free-brands-svg-icons';
   styleUrls: ['./footer.component.scss']
 })
 export class FooterComponent implements OnInit {
-
-  faInstagram = faInstagram;
+  labels = footerLables
   
-  constructor() { }
+  constructor(
+    public hs:HeaderService,
+    public ss:StatusService) { }
 
   ngOnInit() {
   }

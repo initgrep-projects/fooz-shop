@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { AppError } from 'src/app/models/app-error';
+import { AppMsg } from 'src/app/models/app-msg';
 import { CartItem } from 'src/app/models/cartItem';
 import {
     ADD_ITEMS_TO_CART_ACTION, ADD_ITEM_TO_CART_ACTION, DELETE_ITEM_IN_CART_ACTION,
@@ -31,7 +31,7 @@ export const updateItemInCartAction = createAction(
 
 export const loadFailureCartAction = createAction(
     LOAD_FAILURE_IN_CART_ACTION,
-    props<{ error: AppError }>()
+    props<{ error: AppMsg }>()
 )
 
 

@@ -234,7 +234,9 @@ export class ObjectTransformerService {
   }
 
   transformBrand(param: DocumentData) {
-    return !param ? null : new Brand(param.name, param.logo, param.country);
+    return !param 
+    ? null 
+    : new Brand(param.name, param.logo, param.country, param.phones,param.emails,param.instagram,param.facebook,param.twitter,param.pinterest);
   }
 
 }

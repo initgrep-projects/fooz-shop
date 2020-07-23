@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { AppError } from 'src/app/models/app-error';
+import { AppMsg } from 'src/app/models/app-msg';
 import { LookBookItem } from 'src/app/models/lookbook';
 import { Product } from 'src/app/models/product';
 import { ADD_LATEST_PRODUCTS_ACTION, ADD_LOOKBOOK_ITEMS_ACTION, LOAD_LATEST_PRODUCTS_ACTION, LOAD_LOOKBOOK_ITEMS_ACTION, LOAD_FAILURE_FOR_HOME_ACTION, LOAD_TREND_ITEMS_ACTION, ADD_TREND_ITEMS_ACTION } from 'src/app/util/app.constants';
@@ -10,7 +10,7 @@ export const loadLookBookItems = createAction(
 );
 export const loadFailureAtHome = createAction(
     LOAD_FAILURE_FOR_HOME_ACTION,
-    props<{ error: AppError }>()
+    props<{ error: AppMsg }>()
 );
 export const addLookBookItems = createAction(
     ADD_LOOKBOOK_ITEMS_ACTION,

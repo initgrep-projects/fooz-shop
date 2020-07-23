@@ -2,12 +2,12 @@ import { createReducer, on, Action } from '@ngrx/store';
 import { addItemsToCartAction, addItemToCartAction, deleteItemInCartAction, updateItemInCartAction, loadFailureCartAction } from './cart.actions';
 import { CartItem } from 'src/app/models/cartItem';
 import { cloneDeep, clone } from 'lodash';
-import { AppError } from 'src/app/models/app-error';
+import { AppMsg } from 'src/app/models/app-msg';
 
 
 export interface State {
     cart: CartItem[];
-    error: AppError;
+    error: AppMsg;
 }
 
 export const initialState: State = {

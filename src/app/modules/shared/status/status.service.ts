@@ -26,24 +26,30 @@ export class StatusService {
       map(matchedRoutes => !isEmpty(matchedRoutes) ? false : true)
     );
 
-  routeObservable$ = this.router.events
+  /**
+   * if all items in a state for the route are not empty
+   * it returns true
+   * else returns false
+   * Note: Error is not checked. that would be handled by the component or route itself.
+   */
+  loadingStatusPerRoute$: Observable<boolean> = this.router.events
     .pipe(
       filter(event => event instanceof NavigationStart),
       tap(event => console.log('events are ', event)),
       map((event: NavigationStart) => event.url),
-      switchMap(url =>  {
+      switchMap(url => {
         const routeObs = this.whichRoute(url);
-       return !isEmpty(routeObs) ? combineLatest<{ [key: string]: any }[]>(this.whichRoute(url)) : of([]);
-    }),
+        return !isEmpty(routeObs) ? combineLatest<any[]>(this.whichRoute(url)) : of([]);
+      }),
       map(vals => vals.map(val => new Map(Object.entries(val)))),
+
       map((mappedStates: Map<string, any>[]) => {
         return mappedStates.map((stateMap, index) => {
           console.log('statemap , index', index, stateMap);
+
           for (let k of stateMap.keys()) {
+            
             let v = stateMap.get(k);
-            if (k === 'error' && !!v) {
-              return false;
-            }
             if (!v?.length) {
               return !isEmpty(v);
             } else {
@@ -53,7 +59,8 @@ export class StatusService {
           return true;
         });
       }),
-      map(rs => !isEmpty(rs) ? rs.reduce((b, a) => a && b) : true)
+      map(rs => !isEmpty(rs) ? rs.reduce((b, a) => a && b) : true),
+      tap(res => console.log('tapped status ', res))
     );
 
 
@@ -61,11 +68,16 @@ export class StatusService {
     if (url.indexOf('home') !== -1) {
       console.log('we home');
       return [this.store.select('header'), this.store.select('home')];
-    } else if (url.indexOf('shop') !== -1) {
+    }
+    else if (url.indexOf('shop/item') !== -1) {
       console.log('we shop');
       return [this.store.select('header'), this.store.select('shop')];
     }
-    return [];
+    else if (url.indexOf('shop') !== -1) {
+      console.log('we shop');
+      return [this.store.select('header'), this.store.select('shop'), this.store.select('filters')];
+    }
+    return [this.store.select('header')];
   }
 
 

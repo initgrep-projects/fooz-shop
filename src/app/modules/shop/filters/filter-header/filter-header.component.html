@@ -1,19 +1,21 @@
-<section class="filter-header">
+<section class="filter-header"
+         *ngIf="sortOrders?.length && categories?.length && sizes?.length">
     <div class="row">
         <div class="col ">
 
-            <app-sort-filter class="float-lg-right" [sortOrders]="fhs.sorts$ | async "
+            <app-sort-filter class="float-lg-right"
+                             [sortOrders]="sortOrders"
                              [selectedSortOrder]="fhs.selectedSort$ | async"
                              (sortOrderChange)="onSortOrderChange($event)"></app-sort-filter>
 
 
             <app-category-filter class="d-lg-none"
-                                 [categories]="fhs.categories$ | async"
+                                 [categories]="categories"
                                  [selectedCategories]="fhs.selectedCategories$ | async"
                                  (categoryChange)="onCategoryChange($event)"></app-category-filter>
 
             <app-size-filter class="d-lg-none"
-                             [sizes]="fhs.sizes$ | async"
+                             [sizes]="sizes"
                              [selectedSizes]="fhs.selectedSizes$ | async"
                              (sizeChange)="onSizeChange($event)"></app-size-filter>
 

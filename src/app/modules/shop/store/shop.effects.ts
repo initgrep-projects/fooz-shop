@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
 import { catchError, map, mergeMap } from 'rxjs/operators';
-import { AppErrorService } from 'src/app/services/app-error.service';
+import { AppMessageService } from 'src/app/services/app-error.service';
 import { ProductRemoteService } from 'src/app/services/remote/product-remote.service';
 import { LOAD_CUSTOMSIZE_INPUT_ACTION, LOAD_MORE_PRODUCTS_ACTION, LOAD_PRODUCTS_ACTION } from 'src/app/util/app.constants';
 import { addCustomSizeInputAction, addProductsAction, appendProductsAction, loadFailureAtShop } from './shop.actions';
@@ -13,7 +13,7 @@ export class ShopEffects {
     constructor(
         private action$: Actions,
         private dbService: ProductRemoteService,
-        private errService: AppErrorService
+        private errService: AppMessageService
     ) { }
 
     loadProducts$ = createEffect(() =>

@@ -19,30 +19,12 @@ import { StatusService } from './status.service';
     fadeIn
   ]
 })
-export class StatusComponent implements OnInit, OnDestroy {
-  private subs = new SubSink();
-  @Output() loaded = new EventEmitter();
-  isLoaded = false;
+export class StatusComponent implements OnInit {
 
-  constructor(
-   private ss:StatusService
-  ) { }
+  constructor( public ss:StatusService) { }
 
   ngOnInit(): void {
-    this.subs.sink =
-      this.ss.routeObservable$.subscribe(
-        state => {
-          console.log('state called => ', state); 
-          this.isLoaded = state;
-          this.loaded.emit();
-        }
-      )
-  }
-
-
-
-  ngOnDestroy() {
-    this.subs.unsubscribe();
+   
   }
 
 }

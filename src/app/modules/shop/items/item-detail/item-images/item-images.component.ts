@@ -1,7 +1,6 @@
-import { Component, OnInit, Input, AfterContentInit, OnChanges, SimpleChange } from '@angular/core';
-import { Image } from 'src/app/models/image';
+import { AfterContentInit, Component, Input, OnChanges, OnInit } from '@angular/core';
 import { isEmpty } from 'lodash';
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+import { Image } from 'src/app/models/image';
 
 @Component({
   selector: 'app-item-images',

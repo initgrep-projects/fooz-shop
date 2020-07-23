@@ -1,6 +1,6 @@
 import { createAction, props } from '@ngrx/store';
 import { Address } from 'src/app/models/address';
-import { AppError } from 'src/app/models/app-error';
+import { AppMsg } from 'src/app/models/app-msg';
 import { Country } from 'src/app/services/geo-address.service';
 import {
     ADD_ADDRESSES_ACTION,
@@ -51,5 +51,5 @@ export const addCountriesAction = createAction(
 
 export const loadFailureInAccountAction = createAction(
     LOAD_FAILURE_IN_ACCOUNT_ACTION,
-    props<{ error: AppError }>()
+    props<{ error: AppMsg }>()
 )

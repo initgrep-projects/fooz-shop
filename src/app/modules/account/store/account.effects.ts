@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
 import { catchError, map, mergeMap, switchMap } from 'rxjs/operators';
-import { AppErrorService } from 'src/app/services/app-error.service';
+import { AppMessageService } from 'src/app/services/app-error.service';
 import { GeoAddressService } from 'src/app/services/geo-address.service';
 import { AddressRemoteService } from 'src/app/services/remote/address-remote.service';
 import { LOAD_ADDRESSES_ACTION, LOAD_COUNTRIES_ACTION } from 'src/app/util/app.constants';
@@ -17,7 +17,7 @@ export class AccountEffects {
         private db: AddressRemoteService,
         private geo: GeoAddressService,
         private auth: AuthService,
-        private err: AppErrorService
+        private err: AppMessageService
     ) { }
 
 

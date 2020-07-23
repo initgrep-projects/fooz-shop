@@ -23,23 +23,33 @@ export class FakedataService {
     this.getProducts();
   }
 
-  getBrand(){
-    return new Brand('fooz abayas','','qatar');
+  getBrand() {
+    return new Brand(
+      'fooz abayas',
+      '',
+      'dbio',
+      ['+918951278181', '+90181818811'],
+      ['gfj@fooz.com', 'gjkgk@iol.com'],
+      'www.instagram.com/fooz',
+      'faceBook.com/fooz',
+      'twitter.com/@fooz',
+      'pinsterest.com/@fooz'
+    )
   }
 
-  getLookBook(){
+  getLookBook() {
     // https://i.imgur.com/WZ35TTq.jpg fooz trend
-    const foozTrend =  new Image('https://i.imgur.com/WZ35TTq.jpg',new Color('green', '#808000'));
-    const lookBookItem1 = new LookBookItem(foozTrend,'fooz tinted', 'Tint is the new black');
+    const foozTrend = new Image('https://i.imgur.com/WZ35TTq.jpg', new Color('green', '#808000'));
+    const lookBookItem1 = new LookBookItem(foozTrend, 'fooz tinted', 'Tint is the new black');
 
     // https://i.imgur.com/qHo8OQX.jpg Fooz special
 
-    const foozSpecial = new Image('https://i.imgur.com/qHo8OQX.jpg',new Color('pink', '#FFB6C1'));
-    const lookBookItem2 = new LookBookItem(foozSpecial,'fooz casual', 'Everyday stylish');
+    const foozSpecial = new Image('https://i.imgur.com/qHo8OQX.jpg', new Color('pink', '#FFB6C1'));
+    const lookBookItem2 = new LookBookItem(foozSpecial, 'fooz casual', 'Everyday stylish');
     // https://i.imgur.com/T2KSOdO.jpg Fooz Everyday
 
-    const centerOpen = new Image('https://i.imgur.com/T2KSOdO.jpg',new Color('black', '#f1f1f1'));
-    const lookBookItem3 =  new LookBookItem(centerOpen,'fooz chick', 'Be classy');
+    const centerOpen = new Image('https://i.imgur.com/T2KSOdO.jpg', new Color('black', '#f1f1f1'));
+    const lookBookItem3 = new LookBookItem(centerOpen, 'fooz chick', 'Be classy');
 
     return [lookBookItem1, lookBookItem2, lookBookItem3];
 
@@ -143,7 +153,7 @@ export class FakedataService {
           new Image('https://i.imgur.com/0rsWG6L.jpg', blackColor),
           new Image('https://i.imgur.com/xqILoNX.jpg', blackColor)
         ],
-        [smallSize, mediumSize,largeSize, xlSize]
+        [smallSize, mediumSize, largeSize, xlSize]
       ),
       new Product(
         'brown latest design abaya',
@@ -159,7 +169,7 @@ export class FakedataService {
           new Image('https://i.imgur.com/ajzsGOn.jpg', brownColor),
           new Image('https://i.imgur.com/ajzsGOn.jpg', brownColor)
         ],
-        [smallSize, mediumSize,largeSize, xlSize]
+        [smallSize, mediumSize, largeSize, xlSize]
       ),
       new Product(
         'black first latest design abaya',
@@ -175,7 +185,7 @@ export class FakedataService {
           new Image('https://i.imgur.com/7RSOuvB.jpg', blackColor),
           new Image('https://i.imgur.com/hP3cJSM.jpg', blackColor)
         ],
-        [smallSize, mediumSize,largeSize, xlSize]
+        [smallSize, mediumSize, largeSize, xlSize]
       ),
 
       new Product(
@@ -192,7 +202,7 @@ export class FakedataService {
           new Image('https://i.imgur.com/umPSO0J.jpg', blackColor),
           new Image('https://i.imgur.com/fyyjtHm.jpg', blackColor)
         ],
-        [smallSize, mediumSize,largeSize, xlSize]
+        [smallSize, mediumSize, largeSize, xlSize]
       ),
 
       new Product(
@@ -209,7 +219,7 @@ export class FakedataService {
           new Image('https://i.imgur.com/k6oMXgf.jpg', greenColor),
           new Image('https://i.imgur.com/bieyoPz.jpg', greenColor)
         ],
-        [smallSize, mediumSize,largeSize, xlSize]
+        [smallSize, mediumSize, largeSize, xlSize]
       ),
 
       new Product(
@@ -226,7 +236,7 @@ export class FakedataService {
           new Image('https://i.imgur.com/zt0UCkA.jpg', greenColor),
           new Image('https://i.imgur.com/B7qzImE.jpg', greenColor)
         ],
-        [smallSize, mediumSize,largeSize, xlSize]
+        [smallSize, mediumSize, largeSize, xlSize]
       ),
 
     ];

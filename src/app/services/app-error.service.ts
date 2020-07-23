@@ -1,20 +1,24 @@
 import { Injectable } from '@angular/core';
-import { AppError, AppErrorType } from '../models/app-error';
+import { AppMsg, AppMsgType } from '../models/app-msg';
 import { DATA_LOAD_ERROR, DATA_LOAD_ERROR_DETAILS } from '../util/app.constants';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AppErrorService {
+export class AppMessageService {
 
   constructor() { }
 
-  warning(message:string, details:string): AppError{
-    return new AppError(AppErrorType.WARNING, message,details);
+  success(message:string, details:string): AppMsg{
+    return new AppMsg(AppMsgType.SUCCESS, message,details);
+  }
+  
+  warning(message:string, details:string): AppMsg{
+    return new AppMsg(AppMsgType.WARNING, message,details);
   }
 
-  failure(message:string, details:string): AppError{
-    return new AppError(AppErrorType.FAILURE, message,details);
+  failure(message:string, details:string): AppMsg{
+    return new AppMsg(AppMsgType.FAILURE, message,details);
   }
 
   dataFetchError(){

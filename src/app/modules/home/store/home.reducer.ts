@@ -1,6 +1,6 @@
 import { Action, createReducer, on } from '@ngrx/store';
 import { clone } from 'lodash';
-import { AppError } from 'src/app/models/app-error';
+import { AppMsg } from 'src/app/models/app-msg';
 import { Image } from 'src/app/models/image';
 import { LookBookItem } from 'src/app/models/lookbook';
 import { Product } from 'src/app/models/product';
@@ -10,7 +10,7 @@ export interface State {
     lookbook: LookBookItem[];
     latestsProducts: Product[];
     trend: Image[];
-    error: AppError;
+    error: AppMsg;
 }
 
 export const initialState: State = {

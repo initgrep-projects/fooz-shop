@@ -1,24 +1,7 @@
-@import "../../../../../variables.scss";
+@import '../../../../../variables.scss';
 
-.item-details-wrapper {
-  margin-left: 2%;
-  margin-right: 2%;
-  @include md {
-    margin-left: 10%;
-    margin-right: 10%;
-  }
-
-  .pd-info {
-    border-radius: 2px;
-    margin-top: 1rem;
-    
-
-    @include md {
-      
+section.item-details-wrapper{
+    @include lg{
+        padding: 0 10%;
     }
-  }
-}
-
-.item-suggest-wrapper {
-  margin-top: 5rem;
 }

@@ -1,6 +1,6 @@
 import { Action, createReducer, on } from '@ngrx/store';
 import { clone, cloneDeep } from 'lodash';
-import { AppError } from 'src/app/models/app-error';
+import { AppMsg } from 'src/app/models/app-msg';
 import { Category } from 'src/app/models/category';
 import { Size } from 'src/app/models/size';
 import { Sort } from 'src/app/models/Sort';
@@ -16,7 +16,7 @@ export interface State {
     selectedSize: Size[];
     sortOrders: Sort[];
     selectedSortOrder: Sort;
-    error: AppError
+    error: AppMsg
 }
 
 export const initialState: State = {

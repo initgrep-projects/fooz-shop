@@ -67,11 +67,21 @@ import {
   faEdit,
   faArrowLeft
 } from '@fortawesome/free-solid-svg-icons';
-import { 
+import {
   faUser as farUser,
   faCircle as farCircle
- } from '@fortawesome/free-regular-svg-icons';
-import { faGoogle, faCcVisa, faCcAmex, faCcMastercard, faCcPaypal } from '@fortawesome/free-brands-svg-icons';
+} from '@fortawesome/free-regular-svg-icons';
+import {
+  faGoogle,
+  faCcVisa,
+  faCcAmex,
+  faCcMastercard,
+  faCcPaypal,
+  faInstagram,
+  faFacebook,
+  faTwitter,
+  faPinterest
+} from '@fortawesome/free-brands-svg-icons';
 
 @Injectable({
   providedIn: 'root'
@@ -155,7 +165,11 @@ export class IconService {
       farCircle,
       faDesktop,
       faEdit,
-      faArrowLeft
+      faArrowLeft,
+      faInstagram,
+      faTwitter,
+      faFacebook,
+      faPinterest
     ];
   }
 

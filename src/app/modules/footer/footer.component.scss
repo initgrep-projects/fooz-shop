@@ -16,6 +16,7 @@ footer {
       // padding-bottom: 1.2rem;
       a {
         color: #878787;
+
         &.brand {
           text-decoration: none;
           color: $secondary-text-color;
@@ -23,21 +24,21 @@ footer {
           span {
             letter-spacing: $heading-letter-spacing;
             text-transform: uppercase;
-
             font-weight: 600;
             margin-left: 0.5rem;
           }
         }
-      }
 
-      span {
-        display: inline-block;
-        margin-left: 0.5rem;
-        letter-spacing: 0.1rem;
-      }
+        &.phone,
+        &.email {
+          display: block;
+        }
 
-      &:first-child {
-        // padding-bottom: 1.2rem;
+        span {
+          display: inline-block;
+          margin: 0 0.5rem;
+          letter-spacing: 0.1rem;
+        }
       }
     }
 
@@ -83,6 +84,7 @@ footer {
         letter-spacing: $heading-letter-spacing;
         text-decoration: none;
         color: #878787;
+        text-transform: capitalize;
 
         &:hover {
           transition: all 0.2s ease-in-out;

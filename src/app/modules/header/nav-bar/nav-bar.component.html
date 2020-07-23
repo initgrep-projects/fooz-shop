@@ -1,20 +1,20 @@
 <nav class="app-nav-bar "
      appHeaderScroll
-     *ngIf="hs.brand$ | async as brand"
-     >
+     *ngIf="hs.brand$ | async as brand">
   <div class="top">
     <div class="brand">
-      <a class=" d-none d-md-inline" 
-      [routerLink]="['home']">
-        <fa-icon icon="atom"></fa-icon>
-        <span class="name">{{brand.Name}}</span>
-      </a>
-
       <fa-icon icon="bars"
                class="d-md-none"
                (click)="sideBarService.open()"></fa-icon>
 
-      
+      <a [routerLink]="['home']">
+        <fa-icon class=" d-none d-md-inline"
+                 icon="atom"></fa-icon>
+        <span class="name">{{brand.Name}}</span>
+      </a>
+
+
+
     </div>
     <div class="top-links">
       <ul class="nav navbar-nav flex-row ">
@@ -43,9 +43,9 @@
     <ul class="nav navbar-nav flex-row nav-left">
       <li class="nav-item ">
         <a class=" app-link">
-         
+
         </a>
-        
+
       </li>
       <li class="nav-item ">
         <a class=" app-link"

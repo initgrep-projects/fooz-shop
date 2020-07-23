@@ -1,16 +1,16 @@
-export enum AppErrorType {
-    WARNING, FAILURE
+export enum AppMsgType {
+    WARNING, FAILURE, SUCCESS
 }
 
-export class AppError {
+export class AppMsg {
     constructor(
-        private type: AppErrorType,
+        private type: AppMsgType,
         private message: string,
         private details: string
     ) { }
 
     get Type() { return this.type; }
-    set Type(c: AppErrorType) { this.type = c; }
+    set Type(c: AppMsgType) { this.type = c; }
 
     get Message() { return this.message; }
     set Message(m: string) { this.message = m; }

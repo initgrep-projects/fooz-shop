@@ -1,4 +1,5 @@
-<div class="container-fluid" *ngIf="!isLoaded">
+<div class="container-fluid" *ngIf="!(ss.loadingStatusPerRoute$ | async)">
+  
     <div class="loading-wrapper" @fadeIn>
             <div class="card">
                 <div class="card-body text-center">

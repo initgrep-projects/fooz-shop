@@ -2,7 +2,7 @@ import { createAction, props } from '@ngrx/store';
 import { Category } from 'src/app/models/category';
 import { Size } from 'src/app/models/size';
 import { Sort } from 'src/app/models/Sort';
-import { AppError } from 'src/app/models/app-error';
+import { AppMsg } from 'src/app/models/app-msg';
 import { LOAD_ALL_CATEGORY_ACTION, ADD_ALL_CATEGORIES_ACTION, SELECTED_CATEGORIES_ACTION, LOAD_ALL_SIZES_ACTION, ADD_ALL_SIZES_ACTION, SELECTED_SIZES_ACTION, LOAD_ALL_SORT_ORDERS_ACTION, ADD_ALL_SORT_ORDERS_ACTION, SELECT_SORT_ORDER_ACTION, LOAD_FAILURE_FOR_FILTER_ACTION } from 'src/app/util/app.constants';
 
 export const loadAllCategoriesAction = createAction(
@@ -44,5 +44,5 @@ export const selectSortOrderAction = createAction(
 
 export const loadFailureAtFilter = createAction(
     LOAD_FAILURE_FOR_FILTER_ACTION,
-    props<{ error: AppError }>()
+    props<{ error: AppMsg }>()
 )

@@ -141,3 +141,15 @@ export const homeLabels = {
     lookbookViewAll : "View All"
 }
 
+export const footerLables = {
+    shipping: 'shipping',
+    shippingDelivery: 'shipping and delivery',
+    information: 'information',
+    termCondition: 'terms and conditions',
+    privPolicy: 'privacy policy',
+    contact: 'contact',
+    support: 'support',
+    contactUs: 'contactUs'
+
+}
+

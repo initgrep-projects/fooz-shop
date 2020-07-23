@@ -1,28 +1,27 @@
-<section class="item-details-wrapper">
-    <div class="row">
+<section class="item-details-wrapper container-fluid">
+    <!-- <div class="row">
         <div class="col-12">
             <app-breadcrumb homePath="home"></app-breadcrumb>
         </div>
-    </div>
+    </div> -->
     <div class="row mt-3">
         <div class="col-12 col-lg-8">
             <app-item-images [images]="product.Images"></app-item-images>
         </div>
         <div class="col-12 col-lg-4">
-            <div class="row">
-                <div class="col-12 pd-info">
+           
+                <div class="pd-info">
                     <app-item-info [product]="product"></app-item-info>
                     <app-item-color [colors]="product.Colors"></app-item-color>
                     <app-item-size [sizes]="product.Sizes"></app-item-size>
                     <app-item-customize></app-item-customize>
                     <app-item-category [category]="product.Category"></app-item-category>
-                    <!-- <app-item-quantity></app-item-quantity> -->
                     <app-item-buy></app-item-buy>
                 </div>
-                <div class="col-12 pd-info">
+                <div class="pd-info-guide">
                     <app-item-buy-guide></app-item-buy-guide>
-                </div>
-            </div>
+                </div> 
+            
         </div>
     </div>
 

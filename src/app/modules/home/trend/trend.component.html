@@ -1,6 +1,8 @@
-<div class="fooz-container" @fadeIn>
+<div class="fooz-container" 
+*ngIf="hs.trendItems$ | async as trends"
+@fadeIn>
   <div class="box">
-    <div class="box-body" *ngIf="hs.trendItems$ | async as trends ">
+    <div class="box-body">
       <img [src]="trends[0].Url">
     </div>
     <div class="box-control">

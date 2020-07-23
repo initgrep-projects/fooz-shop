@@ -1,39 +1,21 @@
-<div class="item-image-wrapper animated fadeIn">
+<div class="app-item-images border" *ngIf="images?.length > 0">
+    <div class="thumbs">
 
-    <div class="row">
-        <div class=" col-lg-2 d-none d-lg-block">
-
-            <div class="item-image-thumb"
-                 *ngFor='let image of images | slice: 0:4 ; index as i'
-                 (click)="updateImageAndIndex(image, i)"
-                 [ngClass]="{'active': image.equals(selectedImage[0])}"
-                 [ngStyle]="{'border-color':image.Color.Code}">
-                <img [src]="image.Url" />
-            </div>
-
-        </div>
-        <div class="col-12 col-lg-10">
-
-            <div class="item-image">
-                <div class="slider-toolbar">
-
-                    <button type="button"
-                            class="btn btn-light left"
-                            (click)="goToNextImage(true)">
-                        <fa-icon icon="chevron-left"></fa-icon>
-                    </button>
-
-                    <button type="button"
-                            class="btn btn-light right"
-                            (click)="goToNextImage(false)">
-                        <fa-icon icon="chevron-right"></fa-icon>
-                    </button>
-                </div>
-                <img *ngFor="let si of selectedImage"
-                     [src]="si?.Url" />
-
-            </div>
-
-        </div>
+        <a class="item-image-thumb"
+             *ngFor='let image of images | slice: 0:4 ; index as i'
+             (mouseover)="updateImageAndIndex(image, i)"
+             (click)="updateImageAndIndex(image, i)"
+            
+            >
+            <img 
+            [ngStyle]="{'border-color':image.Color.Code}"
+            [src]="image.Url" 
+            [ngClass]="{'active': image.equals(selectedImage[0])}"
+            alt="product image" />
+    </a>
+    </div>
+    <div class="slide" >
+        <img *ngFor="let si of selectedImage"
+        [src]="si?.Url" />
     </div>
 </div>

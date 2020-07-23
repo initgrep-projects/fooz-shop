@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { filter, map, switchMap } from 'rxjs/operators';
+import { map, switchMap } from 'rxjs/operators';
 import { HomeService } from '../home/home.service';
 
 @Component({
@@ -14,7 +14,7 @@ export class ShopComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private hs: HomeService
+    private hs: HomeService,
   ) { }
 
   ngOnInit() { }

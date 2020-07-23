@@ -3,13 +3,13 @@ import { cloneDeep, clone } from 'lodash';
 import { CustomSizeInput } from 'src/app/models/custom-size';
 import { Product } from 'src/app/models/product';
 import { addCustomSizeInputAction, addProductsAction, appendProductsAction, updateProductAction, loadFailureAtShop } from './shop.actions';
-import { AppError } from 'src/app/models/app-error';
+import { AppMsg } from 'src/app/models/app-msg';
 
 
 export interface State {
     products: Product[];
     customSizeInput: CustomSizeInput;
-    error: AppError
+    error: AppMsg
 }
 
 export const initialState: State = {

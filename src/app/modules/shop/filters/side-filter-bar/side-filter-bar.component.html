@@ -1,5 +1,5 @@
-
-<div class="side-filter-bar-wrapper ">
+<div class="side-filter-bar-wrapper"
+     *ngIf="sizes?.length > 0 && categories?.length > 0">
 
     <ul class="list-group list-group-flush">
         <li class="list-group-item filter-group-heading">
@@ -8,16 +8,18 @@
                 <span>filters</span>
             </h6>
         </li>
-        <li class="list-group-item">
+        <li class="list-group-item"
+            *ngIf="categories.length> 0">
             <app-side-filter [type]="'category'"
                              [title]="'Category'"
-                             [values]="fhs.categories$ |async"
+                             [values]="categories"
                              (select)="onCategoryFilterSelect($event)"></app-side-filter>
         </li>
-        <li class="list-group-item">
+        <li class="list-group-item"
+            *ngIf="sizes.length> 0">
             <app-side-filter [type]="'size'"
                              [title]="'size'"
-                             [values]="fhs.sizes$ | async"
+                             [values]="sizes"
                              (select)="onSizeFilterSelect($event)"></app-side-filter>
         </li>
 

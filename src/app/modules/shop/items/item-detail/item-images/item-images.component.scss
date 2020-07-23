@@ -1,44 +1,60 @@
 @import "../../../../../../variables.scss";
 
-div.item-image-wrapper {
-  margin-top: 1rem;
-  div.item-image {
-    width: 100%;
-    img {
-      width: 100%;
-      // @include animate(fadeIn, 0.2s);
+div.app-item-images {
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: column;
+  @include md {
+    flex-direction: row;
+  }
+  div.thumbs {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex: 0 0 20%;
+    // border: 1px solid #334;
+    order: 2;
+    overflow-y: auto;
+    @include md {
+      flex: 0 0 20%;
+      order: 1;
+      flex-direction: column;
     }
-    .slider-toolbar {
-      position: absolute;
-      width: 100%;
-      top: 45%;
-      padding-right: 1rem;
-      padding-left: 1rem;
-      left: 0;
-      button {
-        &:focus {
-          box-shadow: none;
+    a.item-image-thumb {
+      // margin: 0.1rem;
+      display: inline-block;
+      cursor: pointer;
+      img {
+        width: 86px;
+        height: 86px;
+        transform: scale(0.9);
+        transition: all 0.2s ease-in;
+        border-width: 1px;
+        border-style: solid;
+        border-radius: 2px;
+
+        &.active{
+          box-shadow: 1px 1px 4px rgba(0,0,0,0.2);
         }
-        &.right {
-          float: right;
+
+        @include md{
+          width:100%;
+          height:auto;
         }
       }
     }
   }
-
-  div.item-image-thumb {
-    margin-bottom: 1rem;
-    border-width: 2px;
-    border-style: solid;
-    border-radius: 4px;
-    cursor: pointer;
+  div.slide {
+    flex: 0 0 80%;
+    // border: 1px solid yellow;
+    order: 1;
+    @include md {
+      flex: 0 0 80%;
+      order: 2;
+    }
     img {
       width: 100%;
-      border-radius: 2px;
-    }
-    &.active {
-      border-width: 4px;
-      transition: all 0.2s ease;
+      @include animate(fadeIn,1s);
     }
   }
 }

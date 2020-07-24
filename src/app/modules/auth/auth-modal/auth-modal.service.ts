@@ -28,7 +28,7 @@ export class AuthModalService {
         size: 'lg',
         backdrop: true,
         keyboard: true,
-        centered: false,
+        centered: true,
         beforeDismiss: () => this.goToPreviousLocation()
       });
   }

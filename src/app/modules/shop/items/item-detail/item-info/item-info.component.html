@@ -1,18 +1,16 @@
-<div class="row animated fadeIn">
-    <div class="col">
-        <div class="info-wrapper">
-            <h6>{{product.Name}}</h6>
-            <p class="prod-code"> Code: <span>{{product.Id}}</span></p>
-            <p class="prod-desc">{{product.Description}}</p>
-            <hr>
-            
-            <p class="price-wrapper">
-                <app-item-quantity></app-item-quantity>
-                <span class="price">{{product.Price.Code}} : {{grossItemPrice}}</span>
-               <small class="tax-info small text-muted">inclusive of all taxes</small>
-            </p>
-            
-            <hr>
-        </div>
+<div class="info-wrapper">
+    <div class="name">
+        <h4>{{product.Name}}</h4>
+        <p class="prod-code"> Code: <span>{{product.Id}}</span></p>
+        <p class="prod-desc">{{product.Description}}</p>
+        <hr >
     </div>
+
+    <div class="price-wrapper">
+        <app-item-quantity></app-item-quantity>
+        <span class="price">{{product.Price.Code}} : {{grossItemPrice}}</span>
+        <small class="tax-info small text-muted">inclusive of all taxes</small>
+    </div>
+
+    <hr >
 </div>

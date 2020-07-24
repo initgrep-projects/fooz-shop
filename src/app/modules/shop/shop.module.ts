@@ -31,6 +31,7 @@ import { ShopComponent } from './shop.component';
 import { ShopEffects } from './store/shop.effects';
 import { FilterEffects } from './filters/store/filter.effects';
 import { CollectionComponent } from './collection/collection.component';
+import { HammerModule } from '@angular/platform-browser';
 
 
 
@@ -71,6 +72,7 @@ import { CollectionComponent } from './collection/collection.component';
     NgbModule,
     FontAwesomeModule,
     SharedModule,
+    HammerModule,
     EffectsModule.forFeature([ShopEffects, FilterEffects])
   ],
   exports: []

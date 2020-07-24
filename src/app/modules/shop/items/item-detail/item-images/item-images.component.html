@@ -1,21 +1,33 @@
-<div class="app-item-images border" *ngIf="images?.length > 0">
+<div class="app-item-images "
+     *ngIf="images?.length > 0">
     <div class="thumbs">
-
         <a class="item-image-thumb"
-             *ngFor='let image of images | slice: 0:4 ; index as i'
-             (mouseover)="updateImageAndIndex(image, i)"
-             (click)="updateImageAndIndex(image, i)"
-            
-            >
-            <img 
-            [ngStyle]="{'border-color':image.Color.Code}"
-            [src]="image.Url" 
-            [ngClass]="{'active': image.equals(selectedImage[0])}"
-            alt="product image" />
-    </a>
+           *ngFor='let image of images | slice: 0:4 ; index as i'
+           (mouseover)="updateImageAndIndex(image, i)"
+           (click)="updateImageAndIndex(image, i)">
+            <img [ngStyle]="{'border-color':image.Color.Code}"
+                 [src]="image.Url"
+                 [ngClass]="{'active': image.equals(selectedImage[0])}"
+                 alt="product image" />
+        </a>
     </div>
-    <div class="slide" >
+    <div class="slide"
+         (swiperight)="scrollRight($event)"
+         (swipeleft)="scrollLeft($event)">
+        <div class="slide-toolbar">
+            <button type="button"
+                    class="btn btn-light left"
+                    (click)="goToNextImage(true)">
+                <fa-icon icon="chevron-left"></fa-icon>
+            </button>
+            <button type="button"
+                    class="btn btn-light right"
+                    (click)="goToNextImage(false)">
+                <fa-icon icon="chevron-right"></fa-icon>
+            </button>
+        </div>
+
         <img *ngFor="let si of selectedImage"
-        [src]="si?.Url" />
+             [src]="si?.Url" />
     </div>
 </div>

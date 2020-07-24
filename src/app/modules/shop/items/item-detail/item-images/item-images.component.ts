@@ -24,8 +24,7 @@ export class ItemImagesComponent implements OnInit, AfterContentInit, OnChanges 
 
   }
 
-  ngOnChanges(){
-    console.log('any changes in images com', this.images);
+  ngOnChanges() {
     this.selectImage(this.images[0]);
     this.currentIndex = 0;
   }
@@ -53,6 +52,13 @@ export class ItemImagesComponent implements OnInit, AfterContentInit, OnChanges 
         this.selectImage(this.images[this.currentIndex]);
       }
     }
+  }
+  scrollLeft(event) {
+    this.goToNextImage(false);
+  }
+
+  scrollRight(event) {
+    this.goToNextImage(true);
   }
 
 }

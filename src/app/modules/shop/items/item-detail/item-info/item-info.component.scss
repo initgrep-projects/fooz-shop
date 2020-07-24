@@ -1,35 +1,38 @@
-@import '../../../../../../variables.scss';
+@import "../../../../../../variables.scss";
 
 .info-wrapper {
-    margin-top: 1rem;
-    font-family: $roboto-font-family;
+  margin-top: 1rem;
+  font-family: $roboto-font-family;
+  div.name {
 
-    h6 {
+    
+    h4 {
       font-weight: 600;
       letter-spacing: 0.05rem;
       text-transform: capitalize;
-     
-    }
-    p.price-wrapper{
-      margin-bottom: 0rem;
-      font-size: 1rem;
-      font-weight: 600;
-      span{
-        margin-right: 10%;
-      }
-    }
-    p.prod-code{
-      font-weight: 400;
-      span{
-        font-weight: 600;
-      }
     }
     p {
-      font-size: .8rem;
+      font-size: 0.8rem;
       letter-spacing: 0.035rem;
       margin-bottom: 0.2rem;
     }
-    p.prod-desc{
+    p.prod-code {
+      font-weight: 400;
+      span {
+        font-weight: 600;
+      }
+    }
+    p.prod-desc {
       color: $grey-text-color;
     }
   }
+
+  div.price-wrapper {
+    margin-bottom: 0rem;
+    font-size: 1rem;
+    font-weight: 600;
+    span {
+      margin-right: 10%;
+    }
+  }
+}

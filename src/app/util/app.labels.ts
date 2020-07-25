@@ -119,8 +119,9 @@ export const cartLabels = {
         addItem: 'cart item added to cart',
         addItemFailed: 'cart Item add failed',
         updateItem: 'cart item updated',
-        updateItemFailed: 'cart item updated'
-
+        updateItemFailed: 'cart item updated',
+        payment: 'payment',
+        reviewNpayment: 'review and payment'
 }
 
 export const itemLabels = {

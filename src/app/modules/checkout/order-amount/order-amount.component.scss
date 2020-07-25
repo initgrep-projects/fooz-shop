@@ -70,25 +70,31 @@ div.app-order-amount {
 
     div.order-amount-footer {
    
-        p {
-            color: var(--secondary);
-            span {
-                font-size: 0.8rem;
-                letter-spacing: 0.06rem;
-                margin-top: -1rem;
-                position: relative;
-                top: -10px;
-                margin-left: 0.5rem;
+      div.card{
+        border-top: 1px solid #f0f0f0;
+        box-shadow: 0 -2px 10px 0 rgba(0, 0, 0, 0.1);
+          div.card-body{
+            p {
+                color: var(--secondary);
+                span {
+                    font-size: 0.8rem;
+                    letter-spacing: 0.06rem;
+                    margin-top: -1rem;
+                    position: relative;
+                    top: -10px;
+                    margin-left: 0.5rem;
+                }
             }
-        }
-        fa-icon {
-            font-size: 2rem;
-        }
-
-        .cc-cards {
             fa-icon {
-                margin-left: 0.5rem;
+                font-size: 2rem;
             }
-        }
+    
+            .cc-cards {
+                fa-icon {
+                    margin-left: 0.5rem;
+                }
+            }
+          }
+      }
     }
 }

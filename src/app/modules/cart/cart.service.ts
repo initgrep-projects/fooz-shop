@@ -87,7 +87,6 @@ export class CartService {
   }
 
   updateCartItem(item: CartItem): Observable<boolean> {
-    console.log('update cartItem called in service');
     return this.db.updateCartItem(item)
       .pipe(
         tap(isOk => {
@@ -152,7 +151,7 @@ export class CartService {
         switchMap(user => {
           return zip(of(user), this.cart$)
         }),
-        map(([user, cart]) => {
+        switchMap(([user, cart]) => {
           if (!!user && !user.IsAnonymous && !isEmpty(cart)) {
             if (cart[0].IsAnonymousUser) {
               const refreshedCartItems = cloneDeep(cart).map(item => {
@@ -160,13 +159,16 @@ export class CartService {
                 item.IsAnonymousUser = user.IsAnonymous;
                 return item;
               });
-              this.db.updateCart(refreshedCartItems);
+              return this.db.updateCart(refreshedCartItems);
             }
+            return of(true);
           }
+          return of(true);
+        }),
+        tap(isUpdated => {
           this.store.dispatch(loadItemsToCartAction());
-          return cart;
         })
-      )
+      );
   }
 
 }

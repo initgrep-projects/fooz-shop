@@ -46,7 +46,8 @@ export class AuthModalService {
    * This is required to clear the modal route.
    */
   private goToPreviousLocation() {
-    this.location.back();
+    console.log('onDismiss sending to previous location');
+    // this.location.back();
     return true;
   }
 

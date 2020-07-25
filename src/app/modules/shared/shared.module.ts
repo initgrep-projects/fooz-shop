@@ -3,14 +3,18 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NgbToastModule } from '@ng-bootstrap/ng-bootstrap';
+import { AlertComponent } from './alert/alert.component';
 import { AnchorsComponent } from './anchors/anchors.component';
 import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
 import { CardItemComponent } from './card-item/card-item.component';
 import { CartItemComponent } from './cart-item/cart-item.component';
 import { ColorComponent } from './color/color.component';
+import { DialogComponent } from './dialog/dialog.component';
 import { ClearInputDirective } from './directives/clear-input.directive';
+import { HeaderScrollDirective } from './directives/header-scroll.directive';
 import { MatfocusDirective } from './directives/matfocus.directive';
 import { FeatureItemsComponent } from './feature-items/feature-items.component';
+import { ImageSliderComponent } from './image-slider/image-slider.component';
 import { ItemComponent } from './item/item.component';
 import { LookbookItemComponent } from './lookbook-item/lookbook-item.component';
 import { ParallaxComponent } from './parallax/parallax.component';
@@ -24,9 +28,6 @@ import { StatusComponent } from './status/status.component';
 import { ToastsComponent } from './toasts/toasts.component';
 import { UserAddressComponent } from './user-address/user-address.component';
 import { UserCardComponent } from './user-card/user-card.component';
-import { DialogComponent } from './dialog/dialog.component';
-import { AlertComponent } from './alert/alert.component';
-import { HeaderScrollDirective } from './directives/header-scroll.directive';
 
 
 @NgModule({
@@ -54,7 +55,9 @@ import { HeaderScrollDirective } from './directives/header-scroll.directive';
     StatusComponent,
     UserAddressComponent,
     AlertComponent,
-    HeaderScrollDirective
+    HeaderScrollDirective,
+    ImageSliderComponent
+
   ],
   imports: [
     CommonModule,
@@ -85,7 +88,8 @@ import { HeaderScrollDirective } from './directives/header-scroll.directive';
     CardItemComponent,
     StatusComponent,
     UserAddressComponent,
-    AlertComponent
+    AlertComponent,
+    ImageSliderComponent
   ]
 })
 export class SharedModule { }

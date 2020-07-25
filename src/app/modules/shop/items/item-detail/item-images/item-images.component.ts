@@ -13,15 +13,19 @@ export class ItemImagesComponent implements OnInit, AfterContentInit, OnChanges 
   selectedImage: Image[] = [];
   currentIndex: number;
 
-  constructor() { }
+  constructor(
+
+  ) { }
+
+
 
   ngAfterContentInit() {
     this.selectImage(this.images[0]);
     this.currentIndex = 0;
   }
 
-  ngOnInit(): void {
 
+  ngOnInit(): void {
   }
 
   ngOnChanges() {

@@ -4,6 +4,7 @@ div.app-item-images {
   display: flex;
   justify-content: space-evenly;
   flex-direction: column;
+  @include animate(fadeIn, 2s);
   @include md {
     flex-direction: row;
   }
@@ -16,16 +17,17 @@ div.app-item-images {
     order: 2;
     overflow-y: auto;
     @include md {
-      flex: 0 0 20%;
+      flex: 0 0 15%;
       order: 1;
       flex-direction: column;
+      justify-content: flex-start;
     }
     a.item-image-thumb {
       display: inline-block;
       cursor: pointer;
       padding:.2rem;
       @include md{
-        padding:1rem;
+        padding:.5rem;
       }
       img {
         width: 86px;
@@ -58,7 +60,7 @@ div.app-item-images {
     margin-bottom: 1rem;
     touch-action: pan-y !important;
     @include md {
-      flex: 0 0 80%;
+      flex: 0 0 85%;
       order: 2;
       margin-bottom: 0;
     }
@@ -86,6 +88,7 @@ div.app-item-images {
       width: 100%;
       min-height: 400px;
       @include animate(fadeIn, 1s);
+      // cursor: zoom-in;
     }
   }
 }

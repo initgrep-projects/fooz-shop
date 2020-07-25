@@ -1,4 +1,3 @@
-import { BuiltinType } from '@angular/compiler';
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Store } from '@ngrx/store';
@@ -28,6 +27,7 @@ export class AuthService {
 
   user$: Observable<User>;
   userFromStore$: Observable<User>;
+  incomingUrl: string; /** to be set by authGuardservice */
 
   constructor(
     private angularFireAuth: AngularFireAuth,
@@ -39,9 +39,9 @@ export class AuthService {
 
     this.userFromStore$ = this.store.select('auth').pipe(map(state => state.user));
     this.user$ = this.syncAuthChanges();
-    window['firebase'] = firebase;
   }
 
+ 
 
   /**
    * Every auth change be it anonymous, login, login with google or registeration
@@ -240,6 +240,8 @@ export class AuthService {
   deleteUserFromStore() {
     this.store.dispatch(deleteUserAction());
   }
+
+
 
 
 }

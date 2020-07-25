@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { HammerModule } from '@angular/platform-browser';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { EffectsModule } from '@ngrx/effects';
@@ -7,6 +8,7 @@ import { FilterByCategoryPipe } from 'src/app/pipes/filter-by-category.pipe';
 import { FilterBySizePipe } from 'src/app/pipes/filter-by-size.pipe';
 import { SortPipe } from 'src/app/pipes/sort.pipe';
 import { SharedModule } from '../shared/shared.module';
+import { CollectionComponent } from './collection/collection.component';
 import { CategoryFilterComponent } from './filters/filter-header/category-filter/category-filter.component';
 import { FilterHeaderComponent } from './filters/filter-header/filter-header.component';
 import { MainFilterComponent } from './filters/filter-header/main-filter/main-filter.component';
@@ -14,6 +16,7 @@ import { SizeFilterComponent } from './filters/filter-header/size-filter/size-fi
 import { SortFilterComponent } from './filters/filter-header/sort-filter/sort-filter.component';
 import { SideFilterBarComponent } from './filters/side-filter-bar/side-filter-bar.component';
 import { SideFilterComponent } from './filters/side-filter-bar/side-filter/side-filter.component';
+import { FilterEffects } from './filters/store/filter.effects';
 import { CustomSizeComponent } from './items/item-detail/customize/custom-size/custom-size.component';
 import { ItemCustomizeComponent } from './items/item-detail/customize/item-customize.component';
 import { ItemBuyGuideComponent } from './items/item-detail/item-buy-guide/item-buy-guide.component';
@@ -29,14 +32,6 @@ import { ItemsComponent } from './items/items.component';
 import { ShopRoutingModule } from './shop-routing.module';
 import { ShopComponent } from './shop.component';
 import { ShopEffects } from './store/shop.effects';
-import { FilterEffects } from './filters/store/filter.effects';
-import { CollectionComponent } from './collection/collection.component';
-import { HammerModule } from '@angular/platform-browser';
-
-
-
-
-
 
 
 @NgModule({

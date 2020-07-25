@@ -1,11 +1,11 @@
-import { Component, OnInit, Input, AfterViewInit, ViewChild, ElementRef, TemplateRef, OnDestroy } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { AuthModalService } from '../../auth-modal/auth-modal.service';
-import { AuthMessages } from '../../../../util/app.labels';
+import { AfterViewInit, Component, ElementRef, Input, OnDestroy, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ToastService } from 'src/app/modules/shared/toasts/toast.service';
 import { SubSink } from 'subsink';
+import { AuthMessages } from '../../../../util/app.labels';
+import { AuthModalService } from '../../auth-modal/auth-modal.service';
 import { AuthService } from '../../auth.service';
-import { ToastService, toastType } from 'src/app/modules/shared/toasts/toast.service';
-import { catchError } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -14,13 +14,12 @@ import { catchError } from 'rxjs/operators';
   styleUrls: ['./auth-login.component.scss']
 })
 export class AuthLoginComponent implements OnInit, AfterViewInit, OnDestroy {
+  private subs = new SubSink();
   authMessages = AuthMessages;
   labels = AuthMessages.authAnchorLabels;
 
+
   @ViewChild('authSuccessToast') authSuccessToast: TemplateRef<any>;
-
-  private subs = new SubSink();
-
   @ViewChild('password') private passwordElement: ElementRef;
 
   @Input() email: string;
@@ -33,9 +32,11 @@ export class AuthLoginComponent implements OnInit, AfterViewInit, OnDestroy {
   isValidForm = false;
   alertMessage: string;
   passResetProgress = false;
+  incomingRouteUrl: string;
 
 
   constructor(
+    private router:Router,
     public authModalService: AuthModalService,
     private authService: AuthService,
     private toastService: ToastService
@@ -44,20 +45,21 @@ export class AuthLoginComponent implements OnInit, AfterViewInit, OnDestroy {
 
   ngAfterViewInit() {
     this.passwordElement.nativeElement.focus();
-    console.log('isExisting after view init = ', this.isExisting);
   }
 
   ngOnInit(): void {
-    console.log('isExisting on init = ', this.isExisting);
+    this.initForm();
+    this.incomingRouteUrl = this.authService.incomingUrl.slice();
+    console.log('incomingRouteUrl on init of login = ', this.incomingRouteUrl);
+
+  }
+
+
+  initForm() {
     this.loginForm = new FormGroup({
       'email': new FormControl(this.email || null, [Validators.required, Validators.email]),
       'password': new FormControl(null, [Validators.required, Validators.minLength(8)])
     });
-
-    this.subs.sink =
-      this.loginForm.statusChanges.subscribe(status => {
-        this.isValidForm = status !== 'INVALID';
-      });
   }
 
   authenticate() {
@@ -112,10 +114,10 @@ export class AuthLoginComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   private handleAuthSuccess() {
-
     this.isLoginSuccess = true;
     this.authModalService.dismissModal();
     this.toastService.success(this.authMessages.loginSuccess, 'user-lock');
+    this.routeToIncomingUrl();
   }
 
   private handleAuthFailure(error) {
@@ -132,6 +134,14 @@ export class AuthLoginComponent implements OnInit, AfterViewInit, OnDestroy {
 
   private setAlertMessage(code: string) {
     this.alertMessage = AuthMessages.invalidCredentials.find(item => item.code === code).message;
+  }
+
+  private routeToIncomingUrl(){
+    console.log('routeToIncomingUrl called = ', this.incomingRouteUrl);
+    if(!!this.authService.incomingUrl){
+      console.log('routing to incoming');
+      this.router.navigateByUrl(this.incomingRouteUrl);
+    }
   }
 
   closeAlert() {

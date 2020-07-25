@@ -20,8 +20,8 @@ export class HeaderScrollDirective {
       const number = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
 
       const topElement = this.elementRef.nativeElement.children[0];
-      const brand = topElement.children[0].children[0].children[0];
-      const brandName = topElement.children[0].children[0].children[1];
+      const brand = topElement.children[0].children[1].children[0];
+      const brandName = topElement.children[0].children[1].children[1];
 
       if (number > 50) {
         this.renderer.setStyle(topElement, 'padding', '0');
@@ -31,7 +31,7 @@ export class HeaderScrollDirective {
         this.renderer.setStyle(brand, 'font-size', '2rem');
         this.renderer.setStyle(brandName, 'font-size', '1.5rem');
       }
-      else if(number === 0) {
+      else if (number === 0) {
         this.renderer.setStyle(topElement, 'padding', '1rem');
         this.renderer.setStyle(brand, 'font-size', '3rem');
         this.renderer.setStyle(brandName, 'font-size', '2rem');

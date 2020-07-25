@@ -3,6 +3,7 @@ import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/fire
 import { classToPlain } from 'class-transformer';
 import { Observable } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
+import { Brand } from 'src/app/models/brand';
 import { Category } from '../../models/category';
 import { CustomSizeInput } from '../../models/custom-size';
 import { Image } from '../../models/image';
@@ -11,16 +12,14 @@ import { Product } from '../../models/product';
 import { Size } from '../../models/size';
 import { Sort } from '../../models/Sort';
 import {
-  CATEGORY_COLLECTION,
+  BRAND_COLLECTION, CATEGORY_COLLECTION,
   CUSTOM_SIZE_INPUT,
   LOOKBOOK_COLLECTION, PRODUCT_COLLECTION,
-  PRODUCT_PAGE_SIZE, SIZE_COLLECTION, SORT_COLLECTION, TREND_COLLECTION, BRAND_COLLECTION
+  PRODUCT_PAGE_SIZE, SIZE_COLLECTION, SORT_COLLECTION, TREND_COLLECTION
 } from '../../util/app.constants';
 import { generateGuid } from '../../util/app.lib';
 import { FakedataService } from '../fakedata.service';
 import { ObjectTransformerService } from '../object-transformer.service';
-import { environment } from 'src/environments/environment';
-import { Brand } from 'src/app/models/brand';
 
 
 

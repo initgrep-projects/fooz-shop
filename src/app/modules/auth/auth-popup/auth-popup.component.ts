@@ -6,7 +6,7 @@ import { NgbPopover } from '@ng-bootstrap/ng-bootstrap';
 @Component({
   selector: 'app-auth-popup',
   templateUrl: './auth-popup.component.html',
-  // encapsulation: ViewEncapsulation.None,
+  encapsulation: ViewEncapsulation.None,
   styleUrls: ['./auth-popup.component.scss']
 })
 export class AuthPopupComponent implements OnInit, OnDestroy, DoCheck {

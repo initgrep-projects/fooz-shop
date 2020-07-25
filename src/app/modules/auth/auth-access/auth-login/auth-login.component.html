@@ -50,7 +50,7 @@
     <div class="form-group">
       <button type="submit"
               class="btn btn-dark btn-block my-4 mt-5 "
-              [disabled]="!isValidForm">
+              [disabled]="!loginForm.valid">
         <fa-icon [icon]="['fas', 'spinner']"
                  [spin]="true"
                  *ngIf="isLoginInProgress"></fa-icon>

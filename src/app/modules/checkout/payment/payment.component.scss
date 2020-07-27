@@ -1,0 +1,120 @@
+@import "../../../../variables.scss";
+
+@mixin card-style() {
+    background-color: #fff;
+    border-top: 1px solid #f0f0f0;
+    box-shadow: 0 -2px 10px 0 rgba(0, 0, 0, 0.1);
+}
+@mixin h6-style() {
+    text-transform: uppercase;
+    letter-spacing: 0.06rem;
+    font-weight: 600;
+    margin-bottom: 0;
+}
+
+div.app-payment {
+    font-family: $roboto-font-family;
+    div.app-payment-header {
+        div.card {
+            @include card-style();
+            div.card-body {
+                h6 {
+                    @include h6-style();
+                }
+            }
+        }
+    }
+
+    div.app-payment-body {
+        div.user-wrapper {
+            div.card {
+                @include card-style();
+                div.card-body {
+                    h6.title {
+                        @include h6-style();
+                    }
+                    p {
+                        padding-bottom: 0;
+                        margin-bottom: 0;
+                        font-size: 0.9rem;
+                        letter-spacing: 0.045rem;
+                        span.name {
+                            margin-right: 0.5rem;
+                            font-weight: 600;
+                        }
+                    }
+                }
+            }
+        }
+        div.cart-wrapper {
+            div.card {
+                @include card-style();
+                div.card-body {
+                    display: flex;
+                    justify-content: space-between;
+                    h6 {
+                        @include h6-style();
+                    }
+                    button {
+                        font-size: 0.8rem;
+                        letter-spacing: 0.025rem;
+                        span {
+                            margin-left: 0.5rem;
+                            text-transform: uppercase;
+                            font-weight: 600;
+                        }
+                    }
+                }
+            }
+        }
+        div.address-wrapper {
+            div.card {
+                @include card-style();
+                div.card-header {
+                    background-color: #fff;
+                    display: flex;
+                    justify-content: space-between;
+                    h6.title {
+                        @include h6-style();
+                    }
+                    button {
+                        font-size: 0.8rem;
+                        letter-spacing: 0.025rem;
+                        span {
+                            margin-left: 0.5rem;
+                            text-transform: uppercase;
+                            font-weight: 600;
+                        }
+                    }
+                }
+                div.card-body {
+                    p {
+                        padding-bottom: 0;
+                        margin-bottom: 0;
+                        font-size: 0.9rem;
+                        letter-spacing: 0.045rem;
+                        span.name,
+                        span.zip {
+                            font-weight: 600;
+                        }
+                        span {
+                            margin-right: 0.5rem;
+                        }
+                    }
+                }
+            }
+        }
+
+        div.payment-wrapper {
+            div.card {
+                @include card-style();
+                div.card-header {
+                    background-color: #fff;
+                    h6.title {
+                        @include h6-style();
+                    }
+                }
+            }
+        }
+    }
+}

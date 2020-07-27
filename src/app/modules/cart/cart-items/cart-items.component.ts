@@ -31,9 +31,13 @@ export class CartItemsComponent implements OnInit, OnDestroy {
   updateCartItem(item: CartItem) {
     
     this.subs.sink =
-      this.cartService.updateCartItem(item).subscribe(
-        ok => this.cartService.updateProductQuantity(item.Product, item.SelectedQuantity)
-      );
+    this.cartService.updateCartItem(item).subscribe(
+      ok => {
+        if(ok){
+          this.cartService.updateProductQuantity(item.Product, item.SelectedQuantity);
+        }
+      }
+    );
 
   }
 

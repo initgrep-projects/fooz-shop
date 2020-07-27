@@ -25,7 +25,7 @@ export class ProfileService {
               messages: [],
               control: {
                 title: labels.formLabels.editProfile,
-                icon: 'edit'
+                icon: 'pencil-alt'
               }
             }
             if (!user.Name) {

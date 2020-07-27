@@ -1,4 +1,5 @@
-<div class="app-cart-view" @fadeIn
+<div class="app-cart-view"
+     @fadeIn
      *ngIf="cartService.cart$ | async as cart; else loading">
     <div class="cart-view-header">
 
@@ -11,8 +12,8 @@
             </div>
         </div>
         <app-alert *ngIf="profileService.isInvalidProfile$ | async as validProf"
-        [config]="validProf"
-        (controlClick)="updateProfile()"></app-alert>
+                   [config]="validProf"
+                   (controlClick)="updateProfile()"></app-alert>
 
     </div>
     <div class=" cart-view-body">

@@ -64,7 +64,7 @@ export class ProductRemoteService {
   }
 
   private bootstrapTestData() {
-    console.log('data bootstrap');
+    console.log('data bootstrap called');
     this.saveBrand();
     this.saveProducts();
     this.saveCategories();

@@ -9,6 +9,8 @@ import { CheckoutRoutingModule } from './checkout-routing.module';
 import { CheckoutComponent } from './checkout.component';
 import { OrderAmountComponent } from './order-amount/order-amount.component';
 import { PaymentComponent } from './payment/payment.component';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -19,7 +21,7 @@ import { PaymentComponent } from './payment/payment.component';
     CheckoutRoutingModule,
     FontAwesomeModule,
     SharedModule,
-    NgbAccordionModule
+    HttpClientModule
   ]
 })
 export class CheckoutModule { }

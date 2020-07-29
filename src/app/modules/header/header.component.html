@@ -1,8 +1,6 @@
-
 <app-side-nav></app-side-nav>
 <!-- <app-sec-nav-bar></app-sec-nav-bar> -->
-<app-nav-bar *ngIf="statusService.isMainRoute$ | async as isPresent; else subRoute"></app-nav-bar>
+<app-nav-bar *ngIf="headerService.isMainRoute$ | async as isPresent; else subRoute"></app-nav-bar>
 <ng-template #subRoute>
-    <app-sec-nav-bar></app-sec-nav-bar>
+    <app-sec-nav-bar (back)="headerService.goBack()" [brand]="headerService.brand$ | async" [isCheckoutRoute] ="headerService.isCheckoutRoute"></app-sec-nav-bar>
 </ng-template>
-

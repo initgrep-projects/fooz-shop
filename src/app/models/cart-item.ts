@@ -4,6 +4,11 @@ import { Size } from './size';
 import { CustomSize } from './custom-size';
 import { Category } from './category';
 
+export enum CartItemStage {
+    CART ='CART',
+    ORDER ='ORDER'
+}
+
 export class CartItem {
     constructor(
         private id?: string,
@@ -16,6 +21,7 @@ export class CartItem {
         private selectedSize?: Size,
         private selectedCustomSize?: CustomSize,
         private selectedCategory?: Category,
+        private stage: CartItemStage = CartItemStage.CART
     ) { }
 
     get UserId() { return this.userId; }
@@ -47,6 +53,9 @@ export class CartItem {
 
     get CreatedDate() { return this.createdDate; }
     set CreatedDate(t: number) { this.createdDate = t; }
+
+    get Stage() { return this.stage; }
+    set Stage(s: CartItemStage) { this.stage = s; }
 
     equals(_item: CartItem): boolean {
         console.log('cartItem = ', _item);

@@ -1,8 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { Location } from '@angular/common';
-import { HeaderService } from '../header.service';
 import { transition, trigger, useAnimation } from '@angular/animations';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { fadeIn } from 'ng-animate';
+import { Brand } from 'src/app/models/brand';
 
 @Component({
   selector: 'app-sec-nav-bar',
@@ -16,12 +15,18 @@ import { fadeIn } from 'ng-animate';
   ]
 })
 export class SecNavBarComponent implements OnInit {
-  state:any
-  constructor(
-    public location: Location,
-    public hs: HeaderService) { }
+
+  @Input() brand: Brand
+  @Input() isCheckoutRoute: boolean
+  @Output() back = new EventEmitter();
+
+  constructor() { }
 
   ngOnInit(): void {
+  }
+  
+  goBack() {
+    this.back.emit();
   }
 
 }

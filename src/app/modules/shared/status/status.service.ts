@@ -3,9 +3,9 @@ import { NavigationStart, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { isEmpty } from 'lodash';
 import { combineLatest, Observable, of } from 'rxjs';
-import { filter, map, switchMap, tap, mergeMap, scan } from 'rxjs/operators';
-import { secondaryLayoutConfig } from 'src/app/config/app.routes';
+import { filter, map, switchMap, tap } from 'rxjs/operators';
 import { AppState } from '../../main/store/app.reducer';
+
 
 
 @Injectable({
@@ -19,12 +19,9 @@ export class StatusService {
     private store: Store<AppState>
   ) { }
 
-  isMainRoute$ = this.router.events
-    .pipe(
-      filter(event => event instanceof NavigationStart),
-      map((event: NavigationStart) => secondaryLayoutConfig.filter(routeUrl => event.url.indexOf(routeUrl) !== -1)),
-      map(matchedRoutes => !isEmpty(matchedRoutes) ? false : true)
-    );
+
+
+
 
   /**
    * if all items in a state for the route are not empty

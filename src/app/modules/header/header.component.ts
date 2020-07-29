@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { StatusService } from '../shared/status/status.service';
+import { HeaderService } from './header.service';
 
 
 
@@ -9,8 +9,8 @@ import { StatusService } from '../shared/status/status.service';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-  
-  constructor(public statusService:StatusService) { }
+
+  constructor(public headerService: HeaderService) { }
 
   ngOnInit() { }
 

@@ -55,7 +55,9 @@ export class CartRemoteService {
 
   fetchCart(userId: string) {
     return this.db.collection(CART_COLLECTION, ref =>
-      ref.where('userId', '==', userId)
+      ref
+        .where('userId', '==', userId)
+        .where('stage', '==', 'CART')
     )
       .get()
       .pipe(

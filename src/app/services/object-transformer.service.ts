@@ -180,8 +180,8 @@ export class ObjectTransformerService {
       this.transformColor(param.selectedColor),
       this.transformSize(param.selectedSize),
       this.transformCustomSize(param.selectedCustomSize),
-      this.transformCategory(param.selectedCategory)
-
+      this.transformCategory(param.selectedCategory),
+      param.stage
     );
   }
 

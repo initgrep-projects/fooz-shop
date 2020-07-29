@@ -4,6 +4,7 @@ import { cloneDeep } from 'lodash';
 import { Product } from 'src/app/models/product';
 import { SubSink } from 'subsink';
 import { ItemDetailService } from './item-detail.service';
+import { ProductService } from '../../product.service';
 
 @Component({
   selector: 'app-item-detail',
@@ -17,7 +18,8 @@ export class ItemDetailComponent implements OnInit, OnDestroy, OnChanges {
 
   constructor(
     private route: ActivatedRoute,
-    private itemdetailSerive: ItemDetailService
+    private itemdetailSerive: ItemDetailService,
+    public productService: ProductService
   ) { }
 
   ngOnInit(): void {

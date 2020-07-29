@@ -1,6 +1,6 @@
-<nav class="app-sec-nav-bar" *ngIf ="hs.brand$ | async as brand" >
+<nav class="app-sec-nav-bar" *ngIf ="brand" >
     <div class="left">
-       <button class="btn btn-dark" (click)="location.back()">
+       <button class="btn btn-dark" (click)="goBack()">
          <fa-icon icon = "arrow-left"></fa-icon>
        </button> 
     </div>
@@ -27,7 +27,7 @@
               </a>
             </li>
     
-            <li class="nav-item mx-2 ">
+            <li class="nav-item mx-2" *ngIf="!isCheckoutRoute">
               <a class=" app-control">
                 <app-cart [styleClass]="'text-light'"></app-cart>
               </a>

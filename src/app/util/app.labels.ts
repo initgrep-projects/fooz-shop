@@ -46,7 +46,7 @@ export const AuthMessages = {
     NameNotPresent: 'Name is not provided',
     PhoneNotPresent: 'Phone Number is Not provided',
     PhoneNotVerified: 'Phone Number is Not verified',
-    profileUpdateAlertTitle:  'profile update required',
+    profileUpdateAlertTitle:  'Profile is not complete',
     
 
     invalidCredentials: [
@@ -121,7 +121,7 @@ export const cartLabels = {
         updateItem: 'cart item updated',
         updateItemFailed: 'cart item updated',
         payment: 'payment',
-        reviewNpayment: 'review and payment'
+        payNow: 'pay now'
 }
 
 export const itemLabels = {

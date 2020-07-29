@@ -3,16 +3,16 @@ import { Store } from '@ngrx/store';
 import { cloneDeep, isEmpty } from 'lodash';
 import { Observable, of, zip } from 'rxjs';
 import { catchError, map, switchMap, take, tap } from 'rxjs/operators';
-import { CartItem } from 'src/app/models/cartItem';
+import { CartItem } from 'src/app/models/cart-item';
 import { Product } from 'src/app/models/product';
 import { CartRemoteService } from 'src/app/services/remote/cart-remote.service';
 import { cartLabels } from 'src/app/util/app.labels';
 import { AuthService } from '../auth/auth.service';
 import { AppState } from '../main/store/app.reducer';
+import { DialogService } from '../shared/dialog/dialog.service';
 import { ToastService } from '../shared/toasts/toast.service';
 import { updateProductAction } from '../shop/store/shop.actions';
 import { addItemToCartAction, deleteItemInCartAction, loadItemsToCartAction, updateItemInCartAction } from './store/cart.actions';
-import { DialogService } from '../shared/dialog/dialog.service';
 
 
 

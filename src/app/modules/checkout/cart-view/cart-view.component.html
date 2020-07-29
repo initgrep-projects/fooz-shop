@@ -11,10 +11,6 @@
                 </div>
             </div>
         </div>
-        <app-alert *ngIf="profileService.isInvalidProfile$ | async as validProf"
-                   [config]="validProf"
-                   (controlClick)="updateProfile()"></app-alert>
-
     </div>
     <div class=" cart-view-body">
 

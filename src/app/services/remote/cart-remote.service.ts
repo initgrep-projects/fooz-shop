@@ -1,13 +1,11 @@
 import { Injectable } from '@angular/core';
-import { CartItem } from 'src/app/models/cartItem';
-import { Observable, of, merge, forkJoin, from, defer } from 'rxjs';
+import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { classToPlain } from 'class-transformer';
+import { defer, forkJoin, Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { CartItem } from 'src/app/models/cart-item';
 import { CART_COLLECTION } from 'src/app/util/app.constants';
-import { toObservable } from 'src/app/util/app.lib';
 import { ObjectTransformerService } from '../object-transformer.service';
-import { AngularFirestoreCollection, AngularFirestore } from '@angular/fire/firestore';
-import { map, switchMap } from 'rxjs/operators';
-import { async } from '@angular/core/testing';
 
 @Injectable({
   providedIn: 'root'

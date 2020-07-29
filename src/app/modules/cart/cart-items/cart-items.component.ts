@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { CartItem } from 'src/app/models/cartItem';
+import { CartItem } from 'src/app/models/cart-item';
 import { cartLabels } from 'src/app/util/app.labels';
 import { SubSink } from 'subsink';
 import { CartModalService } from '../cart-modal/cart-modal.service';

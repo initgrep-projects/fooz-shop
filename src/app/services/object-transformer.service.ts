@@ -8,7 +8,7 @@ import { Size } from '../models/size';
 import { Sort } from '../models/Sort';
 import { Product } from '../models/product';
 import { DocumentData } from '@angular/fire/firestore';
-import { CartItem } from '../models/cartItem';
+import { CartItem } from '../models/cart-item';
 import { User } from '../models/user';
 import { Address } from '../models/address';
 import { LookBookItem } from '../models/lookbook';

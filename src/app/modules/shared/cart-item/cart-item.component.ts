@@ -1,9 +1,9 @@
-import { Component, EventEmitter, Input, OnInit, Output, AfterContentInit, OnDestroy } from '@angular/core';
+import { AfterContentInit, Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { cloneDeep } from 'lodash';
-import { CartItem } from 'src/app/models/cartItem';
 import { Subject } from 'rxjs';
-import { SubSink } from 'subsink';
 import { debounceTime } from 'rxjs/operators';
+import { CartItem } from 'src/app/models/cart-item';
+import { SubSink } from 'subsink';
 
 @Component({
   selector: 'app-cart-item',

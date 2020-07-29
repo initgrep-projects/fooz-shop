@@ -1,6 +1,6 @@
 import { createAction, props } from '@ngrx/store';
 import { AppMsg } from 'src/app/models/app-msg';
-import { CartItem } from 'src/app/models/cartItem';
+import { CartItem } from 'src/app/models/cart-item';
 import {
     ADD_ITEMS_TO_CART_ACTION, ADD_ITEM_TO_CART_ACTION, DELETE_ITEM_IN_CART_ACTION,
     LOAD_CART_ACTION, LOAD_FAILURE_IN_CART_ACTION, UPDATE_ITEM_IN_CART_ACTION

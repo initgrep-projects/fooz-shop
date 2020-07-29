@@ -1,12 +1,12 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ItemDetailService } from '../item-detail.service';
-import { CartService } from 'src/app/modules/cart/cart.service';
-import { SubSink } from 'subsink';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { cloneDeep } from 'lodash';
-import { CartItem } from 'src/app/models/cartItem';
-import { generateGuid } from 'src/app/util/app.lib';
-import { AuthService } from 'src/app/modules/auth/auth.service';
+import { CartItem } from 'src/app/models/cart-item';
 import { User } from 'src/app/models/user';
+import { AuthService } from 'src/app/modules/auth/auth.service';
+import { CartService } from 'src/app/modules/cart/cart.service';
+import { generateGuid } from 'src/app/util/app.lib';
+import { SubSink } from 'subsink';
+import { ItemDetailService } from '../item-detail.service';
 
 @Component({
   selector: 'app-item-buy',

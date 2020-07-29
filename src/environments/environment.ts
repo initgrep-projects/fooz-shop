@@ -21,8 +21,10 @@ export const environment = {
     countriesUrl: 'https://www.universal-tutorial.com/api/countries/',
     statesUrl: 'https://www.universal-tutorial.com/api/states/',
     cityUrl: 'https://www.universal-tutorial.com/api/cities/'
+  },
+  payment:{
+    clientTokenUrl:'http://localhost:3100/foozabayas/us-central1/api/pay/client_token'
   }
-
 };
 
 /*

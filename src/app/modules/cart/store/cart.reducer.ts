@@ -1,6 +1,6 @@
 import { createReducer, on, Action } from '@ngrx/store';
 import { addItemsToCartAction, addItemToCartAction, deleteItemInCartAction, updateItemInCartAction, loadFailureCartAction } from './cart.actions';
-import { CartItem } from 'src/app/models/cartItem';
+import { CartItem } from 'src/app/models/cart-item';
 import { cloneDeep, clone } from 'lodash';
 import { AppMsg } from 'src/app/models/app-msg';
 

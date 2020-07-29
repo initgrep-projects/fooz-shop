@@ -1,6 +1,5 @@
 const braintree = require('braintree');
 
-
 export const gateway = braintree.connect({
     environment: braintree.Environment.Sandbox,
     merchantId: "m7gfvmm4drz9z6cf",

@@ -1,73 +1,28 @@
-<div class="app-payment"
-     *ngIf="cartService.cart$ | async as cart">
+<div class="app-payment">
 
     <div class="app-payment-header mb-2">
         <div class="card">
             <div class="card-body">
-                <h6>{{labels.reviewNpayment}}</h6>
+                <h6>{{labels.payment}}</h6>
             </div>
         </div>
     </div>
-    <div class="app-payment-body">
-        <div class="user-wrapper mb-2"
-             *ngIf="authService.userFromStore$ | async as user">
-            <app-alert *ngIf="profileService.isInvalidProfile$ | async as validProf"
-                       [config]="validProf"
-                       (controlClick)="updateProfile()"></app-alert>
-        </div>
-
-        <div class="cart-wrapper mb-2">
+    <form action="">
+        <div class="app-payment-body">
             <div class="card">
-                <div class="card-body">
-                    <h6>total - <span>({{cart.length}} {{ cart.length > 1 ? 'items' : 'item'}})</span></h6>
-                    <button class="btn btn-sm btn-light">
-                        <fa-icon icon="pencil-alt"></fa-icon>
-                        <span>Edit</span>
-                    </button>
-                </div>
-            </div>
-        </div>
-        <div class="address-wrapper mb-2"
-             *ngIf="addressService.selectedAddress$ | async as address">
-            <div class="card">
-                <div class="card-header">
-                    <h6 class="title">Delivery ADDRESS</h6>
-                    <button class="btn btn-sm btn-light">
-                        <fa-icon icon="edit"></fa-icon>
-                        <span>Change</span>
-                    </button>
-                </div>
-                <div class="card-body">
-                    <p>
-                        <span class="name">{{address.Name}}</span>
-                        <span class="phone">{{address.Phone}}</span>
-                    </p>
-                    <p>
-                        <span>{{address.Street}}</span>
-                        <span>{{address.City}}</span>
-                        <span>{{address.State}}</span>
-                        <span>{{address.Country}}</span>
-                        <span class="zip">{{address.ZipCode}}</span>
-                    <p>
-                </div>
-            </div>
-        </div>
-
-        <div class="payment-wrapper">
-            <div class="card">
-                <div class="card-header">
-                    <h6 class="title">
-                        Payment
-                    </h6>
-                </div>
                 <div class="card-body">
                     <div id="dropin-container"></div>
-                    <button class="btn btn-sm btn-dark" id="submit-button" #submitButton>Request payment method</button>
                 </div>
             </div>
         </div>
-    </div>
 
-    <div class="app-payment-footer"></div>
+        <div class="app-payment-footer">
+            <div class="payment-controls">
+                <button class="btn btn-dark m-2"
+                        type="button"
+                        (click)="payNow()">{{labels.payNow}}</button>
+            </div>
 
+        </div>
+    </form>
 </div>

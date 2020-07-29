@@ -1,11 +1,10 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { CartService } from '../../cart/cart.service';
-import { CartItem } from 'src/app/models/cartItem';
-import { cartLabels } from 'src/app/util/app.labels';
-import { fadeIn, staggerFadeIn } from 'src/app/animations/fadeAnimation';
-import { ProfileService } from '../../account/profile/profile.service';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { fadeIn, staggerFadeIn } from 'src/app/animations/fadeAnimation';
+import { CartItem } from 'src/app/models/cart-item';
+import { cartLabels } from 'src/app/util/app.labels';
 import { SubSink } from 'subsink';
+import { CartService } from '../../cart/cart.service';
 
 @Component({
   selector: 'app-cart-view',
@@ -21,7 +20,6 @@ export class CartViewComponent implements OnInit, OnDestroy {
   labels = cartLabels;
   constructor(
     public cartService: CartService,
-    public profileService: ProfileService,
     private router: Router
   ) { }
 

@@ -69,7 +69,8 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import {
   faUser as farUser,
-  faCircle as farCircle
+  faCircle as farCircle,
+  faCopyright as farCopyright
 } from '@fortawesome/free-regular-svg-icons';
 import {
   faGoogle,
@@ -169,7 +170,8 @@ export class IconService {
       faInstagram,
       faTwitter,
       faFacebook,
-      faPinterest
+      faPinterest,
+      farCopyright
     ];
   }
 

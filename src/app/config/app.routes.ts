@@ -148,9 +148,13 @@ export const authRoutes: Routes = [
   }
 ];
 
-export const secondaryLayoutConfig = [
+export const secondaryHeaderLayoutConfig = [
   'shop/item',
   'checkout'
+];
+
+export const mainFooterLayoutConfig = [
+  'home'
 ];
 
 

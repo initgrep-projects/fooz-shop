@@ -1,0 +1,90 @@
+<div class="app-footer-main">
+    <div class="container"
+         *ngIf="brand">
+        <div class="row">
+            <div class="col-12 col-sm-6 col-md-4 col-xl-4">
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <a class="brand"
+                           [routerLink]="['home']">
+                            <!-- <fa-icon icon="atom"></fa-icon> -->
+                             <span>{{brand.Name}}</span>
+                        </a>
+                    </li>
+                    <li class="list-group-item ">
+                        <div class="list-social">
+                            <div class=" insta"
+                                 *ngIf="brand.Instagram">
+                                <a href="https://www.instagram.com/{{brand.Instagram}}"
+                                   target="_blank">
+                                    <fa-icon [icon]="['fab','instagram']"></fa-icon>
+                                </a>
+                            </div>
+                            <div class=" fb"
+                                 *ngIf="brand.Facebook">
+                                <a href="https://www.facebook.com/{{brand.Facebook}}"
+                                   target="_blank">
+                                    <fa-icon [icon]="['fab','facebook']"></fa-icon>
+                                </a>
+                            </div>
+                            <div class=" twit"
+                                 *ngIf="brand.Twitter">
+                                <a href="https://www.twitter.com/{{brand.Twitter}}"
+                                   target="_blank">
+                                    <fa-icon [icon]="['fab','twitter']"></fa-icon>
+                                </a>
+                            </div>
+                            <div class=" pin"
+                                 *ngIf="brand.Pinterest">
+                                <a href="https://www.pinterest.com/{{brand.Pinterest}}"
+                                   target="_blank">
+                                    <fa-icon [icon]="['fab','pinterest']"></fa-icon>
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-12 col-sm-6 col-md-4 col-xl-4">
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <h5>
+                            <fa-icon icon="headset"></fa-icon><span>{{labels.contact}}</span>
+                        </h5>
+                    </li>
+                    <li class="list-group-item"
+                        *ngFor="let phone of brand?.Phones">
+                        <a class="phone"
+                           href="tel:{{phone}}">
+                            <fa-icon icon="phone-alt"></fa-icon><span>{{phone}}</span>
+                        </a>
+                    </li>
+                    <li class="list-group-item"
+                        *ngFor="let email of brand?.Emails">
+                        <a class="email"
+                           href="mailto:{{email}}">
+                            <fa-icon icon="envelope-open-text"></fa-icon><span>{{email}}</span>
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+            <div class="col-12 col-sm-6 col-md-4 col-xl-4">
+                <ul class="list-group shipping ">
+                    <li class="list-group-item">
+                        <h5>
+                            <fa-icon icon="shipping-fast"></fa-icon><span>{{labels.shippingReturns}}</span>
+                        </h5>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="">{{labels.shipping}}</a>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="">{{labels.returns}}</a>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+</div>

@@ -144,7 +144,8 @@ export const homeLabels = {
 
 export const footerLables = {
     shipping: 'shipping',
-    shippingDelivery: 'shipping and delivery',
+    shippingReturns: 'shipping and Returns',
+    returns:' returns',
     information: 'information',
     termCondition: 'terms and conditions',
     privPolicy: 'privacy policy',

@@ -10,7 +10,6 @@ import { CartService } from './cart.service';
 })
 export class CartComponent implements OnInit, OnDestroy {
   labels = AuthMessages.authAnchorLabels;
-  @Input() styleClass:string;
   private subs = new SubSink();
 
   constructor(

@@ -1,0 +1,77 @@
+@import "../../../../variables.scss";
+
+div.app-footer-main {
+  margin-top: 10rem;
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+  background-color: #f9f9f9f9;
+  font-family: $roboto-font-family;
+  margin-left: -1px;
+  color: $primary-text-color;
+
+  ul.list-group {
+    li.list-group-item {
+      border: none;
+      background-color: transparent;
+      color: $primary-text-color;
+      padding: 0.5rem;
+
+      h5 {
+        font-weight: 600;
+        letter-spacing: 0.025rem;
+        text-transform: uppercase;
+        span {
+          margin: 0 0.5rem;
+        }
+      }
+      a {
+        color: $primary-text-color;
+        text-decoration: none;
+        letter-spacing: 0.05rem;
+        &.brand {
+          font-size: 2rem;
+          font-family: $ptserif-font-family;
+          letter-spacing: 0.045rem;
+          font-weight: 600;
+          text-transform: uppercase;
+          span {
+            margin: 0 0.5rem;
+          }
+        }
+
+        span {
+          margin: 0 0.5rem;
+        }
+
+      
+      }
+
+      div.list-social {
+        display: flex;
+        flex-direction: row;
+        div {
+          padding: 0 0.5rem;
+          a {
+            font-size: 1.2rem;
+            font-weight: 600;
+          }
+        }
+      }
+    }
+
+    &.shipping {
+      li {
+        
+        a {
+          margin-left: 1rem;
+          font-size: .8rem;
+          text-transform: uppercase;
+
+          &:hover{
+            font-weight: 600;
+          }
+        }
+      }
+    }
+  }
+}

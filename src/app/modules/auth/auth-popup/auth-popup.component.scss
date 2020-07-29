@@ -5,7 +5,6 @@ a.auth-profile-nav {
     text-decoration: none;
     cursor: pointer;
     font-weight: 600;
-    color: $secondary-text-color;
     div {
         text-align: center;
         .cart {
@@ -25,7 +24,7 @@ a.auth-profile-nav {
     }
 
     &:hover {
-        color: $secondary-text-color;
+        color: $primary-text-color;
         fa-icon.far {
             display: none;
         }
@@ -77,8 +76,8 @@ div.pop-footer {
 
 .pop-style {
     font-family: $roboto-font-family !important;
-    border-top: 1px solid #f0f0f0;
-    box-shadow: 0 -2px 10px 0 rgba(0, 0, 0, 0.1);
+    border: 1px solid #f2f2f2;
+    box-shadow: 0px 4px 4px rgba(0,0,0,0.2);
     min-width: 300px;
     max-width: 300px;
     h3.popover-header {

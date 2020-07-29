@@ -1,27 +1,23 @@
-import { Location } from '@angular/common';
 import { Injectable } from '@angular/core';
 import { NavigationStart, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { isEmpty } from 'lodash';
 import { filter, map, tap } from 'rxjs/operators';
-import { secondaryHeaderLayoutConfig } from 'src/app/config/app.routes';
+import { mainFooterLayoutConfig } from 'src/app/config/app.routes';
 import { AppState } from '../main/store/app.reducer';
-import { loadBrand } from './store/header.actions';
+import { isEmpty } from 'lodash';
 
 @Injectable({
   providedIn: 'root'
 })
-export class HeaderService {
+export class FooterService {
 
   brand$ = this.store.select('header').pipe(map(state => state.brand));
   isCheckoutRoute = false;
 
   constructor(
     private store: Store<AppState>,
-    private location: Location,
     private router: Router
   ) {
-    this.store.dispatch(loadBrand());
   }
 
 
@@ -30,11 +26,9 @@ export class HeaderService {
       filter(event => event instanceof NavigationStart),
       map((event: NavigationStart) => event.url),
       tap(url => this.isCheckoutRoute = (url.indexOf('checkout') !== -1 ? true : false)),
-      map(url => secondaryHeaderLayoutConfig.filter(routeUrl => url.indexOf(routeUrl) !== -1)),
-      map(matchedRoutes => !isEmpty(matchedRoutes) ? false : true)
+      map(url => mainFooterLayoutConfig.filter(routeUrl => url.indexOf(routeUrl) !== -1)),
+      map(matchedRoutes => !isEmpty(matchedRoutes) ? true : false)
     );
 
 
-
-  goBack() { this.location.back(); }
 }

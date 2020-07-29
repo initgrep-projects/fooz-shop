@@ -1,0 +1,32 @@
+<div class="app-footer-sec">
+    <div class="left">
+        <a href="https://www.instagram.com/{{brand.Instagram}}"
+           target="_blank">
+            <fa-icon [icon]="['fab','instagram']"></fa-icon>
+        </a>
+        <a href="https://www.facebook.com/{{brand.Facebook}}"
+           target="_blank">
+            <fa-icon [icon]="['fab','facebook']"></fa-icon>
+        </a>
+        <a href="https://www.twitter.com/{{brand.Twitter}}"
+           target="_blank">
+            <fa-icon [icon]="['fab','twitter']"></fa-icon>
+        </a>
+        <a href="https://www.pinterest.com/{{brand.Pinterest}}"
+           target="_blank">
+            <fa-icon [icon]="['fab','pinterest']"></fa-icon>
+        </a>
+
+    </div>
+    <div class="center">
+        <h6>
+            <fa-icon [icon]="['far','copyright']"></fa-icon>
+            <span>{{brand.Name}}</span>
+        </h6>
+    </div>
+    <div class="right">
+        <a href="">{{labels.shipping}}</a>
+        <a href="">{{labels.returns}}</a>
+
+    </div>
+</div>

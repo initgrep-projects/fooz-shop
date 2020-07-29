@@ -4,13 +4,13 @@ nav.app-nav-bar {
     width: 100%;
     position: sticky;
     top: -1px;
-    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
-    margin-bottom: 2px;
+    box-shadow: 0 4px 12px 0 rgba(0,0,0,.05);
+    margin-bottom: .3rem;
     display: flex;
     flex-direction: column;
     z-index: 1020;
-    background-color: $bg-black;
-    color: $secondary-text-color;
+    background-color: $bg-white;
+    color: $primary-text-color;
 
     @include md {
         padding: 1rem 5% 0 5%;
@@ -24,7 +24,7 @@ nav.app-nav-bar {
             font-family: $ptserif-font-family;
             a {
                 font-size: 2rem;
-                color: $secondary-text-color;
+                color: $primary-text-color;
                 text-decoration: none;
                 @include md {
                     font-size: 3rem;
@@ -41,7 +41,7 @@ nav.app-nav-bar {
                     letter-spacing: 0.06rem;
                     padding: 0 1rem;
                     transition: font-size 0.5s ease-in;
-                    text-shadow: 0px 1px 0px #f4f4f4;
+                    text-shadow: 0px 1px 0px #333;
                     @include md {
                         font-size: 2rem;
                     }
@@ -72,7 +72,7 @@ nav.app-nav-bar {
             li.nav-item {
                 text-align: center;
                 a {
-                    color: $secondary-text-color;
+                    color: $primary-text-color;
                     letter-spacing: 0.045rem;
                     text-transform: uppercase;
                     font-size: 0.8rem;
@@ -84,10 +84,10 @@ nav.app-nav-bar {
                     display: inline-block;
 
                     &:hover {
-                        background-color: #333;
+                        background-color: #f1f1f1;
                     }
                     &.active {
-                        background-color: #333;
+                        background-color: #f1f1f1;
                         & ~ span.indicator {
                             height: 2px;
                             width: 100%;
@@ -100,7 +100,7 @@ nav.app-nav-bar {
                     position: relative;
                     left: 0px;
                     height: 0px;
-                    background: #f1f1f1;
+                    background: #333;
                     border-radius: 5px;
                     transition: width 0.2s ease-in;
                     width: 0;

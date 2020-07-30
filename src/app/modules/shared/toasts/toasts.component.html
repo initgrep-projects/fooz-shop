@@ -5,7 +5,7 @@
         <ngb-toast *ngFor="let toast of toastService.toasts"
                    [class]=getClassNameByType(toast)
                    [autohide]="true"
-                   [delay]="toast.options.delay || 2500"
+                   [delay]="toast.options.delay || 2000"
                    (hide)="toastService.remove(toast)">
             <span class="toast-message">
                 <fa-icon class="mx-1"

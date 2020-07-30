@@ -25,9 +25,9 @@ div.toast-outer-container {
         flex-direction: column;
         align-content: center;
         flex-wrap: wrap;
-        @include animate(fadeInDown, 0.2s);
+        @include animate(slideInDown, 0.2s);
         @include md {
-            @include animate(fadeInUp, 0.2s);
+            @include animate(slideInUp, 0.2s);
             flex-wrap: nowrap;
         }
         

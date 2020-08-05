@@ -13,6 +13,9 @@ import { User } from '../models/user';
 import { Address } from '../models/address';
 import { LookBookItem } from '../models/lookbook';
 import { Brand } from '../models/brand';
+import { Payment } from '../models/payment.model';
+import { OrderStatus } from '../models/order-status.model';
+import { OrderItem } from '../models/order-item.modal';
 
 @Injectable({
   providedIn: 'root'
@@ -234,9 +237,28 @@ export class ObjectTransformerService {
   }
 
   transformBrand(param: DocumentData) {
-    return !param 
-    ? null 
-    : new Brand(param.name, param.logo, param.country, param.phones,param.emails,param.instagram,param.facebook,param.twitter,param.pinterest);
+    return !param
+      ? null
+      : new Brand(param.name, param.logo, param.country, param.phones, param.emails, param.instagram, param.facebook, param.twitter, param.pinterest);
+  }
+
+
+  transformPayment(param: DocumentData) {
+    return !param
+      ? null
+      : new Payment(param.id, this.transformCurrency(param.amount), param.type, param.createdOn);
+  }
+
+  transformOrderStatus(param: DocumentData) {
+    return !param
+      ? null
+      : new OrderStatus(param.id, param.stage, param.createdOn, param.shippingId);
+  }
+
+  transformOrderItem(param: DocumentData) {
+    return !param
+      ? null
+      : new OrderItem(param.id, param.userId, param.cartItemIds, param.addressId, param.statusIds, param.paymentId);
   }
 
 }

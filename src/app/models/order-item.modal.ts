@@ -1,4 +1,4 @@
-import { OrderStatus } from './order-status';
+import { OrderStatus } from './order-status.model';
 import { generateGuid } from '../util/app.lib';
 
 export class OrderItem {

@@ -27,7 +27,7 @@ export class AuthService {
 
   user$: Observable<User>;
   userFromStore$: Observable<User>;
-  incomingUrl: string; /** to be set by authGuardservice */
+
 
   constructor(
     private angularFireAuth: AngularFireAuth,
@@ -41,7 +41,7 @@ export class AuthService {
     this.user$ = this.syncAuthChanges();
   }
 
- 
+
 
   /**
    * Every auth change be it anonymous, login, login with google or registeration
@@ -231,17 +231,11 @@ export class AuthService {
       }
       return methods.map(m => m === 'google.com' ? signInType.GOOGLE : signInType.PASSWORD)
     });
-
-
-
   }
 
   //DONE
   deleteUserFromStore() {
     this.store.dispatch(deleteUserAction());
   }
-
-
-
 
 }

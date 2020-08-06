@@ -2,6 +2,8 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { SubSink } from 'subsink';
 import { AuthModalService } from '../auth-modal/auth-modal.service';
 import { confirmedUser } from './auth-confirm/auth-confirm.component';
+import { Location } from '@angular/common';
+import { RouteManagementService } from '../../main/route-management.service';
 
 @Component({
   selector: 'app-auth-access',
@@ -13,15 +15,16 @@ export class AuthAccessComponent implements OnInit, OnDestroy {
   confirmedUser: confirmedUser = { email: '', isExisting: false, isOpFinished: false };
 
   constructor(
-    public modalService: AuthModalService,
+    public mds: AuthModalService
   ) { }
 
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   onUserConfirmation(value: confirmedUser) {
     this.confirmedUser = value;
   }
+
 
   ngOnDestroy() {
     this.subs.unsubscribe();

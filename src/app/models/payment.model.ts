@@ -10,6 +10,7 @@ export enum PaymentType {
 export class Payment {
     constructor(
         private id: string,
+        private orderId: string,
         private amount: Currency,
         private type: PaymentType,
         private createdOn: number = new Date().getTime()
@@ -18,6 +19,8 @@ export class Payment {
 
     get Id() { return this.id; }
     // set Id(id: string) { this.id = id; }
+    get OrderId() { return this.orderId; }
+    set OrderId(oid: string) { this.orderId = oid; }
     get Amount() { return this.amount; }
     set Amount(a: Currency) { this.amount = a; }
     get Type() { return this.type; }

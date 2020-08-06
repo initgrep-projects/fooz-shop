@@ -15,7 +15,7 @@
         </div>
         <app-alert *ngIf="profileService.isInvalidProfile$ | async as validProf"
                    [config]="validProf"
-                   (controlClick)="updateProfile()"></app-alert>
+                   (controlClick)="rms.routeToProfile()"></app-alert>
 
     </div>
     <div class="address-view-body">
@@ -43,16 +43,18 @@
 
 
         </div>
-        <div class="no-ad-wrapper"  *ngIf="addresses.length === 0">
+        <div class="no-ad-wrapper"
+             *ngIf="addresses.length === 0">
             <div class="alert bg-light app-addresses-alert text-center"
-            *ngIf="addresses.length === 0">{{labels.NoAddressesPresent}}</div>
+                 *ngIf="addresses.length === 0">{{labels.NoAddressesPresent}}</div>
         </div>
     </div>
-    <div class="address-view-footer" *ngIf="addresses.length > 0">
+    <div class="address-view-footer"
+         *ngIf="addresses.length > 0">
         <div class="address-view-controls">
             <button class="btn btn-dark m-2"
                     [disabled]="!(addService.selectedAddress$ | async)"
-                    (click)="routeToPayment()">CONTINUE</button>
+                    (click)="rms.routeToPayment()">CONTINUE</button>
         </div>
     </div>
 </div>

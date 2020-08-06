@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
-import { NgbModalRef, NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { Router, NavigationStart } from '@angular/router';
-import { Location } from '@angular/common';
-import { tap } from 'rxjs/operators';
+import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { RouteManagementService } from '../../main/route-management.service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,11 +8,11 @@ import { tap } from 'rxjs/operators';
 export class AuthModalService {
 
   modalRef: NgbModalRef;
+  previousUrl: string;
 
   constructor(
     private modalService: NgbModal,
-    private location: Location,
-    private router: Router
+    private routeMgmtService: RouteManagementService
   ) { }
 
   /**
@@ -28,8 +26,11 @@ export class AuthModalService {
         size: 'lg',
         backdrop: true,
         keyboard: true,
-        centered: true,
-        beforeDismiss: () => this.goToPreviousLocation()
+        centered: false,
+        beforeDismiss: () => {
+          this.routeMgmtService.routeToIncomingUrl();
+          return true;
+        }
       });
   }
 
@@ -39,30 +40,6 @@ export class AuthModalService {
 
   closeModal() {
     this.modalRef.dismiss();
-  }
-
-  /**
-   * callback method to go back to previous location.
-   * This is required to clear the modal route.
-   */
-  private goToPreviousLocation() {
-    console.log('onDismiss sending to previous location');
-    // this.location.back();
-    return true;
-  }
-
-  /**
-   * close the modal incase the route change happens
-   * this can happen only using back button since the backdrop prevents using other controls
-   */
-  closeModalOnRouteChange() {
-    return this.router.events
-      .pipe(
-        tap((event: any) => {
-          if (event instanceof NavigationStart) {
-            this.closeModal();
-          }
-        }));
   }
 
 }

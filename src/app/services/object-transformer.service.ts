@@ -246,19 +246,19 @@ export class ObjectTransformerService {
   transformPayment(param: DocumentData) {
     return !param
       ? null
-      : new Payment(param.id, this.transformCurrency(param.amount), param.type, param.createdOn);
+      : new Payment(param.id, param.orderId, this.transformCurrency(param.amount), param.type, param.createdOn);
   }
 
   transformOrderStatus(param: DocumentData) {
     return !param
       ? null
-      : new OrderStatus(param.id, param.stage, param.createdOn, param.shippingId);
+      : new OrderStatus(param.id, param.orderId, param.stage, param.createdOn, param.shippingId);
   }
 
   transformOrderItem(param: DocumentData) {
     return !param
       ? null
-      : new OrderItem(param.id, param.userId, param.cartItemIds, param.addressId, param.statusIds, param.paymentId);
+      : new OrderItem(param.id, param.userId, param.cartItemIds, param.addressId);
   }
 
 }

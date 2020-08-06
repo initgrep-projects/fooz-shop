@@ -10,6 +10,7 @@ export enum OrderStage {
 export class OrderStatus {
     constructor(
         private id: string,
+        private orderId: string,
         private stage: OrderStage,
         private createdOn: number = Date.now(),
         private shippingId?: string,
@@ -17,6 +18,8 @@ export class OrderStatus {
 
     get Id() { return this.id; }
     // set Id(id: string) { this.id = id; }
+    get OrderId() { return this.orderId; }
+    set OrderId(oid: string) { this.orderId = oid; }
     get Stage() { return this.stage; }
     set Stage(stage: OrderStage) { this.stage = stage; }
     get ShippingId() { return this.shippingId; }

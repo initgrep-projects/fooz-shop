@@ -5,10 +5,8 @@ import { Address } from 'src/app/models/address';
 import { AuthMessages } from 'src/app/util/app.labels';
 import { SubSink } from 'subsink';
 import { AddressService } from '../../account/addresses/address.service';
-import { Router, ActivatedRoute } from '@angular/router';
-import { AuthService } from '../../auth/auth.service';
-import { AlertConfig, AlertType } from '../../shared/alert/alert.component';
 import { ProfileService } from '../../account/profile/profile.service';
+import { RouteManagementService } from '../../main/route-management.service';
 
 @Component({
   selector: 'app-address-view',
@@ -26,7 +24,7 @@ export class AddressViewComponent implements OnInit, OnDestroy {
     public addService: AddressService,
     public profileService: ProfileService,
     @Inject(DOCUMENT) private document: Document,
-    private router: Router,
+    public rms: RouteManagementService
   ) { }
 
   ngOnInit(): void {
@@ -44,13 +42,6 @@ export class AddressViewComponent implements OnInit, OnDestroy {
       );
   }
 
-  routeToPayment() {
-    this.router.navigate(['/checkout/payment']);
-  }
-
-  updateProfile(){
-    this.router.navigate(['/account/profile/edit']);
-  }
 
   ngOnDestroy() {
     this.subs.unsubscribe();

@@ -1,5 +1,4 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { fadeIn, staggerFadeIn } from 'src/app/animations/fadeAnimation';
 import { CartItem } from 'src/app/models/cart-item';
 import { cartLabels } from 'src/app/util/app.labels';
@@ -19,8 +18,7 @@ export class CartViewComponent implements OnInit, OnDestroy {
   private subs = new SubSink();
   labels = cartLabels;
   constructor(
-    public cartService: CartService,
-    private router: Router
+    public cartService: CartService
   ) { }
 
   ngOnInit(): void {
@@ -28,18 +26,15 @@ export class CartViewComponent implements OnInit, OnDestroy {
 
   updateCartItem(item: CartItem) {
     this.subs.sink =
-    this.cartService.updateCartItem(item).subscribe(
-      ok => {
-        if(ok){
-          this.cartService.updateProductQuantity(item.Product, item.SelectedQuantity);
+      this.cartService.updateCartItem(item).subscribe(
+        ok => {
+          if (ok) {
+            this.cartService.updateProductQuantity(item.Product, item.SelectedQuantity);
+          }
         }
-      }
-    );
+      );
   }
 
-  updateProfile() {
-    this.router.navigate(['/account/profile/edit']);
-  }
   removeItem(id: string) {
     this.subs.sink =
       this.cartService.deleteItem(id).subscribe();

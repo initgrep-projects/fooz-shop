@@ -77,9 +77,10 @@ div.pop-footer {
 .pop-style {
     font-family: $roboto-font-family !important;
     border: 1px solid #f2f2f2;
-    box-shadow: 0px 4px 4px rgba(0,0,0,0.2);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.2);
     min-width: 300px;
     max-width: 300px;
+    @include animate(fadeIn, 0.5s);
     h3.popover-header {
         background-color: white !important;
         padding: 1rem;

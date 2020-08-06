@@ -5,7 +5,6 @@ import { SubSink } from 'subsink';
 import { AuthMessages } from '../../../../util/app.labels';
 import { AuthModalService } from '../../auth-modal/auth-modal.service';
 import { AuthService } from '../../auth.service';
-import { Router } from '@angular/router';
 
 
 @Component({
@@ -32,15 +31,12 @@ export class AuthLoginComponent implements OnInit, AfterViewInit, OnDestroy {
   isValidForm = false;
   alertMessage: string;
   passResetProgress = false;
-  incomingRouteUrl: string;
 
 
   constructor(
-    private router:Router,
     public authModalService: AuthModalService,
     private authService: AuthService,
     private toastService: ToastService
-
   ) { }
 
   ngAfterViewInit() {
@@ -49,9 +45,6 @@ export class AuthLoginComponent implements OnInit, AfterViewInit, OnDestroy {
 
   ngOnInit(): void {
     this.initForm();
-    this.incomingRouteUrl = this.authService.incomingUrl.slice();
-    console.log('incomingRouteUrl on init of login = ', this.incomingRouteUrl);
-
   }
 
 
@@ -107,7 +100,7 @@ export class AuthLoginComponent implements OnInit, AfterViewInit, OnDestroy {
     this.passResetProgress = true;
     this.subs.sink = this.authService.resetPassword(this.loginForm.value.email)
       .subscribe(
-        isSuccess => this.authModalService.dismissModal(),
+        isSuccess => this.authModalService.closeModal(),
         error => { },
         () => this.passResetProgress = false
       );
@@ -115,9 +108,8 @@ export class AuthLoginComponent implements OnInit, AfterViewInit, OnDestroy {
 
   private handleAuthSuccess() {
     this.isLoginSuccess = true;
-    this.authModalService.dismissModal();
+    this.authModalService.closeModal();
     this.toastService.success(this.authMessages.loginSuccess, 'user-lock');
-    this.routeToIncomingUrl();
   }
 
   private handleAuthFailure(error) {
@@ -134,14 +126,6 @@ export class AuthLoginComponent implements OnInit, AfterViewInit, OnDestroy {
 
   private setAlertMessage(code: string) {
     this.alertMessage = AuthMessages.invalidCredentials.find(item => item.code === code).message;
-  }
-
-  private routeToIncomingUrl(){
-    console.log('routeToIncomingUrl called = ', this.incomingRouteUrl);
-    if(!!this.authService.incomingUrl){
-      console.log('routing to incoming');
-      this.router.navigateByUrl(this.incomingRouteUrl);
-    }
   }
 
   closeAlert() {

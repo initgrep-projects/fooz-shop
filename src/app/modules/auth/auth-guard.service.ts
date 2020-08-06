@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
-import { AuthService } from './auth.service';
-import { Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, CanActivateChild } from '@angular/router';
-import { take, map } from 'rxjs/operators';
+import { ActivatedRouteSnapshot, CanActivate, CanActivateChild, RouterStateSnapshot } from '@angular/router';
+import { map, take } from 'rxjs/operators';
 import { User } from 'src/app/models/user';
+import { RouteManagementService } from '../main/route-management.service';
+import { AuthService } from './auth.service';
 
 
 @Injectable({
@@ -10,7 +11,9 @@ import { User } from 'src/app/models/user';
 })
 export class AuthGuardService implements CanActivate, CanActivateChild {
 
-  constructor(private authService: AuthService, private router: Router) { }
+  constructor(
+    private authService: AuthService,
+    private routeMgmtService: RouteManagementService) { }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | import("@angular/router").UrlTree | import("rxjs").Observable<boolean | import("@angular/router").UrlTree> | Promise<boolean | import("@angular/router").UrlTree> {
     return this.authService.user$
@@ -20,8 +23,8 @@ export class AuthGuardService implements CanActivate, CanActivateChild {
           if (!!user && !user.IsAnonymous) {
             return true;
           } else {
-            this.authService.incomingUrl = state.url; /** save the route for redirection after auth success */
-            this.router.navigate([{ outlets: { 'secure': ['auth'] } }]);
+            this.routeMgmtService.incomingUrl = state.url; /** save the route for redirection after auth success */
+            this.routeMgmtService.routeToAuth();
             return false;
           }
         })
@@ -36,8 +39,8 @@ export class AuthGuardService implements CanActivate, CanActivateChild {
           if (!!user && !user.IsAnonymous) {
             return true;
           } else {
-            this.authService.incomingUrl = state.url; /** save the route for redirection after auth success */
-            this.router.navigate([{ outlets: { 'secure': ['auth'] } }]);
+            this.routeMgmtService.incomingUrl = state.url; /** save the route for redirection after auth success */
+            this.routeMgmtService.routeToAuth();
             return false;
           }
         })

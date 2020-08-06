@@ -6,9 +6,7 @@ export class OrderItem {
         private id: string,
         private userId: string,
         private cartItemIds: string[],
-        private addressId: string,
-        private statusIds: string[],
-        private paymentId: string
+        private addressId: string
     ) { }
 
     get Id() { return this.id; }
@@ -23,10 +21,4 @@ export class OrderItem {
     get AddressId() { return this.addressId; }
     set AddressId(addId: string) { this.addressId = addId; }
 
-    get StatusIds() { return this.statusIds; }
-    set StatusId(id: string) { this.statusIds.push(id); }
-    set StatusIds(ids: string[]) { this.statusIds = ids; }
-
-    get PaymentId() { return this.paymentId; }
-    set PaymentId(pid: string) { this.paymentId = pid; }
 }

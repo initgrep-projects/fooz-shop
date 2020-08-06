@@ -20,6 +20,7 @@ import { SharedModule } from '../shared/shared.module';
 import { ShopModule } from '../shop/shop.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { RouteManagementService } from './route-management.service';
 import { AppReducer } from './store/app.reducer';
 
 
@@ -53,15 +54,19 @@ import { AppReducer } from './store/app.reducer';
     {
       provide: SETTINGS,
       useValue: environment.production ? undefined : {
-          host: 'localhost:3200',
-          ssl: false
+        host: 'localhost:3200',
+        ssl: false
       }
-  }
+    }
   ],
   bootstrap: [AppComponent]
 })
 export class AppModule {
-  constructor(iconLiberary: FaIconLibrary, iconService: IconService) {
+  constructor(
+    private iconLiberary: FaIconLibrary,
+    private iconService: IconService,
+    private rmgtService: RouteManagementService
+  ) {
     iconLiberary.addIcons(...iconService.getImportedIcons());
   }
 }

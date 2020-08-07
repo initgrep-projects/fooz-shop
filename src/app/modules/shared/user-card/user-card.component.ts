@@ -4,6 +4,7 @@ import { User } from 'src/app/models/user';
 import { AuthMessages } from 'src/app/util/app.labels';
 import { SubSink } from 'subsink';
 import { AuthService } from '../../auth/auth.service';
+import { RouteManagementService } from '../../main/route-management.service';
 
 
 @Component({
@@ -23,7 +24,8 @@ export class UserCardComponent implements OnInit, OnDestroy {
 
   constructor(
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    public rmgt: RouteManagementService
   ) { }
 
   ngOnInit(): void {

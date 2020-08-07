@@ -28,7 +28,7 @@ export class AuthModalService {
         keyboard: true,
         centered: false,
         beforeDismiss: () => {
-          this.routeMgmtService.routeToIncomingUrl();
+          this.routeMgmtService.resetAuthOutlet();
           return true;
         }
       });
@@ -39,7 +39,7 @@ export class AuthModalService {
   }
 
   closeModal() {
-    this.modalRef.dismiss();
+    this.modalRef.close();
   }
 
 }

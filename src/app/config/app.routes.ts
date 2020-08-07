@@ -144,7 +144,7 @@ export const authRoutes: Routes = [
   {
     path: 'auth',
     component: AuthModalComponent,
-    outlet: 'secure'
+    outlet: '@secure'
   }
 ];
 

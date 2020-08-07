@@ -5,6 +5,7 @@ import { SubSink } from 'subsink';
 import { AuthMessages } from '../../../../util/app.labels';
 import { AuthModalService } from '../../auth-modal/auth-modal.service';
 import { AuthService } from '../../auth.service';
+import { RouteManagementService } from 'src/app/modules/main/route-management.service';
 
 
 @Component({
@@ -36,7 +37,8 @@ export class AuthLoginComponent implements OnInit, AfterViewInit, OnDestroy {
   constructor(
     public authModalService: AuthModalService,
     private authService: AuthService,
-    private toastService: ToastService
+    private toastService: ToastService,
+    private rmgt: RouteManagementService
   ) { }
 
   ngAfterViewInit() {
@@ -100,7 +102,7 @@ export class AuthLoginComponent implements OnInit, AfterViewInit, OnDestroy {
     this.passResetProgress = true;
     this.subs.sink = this.authService.resetPassword(this.loginForm.value.email)
       .subscribe(
-        isSuccess => this.authModalService.closeModal(),
+        isSuccess => this.authModalService.dismissModal(),
         error => { },
         () => this.passResetProgress = false
       );
@@ -110,6 +112,7 @@ export class AuthLoginComponent implements OnInit, AfterViewInit, OnDestroy {
     this.isLoginSuccess = true;
     this.authModalService.closeModal();
     this.toastService.success(this.authMessages.loginSuccess, 'user-lock');
+    this.rmgt.routeToIncomingUrl();
   }
 
   private handleAuthFailure(error) {

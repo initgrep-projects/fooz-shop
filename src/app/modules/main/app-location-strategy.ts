@@ -4,7 +4,7 @@ import { PathLocationStrategy, LocationStrategy } from '@angular/common';
 @Injectable()
 export class AppLocationStrategy extends PathLocationStrategy implements LocationStrategy {
 
-    static readonly AUX_ROUTE_SEPERATOR = '(secure:auth)';
+    static readonly AUX_ROUTE_SEPERATOR = '@';
 
     replaceState(state: any, title: string, url: string, queryParams: string): void {
         super.replaceState(state, title, this.preprocessUrl(url), queryParams);

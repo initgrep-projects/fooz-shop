@@ -38,23 +38,16 @@ export class RouteManagementService {
     map((event: NavigationStart) => event)
   );
 
-  routeToIncomingUrl() {
-    console.log('routeToIncomingUrl called => ', this.incomingUrl, this.previousUrl, this.currentUrl);
-    if (!!this.incomingUrl) {
-      console.log('routeToIncoming incoming =>', this.incomingUrl);
-      this.router.navigateByUrl(this.incomingUrl, { replaceUrl: true });
-    }
-    else if (!!this.previousUrl) {
-      console.log('routeToIncoming previous =>', this.previousUrl);
-      this.router.navigateByUrl(this.previousUrl, { replaceUrl: true });
-    } else {
-      const sanitizedUrl = this.currentUrl.split('(secure:auth)')[0];
-      console.log('routeToIncoming santized => ', sanitizedUrl);
-      this.router.navigateByUrl(sanitizedUrl, { replaceUrl: true });
-    }
+  resetAuthOutlet() {
+    console.log('resetAuthOutlet called');
+    this.router.navigate([{ outlets: { '@secure': null } }]);
   }
 
-
+  routeToIncomingUrl() {
+    if (!!this.incomingUrl) {
+      this.router.navigateByUrl(this.incomingUrl);
+    }
+  }
 
   routeToPayment() {
     this.router.navigate(['/checkout/payment']);
@@ -64,7 +57,7 @@ export class RouteManagementService {
     this.router.navigate(['/account/profile/edit']);
   }
   routeToAuth() {
-    this.router.navigate([{ outlets: { 'secure': ['auth'] } }]);
+    this.router.navigate([{ outlets: { '@secure': ['auth'] } }], { skipLocationChange: true });
   }
 
 

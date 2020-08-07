@@ -157,7 +157,7 @@ export class AuthService {
           }
         }),
         catchError(error => {
-          this.toastService.failure(labels.passwordReset, 'unlock-alt')
+          this.toastService.failure(labels.passwordResetFail, 'unlock-alt')
           return of(error);
         })
       )

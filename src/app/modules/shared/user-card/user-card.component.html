@@ -16,7 +16,7 @@
          <p>{{labels.welcomeAuthMsg}}</p>
          <div class="auth-control">
             <button class="btn btn-sm btn-dark"
-                    [routerLink]="[{outlets: {'secure': ['auth']}}]">
+                    (click)="rmgt.routeToAuth()">
                <span>{{labels.login}}</span> | <span>{{labels.signup}}</span>
             </button>
          </div>

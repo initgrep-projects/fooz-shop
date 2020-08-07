@@ -1,6 +1,24 @@
 import { OrderStatus } from './order-status.model';
-import { generateGuid } from '../util/app.lib';
+import { Payment } from './payment.model';
 
+/**
+ * type to create a complete order
+ */
+export class Order {
+    constructor(
+        private orderItem: OrderItem,
+        private payment: Payment,
+        private status: OrderStatus
+    ) { }
+
+    get OrderItem() { return this.orderItem; }
+    get Payment() { return this.payment; }
+    get Status() { return this.status; }
+
+}
+/**
+ * type to store order item in db
+ */
 export class OrderItem {
     constructor(
         private id: string,

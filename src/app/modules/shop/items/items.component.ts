@@ -1,13 +1,7 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Product } from 'src/app/models/product';
-import { Category } from 'src/app/models/category';
-import { Size } from 'src/app/models/size';
-import { Sort } from 'src/app/models/Sort';
-import { LogService } from 'src/app/services/log.service';
-import { ProductService } from '../product.service';
-import { FilterService } from '../filters/filter.service';
-import { SubSink } from 'subsink';
+import { Component, OnInit } from '@angular/core';
 import { staggerFadeIn } from 'src/app/animations/fadeAnimation';
+import { FilterService } from '../filters/filter.service';
+import { ProductService } from '../product.service';
 
 @Component({
   selector: 'app-items',
@@ -27,9 +21,7 @@ export class ItemsComponent implements OnInit {
   ) { }
 
 
-  ngOnInit() {
-  
-  }
+  ngOnInit() { }
 
 
 }

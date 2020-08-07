@@ -2,9 +2,9 @@
   <div>
     <fa-icon class="cart"
              icon="shopping-cart"></fa-icon>
-    <span *ngIf="(cartService.cart$ | async) as cart ">
+    <span *ngIf="(cartService.cartSize$ | async) as size ">
       <span class="badge badge-light badge-pill"
-            *ngIf="cart.length > 0">{{ cart.length }}</span>
+            *ngIf="size > 0">{{ size }}</span>
     </span>
   </div>
   <span class="small d-none  d-md-block">{{labels.cart}}</span>

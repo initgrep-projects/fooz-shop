@@ -15,7 +15,7 @@ import { LookBookItem } from '../models/lookbook';
 import { Brand } from '../models/brand';
 import { Payment } from '../models/payment.model';
 import { OrderStatus } from '../models/order-status.model';
-import { OrderItem } from '../models/order-item.modal';
+import { OrderItem } from '../models/order.modal';
 
 @Injectable({
   providedIn: 'root'

@@ -4,6 +4,7 @@ import { fadeIn } from 'src/app/animations/fadeAnimation';
 import { cartLabels } from 'src/app/util/app.labels';
 import { SubSink } from 'subsink';
 import { CartService } from '../../cart/cart.service';
+import { OrderService } from '../../account/orders/order.service';
 
 @Component({
   selector: 'app-order-amount',
@@ -24,7 +25,10 @@ export class OrderAmountComponent implements OnInit, OnDestroy {
   taxRate = 0.2;
   totalTax = 0;
 
-  constructor(private cartService: CartService) { }
+  constructor(
+    private cartService: CartService,
+    private orderService: OrderService
+  ) { }
 
   ngOnInit(): void {
     this.calculateGrossAmount();
@@ -32,23 +36,12 @@ export class OrderAmountComponent implements OnInit, OnDestroy {
 
   calculateGrossAmount() {
     this.subs.sink =
-      this.cartService.cart$
-
-        .subscribe(cart => {
-          if (!isEmpty(cart)) {
-            this.currencyCode = cart[0].Product.Price.Code;
-            this.itemQuantity = cart.length;
-            this.totalPrice = cart
-              .map(item => item.Product.Price.Amount * item.SelectedQuantity)
-              .reduce((price, itemPrice) => price + itemPrice);
-
-            this.grossAmount = this.totalPrice + this.deliveryFee;
-            this.totalTax = (this.grossAmount*this.taxRate)/100;
-            this.grossAmount += this.totalTax;
-
-          }
-
-        });
+      this.orderService.orderCharges$.subscribe(({ itemPrice, tax, shipping }) => {
+        this.totalPrice = itemPrice;
+        this.grossAmount = itemPrice + tax + shipping;
+        this.totalTax = tax;
+        this.deliveryFee = shipping;
+      });
   }
 
   ngOnDestroy() {

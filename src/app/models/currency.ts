@@ -1,9 +1,13 @@
 export class Currency {
     constructor(
-       private code: string,
-       private amount: number
-    ) {}
+        private code: string,
+        private amount: number
+    ) { }
 
-    get Code() {return this.code; }
-    get Amount() {return this.amount;}
+    get Code() { return this.code; }
+    get Amount() { return this.amount; }
+
+    static QAR(amount: number) {
+        return new Currency('QAR', amount);
+    }
 }

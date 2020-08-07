@@ -1,3 +1,4 @@
+import { generateGuid } from '../util/app.lib';
 
 export enum OrderStage {
     CONFIRMED = 'CONFIRMED',
@@ -26,4 +27,22 @@ export class OrderStatus {
     set ShippingId(shipId: string) { this.shippingId = shipId; }
     get CreatedOn() { return this.createdOn; }
     set CreatedOn(co: number) { this.createdOn = co; }
+
+
+    static confirmed(orderId: string, shippingId?: string) {
+        return new OrderStatus(generateGuid(), orderId, OrderStage.CONFIRMED, Date.now(), shippingId);
+    }
+
+    static failed(orderId: string, shippingId?: string) {
+        return new OrderStatus(generateGuid(), orderId, OrderStage.FAILED, Date.now(), shippingId);
+    }
+
+    static shipped(orderId: string, shippingId?: string) {
+        return new OrderStatus(generateGuid(), orderId, OrderStage.SHIPPED, Date.now(), shippingId);
+    }
+
+    static delivered(orderId: string, shippingId?: string) {
+        return new OrderStatus(generateGuid(), orderId, OrderStage.DELIVERED, Date.now(), shippingId);
+    }
+
 }

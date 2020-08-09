@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { of } from 'rxjs';
+import { Currency } from 'src/app/models/currency';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,7 @@ export class ShippingService {
    *  should contain, amount, intems, approx weight and dimensions
    * @param amount 
    */
-  shipping(amount) {
-    return of(amount * this.shippingRate);
+  shipping(price: Currency) {
+    return of(Currency.QAR(price.Amount * this.shippingRate));
   }
 }

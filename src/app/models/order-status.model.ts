@@ -14,7 +14,7 @@ export class OrderStatus {
         private orderId: string,
         private stage: OrderStage,
         private createdOn: number = Date.now(),
-        private shippingId?: string,
+        private shippingId: string = null,
     ) { }
 
     get Id() { return this.id; }

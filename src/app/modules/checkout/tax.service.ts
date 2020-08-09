@@ -1,15 +1,16 @@
 import { Injectable } from '@angular/core';
 import { of } from 'rxjs';
+import { Currency } from 'src/app/models/currency';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TaxService {
-  private taxRate: .1;
+  private taxRate = .1;
 
   constructor() { }
 
-  tax(amount: number) {
-    return of(this.taxRate * amount);
+  tax(price: Currency) {
+    return of(Currency.QAR(this.taxRate * price.Amount));
   }
 }

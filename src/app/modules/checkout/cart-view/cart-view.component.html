@@ -1,13 +1,14 @@
 <div class="app-cart-view"
      @fadeIn
      *ngIf="cartService.cart$ | async as cart; else loading">
-    <div class="cart-view-header">
+    <div class="cart-view-header"
+         *ngIf="cartService.cartSize$ | async as cartsize">
 
         <div class="card">
             <div class="card-body">
                 <div class="head-wrapper">
                     <h6>{{labels.reviewCart}}</h6>
-                    <h6>{{labels.totalItems}} - <span class="badge badge-dark">{{cart.length}}</span> </h6>
+                    <h6>{{labels.totalItems}} - <span class="badge badge-dark">{{cartsize}}</span> </h6>
                 </div>
             </div>
         </div>

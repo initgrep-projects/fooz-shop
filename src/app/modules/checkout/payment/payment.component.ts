@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { switchMap } from 'rxjs/operators';
+import { PaymentType } from 'src/app/models/payment.model';
 import { cartLabels } from 'src/app/util/app.labels';
-import { AddressService } from '../../account/addresses/address.service';
-import { AuthService } from '../../auth/auth.service';
-import { CartService } from '../../cart/cart.service';
-import { combineLatest } from 'rxjs';
-import { map, switchMap } from 'rxjs/operators';
+import { CheckoutService } from '../checkout.service';
+import { PaymentService } from './payment.service';
 
 @Component({
   selector: 'app-payment',
@@ -13,23 +12,23 @@ import { map, switchMap } from 'rxjs/operators';
 })
 export class PaymentComponent implements OnInit {
   labels = cartLabels;
+  paymentProgress = false;
+  type = PaymentType.CREDIT_CARD;
 
   constructor(
-    private authService: AuthService,
-    private addressService: AddressService,
-    private cartService: CartService
+    private paymentService: PaymentService
   ) { }
 
   ngOnInit(): void { }
 
   payNow() {
-    // const cartIds$ = this.cartService.cart$.pipe(map(cart => cart.map(item => item.Id)));
-    // combineLatest(this.authService.userFromStore$, cartIds$, this.addressService.selectedAddress$)
-    //   .pipe(
-    //     switchMap(([user, cartIds, selectedAddress]) => { 
-
-    //     })
-    // )
+    this.paymentProgress = true;
+    this.paymentService.pay(this.type)
+      .subscribe(
+        order => console.log('payment done, order created', order),
+        (err) => console.error('payment error ', err),
+        () => this.paymentProgress = false
+      );
   }
 
 

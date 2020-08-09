@@ -23,7 +23,7 @@ import { addItemToCartAction, deleteItemInCartAction, loadItemsToCartAction, upd
 export class CartService {
 
   cart$ = this.store.select('cart').pipe(map(state => state.cart));
-  cartSize$ = this.cart$.pipe(map(cart => cart?.map(item => item.SelectedQuantity).reduce((q, a) => a + q)))
+  cartSize$ = this.cart$.pipe(map(cart => cart?.map(item => item.SelectedQuantity).reduce((q, a) => a + q, 0)))
 
   constructor(
     private store: Store<AppState>,
@@ -32,6 +32,10 @@ export class CartService {
     private toastService: ToastService,
     private authService: AuthService
   ) {
+    this.loadAllCartItems();
+  }
+
+  loadAllCartItems() {
     this.store.dispatch(loadItemsToCartAction());
   }
 

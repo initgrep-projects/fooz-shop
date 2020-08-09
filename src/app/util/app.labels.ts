@@ -37,7 +37,7 @@ export const AuthMessages = {
     addressRemoveSuccess: 'address removed',
     addressRemoveFailed: 'address remove failed',
     NoAddressesPresent: 'you have not added an address yet',
-    addAddress : 'add new address',
+    addAddress: 'add new address',
     addressTitle: 'addresses',
     editAddress: "Edit",
     removeAddress: 'Remove',
@@ -46,8 +46,8 @@ export const AuthMessages = {
     NameNotPresent: 'Name is not provided',
     PhoneNotPresent: 'Phone Number is Not provided',
     PhoneNotVerified: 'Phone Number is Not verified',
-    profileUpdateAlertTitle:  'Profile is not complete',
-    
+    profileUpdateAlertTitle: 'Profile is not complete',
+    ordertitle: 'your orders',
 
     invalidCredentials: [
         { code: 'auth/wrong-password', message: 'Incorrect email or password' },
@@ -76,9 +76,9 @@ export const AuthMessages = {
         contact: 'contact us',
         home: 'home',
         shop: 'shop',
-        
+
     },
-    
+
     formLabels: {
         name: 'name',
         email: 'email',
@@ -99,29 +99,29 @@ export const AuthMessages = {
 };
 
 export const cartLabels = {
-        cart: 'shopping cart',
-        goToShopping: 'go to shoping',
-        goToCheckout: 'checkout items',
-        emptyCart: 'your cart is empty',
-        reviewCart: 'review cart',
-        totalItems: 'total items',
-        orderButtonLabel: 'place order',
-        priceDetails: 'price details',
-        price: 'price',
-        items: 'items',
-        deliveryFee: 'delivery fee',
-        free: 'FREE',
-        tax: 'tax',
-        totalAmount: 'Total Amount',
-        paymentMessage: 'safe and secure payments',
-        deleteItem: 'cart Item deleted',
-        deleteItemFailed: 'cart Item delete failed',
-        addItem: 'cart item added to cart',
-        addItemFailed: 'cart Item add failed',
-        updateItem: 'cart item updated',
-        updateItemFailed: 'cart item updated',
-        payment: 'payment',
-        payNow: 'pay now'
+    cart: 'shopping cart',
+    goToShopping: 'go to shoping',
+    goToCheckout: 'checkout items',
+    emptyCart: 'your cart is empty',
+    reviewCart: 'review cart',
+    totalItems: 'total items',
+    orderButtonLabel: 'place order',
+    priceDetails: 'price details',
+    price: 'price',
+    items: 'items',
+    deliveryFee: 'delivery fee',
+    free: 'FREE',
+    tax: 'tax',
+    totalAmount: 'Total Amount',
+    paymentMessage: 'safe and secure payments',
+    deleteItem: 'cart Item deleted',
+    deleteItemFailed: 'cart Item delete failed',
+    addItem: 'cart item added to cart',
+    addItemFailed: 'cart Item add failed',
+    updateItem: 'cart item updated',
+    updateItemFailed: 'cart item updated',
+    payment: 'payment',
+    payNow: 'pay now'
 }
 
 export const itemLabels = {
@@ -139,13 +139,13 @@ export const featureItemsLabels = {
 
 
 export const homeLabels = {
-    lookbookViewAll : "View All"
+    lookbookViewAll: "View All"
 }
 
 export const footerLables = {
     shipping: 'shipping',
     shippingReturns: 'shipping and Returns',
-    returns:' returns',
+    returns: ' returns',
     information: 'information',
     termCondition: 'terms and conditions',
     privPolicy: 'privacy policy',

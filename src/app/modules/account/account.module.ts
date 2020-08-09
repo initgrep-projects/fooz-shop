@@ -15,6 +15,8 @@ import { UserAddressEditComponent } from './addresses/user-address-edit/user-add
 import { NgbTypeaheadModule } from '@ng-bootstrap/ng-bootstrap';
 import { EffectsModule } from '@ngrx/effects';
 import { AccountEffects } from './store/account.effects';
+import { OrderComponent } from './orders/order/order.component';
+import { OrderDetailComponent } from './orders/order/order-detail/order-detail.component';
 
 
 
@@ -28,6 +30,8 @@ import { AccountEffects } from './store/account.effects';
     UserProfileEditComponent,
     UserProfileComponent,
     UserAddressEditComponent,
+    OrderComponent,
+    OrderDetailComponent,
   ],
   imports: [
     CommonModule,

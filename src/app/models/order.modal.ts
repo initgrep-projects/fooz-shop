@@ -1,5 +1,14 @@
 import { OrderStatus } from './order-status.model';
 import { Payment } from './payment.model';
+import { Currency } from './currency';
+import { Coupon } from './coupon.model';
+
+export interface OrderSplitCharges {
+    itemPrice: Currency,
+    tax: Currency,
+    shipping: Currency,
+    coupon?: Coupon
+}
 
 /**
  * type to create a complete order
@@ -24,7 +33,8 @@ export class OrderItem {
         private id: string,
         private userId: string,
         private cartItemIds: string[],
-        private addressId: string
+        private addressId: string,
+        private createdOn: number = Date.now()
     ) { }
 
     get Id() { return this.id; }

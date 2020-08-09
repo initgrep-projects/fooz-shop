@@ -16,6 +16,8 @@ import { Brand } from '../models/brand';
 import { Payment } from '../models/payment.model';
 import { OrderStatus } from '../models/order-status.model';
 import { OrderItem } from '../models/order.modal';
+import { title } from 'process';
+import { Coupon } from '../models/coupon.model';
 
 @Injectable({
   providedIn: 'root'
@@ -65,6 +67,12 @@ export class ObjectTransformerService {
 
   transformCurrencies(params: any[]) {
     return params.map(p => this.transformCurrency(p));
+  }
+
+  transformCoupon(param: any) {
+    return !param
+      ? null
+      : new Coupon(param.id, param.title, this.transformCurrency(param.amount));
   }
 
   transformCustomSize(param: { width: number; length: number; bust: number; arm: number; hip: number; }) {
@@ -239,14 +247,18 @@ export class ObjectTransformerService {
   transformBrand(param: DocumentData) {
     return !param
       ? null
-      : new Brand(param.name, param.logo, param.country, param.phones, param.emails, param.instagram, param.facebook, param.twitter, param.pinterest);
+      : new Brand(param.name, param.logo, param.country, param.phones,
+        param.emails, param.instagram, param.facebook, param.twitter, param.pinterest);
   }
+
 
 
   transformPayment(param: DocumentData) {
     return !param
       ? null
-      : new Payment(param.id, param.orderId, this.transformCurrency(param.amount), param.type, param.createdOn);
+      : new Payment(param.id, param.orderId, this.transformCurrency(param.amount),
+        this.transformCurrency(param.shipping), this.transformCurrency(param.tax),
+        param.type, this.transformCoupon(param.coupon), param.createdOn);
   }
 
   transformOrderStatus(param: DocumentData) {
@@ -258,7 +270,7 @@ export class ObjectTransformerService {
   transformOrderItem(param: DocumentData) {
     return !param
       ? null
-      : new OrderItem(param.id, param.userId, param.cartItemIds, param.addressId);
+      : new OrderItem(param.id, param.userId, param.cartItemIds, param.addressId, param.createdOn);
   }
 
 }

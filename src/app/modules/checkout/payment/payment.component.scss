@@ -54,6 +54,9 @@ div.app-payment {
                 text-transform: uppercase;
                 padding: 1rem 3rem;
                 color: $secondary-text-color;
+                span {
+                    padding: 0 0.5rem;
+                }
             }
         }
     }

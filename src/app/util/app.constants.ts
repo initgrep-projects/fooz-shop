@@ -11,14 +11,19 @@ export const PRODUCT_PAGE_SIZE = 20;
 export const USER_COLLECTION = 'user';
 export const ADDRESS_COLLECTION = 'address';
 export const LOOKBOOK_COLLECTION = "lookbook";
+export const ORDER_ITEM_COLLECTION = 'order';
+export const ORDER_STATUS_COLLECTION = 'orderStatus';
+export const PAYMENT_COLLECTION = 'payment';
+export const COUPON_COLLECTION = 'coupon';
+
 
 export const ALERT_TITLE = 'alert';
 export const DUPLICATE_ALERT_TITLE = 'Duplicate item';
 export const REMOVE_ALERT_TITLE = "remove item";
 export const UPDATE_ALERT_TITLE = 'Update item';
-export const REMOVE_ALERT_MSG= 'Are you sure you want to remove this item?'
+export const REMOVE_ALERT_MSG = 'Are you sure you want to remove this item?'
 export const DUPLICATE_ALERT_MSG = 'Are you sure you want to add this item again?';
-export const  UPDATE_ALERT_MSG = 'Are you sure you want to update the item?';
+export const UPDATE_ALERT_MSG = 'Are you sure you want to update the item?';
 export const OK_BUTTON = 'ok';
 export const ADD_BUTTON = 'add';
 export const REMOVE_BUTTON = 'remove';
@@ -45,8 +50,8 @@ export const LOAD_TREND_ITEMS_ACTION = '[home] load trend items';
 export const ADD_TREND_ITEMS_ACTION = '[home] add trend items';
 
 export const LOAD_FAILURE_FOR_SHOP_ACTION = '[shop] load  failure';
-export const LOAD_PRODUCTS_ACTION =   '[shop] load products';
-export const LOAD_MORE_PRODUCTS_ACTION =   '[shop] load more products';
+export const LOAD_PRODUCTS_ACTION = '[shop] load products';
+export const LOAD_MORE_PRODUCTS_ACTION = '[shop] load more products';
 export const ADD_PRODUCTS_ACTION = '[shop] add products';
 export const APPEND_PRODUCTS_ACTION = '[shop] append products';
 export const UPDATE_PRODUCTS_ACTION = '[shop] update product';
@@ -54,15 +59,15 @@ export const LOAD_CUSTOMSIZE_INPUT_ACTION = '[shop] load customsize inputs';
 export const ADD_CUSTOMZIE_INPUT_ACTION = '[shop] add Custom Size Inputs';
 
 export const LOAD_ALL_CATEGORY_ACTION = '[Filter] load all categories';
-export const ADD_ALL_CATEGORIES_ACTION =  '[Filter] add all categories';
+export const ADD_ALL_CATEGORIES_ACTION = '[Filter] add all categories';
 export const SELECTED_CATEGORIES_ACTION = '[Filter] selected categories';
 export const LOAD_ALL_SIZES_ACTION = '[Filter] load all sizes';
-export const ADD_ALL_SIZES_ACTION ='[Filter] add all sizes';
+export const ADD_ALL_SIZES_ACTION = '[Filter] add all sizes';
 export const SELECTED_SIZES_ACTION = '[Filter] selected sizes';
-export const LOAD_ALL_SORT_ORDERS_ACTION =  '[Filter] load all sort orders';
-export const ADD_ALL_SORT_ORDERS_ACTION =  '[Filter] add all sort orders';
+export const LOAD_ALL_SORT_ORDERS_ACTION = '[Filter] load all sort orders';
+export const ADD_ALL_SORT_ORDERS_ACTION = '[Filter] add all sort orders';
 export const SELECT_SORT_ORDER_ACTION = '[Filter] select sort order';
-export const LOAD_FAILURE_FOR_FILTER_ACTION =  '[Filter] load failure'
+export const LOAD_FAILURE_FOR_FILTER_ACTION = '[Filter] load failure'
 
 export const LOAD_CART_ACTION = '[cart] load items';
 export const ADD_ITEMS_TO_CART_ACTION = '[cart]  add items';

@@ -1,8 +1,18 @@
-<div class="container">
-    
-<div class="row">
-    <div class="col-12">
-        order will be here
+<div class="app-orders"
+     *ngIf="ods.order$ | async as orders">
+
+    <div class="app-order-header">
+        <div class="card ">
+            <div class="card-body">
+                <div class="heading">
+                    <h6>{{labels.ordertitle}}</h6>
+                </div>
+            </div>
+        </div>
     </div>
-</div>
+    <div class="app-orders-body mt-3">
+        <p *ngFor=" let order of orders">{{order.Id}}</p>
+    </div>
+
+
 </div>

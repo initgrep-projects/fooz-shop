@@ -1,5 +1,5 @@
 <div class="app-orders"
-     *ngIf="ods.order$ | async as orders">
+     *ngIf="ods.orders$ | async as orders">
 
     <div class="app-order-header">
         <div class="card ">
@@ -11,7 +11,8 @@
         </div>
     </div>
     <div class="app-orders-body mt-3">
-        <p *ngFor=" let order of orders">{{order.Id}}</p>
+        <app-order [order]="order"
+                   *ngFor="let order of orders"></app-order>
     </div>
 
 

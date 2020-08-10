@@ -11,16 +11,15 @@ import { LookBookItem } from '../../models/lookbook';
 import { Product } from '../../models/product';
 import { Size } from '../../models/size';
 import { Sort } from '../../models/Sort';
+import { generateGuid } from '../../util/app.lib';
+import { FakedataService } from '../fakedata.service';
+import { ObjectTransformerService } from '../object-transformer.service';
 import {
   BRAND_COLLECTION, CATEGORY_COLLECTION,
   CUSTOM_SIZE_INPUT,
   LOOKBOOK_COLLECTION, PRODUCT_COLLECTION,
   PRODUCT_PAGE_SIZE, SIZE_COLLECTION, SORT_COLLECTION, TREND_COLLECTION
 } from '../../util/app.constants';
-import { generateGuid } from '../../util/app.lib';
-import { FakedataService } from '../fakedata.service';
-import { ObjectTransformerService } from '../object-transformer.service';
-
 
 
 @Injectable({

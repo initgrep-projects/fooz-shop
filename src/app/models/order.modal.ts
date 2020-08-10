@@ -2,6 +2,8 @@ import { OrderStatus } from './order-status.model';
 import { Payment } from './payment.model';
 import { Currency } from './currency';
 import { Coupon } from './coupon.model';
+import { CartItem } from './cart-item';
+import { Address } from './address';
 
 export interface OrderSplitCharges {
     itemPrice: Currency,
@@ -15,14 +17,31 @@ export interface OrderSplitCharges {
  */
 export class Order {
     constructor(
-        private orderItem: OrderItem,
-        private payment: Payment,
-        private status: OrderStatus
+        private orderItem?: OrderItem,
+        private payment?: Payment,
+        private statusList?: OrderStatus[],
+        private cart?: CartItem[],
+        private address?: Address
     ) { }
 
     get OrderItem() { return this.orderItem; }
+    set OrderItem(ot: OrderItem) { this.orderItem = ot; }
     get Payment() { return this.payment; }
-    get Status() { return this.status; }
+    set Payment(p: Payment) { this.payment = p; }
+    get StatusList() { return this.statusList; }
+    set StatusList(s: OrderStatus[]) { this.statusList = s; }
+
+    //@Todo tobe added later 
+    // get Status(id:string)
+    // set Status() //add a status
+
+    /** Cart is added in the order at the time of fetching */
+    get Cart() { return this.cart; }
+    set Cart(c: CartItem[]) { this.cart = c; }
+
+    /*** Address is also added at the time of fetching the data */
+    get Address() { return this.address; }
+    set Address(a: Address) { this.address = a; }
 
 }
 /**
@@ -48,5 +67,7 @@ export class OrderItem {
 
     get AddressId() { return this.addressId; }
     set AddressId(addId: string) { this.addressId = addId; }
+
+    get CreatedDate() { return this.createdOn; }
 
 }

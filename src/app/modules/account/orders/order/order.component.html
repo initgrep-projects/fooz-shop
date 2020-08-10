@@ -1,1 +1,29 @@
-<p>order works!</p>
+<div class="app-order">
+    <div class="app-order-header">
+        <h5 class="order-title">order-id: {{order.OrderItem.Id}}</h5>
+    </div>
+    <div class="app-order-body">
+        <div class="media my-2"
+             *ngFor="let item of order.Cart">
+            <img [src]="item.Product.Images[0].Url"
+                 class="mr-3 img-thumbnail"
+                 style="width: 128px;"
+                 [alt]="item.Product.Name">
+            <div class="media-body">
+                <div class="body-left">
+                    <h5 class="mt-0">{{item.Product.Name}}</h5>
+                    <p>quantity: {{item.SelectedQuantity}} color: {{item.SelectedColor.Name }}</p>
+                    <p> size: {{item.SelectedSize.Letter}} </p>
+                    <p *ngIf="item?.SelectedCustomSize"> customSize: {{item.SelectedCustomSize.Arm}} |
+                        {{item.SelectedCustomSize.Bust}}</p>
+                </div>
+                <div class="body-right">
+                    <p>{{FinalStatus.Stage}} on {{formatDate(FinalStatus.CreatedOn) | date: 'mediumDate' }}
+                    </p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="app-order-footer"></div>
+</div>

@@ -6,7 +6,7 @@ import { Currency } from 'src/app/models/currency';
   providedIn: 'root'
 })
 export class TaxService {
-  private taxRate = .1;
+  private taxRate = .01;
 
   constructor() { }
 

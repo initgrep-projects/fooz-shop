@@ -62,7 +62,7 @@ export class ObjectTransformerService {
   }
 
   transformCurrency(param: { code: string; amount: number; }) {
-    return new Currency(param.code, param.amount);
+    return !param ? null : new Currency(param.code, param.amount);
   }
 
   transformCurrencies(params: any[]) {
@@ -256,7 +256,7 @@ export class ObjectTransformerService {
   transformPayment(param: DocumentData) {
     return !param
       ? null
-      : new Payment(param.id, param.orderId, this.transformCurrency(param.amount),
+      : new Payment(param.id, param.orderId, this.transformCurrency(param.price),
         this.transformCurrency(param.shipping), this.transformCurrency(param.tax),
         param.type, this.transformCoupon(param.coupon), param.createdOn);
   }

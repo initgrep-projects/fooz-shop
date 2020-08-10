@@ -29,7 +29,7 @@ export class AddressRemoteService {
     return toObservable(this.addressCollection.doc(address.Id).update(classToPlain(address)));
   }
 
-  updateAddressSelection(addresses: Address[]):Observable<boolean> {
+  updateAddressSelection(addresses: Address[]): Observable<boolean> {
     const batch = this.db.firestore.batch();
     addresses.forEach(ad => {
       const docRef = this.db.firestore.collection(ADDRESS_COLLECTION).doc(ad.Id);
@@ -42,7 +42,7 @@ export class AddressRemoteService {
     return toObservable(this.addressCollection.doc(id).delete());
   }
 
-  getAddresses(userId: string): Observable<Address[]> {
+  fetchAddresses(userId: string): Observable<Address[]> {
     return this.db.collection(ADDRESS_COLLECTION, ref =>
       ref.where('userId', '==', userId)
     )
@@ -56,6 +56,22 @@ export class AddressRemoteService {
           return addresses;
         })
       );
+  }
+
+  fetchAddressById(id: string) {
+    return this.db.collection(ADDRESS_COLLECTION, ref =>
+      ref.where('id', '==', id)
+    )
+      .get()
+      .pipe(
+        map(qs => {
+          let address: Address;
+          qs.forEach(doc => {
+            address = this.transformer.transformAddressFromDocumentData(doc.data());
+          });
+          return address;
+        })
+      )
   }
 
 

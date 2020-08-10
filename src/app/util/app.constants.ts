@@ -83,4 +83,6 @@ export const UPDATE_ADDRESS_ACTION = '[account]  update address';
 export const DELETE_ADDRESS_ACTION = '[account]  delete address';
 export const LOAD_COUNTRIES_ACTION = '[account] load  countries';
 export const ADD_COUNTRIES_ACTION = '[account] add countries';
+export const LOAD_ORDERS_ACTION = '[account] load orders';
+export const ADD_ORDERS_ACTION = '[account] add orders';
 export const LOAD_FAILURE_IN_ACCOUNT_ACTION = '[account] load failure';

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { classToPlain } from 'class-transformer';
 import { defer, forkJoin, Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, take } from 'rxjs/operators';
 import { CartItem } from 'src/app/models/cart-item';
 import { CART_COLLECTION } from 'src/app/util/app.constants';
 import { ObjectTransformerService } from '../object-transformer.service';
@@ -58,6 +58,25 @@ export class CartRemoteService {
       ref
         .where('userId', '==', userId)
         .where('stage', '==', 'CART')
+    )
+      .get()
+      .pipe(
+        map(qs => {
+          const items: CartItem[] = [];
+          if (!qs.empty) {
+            qs.forEach(doc => {
+              items.push(this.transformer.transformcartItem(doc.data()));
+            });
+          }
+          return items;
+        })
+      );
+  }
+
+  fetchCartByIds(cartIds: string[]) {
+    return this.db.collection(CART_COLLECTION, ref =>
+      ref
+        .where('id', 'in', cartIds)
     )
       .get()
       .pipe(

@@ -1,21 +1,26 @@
 import { Injectable } from '@angular/core';
-import { switchMap, take } from 'rxjs/operators';
-import { OrderRemoteService } from 'src/app/services/remote/order-remote.service';
-import { AuthService } from '../../auth/auth.service';
+import { Store } from '@ngrx/store';
+import { map } from 'rxjs/operators';
+import { AppState } from '../../main/store/app.reducer';
+import { loadOrdersAction } from '../store/account.actions';
 
 @Injectable({
   providedIn: 'root'
 })
 export class OrderService {
+  orders$ = this.store.select('account').pipe(map(state => state.orders));
 
   constructor(
-    private ors: OrderRemoteService,
-    private authService: AuthService
-  ) { }
+    private store: Store<AppState>
+  ) {
+    this.loadOrders();
+  }
 
-  public order$ = this.authService.userFromStore$
-    .pipe(
-      switchMap(user => this.ors.fetchOrders(user.UID)),
-      take(1)
-    )
+  loadOrders() {
+    this.store.dispatch(loadOrdersAction());
+  }
+
+
+
+
 }

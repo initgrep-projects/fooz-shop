@@ -13,5 +13,6 @@ export class CouponService {
   getVerifiedCoupon() {
     /** from the store, get the eligible coupon for the user and sale */
     return of(new Coupon('DEMO123', 'Demo Coupon for your sale', Currency.QAR(200)));
+    // return of(null);
   }
 }

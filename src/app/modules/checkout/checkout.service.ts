@@ -12,6 +12,7 @@ import { TaxService } from './tax.service';
 import { AuthService } from '../auth/auth.service';
 import { AddressService } from '../account/addresses/address.service';
 import { OrderRemoteService } from 'src/app/services/remote/order-remote.service';
+import { CouponService } from './coupon.service';
 
 
 @Injectable({
@@ -25,6 +26,7 @@ export class CheckoutService {
     private addressService: AddressService,
     private shippingService: ShippingService,
     private taxService: TaxService,
+    private couponService: CouponService,
     private orderRemoteService: OrderRemoteService
   ) { }
 
@@ -33,11 +35,11 @@ export class CheckoutService {
     const cartIds$ = this.cartService.cart$.pipe(map(cart => cart.map(item => item.Id)));
     return combineLatest(this.authService.userFromStore$, cartIds$, this.addressService.selectedAddress$, this.orderCharges$)
       .pipe(
-        switchMap(([user, cartIds, selectedAddress, { itemPrice, shipping, tax, coupon }]) => {
+        switchMap(([user, cartIds, selectedAddress, orderCharges]) => {
           const order = new OrderItem(generateGuid(), user.UID, cartIds, selectedAddress.Id);
           const status = OrderStatus.confirmed(order.Id);
-          const payment = Payment.create(paymentType, order.Id, itemPrice, shipping, tax, coupon);
-          return of(new Order(order, payment, status));
+          const payment = Payment.create(paymentType, order.Id, orderCharges.itemPrice, orderCharges.shipping, orderCharges.tax, orderCharges.coupon);
+          return of(new Order(order, payment, [status]));
         }),
         tap(order => console.log('order => ', order)),
         switchMap(order => this.orderRemoteService.saveOrder(order)),
@@ -61,14 +63,15 @@ export class CheckoutService {
             ?.reduce((price = 0, itemPrice) => price + itemPrice, 0));
 
           return combineLatest(of(itemTotalPrice), this.taxService.tax(itemTotalPrice),
-            this.shippingService.shipping(itemTotalPrice))
+            this.shippingService.shipping(itemTotalPrice), this.couponService.getVerifiedCoupon())
         }
         ),
-        map(([amount, tax, shipping]) => {
+        map(([amount, tax, shipping, coupon]) => {
           return <OrderSplitCharges>{
             itemPrice: amount,
             tax: tax,
-            shipping: shipping
+            shipping: shipping,
+            coupon: coupon
           }
 
         })

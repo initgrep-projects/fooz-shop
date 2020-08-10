@@ -1,15 +1,15 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { isEmpty, clone } from 'lodash';
-import { Observable, of, merge } from 'rxjs';
-import { catchError, map, switchMap, take, tap, mergeMap } from 'rxjs/operators';
+import { clone, isEmpty } from 'lodash';
+import { Observable, of } from 'rxjs';
+import { catchError, map, switchMap, take, tap } from 'rxjs/operators';
 import { Address } from 'src/app/models/address';
 import { AddressRemoteService } from 'src/app/services/remote/address-remote.service';
 import { AuthMessages } from 'src/app/util/app.labels';
 import { AppState } from '../../main/store/app.reducer';
+import { DialogService } from '../../shared/dialog/dialog.service';
 import { ToastService } from '../../shared/toasts/toast.service';
 import { addAddressAction, deleteAddressAction, loadAddressesAction, loadCountriesAction, updateAddressAction } from '../store/account.actions';
-import { DialogService } from '../../shared/dialog/dialog.service';
 @Injectable({
   providedIn: 'root'
 })

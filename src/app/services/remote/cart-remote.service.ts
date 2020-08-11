@@ -73,10 +73,11 @@ export class CartRemoteService {
       );
   }
 
-  fetchCartByIds(cartIds: string[]) {
+  fetchCartByIds(userId: string, cartIds: string[]) {
     return this.db.collection(CART_COLLECTION, ref =>
       ref
         .where('id', 'in', cartIds)
+        .where('userId', '==', userId)
     )
       .get()
       .pipe(

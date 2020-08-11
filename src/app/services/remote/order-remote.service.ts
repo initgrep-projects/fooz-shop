@@ -65,7 +65,6 @@ export class OrderRemoteService {
   }
 
   fetchOrders(userId: string) {
-    console.log('fetchOrders called for user => ', userId);
     return this.db.collection(ORDER_ITEM_COLLECTION, ref =>
       ref
         .where('userId', '==', userId)
@@ -84,10 +83,10 @@ export class OrderRemoteService {
         }),
 
         switchMap(orders => {
-          const orderCarts = combineLatest(orders.map(order => this.cartRemoteService.fetchCartByIds(order.OrderItem.CartItemIds)));
+          const orderCarts = combineLatest(orders.map(order => this.cartRemoteService.fetchCartByIds(userId, order.OrderItem.CartItemIds)));
           const orderPayments = combineLatest(orders.map(order => this.fetchPaymentByOrderId(order.OrderItem.Id)));
           const orderStatusList = combineLatest(orders.map(order => this.fetchOrderStatusByOrderId(order.OrderItem.Id)));
-          const orderAdddresses = combineLatest(orders.map(order => this.addressremoteService.fetchAddressById(order.OrderItem.AddressId)));
+          const orderAdddresses = combineLatest(orders.map(order => this.addressremoteService.fetchAddressById(userId, order.OrderItem.AddressId)));
           return zip(of(orders), orderCarts, orderPayments, orderAdddresses, orderStatusList);
         }),
         map(([orders, orderCarts, orderPayments, orderAddresses, orderStatusList]) => {
@@ -101,6 +100,46 @@ export class OrderRemoteService {
           return orders;
         }),
         tap(orders => console.log('orders fetched', orders)),
+      );
+  }
+
+  fetchOrderByOrderId(userId: string, orderId: string) {
+    console.log('fetchOrderByOrderId called ', userId, orderId);
+    return this.db.collection(ORDER_ITEM_COLLECTION, ref =>
+      ref
+        .where('userId', '==', userId)
+        .where('id', '==', orderId)
+    )
+      .get()
+      .pipe(
+        map(qs => {
+          let orderItem: OrderItem;
+          console.log('beffore returning order ', orderItem);
+          qs.forEach(doc => {
+            orderItem = this.transformer.transformOrderItem(doc.data())
+          });
+
+          console.log('after returning order ', orderItem);
+          return new Order(orderItem);
+        }),
+        switchMap(order => {
+          console.log('order', order);
+          const cart = this.cartRemoteService.fetchCartByIds(userId, order.OrderItem.CartItemIds);
+          const payment = this.fetchPaymentByOrderId(order.OrderItem.Id);
+          const statusList = this.fetchOrderStatusByOrderId(order.OrderItem.Id);
+          const address = this.addressremoteService.fetchAddressById(userId, order.OrderItem.AddressId);
+          return zip(of(order), cart, payment, statusList, address);
+        }),
+        take(1),
+        map(([order, cart, payment, statusList, address]) => {
+          console.log('afterSwitchMap ', [order, cart, payment, statusList, address]);
+          order.Cart = cart;
+          order.Payment = payment;
+          order.StatusList = statusList;
+          order.Address = address;
+          return order;
+        }),
+        tap(order => console.log('selectedOrder fetched ', order))
       );
   }
 

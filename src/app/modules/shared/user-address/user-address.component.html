@@ -1,9 +1,10 @@
-<div class="card app-user-address my-1" (click)="clicked()"
-[ngClass] = "{'selected': isSelected}"
->
+<div class="card app-user-address my-1"
+     (click)="clicked()"
+     [ngClass]="{'selected': isSelected}">
     <div class="card-body">
-        <div class="d-flex flex-row" >
-            <ul class="list-select"  *ngIf="!!enableSelect">
+        <div class="d-flex flex-row">
+            <ul class="list-select"
+                *ngIf="!!enableSelect">
                 <li class="list-select-item">
                     <fa-icon class="normal"
                              [icon]="['far','circle']"
@@ -37,10 +38,11 @@
 
         </div>
     </div>
-    <div class="card-footer" *ngIf="isClicked  || isSelected">
-        <a [routerLink]="['edit', address.Id]"
-           *ngIf="!!enableEdit"
-           class="card-link btn btn-light">{{labels.editAddress}}</a>
+    <div class="card-footer"
+         *ngIf="isClicked  || isSelected">
+        <a *ngIf="!!enableEdit"
+           class="card-link btn btn-light"
+           (click)="editAddress()">{{labels.editAddress}}</a>
         <a class="card-link btn btn-light"
            *ngIf="!!enableDelete"
            (click)="deleteAddress()">{{labels.removeAddress}}</a>

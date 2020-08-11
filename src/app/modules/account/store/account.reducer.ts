@@ -1,24 +1,28 @@
 import { Action, createReducer, on } from '@ngrx/store';
-import { clone } from 'lodash';
+import { clone, cloneDeep } from 'lodash';
 import { Address } from 'src/app/models/address';
 import { AppMsg } from 'src/app/models/app-msg';
 import { Order } from 'src/app/models/order.modal';
 import { Country } from 'src/app/services/geo-address.service';
-import { addAddressAction, addAddressesAction, addCountriesAction, addOrdersAction, deleteAddressAction, loadFailureInAccountAction, updateAddressAction } from './account.actions';
+import { addAddressAction, addAddressesAction, addCountriesAction, addOrdersAction, deleteAddressAction, loadFailureInAccountAction, updateAddressAction, addSelectedOrderAction, addSelectedAddressAction } from './account.actions';
 
 
 
 export interface AccountState {
     addresses: Address[];
+    selectedAddress: Address,
     countries: Country[];
     orders: Order[];
+    selectedOrder: Order;
     error: AppMsg;
 }
 
 export const initialState: AccountState = {
     addresses: null,
+    selectedAddress: null,
     countries: null,
     orders: null,
+    selectedOrder: null,
     error: null
 };
 
@@ -40,6 +44,10 @@ const theReducer = createReducer(
         ...currentState,
         addresses: getSortedAddresses(currentState.addresses.filter(c => c.Id !== payload))
     })),
+    on(addSelectedAddressAction, (currentState, { payload }) => ({
+        ...currentState,
+        selectedAddress: cloneDeep(payload)
+    })),
     on(addCountriesAction, (currentState, { payload }) => ({
         ...currentState,
         countries: !!payload ? [...payload] : null
@@ -47,6 +55,10 @@ const theReducer = createReducer(
     on(addOrdersAction, (currentState, { payload }) => ({
         ...currentState,
         orders: getSortedOrders(!!payload ? [...payload] : null)
+    })),
+    on(addSelectedOrderAction, (currentState, { payload }) => ({
+        ...currentState,
+        selectedOrder: cloneDeep(payload)
     })),
     on(loadFailureInAccountAction, (currentState, { error }) => ({
         ...currentState,

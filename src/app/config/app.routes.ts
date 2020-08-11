@@ -18,6 +18,7 @@ import { HomeComponent } from '../modules/home/home.component';
 import { ItemDetailComponent } from '../modules/shop/items/item-detail/item-detail.component';
 import { ProductResolver } from '../modules/shop/product-resolver.service';
 import { ShopComponent } from '../modules/shop/shop.component';
+import { OrderDetailComponent } from '../modules/account/orders/order/order-detail/order-detail.component';
 
 export const checkoutRoutes: Routes = [
   {
@@ -64,6 +65,11 @@ export const accountRoutes: Routes = [
       {
         path: 'orders',
         component: OrdersComponent,
+        canActivateChild: [AuthGuardService],
+      },
+      {
+        path: 'orders/:id',
+        component: OrderDetailComponent,
         canActivateChild: [AuthGuardService]
       },
       {

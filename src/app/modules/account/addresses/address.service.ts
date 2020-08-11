@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { clone, isEmpty } from 'lodash';
-import { Observable, of } from 'rxjs';
+import { clone } from 'lodash';
+import { of } from 'rxjs';
 import { catchError, map, switchMap, take, tap } from 'rxjs/operators';
 import { Address } from 'src/app/models/address';
 import { AddressRemoteService } from 'src/app/services/remote/address-remote.service';
@@ -9,14 +9,16 @@ import { AuthMessages } from 'src/app/util/app.labels';
 import { AppState } from '../../main/store/app.reducer';
 import { DialogService } from '../../shared/dialog/dialog.service';
 import { ToastService } from '../../shared/toasts/toast.service';
-import { addAddressAction, deleteAddressAction, loadAddressesAction, loadCountriesAction, updateAddressAction } from '../store/account.actions';
+import { addAddressAction, deleteAddressAction, loadAddressesAction, loadCountriesAction, updateAddressAction, loadSelectedAddressAction, addSelectedAddressAction } from '../store/account.actions';
 @Injectable({
   providedIn: 'root'
 })
 export class AddressService {
   labels = AuthMessages;
+
   addresses$ = this.store.select('account').pipe(map(state => state.addresses));
-  selectedAddress$ = this.addresses$.pipe(map(ads => !ads ? null : ads.find(ad => ad.IsSelected)));
+  checkedAddress$ = this.addresses$.pipe(map(ads => !ads ? null : ads.find(ad => ad.IsSelected)));
+  selectedAddress$ = this.store.select('account').pipe(map(state => state.selectedAddress));
   countries$ = this.store.select('account').pipe(map(state => state.countries));
 
   constructor(
@@ -25,11 +27,27 @@ export class AddressService {
     private dialog: DialogService,
     private store: Store<AppState>
   ) {
+
+    this.loadAddresses();
+    this.loadCountries();
+    this.loadSelectedAddress('2D4E2388-F9D9-E114-4FF6-CFE896A5C04F');
+  }
+
+  loadAddresses() {
     this.store.dispatch(loadAddressesAction());
+  }
+
+  loadSelectedAddress(id: string) {
+    this.store.dispatch(loadSelectedAddressAction({ addressId: id }))
+  }
+
+  loadCountries() {
     this.store.dispatch(loadCountriesAction());
   }
 
-
+  addSelectedAddress(address: Address) {
+    this.store.dispatch(addSelectedAddressAction({ payload: address }));
+  }
 
   saveAddress(address: Address) {
     return this.db.saveAddress(address)
@@ -81,18 +99,7 @@ export class AddressService {
   }
 
 
-  getAddressById(id: string): Observable<Address> {
-    return this.addresses$
-      .pipe(
-        take(1),
-        map(addresses => addresses.filter(ad => ad.Id === id)),
-        map(adds => {
-          if (!isEmpty(adds)) {
-            return adds.pop();
-          }
-          return null;
-        }));
-  }
+
 
   updateSelection(param: Address) {
     return this.addresses$.pipe(

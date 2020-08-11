@@ -20,7 +20,7 @@
     </div>
     <div class="address-view-body">
         <div class=" selected-ad-wrapper py-2"
-             *ngIf="addService.selectedAddress$ | async as selectedAddress">
+             *ngIf="addService.checkedAddress$ | async as selectedAddress">
             <label>Selected address</label>
             <app-user-address [address]="selectedAddress"
                               [enableEdit]="true"
@@ -53,7 +53,7 @@
          *ngIf="addresses.length > 0">
         <div class="address-view-controls">
             <button class="btn btn-dark m-2"
-                    [disabled]="!(addService.selectedAddress$ | async)"
+                    [disabled]="!(addService.checkedAddress$ | async)"
                     (click)="rms.routeToPayment()">CONTINUE</button>
         </div>
     </div>

@@ -1,18 +1,22 @@
 <div class="app-orders"
      *ngIf="ods.orders$ | async as orders">
 
-    <div class="app-order-header">
-        <div class="card ">
+    <div class="app-orders-header">
+        <div class="card">
             <div class="card-body">
-                <div class="heading">
-                    <h6>{{labels.ordertitle}}</h6>
-                </div>
+                <h6>{{labels.ordertitle}}</h6>
             </div>
         </div>
     </div>
     <div class="app-orders-body mt-3">
         <app-order [order]="order"
                    *ngFor="let order of orders"></app-order>
+    </div>
+
+    <div class="app-orders-footer d-flex  justify-content-end ">
+        <button class="btn  btn-dark">
+            <span>{{labels.showMore}}</span>
+        </button>
     </div>
 
 

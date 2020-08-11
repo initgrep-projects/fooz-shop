@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Order } from 'src/app/models/order.modal';
 import { OrderStatus } from 'src/app/models/order-status.model';
+import { orderLables } from 'src/app/util/app.labels';
 
 
 @Component({
@@ -9,7 +10,7 @@ import { OrderStatus } from 'src/app/models/order-status.model';
   styleUrls: ['./order.component.scss']
 })
 export class OrderComponent implements OnInit {
-
+  labels = orderLables;
   @Input() order: Order;
   private finalStatus: OrderStatus;
 

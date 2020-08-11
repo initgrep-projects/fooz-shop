@@ -1,0 +1,33 @@
+@import "../../../../variables.scss";
+div.app-orders {
+    font-family: $roboto-font-family;
+    div.app-orders-header {
+        div.card {
+            div.card-body {
+                h6 {
+                    font-size: 1rem;
+                    text-transform: uppercase;
+                    letter-spacing: 0.025rem;
+                    font-weight: 600;
+                }
+            }
+        }
+    }
+    div.app-orders-body {
+    }
+    div.app-orders-footer {
+        padding: 1.25rem;
+        border-radius: 0.25rem;
+        border-bottom: 1px solid #f0f0f0;
+        box-shadow: 0 -1px 10px 0 rgba(0, 0, 0, 0.1);
+        position: sticky;
+        bottom: 0;
+        background-color: #fff;
+        button {
+            padding: 1rem 3rem;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.045rem;
+        }
+    }
+}

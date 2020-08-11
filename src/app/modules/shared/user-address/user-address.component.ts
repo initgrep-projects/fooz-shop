@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Address } from 'src/app/models/address';
 import { AuthMessages } from 'src/app/util/app.labels';
+import { Router, ActivatedRoute } from '@angular/router';
 
 
 @Component({
@@ -18,16 +19,21 @@ export class UserAddressComponent implements OnInit {
   @Input() isSelected = false;
   isClicked = false;
 
+  @Output() edit = new EventEmitter<Address>();
   @Output() delete = new EventEmitter<Address>();
   @Output() select = new EventEmitter<Address>();
 
 
 
-  constructor() { }
+  constructor(private router: Router, private activeRoute: ActivatedRoute) { }
 
   ngOnInit(): void { }
 
 
+  editAddress() {
+    this.edit.emit(this.address);
+    this.router.navigate(['edit', this.address.Id], { relativeTo: this.activeRoute });
+  }
 
   deleteAddress() {
     this.delete.emit(this.address);

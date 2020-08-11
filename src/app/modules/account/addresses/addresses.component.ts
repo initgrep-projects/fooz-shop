@@ -34,5 +34,7 @@ export class AddressesComponent implements OnInit {
   deleteAddress(add: Address) {
     this.addressService.removeAddress(add.Id).subscribe();
   }
-
+  editAddress(add: Address) {
+    this.addressService.addSelectedAddress(add);
+  }
 }

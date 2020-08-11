@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthMessages } from 'src/app/util/app.labels';
+import { AuthMessages, orderLables } from 'src/app/util/app.labels';
 import { OrderService } from './order.service';
 
 @Component({
@@ -8,7 +8,7 @@ import { OrderService } from './order.service';
   styleUrls: ['./orders.component.scss']
 })
 export class OrdersComponent implements OnInit {
-  labels = AuthMessages;
+  labels = orderLables;
   constructor(public ods: OrderService) { }
 
   ngOnInit(): void {

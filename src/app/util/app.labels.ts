@@ -47,7 +47,7 @@ export const AuthMessages = {
     PhoneNotPresent: 'Phone Number is Not provided',
     PhoneNotVerified: 'Phone Number is Not verified',
     profileUpdateAlertTitle: 'Profile is not complete',
-    ordertitle: 'your orders',
+
 
     invalidCredentials: [
         { code: 'auth/wrong-password', message: 'Incorrect email or password' },
@@ -123,6 +123,22 @@ export const cartLabels = {
     updateItemFailed: 'cart item updated',
     payment: 'payment',
     payNow: 'pay now'
+}
+export const orderLables = {
+    ordertitle: 'orders',
+    showMore: 'show more',
+    orderId: 'order id',
+    viewDetails: 'view details',
+    quantity: 'quantity',
+    color: 'colour',
+    size: 'size',
+    width: 'width',
+    length: 'length',
+    bust: 'bust',
+    arm: 'arm',
+    hip: 'hipe',
+    on: 'on'
+
 }
 
 export const itemLabels = {

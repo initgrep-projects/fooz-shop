@@ -65,7 +65,8 @@ import {
   faPencilAlt,
   faDesktop,
   faEdit,
-  faArrowLeft
+  faArrowLeft,
+  faAngleDoubleRight
 } from '@fortawesome/free-solid-svg-icons';
 import {
   faUser as farUser,
@@ -171,7 +172,8 @@ export class IconService {
       faTwitter,
       faFacebook,
       faPinterest,
-      farCopyright
+      farCopyright,
+      faAngleDoubleRight
     ];
   }
 

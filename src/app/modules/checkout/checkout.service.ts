@@ -33,7 +33,7 @@ export class CheckoutService {
 
   createOrder(paymentType: PaymentType) {
     const cartIds$ = this.cartService.cart$.pipe(map(cart => cart.map(item => item.Id)));
-    return combineLatest(this.authService.userFromStore$, cartIds$, this.addressService.selectedAddress$, this.orderCharges$)
+    return combineLatest(this.authService.userFromStore$, cartIds$, this.addressService.checkedAddress$, this.orderCharges$)
       .pipe(
         switchMap(([user, cartIds, selectedAddress, orderCharges]) => {
           const order = new OrderItem(generateGuid(), user.UID, cartIds, selectedAddress.Id);

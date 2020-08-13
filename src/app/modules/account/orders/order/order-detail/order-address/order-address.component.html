@@ -1,0 +1,26 @@
+<div class="app-order-address">
+    <h6 class="title">shipping Address</h6>
+
+    <div class="order-address-body">
+        <ul class="list-group">
+            <li class="list-item">
+                <span class="property name">{{address.Name}}</span>
+            </li>
+            <li class="list-item">
+                <span class="street property">{{address.Street}}</span>
+            </li>
+            <li class="list-item">
+                <span class="property">
+                    {{address.City}}-{{address.ZipCode}}
+                </span>
+            </li>
+            <li class="list-item">
+                <span class="property">{{address.State}}, {{address.Country}}</span>
+            </li>
+            <li class="list-item">
+                <label for="phone">Phone:</label>
+                <span class="phone property">{{address.Phone}}</span>
+            </li>
+        </ul>
+    </div>
+</div>

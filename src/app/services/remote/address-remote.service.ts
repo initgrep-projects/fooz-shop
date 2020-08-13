@@ -5,7 +5,7 @@ import { ADDRESS_COLLECTION } from 'src/app/util/app.constants';
 import { Observable } from 'rxjs';
 import { classToPlain } from 'class-transformer';
 import { toObservable } from 'src/app/util/app.lib';
-import { map, tap } from 'rxjs/operators';
+import { map, take, tap } from 'rxjs/operators';
 import { Address } from 'src/app/models/address';
 
 @Injectable({
@@ -58,26 +58,42 @@ export class AddressRemoteService {
       );
   }
 
-  fetchAddressById(userId: string, addressId: string) {
-    console.log('fetchAddressById => ', userId, addressId);
+  fetchAddressById(id: string) {
     return this.db.collection(ADDRESS_COLLECTION, ref =>
-      ref
-        .where('id', '==', addressId)
-        .where('userId', '==', userId)
+      ref.where('id', '==', id)
     )
       .get()
       .pipe(
         map(qs => {
           let address: Address;
-          console.log('before address ', address);
           qs.forEach(doc => {
             address = this.transformer.transformAddressFromDocumentData(doc.data());
           });
-          console.log('after address ', address);
           return address;
         })
-      ),
-      tap(address => console.log('addressById fetched => ', address))
+      )
+  }
+
+  fetchAddressForUserById(addressId: string, userId: string) {
+    return this.db.collection(ADDRESS_COLLECTION, ref =>
+      ref
+        .where('id', '==', addressId)
+        .where('userId', '==', userId)
+
+    )
+      .get()
+      .pipe(
+        map(qs => {
+          let address: Address;
+          qs.forEach(doc => {
+            console.log('doc in address = ', doc, doc.metadata, doc.data());
+            address = this.transformer.transformAddressFromDocumentData(doc.data());
+          });
+          return address;
+        }),
+        tap(add => console.log('tap address', add)),
+        take(1)
+      );
   }
 
 

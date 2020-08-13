@@ -1,1 +1,23 @@
-<p>order-detail works!</p>
+<div class="app-order-detail"
+     *ngIf="ods.selectedOrder$ | async  as order">
+    <div class="order-detail-header d-flex flex-column flex-lg-row ">
+        <div class="order-address flex-fill my-1 my-lg-0 "
+             *ngIf="order.Address as address">
+            <app-order-address [address]="address"></app-order-address>
+        </div>
+
+        <div class="order-price flex-fill  border-left text-right"
+             *ngIf="order.Payment as payment">
+            <app-order-price [payment]="payment"></app-order-price>
+        </div>
+    </div>
+    <div class="order-detail-status mt-2">
+        <app-order-status></app-order-status>
+    </div>
+    <div class="order-detail-body">
+
+    </div>
+    <div class="order-detail-footer">
+
+    </div>
+</div>

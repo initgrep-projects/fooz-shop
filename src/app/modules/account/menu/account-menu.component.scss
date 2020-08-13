@@ -3,52 +3,58 @@
 div.app-account-menu {
     overflow-x: auto;
     font-family: $roboto-font-family;
-    box-shadow: 0 1px 10px 0 rgba(0, 0, 0, 0.1);
-   
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.08);
+    background-color: #fff;
+
     @include md {
         overflow: hidden;
         border-bottom-width: 0px;
-        height: 400px;
+        height: 100%;
     }
 
-    div.card {
-        height: 100%;
-        div.card-header,
-        div.card-body {
-            overflow-x: auto;
-            padding:0;
-            padding-top: 1.2rem;
-            ul.list-group {
-                border:none;
-                
+    ul.list-group {
+        border: none;
 
-                li {
-                    background: transparent;
-                    cursor: pointer;
-                    transition: all 0.5s;
-                    border: none;
-                    a {
-                        text-transform: uppercase;
-                        letter-spacing: 0.045rem;
-                        color: $primary-text-color;
-                        text-decoration: none;
-                        font-size: 0.8rem;
-                        display: block;
-                        &.active {
-                            font-weight: 600;
-                            // border-bottom: 2px solid $primary-border-color;
-                        }
+        li {
+            background: transparent;
+            cursor: pointer;
+            transition: all 0.5s;
+            border: none;
 
-                        fa-icon{
-                            padding: 0 1rem 0 0.5rem;
-                        }
-                    }
+            a {
+                text-transform: uppercase;
+                letter-spacing: 0.1rem;
+                color: $primary-text-color;
+                text-decoration: none;
+                font-size: 0.8rem;
+                display: block;
+                &.active {
+                    font-weight: 600;
+                    // border-bottom: 2px solid $primary-border-color;
+                }
 
-                    &:hover {
-                        background-color: #f5f5f5;
-                        a {
-                            font-weight: 600;
-                        }
+                fa-icon {
+                    padding: 0 1rem 0 0.5rem;
+                }
+            }
+
+            &:hover {
+                background-color: #f5f5f5;
+                a {
+                    font-weight: 600;
+                }
+            }
+        }
+
+        &.order {
+            li {
+                border-bottom: 3px solid #f1f1f1;
+                a {
+                    font-size: 1rem;
+                    letter-spacing: 0.15rem;
+                    // font-weight: 600;
+                    fa-icon.right {
+                        float: right;
                     }
                 }
             }

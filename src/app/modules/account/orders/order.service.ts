@@ -9,20 +9,20 @@ import { loadOrdersAction, loadSelectedOrderAction } from '../store/account.acti
 })
 export class OrderService {
   orders$ = this.store.select('account').pipe(map(state => state.orders));
+  selectedOrder$ = this.store.select('account').pipe(map(state => state.selectedOrder));
 
   constructor(
     private store: Store<AppState>
   ) {
     this.loadOrders();
-    this.loadSelectedOrder();
   }
 
   loadOrders() {
     this.store.dispatch(loadOrdersAction());
   }
 
-  loadSelectedOrder() {
-    this.store.dispatch(loadSelectedOrderAction({ orderId: 'DC84A567-5FAE-0167-FEA8-23B19E6305D7' }));
+  loadSelectedOrder(orderId: string) {
+    this.store.dispatch(loadSelectedOrderAction({ orderId: orderId }));
   }
 
 

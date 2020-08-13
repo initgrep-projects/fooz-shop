@@ -77,9 +77,17 @@ export class UserAddressEditComponent implements OnInit, OnDestroy {
       });
 
     this.subs.sink =
-      this.activatedRoute.data.subscribe(data => {
-        if (!!data.address) {
-          this.address = cloneDeep(data.address);
+      // this.activatedRoute.data.subscribe(data => {
+      //   if (!!data.address) {
+      //     this.address = cloneDeep(data.address);
+      //     this.isUpdateMode = true;
+      //     this.patchAddressOnUpdate(this.address)
+      //   }
+      // });
+
+      this.addressService.selectedAddress$.subscribe(address => {
+        if (!!address) {
+          this.address = cloneDeep(address);
           this.isUpdateMode = true;
           this.patchAddressOnUpdate(this.address)
         }
@@ -105,7 +113,11 @@ export class UserAddressEditComponent implements OnInit, OnDestroy {
       city: address.City,
       zipcode: address.ZipCode,
       isSelected: address.IsSelected
-    });
+    },
+      {
+        emitEvent: true
+      }
+    );
   }
 
 
@@ -120,7 +132,7 @@ export class UserAddressEditComponent implements OnInit, OnDestroy {
 
   saveAddress() {
     this.saveProgress = true;
-    console.log('save address = ',this.addressForm.value);
+    console.log('save address = ', this.addressForm.value);
     const address = this.objTransformService.transformAddress(this.addressForm.value);
     address.UserId = this.authUser.UID;
     address.Id = generateGuid();
@@ -134,7 +146,7 @@ export class UserAddressEditComponent implements OnInit, OnDestroy {
 
   updateAddress() {
     this.saveProgress = true;
-    console.log('update address = ',this.addressForm.value);
+    console.log('update address = ', this.addressForm.value);
     const updatedAddress = this.objTransformService.transformAddress(this.addressForm.value);
     updatedAddress.Id = this.address.Id;
     updatedAddress.CreatedDate = this.address.CreatedDate;

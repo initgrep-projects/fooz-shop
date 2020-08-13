@@ -137,7 +137,8 @@ export const orderLables = {
     bust: 'bust',
     arm: 'arm',
     hip: 'hipe',
-    on: 'on'
+    on: 'on',
+    price: 'price'
 
 }
 

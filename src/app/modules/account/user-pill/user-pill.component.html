@@ -1,0 +1,21 @@
+<div class="app-user-pill mb-2">
+    <div class="user-pill-body d-flex"
+         *ngIf="authService.userFromStore$ | async as user">
+        <div class="left ">
+            <img class="mr-3 rounded-circle img-thumbnail"
+                 *ngIf="user?.PhotoURL"
+                 [src]="user.PhotoURL"
+                 alt="user profile">
+            <div class="dp">
+                <h4>{{user.Email.substr(0,2)}}</h4>
+            </div>
+        </div>
+        <div class="right ">
+            <h6 class="welcome">welcome</h6>
+            <h6 class="mt-0 name"
+                *ngIf="user?.Name">{{user.Name}}</h6>
+            <h6 class="mt-0 name"
+                *ngIf="user?.Email">{{user.Email}}</h6>
+        </div>
+    </div>
+</div>

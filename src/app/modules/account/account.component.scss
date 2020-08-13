@@ -1,5 +1,16 @@
-div.account-wrapper{
-    div.app-router-outlet{
-        min-height: 450px;
+@import "../../../variables.scss";
+
+div.account-wrapper {
+    padding: 0 2%;
+
+    @include lg {
+        padding: 0 5%;
+    }
+    @include xl {
+        padding: 0 15%;
+    }
+    div.sidebar {
+        height: 500px;
+        padding: 0 0;
     }
 }

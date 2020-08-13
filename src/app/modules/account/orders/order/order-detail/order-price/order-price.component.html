@@ -1,0 +1,27 @@
+<div class="app-order-price">
+    <h6 class="title">Price details</h6>
+    <div class="item-property">
+        <span class="label">price:</span>
+        <span class="value">{{payment.Price.Code}} {{payment.Price.Amount}}</span>
+    </div>
+    <div class="item-property">
+        <span class="label">shipping:</span>
+        <span class="value">{{payment.Shipping.Code}} {{payment.Shipping.Amount}}</span>
+    </div>
+    <div class="item-property">
+        <span class="label">tax:</span>
+        <span class="value">{{payment.Tax.Code}} {{payment.Tax.Amount}}</span>
+    </div>
+    <div class="item-property">
+        <span class="label">Coupon discount <span
+                  class="badge border border-success text-success mx-1">{{payment.Coupon.Id}}</span>:</span>
+
+        <span class="value">{{payment.Coupon.Amount.Code}}
+            {{payment.Coupon.Amount.Amount}}</span>
+    </div>
+    <div class="item-property total mt-2">
+        <span class="label"> total:</span>
+        <span class="value"> {{payment.Price.Code}}
+            {{payment.Price.Amount+ payment.Tax.Amount + payment.Shipping.Amount - payment.Coupon.Amount.Amount}}</span>
+    </div>
+</div>

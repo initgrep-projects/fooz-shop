@@ -1,0 +1,13 @@
+@import "../../../../../../variables.scss";
+
+div.app-order-detail {
+    font-family: $roboto-font-family;
+
+    div.order-detail-header  /*flex box*/,
+    div.order-detail-status {
+        padding: 1rem;
+        background-color: $bg-white;
+        border-top: 1px solid #f0f0f0;
+        box-shadow: 0 1px 10px 0 rgba(0, 0, 0, 0.1);
+    }
+}

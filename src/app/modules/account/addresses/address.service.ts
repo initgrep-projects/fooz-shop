@@ -30,7 +30,7 @@ export class AddressService {
 
     this.loadAddresses();
     this.loadCountries();
-    this.loadSelectedAddress('2D4E2388-F9D9-E114-4FF6-CFE896A5C04F');
+    // this.loadSelectedAddress('2D4E2388-F9D9-E114-4FF6-CFE896A5C04F');
   }
 
   loadAddresses() {

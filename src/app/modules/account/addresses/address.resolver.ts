@@ -1,16 +1,14 @@
 import { Injectable } from '@angular/core';
-import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
-import { Product } from 'src/app/models/product';
+import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
 import { Observable, Subject } from 'rxjs';
-
-import { Address } from 'src/app/models/address';
+import { map, take, tap } from 'rxjs/operators';
 import { AddressService } from './address.service';
-import { tap, take, switchMap, takeUntil } from 'rxjs/operators';
+
 
 @Injectable({
   providedIn: 'root'
 })
-export class AddressResolver implements Resolve<Address>{
+export class AddressResolver implements Resolve<boolean>{
 
   private emitted = new Subject<boolean>();
 
@@ -18,18 +16,20 @@ export class AddressResolver implements Resolve<Address>{
 
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot)
-    : Address | Observable<Address> | Promise<Address> {
+    : boolean | Observable<boolean> | Promise<boolean> {
 
     const id = route.paramMap.get('id');
     // return this.addressService.getAddressById(id);
     return this.addressService.selectedAddress$
       .pipe(
-        take(1),
+
         tap(address => {
           if (!address) {
             this.addressService.loadSelectedAddress(id);
           }
-        })
+        }),
+        take(1),
+        map(address => !!address)
       )
 
   }

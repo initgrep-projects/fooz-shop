@@ -1,0 +1,28 @@
+@import "../../../../../../../variables.scss";
+div.app-order-address {
+    h6.title {
+        @include headerTitle();
+    }
+    div.order-address-body {
+        ul {
+            list-style: none;
+            li {
+                span.property {
+                    font-size: 0.9rem;
+                    letter-spacing: 0.02rem;
+
+                    &.phone,
+                    &.name {
+                        font-weight: 600;
+                        text-transform: capitalize;
+                    }
+                }
+                label {
+                    font-size: 0.9rem;
+                    letter-spacing: 0.045rem;
+                    font-weight: 600;
+                }
+            }
+        }
+    }
+}

@@ -17,6 +17,10 @@ import { EffectsModule } from '@ngrx/effects';
 import { AccountEffects } from './store/account.effects';
 import { OrderComponent } from './orders/order/order.component';
 import { OrderDetailComponent } from './orders/order/order-detail/order-detail.component';
+import { UserPillComponent } from './user-pill/user-pill.component';
+import { OrderPriceComponent } from './orders/order/order-detail/order-price/order-price.component';
+import { OrderAddressComponent } from './orders/order/order-detail/order-address/order-address.component';
+import { OrderStatusComponent } from './orders/order/order-detail/order-status/order-status.component';
 
 
 
@@ -32,6 +36,10 @@ import { OrderDetailComponent } from './orders/order/order-detail/order-detail.c
     UserAddressEditComponent,
     OrderComponent,
     OrderDetailComponent,
+    UserPillComponent,
+    OrderPriceComponent,
+    OrderAddressComponent,
+    OrderStatusComponent,
   ],
   imports: [
     CommonModule,

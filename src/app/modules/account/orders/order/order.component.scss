@@ -1,11 +1,12 @@
 @import "../../../../../variables.scss";
 div.app-order {
     font-family: $roboto-font-family;
+    background-color: #fff;
     div.app-order-header {
         padding: 1.25rem;
         border-radius: 0.25rem;
         border-top: 1px solid #f0f0f0;
-        box-shadow: 0 1px 10px 0 rgba(0, 0, 0, 0.1);
+        padding-bottom: 1rem;
         h6.order-title {
             font-size: 0.8rem;
             margin-bottom: 0;

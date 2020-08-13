@@ -5,11 +5,9 @@ import { catchError, map, mergeMap, switchMap, tap } from 'rxjs/operators';
 import { AppMessageService } from 'src/app/services/app-error.service';
 import { GeoAddressService } from 'src/app/services/geo-address.service';
 import { AddressRemoteService } from 'src/app/services/remote/address-remote.service';
-import { LOAD_ADDRESSES_ACTION, LOAD_COUNTRIES_ACTION, LOAD_ORDERS_ACTION, LOAD_SELECTED_ORDER_ACTION } from 'src/app/util/app.constants';
-import { AuthService } from '../../auth/auth.service';
-import { addAddressesAction, addCountriesAction, loadFailureInAccountAction, addOrdersAction, loadSelectedOrderAction, addSelectedOrderAction, loadAddressesAction, loadOrdersAction, loadCountriesAction, loadSelectedAddressAction, addSelectedAddressAction } from './account.actions';
 import { OrderRemoteService } from 'src/app/services/remote/order-remote.service';
-import { TypedAction } from '@ngrx/store/src/models';
+import { AuthService } from '../../auth/auth.service';
+import { addAddressesAction, addCountriesAction, addOrdersAction, addSelectedAddressAction, addSelectedOrderAction, loadAddressesAction, loadCountriesAction, loadFailureInAccountAction, loadOrdersAction, loadSelectedAddressAction, loadSelectedOrderAction } from './account.actions';
 
 
 @Injectable()
@@ -39,11 +37,10 @@ export class AccountEffects {
     loadSelectedAddress$ = createEffect(() =>
         this.action$.pipe(
             ofType(loadSelectedAddressAction),
-            tap(action => console.log('effects loadSelectedAddress$ => ', action.addressId)),
             mergeMap((action) =>
                 this.auth.userFromStore$
                     .pipe(
-                        switchMap(user => !!user ? this.dbAddress.fetchAddressById(user.UID, action.addressId) : of(null)),
+                        switchMap(user => !!user ? this.dbAddress.fetchAddressForUserById(action.addressId, user.UID) : of(null)),
                         map(ad => addSelectedAddressAction({ payload: ad })),
                         catchError(() => of(loadFailureInAccountAction({ error: this.err.dataFetchError() })))
                     ))

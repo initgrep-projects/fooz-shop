@@ -86,7 +86,7 @@ export class OrderRemoteService {
           const orderCarts = combineLatest(orders.map(order => this.cartRemoteService.fetchCartByIds(userId, order.OrderItem.CartItemIds)));
           const orderPayments = combineLatest(orders.map(order => this.fetchPaymentByOrderId(order.OrderItem.Id)));
           const orderStatusList = combineLatest(orders.map(order => this.fetchOrderStatusByOrderId(order.OrderItem.Id)));
-          const orderAdddresses = combineLatest(orders.map(order => this.addressremoteService.fetchAddressById(userId, order.OrderItem.AddressId)));
+          const orderAdddresses = combineLatest(orders.map(order => this.addressremoteService.fetchAddressForUserById(order.OrderItem.AddressId, userId)));
           return zip(of(orders), orderCarts, orderPayments, orderAdddresses, orderStatusList);
         }),
         map(([orders, orderCarts, orderPayments, orderAddresses, orderStatusList]) => {
@@ -127,12 +127,12 @@ export class OrderRemoteService {
           const cart = this.cartRemoteService.fetchCartByIds(userId, order.OrderItem.CartItemIds);
           const payment = this.fetchPaymentByOrderId(order.OrderItem.Id);
           const statusList = this.fetchOrderStatusByOrderId(order.OrderItem.Id);
-          const address = this.addressremoteService.fetchAddressById(userId, order.OrderItem.AddressId);
-          return zip(of(order), cart, payment, statusList, address);
+          const address = this.addressremoteService.fetchAddressForUserById(order.OrderItem.AddressId, userId);
+          return zip(of(order), cart, payment, address, statusList);
         }),
         take(1),
-        map(([order, cart, payment, statusList, address]) => {
-          console.log('afterSwitchMap ', [order, cart, payment, statusList, address]);
+        map(([order, cart, payment, address, statusList]) => {
+          console.log('afterSwitchMap ', [order, cart, payment, statusList]);
           order.Cart = cart;
           order.Payment = payment;
           order.StatusList = statusList;

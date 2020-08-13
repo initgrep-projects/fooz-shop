@@ -70,6 +70,12 @@ $warning-light: rgba(246, 229, 163, 0.4);
     }
 }
 
+@mixin headerTitle {
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.045rem;
+}
+
 //extra margin
 
 .mb-5a {

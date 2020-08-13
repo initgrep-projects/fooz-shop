@@ -1,0 +1,48 @@
+@import "../../../../variables.scss";
+div.app-user-pill {
+    font-family: $roboto-font-family;
+    padding: 1rem;
+    background-color: #fff;
+    border-radius: 2px;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.08);
+
+    div.user-pill-body {
+        div.left {
+            img {
+                width: 54px;
+                height: 54px;
+            }
+            div.dp {
+                width: 54px;
+                height: 54px;
+                border: 1px solid #333;
+                border-radius: 50%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                h4 {
+                    color: #333;
+                    font-weight: 600;
+                    text-transform: uppercase;
+                    margin: 0;
+                    padding: 0;
+                }
+            }
+        }
+        div.right {
+            padding-left: 1rem;
+            padding-top: 0.5rem;
+            h6.welcome {
+                text-transform: uppercase;
+                letter-spacing: 0.035rem;
+                font-size: 0.8rem;
+                margin-bottom: 0.5rem;
+            }
+            h6.name {
+                font-size: 0.9rem;
+                text-transform: lowercase;
+                letter-spacing: 0.025rem;
+            }
+        }
+    }
+}

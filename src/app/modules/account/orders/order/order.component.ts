@@ -1,7 +1,9 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { Order } from 'src/app/models/order.modal';
+import { Component, Input, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { OrderStatus } from 'src/app/models/order-status.model';
+import { Order } from 'src/app/models/order.modal';
 import { orderLables } from 'src/app/util/app.labels';
+import { throwError } from 'rxjs';
 
 
 @Component({
@@ -14,7 +16,7 @@ export class OrderComponent implements OnInit {
   @Input() order: Order;
   private finalStatus: OrderStatus;
 
-  constructor() { }
+  constructor(private router: Router, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
   }
@@ -26,6 +28,10 @@ export class OrderComponent implements OnInit {
 
   formatDate(timeStamp: number) {
     return new Date(timeStamp);
+  }
+
+  showDetails(id: string) {
+    this.router.navigate([id], { relativeTo: this.activatedRoute });
   }
 
 }

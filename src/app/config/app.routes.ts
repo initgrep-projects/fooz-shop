@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
 import { AccountComponent } from '../modules/account/account.component';
-import { AddressResolver } from '../modules/account/addresses/address-resolver.service';
+import { AddressResolver } from '../modules/account/addresses/address.resolver';
 import { AddressesComponent } from '../modules/account/addresses/addresses.component';
 import { UserAddressEditComponent } from '../modules/account/addresses/user-address-edit/user-address-edit.component';
 import { OrdersComponent } from '../modules/account/orders/orders.component';
@@ -19,6 +19,7 @@ import { ItemDetailComponent } from '../modules/shop/items/item-detail/item-deta
 import { ProductResolver } from '../modules/shop/product-resolver.service';
 import { ShopComponent } from '../modules/shop/shop.component';
 import { OrderDetailComponent } from '../modules/account/orders/order/order-detail/order-detail.component';
+import { OrderResolver } from '../modules/account/orders/order.resolver';
 
 export const checkoutRoutes: Routes = [
   {
@@ -70,6 +71,7 @@ export const accountRoutes: Routes = [
       {
         path: 'orders/:id',
         component: OrderDetailComponent,
+        resolve: [OrderResolver],
         canActivateChild: [AuthGuardService]
       },
       {
@@ -80,7 +82,7 @@ export const accountRoutes: Routes = [
       {
         path: 'addresses/edit/:id',
         component: UserAddressEditComponent,
-        resolve: { address: AddressResolver },
+        resolve: [AddressResolver],
         canActivateChild: [AuthGuardService]
 
       },

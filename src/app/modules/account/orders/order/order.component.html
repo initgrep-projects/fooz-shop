@@ -1,10 +1,11 @@
-<div class="app-order mt-5">
+<div class="app-order mt-3">
     <div class="app-order-header d-flex  justify-content-between ">
         <h6 class="order-title pt-2">
             <label for="order-id">{{labels.orderId}}:</label>
             <span id="order-id">{{order.OrderItem.Id}}</span>
         </h6>
-        <button class="btn btn-sm btn-light">
+        <button class="btn btn-sm btn-light"
+                (click)="showDetails(order.OrderItem.Id)">
             <span>{{labels.viewDetails}}</span>
             <fa-icon icon="angle-double-right"></fa-icon>
         </button>
@@ -16,36 +17,43 @@
                  class="mr-3 img-thumbnail"
                  style="width: 128px;"
                  [alt]="item.Product.Name">
-            <div class="media-body">
-                <h6 class="">{{item.Product.Name}}</h6>
-                <div class="item-property">
-                    <span class="label">{{labels.quantity}}:</span>
-                    <span class="value">{{item.SelectedQuantity}}</span>
-                </div>
-                <div class="item-property">
-                    <span class="label">{{labels.color}}:</span>
-                    <span class="value">{{item.SelectedColor.Name }}</span>
+            <div class="media-body d-flex flex-column flex-xl-row justify-content-md-between">
+                <div class="item-order-content">
+                    <h6 class="">{{item.Product.Name}}</h6>
+                    <div class="item-property">
+                        <span class="label">{{labels.quantity}}:</span>
+                        <span class="value">{{item.SelectedQuantity}}</span>
+                    </div>
+                    <div class="item-property">
+                        <span class="label">{{labels.color}}:</span>
+                        <span class="value">{{item.SelectedColor.Name }}</span>
+                    </div>
+
+                    <div class="item-property"
+                         *ngIf="item.SelectedSize">
+                        <span class="label">{{labels.size}}:</span>
+                        <span class="value">{{item.SelectedSize.Letter }}</span>
+                    </div>
+                    <div class="item-property"
+                         *ngIf="item.SelectedCustomSize">
+                        <span class="label">{{labels.size}}:</span>
+                        <span class="badge">{{labels.width}}: {{item.SelectedCustomSize.Width}}</span>
+                        <span class="badge">{{labels.length}}: {{item.SelectedCustomSize.Length}}</span>
+                        <span class="badge">{{labels.bust}}: {{item.SelectedCustomSize.Bust}}</span>
+                        <span class="badge">{{labels.arm}}: {{item.SelectedCustomSize.Arm}}</span>
+                        <span class="badge">{{labels.hip}}: {{item.SelectedCustomSize.Hip}}</span>
+                    </div>
+                    <div class="item-property">
+                        <span class="label">{{labels.price}}:</span>
+                        <span class="value">{{item.Product.Price.Code }}-{{item.Product.Price.Amount }} </span>
+                    </div>
                 </div>
 
-                <div class="item-property"
-                     *ngIf="item.SelectedSize">
-                    <span class="label">{{labels.size}}:</span>
-                    <span class="value">{{item.SelectedSize.Letter }}</span>
-                </div>
-                <div class="item-property"
-                     *ngIf="item.SelectedCustomSize">
-                    <span class="label">{{labels.size}}:</span>
-                    <span class="badge">{{labels.width}}: {{item.SelectedCustomSize.Width}}</span>
-                    <span class="badge">{{labels.length}}: {{item.SelectedCustomSize.Length}}</span>
-                    <span class="badge">{{labels.bust}}: {{item.SelectedCustomSize.Bust}}</span>
-                    <span class="badge">{{labels.arm}}: {{item.SelectedCustomSize.Arm}}</span>
-                    <span class="badge">{{labels.hip}}: {{item.SelectedCustomSize.Hip}}</span>
-                </div>
-
-                <div class="item-order-stage my-2">
+                <div class="item-order-stage my-2 my-xl-3 mx-xl-3">
                     <span class="badge border border-success text-success">{{FinalStatus.Stage}}</span>
                     <span class="label">{{labels.on}}</span>
-                    <span class="value">{{formatDate(FinalStatus.CreatedOn) | date: 'mediumDate' }}</span>
+                    <span
+                          class="value d-xl-inline-block">{{formatDate(FinalStatus.CreatedOn) | date: 'mediumDate' }}</span>
                 </div>
             </div>
         </div>

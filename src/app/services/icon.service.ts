@@ -67,7 +67,8 @@ import {
   faEdit,
   faArrowLeft,
   faAngleDoubleRight,
-  faAngleRight
+  faAngleRight,
+  faLuggageCart
 } from '@fortawesome/free-solid-svg-icons';
 import {
   faUser as farUser,
@@ -175,7 +176,8 @@ export class IconService {
       faPinterest,
       farCopyright,
       faAngleDoubleRight,
-      faAngleRight
+      faAngleRight,
+      faLuggageCart
     ];
   }
 

@@ -1,0 +1,155 @@
+@import "../../../../../../../variables.scss";
+
+@mixin complete-step($delay: 0s) {
+    span {
+        opacity: 1;
+        animation: stepComplete;
+        animation-duration: 1s;
+        animation-delay: $delay;
+        animation-fill-mode: both;
+    }
+    &::before {
+        background-color: var(--success);
+        border-color: var(--success);
+        animation: stepComplete;
+        animation-duration: 1s;
+        animation-delay: $delay;
+        animation-fill-mode: both;
+    }
+    + li:after {
+        background-color: var(--success);
+        border-color: var(--success);
+        animation: stepProgress;
+        animation-duration: 1s;
+        animation-fill-mode: both;
+        animation-delay: $delay;
+        width: 100%;
+        opacity: 1;
+    }
+}
+
+@mixin incomplete-step($delay: 0s) {
+    span {
+        opacity: 1;
+        animation: stepComplete;
+        animation-duration: 1s;
+        animation-delay: $delay;
+        animation-fill-mode: both;
+    }
+    &::before {
+        // background-color: var(--success);
+        // border-color: var(--success);
+        animation: stepComplete;
+        animation-duration: 1s;
+        animation-delay: $delay;
+        animation-fill-mode: both;
+    }
+}
+
+div.app-order-status {
+    font-family: $roboto-font-family;
+    // padding: 1rem;
+    width: 100%;
+    position: relative;
+    h6 {
+        @include headerTitle();
+    }
+    ul.progressbar {
+        display: flex;
+        padding: 0;
+        li.step {
+            list-style-type: none;
+            float: left;
+            width: 25%;
+            text-align: center;
+            position: relative;
+
+            &::before {
+                content: "";
+                width: 24px;
+                height: 24px;
+                border: 2px solid #333;
+                display: block;
+                text-align: center;
+                margin: 0 auto 10px auto;
+                border-radius: 50%;
+                background-color: #333;
+                z-index: 1;
+                position: relative;
+            }
+
+            &::after {
+                position: absolute;
+                content: "";
+                width: 0%;
+                height: 4px;
+                background-color: #333;
+                top: 10px;
+                left: -50%;
+                z-index: 0;
+                opacity: 0;
+            }
+
+            &:first-child {
+                &::after {
+                    content: none;
+                }
+            }
+            span {
+                text-transform: uppercase;
+                letter-spacing: 0.045rem;
+                opacity: 0;
+            }
+
+            &.complete-1 {
+                @include complete-step(1s);
+            }
+            &.complete-2 {
+                @include complete-step(2s);
+            }
+            &.complete-3 {
+                @include complete-step(3s);
+            }
+            &.complete-4 {
+                @include complete-step(4s);
+            }
+
+            &.incomplete-1 {
+                @include incomplete-step(1s);
+            }
+            &.incomplete-2 {
+                @include incomplete-step(2s);
+            }
+            &.incomplete-3 {
+                @include incomplete-step(3s);
+            }
+            &.incomplete-4 {
+                @include incomplete-step(4s);
+            }
+        }
+    }
+}
+
+@keyframes stepComplete {
+    from {
+        opacity: 0;
+        box-shadow: 1px 1px 2px rgba(0, 255, 0, 0.9);
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes stepProgress {
+    0% {
+        left: -50%;
+        opacity: 0;
+        width: 10%;
+        box-shadow: 1px 1px 2px rgba(0, 255, 0, 0.9);
+    }
+    100% {
+        left: -50%;
+        opacity: 1;
+        width: 100%;
+    }
+}

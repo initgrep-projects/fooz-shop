@@ -1,18 +1,29 @@
 <div class="app-order-detail"
      *ngIf="ods.selectedOrder$ | async  as order">
+    <div class="order-detail-header mb-2">
+        <div class="order-id mb-2">
+            <h6 class="order id">
+                <span class="label">order id:</span>
+                <span class="value">{{order.OrderItem.Id}}</span>
+            </h6>
+        </div>
+    </div>
+
     <div class="order-detail-header d-flex flex-column flex-lg-row ">
         <div class="order-address flex-fill my-1 my-lg-0 "
              *ngIf="order.Address as address">
             <app-order-address [address]="address"></app-order-address>
         </div>
 
-        <div class="order-price flex-fill  border-left text-right"
+        <div class="order-price flex-fill "
              *ngIf="order.Payment as payment">
             <app-order-price [payment]="payment"></app-order-price>
         </div>
     </div>
-    <div class="order-detail-status mt-2">
-        <app-order-status></app-order-status>
+    <div class="order-detail-status mt-2"
+         *ngIf="order.StatusList as statusList">
+        <app-order-status [statusList]="statusList">
+        </app-order-status>
     </div>
     <div class="order-detail-body">
 

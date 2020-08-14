@@ -4,7 +4,9 @@ export enum OrderStage {
     CONFIRMED = 'CONFIRMED',
     FAILED = 'FAILED',
     SHIPPED = 'SHIPPED',
-    DELIVERED = 'DELIVERED'
+    DELIVERED = 'DELIVERED',
+    RETURNED = 'RETURNED',
+    COMPLETE = 'COMPLETE'
 }
 
 

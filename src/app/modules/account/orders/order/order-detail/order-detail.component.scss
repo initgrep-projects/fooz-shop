@@ -9,5 +9,21 @@ div.app-order-detail {
         background-color: $bg-white;
         border-top: 1px solid #f0f0f0;
         box-shadow: 0 1px 10px 0 rgba(0, 0, 0, 0.1);
+
+        div.order-id {
+            h6 {
+                font-size: 0.8rem;
+                margin-bottom: 0;
+                span.label {
+                    text-transform: uppercase;
+                    letter-spacing: 0.045rem;
+                    font-weight: 600;
+                }
+                span.value {
+                    margin: 0 0.5rem;
+                    letter-spacing: 0.035rem;
+                }
+            }
+        }
     }
 }

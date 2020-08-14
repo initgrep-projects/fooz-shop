@@ -17,15 +17,14 @@ export class OrderResolver implements Resolve<boolean>{
     : boolean | Observable<boolean> | Promise<boolean> {
 
     const id = route.paramMap.get('id');
-    return this.orderService.selectedOrder$
+    return this.orderService.isSelectedOrderInLocalStore(id)
       .pipe(
-        tap(order => {
-          if (!order) {
-            this.orderService.loadSelectedOrder(id);
+        tap(isPresent => {
+          if (!isPresent) {
+            this.orderService.loadSelectedOrderFromRemote(id);
           }
         }),
-        take(1),
-        map(order => !!order)
+        take(1)
       );
   }
 }

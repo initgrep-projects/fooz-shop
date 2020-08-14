@@ -1,1 +1,21 @@
-<p>order-status works!</p>
+<div class="app-order-status">
+    <h6>order status</h6>
+    <ul class="progressbar">
+        <li class="step"
+            ngClass="{{confirmed ? 'complete-1': 'incomplete-1'}}">
+            <span class="badge">confirmed</span>
+        </li>
+        <li class="step "
+            ngClass="{{confirmed ? 'complete-2': 'incomplete-2'}}">
+            <span class="badge">shipped</span>
+        </li>
+        <li class="step"
+            ngClass="{{delivered ? 'complete-3': 'incomplete-2'}}">
+            <span class="badge">delivered</span>
+        </li>
+        <li class="step"
+            ngClass="{{complete ? 'complete-4': 'incomplete-2'}}">
+            <span class="badge">complete</span>
+        </li>
+    </ul>
+</div>

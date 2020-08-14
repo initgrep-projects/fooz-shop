@@ -35,11 +35,32 @@ div.app-order-price {
                 text-transform: capitalize;
                 letter-spacing: 0.025rem;
                 display: table-cell;
+                cursor: pointer;
+                transition: all 0.5s ease-in;
+                &:hover {
+                    background-color: var(--success);
+                    color: #f1f1f1 !important;
+                }
             }
 
             &.total {
                 border-top: 1px dotted #dee2e6;
             }
         }
+    }
+}
+
+.tool-tip-style {
+    font-family: $roboto-font-family;
+    div.arrow {
+        &::before {
+            border-bottom-color: var(--success);
+        }
+    }
+    div.tooltip-inner {
+        background-color: #fff;
+        color: var(--success);
+        border: 1px solid var(--success);
+        box-shadow: 2px 2px 2px var(--success);
     }
 }

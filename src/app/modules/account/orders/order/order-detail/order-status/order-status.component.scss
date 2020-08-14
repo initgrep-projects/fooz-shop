@@ -1,24 +1,46 @@
 @import "../../../../../../../variables.scss";
 
-@mixin complete-step($delay: 0s) {
+@mixin complete-step($delay: 0s, $color: var(--success)) {
+    .tool-tip-style {
+        font-family: $roboto-font-family;
+        div.arrow {
+            &::before {
+                border-bottom-color: $color;
+            }
+        }
+        div.tooltip-inner {
+            background-color: #fff;
+            color: $color;
+            border: 1px solid $color;
+            box-shadow: 2px 2px 2px $color;
+        }
+    }
+
     span {
         opacity: 1;
         animation: stepComplete;
         animation-duration: 1s;
         animation-delay: $delay;
         animation-fill-mode: both;
+        border: 1px solid $color;
+        color: $color;
+
+        &:hover {
+            color: #f1f1f1;
+            background: $color;
+        }
     }
     &::before {
-        background-color: var(--success);
-        border-color: var(--success);
+        background-color: $color;
+        border-color: $color;
         animation: stepComplete;
         animation-duration: 1s;
         animation-delay: $delay;
         animation-fill-mode: both;
     }
     + li:after {
-        background-color: var(--success);
-        border-color: var(--success);
+        background-color: $color;
+        border-color: $color;
         animation: stepProgress;
         animation-duration: 1s;
         animation-fill-mode: both;
@@ -53,6 +75,7 @@ div.app-order-status {
     position: relative;
     h6 {
         @include headerTitle();
+        margin-bottom: 2rem;
     }
     ul.progressbar {
         display: flex;
@@ -63,6 +86,7 @@ div.app-order-status {
             width: 25%;
             text-align: center;
             position: relative;
+            cursor: pointer;
 
             &::before {
                 content: "";
@@ -99,32 +123,41 @@ div.app-order-status {
                 text-transform: uppercase;
                 letter-spacing: 0.045rem;
                 opacity: 0;
+                transition: all 0.5s ease-in;
             }
 
             &.complete-1 {
-                @include complete-step(1s);
+                @include complete-step(0s);
             }
             &.complete-2 {
-                @include complete-step(2s);
+                @include complete-step(1s);
             }
             &.complete-3 {
-                @include complete-step(3s);
+                @include complete-step(2s);
             }
             &.complete-4 {
-                @include complete-step(4s);
+                @include complete-step(3s);
             }
 
             &.incomplete-1 {
-                @include incomplete-step(1s);
+                @include incomplete-step(0s);
             }
             &.incomplete-2 {
-                @include incomplete-step(2s);
+                @include incomplete-step(1s);
             }
             &.incomplete-3 {
-                @include incomplete-step(3s);
+                @include incomplete-step(2s);
             }
             &.incomplete-4 {
-                @include incomplete-step(4s);
+                @include incomplete-step(3s);
+            }
+
+            &.cancelled {
+                @include complete-step(1s, var(--red));
+            }
+
+            &.returned {
+                @include complete-step(3s, var(--indigo));
             }
         }
     }

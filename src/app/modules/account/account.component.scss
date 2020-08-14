@@ -1,7 +1,7 @@
 @import "../../../variables.scss";
 
 div.account-wrapper {
-    padding: 0 2%;
+    padding: 0 auto;
 
     @include lg {
         padding: 0 5%;

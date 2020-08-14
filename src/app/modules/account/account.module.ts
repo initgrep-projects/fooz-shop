@@ -12,7 +12,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { UserProfileComponent } from './profile/user-profile/user-profile.component';
 import { UserProfileEditComponent } from './profile/user-profile-edit/user-profile-edit.component';
 import { UserAddressEditComponent } from './addresses/user-address-edit/user-address-edit.component';
-import { NgbTypeaheadModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbTypeaheadModule, NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
 import { EffectsModule } from '@ngrx/effects';
 import { AccountEffects } from './store/account.effects';
 import { OrderComponent } from './orders/order/order.component';
@@ -21,6 +21,8 @@ import { UserPillComponent } from './user-pill/user-pill.component';
 import { OrderPriceComponent } from './orders/order/order-detail/order-price/order-price.component';
 import { OrderAddressComponent } from './orders/order/order-detail/order-address/order-address.component';
 import { OrderStatusComponent } from './orders/order/order-detail/order-status/order-status.component';
+import { OrderProductsComponent } from './orders/order/order-products/order-products.component';
+
 
 
 
@@ -40,6 +42,7 @@ import { OrderStatusComponent } from './orders/order/order-detail/order-status/o
     OrderPriceComponent,
     OrderAddressComponent,
     OrderStatusComponent,
+    OrderProductsComponent,
   ],
   imports: [
     CommonModule,
@@ -48,7 +51,8 @@ import { OrderStatusComponent } from './orders/order/order-detail/order-status/o
     SharedModule,
     ReactiveFormsModule,
     NgbTypeaheadModule,
-    EffectsModule.forFeature([AccountEffects])
+    EffectsModule.forFeature([AccountEffects]),
+    NgbTooltipModule
   ]
 })
 export class AccountModule { }

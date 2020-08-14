@@ -1,0 +1,45 @@
+div.app-order-product.media {
+    background-color: #fff;
+    border-top: 1px solid #f0f0f0;
+    box-shadow: 0 1px 10px 0 rgba(0, 0, 0, 0.1);
+    border-radius: 0.25rem;
+    div.media-body {
+        h6 {
+            // margin-top: 1rem;
+            font-size: 0.9rem;
+            letter-spacing: 0.045rem;
+            font-weight: 400;
+            text-transform: capitalize;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            &:hover {
+                font-weight: 600;
+            }
+        }
+        div.item-property,
+        div.item-order-stage {
+            span.label {
+                text-transform: uppercase;
+                letter-spacing: 0.045rem;
+                font-size: 0.8rem;
+                margin-right: 0.5rem;
+            }
+            span.value {
+                letter-spacing: 0.025rem;
+                font-size: 0.8rem;
+                font-weight: 600;
+                text-transform: uppercase;
+            }
+            span.badge {
+                text-transform: capitalize;
+                letter-spacing: 0.025rem;
+            }
+        }
+
+        div.item-order-stage {
+            span.label {
+                margin: 0 0.5rem;
+            }
+        }
+    }
+}

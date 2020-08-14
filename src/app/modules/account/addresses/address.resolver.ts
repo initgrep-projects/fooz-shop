@@ -19,18 +19,14 @@ export class AddressResolver implements Resolve<boolean>{
     : boolean | Observable<boolean> | Promise<boolean> {
 
     const id = route.paramMap.get('id');
-    // return this.addressService.getAddressById(id);
-    return this.addressService.selectedAddress$
+    return this.addressService.isSelectedAddressInLocalStore(id)
       .pipe(
-
-        tap(address => {
-          if (!address) {
+        tap(isPresent => {
+          if (!isPresent) {
             this.addressService.loadSelectedAddress(id);
           }
         }),
-        take(1),
-        map(address => !!address)
-      )
-
+        take(1)
+      );
   }
 }

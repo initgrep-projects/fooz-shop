@@ -1,9 +1,10 @@
 <div class="app-order-detail"
-     *ngIf="ods.selectedOrder$ | async  as order">
-    <div class="order-detail-header mb-2">
+     *ngIf="ods.selectedOrder$ | async  as order"
+     @fadeIn>
+    <div class="order-detail-header mb-2 py-4">
         <div class="order-id mb-2">
             <h6 class="order id">
-                <span class="label">order id:</span>
+                <span class="label">{{labels.orderId}}:</span>
                 <span class="value">{{order.OrderItem.Id}}</span>
             </h6>
         </div>
@@ -26,9 +27,16 @@
         </app-order-status>
     </div>
     <div class="order-detail-body">
-
+        <app-order-products [items]="order.Cart"
+                            [statusList]="order.StatusList"></app-order-products>
     </div>
-    <div class="order-detail-footer">
+    <div class="order-detail-footer d-flex flex-column flex-sm-row justify-content-between ">
+        <button class="btn  btn-danger  mb-2 mb-sm-0">
+            <span>{{labels.cancel}}</span>
+        </button>
+        <button class="btn  btn-dark">
+            <span>{{labels.invoice}}</span>
+        </button>
 
     </div>
 </div>

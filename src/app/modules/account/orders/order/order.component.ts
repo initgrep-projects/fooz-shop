@@ -14,20 +14,11 @@ import { throwError } from 'rxjs';
 export class OrderComponent implements OnInit {
   labels = orderLables;
   @Input() order: Order;
-  private finalStatus: OrderStatus;
+
 
   constructor(private router: Router, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
-  }
-
-  get FinalStatus() {
-    const length = this.order.StatusList.length;
-    return this.order.StatusList[length - 1];
-  }
-
-  formatDate(timeStamp: number) {
-    return new Date(timeStamp);
   }
 
   showDetails(id: string) {

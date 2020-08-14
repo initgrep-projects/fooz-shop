@@ -1,5 +1,6 @@
 <div class="app-orders"
-     *ngIf="ods.orders$ | async as orders">
+     *ngIf="ods.orders$ | async as orders"
+     @fadeIn>
 
     <div class="app-orders-header">
         <div class="card">
@@ -13,7 +14,7 @@
                    *ngFor="let order of orders"></app-order>
     </div>
 
-    <div class="app-orders-footer d-flex  justify-content-end ">
+    <div class="app-orders-footer d-flex flex-column flex-sm-row justify-content-sm-end">
         <button class="btn  btn-dark">
             <span>{{labels.showMore}}</span>
         </button>

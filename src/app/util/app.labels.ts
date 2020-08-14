@@ -127,6 +127,8 @@ export const cartLabels = {
 export const orderLables = {
     ordertitle: 'orders',
     showMore: 'show more',
+    invoice: 'download invoice',
+    cancel: 'cancel order',
     orderId: 'order id',
     viewDetails: 'view details',
     quantity: 'quantity',
@@ -138,7 +140,23 @@ export const orderLables = {
     arm: 'arm',
     hip: 'hipe',
     on: 'on',
-    price: 'price'
+    price: 'price',
+    type: 'type',
+    shippingAddress: 'shippingAddress',
+    phone: 'phone',
+    priceDetails: 'price details',
+    shipping: 'shipping',
+    tax: 'tax',
+    couponDiscount: 'coupon discount',
+    total: 'total',
+    orderStatus: 'order status',
+    confirmed: 'confirmed',
+    shipped: 'shipped',
+    delivered: 'delivered',
+    complete: 'complete',
+    returned: 'returned',
+    cancelled: 'cancelled'
+
 
 }
 

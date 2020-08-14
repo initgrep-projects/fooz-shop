@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Address } from 'src/app/models/address';
+import { orderLables } from 'src/app/util/app.labels';
 
 @Component({
   selector: 'app-order-address',
@@ -7,6 +8,7 @@ import { Address } from 'src/app/models/address';
   styleUrls: ['./order-address.component.scss']
 })
 export class OrderAddressComponent implements OnInit {
+  labels = orderLables;
   @Input() address: Address;
 
   constructor() { }

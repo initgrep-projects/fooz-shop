@@ -126,6 +126,20 @@ export class AddressService {
     });
   }
 
+  isSelectedAddressInLocalStore(addressId: string) {
+    return this.addresses$
+      .pipe(
+        map(addresses => addresses?.find(address => address.Id === addressId)),
+        map(address => {
+          if (!!address) {
+            this.addSelectedAddress(address);
+            return true;
+          }
+          return false;
+        })
+      );
+  }
+
 }
 
 

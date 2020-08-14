@@ -1,21 +1,72 @@
 <div class="app-order-status">
-    <h6>order status</h6>
+    <h6>{{labels.orderStatus}}</h6>
+
     <ul class="progressbar">
         <li class="step"
+            *ngIf="confirmed"
             ngClass="{{confirmed ? 'complete-1': 'incomplete-1'}}">
-            <span class="badge">confirmed</span>
+            <span class="badge"
+                  placement="bottom"
+                  [openDelay]="300"
+                  [closeDelay]="500"
+                  [tooltipClass]="'tool-tip-style'"
+                  [disableTooltip]="!confirmed"
+                  ngbTooltip="On: {{confirmedDate | date:'mediumDate'}}">{{labels.confirmed}}</span>
         </li>
         <li class="step "
-            ngClass="{{confirmed ? 'complete-2': 'incomplete-2'}}">
-            <span class="badge">shipped</span>
+            *ngIf="!cancelled"
+            ngClass="{{shipped ? 'complete-2': 'incomplete-2'}}">
+            <span class="badge"
+                  placement="bottom"
+                  [openDelay]="300"
+                  [closeDelay]="500"
+                  [tooltipClass]="'tool-tip-style'"
+                  [disableTooltip]="!shipped"
+                  ngbTooltip="On: {{shippedDate | date:'mediumDate'}}">{{labels.shipped}}</span>
         </li>
         <li class="step"
+            *ngIf="!cancelled"
             ngClass="{{delivered ? 'complete-3': 'incomplete-2'}}">
-            <span class="badge">delivered</span>
+            <span class="badge"
+                  placement="bottom"
+                  [openDelay]="300"
+                  [closeDelay]="500"
+                  [tooltipClass]="'tool-tip-style'"
+                  [disableTooltip]="!delivered"
+                  ngbTooltip="On: {{deliveredDate | date:'mediumDate'}}">{{labels.delivered}}</span>
         </li>
         <li class="step"
+            *ngIf="!cancelled && !returned "
             ngClass="{{complete ? 'complete-4': 'incomplete-2'}}">
-            <span class="badge">complete</span>
+            <span class="badge"
+                  placement="bottom"
+                  [openDelay]="300"
+                  [closeDelay]="500"
+                  [tooltipClass]="'tool-tip-style'"
+                  [disableTooltip]="!complete"
+                  ngbTooltip="On: {{completedDate | date:'mediumDate'}}">{{labels.complete}}</span>
+        </li>
+        <li class="step"
+            *ngIf="!cancelled && returned"
+            ngClass="{{returned ? 'returned': 'incomplete-2'}}">
+            <span class="badge"
+                  placement="bottom"
+                  [openDelay]="300"
+                  [closeDelay]="500"
+                  [tooltipClass]="'tool-tip-style'"
+                  [disableTooltip]="!returned"
+                  ngbTooltip="On: {{returnedDate | date:'mediumDate'}}">{{labels.returned}}</span>
+        </li>
+        <li class="step cancelled"
+            *ngIf="cancelled"
+            ngClass="{{cancelled ? 'cancelled-2': 'incomplete-2'}}">
+            <span class="badge"
+                  placement="bottom"
+                  [openDelay]="300"
+                  [closeDelay]="500"
+                  [tooltipClass]="'tool-tip-style'"
+                  [disableTooltip]="!cancelled"
+                  ngbTooltip="On: {{cancelledDate | date:'mediumDate'}}">{{labels.cancelled}}</span>
         </li>
     </ul>
 </div>

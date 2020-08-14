@@ -41,7 +41,11 @@ export class OrderService {
           }
           return false;
         })
-      )
+      );
+  }
+
+  formatDate(timeStamp: number) {
+    return new Date(timeStamp);
   }
 
 

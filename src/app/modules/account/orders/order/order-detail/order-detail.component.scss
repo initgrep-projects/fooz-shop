@@ -26,4 +26,24 @@ div.app-order-detail {
             }
         }
     }
+    div.order-detail-footer {
+        padding: 1.25rem;
+        border-radius: 0.25rem;
+        border-bottom: 1px solid #f0f0f0;
+        box-shadow: 0 -1px 10px 0 rgba(0, 0, 0, 0.1);
+        position: sticky;
+        bottom: 0;
+        background-color: #fff;
+        z-index: 3;
+        button {
+            padding: 1rem 1rem;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.045rem;
+
+            @include md {
+                padding: 1rem 3rem;
+            }
+        }
+    }
 }

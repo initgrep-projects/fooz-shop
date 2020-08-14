@@ -2,7 +2,7 @@ import { generateGuid } from '../util/app.lib';
 
 export enum OrderStage {
     CONFIRMED = 'CONFIRMED',
-    FAILED = 'FAILED',
+    CANCELLED = 'CANCLLED',
     SHIPPED = 'SHIPPED',
     DELIVERED = 'DELIVERED',
     RETURNED = 'RETURNED',
@@ -35,8 +35,8 @@ export class OrderStatus {
         return new OrderStatus(generateGuid(), orderId, OrderStage.CONFIRMED, Date.now(), shippingId);
     }
 
-    static failed(orderId: string, shippingId?: string) {
-        return new OrderStatus(generateGuid(), orderId, OrderStage.FAILED, Date.now(), shippingId);
+    static cancelled(orderId: string, shippingId?: string) {
+        return new OrderStatus(generateGuid(), orderId, OrderStage.CANCELLED, Date.now(), shippingId);
     }
 
     static shipped(orderId: string, shippingId?: string) {
@@ -45,6 +45,13 @@ export class OrderStatus {
 
     static delivered(orderId: string, shippingId?: string) {
         return new OrderStatus(generateGuid(), orderId, OrderStage.DELIVERED, Date.now(), shippingId);
+    }
+
+    static completed(orderId: string, shippingId?: string) {
+        return new OrderStatus(generateGuid(), orderId, OrderStage.COMPLETE, Date.now(), shippingId);
+    }
+    static returned(orderId: string, shippingId?: string) {
+        return new OrderStatus(generateGuid(), orderId, OrderStage.RETURNED, Date.now(), shippingId);
     }
 
 }

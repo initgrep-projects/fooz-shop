@@ -47,7 +47,8 @@ export const addCountriesAction = createAction(
 );
 
 export const loadOrdersAction = createAction(
-    LOAD_ORDERS_ACTION
+    LOAD_ORDERS_ACTION,
+    props<{ paginate: boolean }>()
 );
 export const addOrdersAction = createAction(
     ADD_ORDERS_ACTION,

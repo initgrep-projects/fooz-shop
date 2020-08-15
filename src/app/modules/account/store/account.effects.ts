@@ -49,12 +49,16 @@ export class AccountEffects {
     loadOrders$ = createEffect(() =>
         this.action$.pipe(
             ofType(loadOrdersAction),
-            mergeMap(() =>
+            mergeMap((action) =>
                 this.auth.userFromStore$
                     .pipe(
-                        switchMap(user => !!user ? this.dbOrders.fetchOrders(user.UID) : of(null)),
+                        tap(user => console.log('loadOrders effect called ', user.UID, action.paginate)),
+                        switchMap(user => !!user ? this.dbOrders.fetchOrders(user.UID, action.paginate) : of(null)),
                         map(ad => addOrdersAction({ payload: ad })),
-                        catchError(() => of(loadFailureInAccountAction({ error: this.err.dataFetchError() })))
+                        catchError((err) => {
+                            console.error('error happened in laodOrders => ', err);
+                            return of(loadFailureInAccountAction({ error: err }));
+                        })
                     ))
         ));
 

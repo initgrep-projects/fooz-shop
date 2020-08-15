@@ -4,6 +4,10 @@ import { PaymentType } from 'src/app/models/payment.model';
 import { cartLabels } from 'src/app/util/app.labels';
 import { CheckoutService } from '../checkout.service';
 import { PaymentService } from './payment.service';
+import { ToastService } from '../../shared/toasts/toast.service';
+import { DialogService } from '../../shared/dialog/dialog.service';
+import { Router } from '@angular/router';
+import { RouteManagementService } from '../../main/route-management.service';
 
 @Component({
   selector: 'app-payment',
@@ -16,7 +20,10 @@ export class PaymentComponent implements OnInit {
   type = PaymentType.CREDIT_CARD;
 
   constructor(
-    private paymentService: PaymentService
+    private paymentService: PaymentService,
+    private toaster: ToastService,
+    private dialoger: DialogService,
+    private rmgt: RouteManagementService
   ) { }
 
   ngOnInit(): void { }
@@ -25,8 +32,15 @@ export class PaymentComponent implements OnInit {
     this.paymentProgress = true;
     this.paymentService.pay(this.type)
       .subscribe(
-        order => console.log('payment done, order created', order),
-        (err) => console.error('payment error ', err),
+        order => {
+          console.log('payment done, order created', order);
+          this.toaster.success('Order placed successfully');
+          this.rmgt.routeToOrders();
+        },
+        (err) => {
+          console.error('payment error ', err);
+          this.dialoger.alert('Order was not successfull');
+        },
         () => this.paymentProgress = false
       );
   }

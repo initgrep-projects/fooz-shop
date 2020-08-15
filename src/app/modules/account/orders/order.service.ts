@@ -19,7 +19,12 @@ export class OrderService {
   }
 
   loadOrders() {
-    this.store.dispatch(loadOrdersAction());
+    this.store.dispatch(loadOrdersAction({ paginate: false }));
+  }
+
+  loadPaginatedOrders() {
+    console.log('showmore orders');
+    this.store.dispatch(loadOrdersAction({ paginate: true }));
   }
 
   loadSelectedOrderFromRemote(orderId: string) {

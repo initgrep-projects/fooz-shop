@@ -54,7 +54,7 @@ const theReducer = createReducer(
     })),
     on(addOrdersAction, (currentState, { payload }) => ({
         ...currentState,
-        orders: getSortedOrders(!!payload ? [...payload] : null)
+        orders: getSortedOrders(!!payload ? [...(!!currentState.orders ? currentState.orders : []), ...payload] : null)
     })),
     on(addSelectedOrderAction, (currentState, { payload }) => ({
         ...currentState,

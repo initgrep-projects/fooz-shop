@@ -52,13 +52,25 @@ export class DialogService {
     }).pipe(take(1));
   }
 
-  confirmUpdate(): Observable<boolean>{
+  confirmUpdate(): Observable<boolean> {
     return this.open({
       title: UPDATE_ALERT_TITLE,
       message: DUPLICATE_ALERT_MSG,
       controls: {
         confirm: {
           text: ADD_BUTTON
+        }
+      }
+    }).pipe(take(1));
+  }
+
+  alert(msg: string): Observable<boolean> {
+    return this.open({
+      title: ALERT_TITLE,
+      message: msg,
+      controls: {
+        confirm: {
+          text: OK_BUTTON
         }
       }
     }).pipe(take(1));

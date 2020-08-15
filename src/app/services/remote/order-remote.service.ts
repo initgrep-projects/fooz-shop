@@ -16,6 +16,8 @@ import { AddressRemoteService } from './address-remote.service';
   providedIn: 'root'
 })
 export class OrderRemoteService {
+  private lastOrderItem: OrderItem;
+  private pageSize = 2;
 
   private orderItemCollection: AngularFirestoreCollection<OrderItem>;
   private orderStatusCollection: AngularFirestoreCollection<OrderStatus>;
@@ -64,12 +66,35 @@ export class OrderRemoteService {
     });
   }
 
-  fetchOrders(userId: string) {
+  private fetchOrderItem(userId: String) {
+    console.log('fetchOrderItem called ', userId);
     return this.db.collection(ORDER_ITEM_COLLECTION, ref =>
       ref
         .where('userId', '==', userId)
+        .orderBy('createdOn', 'desc')
+        .limit(this.pageSize)
     ).get()
+  }
+  private fetchPaginatedOrderItem(userId: String) {
+    console.log('fetchPaginatedOrderItem called ', userId);
+    return this.db.collection(ORDER_ITEM_COLLECTION, ref =>
+      ref
+        .where('userId', '==', userId)
+        .orderBy('createdOn', 'desc')
+        .startAfter(this.lastOrderItem.CreatedDate)
+        .limit(this.pageSize)
+    ).get()
+  }
+
+  fetchOrders(userId: string, paginate: boolean = false) {
+    console.log('fetchorders called ', userId, paginate);
+    let orderItems$ = paginate ? this.fetchPaginatedOrderItem(userId) : this.fetchOrderItem(userId);
+    console.log('after orderItems tab');
+
+    return orderItems$
       .pipe(
+        take(1),
+        tap(orderItems => console.log('orderItems fetched => ', orderItems)),
         map(qs => {
           const orders: Order[] = [];
           if (!qs.empty) {
@@ -79,9 +104,9 @@ export class OrderRemoteService {
               orders.push(order);
             });
           }
+          this.lastOrderItem = orders[orders.length - 1].OrderItem;
           return orders;
         }),
-
         switchMap(orders => {
           const orderCarts = combineLatest(orders.map(order => this.cartRemoteService.fetchCartByIds(userId, order.OrderItem.CartItemIds)));
           const orderPayments = combineLatest(orders.map(order => this.fetchPaymentByOrderId(order.OrderItem.Id)));
@@ -100,6 +125,7 @@ export class OrderRemoteService {
           return orders;
         }),
         tap(orders => console.log('orders fetched', orders)),
+        take(1)
       );
   }
 
@@ -156,7 +182,8 @@ export class OrderRemoteService {
             payment = this.transformer.transformPayment(doc.data());
           });
           return payment;
-        })
+        }),
+        take(1)
       );
   }
 
@@ -172,7 +199,8 @@ export class OrderRemoteService {
             status.push(this.transformer.transformOrderStatus(doc.data()));
           })
           return status;
-        })
+        }),
+        take(1)
       );
   }
 

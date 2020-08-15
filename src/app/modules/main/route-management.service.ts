@@ -56,6 +56,10 @@ export class RouteManagementService {
   routeToProfile() {
     this.router.navigate(['/account/profile/edit']);
   }
+
+  routeToOrders() {
+    this.router.navigate(['/account/orders']);
+  }
   routeToAuth() {
     this.router.navigate([{ outlets: { '@secure': ['auth'] } }], { skipLocationChange: true });
   }

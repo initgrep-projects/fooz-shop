@@ -89,7 +89,8 @@ export class CartRemoteService {
             });
           }
           return items;
-        })
+        }),
+        take(1)
       );
   }
 

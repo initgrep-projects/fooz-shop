@@ -3,9 +3,11 @@
 div.card {
     font-family: $roboto-font-family;
     background-color: #fff;
-    box-shadow: 1px 1px 2px 0 rgba(0, 0, 0, 0.1);
-    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
-    &:hover{
+    border: none;
+    border-top: 1px solid #f0f0f0;
+    box-shadow: 0 1px 10px 0 rgba(0, 0, 0, 0.1);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    &:hover {
         box-shadow: -1px 1px 2px 0 rgba(0, 0, 0, 0.1);
     }
     div.card-body {
@@ -21,7 +23,7 @@ div.card {
                     h6 {
                         letter-spacing: 0.025rem;
                         text-transform: capitalize;
-                       
+
                         &.code {
                             font-size: 0.8rem;
                             letter-spacing: 0.025rem;
@@ -36,8 +38,8 @@ div.card {
 
                     &:hover {
                         h6 {
-                           font-weight: 600;
-                           transition: all .1s ease-in;
+                            font-weight: 600;
+                            transition: all 0.1s ease-in;
                         }
                     }
                 }
@@ -105,7 +107,7 @@ div.card {
                             font-weight: 600;
                             width: 100%;
                             display: block;
-                            padding: .5rem 1rem;
+                            padding: 0.5rem 1rem;
                             @include md {
                                 font-size: 0.6rem;
                                 display: inline-block;

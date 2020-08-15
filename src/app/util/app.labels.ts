@@ -155,7 +155,9 @@ export const orderLables = {
     delivered: 'delivered',
     complete: 'complete',
     returned: 'returned',
-    cancelled: 'cancelled'
+    cancelled: 'cancelled',
+    emptyAlert: 'You have not placed any orders yet',
+    shopping: 'go shopping'
 
 
 }

@@ -1,5 +1,5 @@
 <div class="app-order-detail"
-     *ngIf="ods.selectedOrder$ | async  as order"
+     *ngIf="selectedOrder as order"
      @fadeIn>
     <div class="order-detail-header mb-2 py-4">
         <div class="order-id mb-2">
@@ -23,20 +23,22 @@
     </div>
     <div class="order-detail-status mt-2"
          *ngIf="order.StatusList as statusList">
-        <app-order-status [statusList]="statusList">
+        <app-order-status [stage]="statusInput">
         </app-order-status>
     </div>
     <div class="order-detail-body">
         <app-order-products [items]="order.Cart"
                             [statusList]="order.StatusList"></app-order-products>
     </div>
-    <div class="order-detail-footer d-flex flex-column flex-sm-row justify-content-between ">
-        <button class="btn  btn-danger  mb-2 mb-sm-0">
+    <div class="order-detail-footer d-flex flex-column flex-sm-row justify-content-end"
+         *ngIf="(!statusInput.shipped.done && !statusInput.cancelled.done) || statusInput.delivered.done || statusInput.complete.done ">
+        <button class="btn btn-danger  mb-2 mb-sm-0"
+                *ngIf="!statusInput.shipped.done && !statusInput.cancelled.done">
             <span>{{labels.cancel}}</span>
         </button>
-        <button class="btn  btn-dark">
+        <button class="btn  btn-dark"
+                *ngIf="statusInput.delivered.done || statusInput.complete.done">
             <span>{{labels.invoice}}</span>
         </button>
-
     </div>
 </div>

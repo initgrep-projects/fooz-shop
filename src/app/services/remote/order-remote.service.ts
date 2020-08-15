@@ -11,6 +11,7 @@ import { CART_COLLECTION, ORDER_ITEM_COLLECTION, ORDER_STATUS_COLLECTION, PAYMEN
 import { ObjectTransformerService } from '../object-transformer.service';
 import { CartRemoteService } from './cart-remote.service';
 import { AddressRemoteService } from './address-remote.service';
+import { isEmpty } from 'lodash';
 
 @Injectable({
   providedIn: 'root'
@@ -87,14 +88,10 @@ export class OrderRemoteService {
   }
 
   fetchOrders(userId: string, paginate: boolean = false) {
-    console.log('fetchorders called ', userId, paginate);
     let orderItems$ = paginate ? this.fetchPaginatedOrderItem(userId) : this.fetchOrderItem(userId);
-    console.log('after orderItems tab');
-
     return orderItems$
       .pipe(
         take(1),
-        tap(orderItems => console.log('orderItems fetched => ', orderItems)),
         map(qs => {
           const orders: Order[] = [];
           if (!qs.empty) {
@@ -104,17 +101,26 @@ export class OrderRemoteService {
               orders.push(order);
             });
           }
-          this.lastOrderItem = orders[orders.length - 1].OrderItem;
+          this.lastOrderItem = !isEmpty(orders) ? orders[orders.length - 1].OrderItem : null;
           return orders;
         }),
         switchMap(orders => {
-          const orderCarts = combineLatest(orders.map(order => this.cartRemoteService.fetchCartByIds(userId, order.OrderItem.CartItemIds)));
-          const orderPayments = combineLatest(orders.map(order => this.fetchPaymentByOrderId(order.OrderItem.Id)));
-          const orderStatusList = combineLatest(orders.map(order => this.fetchOrderStatusByOrderId(order.OrderItem.Id)));
-          const orderAdddresses = combineLatest(orders.map(order => this.addressremoteService.fetchAddressForUserById(order.OrderItem.AddressId, userId)));
-          return zip(of(orders), orderCarts, orderPayments, orderAdddresses, orderStatusList);
+          console.log('orders in switchMap ', orders);
+          if (!isEmpty(orders)) {
+            const orderCarts = combineLatest(orders.map(order => this.cartRemoteService.fetchCartByIds(userId, order.OrderItem.CartItemIds)));
+            const orderPayments = combineLatest(orders.map(order => this.fetchPaymentByOrderId(order.OrderItem.Id)));
+            const orderStatusList = combineLatest(orders.map(order => this.fetchOrderStatusByOrderId(order.OrderItem.Id)));
+            const orderAdddresses = combineLatest(orders.map(order => this.addressremoteService.fetchAddressForUserById(order.OrderItem.AddressId, userId)));
+            return zip(of(orders), orderCarts, orderPayments, orderAdddresses, orderStatusList);
+          } else {
+
+            return zip(of([]), of([]), of([]), of([]), of([]));
+          }
+
         }),
         map(([orders, orderCarts, orderPayments, orderAddresses, orderStatusList]) => {
+
+          console.log('order in map => ', orders, orderCarts, orderPayments, orderAddresses, orderStatusList);
           orders.forEach((order, index) => {
             order.Cart = orderCarts[index];
             order.Payment = orderPayments[index];

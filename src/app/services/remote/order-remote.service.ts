@@ -11,6 +11,7 @@ import { CART_COLLECTION, ORDER_ITEM_COLLECTION, ORDER_STATUS_COLLECTION, PAYMEN
 import { ObjectTransformerService } from '../object-transformer.service';
 import { CartRemoteService } from './cart-remote.service';
 import { AddressRemoteService } from './address-remote.service';
+import { isEmpty } from 'lodash';
 
 @Injectable({
   providedIn: 'root'
@@ -94,7 +95,6 @@ export class OrderRemoteService {
     return orderItems$
       .pipe(
         take(1),
-        tap(orderItems => console.log('orderItems fetched => ', orderItems)),
         map(qs => {
           const orders: Order[] = [];
           if (!qs.empty) {
@@ -104,7 +104,9 @@ export class OrderRemoteService {
               orders.push(order);
             });
           }
-          this.lastOrderItem = orders[orders.length - 1].OrderItem;
+          console.log('orders before ', orders);
+          this.lastOrderItem = !isEmpty(orders) ? orders[orders.length - 1].OrderItem : null;
+          console.log('last order item before ', this.lastOrderItem);
           return orders;
         }),
         switchMap(orders => {

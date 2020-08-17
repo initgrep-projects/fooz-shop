@@ -4,7 +4,7 @@
          'bg-danger-light':config.type ===type.DANGER,
          'bg-warning-light':config.type === type.WARNING 
         }">
-    <div class="d-flex justify-content-between align-items-center">
+    <div class="d-flex justify-content-between align-items-center flex-column flex-lg-row">
         <div class="left">
             <h6>{{config.title}}</h6>
             <ul>
@@ -16,8 +16,7 @@
         <div class="right"
              *ngIf="config.control">
             <button class="btn btn-sm btn-danger"
-            (click) ="controlClicked()"
-            >
+                    (click)="controlClicked()">
                 <fa-icon icon="{{config.control.icon}}"></fa-icon>
                 <span>{{config.control.title}}</span>
             </button>

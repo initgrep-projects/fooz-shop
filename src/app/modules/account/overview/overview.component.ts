@@ -13,22 +13,16 @@ import { User } from 'src/app/models/user';
     fadeIn
   ]
 })
-export class OverviewComponent implements OnInit, OnDestroy {
-  private subs = new SubSink();
-  authUser: User;
+export class OverviewComponent implements OnInit {
+
   constructor(
-    public addressService: AddressService,
-    private authService: AuthService
+    public authService: AuthService
   ) { }
 
 
 
   ngOnInit(): void {
-    this.subs.sink = this.authService.userFromStore$.subscribe(user => this.authUser = user);
   }
 
-  ngOnDestroy(): void {
-    this.subs.unsubscribe();
-  }
 
 }

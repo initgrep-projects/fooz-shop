@@ -17,7 +17,7 @@ export class OrderDetailComponent implements OnInit, OnDestroy {
   private subs = new SubSink();
   labels = orderLables;
   selectedOrder: Order;
-
+  cancellProgress = false;
 
 
   statusInput: OrderStatusInput = {
@@ -36,12 +36,7 @@ export class OrderDetailComponent implements OnInit, OnDestroy {
       this.ods.selectedOrder$.subscribe(ord => {
         if (!!ord) {
           this.selectedOrder = cloneDeep(ord);
-          this.evaluateStatus([...ord.StatusList,
-          OrderStatus.shipped('283956DD-AEEF-795F-87F6-EA20D3C93113'),
-          OrderStatus.delivered('283956DD-AEEF-795F-87F6-EA20D3C93113'),
-          OrderStatus.completed('283956DD-AEEF-795F-87F6-EA20D3C93113'),
-
-          ]);
+          this.evaluateStatus([...ord.StatusList]);
         }
       });
   }
@@ -79,7 +74,17 @@ export class OrderDetailComponent implements OnInit, OnDestroy {
 
     });
     console.log("inputstatus => ", this.statusInput);
+  }
 
+  cancelOrder() {
+    this.cancellProgress = true;
+    this.subs.sink =
+      this.ods.cancelOrder(this.selectedOrder.OrderItem.Id)
+        .subscribe(
+          ok => this.cancellProgress = false,
+          (err) => { },
+          () => this.cancellProgress = false
+        );
   }
 
   ngOnDestroy() {

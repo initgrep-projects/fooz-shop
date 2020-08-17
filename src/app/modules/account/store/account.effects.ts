@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { of } from 'rxjs';
-import { catchError, map, mergeMap, switchMap, tap } from 'rxjs/operators';
+import { of, zip, Observable } from 'rxjs';
+import { catchError, map, mergeMap, switchMap, tap, withLatestFrom } from 'rxjs/operators';
 import { AppMessageService } from 'src/app/services/app-error.service';
 import { GeoAddressService } from 'src/app/services/geo-address.service';
 import { AddressRemoteService } from 'src/app/services/remote/address-remote.service';
 import { OrderRemoteService } from 'src/app/services/remote/order-remote.service';
 import { AuthService } from '../../auth/auth.service';
-import { addAddressesAction, addCountriesAction, addOrdersAction, addSelectedAddressAction, addSelectedOrderAction, loadAddressesAction, loadCountriesAction, loadFailureInAccountAction, loadOrdersAction, loadSelectedAddressAction, loadSelectedOrderAction } from './account.actions';
+import { addAddressesAction, addCountriesAction, addOrdersAction, addSelectedAddressAction, addSelectedOrderAction, loadAddressesAction, loadCountriesAction, loadFailureInAccountAction, loadOrdersAction, loadSelectedAddressAction, loadSelectedOrderAction, appendOrdersAction } from './account.actions';
+import { Order } from 'src/app/models/order.modal';
 
 
 @Injectable()
@@ -53,8 +54,14 @@ export class AccountEffects {
                 this.auth.userFromStore$
                     .pipe(
                         tap(user => console.log('loadOrders effect called ', user.UID, action.paginate)),
-                        switchMap(user => !!user ? this.dbOrders.fetchOrders(user.UID, action.paginate) : of(null)),
-                        map(ad => addOrdersAction({ payload: ad })),
+                        switchMap(user => {
+                            const order$: Observable<Order[]> = !!user ? this.dbOrders.fetchOrders(user.UID, action.paginate) : of(null);
+                            return zip(order$, of(action));
+                        }),
+                        map(([orders, action]) => {
+                            console.log('orders fetch in effects ', orders);
+                            return !action.paginate ? addOrdersAction({ payload: orders }) : appendOrdersAction({ payload: orders });
+                        }),
                         catchError((err) => {
                             console.error('error happened in laodOrders => ', err);
                             return of(loadFailureInAccountAction({ error: err }));

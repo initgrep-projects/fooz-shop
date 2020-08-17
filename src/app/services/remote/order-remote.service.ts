@@ -74,8 +74,9 @@ export class OrderRemoteService {
         .where('userId', '==', userId)
         .orderBy('createdOn', 'desc')
         .limit(this.pageSize)
-    ).get()
+    ).get();
   }
+
   private fetchPaginatedOrderItem(userId: String) {
     console.log('fetchPaginatedOrderItem called ', userId);
     return this.db.collection(ORDER_ITEM_COLLECTION, ref =>
@@ -84,7 +85,7 @@ export class OrderRemoteService {
         .orderBy('createdOn', 'desc')
         .startAfter(this.lastOrderItem.CreatedDate)
         .limit(this.pageSize)
-    ).get()
+    ).get();
   }
 
   fetchOrders(userId: string, paginate: boolean = false) {
@@ -101,21 +102,17 @@ export class OrderRemoteService {
               orders.push(order);
             });
           }
-
-          console.log('orders before ', orders);
           this.lastOrderItem = !isEmpty(orders) ? orders[orders.length - 1].OrderItem : null;
-          console.log('last order item before ', this.lastOrderItem);
-
           return orders;
         }),
         switchMap(orders => {
-          console.log('orders in switchMap ', orders);
           if (!isEmpty(orders)) {
             const orderCarts = combineLatest(orders.map(order => this.cartRemoteService.fetchCartByIds(userId, order.OrderItem.CartItemIds)));
             const orderPayments = combineLatest(orders.map(order => this.fetchPaymentByOrderId(order.OrderItem.Id)));
             const orderStatusList = combineLatest(orders.map(order => this.fetchOrderStatusByOrderId(order.OrderItem.Id)));
             const orderAdddresses = combineLatest(orders.map(order => this.addressremoteService.fetchAddressForUserById(order.OrderItem.AddressId, userId)));
             return zip(of(orders), orderCarts, orderPayments, orderAdddresses, orderStatusList);
+
           } else {
 
             return zip(of([]), of([]), of([]), of([]), of([]));
@@ -123,8 +120,7 @@ export class OrderRemoteService {
 
         }),
         map(([orders, orderCarts, orderPayments, orderAddresses, orderStatusList]) => {
-
-          console.log('order in map => ', orders, orderCarts, orderPayments, orderAddresses, orderStatusList);
+          // console.log('order in map => ', orders, orderCarts, orderPayments, orderAddresses, orderStatusList);
           orders.forEach((order, index) => {
             order.Cart = orderCarts[index];
             order.Payment = orderPayments[index];
@@ -134,7 +130,7 @@ export class OrderRemoteService {
 
           return orders;
         }),
-        tap(orders => console.log('orders fetched', orders)),
+        // tap(orders => console.log('orders fetched', orders)),
         take(1)
       );
   }
@@ -150,12 +146,9 @@ export class OrderRemoteService {
       .pipe(
         map(qs => {
           let orderItem: OrderItem;
-          console.log('beffore returning order ', orderItem);
           qs.forEach(doc => {
             orderItem = this.transformer.transformOrderItem(doc.data())
           });
-
-          console.log('after returning order ', orderItem);
           return new Order(orderItem);
         }),
         switchMap(order => {
@@ -168,14 +161,14 @@ export class OrderRemoteService {
         }),
         take(1),
         map(([order, cart, payment, address, statusList]) => {
-          console.log('afterSwitchMap ', [order, cart, payment, statusList]);
+          // console.log('afterSwitchMap ', [order, cart, payment, statusList]);
           order.Cart = cart;
           order.Payment = payment;
           order.StatusList = statusList;
           order.Address = address;
           return order;
         }),
-        tap(order => console.log('selectedOrder fetched ', order))
+        // tap(order => console.log('selectedOrder fetched ', order))
       );
   }
 
@@ -200,6 +193,7 @@ export class OrderRemoteService {
   fetchOrderStatusByOrderId(orderId: string) {
     return this.db.collection(ORDER_STATUS_COLLECTION, ref =>
       ref.where('orderId', '==', orderId)
+        .orderBy('createdOn', 'asc')
     )
       .get()
       .pipe(

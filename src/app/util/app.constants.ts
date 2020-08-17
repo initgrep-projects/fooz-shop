@@ -88,5 +88,6 @@ export const ADD_COUNTRIES_ACTION = '[account] add countries';
 export const LOAD_ORDERS_ACTION = '[account] load orders';
 export const LOAD_SELECTED_ORDER_ACTION = '[account] load selected order';
 export const ADD_ORDERS_ACTION = '[account] add orders';
+export const APPEND_ORDERS_ACTION = '[account] append orders';
 export const ADD_SELECTED_ORDER_ACTION = '[account] add selected orders';
 export const LOAD_FAILURE_IN_ACCOUNT_ACTION = '[account] load failure';

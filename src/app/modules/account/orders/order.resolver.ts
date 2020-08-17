@@ -17,7 +17,7 @@ export class OrderResolver implements Resolve<boolean>{
     : boolean | Observable<boolean> | Promise<boolean> {
 
     const id = route.paramMap.get('id');
-    return this.orderService.isSelectedOrderInLocalStore(id)
+    return this.orderService.addSelectedOrderFromLocalStore(id)
       .pipe(
         tap(isPresent => {
           if (!isPresent) {

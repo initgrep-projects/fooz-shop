@@ -1,10 +1,11 @@
-<div class="app-order mt-5">
-    <div class="app-order-header d-flex  justify-content-between ">
+<div class="app-order mt-5"
+     @fadeIn>
+    <div class="app-order-header d-flex flex-column flex-sm-row justify-content-between ">
         <h6 class="order-title pt-2">
             <label for="order-id">{{labels.orderId}}:</label>
             <span id="order-id">{{order.OrderItem.Id}}</span>
         </h6>
-        <button class="btn btn-sm btn-light"
+        <button class="btn btn-sm btn-light mt-2 mt-sm-0"
                 (click)="showDetails(order.OrderItem.Id)">
             <span>{{labels.viewDetails}}</span>
             <fa-icon icon="angle-double-right"></fa-icon>

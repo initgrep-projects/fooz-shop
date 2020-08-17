@@ -1,12 +1,10 @@
 @import "../../../../../../../variables.scss";
 div.app-order-price {
     font-family: $roboto-font-family;
-    border-top: 2px dotted #dee2e6;
-    padding: 1rem 0;
+    // padding: 1rem 0;
     @include lg {
-        border-left: 2px dotted #dee2e6;
         border-top: none;
-        padding: 0 1rem;
+        // padding: 0 1rem;
     }
     h6.title {
         @include headerTitle();

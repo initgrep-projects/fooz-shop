@@ -3,16 +3,16 @@ import { combineLatest, Observable, of } from 'rxjs';
 import { map, switchMap, take, tap } from 'rxjs/operators';
 import { Currency } from 'src/app/models/currency';
 import { OrderStatus } from 'src/app/models/order-status.model';
-import { Order, OrderItem, OrderSplitCharges, } from 'src/app/models/order.modal';
+import { Order, OrderItem, OrderSplitCharges } from 'src/app/models/order.modal';
 import { Payment, PaymentType } from 'src/app/models/payment.model';
 import { generateGuid } from 'src/app/util/app.lib';
+import { AddressService } from '../account/addresses/address.service';
+import { OrderService } from '../account/orders/order.service';
+import { AuthService } from '../auth/auth.service';
 import { CartService } from '../cart/cart.service';
+import { CouponService } from './coupon.service';
 import { ShippingService } from './shipping.service';
 import { TaxService } from './tax.service';
-import { AuthService } from '../auth/auth.service';
-import { AddressService } from '../account/addresses/address.service';
-import { OrderRemoteService } from 'src/app/services/remote/order-remote.service';
-import { CouponService } from './coupon.service';
 
 
 @Injectable({
@@ -27,7 +27,7 @@ export class CheckoutService {
     private shippingService: ShippingService,
     private taxService: TaxService,
     private couponService: CouponService,
-    private orderRemoteService: OrderRemoteService
+    private orderService: OrderService
   ) { }
 
 
@@ -37,12 +37,12 @@ export class CheckoutService {
       .pipe(
         switchMap(([user, cartIds, selectedAddress, orderCharges]) => {
           const order = new OrderItem(generateGuid(), user.UID, cartIds, selectedAddress.Id);
-          const status = OrderStatus.confirmed(order.Id);
+          const status = OrderStatus.confirm(order.Id);
           const payment = Payment.create(paymentType, order.Id, orderCharges.itemPrice, orderCharges.shipping, orderCharges.tax, orderCharges.coupon);
           return of(new Order(order, payment, [status]));
         }),
         tap(order => console.log('order => ', order)),
-        switchMap(order => this.orderRemoteService.saveOrder(order)),
+        switchMap(order => this.orderService.saveOrder(order)),
         tap(ok => {
           if (ok) {
             this.cartService.loadAllCartItems();

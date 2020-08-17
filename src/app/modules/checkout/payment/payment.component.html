@@ -7,28 +7,32 @@
             </div>
         </div>
     </div>
-    <form action="">
-        <div class="app-payment-body">
-            <div class="card">
-                <div class="card-body">
-                    <p>payments to be hosted here</p>
-                </div>
+
+    <div class="app-payment-body">
+        <div class="card">
+            <div class="card-body">
+                <p>payments to be hosted here</p>
             </div>
         </div>
 
-        <div class="app-payment-footer">
-            <div class="payment-controls">
-
-                <button class="btn btn-dark m-2"
-                        type="button"
-                        (click)="payNow()">
-                    <fa-icon [icon]="['fas', 'spinner']"
-                             [spin]="true"
-                             *ngIf="paymentProgress"></fa-icon>
-                    <span>{{labels.payNow}}</span>
-                </button>
-            </div>
-
+        <div class="d-lg-none mt-2">
+            <app-order-amount></app-order-amount>
         </div>
-    </form>
+    </div>
+
+    <div class="app-payment-footer">
+        <div class="payment-controls">
+
+            <button class="btn btn-dark m-2"
+                    type="button"
+                    (click)="payNow()">
+                <fa-icon [icon]="['fas', 'spinner']"
+                         [spin]="true"
+                         *ngIf="paymentProgress"></fa-icon>
+                <span>{{labels.payNow}}</span>
+            </button>
+        </div>
+
+    </div>
+
 </div>

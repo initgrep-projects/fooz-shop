@@ -1,15 +1,15 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { OrderStatus } from 'src/app/models/order-status.model';
+import { fadeIn } from 'src/app/animations/fadeAnimation';
 import { Order } from 'src/app/models/order.modal';
 import { orderLables } from 'src/app/util/app.labels';
-import { throwError } from 'rxjs';
 
 
 @Component({
   selector: 'app-order',
   templateUrl: './order.component.html',
-  styleUrls: ['./order.component.scss']
+  styleUrls: ['./order.component.scss'],
+  animations: [fadeIn]
 })
 export class OrderComponent implements OnInit {
   labels = orderLables;

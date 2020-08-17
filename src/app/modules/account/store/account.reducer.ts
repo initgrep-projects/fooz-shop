@@ -2,10 +2,10 @@ import { Action, createReducer, on } from '@ngrx/store';
 import { clone, cloneDeep } from 'lodash';
 import { Address } from 'src/app/models/address';
 import { AppMsg } from 'src/app/models/app-msg';
-
-import { Country } from 'src/app/services/geo-address.service';
-import { addAddressAction, addAddressesAction, addCountriesAction, addOrdersAction, deleteAddressAction, loadFailureInAccountAction, updateAddressAction, addSelectedOrderAction, addSelectedAddressAction } from './account.actions';
 import { Order } from 'src/app/models/order.modal';
+import { Country } from 'src/app/services/geo-address.service';
+import { addAddressAction, addAddressesAction, addCountriesAction, addOrdersAction, addSelectedAddressAction, addSelectedOrderAction, appendOrdersAction, deleteAddressAction, loadFailureInAccountAction, updateAddressAction } from './account.actions';
+
 
 
 
@@ -54,6 +54,10 @@ const theReducer = createReducer(
         countries: !!payload ? [...payload] : null
     })),
     on(addOrdersAction, (currentState, { payload }) => ({
+        ...currentState,
+        orders: getSortedOrders([...payload])
+    })),
+    on(appendOrdersAction, (currentState, { payload }) => ({
         ...currentState,
         orders: getSortedOrders(!!payload ? [...(!!currentState.orders ? currentState.orders : []), ...payload] : null)
     })),

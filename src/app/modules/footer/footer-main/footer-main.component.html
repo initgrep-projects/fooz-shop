@@ -8,7 +8,7 @@
                         <a class="brand"
                            [routerLink]="['home']">
                             <!-- <fa-icon icon="atom"></fa-icon> -->
-                             <span>{{brand.Name}}</span>
+                            <span>{{brand.Name}}</span>
                         </a>
                     </li>
                     <li class="list-group-item ">
@@ -45,12 +45,12 @@
                     </li>
                 </ul>
             </div>
-            <div class="col-12 col-sm-6 col-md-4 col-xl-4">
-                <ul class="list-group">
+            <div class="col-12 col-sm-6 col-md-4 col-xl-4 mt-3 mt-lg-0">
+                <ul class="list-group contact">
                     <li class="list-group-item">
-                        <h5>
+                        <h6>
                             <fa-icon icon="headset"></fa-icon><span>{{labels.contact}}</span>
-                        </h5>
+                        </h6>
                     </li>
                     <li class="list-group-item"
                         *ngFor="let phone of brand?.Phones">
@@ -69,12 +69,12 @@
 
                 </ul>
             </div>
-            <div class="col-12 col-sm-6 col-md-4 col-xl-4">
+            <div class="col-12 col-sm-6 col-md-4 col-xl-4 mt-3 mt-lg-0">
                 <ul class="list-group shipping ">
                     <li class="list-group-item">
-                        <h5>
+                        <h6>
                             <fa-icon icon="shipping-fast"></fa-icon><span>{{labels.shippingReturns}}</span>
-                        </h5>
+                        </h6>
                     </li>
                     <li class="list-group-item">
                         <a href="">{{labels.shipping}}</a>

@@ -10,13 +10,13 @@
         </div>
     </div>
 
-    <div class="order-detail-header d-flex flex-column flex-lg-row ">
-        <div class="order-address flex-fill my-1 my-lg-0 "
+    <div class="order-detail-sec-header d-flex flex-column flex-lg-row ">
+        <div class="order-address flex-fill my-1 my-lg-0 p-3 mr-lg-1"
              *ngIf="order.Address as address">
             <app-order-address [address]="address"></app-order-address>
         </div>
 
-        <div class="order-price flex-fill "
+        <div class="order-price flex-fill my-1 my-lg-0 p-3 ml-lg-1"
              *ngIf="order.Payment as payment">
             <app-order-price [payment]="payment"></app-order-price>
         </div>
@@ -32,8 +32,12 @@
     </div>
     <div class="order-detail-footer d-flex flex-column flex-sm-row justify-content-end"
          *ngIf="(!statusInput.shipped.done && !statusInput.cancelled.done) || statusInput.delivered.done || statusInput.complete.done ">
-        <button class="btn btn-danger  mb-2 mb-sm-0"
-                *ngIf="!statusInput.shipped.done && !statusInput.cancelled.done">
+        <button class="btn btn-warning  mb-1 mb-sm-0"
+                *ngIf="!statusInput.shipped.done && !statusInput.cancelled.done"
+                (click)="cancelOrder()">
+            <fa-icon [icon]="['fas', 'spinner']"
+                     [spin]="true"
+                     *ngIf="cancellProgress"></fa-icon>
             <span>{{labels.cancel}}</span>
         </button>
         <button class="btn  btn-dark"

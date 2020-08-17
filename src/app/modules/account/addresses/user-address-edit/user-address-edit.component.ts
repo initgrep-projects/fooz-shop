@@ -68,6 +68,8 @@ export class UserAddressEditComponent implements OnInit, OnDestroy {
 
 
   ngOnInit(): void {
+
+    /** check if the user is logged in and fetch the user information */
     this.subs.sink =
       this.authService.userFromStore$.subscribe(user => {
         if (!!user) {
@@ -76,23 +78,25 @@ export class UserAddressEditComponent implements OnInit, OnDestroy {
         }
       });
 
+    /** if the selected address is present */
     this.subs.sink =
-      // this.activatedRoute.data.subscribe(data => {
-      //   if (!!data.address) {
-      //     this.address = cloneDeep(data.address);
-      //     this.isUpdateMode = true;
-      //     this.patchAddressOnUpdate(this.address)
-      //   }
-      // });
-
       this.addressService.selectedAddress$.subscribe(address => {
         if (!!address) {
           this.address = cloneDeep(address);
-          this.isUpdateMode = true;
-          this.patchAddressOnUpdate(this.address)
         }
       });
 
+    /** the selected address to represent an update if the url is addresses/:id */
+    this.subs.sink =
+      this.activatedRoute.paramMap.subscribe(params => {
+        console.log('params in address edit/new =>', params);
+        if (!!params.get('id')) {
+          this.isUpdateMode = true;
+          this.patchAddressOnUpdate(this.address);
+        } else {
+          this.isUpdateMode = false;
+        }
+      });
   }
 
   patchAddressUser(user: User) {
@@ -113,11 +117,7 @@ export class UserAddressEditComponent implements OnInit, OnDestroy {
       city: address.City,
       zipcode: address.ZipCode,
       isSelected: address.IsSelected
-    },
-      {
-        emitEvent: true
-      }
-    );
+    });
   }
 
 

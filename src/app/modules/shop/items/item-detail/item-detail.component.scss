@@ -1,13 +1,24 @@
 @import "../../../../../variables.scss";
 
 section.item-details-wrapper {
-    background-color: #fff;
-    padding-top: 2rem;
+    background-color: $bg-white;
+    // padding-top: 2rem;
     padding-bottom: 2rem;
+    border-top: 1px solid #f0f0f0;
+    box-shadow: 0 1px 10px 0 rgba(0, 0, 0, 0.1);
     @include lg {
         padding: 0 10%;
-        padding-top: 2rem;
+        // padding-top: 2rem;
         padding-bottom: 2rem;
+    }
+
+    div.pd-info {
+        @include lg {
+            position: sticky;
+            top: 120px;
+            background-color: $bg-white;
+            z-index: 2;
+        }
     }
 }
 

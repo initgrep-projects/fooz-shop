@@ -15,6 +15,10 @@ div.app-cart-view {
                         text-transform: uppercase;
                         letter-spacing: 0.06rem;
                         font-weight: 600;
+                        font-size: 0.8rem;
+                        @include lg {
+                            font-size: 1rem;
+                        }
                     }
                 }
             }

@@ -24,10 +24,13 @@ div.app-orders {
         bottom: 0;
         background-color: #fff;
         button {
-            padding: 1rem 3rem;
+            padding: 0.5rem 1rem;
             font-size: 0.8rem;
             text-transform: uppercase;
             letter-spacing: 0.045rem;
+            @include md {
+                padding: 1rem 3rem;
+            }
         }
     }
 

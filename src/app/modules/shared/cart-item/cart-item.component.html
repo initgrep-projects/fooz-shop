@@ -3,18 +3,21 @@
 </ng-template>
 
 <div class="card">
-  <div class="card-body" *ngIf="!!item; else loading">
+  <div class="card-body"
+       *ngIf="!!item; else loading">
     <div class="media">
       <img [src]="item.Product.Images[0].Url"
-           class="align-self-center mr-3"
+           class="img-thumbnail align-self-center mr-3"
            width="128">
       <div class="media-body">
-        <div class="name-code-wrapper" (click)="goToItem()">
+        <div class="name-code-wrapper"
+             (click)="goToItem()">
           <h6 class="mt-0">{{item.Product.Name}}</h6>
           <h6 class=" code">{{item.Product.Id}}</h6>
         </div>
         <div class="quan-price-wrapper">
-          <app-quantity [value]="itemSelectedQuantity" (valueChange) = "onQuantityChange($event)"></app-quantity>
+          <app-quantity [value]="itemSelectedQuantity"
+                        (valueChange)="onQuantityChange($event)"></app-quantity>
           <h6 class="icon ">
             <fa-icon icon="times"></fa-icon>
           </h6>
@@ -34,7 +37,8 @@
               <span class="value">{{item.SelectedSize.Letter}}</span>
             </div>
 
-            <div class="item-property" *ngIf="!!item.SelectedCustomSize">
+            <div class="item-property"
+                 *ngIf="!!item.SelectedCustomSize">
               <span class="label">Size: </span>
               <span class="badge">Width: {{item.SelectedCustomSize.Width}}</span>
               <span class="badge">Length: {{item.SelectedCustomSize.Length}}</span>
@@ -59,8 +63,7 @@
             <div class="item-control">
               <button type="button"
                       class="btn btn-sm btn-light"
-                      (click) ="deleteItem()"
-                      >Remove</button>
+                      (click)="deleteItem()">Remove</button>
             </div>
           </div>
         </div>

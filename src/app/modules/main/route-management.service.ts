@@ -53,6 +53,10 @@ export class RouteManagementService {
     this.router.navigate(['/checkout/payment']);
   }
 
+  routeToShop() {
+    this.router.navigate(['/shop']);
+  }
+
   routeToProfile() {
     this.router.navigate(['/account/profile/edit']);
   }

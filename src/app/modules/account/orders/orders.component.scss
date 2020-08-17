@@ -30,4 +30,22 @@ div.app-orders {
             letter-spacing: 0.045rem;
         }
     }
+
+    div.card {
+        position: relative;
+        div.card-body {
+            h6 {
+                &::first-letter {
+                    text-transform: uppercase;
+                }
+                letter-spacing: 0.045rem;
+            }
+            button {
+                padding: 1rem 3rem;
+                font-size: 0.8rem;
+                text-transform: uppercase;
+                letter-spacing: 0.045rem;
+            }
+        }
+    }
 }

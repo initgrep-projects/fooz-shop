@@ -1,10 +1,18 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { map } from 'rxjs/operators';
-import { AppState } from '../../main/store/app.reducer';
-import { loadOrdersAction, loadSelectedOrderAction, addSelectedOrderAction } from '../store/account.actions';
 import { Order } from 'src/app/models/order.modal';
+import { AppState } from '../../main/store/app.reducer';
+import { addSelectedOrderAction, loadOrdersAction, loadSelectedOrderAction } from '../store/account.actions';
 
+export interface OrderStatusInput {
+  confirmed: { done: boolean, date?: Date };
+  shipped: { done: boolean, date?: Date };
+  delivered: { done: boolean, date?: Date };
+  complete: { done: boolean, date?: Date };
+  returned: { done: boolean, date?: Date };
+  cancelled: { done: boolean, date?: Date };
+}
 @Injectable({
   providedIn: 'root'
 })
@@ -52,6 +60,8 @@ export class OrderService {
   formatDate(timeStamp: number) {
     return new Date(timeStamp);
   }
+
+
 
 
 

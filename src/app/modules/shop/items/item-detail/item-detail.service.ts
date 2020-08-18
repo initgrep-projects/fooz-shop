@@ -40,7 +40,6 @@ export class ItemDetailService {
 
 
   dispatchProduct(p: Product) {
-    console.log('new product dispatched => ',p);
     this.inputProductChange.next(this.getsanitzedProduct(p));
   }
 

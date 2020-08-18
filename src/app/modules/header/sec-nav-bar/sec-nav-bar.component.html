@@ -1,38 +1,39 @@
-<nav class="app-sec-nav-bar" *ngIf ="brand" >
-    <div class="left">
-       <button class="btn btn-dark" (click)="goBack()">
-         <fa-icon icon = "arrow-left"></fa-icon>
-       </button> 
+<nav class="app-sec-nav-bar"
+     *ngIf="brand">
+  <div class="left">
+    <button class="btn btn-dark"
+            (click)="goBack()">
+      <fa-icon icon="arrow-left"></fa-icon>
+    </button>
+  </div>
+  <div class="center">
+    <div class="brand">
+      <a class=" "
+         [routerLink]="['/home']">
+        <fa-icon icon="atom"></fa-icon>
+        <span class="name">{{brand.Name}}</span>
+      </a>
     </div>
-    <div class="center">
-        <div class="brand">
-            <a class=" "
-            [routerLink]="['/home']"
-            >
-              <fa-icon icon="atom"></fa-icon>
-              <span class="name">{{brand.Name}}</span>
-            </a>
-          </div>
-    </div>
-    <div class="right">
-        <ul class="nav navbar-nav flex-row ">
-            <!-- <li class=" mr-3 mr-lg-4">
+  </div>
+  <div class="right">
+    <ul class="nav navbar-nav flex-row ">
+      <!-- <li class=" mr-3 mr-lg-4">
               <a class="nav-link ">
                 <app-search ></app-search>
               </a>
             </li> -->
-            <li class="nav-item d-none d-md-block mx-md-2">
-              <a class=" app-control">
-                <app-auth></app-auth>
-              </a>
-            </li>
-    
-            <li class="nav-item mx-2" *ngIf="!isCheckoutRoute">
-              <a class=" app-control">
-                <app-cart></app-cart>
-              </a>
-            </li>
-    
-          </ul>
-    </div>
+      <li class="nav-item d-none d-md-block mx-md-2">
+        <a class=" app-control">
+          <app-auth></app-auth>
+        </a>
+      </li>
+
+      <li class="nav-item mx-2">
+        <a class=" app-control">
+          <app-cart></app-cart>
+        </a>
+      </li>
+
+    </ul>
+  </div>
 </nav>

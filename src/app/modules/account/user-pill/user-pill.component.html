@@ -6,7 +6,8 @@
                  *ngIf="user?.PhotoURL"
                  [src]="user.PhotoURL"
                  alt="user profile">
-            <div class="dp">
+            <div class="dp"
+                 *ngIf="!user?.PhotoURL">
                 <h4>{{user.Email.substr(0,2)}}</h4>
             </div>
         </div>
@@ -15,7 +16,7 @@
             <h6 class="mt-0 name"
                 *ngIf="user?.Name">{{user.Name}}</h6>
             <h6 class="mt-0 name"
-                *ngIf="user?.Email">{{user.Email}}</h6>
+                *ngIf="!user?.Name">{{user.Email}}</h6>
         </div>
     </div>
 </div>

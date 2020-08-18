@@ -137,21 +137,9 @@ export class CartService {
     return cart.find($item => $item.equals(item));
   }
 
-  /**
-   * on the user change,
-   * a) load the existing cart items from db to store
-   * if:
-   * 1) current user was real user and last user was real user
-   * 2) current user was real anonymous and last user was real
-   * 
-   * else:
-   * 3) current user is anonymous and new user is real
-   *   -  update the current cartItems with current User
-   *   - do operation (a)
-   * 
-   */
-  loadCartItemsOnUserChange() {
-    return this.authService.userFromStore$
+
+  loadCartItemsOnUserChange$ =
+    this.authService.userFromStore$
       .pipe(
         switchMap(user => {
           return zip(of(user), this.cart$)
@@ -174,7 +162,7 @@ export class CartService {
           this.store.dispatch(loadItemsToCartAction());
         })
       );
-  }
+
 
 
 }

@@ -22,8 +22,8 @@ export class CartComponent implements OnInit, OnDestroy {
 
   /** load the new items */
   loadCartOnUserChange() {
-    this.subs.sink = this.cartService.loadCartItemsOnUserChange()
-    .subscribe();
+    this.subs.sink = this.cartService.loadCartItemsOnUserChange$
+      .subscribe((ok) => console.log('loadCartItemsOnUserChange called =>', ok));
   }
 
   ngOnDestroy() {

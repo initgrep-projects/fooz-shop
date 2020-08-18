@@ -12,7 +12,7 @@ nav.app-nav-bar {
     background-color: $bg-white;
     color: $primary-text-color;
 
-    @include md {
+    @include lg {
         padding: 1rem 5% 0 5%;
     }
     div.top {
@@ -26,7 +26,7 @@ nav.app-nav-bar {
                 font-size: 2rem;
                 color: $primary-text-color;
                 text-decoration: none;
-                @include md {
+                @include lg {
                     font-size: 3rem;
                 }
                 fa-icon {
@@ -42,7 +42,7 @@ nav.app-nav-bar {
                     padding: 0 1rem;
                     transition: font-size 0.5s ease-in;
                     text-shadow: 0px 1px 0px #333;
-                    @include md {
+                    @include lg {
                         font-size: 2rem;
                     }
                 }

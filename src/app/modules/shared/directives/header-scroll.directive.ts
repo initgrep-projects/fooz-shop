@@ -41,7 +41,7 @@ export class HeaderScrollDirective {
 
   private isMobile() {
     if (!!window.matchMedia) {
-      return window.matchMedia("(max-width: 768px)").matches
+      return window.matchMedia("(max-width: 992px)").matches
     }
     return false;
   }

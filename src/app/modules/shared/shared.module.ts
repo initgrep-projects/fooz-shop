@@ -28,6 +28,7 @@ import { StatusComponent } from './status/status.component';
 import { ToastsComponent } from './toasts/toasts.component';
 import { UserAddressComponent } from './user-address/user-address.component';
 import { UserCardComponent } from './user-card/user-card.component';
+import { HammerModule } from '@angular/platform-browser';
 
 
 @NgModule({
@@ -64,6 +65,7 @@ import { UserCardComponent } from './user-card/user-card.component';
     RouterModule,
     FontAwesomeModule,
     NgbToastModule,
+    HammerModule
   ],
   exports: [
     ItemComponent,
@@ -89,7 +91,8 @@ import { UserCardComponent } from './user-card/user-card.component';
     StatusComponent,
     UserAddressComponent,
     AlertComponent,
-    ImageSliderComponent
+    ImageSliderComponent,
+    HammerModule
   ]
 })
 export class SharedModule { }

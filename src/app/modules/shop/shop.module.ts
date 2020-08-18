@@ -1,6 +1,5 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { HammerModule } from '@angular/platform-browser';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { EffectsModule } from '@ngrx/effects';
@@ -67,7 +66,6 @@ import { ShopEffects } from './store/shop.effects';
     NgbModule,
     FontAwesomeModule,
     SharedModule,
-    HammerModule,
     EffectsModule.forFeature([ShopEffects, FilterEffects])
   ],
   exports: []

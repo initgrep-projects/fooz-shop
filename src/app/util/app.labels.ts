@@ -117,7 +117,7 @@ export const cartLabels = {
     paymentMessage: 'safe and secure payments',
     deleteItem: 'cart Item deleted',
     deleteItemFailed: 'cart Item delete failed',
-    addItem: 'cart item added to cart',
+    addItem: 'Item added to Cart',
     addItemFailed: 'cart Item add failed',
     updateItem: 'cart item updated',
     updateItemFailed: 'cart item updated',

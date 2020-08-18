@@ -22,12 +22,12 @@ export class ToastsComponent implements OnInit {
 
   getClassNameByType(toast: Toast) {
     if (!toast.options.type || toast.options.type === toastType.SUCCESS) {
-      return "bg-darkest text-light";
+      return "toast-success";
     }
     if (toast.options.type === toastType.ERROR) {
-      return "bg-danger text-white";
+      return "toast-danger";
     } else if (toast.options.type === toastType.WARNING) {
-      return "bg-warning text-dark";
+      return "toast-warning";
     }
   }
 

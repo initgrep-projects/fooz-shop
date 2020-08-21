@@ -1,0 +1,30 @@
+<div class="app-coupon-list my-2"
+     *ngIf="couponService.availableCoupons$ | async as couponsAvailable">
+    <div class="
+     card
+     coupon ">
+
+        <div class="
+     card-body">
+            <h6 class="card-title">Apply Coupon</h6>
+            <div class="list-group">
+                <div class="list-group-item list-group-item-action"
+                     *ngFor="let coupon of couponsAvailable;index as i">
+                    <div class="coupon-item d-flex w-100 justify-content-between">
+
+                        <button class=" btn btn-sm btn-light mb-1"
+                                [ngClass]="{'active': coupon?.Code === appliedCoupon?.Code}"
+                                (click)="couponService.addSelectedCoupon(coupon)">
+                            {{coupon.Code}}
+                        </button>
+                        <small *ngIf="coupon?.Code === appliedCoupon?.Code">
+                            <fa-icon icon="check-circle"></fa-icon>
+                            <span>applied</span>
+                        </small>
+                    </div>
+                    <small>{{coupon.Title}}</small>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -10,7 +10,7 @@ import { AddressService } from '../account/addresses/address.service';
 import { OrderService } from '../account/orders/order.service';
 import { AuthService } from '../auth/auth.service';
 import { CartService } from '../cart/cart.service';
-import { CouponService } from './coupon.service';
+import { CouponService } from './checkout-total/coupon-list/coupon.service';
 import { ShippingService } from './shipping.service';
 import { TaxService } from './tax.service';
 
@@ -63,7 +63,7 @@ export class CheckoutService {
             ?.reduce((price = 0, itemPrice) => price + itemPrice, 0));
 
           return combineLatest(of(itemTotalPrice), this.taxService.tax(itemTotalPrice),
-            this.shippingService.shipping(itemTotalPrice), this.couponService.getVerifiedCoupon())
+            this.shippingService.shipping(itemTotalPrice), this.couponService.selectedCoupon$)
         }
         ),
         map(([amount, tax, shipping, coupon]) => {

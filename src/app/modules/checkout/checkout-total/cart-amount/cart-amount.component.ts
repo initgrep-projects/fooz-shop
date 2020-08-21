@@ -2,19 +2,20 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { fadeIn } from 'src/app/animations/fadeAnimation';
 import { cartLabels } from 'src/app/util/app.labels';
 import { SubSink } from 'subsink';
-import { CheckoutService } from '../checkout.service';
+
 import { Coupon } from 'src/app/models/coupon.model';
 import { Currency } from 'src/app/models/currency';
+import { CheckoutService } from '../../checkout.service';
 
 @Component({
-  selector: 'app-order-amount',
-  templateUrl: './order-amount.component.html',
-  styleUrls: ['./order-amount.component.scss'],
+  selector: 'app-cart-amount',
+  templateUrl: './cart-amount.component.html',
+  styleUrls: ['./cart-amount.component.scss'],
   animations: [
     fadeIn
   ]
 })
-export class OrderAmountComponent implements OnInit, OnDestroy {
+export class CartAmountComponent implements OnInit, OnDestroy {
   private subs = new SubSink();
 
   labels = cartLabels;
@@ -35,6 +36,7 @@ export class OrderAmountComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.calculateOrderQuantity();
     this.calculateGrossAmount();
+
   }
 
   calculateGrossAmount() {
@@ -55,7 +57,8 @@ export class OrderAmountComponent implements OnInit, OnDestroy {
     if (!coupon) {
       return price;
     }
-    return price - coupon.Amount.Amount;
+    //to be caluculated by coupon logic
+    return price - coupon.Value;
 
   }
   calculateOrderQuantity() {

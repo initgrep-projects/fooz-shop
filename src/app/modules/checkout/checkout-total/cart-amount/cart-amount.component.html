@@ -1,6 +1,8 @@
 <div class="app-order-amount sticky-top"
      @fadeIn>
 
+    <div class="order-amount-header">
+    </div>
     <div class="order-amount-body">
         <div class="card">
             <div class="card-header">
@@ -22,11 +24,11 @@
                         <div class="inner coupon d-flex justify-content-between">
                             <div class="left">
                                 <h6 class="label">{{labels.discount}}</h6>
-                                <span class="small">FOOZ-FIRST100</span>
+                                <span class="small">{{discount.Code}}</span>
                             </div>
                             <h6 class="right">
                                 <span class="code">{{currencyCode}}</span>
-                                <span class="amount">{{discount.Amount.Amount}}</span>
+                                <span class="amount">{{discount.Value}}</span>
                             </h6>
                         </div>
                     </li>
@@ -57,10 +59,11 @@
                 </div>
             </div>
         </div>
-    </div>
 
+    </div>
+    <!-- 
     <div class="order-amount-footer pt-2 ">
-        <div class="card">
+        <div class="card payment-secure">
             <div class="card-body">
                 <p>
                     <fa-icon icon="shield-alt"></fa-icon>
@@ -74,5 +77,5 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
 </div>

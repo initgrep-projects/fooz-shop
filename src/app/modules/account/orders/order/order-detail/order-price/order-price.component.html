@@ -26,12 +26,12 @@
                           [closeDelay]="500"
                           [tooltipClass]="'tool-tip-style'"
                           [tooltipClass]="'tool-tip-style'"
-                          ngbTooltip="{{payment.Coupon.Title}}">{{payment.Coupon.Id}}</span>
+                          ngbTooltip="{{payment.Coupon.Title}}">{{payment.Coupon.Code}}</span>
                 </div>
             </div>
 
-            <span class="value">{{payment.Coupon.Amount.Code}}
-                {{payment.Coupon.Amount.Amount}}</span>
+            <span class="value">{{payment.Price.Code}}
+                {{payment.Coupon.Value}}</span>
         </div>
         <div class="
                   item-property
@@ -39,7 +39,7 @@
                   mt-2">
             <span class="label"> {{labels.total}}:</span>
             <span class="value"> {{payment.Price.Code}}
-                {{payment.Price.Amount+ payment.Tax.Amount + payment.Shipping.Amount - payment.Coupon.Amount.Amount}}</span>
+                {{payment.Price.Amount+ payment.Tax.Amount + payment.Shipping.Amount - payment.Coupon.Value}}</span>
         </div>
     </div>
 </div>

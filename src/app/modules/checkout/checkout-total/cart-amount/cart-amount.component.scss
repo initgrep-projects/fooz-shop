@@ -1,4 +1,4 @@
-@import "../../../../variables.scss";
+@import "../../../../../variables.scss";
 div.app-order-amount {
     font-family: $roboto-font-family;
     width: 100%;
@@ -90,7 +90,7 @@ div.app-order-amount {
     }
 
     div.order-amount-footer {
-        div.card {
+        div.card.payment-secure {
             border-top: 1px solid #f0f0f0;
             box-shadow: 0 -2px 10px 0 rgba(0, 0, 0, 0.1);
             div.card-body {

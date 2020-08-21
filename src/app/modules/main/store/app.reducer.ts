@@ -5,7 +5,7 @@ import * as fromCart from '../../cart/store/cart.reducer';
 import * as fromAuth from '../../auth/store/auth.reducer';
 import * as fromAccount from '../../account/store/account.reducer';
 import * as fromHeader from '../../header/store/header.reducer';
-
+import * as fromCheckout from '../../checkout/store/checkout.reducer'
 import { ActionReducerMap } from '@ngrx/store';
 
 export interface AppState {
@@ -16,6 +16,7 @@ export interface AppState {
     cart: fromCart.State;
     auth: fromAuth.AuthState;
     account: fromAccount.AccountState;
+    checkout: fromCheckout.CheckoutState
 }
 
 export const AppReducer: ActionReducerMap<AppState> = {
@@ -25,5 +26,6 @@ export const AppReducer: ActionReducerMap<AppState> = {
     filters: fromFilters.FilterReducer,
     cart: fromCart.CartReducer,
     auth: fromAuth.AuthReducer,
-    account: fromAccount.AccountReducer
+    account: fromAccount.AccountReducer,
+    checkout: fromCheckout.CheckoutReducer
 };

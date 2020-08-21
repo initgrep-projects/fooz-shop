@@ -72,7 +72,8 @@ export class ObjectTransformerService {
   transformCoupon(param: any) {
     return !param
       ? null
-      : new Coupon(param.code, param.title, param.type, param.value, param.maxValue, param.minOrderAmount, param.usageCount, param.endDate, param.startDate, param.finalValue);
+      : new Coupon(param.code, param.title, param.type, param.value, param.maxValue, param.minOrderAmount,
+        param.usageCount, param.endDate, param.startDate, param.finalValue, param.active);
   }
 
   transformCustomSize(param: { width: number; length: number; bust: number; arm: number; hip: number; }) {

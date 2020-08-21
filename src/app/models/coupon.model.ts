@@ -17,7 +17,8 @@ export class Coupon {
         private usageCount: number = 0,
         private endDate: number,
         private startDate: number = Date.now(),
-        private finalValue: number = 0
+        private finalValue: number = 0,
+        private active: boolean = true
     ) { }
 
 
@@ -50,6 +51,9 @@ export class Coupon {
 
     get FinalValue() { return this.finalValue; }
     set FinalValue(val: number) { this.finalValue = val; }
+
+    get IsActive() { return this.active; }
+    set IsActive(a: boolean) { this.active = a; }
 
     static fixed(code: string, title: string, couponValue: number, maxCouponValue: number, minOrderAmount: number, usageCount: number, endDate: number, startDate: number = Date.now()) {
         return new Coupon(

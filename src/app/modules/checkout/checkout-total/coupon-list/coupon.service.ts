@@ -55,12 +55,47 @@ export class CouponService {
   }
 
   /**
-   * available coupons would be constructed based on the contraints and the order amount and usage count
+   * //DECIDE IF THE VALIATION SHOULD BE DONE INSIDE EFFECTS.
+   * // THAT WOULD MAKE SURE, THE VALIDATION HAPPENS ONLY ONCE
+   *  // HOWEVER, IF THE CART AMOUNT CHANGES, WE SHOULD BE DOING VALIDATION ON (CART AMOUNT CHANGE)
+   *      // HENCE, IT IS NECESSARY TO DO THE VALIDATION EVERYTIME THE CART AMOUNT CHANGES.
+   * 
+   * 1)fetch available coupons using effects,
+   * 2) fetch coupon usage statistics using effects,
+   * 3) validate coupons based on cart amount and usage count
    */
   availableCoupons$ = of([
-    // Coupon.fixed('FLAT100', '100 off on your next order', 100, 100, 1000, 2, new Date(2011, 10, 30).getTime()),
-    Coupon.fixed('FLAT200', '200 off on your next order', 200, 100, 1000, 2, new Date(2011, 10, 30).getTime()),
-    // Coupon.fixed('FLAT300', '300 off on your next order', 300, 100, 1000, 2, new Date(2011, 10, 30).getTime()),
-    Coupon.percentage('FLEX10', '10% off on your next order. Max value 400', 10, 400, 3000, 2, new Date(2011, 10, 30).getTime())
-  ]);
+    Coupon.fixed('FLAT100', '100 off on your next order', 100, 100, 1000, 3, new Date(2020, 10, 30).getTime()),
+    Coupon.fixed('FLAT200', '200 off on your next order', 200, 100, 1000, 1, new Date(2020, 10, 30).getTime()),
+    Coupon.fixed('FLAT300', '300 off on your next order', 300, 100, 1000, 2, new Date(2020, 10, 30).getTime()),
+    Coupon.percentage('FLEX10', '10% off on your next order. Max value 400', 10, 400, 3000, 3, new Date(2020, 10, 30).getTime())
+  ]).pipe(
+    map(coupons => coupons.filter(c => this.validateCoupon(c, 3000, 2)))
+  );
+
+
+  /**
+   * validate coupon based on the constraint specified
+   * @param coupon Coupon
+   * @param orderAmount cart amount without tax and shipping
+   * @param usageCount number of times the coupon has been used by the user
+   */
+  validateCoupon(coupon: Coupon, orderAmount: number, usageCount: number) {
+    if (!!coupon && coupon.IsActive) {
+      if (orderAmount < coupon.MinOrderAmount) {
+        return false;
+      }
+      else if (usageCount >= coupon.UsageCount) {
+        return false;
+      }
+      else if (coupon.EndDate < Date.now()) {
+        return false;
+      }
+      else {
+        return true;
+      }
+    }
+    return false;
+  }
+
 }

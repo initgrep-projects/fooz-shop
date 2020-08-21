@@ -1,5 +1,6 @@
 <div class="app-address-view"
-     *ngIf="addService.addresses$ |async as addresses; else loading">
+     *ngIf="addService.addresses$ |async as addresses; else loading"
+     @fadeIn>
     <div class="address-view-header">
         <div class="card">
             <div class="card-body">

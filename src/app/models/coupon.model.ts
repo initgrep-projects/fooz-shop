@@ -17,29 +17,41 @@ export class Coupon {
         private usageCount: number = 0,
         private endDate: number,
         private startDate: number = Date.now(),
+        private finalValue: number = 0
     ) { }
 
 
     get Code() { return this.code; }
     set Code(c: string) { this.code = c; }
+
     get Title() { return this.title; }
     set Title(t: string) { this.title = t; }
+
     get Type() { return this.type; }
     set Type(v: CouponType) { this.type = v; }
+
     get Value() { return this.value; }
     set Value(v: number) { this.value = v; }
+
     get MaxValue() { return this.maxValue; }
     set MaxValue(m: number) { this.maxValue = m; }
+
     get MinOrderAmount() { return this.minOrderAmount; }
     set MinOrderAmount(m: number) { this.minOrderAmount = m; }
+
     get EndDate() { return this.endDate; }
     set EndDate(date: number) { this.endDate = date; }
+
     get UsageCount() { return this.usageCount; }
     set UsageCount(count: number) { this.usageCount = count; }
+
     get StartDate() { return this.startDate; }
     set StartDate(date: number) { this.startDate = date; }
 
-    static fixed(code: string, title: string, couponValue: number, maxCouponValue: number, minOrderAmount: number, endDate: number, usageCount: number, startDate: number = Date.now()) {
+    get FinalValue() { return this.finalValue; }
+    set FinalValue(val: number) { this.finalValue = val; }
+
+    static fixed(code: string, title: string, couponValue: number, maxCouponValue: number, minOrderAmount: number, usageCount: number, endDate: number, startDate: number = Date.now()) {
         return new Coupon(
             code,
             title,
@@ -53,7 +65,7 @@ export class Coupon {
         );
     }
 
-    static percentage(code: string, title: string, percentCouponValue: number, maxCouponValue: number, minOrderAmount: number, endDate: number, usageCount: number, startDate: number = Date.now()) {
+    static percentage(code: string, title: string, percentCouponValue: number, maxCouponValue: number, minOrderAmount: number, usageCount: number, endDate: number, startDate: number = Date.now()) {
         return new Coupon(
             code,
             title,

@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { fadeIn, staggerFadeIn } from 'src/app/animations/fadeAnimation';
+import { fadeIn } from 'src/app/animations/fadeAnimation';
 import { CartItem } from 'src/app/models/cart-item';
 import { cartLabels } from 'src/app/util/app.labels';
 import { SubSink } from 'subsink';
@@ -10,8 +10,7 @@ import { CartService } from '../../cart/cart.service';
   templateUrl: './cart-view.component.html',
   styleUrls: ['./cart-view.component.scss'],
   animations: [
-    fadeIn,
-    staggerFadeIn
+    fadeIn
   ]
 })
 export class CartViewComponent implements OnInit, OnDestroy {

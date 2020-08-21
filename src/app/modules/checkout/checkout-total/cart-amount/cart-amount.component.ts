@@ -6,6 +6,7 @@ import { SubSink } from 'subsink';
 import { Coupon } from 'src/app/models/coupon.model';
 import { Currency } from 'src/app/models/currency';
 import { CheckoutService } from '../../checkout.service';
+import { CouponService } from '../coupon-list/coupon.service';
 
 @Component({
   selector: 'app-cart-amount',
@@ -30,7 +31,8 @@ export class CartAmountComponent implements OnInit, OnDestroy {
 
 
   constructor(
-    private cs: CheckoutService
+    private cs: CheckoutService,
+    private couponService: CouponService
   ) { }
 
   ngOnInit(): void {
@@ -57,8 +59,7 @@ export class CartAmountComponent implements OnInit, OnDestroy {
     if (!coupon) {
       return price;
     }
-    //to be caluculated by coupon logic
-    return price - coupon.Value;
+    return price - coupon.FinalValue;
 
   }
   calculateOrderQuantity() {

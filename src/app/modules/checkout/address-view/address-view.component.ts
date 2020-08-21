@@ -1,6 +1,6 @@
 import { DOCUMENT } from '@angular/common';
 import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
-import { staggerFadeIn } from 'src/app/animations/fadeAnimation';
+import { fadeIn } from 'src/app/animations/fadeAnimation';
 import { Address } from 'src/app/models/address';
 import { AuthMessages } from 'src/app/util/app.labels';
 import { SubSink } from 'subsink';
@@ -13,7 +13,7 @@ import { RouteManagementService } from '../../main/route-management.service';
   templateUrl: './address-view.component.html',
   styleUrls: ['./address-view.component.scss'],
   animations: [
-    staggerFadeIn
+    fadeIn
   ]
 })
 export class AddressViewComponent implements OnInit, OnDestroy {

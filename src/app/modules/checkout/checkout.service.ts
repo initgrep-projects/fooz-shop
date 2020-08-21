@@ -30,7 +30,16 @@ export class CheckoutService {
     private orderService: OrderService
   ) { }
 
-
+  /**
+   * 
+   * takes the items from the cart,
+   * takes the current user, selected Address, and orderCharges @see orderCharges
+   * saves all the information 
+   * 
+   * if the order is successfull,
+   * clear the cart and clear the selected coupon
+   * @param paymentType  PaymentType
+   */
   createOrder(paymentType: PaymentType) {
     const cartIds$ = this.cartService.cart$.pipe(map(cart => cart.map(item => item.Id)));
     return combineLatest(this.authService.userFromStore$, cartIds$, this.addressService.checkedAddress$, this.orderCharges$)
@@ -46,13 +55,19 @@ export class CheckoutService {
         tap(ok => {
           if (ok) {
             this.cartService.loadAllCartItems();
+            this.couponService.addSelectedCoupon(null);
           }
         }),
         take(1)
       );
   }
 
-  /** reduce right error here */
+  /**
+   * calculate the charges based on the cart amount.
+   * calculat tax based on tax percentage
+   * calculate shipping based on shipping percentage
+   * calculate coupon final value based on coupon type
+   */
   orderCharges$: Observable<OrderSplitCharges> =
     this.cartService.cart$
       .pipe(
@@ -63,7 +78,7 @@ export class CheckoutService {
             ?.reduce((price = 0, itemPrice) => price + itemPrice, 0));
 
           return combineLatest(of(itemTotalPrice), this.taxService.tax(itemTotalPrice),
-            this.shippingService.shipping(itemTotalPrice), this.couponService.selectedCoupon$)
+            this.shippingService.shipping(itemTotalPrice), this.couponService.couponFinalValue(itemTotalPrice.Amount))
         }
         ),
         map(([amount, tax, shipping, coupon]) => {

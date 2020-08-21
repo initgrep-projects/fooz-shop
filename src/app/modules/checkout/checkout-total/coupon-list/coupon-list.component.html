@@ -1,12 +1,10 @@
 <div class="app-coupon-list my-2"
      *ngIf="couponService.availableCoupons$ | async as couponsAvailable">
-    <div class="
-     card
-     coupon ">
-
-        <div class="
-     card-body">
+    <div class=" card coupon ">
+        <div class="  card-body">
             <h6 class="card-title">Apply Coupon</h6>
+            <small class="empty-list"
+                   *ngIf="couponsAvailable.length === 0">No Coupons available at this time</small>
             <div class="list-group">
                 <div class="list-group-item list-group-item-action"
                      *ngFor="let coupon of couponsAvailable;index as i">
@@ -22,7 +20,8 @@
                             <span>applied</span>
                         </small>
                     </div>
-                    <small>{{coupon.Title}}</small>
+                    <span class="small"
+                          [ngClass]="{'active': coupon?.Code === appliedCoupon?.Code}">{{coupon.Title}}</span>
                 </div>
             </div>
         </div>

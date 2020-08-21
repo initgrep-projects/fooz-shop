@@ -1,10 +1,12 @@
-<div class="container app-checkout mt-5">
-    <div class="row">
+<div class="container app-checkout mt-3 mt-lg-5"
+     *ngIf="cartService.cart$ | async as cart">
+    <!-- <div class="row">
         <div class="col-12 d-lg-none">
             <p>stepper to be done here for mobile</p>
         </div>
-    </div>
-    <div class="row">
+    </div> -->
+    <div class="row"
+         *ngIf="cart.length > 0; else empty">
         <div class="col-12 col-lg-8">
             <router-outlet></router-outlet>
         </div>
@@ -13,3 +15,22 @@
         </div>
     </div>
 </div>
+
+
+<ng-template #empty>
+    <div class="card empty-checkout">
+        <div class="card-body d-flex justify-content-center flex-column align-items-center">
+            <div class="alert alert-light"
+                 role="alert">
+                {{labels.emptyCart}}
+            </div>
+
+            <button type="button"
+                    class="btn btn-sm btn-dark"
+                    (click)="rmgt.routeToShop()">
+                <span class="text">{{labels.goToShopping}}</span>
+            </button>
+        </div>
+    </div>
+
+</ng-template>

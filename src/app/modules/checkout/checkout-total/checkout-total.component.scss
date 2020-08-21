@@ -1,0 +1,8 @@
+@import "../../../../variables.scss";
+
+div.app-checkout-total {
+    @include lg {
+        position: sticky;
+        top: 120px;
+    }
+}

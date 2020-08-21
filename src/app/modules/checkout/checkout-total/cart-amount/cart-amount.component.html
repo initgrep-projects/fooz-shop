@@ -1,4 +1,4 @@
-<div class="app-order-amount sticky-top"
+<div class="app-order-amount"
      @fadeIn>
 
     <div class="order-amount-header">
@@ -20,7 +20,8 @@
                         </div>
                     </li>
                     <li class="list-group-item"
-                        *ngIf="discount">
+                        *ngIf="discount"
+                        @fadeIn>
                         <div class="inner coupon d-flex justify-content-between">
                             <div class="left">
                                 <h6 class="label">{{labels.discount}}</h6>
@@ -28,7 +29,7 @@
                             </div>
                             <h6 class="right">
                                 <span class="code">{{currencyCode}}</span>
-                                <span class="amount">{{discount.Value}}</span>
+                                <span class="amount">{{discount.FinalValue}}</span>
                             </h6>
                         </div>
                     </li>

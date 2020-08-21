@@ -4,7 +4,7 @@ div.app-address-view {
     font-family: $roboto-font-family;
     div.address-view-header {
         div.card {
-            box-shadow: 0 -2px 10px 0 rgba(0, 0, 0, 0.1);
+            @include card-style();
             div.card-body {
                 div.head-wrapper {
                     display: flex;

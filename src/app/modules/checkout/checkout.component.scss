@@ -1,0 +1,22 @@
+@import "../../../variables.scss";
+
+div.empty-checkout {
+    padding: 2rem;
+    @include card-style();
+    div.alert {
+        text-align: center;
+        text-transform: uppercase;
+        color: #333;
+        font-weight: 600;
+        @include animate(fadeInUp, 0.5s);
+    }
+
+    button {
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        letter-spacing: 0.045rem;
+        font-weight: 600;
+        padding: 1rem 1rem;
+        @include animate(fadeInUp, 0.5s);
+    }
+}

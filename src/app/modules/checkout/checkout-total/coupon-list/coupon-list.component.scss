@@ -50,6 +50,19 @@ div.app-coupon-list {
                             }
                         }
                     }
+                    span.small {
+                        letter-spacing: 0.025rem;
+                        text-transform: uppercase;
+                        font-size: 0.6rem;
+                        transition: all 0.2s ease-in;
+                        &.active {
+                            color: var(--success);
+                        }
+                        &::after {
+                            content: "";
+                            position: absolute;
+                        }
+                    }
                 }
             }
         }

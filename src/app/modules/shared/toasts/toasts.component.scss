@@ -1,5 +1,17 @@
 @import "../../../../variables.scss";
 
+@mixin toast-style($color: var(--success)) {
+    min-width: 250px;
+    background-color: #fff;
+    color: $color;
+    border: 1px solid $color;
+    box-shadow: 2px 2px 2px $color;
+    @include animate(bounceInDown, 0.5s);
+    @include lg {
+        padding: 0.2rem;
+    }
+}
+
 div.toast-outer-container {
     position: fixed;
     width: 100%;
@@ -33,6 +45,7 @@ div.toast-outer-container {
             font-size: 0.8rem;
             letter-spacing: 0.045rem;
             text-transform: capitalize;
+            font-weight: 600;
             display: block;
             width: 100%;
             @include lg {
@@ -41,37 +54,13 @@ div.toast-outer-container {
         }
 
         .toast-success {
-            min-width: 250px;
-            background-color: #4be16d;
-            color: #333;
-            box-shadow: 2px 2px 3px #21772f;
-            border: none;
-            @include animate(bounceInDown, 0.5s);
-            @include lg {
-                padding: 0.2rem;
-            }
+            @include toast-style();
         }
         .toast-warning {
-            min-width: 250px;
-            background-color: #f7bb0a;
-            color: #333;
-            box-shadow: 2px 2px 3px #9b7505;
-            border: none;
-            @include animate(bounceInDown, 0.5s);
-            @include lg {
-                padding: 0.2rem;
-            }
+            @include toast-style(var(--warning));
         }
         .toast-danger {
-            min-width: 250px;
-            background-color: #dc3545;
-            color: #fff;
-            box-shadow: 2px 2px 3px #680912;
-            border: none;
-            @include animate(bounceInDown, 0.5s);
-            @include lg {
-                padding: 0.2rem;
-            }
+            @include toast-style(var(--danger));
         }
     }
 }

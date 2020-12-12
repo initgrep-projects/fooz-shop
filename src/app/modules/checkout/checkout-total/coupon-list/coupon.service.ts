@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { of, Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { cloneDeep } from 'lodash';
+import { Observable, of } from 'rxjs';
+import { map, take, tap } from 'rxjs/operators';
 import { Coupon, CouponType } from 'src/app/models/coupon.model';
 import { AppState } from 'src/app/modules/main/store/app.reducer';
 import { addSelectedCouponAction } from '../../store/checkout.actions';
-import { cloneDeep } from 'lodash';
 
 @Injectable({
   providedIn: 'root'
@@ -69,13 +69,20 @@ export class CouponService {
     Coupon.fixed('FLAT200', '200 off on your next order', 200, 100, 1000, 1, new Date(2020, 10, 30).getTime()),
     Coupon.fixed('FLAT300', '300 off on your next order', 300, 100, 1000, 2, new Date(2020, 10, 30).getTime()),
     Coupon.percentage('FLEX10', '10% off on your next order. Max value 400', 10, 400, 3000, 3, new Date(2020, 10, 30).getTime())
-  ]).pipe(
-    map(coupons => coupons.filter(c => this.validateCoupon(c, 3000, 2)))
-  );
+  ]).
+    pipe(
+      take(1),
+      tap(coupons => console.log("availableCoupons -> ", coupons))
+      // map(coupons => coupons.filter(c => this.validateCoupon(c, 3000, 2)))
+    );
 
 
   /**
-   * validate coupon based on the constraint specified
+   * @todo -> use case -:
+   *  1-> user adds items to checkout
+   *  2-> fetch users existing records of coupons -- TO be done
+   *  3-> validate the current order amount and past usage occurances of couponse
+   * validate coupon based on the constraints specified
    * @param coupon Coupon
    * @param orderAmount cart amount without tax and shipping
    * @param usageCount number of times the coupon has been used by the user

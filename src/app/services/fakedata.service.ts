@@ -39,17 +39,17 @@ export class FakedataService {
 
   getLookBook() {
     // https://i.imgur.com/WZ35TTq.jpg fooz trend
-    const foozTrend = new Image('https://i.imgur.com/WZ35TTq.jpg', new Color('green', '#808000'));
+    const foozTrend = new Image('https://i.imgur.com/CbxdH3r.jpg', new Color('green', '#808000'));
     const lookBookItem1 = new LookBookItem(foozTrend, 'fooz tinted', 'Tint is the new black');
 
     // https://i.imgur.com/qHo8OQX.jpg Fooz special
 
-    const foozSpecial = new Image('https://i.imgur.com/qHo8OQX.jpg', new Color('pink', '#FFB6C1'));
+    const foozSpecial = new Image('https://i.imgur.com/3qPSA0d.jpg', new Color('pink', '#FFB6C1'));
     const lookBookItem2 = new LookBookItem(foozSpecial, 'fooz casual', 'Everyday stylish');
     // https://i.imgur.com/T2KSOdO.jpg Fooz Everyday
 
-    const centerOpen = new Image('https://i.imgur.com/T2KSOdO.jpg', new Color('black', '#f1f1f1'));
-    const lookBookItem3 = new LookBookItem(centerOpen, 'fooz chick', 'Be classy');
+    const foozchick = new Image('https://i.imgur.com/T0cY4mz.jpg', new Color('black', '#f1f1f1'));
+    const lookBookItem3 = new LookBookItem(foozchick, 'fooz chick', 'Be classy');
 
     return [lookBookItem1, lookBookItem2, lookBookItem3];
 
@@ -148,10 +148,10 @@ export class FakedataService {
         a1000,
         soCategory,
         [
-          new Image("https://i.imgur.com/xqILoNX.jpg", blackColor),
-          new Image('https://i.imgur.com/JuCQoF2.jpg', blackColor),
-          new Image('https://i.imgur.com/0rsWG6L.jpg', blackColor),
-          new Image('https://i.imgur.com/xqILoNX.jpg', blackColor)
+          new Image("https://i.imgur.com/VPm61dj.jpg", blackColor),
+          new Image('https://i.imgur.com/zc6N0In.jpg', blackColor),
+          new Image('https://i.imgur.com/MEBp2ik.jpg', blackColor),
+          new Image('https://i.imgur.com/VPm61dj.jpg', blackColor)
         ],
         [smallSize, mediumSize, largeSize, xlSize]
       ),
@@ -164,8 +164,8 @@ export class FakedataService {
         a2200,
         coCategory,
         [
-          new Image("https://i.imgur.com/23M00fQ.jpg", brownColor),
-          new Image('https://i.imgur.com/6M2lov5.jpg', brownColor),
+          new Image("https://i.imgur.com/Z861YkO.jpg", brownColor),
+          new Image('https://i.imgur.com/njmsBVe.jpg', brownColor),
           new Image('https://i.imgur.com/ajzsGOn.jpg', brownColor),
           new Image('https://i.imgur.com/ajzsGOn.jpg', brownColor)
         ],
@@ -180,10 +180,10 @@ export class FakedataService {
         a2300,
         coCategory,
         [
-          new Image("https://i.imgur.com/orcMuEN.jpg", blackColor),
-          new Image('https://i.imgur.com/hP3cJSM.jpg', blackColor),
-          new Image('https://i.imgur.com/7RSOuvB.jpg', blackColor),
-          new Image('https://i.imgur.com/hP3cJSM.jpg', blackColor)
+          new Image("https://i.imgur.com/N1fgrZE.jpg", brownColor),
+          new Image('https://i.imgur.com/8EdQU8M.jpg', brownColor),
+          new Image('https://i.imgur.com/05qBugE.jpg', brownColor),
+          new Image('https://i.imgur.com/8EdQU8M.jpg', brownColor)
         ],
         [smallSize, mediumSize, largeSize, xlSize]
       ),
@@ -197,10 +197,10 @@ export class FakedataService {
         a3100,
         coCategory,
         [
-          new Image("https://i.imgur.com/P5Aat6M.jpg", blackColor),
-          new Image('https://i.imgur.com/Xm5K60c.jpg', blackColor),
-          new Image('https://i.imgur.com/umPSO0J.jpg', blackColor),
-          new Image('https://i.imgur.com/fyyjtHm.jpg', blackColor)
+          new Image("https://i.imgur.com/DMfYOLA.jpg", blackColor),
+          new Image('https://i.imgur.com/V89wBtI.jpg', blackColor),
+          new Image('https://i.imgur.com/1jXmdsT.jpg', blackColor),
+          new Image('https://i.imgur.com/HM1bh8d.jpg', blackColor)
         ],
         [smallSize, mediumSize, largeSize, xlSize]
       ),
@@ -214,10 +214,10 @@ export class FakedataService {
         a3100,
         coCategory,
         [
-          new Image("https://i.imgur.com/WZ35TTq.jpg", brownColor),
-          new Image('https://i.imgur.com/ay0MsBh.jpg', brownColor),
-          new Image('https://i.imgur.com/k6oMXgf.jpg', greenColor),
-          new Image('https://i.imgur.com/bieyoPz.jpg', greenColor)
+          new Image("https://i.imgur.com/AzBojJZ.jpg", brownColor),
+          new Image('https://i.imgur.com/sr46BIZ.jpg', brownColor),
+          new Image('https://i.imgur.com/vucqXNJ.jpg', greenColor),
+          new Image('https://i.imgur.com/HcPDrNa.jpg', greenColor)
         ],
         [smallSize, mediumSize, largeSize, xlSize]
       ),
@@ -231,10 +231,10 @@ export class FakedataService {
         a3100,
         coCategory,
         [
-          new Image("https://i.imgur.com/If13JVZ.jpg", brownColor),
-          new Image('https://i.imgur.com/axk6rzQ.jpg', brownColor),
-          new Image('https://i.imgur.com/zt0UCkA.jpg', greenColor),
-          new Image('https://i.imgur.com/B7qzImE.jpg', greenColor)
+          new Image("https://i.imgur.com/mS6NhuN.jpg", brownColor),
+          new Image('https://i.imgur.com/oHP1e69.jpg', brownColor),
+          new Image('https://i.imgur.com/WcfBX1T.jpg', greenColor),
+          new Image('https://i.imgur.com/8s0A6ww.jpg', greenColor)
         ],
         [smallSize, mediumSize, largeSize, xlSize]
       ),

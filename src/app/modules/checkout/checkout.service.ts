@@ -42,7 +42,7 @@ export class CheckoutService {
    */
   createOrder(paymentType: PaymentType) {
     const cartIds$ = this.cartService.cart$.pipe(map(cart => cart.map(item => item.Id)));
-    return combineLatest(this.authService.userFromStore$, cartIds$, this.addressService.checkedAddress$, this.orderCharges$)
+    return combineLatest([this.authService.userFromStore$, cartIds$, this.addressService.checkedAddress$, this.orderCharges$])
       .pipe(
         switchMap(([user, cartIds, selectedAddress, orderCharges]) => {
           const order = new OrderItem(generateGuid(), user.UID, cartIds, selectedAddress.Id);
@@ -50,7 +50,8 @@ export class CheckoutService {
           const payment = Payment.create(paymentType, order.Id, orderCharges.itemPrice, orderCharges.shipping, orderCharges.tax, orderCharges.coupon);
           return of(new Order(order, payment, [status]));
         }),
-        tap(order => console.log('order => ', order)),
+        take(1),
+        tap(order => console.log('createOrder => ', order)),
         switchMap(order => this.orderService.saveOrder(order)),
         tap(ok => {
           if (ok) {

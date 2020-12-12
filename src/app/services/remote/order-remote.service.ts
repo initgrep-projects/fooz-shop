@@ -37,6 +37,7 @@ export class OrderRemoteService {
 
 
   saveOrder(order: Order) {
+    console.log("saveOrder ", order);
     return defer(async () => {
       const batch = this.db.firestore.batch();
 

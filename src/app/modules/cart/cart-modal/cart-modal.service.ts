@@ -9,7 +9,7 @@ import { tap } from 'rxjs/operators';
 })
 export class CartModalService {
   modalRef: NgbModalRef;
- 
+
 
   constructor(
     private modalService: NgbModal,
@@ -27,7 +27,7 @@ export class CartModalService {
       {
         size: 'lg',
         scrollable: true,
-        backdrop: true,
+        backdrop: false,
         keyboard: true,
         beforeDismiss: () => this.goToPreviousLocation()
       });

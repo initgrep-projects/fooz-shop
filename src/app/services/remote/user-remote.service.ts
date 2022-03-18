@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
-import { classToPlain } from 'class-transformer';
+import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
 import { defer, Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, switchMap } from 'rxjs/operators';
 import { User } from 'src/app/models/user';
 import { USER_COLLECTION } from 'src/app/util/app.constants';
 import { toObservable } from 'src/app/util/app.lib';
@@ -55,7 +54,7 @@ export class UserRemoteService {
   saveUser(user: User): Observable<boolean> {
     console.log('db-save called');
     return defer(() =>
-      this.userCollection.doc(user.UID).set(classToPlain(user))
+      this.userCollection.doc(user.UID).set(user)
         .then(() => {
           console.log('user created in db');
           return true;
@@ -70,7 +69,7 @@ export class UserRemoteService {
    */
   updateUser(user: User): Observable<boolean> {
     return defer(() =>
-      this.userCollection.doc(user.UID).update(classToPlain(user))
+      this.userCollection.doc(user.UID).update(user)
         .then(() => {
           console.log('user updated');
           return true;
@@ -83,7 +82,12 @@ export class UserRemoteService {
    * @param id the user id
    */
   deActivateUser(id: string): Observable<boolean> {
-    return toObservable(this.userCollection.doc(id).update({ active: false }));
+    return this.fetchUser(id)
+    .pipe(
+      switchMap(user => {
+        return toObservable(this.userCollection.doc(id).update({...user, Active:false }))
+      })
+    );
   }
 
   /**

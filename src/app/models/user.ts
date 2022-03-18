@@ -7,7 +7,8 @@ export class User {
         private phoneNumber?: string,
         private isAnonymous: boolean = true,
         private photoURL?: string,
-        private roles: string[] = ['user']
+        private roles: string[] = ['user'],
+        private active:boolean = true
     ) { }
 
     get UID() { return this.uid; }
@@ -29,4 +30,7 @@ export class User {
     get Roles() { return this.roles; };
     set Roles(roles: string[]) { this.roles = roles; }
     addRole(role: string) { this.roles.push(role); }
+
+    get Active(){ return this.Active}
+    set Active(active: boolean) { this.active = active}
 }

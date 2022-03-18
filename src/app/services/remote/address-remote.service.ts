@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestoreCollection, AngularFirestore } from '@angular/fire/firestore';
+import { AngularFirestoreCollection, AngularFirestore } from '@angular/fire/compat/firestore';
 import { ObjectTransformerService } from '../object-transformer.service';
 import { ADDRESS_COLLECTION } from 'src/app/util/app.constants';
 import { Observable } from 'rxjs';
@@ -22,7 +22,7 @@ export class AddressRemoteService {
 
   /** Address Operations start */
   saveAddress(address: Address): Observable<boolean> {
-    return toObservable(this.addressCollection.doc(address.Id).set(classToPlain(address)));
+    return toObservable(this.addressCollection.doc(address.Id).set(address));
   }
 
   updateAddress(address: Address): Observable<boolean> {

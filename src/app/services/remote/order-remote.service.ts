@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
+import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
 import { classToPlain } from 'class-transformer';
 import { isEmpty } from 'lodash';
 import { combineLatest, defer, Observable, of, zip } from 'rxjs';
-import { map, switchMap, take, tap } from 'rxjs/operators';
+import { map, switchMap, take } from 'rxjs/operators';
 import { CartItemStage } from 'src/app/models/cart-item';
 import { OrderStatus } from 'src/app/models/order-status.model';
 import { Order, OrderItem } from 'src/app/models/order.modal';
@@ -63,7 +63,7 @@ export class OrderRemoteService {
 
   saveOrderStatus(status: OrderStatus) {
     return defer(async () => {
-      await this.orderStatusCollection.doc(status.Id).set(classToPlain(status));
+      await this.orderStatusCollection.doc(status.Id).set(status);
       return true;
     });
   }
@@ -114,11 +114,8 @@ export class OrderRemoteService {
             const orderAdddresses = combineLatest(orders.map(order => this.addressremoteService.fetchAddressForUserById(order.OrderItem.AddressId, userId)));
             return zip(of(orders), orderCarts, orderPayments, orderAdddresses, orderStatusList);
 
-          } else {
-
-            return zip(of([]), of([]), of([]), of([]), of([]));
           }
-
+            return zip(of([]), of([]), of([]), of([]), of([]));
         }),
         map(([orders, orderCarts, orderPayments, orderAddresses, orderStatusList]) => {
           // console.log('order in map => ', orders, orderCarts, orderPayments, orderAddresses, orderStatusList);

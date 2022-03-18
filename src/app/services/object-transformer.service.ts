@@ -16,8 +16,9 @@ import { Brand } from '../models/brand';
 import { Payment } from '../models/payment.model';
 import { OrderStatus } from '../models/order-status.model';
 import { OrderItem } from '../models/order.modal';
-import { title } from 'process';
 import { Coupon } from '../models/coupon.model';
+import firebase from 'firebase/compat/app';
+import { UserCredential } from 'firebase/auth';
 
 @Injectable({
   providedIn: 'root'
@@ -202,7 +203,9 @@ export class ObjectTransformerService {
   }
 
 
-  transformUser(user: firebase.User): User {
+  transformUser(user: {uid:string, email:string, displayName:string, emailVerified:boolean
+  , phoneNumber:string, isAnonymous:boolean, photoURL:string
+  }): User {
     if (!user) {
       return null;
     }

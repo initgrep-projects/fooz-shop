@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
+import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
 import { classToPlain } from 'class-transformer';
+import { toPlainObject } from 'lodash';
 import { defer, forkJoin, Observable } from 'rxjs';
 import { map, take } from 'rxjs/operators';
 import { CartItem } from 'src/app/models/cart-item';
@@ -12,7 +13,7 @@ import { ObjectTransformerService } from '../object-transformer.service';
 })
 export class CartRemoteService {
 
-  private cartCollection: AngularFirestoreCollection<CartItem>;
+  private cartCollection: AngularFirestoreCollection;
 
   constructor(
     private db: AngularFirestore,

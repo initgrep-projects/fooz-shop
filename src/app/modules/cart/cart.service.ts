@@ -86,6 +86,7 @@ export class CartService {
         }
       }),
         catchError(error => {
+          console.log("error happened during item add to cart", error);
           this.toastService.failure(cartLabels.addItemFailed);
           return of(error);
         }));

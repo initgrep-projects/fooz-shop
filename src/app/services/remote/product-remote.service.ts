@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
-import { classToPlain } from 'class-transformer';
+import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
 import { Observable } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
 import { Brand } from 'src/app/models/brand';
@@ -11,15 +10,15 @@ import { LookBookItem } from '../../models/lookbook';
 import { Product } from '../../models/product';
 import { Size } from '../../models/size';
 import { Sort } from '../../models/Sort';
-import { generateGuid } from '../../util/app.lib';
-import { FakedataService } from '../fakedata.service';
-import { ObjectTransformerService } from '../object-transformer.service';
 import {
   BRAND_COLLECTION, CATEGORY_COLLECTION,
   CUSTOM_SIZE_INPUT,
   LOOKBOOK_COLLECTION, PRODUCT_COLLECTION,
   PRODUCT_PAGE_SIZE, SIZE_COLLECTION, SORT_COLLECTION, TREND_COLLECTION
 } from '../../util/app.constants';
+import { generateGuid } from '../../util/app.lib';
+import { FakedataService } from '../fakedata.service';
+import { ObjectTransformerService } from '../object-transformer.service';
 
 
 @Injectable({
@@ -77,7 +76,7 @@ export class ProductRemoteService {
 
   saveBrand() {
     const brand = this.fakedataService.getBrand();
-    this.brandCollection.doc(generateGuid()).set(classToPlain(brand));
+    this.brandCollection.doc(generateGuid()).set(brand);
   }
 
   fetchBrand() {
@@ -97,11 +96,11 @@ export class ProductRemoteService {
   saveProducts() {
     this.fakedataService.getProducts()
       .forEach(product =>
-        this.productCollection.doc(product.Id).set(classToPlain(product)));
+        this.productCollection.doc(product.Id).set(product));
   }
 
   updateProduct(p: Product) {
-    this.productCollection.doc(p.Id).set(classToPlain(p));
+    this.productCollection.doc(p.Id).set(p);
   }
 
   /**
@@ -193,7 +192,7 @@ export class ProductRemoteService {
 
   saveCategories() {
     this.fakedataService.getCategories()
-      .forEach(category => this.categoryCollection.doc(generateGuid()).set(classToPlain(category)));
+      .forEach(category => this.categoryCollection.doc(generateGuid()).set(category));
   }
 
   fetchCategories(): Observable<Category[]> {
@@ -212,7 +211,7 @@ export class ProductRemoteService {
 
   saveSizes() {
     this.fakedataService.getSizes()
-      .forEach(size => this.sizeCollection.doc(generateGuid()).set(classToPlain(size)));
+      .forEach(size => this.sizeCollection.doc(generateGuid()).set(size));
   }
 
   fetchSizes(): Observable<Size[]> {
@@ -231,7 +230,7 @@ export class ProductRemoteService {
 
   saveCustomSizeInputs() {
     const customSizeInput = this.fakedataService.getCustomSizeInput();
-    this.customSizeInputCollection.doc(generateGuid()).set(classToPlain(customSizeInput));
+    this.customSizeInputCollection.doc(generateGuid()).set(customSizeInput);
   }
 
   fetchCustomSizeInputs(): Observable<CustomSizeInput> {
@@ -251,7 +250,7 @@ export class ProductRemoteService {
 
   saveSortOrders() {
     this.fakedataService.getSortOrders()
-      .forEach(order => this.sortCollection.doc(generateGuid()).set(classToPlain(order)));
+      .forEach(order => this.sortCollection.doc(generateGuid()).set(order));
   }
 
 
@@ -271,7 +270,7 @@ export class ProductRemoteService {
 
   saveTrendItems() {
     this.fakedataService.getTrendItems().forEach(image => {
-      this.trendCollection.doc(generateGuid()).set(classToPlain(image));
+      this.trendCollection.doc(generateGuid()).set(image);
     });
   }
 
@@ -294,7 +293,7 @@ export class ProductRemoteService {
 
   saveLookBook() {
     this.fakedataService.getLookBook()
-      .forEach(lb => this.lookBookCollection.doc(generateGuid()).set(classToPlain(lb)));
+      .forEach(lb => this.lookBookCollection.doc(generateGuid()).set(lb));
   }
 
   fetchLookBookItems(): Observable<LookBookItem[]> {

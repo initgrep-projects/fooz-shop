@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { AngularFireAuth } from '@angular/fire/auth';
+import { getAuth,  createUserWithEmailAndPassword, fetchSignInMethodsForEmail, GoogleAuthProvider, sendEmailVerification, sendPasswordResetEmail, signInAnonymously, signInWithEmailAndPassword, updateEmail, Auth } from '@angular/fire/auth';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Store } from '@ngrx/store';
-import * as firebase from 'firebase/app';
 import { isEmpty } from 'lodash';
 import { defer, from, Observable, of } from 'rxjs';
 import { catchError, map, switchMap, take, tap } from 'rxjs/operators';
@@ -27,6 +27,7 @@ export class AuthService {
 
   user$: Observable<User>;
   userFromStore$: Observable<User>;
+  auth:Auth;
 
 
   constructor(
@@ -34,11 +35,12 @@ export class AuthService {
     private store: Store<AppState>,
     private transformService: ObjectTransformerService,
     private db: UserRemoteService,
-    private toastService: ToastService
+    private toastService: ToastService,
   ) {
 
     this.userFromStore$ = this.store.select('auth').pipe(map(state => state.user));
     this.user$ = this.syncAuthChanges();
+    this.auth =  getAuth()
   }
 
 
@@ -46,7 +48,7 @@ export class AuthService {
   /**
    * Every auth change be it anonymous, login, login with google or registeration
    * will trigger the push in this subscription.
-   * This method will check 
+   * This method will check
    * 1) if no auth -> return an anonymous auth
    * 2) if auth -> return an auth
    * 3) convert firebaseCredentials.user to @see User
@@ -93,17 +95,17 @@ export class AuthService {
   //DONE
   private loginAsAnonymous(): Observable<User> {
     console.log('Goiong Anonymous.. since no auth-user found');
-    return from(firebase.auth().signInAnonymously())
+    return from(signInAnonymously(this.auth))
       .pipe(map(credentials => this.transformService.transformUser(credentials.user)));
   }
 
   //DONE
   loginWithGoogle(): Observable<boolean> {
     return defer(async () => {
-      const provider = new firebase.auth.GoogleAuthProvider();
+      const provider = new GoogleAuthProvider();
       provider.addScope('profile');
       provider.addScope('email');
-      const cred = await this.angularFireAuth.auth.signInWithPopup(provider);
+      const cred = await this.angularFireAuth.signInWithPopup(provider);
       return cred.user;
     })
       .pipe(
@@ -114,14 +116,14 @@ export class AuthService {
 
   //DONE
   loginWithUserPass(value: { email: string, password: string }) {
-    return from(firebase.auth().signInWithEmailAndPassword(value.email, value.password));
+    return from(signInWithEmailAndPassword(this.auth,value.email, value.password));
 
   }
 
   //DONE
   registerUser(value: { email: string, password: string }): Observable<boolean> {
     return defer(async () => {
-      const cred = await firebase.auth().createUserWithEmailAndPassword(value.email, value.password);
+      const cred = await createUserWithEmailAndPassword(this.auth,value.email, value.password);
       return cred.user;
     })
       .pipe(
@@ -133,7 +135,7 @@ export class AuthService {
 
   //DONE
   verifyEmail(): Observable<boolean> {
-    return toObservable(firebase.auth().currentUser.sendEmailVerification())
+    return toObservable(sendEmailVerification(this.auth.currentUser))
       .pipe(
         tap(isOK => {
           if (isOK) {
@@ -149,7 +151,7 @@ export class AuthService {
 
   //DONE
   resetPassword(email: string): Observable<boolean> {
-    return toObservable(firebase.auth().sendPasswordResetEmail(email))
+    return toObservable(sendPasswordResetEmail(this.auth, email))
       .pipe(
         tap(isOK => {
           if (isOK) {
@@ -168,7 +170,7 @@ export class AuthService {
   async logOut() {
     console.log("logout called");
     try {
-      await firebase.auth().signOut();
+      await this.auth.signOut();
       this.toastService.success(labels.logoutSuccess, 'sign-out-alt');
     }
     catch (error) {
@@ -203,7 +205,7 @@ export class AuthService {
   //DONE
   updateUser(user: User): Observable<boolean> {
     return defer(async () => {
-      await firebase.auth().currentUser.updateEmail(user.Email);
+      await updateEmail(this.auth.currentUser, user.Email)
       return true;
     })
       .pipe(
@@ -225,7 +227,7 @@ export class AuthService {
   //DONE
   fetchSignInMethod(email: string): Observable<signInType[]> {
     return defer(async () => {
-      const methods = await firebase.auth().fetchSignInMethodsForEmail(email);
+      const methods = await fetchSignInMethodsForEmail(this.auth,email);
       if (isEmpty(methods)) {
         return [signInType.NONE];
       }
